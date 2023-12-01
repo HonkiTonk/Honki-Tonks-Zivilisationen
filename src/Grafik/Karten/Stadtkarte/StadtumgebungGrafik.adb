@@ -155,7 +155,7 @@ package body StadtumgebungGrafik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       ProduktionSchleife:

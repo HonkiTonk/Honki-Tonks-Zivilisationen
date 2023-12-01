@@ -172,7 +172,7 @@ package body EinlesenTexturenLogik is
       end case;
       
       SpeziesschleifeSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          EinzelpfadeEinlesenSchleife:
          for EinzelpfadeEinlesenSchleifenwert in Speziesverzeichnisse'Range loop
          
@@ -214,7 +214,7 @@ package body EinlesenTexturenLogik is
    
    procedure Spezieshintergrund
      (DateipfadExtern : in Wide_Wide_String;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       case
@@ -274,7 +274,7 @@ package body EinlesenTexturenLogik is
    
    procedure Einheiten
      (DateipfadExtern : in Wide_Wide_String;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
                                                                
       case
@@ -334,7 +334,7 @@ package body EinlesenTexturenLogik is
    
    procedure Gebäude
      (DateipfadExtern : in Wide_Wide_String;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       case

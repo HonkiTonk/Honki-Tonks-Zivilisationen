@@ -27,7 +27,7 @@ with Fehlermeldungssystem;
 package body BefehlspruefungenLogik is
    
    procedure WasWirdEntfernt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type EinheitenDatentypen.Einheitenbereich;
       use type StadtDatentypen.Städtebereich;
@@ -83,7 +83,7 @@ package body BefehlspruefungenLogik is
    
    
    procedure AuswahlEinheitStadt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type EinheitenDatentypen.Einheitenbereich;
       use type StadtDatentypen.Städtebereich;
@@ -124,7 +124,7 @@ package body BefehlspruefungenLogik is
 
 
    procedure EinheitOderStadt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       StadtNummerExtern : in StadtDatentypen.Städtebereich;
       EinheitNummerExtern : in EinheitenDatentypen.Einheitenbereich)
    is begin
@@ -242,7 +242,7 @@ package body BefehlspruefungenLogik is
    
    
    procedure BaueStadt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
@@ -273,7 +273,7 @@ package body BefehlspruefungenLogik is
    
    
    procedure EinheitBefehle
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Klein_Enum)
    is begin
                      
@@ -309,7 +309,7 @@ package body BefehlspruefungenLogik is
    
    
    procedure StadtUmbenennen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,

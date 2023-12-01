@@ -60,7 +60,7 @@ package body KIStadtLogik is
       NotfallExtern : in Boolean)
    is
       use type EinheitenDatentypen.EinheitenID;
-      use type StadtDatentypen.GebäudeIDMitNullwert;
+      use type StadtDatentypen.GebäudeID;
       use type KIDatentypen.BauenBewertung;
    begin
       
@@ -150,7 +150,7 @@ package body KIStadtLogik is
          when others =>
             NeuesBauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                              EinheitBauenExtern       => (NotfallEinheit, 1),
-                             GebäudeBauenExtern       => (StadtDatentypen.GebäudeIDMitNullwert'First, 0),
+                             GebäudeBauenExtern       => (StadtDatentypen.GebäudeID'First, 0),
                              NotfallExtern            => True);
             return True;
       end case;

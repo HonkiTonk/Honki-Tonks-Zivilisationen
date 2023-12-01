@@ -62,7 +62,7 @@ private
 
 
    function OberflächeLand
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
@@ -76,7 +76,7 @@ private
               );
 
    function OberflächeWasser
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
@@ -88,7 +88,7 @@ private
               );
 
    function UnterflächeLand
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
@@ -102,7 +102,7 @@ private
               );
 
    function UnterflächeWasser
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord

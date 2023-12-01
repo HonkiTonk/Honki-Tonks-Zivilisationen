@@ -14,7 +14,7 @@ package AuswahlStadtEinheitLogik is
    use type EinheitenDatentypen.Einheitenbereich;
    
    function AuswahlStadtEinheit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       StadtnummerExtern : in StadtDatentypen.Städtebereich;
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return Integer

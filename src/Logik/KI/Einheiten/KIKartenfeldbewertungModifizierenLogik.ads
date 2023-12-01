@@ -12,7 +12,7 @@ package KIKartenfeldbewertungModifizierenLogik is
 
    function BewertungStadtBauen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -39,7 +39,7 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   type KartenfeldBewertungStadtBauenMinimumArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Float;
+   type KartenfeldBewertungStadtBauenMinimumArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Float;
    KartenfeldBewertungStadtBauenMinimum : constant KartenfeldBewertungStadtBauenMinimumArray := (
                                                                                                  SpeziesDatentypen.Menschen_Enum         => 10.00,
                                                                                                  SpeziesDatentypen.Kasrodiah_Enum        => 10.00,
@@ -65,7 +65,7 @@ private
       
    function GutGenug
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
        Pre => (

@@ -16,8 +16,8 @@ with KartenkoordinatenberechnungssystemLogik;
 package body EinheitenverschiebungLogik is
    
    procedure VonEigenemLandWerfen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       case
@@ -53,7 +53,7 @@ package body EinheitenverschiebungLogik is
    
    procedure EinheitenErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type KartenDatentypen.Kartenfeld;
    begin
@@ -107,7 +107,7 @@ package body EinheitenverschiebungLogik is
    
 
    procedure EinheitVerschieben
-     (SpeziesLandExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesLandExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KartenDatentypen.Kartenfeld;

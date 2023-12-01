@@ -164,7 +164,7 @@ package body KIZielSuchenLogik is
    
    -- Die Prüfungen hier drin später noch erweitern. äöü
    function Fliehen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin

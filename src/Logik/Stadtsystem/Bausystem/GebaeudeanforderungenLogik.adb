@@ -13,7 +13,7 @@ package body GebaeudeanforderungenLogik is
    
    function AnforderungenErfüllt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
    is begin
             
@@ -56,12 +56,12 @@ package body GebaeudeanforderungenLogik is
    
    function NotwendigeGebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+      GebäudeIDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
    is begin
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          if
            False = LeseGebaeudeDatenbank.GebäudeBenötigt (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
@@ -137,8 +137,8 @@ package body GebaeudeanforderungenLogik is
    
    -- Man könnte die Grundschleifen auch noch auf Basis der notwendigen Ebenen einschränken. äöü
    function NotwendigeUmgebung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      GebäudeIDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
    is begin
       

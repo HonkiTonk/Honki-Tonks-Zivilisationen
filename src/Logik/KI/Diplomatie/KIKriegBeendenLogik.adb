@@ -1,8 +1,8 @@
 package body KIKriegBeendenLogik is
    
    function KriegBeenden
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is begin
       

@@ -44,7 +44,7 @@ package body GebaeudeVerkaufenLogik is
       VerkaufenMöglich := False;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                                                             WelchesGebäudeExtern     => GebäudeSchleifenwert);
@@ -71,7 +71,7 @@ package body GebaeudeVerkaufenLogik is
    procedure GebäudeVerkaufen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type StadtDatentypen.GebäudeIDMitNullwert;
+      use type StadtDatentypen.GebäudeID;
    begin
       
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Verkaufen_Enum);
@@ -138,13 +138,13 @@ package body GebaeudeVerkaufenLogik is
       Auswahl := Auswahl + Natural (Float'Ceiling (Mausposition.x / Grafikgröße.x));
       
       if
-        Auswahl not in 1 .. Positive (StadtDatentypen.GebäudeID'Last)
+        Auswahl not in 1 .. Positive (StadtDatentypen.GebäudeIDVorhanden'Last)
       then
          return;
          
       elsif
         False = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                   WelchesGebäudeExtern    => StadtDatentypen.GebäudeID (Auswahl))
+                                                   WelchesGebäudeExtern    => StadtDatentypen.GebäudeIDVorhanden (Auswahl))
       then
          return;
          
@@ -160,7 +160,7 @@ package body GebaeudeVerkaufenLogik is
                         
          when True =>
             GebaeudeAllgemeinLogik.GebäudeVerkaufen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                      WelchesGebäudeExtern     => StadtDatentypen.GebäudeID (Auswahl));
+                                                      WelchesGebäudeExtern     => StadtDatentypen.GebäudeIDVorhanden (Auswahl));
             StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       

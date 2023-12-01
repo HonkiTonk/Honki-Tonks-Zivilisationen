@@ -4,7 +4,7 @@ with SpielVariablen;
 package body SchreibeCursor is
 
    procedure KoordinatenAktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
@@ -15,7 +15,7 @@ package body SchreibeCursor is
    
    
    procedure EAchseAktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EAchseExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
@@ -26,7 +26,7 @@ package body SchreibeCursor is
    
 
    procedure KoordinatenAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
@@ -37,7 +37,7 @@ package body SchreibeCursor is
    
    
    procedure EAchseAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EAchseExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
@@ -57,7 +57,7 @@ package body SchreibeCursor is
    
    
    procedure GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EintragExtern : in KartenRecords.CursorRecord)
    is begin
       

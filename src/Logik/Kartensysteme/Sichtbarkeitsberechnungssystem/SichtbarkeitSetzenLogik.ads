@@ -15,7 +15,7 @@ package SichtbarkeitSetzenLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    
    procedure SichtbarkeitSetzen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -27,7 +27,7 @@ package SichtbarkeitSetzenLogik is
               );
 
    procedure EbenenBerechnungen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (

@@ -3,7 +3,7 @@ with SpielVariablen;
 package body LeseGrenzen is
 
    function Städtegrenzen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return StadtDatentypen.Städtebereich
    is begin
       
@@ -14,7 +14,7 @@ package body LeseGrenzen is
    
    
    function Einheitengrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.EinheitenbereichVorhanden
    is begin
       
@@ -25,7 +25,7 @@ package body LeseGrenzen is
    
    
    function Geldgrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ZahlenDatentypen.EigenesNatural
    is begin
       
@@ -36,7 +36,7 @@ package body LeseGrenzen is
    
    
    function Forschungsgrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Lagermenge
    is begin
       
@@ -47,7 +47,7 @@ package body LeseGrenzen is
    
    
    function Geldgewinngrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Lagermenge
    is begin
       
@@ -58,7 +58,7 @@ package body LeseGrenzen is
    
    
    function Forschungsgewinngrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Lagermenge
    is begin
       
@@ -69,7 +69,7 @@ package body LeseGrenzen is
    
    
    function Speziesrundengrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ZahlenDatentypen.EigenesNatural
    is begin
       
@@ -80,7 +80,7 @@ package body LeseGrenzen is
    
    
    function GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpielRecords.GrenzenRecord
    is begin
       

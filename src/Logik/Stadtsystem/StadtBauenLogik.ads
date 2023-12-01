@@ -43,7 +43,7 @@ private
 
    Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   type StandardStadtnameArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of StadtDatentypen.StädtebereichVorhanden;
+   type StandardStadtnameArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.StädtebereichVorhanden;
    StandardStadtname : StandardStadtnameArray := (others => StadtDatentypen.StädtebereichVorhanden'First);
 
    procedure StadtEintragen
@@ -62,7 +62,7 @@ private
 
    procedure WegAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -85,7 +85,7 @@ private
               );
 
    function StadtnummerErmitteln
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return StadtDatentypen.Städtebereich
      with
        Pre => (
@@ -97,7 +97,7 @@ private
                );
 
    function HauptstadtPrüfen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenverbesserungDatentypen.Verbesserung_Städte_Enum
      with
        Pre => (

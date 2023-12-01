@@ -12,7 +12,7 @@ package body GebaeudeAllgemeinLogik is
 
    procedure GebäudeProduktionBeenden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
    is begin
       
       SchreibeStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
@@ -37,7 +37,7 @@ package body GebaeudeAllgemeinLogik is
    is begin
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          if
            False = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
@@ -70,7 +70,7 @@ package body GebaeudeAllgemeinLogik is
    
    procedure GebäudeVerkaufen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden)
    is begin
       
       SchreibeWichtiges.Geldmenge (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
@@ -93,7 +93,7 @@ package body GebaeudeAllgemeinLogik is
       -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden;
       VorzeichenwechselExtern : in ProduktionDatentypen.Vorzeichenwechsel)
    is begin
       

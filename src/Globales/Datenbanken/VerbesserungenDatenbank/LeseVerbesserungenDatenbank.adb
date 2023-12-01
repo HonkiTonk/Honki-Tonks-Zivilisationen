@@ -27,7 +27,7 @@ package body LeseVerbesserungenDatenbank is
    
    function BewegungWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Bewegungspunkte
    is begin
       
@@ -47,7 +47,7 @@ package body LeseVerbesserungenDatenbank is
    
    function ProduktionVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
@@ -68,7 +68,7 @@ package body LeseVerbesserungenDatenbank is
    
    function ProduktionWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
@@ -89,7 +89,7 @@ package body LeseVerbesserungenDatenbank is
    
    function KampfVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
    is begin
@@ -110,7 +110,7 @@ package body LeseVerbesserungenDatenbank is
    
    function KampfWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
    is begin

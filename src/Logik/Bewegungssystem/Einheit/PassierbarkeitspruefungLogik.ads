@@ -35,7 +35,7 @@ package PassierbarkeitspruefungLogik is
               );
    
    function PassierbarkeitPrüfenID
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
@@ -80,7 +80,7 @@ private
    
    
    function IstNichtPassierbar
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -94,7 +94,7 @@ private
               );
      
    function IstPassierbar
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)

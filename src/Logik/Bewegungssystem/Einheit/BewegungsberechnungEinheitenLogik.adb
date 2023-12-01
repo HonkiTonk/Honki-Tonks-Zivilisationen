@@ -87,7 +87,7 @@ package body BewegungsberechnungEinheitenLogik is
       -- Prüft ob die Einheit jetzt auf einem Feld steht welches von einer fremden Spezies bereits aufgedeckt wurde und stellt entsprechend Kontakt her.
       -- Anders als die Berechnung in SichtbarkeitLogik, wo geprüft wird ob eine fremde Stadt oder Einheit auf einem neu aufgedecktem Feld steht.
       KontaktSchleife:
-      for FremdeSichtbarkeitSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for FremdeSichtbarkeitSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            FremdeSichtbarkeitSchleifenwert = EinheitSpeziesNummerExtern.Spezies

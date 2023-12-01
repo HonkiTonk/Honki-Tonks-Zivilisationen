@@ -18,7 +18,7 @@ with TextaccessverwaltungssystemEinfachGrafik;
 package body ForschungserfolgGrafik is
 
    procedure Forschungserfolg
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AuswahlExtern : in Natural)
    is begin
       
@@ -67,8 +67,8 @@ package body ForschungserfolgGrafik is
    
    
    function Forschung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      TechnologieExtern : in ForschungenDatentypen.ForschungID;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      TechnologieExtern : in ForschungenDatentypen.ForschungIDVorhanden;
       ViewbreiteExtern : in Float)
       return Sf.System.Vector2.sfVector2f
    is begin
@@ -93,8 +93,8 @@ package body ForschungserfolgGrafik is
      
      
    function Infotext
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      TechnologieExtern : in ForschungenDatentypen.ForschungID;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      TechnologieExtern : in ForschungenDatentypen.ForschungIDVorhanden;
       ViewbreiteExtern : in Float)
       return Sf.System.Vector2.sfVector2f
    is begin

@@ -12,8 +12,8 @@ package VerkaufsauswahlGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Verkaufsauswahl
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      AktuelleAuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      AktuelleAuswahlExtern : in StadtDatentypen.GebäudeID)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -27,8 +27,8 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
 
    procedure Gebäude
-     (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum

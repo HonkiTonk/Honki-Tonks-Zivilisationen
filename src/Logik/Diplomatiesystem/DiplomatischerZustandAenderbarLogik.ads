@@ -9,8 +9,8 @@ package DiplomatischerZustandAenderbarLogik is
    use type SpeziesDatentypen.Spezies_Enum;
 
    procedure StatusÄnderbarkeitPrüfen
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum;
       ZeitbegrenzungBerücksichtigenExtern : in Boolean)
      with

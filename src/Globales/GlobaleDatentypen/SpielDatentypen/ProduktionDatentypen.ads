@@ -37,7 +37,7 @@ package ProduktionDatentypen is
                                    -- Noch spezielles Ressourcen hier einbauen, weglassen oder ein eigenes Enum dafür erstellen? äöü
                                   );
    
-   subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Permanente_Kosten_Enum'Succ (Permanente_Kosten_Enum'First) .. Permanente_Kosten_Enum'Last;
+   subtype Permanente_Kosten_Vorhanden_Enum is Permanente_Kosten_Enum range Permanente_Kosten_Enum'Succ (Permanente_Kosten_Enum'First) .. Permanente_Kosten_Enum'Last;
    
    
    

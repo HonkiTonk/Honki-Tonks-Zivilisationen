@@ -294,7 +294,7 @@ package body SchreibeStadtGebaut is
    
    procedure PermanenteKostenPosten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum;
+      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Vorhanden_Enum;
       KostenExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
    is
@@ -396,7 +396,8 @@ package body SchreibeStadtGebaut is
       then
          GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauzeit
            := (LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                        IDExtern    => StadtDatentypen.GebäudeID (GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauprojekt.Gebäude))
+                                                        IDExtern    =>
+                                                          StadtDatentypen.GebäudeIDVorhanden (GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauprojekt.Gebäude))
                - GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material)
              / GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Produktionrate;
                   
@@ -485,7 +486,7 @@ package body SchreibeStadtGebaut is
    
    procedure GebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden;
       HinzufügenEntfernenExtern : in Boolean)
    is begin
       

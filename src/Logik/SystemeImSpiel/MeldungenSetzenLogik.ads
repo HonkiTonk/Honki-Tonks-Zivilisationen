@@ -14,7 +14,7 @@ package MeldungenSetzenLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure MeldungenRundenende
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -32,7 +32,7 @@ package MeldungenSetzenLogik is
    
    procedure EinheitmeldungSetzen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      EreignisExtern : in EinheitenDatentypen.Einheit_Meldung_Verwendet_Enum)
+      EreignisExtern : in EinheitenDatentypen.Einheit_Meldung_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum

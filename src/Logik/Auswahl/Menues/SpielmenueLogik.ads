@@ -8,7 +8,7 @@ package SpielmenueLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    function Spielmenü
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (

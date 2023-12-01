@@ -15,7 +15,7 @@ package body FeldproduktionLogik is
    
    function Feldproduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
      -- Datentypen in ProduktionDatentypen mal an das nweue System anpassen. äöü
       return ProduktionDatentypen.Feldproduktion

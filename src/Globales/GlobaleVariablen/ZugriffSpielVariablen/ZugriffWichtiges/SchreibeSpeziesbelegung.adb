@@ -4,7 +4,7 @@ with SpielVariablen;
 package body SchreibeSpeziesbelegung is
 
    procedure Belegung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BelegungExtern : in SpeziesDatentypen.Spieler_Enum)
    is begin
       
@@ -15,7 +15,7 @@ package body SchreibeSpeziesbelegung is
    
    
    procedure Besiegt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       SpielVariablen.Speziesbelegung (SpeziesExtern).Besiegt := True;
@@ -34,7 +34,7 @@ package body SchreibeSpeziesbelegung is
    
    
    procedure GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EintragExtern : in SpielRecords.SpeziesRecords)
    is begin
       

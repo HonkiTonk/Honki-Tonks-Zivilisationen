@@ -15,7 +15,7 @@ package body StadtGebaeudeBauenLogik is
    is begin
       
       GebaeudeAllgemeinLogik.GebäudeProduktionBeenden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                        IDExtern                 => StadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Gebäude));
+                                                        IDExtern                 => StadtDatentypen.GebäudeIDVorhanden (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Gebäude));
       
       case
         LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

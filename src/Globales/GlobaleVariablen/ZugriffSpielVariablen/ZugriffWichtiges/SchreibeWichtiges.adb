@@ -15,7 +15,7 @@ package body SchreibeWichtiges is
 
    -- Warum kann die vorhandene Geldmenge überhaupt kleiner als 0 sein? Das mal ändern? äöü
    procedure Geldmenge
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldZugewinnExtern : in ZahlenDatentypen.EigenerInteger;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -47,7 +47,7 @@ package body SchreibeWichtiges is
    
    
    procedure GeldZugewinnProRunde
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)
    is
@@ -81,7 +81,7 @@ package body SchreibeWichtiges is
    
    
    procedure GesamteForschungsrate
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ForschungsrateZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)
    is
@@ -124,7 +124,7 @@ package body SchreibeWichtiges is
    
    
    procedure Forschungsmenge
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ForschungZugewinnExtern : in ProduktionDatentypen.Produktion;
       RechnenSetzenExtern : in Boolean)
    is
@@ -167,14 +167,14 @@ package body SchreibeWichtiges is
    
    
    procedure VerbleibendeForschungszeit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type ProduktionDatentypen.Produktion;
       use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
       
       if
-        SpielVariablen.Wichtiges (SpeziesExtern).Forschungsprojekt = ForschungenDatentypen.ForschungIDMitNullWert'First
+        SpielVariablen.Wichtiges (SpeziesExtern).Forschungsprojekt = ForschungenDatentypen.ForschungID'First
         or
           SpielVariablen.Wichtiges (SpeziesExtern).GesamteForschungsrate = ProduktionKonstanten.LeerProduktion
       then
@@ -200,8 +200,8 @@ package body SchreibeWichtiges is
    
    
    procedure Forschungsprojekt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      ForschungIDExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      ForschungIDExtern : in ForschungenDatentypen.ForschungID)
    is begin
       
       SpielVariablen.Wichtiges (SpeziesExtern).Forschungsprojekt := ForschungIDExtern;
@@ -223,7 +223,7 @@ package body SchreibeWichtiges is
    
 
    procedure Erforscht
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       case
@@ -241,7 +241,7 @@ package body SchreibeWichtiges is
    
    
    procedure ErforschtDebug
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       SpielVariablen.Wichtiges (SpeziesExtern).Erforscht := (others => True);
@@ -251,7 +251,7 @@ package body SchreibeWichtiges is
    
    
    procedure AnzahlStädte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
    is
       use type StadtDatentypen.Städtebereich;
@@ -286,7 +286,7 @@ package body SchreibeWichtiges is
    
      
    procedure AnzahlArbeiter
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
    is
       use type EinheitenDatentypen.Einheitenbereich;
@@ -322,7 +322,7 @@ package body SchreibeWichtiges is
    
      
    procedure AnzahlKämpfer
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
    is
       use type EinheitenDatentypen.Einheitenbereich;
@@ -358,7 +358,7 @@ package body SchreibeWichtiges is
    
      
    procedure AnzahlSonstiges
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
    is
       use type EinheitenDatentypen.Einheitenbereich;
@@ -403,7 +403,7 @@ package body SchreibeWichtiges is
    
    
    procedure LeerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       SpielVariablen.Wichtiges (SpeziesExtern) := WichtigesRecordKonstanten.LeerWichtigesZeug;
@@ -413,7 +413,7 @@ package body SchreibeWichtiges is
    
    
    procedure GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EintragExtern : in SpielRecords.WichtigesRecord)
    is begin
       

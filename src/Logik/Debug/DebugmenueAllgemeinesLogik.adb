@@ -6,7 +6,7 @@ package body DebugmenueAllgemeinesLogik is
 
    -- Immer dran denken, das hier prüft auch ob die Belegung der Spezies leer ist.
    function SpeziesAuswählen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spezies_Enum
    is 
       use type SpeziesDatentypen.Spezies_Enum;
@@ -23,7 +23,7 @@ package body DebugmenueAllgemeinesLogik is
             return SpeziesDatentypen.Leer_Spezies_Enum;
             
          when True =>
-            AusgewählteSpezies := SpeziesDatentypen.Spezies_Verwendet_Enum'Val (Zahleneingabe.EingegebeneZahl);
+            AusgewählteSpezies := SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (Zahleneingabe.EingegebeneZahl);
       end case;
       
       if

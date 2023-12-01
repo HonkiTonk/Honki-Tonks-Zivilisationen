@@ -14,8 +14,8 @@ with KennenlernenLogik;
 package body HandelnLogik is
 
    function Handelsmenü
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Integer
    is begin
       
@@ -36,8 +36,8 @@ package body HandelnLogik is
    
    
    function Handeln
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Integer
    is begin
       
@@ -102,8 +102,8 @@ package body HandelnLogik is
    
    
    procedure GeldVerschenken
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       if
@@ -146,8 +146,8 @@ package body HandelnLogik is
    
    
    procedure GeldVerlangen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       if
@@ -188,15 +188,15 @@ package body HandelnLogik is
    
    
    procedure KontakteVerkaufen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
                
          if
            (SpeziesSchleifenwert = SpeziesExtern
@@ -223,15 +223,15 @@ package body HandelnLogik is
    
    
    procedure KontakteKaufen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
                
          if
            SpeziesSchleifenwert = SpeziesExtern
@@ -261,8 +261,8 @@ package body HandelnLogik is
    
    
    procedure KontakteTauschen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       KontakteKaufen (SpeziesExtern             => SpeziesExtern,
@@ -275,8 +275,8 @@ package body HandelnLogik is
    
    
    procedure SichtbarkeitKaufen
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
      
       EAchseEinsSchleife:
@@ -309,8 +309,8 @@ package body HandelnLogik is
 
 
    procedure SichtbarkeitVerkaufen
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
   
       EAchseZweiSchleife:
@@ -343,8 +343,8 @@ package body HandelnLogik is
    
    
    procedure SichtbarkeitTauschen
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       SichtbarkeitKaufen (SpeziesEinsExtern => SpeziesEinsExtern,

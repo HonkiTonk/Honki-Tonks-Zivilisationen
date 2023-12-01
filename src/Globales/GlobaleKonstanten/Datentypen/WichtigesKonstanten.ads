@@ -13,7 +13,7 @@ package WichtigesKonstanten is
    LeerGesamteForschungsrate : constant ProduktionDatentypen.Produktion := 0;
    LeerForschungsmenge : constant ProduktionDatentypen.Produktion := 0;
    LeerVerbleibendeForschungszeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
-   LeerForschungsprojekt : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
+   LeerForschungsprojekt : constant ForschungenDatentypen.ForschungID := ForschungenDatentypen.ForschungID'First;
    LeerErforscht : constant Boolean := False;
    LeerAnzahlStädte : constant StadtDatentypen.Städtebereich := StadtDatentypen.Städtebereich'First;
    LeerAnzahlArbeiter : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;

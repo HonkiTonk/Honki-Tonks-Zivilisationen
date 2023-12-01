@@ -53,7 +53,7 @@ package body LeseEinstellungenGrafik is
    
    
    function SpeziesfarbeLesen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Color.sfColor
    is begin
       
@@ -64,7 +64,7 @@ package body LeseEinstellungenGrafik is
    
    
    function RahmenfarbeLesen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Color.sfColor
    is begin
       

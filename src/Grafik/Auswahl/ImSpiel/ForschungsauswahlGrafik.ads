@@ -15,7 +15,7 @@ package ForschungsauswahlGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure ForschungAnzeige
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AktuelleAuswahlExtern : in Natural)
      with
        Pre => (
@@ -24,8 +24,8 @@ package ForschungsauswahlGrafik is
    
 private
    
-   AktuelleAuswahl : ForschungenDatentypen.ForschungIDMitNullWert;
-   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   AktuelleAuswahl : ForschungenDatentypen.ForschungID;
+   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungID;
    
    Forschungswert : ForschungenDatentypen.ForschungIDUnmöglich;
    
@@ -42,30 +42,30 @@ private
    
    procedure Auswahlmöglichkeiten
      (AuswahlExtern : in Natural;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
    procedure Beschreibung
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
    procedure Ermöglicht
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum  
               );
    
    procedure Aktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum  

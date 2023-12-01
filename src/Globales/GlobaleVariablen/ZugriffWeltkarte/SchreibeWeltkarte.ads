@@ -68,7 +68,7 @@ package SchreibeWeltkarte is
    
    procedure Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtbarExtern : in Boolean)
      with
        Pre => (

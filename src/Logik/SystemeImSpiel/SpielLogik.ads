@@ -20,18 +20,18 @@ private
    RückgabeMenschAmZug : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    procedure KISpieler
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
 
    function SpeziesImSpiel
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    function SpeziesDurchgehen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
@@ -39,7 +39,7 @@ private
               );
 
    function MenschlicherSpieler
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
@@ -47,7 +47,7 @@ private
               );
 
    function MenschAmZug
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (

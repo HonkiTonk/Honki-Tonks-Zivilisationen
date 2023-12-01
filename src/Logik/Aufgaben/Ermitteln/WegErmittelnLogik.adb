@@ -90,7 +90,7 @@ package body WegErmittelnLogik is
    
    
    function OberflächeLand
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
@@ -136,7 +136,7 @@ package body WegErmittelnLogik is
    
      
    function OberflächeWasser
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
@@ -196,7 +196,7 @@ package body WegErmittelnLogik is
      
      
    function UnterflächeLand
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
@@ -244,7 +244,7 @@ package body WegErmittelnLogik is
    -- Das ist doch ein wenig sinnfrei, oder? äöü
    -- Vielleicht Wasserröhren? Ähnlich wie ein Tunnel? äöü
    function UnterflächeWasser
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord

@@ -111,8 +111,8 @@ package KartenRecords is
    
    
    
-   type FelderwertungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
-   type SichtbarkeitArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Boolean;
+   type FelderwertungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
+   type SichtbarkeitArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Boolean;
    -- Mehr davon einbauen um den Arbeitsspeicherverbrauch zu reduzieren. äöü
    for SichtbarkeitArray'Component_Size use 1;
    for SichtbarkeitArray'Size use 18;

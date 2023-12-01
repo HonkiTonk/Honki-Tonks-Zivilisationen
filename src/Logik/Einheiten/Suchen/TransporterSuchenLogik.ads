@@ -16,7 +16,7 @@ package TransporterSuchenLogik is
    use type EinheitenDatentypen.Einheitenbereich;
 
    function KoordinatenTransporterMitSpeziesSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenDatentypen.Einheitenbereich
      with

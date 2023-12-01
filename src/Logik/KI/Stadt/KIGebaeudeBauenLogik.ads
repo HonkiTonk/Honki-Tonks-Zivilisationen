@@ -42,7 +42,7 @@ private
    
    function GebäudeBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -53,7 +53,7 @@ private
    
    function NahrungsproduktionBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -64,7 +64,7 @@ private
    
    function GeldproduktionBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -75,7 +75,7 @@ private
      
    function WissensgewinnBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -86,7 +86,7 @@ private
           
    function MaterialproduktionBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -97,7 +97,7 @@ private
      
    function VerteidigungBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -108,7 +108,7 @@ private
      
    function AngriffBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -119,7 +119,7 @@ private
      
    function KostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (

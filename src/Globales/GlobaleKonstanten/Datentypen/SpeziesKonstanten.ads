@@ -10,13 +10,13 @@ package SpeziesKonstanten is
    Speziesanfang : constant Positive := SpeziesDatentypen.SpeziesnummernVorhanden'First;
    Speziesende : constant Positive := SpeziesDatentypen.SpeziesnummernVorhanden'Last;
       
-   type SpeziesanfangLadenSpeichernArray is array (1 .. 3) of SpeziesDatentypen.Spezies_Verwendet_Enum;
+   type SpeziesanfangLadenSpeichernArray is array (1 .. 3) of SpeziesDatentypen.Spezies_Vorhanden_Enum;
    SpeziesanfangSpeichernLaden : constant SpeziesanfangLadenSpeichernArray := (1 => SpeziesDatentypen.Speichern_Laden_Eins_Enum'First,
                                                                                2 => SpeziesDatentypen.Speichern_Laden_Zwei_Enum'First,
                                                                                3 => SpeziesDatentypen.Speichern_Laden_Drei_Enum'First
                                                                               );
    
-   type SpeziesendeSpeichernLadenArray is array (1 .. 3) of SpeziesDatentypen.Spezies_Verwendet_Enum;
+   type SpeziesendeSpeichernLadenArray is array (1 .. 3) of SpeziesDatentypen.Spezies_Vorhanden_Enum;
    SpeziesendeSpeichernLaden : constant SpeziesendeSpeichernLadenArray := (1 => SpeziesDatentypen.Speichern_Laden_Eins_Enum'Last,
                                                                            2 => SpeziesDatentypen.Speichern_Laden_Zwei_Enum'Last,
                                                                            3 => SpeziesDatentypen.Speichern_Laden_Drei_Enum'Last

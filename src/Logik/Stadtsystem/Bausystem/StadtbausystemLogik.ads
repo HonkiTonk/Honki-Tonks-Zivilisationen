@@ -22,7 +22,7 @@ package StadtbausystemLogik is
               );
 
 private
-   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
 
    BauenMöglich : Boolean;

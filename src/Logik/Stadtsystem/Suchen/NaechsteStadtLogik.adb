@@ -8,7 +8,7 @@ with SchreibeGrafiktask;
 package body NaechsteStadtLogik is
 
    procedure NächsteStadt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type StadtDatentypen.Städtebereich;
    begin
@@ -55,7 +55,7 @@ package body NaechsteStadtLogik is
    
    
    procedure NächsteStadtMeldung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type StadtDatentypen.Städtebereich;
       use type StadtDatentypen.Stadt_Meldung_Enum;

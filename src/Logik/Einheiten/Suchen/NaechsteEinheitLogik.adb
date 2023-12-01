@@ -8,7 +8,7 @@ with SchreibeGrafiktask;
 package body NaechsteEinheitLogik is
 
    procedure NächsteEinheit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BewegungspunkteExtern : in Bewegungspunkte_Enum)
    is
       use type EinheitenDatentypen.Einheitenbereich;
@@ -67,7 +67,7 @@ package body NaechsteEinheitLogik is
    
    
    procedure NächsteEinheitMeldung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type EinheitenDatentypen.Einheitenbereich;
       use type EinheitenDatentypen.EinheitenID;

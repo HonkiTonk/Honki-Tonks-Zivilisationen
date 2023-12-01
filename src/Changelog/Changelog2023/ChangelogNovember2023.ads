@@ -1,8 +1,8 @@
 package ChangelogNovember2023 is
 
-   -- Version 0.05.5060 => 0.05. (30.11.2023):
+   -- Version 0.05.5060 => 0.05.5085 (30.11.2023):
    
-   -- 
+   -- Interne Benennung überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    

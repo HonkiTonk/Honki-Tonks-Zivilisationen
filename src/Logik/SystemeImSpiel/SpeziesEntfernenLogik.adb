@@ -20,7 +20,7 @@ with LadezeitenLogik;
 package body SpeziesEntfernenLogik is
 
    procedure SpeziesEntfernen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
@@ -56,7 +56,7 @@ package body SpeziesEntfernenLogik is
       end loop StadtSchleife;
             
       DiplomatieSchleife:
-      for DiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for DiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            DiplomatieSchleifenwert = SpeziesExtern
@@ -94,7 +94,7 @@ package body SpeziesEntfernenLogik is
    
    
    function SpeziesExistiertNoch
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is begin
             
@@ -137,7 +137,7 @@ package body SpeziesEntfernenLogik is
    
    
    procedure SpeziesAufKISetzen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesExtern,

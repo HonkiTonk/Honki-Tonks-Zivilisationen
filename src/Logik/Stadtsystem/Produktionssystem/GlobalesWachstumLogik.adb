@@ -8,7 +8,7 @@ with LeseGrenzen;
 package body GlobalesWachstumLogik is
    
    procedure WachstumsratenBerechnen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin

@@ -8,13 +8,13 @@ with EinheitenArrays;
 package KartendatenbankRecord is
    pragma Pure;
 
-   type BewertungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
-   type ProduktionArray is array (ProduktionDatentypen.Produktion_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
-   type BewegungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of EinheitenDatentypen.Bewegungspunkte;
+   type BewertungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
+   type ProduktionArray is array (ProduktionDatentypen.Produktion_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
+   type BewegungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of EinheitenDatentypen.Bewegungspunkte;
    
    type BewertungsbonusArray is array (BewertungArray'Range) of Boolean;
    type WirtschaftsbonusArray is array (ProduktionArray'Range (1), ProduktionArray'Range (2)) of ProduktionDatentypen.Produktionsbonus;
-   type KampfbonusArray is array (KampfDatentypen.Kampf_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of KampfDatentypen.Kampfbonus;
+   type KampfbonusArray is array (KampfDatentypen.Kampf_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of KampfDatentypen.Kampfbonus;
    
    type KartenbasisgrundlisteRecord is record
       

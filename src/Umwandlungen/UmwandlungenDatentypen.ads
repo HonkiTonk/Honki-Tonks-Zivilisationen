@@ -14,7 +14,7 @@ package UmwandlungenDatentypen is
    
    function RückgabeNachSpezies
      (RückgabeExtern : in RueckgabeDatentypen.Spezies_Verwendet_Enum)
-      return SpeziesDatentypen.Spezies_Verwendet_Enum;
+      return SpeziesDatentypen.Spezies_Vorhanden_Enum;
    
    function KartentemperaturrückgabeNachKartentemperatur
      (RückgabeExtern : in RueckgabeDatentypen.Kartentemperatur_Enum)
@@ -37,7 +37,7 @@ private
                                                                            BefehleDatentypen.Festung_Bauen_Enum => KartenverbesserungDatentypen.Festung_Enum
                                                                           );
    
-   type RückgabeSpeziesArray is array (RueckgabeDatentypen.Spezies_Verwendet_Enum'Range) of SpeziesDatentypen.Spezies_Verwendet_Enum;
+   type RückgabeSpeziesArray is array (RueckgabeDatentypen.Spezies_Verwendet_Enum'Range) of SpeziesDatentypen.Spezies_Vorhanden_Enum;
    RückgabeSpezies : constant RückgabeSpeziesArray := (
                                                          RueckgabeDatentypen.Auswahl_Eins_Enum     => SpeziesDatentypen.Menschen_Enum,
                                                          RueckgabeDatentypen.Auswahl_Zwei_Enum     => SpeziesDatentypen.Kasrodiah_Enum,

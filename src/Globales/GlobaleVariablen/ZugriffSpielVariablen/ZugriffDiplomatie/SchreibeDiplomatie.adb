@@ -4,8 +4,8 @@ with SpielVariablen;
 package body SchreibeDiplomatie is
 
    procedure AktuellerZustand
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ZustandExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
    is begin
       
@@ -16,8 +16,8 @@ package body SchreibeDiplomatie is
    
    
    procedure AktuelleSympathie
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SympathieExtern : in DiplomatieDatentypen.Meinung;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -39,8 +39,8 @@ package body SchreibeDiplomatie is
    
    
    procedure ZeitSeitÄnderung
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ÄnderungExtern : in ZahlenDatentypen.EigenesNatural;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -71,8 +71,8 @@ package body SchreibeDiplomatie is
    
    
    procedure GanzerEintrag
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EintragExtern : in SpielRecords.DiplomatieRecord)
    is begin
       

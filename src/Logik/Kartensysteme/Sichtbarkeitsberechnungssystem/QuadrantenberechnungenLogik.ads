@@ -11,7 +11,7 @@ package QuadrantenberechnungenLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure QuadrantenDurchlaufen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
@@ -28,7 +28,7 @@ private
    KartenQuadrantWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure QuadrantEins
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -42,7 +42,7 @@ private
               );
 
    procedure QuadrantZwei
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -56,7 +56,7 @@ private
               );
 
    procedure QuadrantDrei
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -70,7 +70,7 @@ private
               );
 
    procedure QuadrantVier
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

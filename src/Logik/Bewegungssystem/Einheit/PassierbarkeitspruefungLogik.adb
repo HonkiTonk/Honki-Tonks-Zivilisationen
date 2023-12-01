@@ -44,7 +44,7 @@ package body PassierbarkeitspruefungLogik is
    -- Funktioniert noch nicht korrekt wenn sich darunter/oben drüber eine Stadt befindet. äöü
    -- So lassen oder später noch einmal anpassen? äöü
    function PassierbarkeitPrüfenID
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
@@ -89,7 +89,7 @@ package body PassierbarkeitspruefungLogik is
    
    -- Eventuell mit IstNichtPassierbar zusammenführen oder anders aufteilen. äöü
    function IstPassierbar
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
@@ -136,7 +136,7 @@ package body PassierbarkeitspruefungLogik is
    
    
    function IstNichtPassierbar
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean

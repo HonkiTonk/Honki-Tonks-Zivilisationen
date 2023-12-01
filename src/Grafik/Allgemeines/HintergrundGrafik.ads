@@ -35,7 +35,7 @@ package HintergrundGrafik is
 
    -- Spezies kann hier nicht geprrüft werden da der Abspann eventuell ohne belegte Spezies ankommt!
    procedure Spezieshintergrund
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
      with

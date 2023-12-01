@@ -14,7 +14,7 @@ package body SichtbarkeitSetzenLogik is
    -- Beziehungsweise auch umgekehrt? äöü
    -- Sollte man von der Unterfläche auch den Himmel sehen können? äöü
    procedure EbenenBerechnungen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
@@ -79,7 +79,7 @@ package body SichtbarkeitSetzenLogik is
    -- Prüft ob auf einem neu aufgedecktem Feld sich eine fremde Stadt/Einheit befindet und stellt entsprechend Kontakt her.
    -- Anders als die Berechnung in BewegungsberechnungLogik, wo geprüft wird ob die Einheit jetzt auf einem Feld steht welches von einer fremden Spezies bereits aufgedeckt wurde.
    procedure SichtbarkeitSetzen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;

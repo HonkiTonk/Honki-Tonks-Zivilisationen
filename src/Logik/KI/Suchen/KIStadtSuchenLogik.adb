@@ -12,7 +12,7 @@ with EinheitSuchenLogik;
 package body KIStadtSuchenLogik is
    
    function NähesteFeindlicheStadtSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
@@ -35,7 +35,7 @@ package body KIStadtSuchenLogik is
    
    
    function StadtSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.Städtebereich
    is
@@ -87,7 +87,7 @@ package body KIStadtSuchenLogik is
    
    
    function UnbewachteStadtSuchen
-     (FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is
       use type KartenverbesserungDatentypen.Verbesserung_Enum;

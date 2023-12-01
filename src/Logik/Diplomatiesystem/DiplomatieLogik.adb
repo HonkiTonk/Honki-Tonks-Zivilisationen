@@ -20,7 +20,7 @@ with HandelnLogik;
 package body DiplomatieLogik is
    
    procedure DiplomatieMöglich
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       Speziesprüfungen (SpeziesExtern => SpeziesExtern);
@@ -31,14 +31,14 @@ package body DiplomatieLogik is
    
    
    procedure Speziesprüfungen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            SpeziesSchleifenwert = SpeziesExtern
@@ -66,7 +66,7 @@ package body DiplomatieLogik is
    
    
    procedure Diplomatie
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       DiplomatieSchleife:
@@ -90,7 +90,7 @@ package body DiplomatieLogik is
                      null;
                   
                   else
-                     KontaktierteSpezies := SpeziesDatentypen.Spezies_Verwendet_Enum'Val (Auswahl);
+                     KontaktierteSpezies := SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (Auswahl);
                      SchreibeGrafiktask.KontaktierteSpezies (SpeziesExtern => KontaktierteSpezies);
                      exit SpeziesauswahlSchleife;
                   end if;
@@ -159,14 +159,14 @@ package body DiplomatieLogik is
    
    
    procedure DiplomatieRundenende
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
             
          if
            SpeziesExtern = SpeziesSchleifenwert

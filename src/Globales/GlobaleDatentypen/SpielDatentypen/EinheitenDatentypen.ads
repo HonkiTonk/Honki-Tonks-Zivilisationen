@@ -72,7 +72,7 @@ package EinheitenDatentypen is
                                  Aufgabe_Abgeschlossen_Enum, Fremde_Einheit_Nahe_Enum
                                 );
    
-   subtype Einheit_Meldung_Verwendet_Enum is Einheit_Meldung_Enum range Einheit_Meldung_Enum'Succ (Einheit_Meldung_Enum'First) .. Einheit_Meldung_Enum'Last;
+   subtype Einheit_Meldung_Vorhanden_Enum is Einheit_Meldung_Enum range Einheit_Meldung_Enum'Succ (Einheit_Meldung_Enum'First) .. Einheit_Meldung_Enum'Last;
    
    
 

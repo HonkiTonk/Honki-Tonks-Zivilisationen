@@ -50,12 +50,12 @@ package LeseEinstellungenGrafik is
    pragma Inline (VSync);
    
    function SpeziesfarbeLesen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Color.sfColor;
    pragma Inline (SpeziesfarbeLesen);
    
    function RahmenfarbeLesen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Color.sfColor;
    pragma Inline (RahmenfarbeLesen);
    

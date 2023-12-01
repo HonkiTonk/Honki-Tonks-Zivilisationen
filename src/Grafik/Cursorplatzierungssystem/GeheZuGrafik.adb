@@ -13,7 +13,7 @@ with KartenkoordinatenberechnungssystemLogik;
 package body GeheZuGrafik is
 
    procedure GeheZuFestlegung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
                 
       Kartenwert := Koordinatenberechnung (KoordinatenExtern => LeseGrafiktask.GeheZu);

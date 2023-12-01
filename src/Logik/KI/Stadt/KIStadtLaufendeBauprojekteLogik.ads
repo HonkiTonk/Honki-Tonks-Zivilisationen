@@ -11,7 +11,7 @@ package KIStadtLaufendeBauprojekteLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type StadtDatentypen.Städtebereich;
-   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.Einheitenbereich;
    use type EinheitenDatentypen.EinheitenID;
 
@@ -50,7 +50,7 @@ package KIStadtLaufendeBauprojekteLogik is
                );
    
    function EinheitenInProduktion
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (

@@ -69,6 +69,6 @@ package GebaeudedatenbankRecord is
 
    end record;
    
-   type GebäudelisteArray is array (StadtDatentypen.GebäudeID'Range) of GebäudelisteRecord;
+   type GebäudelisteArray is array (StadtDatentypen.GebäudeIDVorhanden'Range) of GebäudelisteRecord;
 
 end GebaeudedatenbankRecord;

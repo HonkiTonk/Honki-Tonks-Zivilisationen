@@ -5,8 +5,8 @@ with ProduktionKonstanten;
 package body LeseForschungenDatenbank is
 
    function Kosten
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      IDExtern : in ForschungenDatentypen.ForschungID)
       return ProduktionDatentypen.Lagermenge
    is begin
 
@@ -25,8 +25,8 @@ package body LeseForschungenDatenbank is
 
 
    function AnforderungForschung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      IDExtern : in ForschungenDatentypen.ForschungID;
       WelcheAnforderungExtern : in ForschungenDatentypen.Forschung_Anforderung_Enum)
       return ForschungenDatentypen.ForschungIDUnmöglich
    is begin
@@ -47,7 +47,7 @@ package body LeseForschungenDatenbank is
 
    function Verbesserungen
      (VerbesserungExtern : in BefehleDatentypen.Siedler_Verbesserung_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ForschungenDatentypen.ForschungIDUnmöglich
    is begin
 
@@ -59,7 +59,7 @@ package body LeseForschungenDatenbank is
 
    function Wege
      (WegExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ForschungenDatentypen.ForschungIDUnmöglich
    is begin
 
@@ -71,7 +71,7 @@ package body LeseForschungenDatenbank is
 
    function Umgebung
      (AnfangEndeExtern : in SystemDatentypen.Anfang_Ende_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ForschungenDatentypen.ForschungIDUnmöglich
    is begin
 

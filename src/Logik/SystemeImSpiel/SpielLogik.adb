@@ -34,7 +34,7 @@ package body SpielLogik is
       loop
                   
          SpeziesSchleife:
-         for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+         for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
             
             RückgabeSpezies := SpeziesImSpiel (SpeziesExtern => SpeziesSchleifenwert);
             
@@ -99,7 +99,7 @@ package body SpielLogik is
    
    
    function SpeziesImSpiel
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
@@ -127,7 +127,7 @@ package body SpielLogik is
    
    
    function SpeziesDurchgehen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is
       use type SpeziesDatentypen.Spezies_Enum;
@@ -165,7 +165,7 @@ package body SpielLogik is
    
    
    procedure KISpieler
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       LadezeitenLogik.KINullsetzenFortschritt;
@@ -183,7 +183,7 @@ package body SpielLogik is
    
    
    function MenschlicherSpieler
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
                            
@@ -228,7 +228,7 @@ package body SpielLogik is
 
 
    function MenschAmZug
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is
       use type RueckgabeDatentypen.Rückgabe_Werte_Enum;

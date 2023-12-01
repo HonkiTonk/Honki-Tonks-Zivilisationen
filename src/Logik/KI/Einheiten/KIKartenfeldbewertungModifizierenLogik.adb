@@ -13,7 +13,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
    -- Später Spezies/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln? äöü
    function BewertungStadtBauen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
       use type SpeziesDatentypen.Spezies_Enum;
@@ -91,7 +91,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
    
    function GutGenug
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is begin
       

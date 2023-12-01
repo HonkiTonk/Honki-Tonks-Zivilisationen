@@ -102,7 +102,7 @@ package body TextfarbeGrafik is
         AktuellerTextExtern - 1 in SpeziesKonstanten.Speziesanfang .. SpeziesKonstanten.Speziesende
       then
          case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuellerTextExtern - 1))
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuellerTextExtern - 1))
          is
             when SpeziesDatentypen.Mensch_Spieler_Enum =>
                return TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);

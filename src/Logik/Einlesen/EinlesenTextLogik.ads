@@ -148,7 +148,7 @@ private
    procedure Spezies
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum);
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
    
    
       

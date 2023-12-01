@@ -77,7 +77,7 @@ package body StadtbausystemLogik is
       BauenMöglich := False;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := GebaeudeanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                                                                            IDExtern                 => GebäudeSchleifenwert);

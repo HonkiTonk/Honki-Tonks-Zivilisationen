@@ -14,7 +14,7 @@ package GebaeudeAllgemeinLogik is
    
    procedure GebäudeProduktionBeenden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -24,7 +24,7 @@ package GebaeudeAllgemeinLogik is
    
    procedure GebäudeVerkaufen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -46,7 +46,7 @@ private
       
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden;
       VorzeichenwechselExtern : in ProduktionDatentypen.Vorzeichenwechsel)
      with
        Pre => (

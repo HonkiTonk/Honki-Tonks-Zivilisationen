@@ -11,7 +11,7 @@ with Fehlermeldungssystem;
 package body SpielmenueLogik is
 
    function Spielmenü
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       

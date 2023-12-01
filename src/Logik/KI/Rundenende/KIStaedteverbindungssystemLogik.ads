@@ -16,14 +16,14 @@ package KIStaedteverbindungssystemLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    
    procedure Stadtverbindung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
    
    procedure ElementEntfernen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ElementExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
      with
        Pre => (
@@ -56,7 +56,7 @@ private
    Bewertung : BewertungArray;
    
    procedure Felderbewertung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
@@ -75,7 +75,7 @@ private
    
    
    function VerbindungPrüfen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       StartkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -93,7 +93,7 @@ private
               );
    
    function PlanenRekursiv
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AktuelleKoordinateExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
@@ -112,7 +112,7 @@ private
               );
    
    function PlanschrittFestlegen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       DurchlaufExtern : in Positive;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
@@ -127,7 +127,7 @@ private
               );
    
    function FeldUngeeignet
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
@@ -140,7 +140,7 @@ private
               );
    
    function FelderMitWegEntfernen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -148,7 +148,7 @@ private
               );
    
    function VerbindungLeeren
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
        Pre => (

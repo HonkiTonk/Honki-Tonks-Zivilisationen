@@ -25,7 +25,7 @@ package StadtRecords is
    
    type SpeziesStadtnummerVorhandenRecord is record
       
-      Spezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
+      Spezies : SpeziesDatentypen.Spezies_Vorhanden_Enum;
       Nummer : StadtDatentypen.StädtebereichVorhanden;
       
    end record;
@@ -34,7 +34,7 @@ package StadtRecords is
    
    type BauprojektRecord is record
       
-      Gebäude : StadtDatentypen.GebäudeIDMitNullwert;
+      Gebäude : StadtDatentypen.GebäudeID;
       Einheit : EinheitenDatentypen.EinheitenID;
 
    end record;
@@ -43,7 +43,7 @@ package StadtRecords is
    
    type ErweiterterBauprojektRecord is record
       
-      Gebäude : StadtDatentypen.GebäudeIDMitNullwert;
+      Gebäude : StadtDatentypen.GebäudeID;
       Einheit : EinheitenDatentypen.EinheitenID;
       
       BaumenüanzeigeÄndern : Natural;
@@ -71,7 +71,7 @@ package StadtRecords is
    -- Sollte ich das auch für die Forschung oder für Einheiten einbauen? äöü
    type StadtMeldungenArray is array (StadtDatentypen.Stadt_Meldung_Art_Enum'Range) of StadtDatentypen.Stadt_Meldung_Enum;
    type UmgebungBewirtschaftungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of Boolean;
-   type PermanenteKostenArray is array (ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of ProduktionDatentypen.Stadtproduktion;
+   type PermanenteKostenArray is array (ProduktionDatentypen.Permanente_Kosten_Vorhanden_Enum'Range) of ProduktionDatentypen.Stadtproduktion;
    type WegeverbindungArray is array (StadtDatentypen.StädtebereichVorhanden'Range) of Boolean;
 
    -- Es gibt noch keine Werte für Verschmutzung, weil das noch relativ neu ist. äöü

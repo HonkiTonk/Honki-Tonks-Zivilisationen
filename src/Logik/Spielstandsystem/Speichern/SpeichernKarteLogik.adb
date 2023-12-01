@@ -126,8 +126,8 @@ package body SpeichernKarteLogik is
               GesamteSichtbarkeit (SichtbarkeitSchleifenwert)
             is
                when True =>
-                  Sichtbarkeit := Sichtbarkeit + 2**(SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitSchleifenwert)
-                                                     - SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert)));
+                  Sichtbarkeit := Sichtbarkeit + 2**(SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SichtbarkeitSchleifenwert)
+                                                     - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert)));
                
                when False =>
                   null;

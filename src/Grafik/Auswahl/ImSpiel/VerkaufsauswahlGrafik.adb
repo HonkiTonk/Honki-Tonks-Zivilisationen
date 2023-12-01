@@ -23,8 +23,8 @@ with TextaccessverwaltungssystemEinfachGrafik;
 package body VerkaufsauswahlGrafik is
 
    procedure Verkaufsauswahl
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      AktuelleAuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      AktuelleAuswahlExtern : in StadtDatentypen.GebäudeID)
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageGebäudeverkauf)),
@@ -43,8 +43,8 @@ package body VerkaufsauswahlGrafik is
    
    
    procedure Gebäude
-     (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
@@ -62,7 +62,7 @@ package body VerkaufsauswahlGrafik is
       AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          case
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)

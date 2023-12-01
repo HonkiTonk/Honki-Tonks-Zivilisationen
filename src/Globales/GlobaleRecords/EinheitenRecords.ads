@@ -22,7 +22,7 @@ package EinheitenRecords is
    
    type SpeziesEinheitnummerVorhandenRecord is record
       
-      Spezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
+      Spezies : SpeziesDatentypen.Spezies_Vorhanden_Enum;
       Nummer : EinheitenDatentypen.EinheitenbereichVorhanden;
       
    end record;

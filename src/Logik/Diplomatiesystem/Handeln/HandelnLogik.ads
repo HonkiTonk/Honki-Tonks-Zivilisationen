@@ -7,8 +7,8 @@ package HandelnLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    
    procedure SichtbarkeitTauschen
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -19,8 +19,8 @@ package HandelnLogik is
    
 
    function Handelsmenü
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Integer
      with
        Pre => (
@@ -35,8 +35,8 @@ private
    Geldmenge : Integer;
    
    procedure KontakteVerkaufen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -45,8 +45,8 @@ private
               );
    
    procedure KontakteKaufen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -55,8 +55,8 @@ private
               );
    
    procedure KontakteTauschen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -65,8 +65,8 @@ private
               );
    
    procedure GeldVerschenken
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -75,8 +75,8 @@ private
               );
    
    procedure GeldVerlangen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -85,8 +85,8 @@ private
               );
       
    procedure SichtbarkeitKaufen
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -95,8 +95,8 @@ private
               );
    
    procedure SichtbarkeitVerkaufen
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -107,8 +107,8 @@ private
    
    
    function Handeln
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Integer
      with
        Pre => (

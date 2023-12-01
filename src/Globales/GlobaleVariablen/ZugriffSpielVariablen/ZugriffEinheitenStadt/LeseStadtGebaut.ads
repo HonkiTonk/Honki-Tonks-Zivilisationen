@@ -23,7 +23,7 @@ package LeseStadtGebaut is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    use type KartenDatentypen.Ebene;
-   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
    
    function ID
@@ -138,7 +138,7 @@ package LeseStadtGebaut is
    
    function PermanenteKostenPosten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
+      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Vorhanden_Enum)
       return ProduktionDatentypen.Stadtproduktion
      with
        Pre => (
@@ -211,7 +211,7 @@ package LeseStadtGebaut is
    
    function GebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
      with
        Pre => (

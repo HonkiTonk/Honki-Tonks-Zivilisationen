@@ -6,7 +6,7 @@ with TextnummernKonstanten;
 package body SpeziesbeschreibungenGrafik is
 
    function Kurzbeschreibung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
@@ -17,7 +17,7 @@ package body SpeziesbeschreibungenGrafik is
    
    
    function Langbeschreibung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       

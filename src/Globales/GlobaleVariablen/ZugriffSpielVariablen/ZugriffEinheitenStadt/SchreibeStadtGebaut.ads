@@ -22,7 +22,7 @@ package SchreibeStadtGebaut is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    use type KartenDatentypen.Ebene;
-   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
 
    procedure ID
@@ -124,7 +124,7 @@ package SchreibeStadtGebaut is
    
    procedure PermanenteKostenPosten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum;
+      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Vorhanden_Enum;
       KostenExtern : in ProduktionDatentypen.Stadtproduktion;
       ÄndernSetzenExtern : in Boolean)
      with
@@ -192,7 +192,7 @@ package SchreibeStadtGebaut is
    
    procedure GebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden;
       HinzufügenEntfernenExtern : in Boolean)
      with
        Pre => (

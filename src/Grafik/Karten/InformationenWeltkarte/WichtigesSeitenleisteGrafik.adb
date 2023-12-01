@@ -16,7 +16,7 @@ with TextaccessverwaltungssystemErweitertGrafik;
 package body WichtigesSeitenleisteGrafik is
 
    function WichtigesInformationen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
       MaximaleTextbreiteExtern : in Float)
@@ -81,7 +81,7 @@ package body WichtigesSeitenleisteGrafik is
    
       
    function Rundenanzahl
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
@@ -114,7 +114,7 @@ package body WichtigesSeitenleisteGrafik is
    
    
    function Geld
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is
       use type ProduktionDatentypen.Produktion;
@@ -151,7 +151,7 @@ package body WichtigesSeitenleisteGrafik is
    
    
    function Forschung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       

@@ -17,7 +17,7 @@ package StadtSuchenLogik is
    use type StadtDatentypen.Städtebereich;
    
    function KoordinatenStadtMitSpeziesSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.Städtebereich
      with
@@ -44,7 +44,7 @@ package StadtSuchenLogik is
               );
 
    function KoordinatenStadtOhneSpezielleSpeziesSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.SpeziesStadtnummerRecord
      with

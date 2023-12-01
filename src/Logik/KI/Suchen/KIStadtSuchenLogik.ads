@@ -15,7 +15,7 @@ package KIStadtSuchenLogik is
    use type KartenDatentypen.Kartenfeld;
 
    function NähesteFeindlicheStadtSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
@@ -34,7 +34,7 @@ package KIStadtSuchenLogik is
                );
 
    function UnbewachteStadtSuchen
-     (FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
@@ -61,7 +61,7 @@ private
 
 
    function StadtSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.Städtebereich
      with

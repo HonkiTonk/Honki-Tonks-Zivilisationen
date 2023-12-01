@@ -30,7 +30,7 @@ private
    VorhandeneNahrung : ProduktionDatentypen.Stadtproduktion;
    ProduzierteNahrung : ProduktionDatentypen.Stadtproduktion;
    
-   type EinwohnerwachstumArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ProduktionDatentypen.Feldproduktion;
+   type EinwohnerwachstumArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    GrundwertEinwohnerwachstum : constant EinwohnerwachstumArray := (
                                                                     SpeziesDatentypen.Menschen_Enum         => 10,
                                                                     SpeziesDatentypen.Kasrodiah_Enum        => 10,

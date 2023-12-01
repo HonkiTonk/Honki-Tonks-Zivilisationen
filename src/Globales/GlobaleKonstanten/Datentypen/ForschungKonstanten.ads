@@ -6,8 +6,8 @@ package ForschungKonstanten is
    
    LeerKosten : constant ProduktionDatentypen.Einzelproduktion := 0;
    
-   LeerForschung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
-   LeerAnforderung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
+   LeerForschung : constant ForschungenDatentypen.ForschungID := ForschungenDatentypen.ForschungID'First;
+   LeerAnforderung : constant ForschungenDatentypen.ForschungID := ForschungenDatentypen.ForschungID'First;
    ForschungUnmöglich : constant ForschungenDatentypen.ForschungIDUnmöglich := ForschungenDatentypen.ForschungIDUnmöglich'First;
    
 end ForschungKonstanten;

@@ -204,7 +204,7 @@ package body LadenLogik is
    is begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            Speziesbelegung (SpeziesSchleifenwert).Belegung = SpeziesDatentypen.Leer_Spieler_Enum
@@ -239,7 +239,7 @@ package body LadenLogik is
    
    function StädteEinheitenLaden
      (LadenPrüfenExtern : in Boolean;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean
    is begin
@@ -319,7 +319,7 @@ package body LadenLogik is
    
    function Spezieswerte
      (LadenPrüfenExtern : in Boolean;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean
    is
@@ -327,7 +327,7 @@ package body LadenLogik is
    begin
             
       DiplomatieSchleife:
-      for SpeziesDiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesDiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
 
          if
            Speziesbelegung (SpeziesDiplomatieSchleifenwert).Belegung = SpeziesDatentypen.Leer_Spieler_Enum

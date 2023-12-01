@@ -14,7 +14,7 @@ package BauauswahlEinheitenGrafik is
 
    procedure Einheiteninformationen
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -35,7 +35,7 @@ private
    
    procedure Einheitenbeschreibung
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum

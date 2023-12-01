@@ -123,8 +123,8 @@ package body BauauswahlGrafik is
    
    
    procedure Gebäude
-     (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       ViewflächeGebäude := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeGebäude,
@@ -142,7 +142,7 @@ package body BauauswahlGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          case
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
@@ -182,7 +182,7 @@ package body BauauswahlGrafik is
    
    procedure Einheiten
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       ViewflächeEinheiten := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeEinheiten,

@@ -16,8 +16,8 @@ package EinheitenverschiebungLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure VonEigenemLandWerfen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -26,7 +26,7 @@ package EinheitenverschiebungLogik is
               );
    
    procedure EinheitVerschieben
-     (SpeziesLandExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesLandExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
@@ -53,7 +53,7 @@ private
    
    procedure EinheitenErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

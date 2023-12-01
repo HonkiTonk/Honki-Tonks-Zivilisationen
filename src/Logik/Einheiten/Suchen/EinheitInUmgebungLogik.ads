@@ -13,7 +13,7 @@ package EinheitInUmgebungLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure EinheitInUmgebung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -28,14 +28,14 @@ private
    AndereEinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
    
    procedure UmgebungStadt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    procedure UmgebungEinheit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -46,7 +46,7 @@ private
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       UmgebungExtern : in KartenDatentypen.Sichtweite;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
        Pre => (

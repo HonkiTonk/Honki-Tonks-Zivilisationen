@@ -55,12 +55,12 @@ package body StadtkarteGrafik is
          for XAchseSchleifenwert in 1 .. StadtKonstanten.Stadtkartengröße loop
             
             if
-              (YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert > KartenDatentypen.KartenfeldPositiv (StadtDatentypen.GebäudeID'Last)
+              (YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert > KartenDatentypen.KartenfeldPositiv (StadtDatentypen.GebäudeIDVorhanden'Last)
             then
                exit YAchseSchleife;
                
             else
-               GebäudeID := StadtDatentypen.GebäudeID ((YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert);
+               GebäudeID := StadtDatentypen.GebäudeIDVorhanden ((YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert);
             end if;
                      
             case
@@ -116,10 +116,10 @@ package body StadtkarteGrafik is
    
    
    procedure Zusatzinformationen
-     (GebäudeIDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type StadtDatentypen.GebäudeIDMitNullwert;
+      use type StadtDatentypen.GebäudeID;
    begin
       
       if
@@ -148,8 +148,8 @@ package body StadtkarteGrafik is
    
    -- Später soweit wie möglich mit BauauswahlGebaeudeGrafik.Gebäudeinformationen zusammenführen. äöü
    procedure Informationsfeld
-     (GebäudeIDExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeIDVorhanden;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       Rechteck := ViewbereicheBerechnenGrafik.ViewbereichBreiteHöheBerechnen (BereichExtern => LeseGrafikVariablen.InformationsfeldBereiche (WelcherBereichExtern => ViewKonstanten.InformationsfeldStadtkarte));

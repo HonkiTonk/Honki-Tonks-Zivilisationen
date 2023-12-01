@@ -16,8 +16,8 @@ package DiplomatischerZustandLogik is
                                                         );
 
    procedure DiplomatischenStatusÄndern
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
      with
        Pre => (
@@ -29,8 +29,8 @@ package DiplomatischerZustandLogik is
               );
 
    function GegnerAngreifen
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      GegnerischeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      GegnerischeSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
        Pre => (

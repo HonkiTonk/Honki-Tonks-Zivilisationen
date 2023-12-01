@@ -16,7 +16,7 @@ package EinheitSuchenLogik is
    use type EinheitenDatentypen.Einheitenbereich;
 
    function KoordinatenEinheitMitSpeziesSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenDatentypen.Einheitenbereich
@@ -45,7 +45,7 @@ package EinheitSuchenLogik is
               );
 
    function KoordinatenEinheitOhneSpezielleSpeziesSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord

@@ -182,7 +182,7 @@ package body EinlesenTextLogik is
          when 5 + SpeziesKonstanten.Speziesanfang .. 5 + SpeziesKonstanten.Speziesende =>
             Spezies (DateiExtern       => DateiText,
                      EinsprachigExtern => EinsprachigExtern,
-                     SpeziesExtern     => SpeziesDatentypen.Spezies_Verwendet_Enum'Val (WelcheDateiExtern - 5));
+                     SpeziesExtern     => SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (WelcheDateiExtern - 5));
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenAufteilen: Mehr eingelesen als möglich, Dateinummer: " & WelcheDateiExtern'Wide_Wide_Image);
@@ -723,7 +723,7 @@ package body EinlesenTextLogik is
    procedure Spezies
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       EinzulesendeZeile := 1;
@@ -783,18 +783,18 @@ package body EinlesenTextLogik is
                         ZeilenumwandlungsabzugForschungen := ZeilenumwandlungsabzugForschungen + 1;
                         ZeilenumwandlungForschungen := AktuelleZeile - Städtenamen - ZeilenumwandlungsabzugForschungen;
                         
-                        Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungID (ZeilenumwandlungForschungen), 2)
+                        Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungIDVorhanden (ZeilenumwandlungForschungen), 2)
                           := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                           EingelesenerTextExtern => Zwischenspeicher,
-                                          VorhandenerTextExtern  => Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungID (ZeilenumwandlungForschungen), 2));
+                                          VorhandenerTextExtern  => Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungIDVorhanden (ZeilenumwandlungForschungen), 2));
                         
                      when others =>
                         ZeilenumwandlungForschungen := AktuelleZeile - Städtenamen - ZeilenumwandlungsabzugForschungen;
                         
-                        Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungID (ZeilenumwandlungForschungen), 1)
+                        Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungIDVorhanden (ZeilenumwandlungForschungen), 1)
                           := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                           EingelesenerTextExtern => Zwischenspeicher,
-                                          VorhandenerTextExtern  => Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungID (ZeilenumwandlungForschungen), 1));
+                                          VorhandenerTextExtern  => Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungIDVorhanden (ZeilenumwandlungForschungen), 1));
                   end case;
                   
                elsif
@@ -831,18 +831,18 @@ package body EinlesenTextLogik is
                         ZeilenumwandlungsabzugGebäude := ZeilenumwandlungsabzugGebäude + 1;
                         ZeilenumwandlungGebäude := AktuelleZeile - Einheiten - ZeilenumwandlungsabzugGebäude;
                         
-                        Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeID (ZeilenumwandlungGebäude), 2)
+                        Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeIDVorhanden (ZeilenumwandlungGebäude), 2)
                           := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                           EingelesenerTextExtern => Zwischenspeicher,
-                                          VorhandenerTextExtern  => Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeID (ZeilenumwandlungGebäude), 2));
+                                          VorhandenerTextExtern  => Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeIDVorhanden (ZeilenumwandlungGebäude), 2));
                         
                      when others =>
                         ZeilenumwandlungGebäude := AktuelleZeile - Einheiten - ZeilenumwandlungsabzugGebäude;
                         
-                        Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeID (ZeilenumwandlungGebäude), 1)
+                        Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeIDVorhanden (ZeilenumwandlungGebäude), 1)
                           := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                           EingelesenerTextExtern => Zwischenspeicher,
-                                          VorhandenerTextExtern  => Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeID (ZeilenumwandlungGebäude), 1));
+                                          VorhandenerTextExtern  => Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeIDVorhanden (ZeilenumwandlungGebäude), 1));
                   end case;
                                                                                                                                                 
                else

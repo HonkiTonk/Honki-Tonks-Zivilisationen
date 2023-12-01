@@ -12,7 +12,7 @@ with TexteingabeLogik;
 package body StadtSuchenLogik is
 
    function KoordinatenStadtMitSpeziesSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.Städtebereich
    is
@@ -62,7 +62,7 @@ package body StadtSuchenLogik is
    
    
    function KoordinatenStadtOhneSpezielleSpeziesSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.SpeziesStadtnummerRecord
    is
@@ -111,7 +111,7 @@ package body StadtSuchenLogik is
       end case;
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)

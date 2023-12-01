@@ -11,7 +11,7 @@ package SchreibeWichtiges is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Geldmenge
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldZugewinnExtern : in ZahlenDatentypen.EigenerInteger;
       RechnenSetzenExtern : in Boolean)
      with
@@ -20,7 +20,7 @@ package SchreibeWichtiges is
               );
    
    procedure GeldZugewinnProRunde
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)
      with
@@ -29,7 +29,7 @@ package SchreibeWichtiges is
               );
    
    procedure GesamteForschungsrate
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ForschungsrateZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)
      with
@@ -38,7 +38,7 @@ package SchreibeWichtiges is
               );
    
    procedure Forschungsmenge
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ForschungZugewinnExtern : in ProduktionDatentypen.Produktion;
       RechnenSetzenExtern : in Boolean)
      with
@@ -47,36 +47,36 @@ package SchreibeWichtiges is
               );
    
    procedure VerbleibendeForschungszeit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    procedure Forschungsprojekt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      ForschungIDExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      ForschungIDExtern : in ForschungenDatentypen.ForschungID)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
    procedure Erforscht
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    procedure ErforschtDebug
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    procedure AnzahlStädte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
      with
        Pre => (
@@ -84,7 +84,7 @@ package SchreibeWichtiges is
               );
      
    procedure AnzahlArbeiter
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
      with
        Pre => (
@@ -92,7 +92,7 @@ package SchreibeWichtiges is
               );
      
    procedure AnzahlKämpfer
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
      with
        Pre => (
@@ -100,7 +100,7 @@ package SchreibeWichtiges is
               );
      
    procedure AnzahlSonstiges
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
      with
        Pre => (
@@ -111,7 +111,7 @@ package SchreibeWichtiges is
    pragma Inline (Standardeinstellungen);
    
    procedure LeerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -119,7 +119,7 @@ package SchreibeWichtiges is
    pragma Inline (LeerEintrag);
    
    procedure GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EintragExtern : in SpielRecords.WichtigesRecord);
    pragma Inline (GanzerEintrag);
 

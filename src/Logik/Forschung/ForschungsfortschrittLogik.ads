@@ -9,7 +9,7 @@ package ForschungsfortschrittLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Forschungsfortschritt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -17,6 +17,6 @@ package ForschungsfortschrittLogik is
    
 private
    
-   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungID;
 
 end ForschungsfortschrittLogik;

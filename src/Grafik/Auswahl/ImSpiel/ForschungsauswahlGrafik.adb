@@ -33,7 +33,7 @@ with TextaccessverwaltungssystemEinfachGrafik;
 package body ForschungsauswahlGrafik is
 
    procedure ForschungAnzeige
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AktuelleAuswahlExtern : in Natural)
    is begin
       
@@ -44,7 +44,7 @@ package body ForschungsauswahlGrafik is
       Auswahlmöglichkeiten (AuswahlExtern => AktuelleAuswahlExtern,
                              SpeziesExtern => SpeziesExtern);
             
-      AktuelleAuswahl := ForschungenDatentypen.ForschungIDMitNullWert (AktuelleAuswahlExtern);
+      AktuelleAuswahl := ForschungenDatentypen.ForschungID (AktuelleAuswahlExtern);
       
       Ermöglicht (ZusatztextExtern => AktuelleAuswahl,
                    SpeziesExtern    => SpeziesExtern);
@@ -59,7 +59,7 @@ package body ForschungsauswahlGrafik is
    
    procedure Auswahlmöglichkeiten
      (AuswahlExtern : in Natural;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       Viewfläche (ViewKonstanten.ForschungsmenüForschungsliste)
@@ -79,7 +79,7 @@ package body ForschungsauswahlGrafik is
       AktuelleTextbreite := GrafikKonstanten.Nullwert;
             
       AnzeigeSchleife:
-      for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
+      for ForschungSchleifenwert in ForschungenDatentypen.ForschungIDVorhanden'Range loop
          
          case
            InteraktionAuswahl.MöglicheForschungen (ForschungSchleifenwert)
@@ -111,8 +111,8 @@ package body ForschungsauswahlGrafik is
    
    
    procedure Ermöglicht
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
@@ -154,7 +154,7 @@ package body ForschungsauswahlGrafik is
       ErmöglichtSchleife:
       for NeueForschungSchleifenwert in ForschungenDatentypen.AnforderungForschungArray'Range loop
          TechnologienSchleife:
-         for TechnologieSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
+         for TechnologieSchleifenwert in ForschungenDatentypen.ForschungIDVorhanden'Range loop
             
             Forschungswert := LeseForschungenDatenbank.AnforderungForschung (SpeziesExtern           => SpeziesExtern,
                                                                              IDExtern                => TechnologieSchleifenwert,
@@ -208,7 +208,7 @@ package body ForschungsauswahlGrafik is
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
          
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
             
          if
            ZusatztextExtern = LeseGebaeudeDatenbank.Anforderungen (SpeziesExtern => SpeziesExtern,
@@ -239,8 +239,8 @@ package body ForschungsauswahlGrafik is
    
    
    procedure Beschreibung
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung)
@@ -286,7 +286,7 @@ package body ForschungsauswahlGrafik is
    
    
    procedure Aktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       Viewfläche (ViewKonstanten.ForschungsmenüAktuell)

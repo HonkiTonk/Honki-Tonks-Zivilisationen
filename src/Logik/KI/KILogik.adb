@@ -16,7 +16,7 @@ with KIEinheitLogik;
 package body KILogik is
 
    procedure KI
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       KIDiplomatieLogik.Diplomatie (SpeziesExtern => SpeziesExtern);
@@ -29,7 +29,7 @@ package body KILogik is
    
    
    procedure EinheitenDurchgehen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type EinheitenDatentypen.Einheitenbereich;
    begin
@@ -69,7 +69,7 @@ package body KILogik is
    
    
    procedure StädteDurchgehen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type StadtDatentypen.Städtebereich;
    begin

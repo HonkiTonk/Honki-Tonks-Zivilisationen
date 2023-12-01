@@ -55,7 +55,7 @@ package body AufgabenLogik is
    
    
    function Anfangstest
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EinheitartExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)

@@ -19,7 +19,7 @@ package body ZusatztextSpeziesmenueGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       
-      SpeziesAnzeigen := SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuelleAuswahlExtern);
+      SpeziesAnzeigen := SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleAuswahlExtern);
       
       TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),
                                                               TextExtern       =>

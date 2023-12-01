@@ -55,7 +55,7 @@ package body SpieleinstellungenSpeziesLogik is
    
    
    procedure BelegungÄndern
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       case
@@ -83,7 +83,7 @@ package body SpieleinstellungenSpeziesLogik is
    is begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
@@ -141,7 +141,7 @@ package body SpieleinstellungenSpeziesLogik is
    begin
       
       SpieleranzahlWerteFestlegen:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
         
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
@@ -179,7 +179,7 @@ package body SpieleinstellungenSpeziesLogik is
                end loop StartwerteFestlegenSchleife;
          end case;
          
-         LadezeitenLogik.FortschrittSpielwelt (LadezeitenDatentypen.Platziere_Spezies_Enum) := SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SpeziesSchleifenwert) * 5;
+         LadezeitenLogik.FortschrittSpielwelt (LadezeitenDatentypen.Platziere_Spezies_Enum) := SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesSchleifenwert) * 5;
          
       end loop SpieleranzahlWerteFestlegen;
       
@@ -190,7 +190,7 @@ package body SpieleinstellungenSpeziesLogik is
 
 
    function StartpunktPrüfen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
       return Boolean
    is begin
@@ -250,7 +250,7 @@ package body SpieleinstellungenSpeziesLogik is
    
    function ZusatzfeldBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is
@@ -348,7 +348,7 @@ package body SpieleinstellungenSpeziesLogik is
 
 
    procedure StartpunktFestlegen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       StartkoordinateEinsExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StartkoordinateZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin

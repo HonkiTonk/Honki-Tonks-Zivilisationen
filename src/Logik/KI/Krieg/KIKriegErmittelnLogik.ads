@@ -9,7 +9,7 @@ package KIKriegErmittelnLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    function IstImKrieg
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -17,7 +17,7 @@ package KIKriegErmittelnLogik is
               );
 
    function KriegAnfangen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spezies_Enum
      with
        Pre => (
@@ -30,7 +30,7 @@ private
    SpeziesGewählt : SpeziesDatentypen.Spezies_Enum;
    Bewertung : ProduktionDatentypen.Feldproduktion;
 
-   type BewertungenArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ProduktionDatentypen.Feldproduktion;
+   type BewertungenArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    Bewertungen : BewertungenArray;
 
    NotwendigeBewertung : constant BewertungenArray := (
@@ -55,8 +55,8 @@ private
                                                       );
 
    function StärkeVerhältnisErmitteln
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spezies_Enum
      with
        Pre => (

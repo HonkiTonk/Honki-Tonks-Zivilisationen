@@ -71,7 +71,7 @@ package body HintergrundGrafik is
    
    
    procedure Spezieshintergrund
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
    is

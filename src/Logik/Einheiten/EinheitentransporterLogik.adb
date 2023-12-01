@@ -19,7 +19,7 @@ package body EinheitentransporterLogik is
    function TransporterGroßGenug
      (LadungExtern : in EinheitenDatentypen.EinheitenID;
       TransporterExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
       use type EinheitenDatentypen.Transport_Enum;

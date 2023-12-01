@@ -12,7 +12,7 @@ package ForschungserfolgGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Forschungserfolg
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AuswahlExtern : in Natural)
      with
        Pre => (
@@ -23,7 +23,7 @@ package ForschungserfolgGrafik is
    
 private
    
-   Forschungprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   Forschungprojekt : ForschungenDatentypen.ForschungID;
    
    Textbreite : Float;
    
@@ -33,8 +33,8 @@ private
    
    
    function Forschung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      TechnologieExtern : in ForschungenDatentypen.ForschungID;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      TechnologieExtern : in ForschungenDatentypen.ForschungIDVorhanden;
       ViewbreiteExtern : in Float)
       return Sf.System.Vector2.sfVector2f
      with
@@ -45,8 +45,8 @@ private
               );
    
    function Infotext
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      TechnologieExtern : in ForschungenDatentypen.ForschungID;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      TechnologieExtern : in ForschungenDatentypen.ForschungIDVorhanden;
       ViewbreiteExtern : in Float)
       return Sf.System.Vector2.sfVector2f
      with

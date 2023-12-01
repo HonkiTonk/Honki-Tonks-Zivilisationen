@@ -11,7 +11,7 @@ package body UmwandlungenGrafik is
 
    function KoordinatenKartenposition
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;

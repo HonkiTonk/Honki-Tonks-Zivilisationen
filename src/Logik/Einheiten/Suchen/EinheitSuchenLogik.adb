@@ -9,7 +9,7 @@ package body EinheitSuchenLogik is
 
    -- Sucht für die hineingegebene Spezies.
    function KoordinatenEinheitMitSpeziesSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenDatentypen.Einheitenbereich
@@ -78,7 +78,7 @@ package body EinheitSuchenLogik is
 
    -- Sucht ohne die hineingegebene Spezies.
    function KoordinatenEinheitOhneSpezielleSpeziesSuchen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord

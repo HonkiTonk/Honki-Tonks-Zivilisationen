@@ -3,7 +3,7 @@ with SpielVariablen;
 package body SchreibeGrenzen is
    
    procedure Städtegrenzen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       StädtegrenzeExtern : in StadtDatentypen.Städtebereich)
    is begin
       
@@ -14,7 +14,7 @@ package body SchreibeGrenzen is
    
    
    procedure Einheitengrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EinheitengrenzeExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
    is begin
       
@@ -25,7 +25,7 @@ package body SchreibeGrenzen is
    
    
    procedure Geldgrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldgrenzeExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
@@ -36,7 +36,7 @@ package body SchreibeGrenzen is
    
    
    procedure Forschungsgrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ForschungsgrenzeExtern : in ProduktionDatentypen.Lagermenge)
    is begin
       
@@ -47,7 +47,7 @@ package body SchreibeGrenzen is
    
    
    procedure Geldgewinngrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldgewinngrenzeExtern : in ProduktionDatentypen.Lagermenge)
    is begin
       
@@ -58,7 +58,7 @@ package body SchreibeGrenzen is
    
    
    procedure Forschungsgewinngrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ForschungsgewinngrenzeExtern : in ProduktionDatentypen.Lagermenge)
    is begin
       
@@ -69,7 +69,7 @@ package body SchreibeGrenzen is
    
    
    procedure Speziesrundengrenze
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SpeziesrundengrenzeExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
@@ -80,7 +80,7 @@ package body SchreibeGrenzen is
    
    
    procedure GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EintragExtern : in SpielRecords.GrenzenRecord)
    is begin
       

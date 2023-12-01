@@ -15,7 +15,7 @@ package NaechsteEinheitLogik is
                                 );
    
    procedure NächsteEinheit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BewegungspunkteExtern : in Bewegungspunkte_Enum)
      with
        Pre => (
@@ -23,7 +23,7 @@ package NaechsteEinheitLogik is
               );
    
    procedure NächsteEinheitMeldung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -36,7 +36,7 @@ private
    
    Bewegungspunkte : EinheitenDatentypen.Bewegungspunkte;
    
-   type AktuelleEinheitArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of EinheitenDatentypen.Einheitenbereich;
+   type AktuelleEinheitArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of EinheitenDatentypen.Einheitenbereich;
    AktuelleEinheit : AktuelleEinheitArray := (others => 0);
    AktuelleEinheitMeldung : AktuelleEinheitArray := (others => 0);
 

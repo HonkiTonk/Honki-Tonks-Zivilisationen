@@ -13,7 +13,7 @@ package ZufallsgeneratorenStartkoordinatenLogik is
    use type KartenDatentypen.Kartenfeld;
      
    function Startkoordinaten
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (

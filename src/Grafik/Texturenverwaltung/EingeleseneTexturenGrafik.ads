@@ -50,13 +50,13 @@ package EingeleseneTexturenGrafik is
    type WegeAccessArray is array (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    WegeAccess : WegeAccessArray := (others => null);
 
-   type SpezieshintergrundAccessArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type SpezieshintergrundAccessArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    SpezieshintergrundAccess : SpezieshintergrundAccessArray := (others => (others => null));
 
-   type EinheitenAccesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenIDVorhanden'Range) of Sf.Graphics.sfTexture_Ptr;
+   type EinheitenAccesArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, EinheitenDatentypen.EinheitenIDVorhanden'Range) of Sf.Graphics.sfTexture_Ptr;
    EinheitenAccess : EinheitenAccesArray := (others => (others => null));
 
-   type GebäudeAccessArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfTexture_Ptr;
+   type GebäudeAccessArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, StadtDatentypen.GebäudeIDVorhanden'Range) of Sf.Graphics.sfTexture_Ptr;
    GebäudeAccess : GebäudeAccessArray := (others => (others => null));
 
 end EingeleseneTexturenGrafik;

@@ -7,7 +7,7 @@ with SichtbereicheErmittelnLogik;
 package body QuadrantenberechnungenLogik is
 
    procedure QuadrantenDurchlaufen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -72,7 +72,7 @@ package body QuadrantenberechnungenLogik is
    
    
    procedure QuadrantEins
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -205,7 +205,7 @@ package body QuadrantenberechnungenLogik is
    
    
    procedure QuadrantZwei
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -338,7 +338,7 @@ package body QuadrantenberechnungenLogik is
    
    
    procedure QuadrantDrei
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -471,7 +471,7 @@ package body QuadrantenberechnungenLogik is
    
    
    procedure QuadrantVier
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

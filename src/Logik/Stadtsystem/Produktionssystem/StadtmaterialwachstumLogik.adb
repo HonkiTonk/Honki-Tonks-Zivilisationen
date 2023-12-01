@@ -16,7 +16,7 @@ package body StadtmaterialwachstumLogik is
    procedure Material
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type StadtDatentypen.GebäudeIDMitNullwert;
+      use type StadtDatentypen.GebäudeID;
       use type EinheitenDatentypen.EinheitenID;
       use type ProduktionDatentypen.Produktion;
    begin
@@ -41,7 +41,7 @@ package body StadtmaterialwachstumLogik is
       then
          if
            LeseStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) >= LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                       IDExtern      => StadtDatentypen.GebäudeID (Bauprojekt.Gebäude))
+                                                                                                                                       IDExtern      => StadtDatentypen.GebäudeIDVorhanden (Bauprojekt.Gebäude))
          then
             StadtGebaeudeBauenLogik.GebäudeFertiggestellt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             

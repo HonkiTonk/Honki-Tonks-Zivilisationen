@@ -39,7 +39,7 @@ package body StadtAllgemeinesLogik is
    
    
    procedure StädteSortieren
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type StadtDatentypen.Städtebereich;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;

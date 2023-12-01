@@ -210,7 +210,7 @@ package ChangelogDezember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (01.12.2023):
+   -- Version 0.05.5085 => 0.05. (01.12.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.

@@ -12,7 +12,7 @@ with LadezeitenLogik;
 package body KIForschungLogik is
 
    procedure Forschung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       case
@@ -34,13 +34,13 @@ package body KIForschungLogik is
    -- Das muss durch eine bessere Berechnung ersetzt werden. äöü
    -- Bei Erweiterung der Forschungsliste muss die Ladezeitberechnung angepasst werden. äöü
    procedure NeuesForschungsprojekt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type ForschungenDatentypen.ForschungIDUnmöglich;
       use type ProduktionDatentypen.Produktion;
    begin
       
-      Ladezeit := ForschungenDatentypen.ForschungID (Basiszeitwert (ZusatzwertExtern => Positive (ForschungenDatenbank.ForschungslisteArray'Last (2)),
+      Ladezeit := ForschungenDatentypen.ForschungIDVorhanden (Basiszeitwert (ZusatzwertExtern => Positive (ForschungenDatenbank.ForschungslisteArray'Last (2)),
                                                                     TeilerExtern     => 100));
       WelchesProjekt := ForschungKonstanten.LeerForschung;
       

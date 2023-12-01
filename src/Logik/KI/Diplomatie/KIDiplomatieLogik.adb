@@ -9,7 +9,7 @@ with KIKriegErmittelnLogik;
 package body KIDiplomatieLogik is
    
    procedure Diplomatie
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       SchreibeKIVariablen.Kriegszustand (ZustandExtern => KIKriegErmittelnLogik.IstImKrieg (SpeziesExtern => SpeziesExtern));
@@ -33,8 +33,8 @@ package body KIDiplomatieLogik is
    
 
    procedure DiplomatieKIMensch
-     (SpeziesMenschExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesKIExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesMenschExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesKIExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       null;
@@ -44,8 +44,8 @@ package body KIDiplomatieLogik is
    
    
    procedure DiplomatieKIKI
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FremdeSpeziesKIExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FremdeSpeziesKIExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       null;

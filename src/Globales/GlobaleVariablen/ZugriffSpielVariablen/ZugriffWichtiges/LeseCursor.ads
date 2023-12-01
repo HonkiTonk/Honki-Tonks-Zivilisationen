@@ -11,7 +11,7 @@ package LeseCursor is
    use type KartenDatentypen.Kartenfeld;
 
    function KoordinatenAktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
@@ -26,7 +26,7 @@ package LeseCursor is
    pragma Inline (KoordinatenAktuell);
    
    function EAchseAktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.Ebene
      with
        Pre => (
@@ -35,7 +35,7 @@ package LeseCursor is
    pragma Inline (EAchseAktuell);
 
    function KoordinatenAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
@@ -50,7 +50,7 @@ package LeseCursor is
    pragma Inline (KoordinatenAlt);
    
    function YAchseAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
@@ -63,7 +63,7 @@ package LeseCursor is
    pragma Inline (YAchseAlt);
    
    function XAchseAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
@@ -76,7 +76,7 @@ package LeseCursor is
    pragma Inline (XAchseAlt);
    
    function GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.CursorRecord
      with
        Pre => (

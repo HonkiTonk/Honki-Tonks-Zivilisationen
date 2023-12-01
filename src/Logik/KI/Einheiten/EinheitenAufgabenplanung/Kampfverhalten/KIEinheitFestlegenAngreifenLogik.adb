@@ -76,7 +76,7 @@ package body KIEinheitFestlegenAngreifenLogik is
    
    
    function ZielErmitteln
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spezies_Enum
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
@@ -86,7 +86,7 @@ package body KIEinheitFestlegenAngreifenLogik is
       Ziel := SpeziesKonstanten.LeerSpezies;
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum

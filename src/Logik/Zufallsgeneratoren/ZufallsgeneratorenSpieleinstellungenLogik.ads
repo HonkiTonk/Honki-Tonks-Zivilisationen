@@ -37,7 +37,7 @@ package ZufallsgeneratorenSpieleinstellungenLogik is
      return SpielDatentypen.Schwierigkeitsgrad_Enum;
    
    function ZufälligeSpezies
-     return SpeziesDatentypen.Spezies_Verwendet_Enum;
+     return SpeziesDatentypen.Spezies_Vorhanden_Enum;
 
 private
    
@@ -54,7 +54,7 @@ private
    package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenressourcenmenge_Enum);
    package ZufälligeSpeziesbelegungWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpeziesDatentypen.Spieler_Enum);
    package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpielDatentypen.Schwierigkeitsgrad_Enum);
-   package ZufälligeSpeziesWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpeziesDatentypen.Spezies_Verwendet_Enum);
+   package ZufälligeSpeziesWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpeziesDatentypen.Spezies_Vorhanden_Enum);
    
    package ZufälligerEAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_E_Einstellbar_Enum);
    package ZufälligerYAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_Y_Einstellbar_Enum);

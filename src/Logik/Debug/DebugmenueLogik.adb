@@ -22,7 +22,7 @@ with EinlesenTextLogik;
 package body DebugmenueLogik is
 
    procedure Debugmenü
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       DebugmenüSchleife:
@@ -73,7 +73,7 @@ package body DebugmenueLogik is
    
    -- Eventuell hier was Ähnliches wie im Diplomatieauswahlmenü einbauen oder eine allgemeinere Version der Diplomatieauswahl bauen? äöü
    procedure MenschKITauschen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
@@ -112,7 +112,7 @@ package body DebugmenueLogik is
    
    
    procedure KarteAufdecken
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       EbeneSchleife:
@@ -139,13 +139,13 @@ package body DebugmenueLogik is
    
    procedure DiplomatischenStatusÄndern
      (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
             
          if
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
@@ -172,7 +172,7 @@ package body DebugmenueLogik is
    
    
    procedure EinheitErzeugen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       Einheitenauswahl := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (EinheitenDatentypen.EinheitenbereichVorhanden'First),

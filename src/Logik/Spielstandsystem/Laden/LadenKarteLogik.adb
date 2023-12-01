@@ -282,7 +282,7 @@ package body LadenKarteLogik is
                SichtbarkeitSchleife:
                for SichtbarkeitSchleifenwert in reverse SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
                
-                  Potenz := SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitSchleifenwert) - SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert));
+                  Potenz := SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SichtbarkeitSchleifenwert) - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert));
                   
                   if
                     Natural (Sichtbarkeit) - 2**Potenz >= 0

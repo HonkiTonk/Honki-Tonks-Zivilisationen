@@ -3,7 +3,7 @@ with SpeziesDatenbank;
 package body LeseSpeziesDatenbank is
 
    function SpeziesAggressivität
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
    is begin
       
@@ -14,7 +14,7 @@ package body LeseSpeziesDatenbank is
    
    
    function SpeziesExpansion
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
    is begin
       
@@ -25,7 +25,7 @@ package body LeseSpeziesDatenbank is
    
    
    function SpeziesWissenschaft
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
    is begin
       
@@ -36,7 +36,7 @@ package body LeseSpeziesDatenbank is
    
    
    function SpeziesProduktion
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
    is begin
       
@@ -47,7 +47,7 @@ package body LeseSpeziesDatenbank is
    
    
    function SpeziesWirtschaft
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
    is begin
       
@@ -58,7 +58,7 @@ package body LeseSpeziesDatenbank is
    
    
    function SpeziesBewirtschaftung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
    is begin
       
@@ -69,7 +69,7 @@ package body LeseSpeziesDatenbank is
    
    
    function SpeziesGültigeStaatsform
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       StaatsformExtern : SpeziesDatentypen.Staatsform_Enum)
       return Boolean
    is

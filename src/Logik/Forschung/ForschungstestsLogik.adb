@@ -6,7 +6,7 @@ with LeseWichtiges;
 package body ForschungstestsLogik is
 
    function TechnologieVorhanden
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       TechnologieExtern : in ForschungenDatentypen.ForschungIDUnmöglich)
       return Boolean
    is begin
@@ -30,8 +30,8 @@ package body ForschungstestsLogik is
    
    
    function ForschungAnforderungErfüllt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      ForschungIDExtern : in ForschungenDatentypen.ForschungID)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      ForschungIDExtern : in ForschungenDatentypen.ForschungIDVorhanden)
       return Boolean
    is begin
    

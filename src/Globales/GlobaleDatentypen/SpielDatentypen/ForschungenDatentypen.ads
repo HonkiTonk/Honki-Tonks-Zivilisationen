@@ -3,8 +3,8 @@ package ForschungenDatentypen is
 
    -- Die -1 wird benötigt für Gebäude/Einheiten/Forschungen die nicht möglich sind zu bauen/erforschen/unbelegt sind.
    type ForschungIDUnmöglich is range -1 .. 75;
-   subtype ForschungIDMitNullWert is ForschungIDUnmöglich range 0 .. ForschungIDUnmöglich'Last;
-   subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
+   subtype ForschungID is ForschungIDUnmöglich range 0 .. ForschungIDUnmöglich'Last;
+   subtype ForschungIDVorhanden is ForschungID range 1 .. ForschungID'Last;
    
    
    
@@ -18,6 +18,6 @@ package ForschungenDatentypen is
    
    
    
-   type ErforschtArray is array (ForschungID'Range) of Boolean;
+   type ErforschtArray is array (ForschungIDVorhanden'Range) of Boolean;
    
 end ForschungenDatentypen;

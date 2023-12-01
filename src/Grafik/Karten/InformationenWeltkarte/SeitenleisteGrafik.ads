@@ -12,7 +12,7 @@ package SeitenleisteGrafik is
    pragma Elaborate_Body;
 
    procedure SeitenleisteGrafik
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum);
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
 
 private
 

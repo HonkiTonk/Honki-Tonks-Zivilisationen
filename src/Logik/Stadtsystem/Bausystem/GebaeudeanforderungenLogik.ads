@@ -18,7 +18,7 @@ package GebaeudeanforderungenLogik is
    
    function AnforderungenErfüllt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
      with
        Pre => (
@@ -77,7 +77,7 @@ private
    
    function NotwendigeGebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+      GebäudeIDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
      with
        Pre => (
@@ -110,8 +110,8 @@ private
               );
    
    function NotwendigeUmgebung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      GebäudeIDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
      with
        Pre => (

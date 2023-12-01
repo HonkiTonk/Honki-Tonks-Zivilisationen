@@ -19,7 +19,7 @@ package KIRecords is
 
    type GebäudeIDBewertungRecord is record
 
-      ID : StadtDatentypen.GebäudeIDMitNullwert;
+      ID : StadtDatentypen.GebäudeID;
       Bewertung : KIDatentypen.BauenBewertung;
 
    end record;

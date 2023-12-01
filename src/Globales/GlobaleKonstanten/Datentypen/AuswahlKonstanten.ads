@@ -8,7 +8,7 @@ package AuswahlKonstanten is
    -- Also um eine LeerStadtEinheitenauswahl erweitern? äöü
    LeerAuswahl : constant Natural := 0;
 
-   LeerGebäudeauswahl : constant StadtDatentypen.GebäudeIDMitNullwert := StadtDatentypen.GebäudeIDMitNullwert'First;
+   LeerGebäudeauswahl : constant StadtDatentypen.GebäudeID := StadtDatentypen.GebäudeID'First;
 
    LeerEinheitenauswahl : constant EinheitenDatentypen.EinheitenID := EinheitenDatentypen.EinheitenID'First;
 

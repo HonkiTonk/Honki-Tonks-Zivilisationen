@@ -69,7 +69,7 @@ package TextaccessVariablen is
    
    
    -- Speziestexte
-   type SpeziesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Sf.Graphics.sfText_Ptr;
+   type SpeziesArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Sf.Graphics.sfText_Ptr;
    SpeziesnamenAccess : constant SpeziesArray := (others => Sf.Graphics.Text.create);
    SpeziesbeschreibungAccess : constant SpeziesArray := (others => Sf.Graphics.Text.create);
    
@@ -77,10 +77,10 @@ package TextaccessVariablen is
    
    GebäudeaufteilungAccess : constant TextaccessArray (InteraktionAuswahl.PositionenBauaufteilung'Range) := (others => Sf.Graphics.Text.create);
       
-   type GebäudetextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeIDMitNullwert'Range) of Sf.Graphics.sfText_Ptr;
+   type GebäudetextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
    GebäudetextAccess : constant GebäudetextAccessArray := (others => (others => Sf.Graphics.Text.create));
 
-   type GebäudezusatztextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
+   type GebäudezusatztextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeIDVorhanden'Range) of Sf.Graphics.sfText_Ptr;
    GebäudezusatztextAccess : constant GebäudezusatztextAccessArray := (others => (others => Sf.Graphics.Text.create));
    
    
@@ -95,7 +95,7 @@ package TextaccessVariablen is
    
    
    
-   type ForschungsmenüAccessArray is array (SpeziesnamenAccess'Range, ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.sfText_Ptr;
+   type ForschungsmenüAccessArray is array (SpeziesnamenAccess'Range, ForschungenDatentypen.ForschungIDVorhanden'Range) of Sf.Graphics.sfText_Ptr;
    ForschungsmenüAccess : constant ForschungsmenüAccessArray := (others => (others => Sf.Graphics.Text.create));
    
    type ForschungsmenüZusatztextAccessArray is array (SpeziesnamenAccess'Range, ForschungsmenüAccessArray'Range (2)) of Sf.Graphics.sfText_Ptr;

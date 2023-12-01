@@ -125,7 +125,7 @@ package body SichtweitenGrafik is
    
    
    function UntenRechts
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
       use type KartenDatentypen.Kartenfeld;

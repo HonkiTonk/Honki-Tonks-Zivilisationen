@@ -157,7 +157,7 @@ package body EinheitenErzeugenEntfernenLogik is
    
    -- Mit Sortierung sollte es möglich sein diverse Schleifen vorzeitig abzubrechen, die mal durchgehen. äöü
    procedure Einheitensortierung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type EinheitenDatentypen.Einheitenbereich;
    begin

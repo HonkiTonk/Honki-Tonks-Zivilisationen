@@ -135,7 +135,7 @@ package body StadtBauenLogik is
    
    
    function StadtnummerErmitteln
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return StadtDatentypen.Städtebereich
    is begin
       
@@ -209,7 +209,7 @@ package body StadtBauenLogik is
    
    procedure WegAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       case
@@ -263,7 +263,7 @@ package body StadtBauenLogik is
 
 
    function HauptstadtPrüfen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenverbesserungDatentypen.Verbesserung_Städte_Enum
    is begin
       

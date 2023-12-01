@@ -52,7 +52,7 @@ package body RundenendeLogik is
       -- Hier immer beachten in welcher Reihenfolge was aufgerufen wird, sonst könnte es zu Problemen führen!
       -- Immer erst die aktuellen Werte hinzufügen und dann für die nächste Runde die neuen Produktionswerte berechnen!
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          Belegung := LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert);
          
@@ -107,7 +107,7 @@ package body RundenendeLogik is
    
    
    procedure BerechnungenEinheiten
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       EinheitenSchleife:
@@ -131,7 +131,7 @@ package body RundenendeLogik is
    
    
    procedure BerechnungenStädte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       StadtSchleife:
@@ -210,7 +210,7 @@ package body RundenendeLogik is
    
    -- Das später auch an eine passendere Stelle schieben/aufteilen. äöü
    procedure GeldForschung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       case

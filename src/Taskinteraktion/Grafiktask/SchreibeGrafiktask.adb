@@ -243,7 +243,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Gebäudeauswahl
-     (GebäudeExtern : in StadtDatentypen.GebäudeIDMitNullwert)
+     (GebäudeExtern : in StadtDatentypen.GebäudeID)
    is begin
       
       Grafiktask.Auswahl.Bauauswahl.Gebäude := GebäudeExtern;

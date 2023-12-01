@@ -9,7 +9,7 @@ package DebugmenueAllgemeinesLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    
    function SpeziesAuswählen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spezies_Enum
      with
        Pre => (
@@ -21,7 +21,7 @@ package DebugmenueAllgemeinesLogik is
    
 private
    
-   AusgewählteSpezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
+   AusgewählteSpezies : SpeziesDatentypen.Spezies_Vorhanden_Enum;
 
    Zahleneingabe : SystemRecords.ZahlenEingabeRecord;
 

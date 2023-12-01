@@ -11,19 +11,19 @@ package SpeziesDatentypen is
                         );
    pragma Ordered (Spezies_Enum);
    
-   subtype Spezies_Verwendet_Enum is Spezies_Enum range Spezies_Enum'Succ (Spezies_Enum'First) .. Spezies_Enum'Last;
-   subtype Spezies_Überirdisch_Enum is Spezies_Verwendet_Enum range Spezies_Verwendet_Enum'First.. Ekropa_Enum;
-   subtype Spezies_Unterirdisch_Enum is Spezies_Verwendet_Enum range Tesorahn_Enum .. Talbidahr_Enum;
+   subtype Spezies_Vorhanden_Enum is Spezies_Enum range Spezies_Enum'Succ (Spezies_Enum'First) .. Spezies_Enum'Last;
+   subtype Spezies_Überirdisch_Enum is Spezies_Vorhanden_Enum range Spezies_Vorhanden_Enum'First.. Ekropa_Enum;
+   subtype Spezies_Unterirdisch_Enum is Spezies_Vorhanden_Enum range Tesorahn_Enum .. Talbidahr_Enum;
    subtype Spezies_Wasser_Enum is Spezies_Unterirdisch_Enum range Tesorahn_Enum .. Tesorahn_Enum;
    subtype Spezies_Erde_Enum is Spezies_Unterirdisch_Enum range Talbidahr_Enum .. Talbidahr_Enum;
    
-   subtype Speichern_Laden_Eins_Enum is Spezies_Verwendet_Enum range Spezies_Verwendet_Enum'First .. Spezies_Verwendet_Enum'Val (Spezies_Verwendet_Enum'Pos (Spezies_Verwendet_Enum'First) + 5);
-   subtype Speichern_Laden_Zwei_Enum is Spezies_Verwendet_Enum range Spezies_Enum'Succ (Speichern_Laden_Eins_Enum'Last)
-     .. Spezies_Verwendet_Enum'Val (Spezies_Verwendet_Enum'Pos (Spezies_Enum'Succ (Speichern_Laden_Eins_Enum'Last)) + 5);
-   subtype Speichern_Laden_Drei_Enum is Spezies_Verwendet_Enum range Spezies_Enum'Succ (Speichern_Laden_Zwei_Enum'Last) .. Spezies_Verwendet_Enum'Last;
+   subtype Speichern_Laden_Eins_Enum is Spezies_Vorhanden_Enum range Spezies_Vorhanden_Enum'First .. Spezies_Vorhanden_Enum'Val (Spezies_Vorhanden_Enum'Pos (Spezies_Vorhanden_Enum'First) + 5);
+   subtype Speichern_Laden_Zwei_Enum is Spezies_Vorhanden_Enum range Spezies_Enum'Succ (Speichern_Laden_Eins_Enum'Last)
+     .. Spezies_Vorhanden_Enum'Val (Spezies_Vorhanden_Enum'Pos (Spezies_Enum'Succ (Speichern_Laden_Eins_Enum'Last)) + 5);
+   subtype Speichern_Laden_Drei_Enum is Spezies_Vorhanden_Enum range Spezies_Enum'Succ (Speichern_Laden_Zwei_Enum'Last) .. Spezies_Vorhanden_Enum'Last;
    
    subtype Speziesnummern is Natural range Spezies_Enum'Pos (Spezies_Enum'First) .. Spezies_Enum'Pos (Spezies_Enum'Last);
-   subtype SpeziesnummernVorhanden is Speziesnummern range Spezies_Enum'Pos (Spezies_Verwendet_Enum'First) .. Speziesnummern'Last;
+   subtype SpeziesnummernVorhanden is Speziesnummern range Spezies_Enum'Pos (Spezies_Vorhanden_Enum'First) .. Speziesnummern'Last;
 
    
    

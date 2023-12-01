@@ -14,7 +14,7 @@ package body AbspannGrafik is
 
    procedure Abspann
      (AbspannExtern : in GrafikDatentypen.Abspannhintergrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAnpassen (ViewflächeExtern => Viewfläche);

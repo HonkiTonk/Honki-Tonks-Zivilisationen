@@ -10,7 +10,7 @@ with TastenbelegungDatentypen;
 
 package MausauswahlLogik is
    pragma Elaborate_Body;
-  -- use type StadtDatentypen.GebäudeIDMitNullwert;
+  -- use type StadtDatentypen.GebäudeID;
   -- use type EinheitenDatentypen.EinheitenID;
    use type EinheitenDatentypen.Transportplätze;
 
@@ -18,7 +18,7 @@ package MausauswahlLogik is
      return Natural;
    
    function Forschungsmenü
-     return ForschungenDatentypen.ForschungIDMitNullWert;
+     return ForschungenDatentypen.ForschungID;
 
    function Baumenü
      return StadtRecords.ErweiterterBauprojektRecord;
@@ -64,7 +64,7 @@ package MausauswahlLogik is
      return BefehleDatentypen.Stadtbefehle_Enum;
    
    function Verkaufsmenü
-     return StadtDatentypen.GebäudeIDMitNullwert;
+     return StadtDatentypen.GebäudeID;
    
    function SpeichernLaden
      return Natural;

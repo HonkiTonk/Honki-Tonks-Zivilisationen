@@ -24,7 +24,7 @@ package body BauauswahlEinheitenGrafik is
 
    procedure Einheiteninformationen
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type EinheitenDatentypen.Transport_Enum;
       use type EinheitenDatentypen.Transportplätze;
@@ -118,7 +118,7 @@ package body BauauswahlEinheitenGrafik is
    
    procedure Einheitenbeschreibung
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeBeschreibung,

@@ -129,7 +129,7 @@ package body SchreibenEinstellungenLogik is
       
       -- Die Schleife kann ich hier verwenden, weil sich die Speziesanzahl nicht mehr ändern wird.
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
       
          Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
                                           LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesSchleifenwert));

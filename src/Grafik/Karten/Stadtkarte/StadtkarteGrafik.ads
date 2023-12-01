@@ -27,10 +27,10 @@ package StadtkarteGrafik is
 
 private
 
-   GebäudeID : StadtDatentypen.GebäudeID;
+   GebäudeID : StadtDatentypen.GebäudeIDVorhanden;
 
-   AlteID : StadtDatentypen.GebäudeIDMitNullwert := StadtKonstanten.LeerGebäudeID;
-   GebäudeZusatzinformationen : StadtDatentypen.GebäudeIDMitNullwert;
+   AlteID : StadtDatentypen.GebäudeID := StadtKonstanten.LeerGebäudeID;
+   GebäudeZusatzinformationen : StadtDatentypen.GebäudeID;
 
    Anzeigezeit : Time := Clock;
 
@@ -51,16 +51,16 @@ private
      (GrundExtern : in KartenRecords.KartengrundRecord);
 
    procedure Zusatzinformationen
-     (GebäudeIDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
    procedure Informationsfeld
-     (GebäudeIDExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeIDVorhanden;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum

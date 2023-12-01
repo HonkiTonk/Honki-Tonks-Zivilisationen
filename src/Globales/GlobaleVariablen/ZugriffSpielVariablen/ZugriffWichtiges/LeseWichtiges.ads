@@ -15,7 +15,7 @@ package LeseWichtiges is
    use type EinheitenDatentypen.Einheitenbereich;
 
    function Geldmenge
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Integer
      with
        Pre => (
@@ -24,7 +24,7 @@ package LeseWichtiges is
    pragma Inline (Geldmenge);
    
    function GeldZugewinnProRunde
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Produktion
      with
        Pre => (
@@ -33,7 +33,7 @@ package LeseWichtiges is
    pragma Inline (GeldZugewinnProRunde);
 
    function GesamteForschungsrate
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Lagermenge
      with
        Pre => (
@@ -42,7 +42,7 @@ package LeseWichtiges is
    pragma Inline (GesamteForschungsrate);
    
    function Forschungsmenge
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Lagermenge
      with
        Pre => (
@@ -51,7 +51,7 @@ package LeseWichtiges is
    pragma Inline (Forschungsmenge);
    
    function VerbleibendeForschungszeit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Lagermenge
      with
        Pre => (
@@ -60,8 +60,8 @@ package LeseWichtiges is
    pragma Inline (VerbleibendeForschungszeit);
    
    function Forschungsprojekt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ForschungenDatentypen.ForschungIDMitNullWert
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return ForschungenDatentypen.ForschungID
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -69,8 +69,8 @@ package LeseWichtiges is
    pragma Inline (Forschungsprojekt);
 
    function Erforscht
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcheTechnologieExtern : in ForschungenDatentypen.ForschungID)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      WelcheTechnologieExtern : in ForschungenDatentypen.ForschungIDVorhanden)
       return Boolean
      with
        Pre => (
@@ -79,7 +79,7 @@ package LeseWichtiges is
    pragma Inline (Erforscht);
    
    function AnzahlStädte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return StadtDatentypen.Städtebereich
      with
        Pre => (
@@ -92,7 +92,7 @@ package LeseWichtiges is
    pragma Inline (AnzahlStädte);
    
    function AnzahlEinheiten
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (
@@ -105,7 +105,7 @@ package LeseWichtiges is
    pragma Inline (AnzahlEinheiten);
    
    function AnzahlArbeiter
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (
@@ -118,7 +118,7 @@ package LeseWichtiges is
    pragma Inline (AnzahlArbeiter);
      
    function AnzahlKämpfer
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (
@@ -131,7 +131,7 @@ package LeseWichtiges is
    pragma Inline (AnzahlKämpfer);
      
    function AnzahlSonstiges
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (
@@ -144,7 +144,7 @@ package LeseWichtiges is
    pragma Inline (AnzahlSonstiges);
    
    function GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpielRecords.WichtigesRecord
      with
        Pre => (

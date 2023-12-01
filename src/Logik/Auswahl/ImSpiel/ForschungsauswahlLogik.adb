@@ -16,7 +16,7 @@ with JaNeinLogik;
 package body ForschungsauswahlLogik is
 
    procedure Forschung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
@@ -40,12 +40,12 @@ package body ForschungsauswahlLogik is
 
 
    function Forschungsmöglichkeiten
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ForschungenDatentypen.ForschungIDMitNullWert
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return ForschungenDatentypen.ForschungID
    is begin
 
       ForschungSchleife:
-      for ForschungenSchleifenwert in ForschungenDatentypen.ForschungID loop
+      for ForschungenSchleifenwert in ForschungenDatentypen.ForschungIDVorhanden loop
          
          InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := ForschungstestsLogik.ForschungAnforderungErfüllt (SpeziesExtern     => SpeziesExtern,
                                                                                                                                   ForschungIDExtern => ForschungenSchleifenwert);
@@ -59,8 +59,8 @@ package body ForschungsauswahlLogik is
    
    
    function Forschungsauswahl
-     (AktuellesForschungsprojektExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
-      return ForschungenDatentypen.ForschungIDMitNullWert
+     (AktuellesForschungsprojektExtern : in ForschungenDatentypen.ForschungID)
+      return ForschungenDatentypen.ForschungID
    is
       use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
@@ -115,7 +115,7 @@ package body ForschungsauswahlLogik is
    
    
    procedure Forschungserfolg
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesExtern);

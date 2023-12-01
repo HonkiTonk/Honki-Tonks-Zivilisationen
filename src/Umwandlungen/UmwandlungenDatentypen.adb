@@ -13,7 +13,7 @@ package body UmwandlungenDatentypen is
    
    function RückgabeNachSpezies
      (RückgabeExtern : in RueckgabeDatentypen.Spezies_Verwendet_Enum)
-      return SpeziesDatentypen.Spezies_Verwendet_Enum
+      return SpeziesDatentypen.Spezies_Vorhanden_Enum
    is begin
       
       return RückgabeSpezies (RückgabeExtern);

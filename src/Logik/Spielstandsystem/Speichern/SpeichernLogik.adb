@@ -168,7 +168,7 @@ package body SpeichernLogik is
    is begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
@@ -200,7 +200,7 @@ package body SpeichernLogik is
    
    
    function StädteEinheitenSpeichern
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is begin
@@ -278,7 +278,7 @@ package body SpeichernLogik is
    
    
    function Spezieswerte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
@@ -286,7 +286,7 @@ package body SpeichernLogik is
    begin
       
       DiplomatieSchleife:
-      for DiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for DiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
 
          if
            LeseSpeziesbelegung.Belegung (SpeziesExtern => DiplomatieSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum

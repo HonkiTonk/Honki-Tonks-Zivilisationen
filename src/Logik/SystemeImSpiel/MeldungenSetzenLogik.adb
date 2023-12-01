@@ -6,7 +6,7 @@ with LeseStadtGebaut;
 package body MeldungenSetzenLogik is
 
    procedure MeldungenRundenende
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       StadtSchleife:
@@ -73,7 +73,7 @@ package body MeldungenSetzenLogik is
    
    procedure EinheitmeldungSetzen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      EreignisExtern : in EinheitenDatentypen.Einheit_Meldung_Verwendet_Enum)
+      EreignisExtern : in EinheitenDatentypen.Einheit_Meldung_Vorhanden_Enum)
    is begin
       
       case

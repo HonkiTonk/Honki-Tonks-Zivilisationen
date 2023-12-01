@@ -22,7 +22,7 @@ with Vergleiche;
 package body CursorplatzierungGrafik is
    
    procedure Weltkarte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type KartenDatentypen.Kartenfeld;
    begin

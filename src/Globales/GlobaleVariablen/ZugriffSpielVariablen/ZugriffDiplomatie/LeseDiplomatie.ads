@@ -11,8 +11,8 @@ package LeseDiplomatie is
    use type SpeziesDatentypen.Spezies_Enum;
 
    function AktuellerZustand
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return DiplomatieDatentypen.Status_Untereinander_Enum
      with
        Pre => (
@@ -25,8 +25,8 @@ package LeseDiplomatie is
    pragma Inline (AktuellerZustand);
    
    function AktuelleSympathie
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return DiplomatieDatentypen.Meinung
      with
        Pre => (
@@ -39,8 +39,8 @@ package LeseDiplomatie is
    pragma Inline (AktuelleSympathie);
    
    function ZeitSeitÄnderung
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ZahlenDatentypen.EigenesNatural
      with
        Pre => (
@@ -53,8 +53,8 @@ package LeseDiplomatie is
    pragma Inline (ZeitSeitÄnderung);
    
    function GanzerEintrag
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpielRecords.DiplomatieRecord
      with
        Pre => (

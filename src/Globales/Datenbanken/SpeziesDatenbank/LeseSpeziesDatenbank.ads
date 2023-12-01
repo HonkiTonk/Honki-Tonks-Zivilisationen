@@ -7,7 +7,7 @@ package LeseSpeziesDatenbank is
    use type SpeziesDatentypen.Spieler_Enum;
 
    function SpeziesAggressivität
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
      with
        Pre => (
@@ -16,7 +16,7 @@ package LeseSpeziesDatenbank is
    pragma Inline (SpeziesAggressivität);
    
    function SpeziesExpansion
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
      with
        Pre => (
@@ -25,7 +25,7 @@ package LeseSpeziesDatenbank is
    pragma Inline (SpeziesExpansion);
    
    function SpeziesWissenschaft
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
      with
        Pre => (
@@ -34,7 +34,7 @@ package LeseSpeziesDatenbank is
    pragma Inline (SpeziesWissenschaft);
    
    function SpeziesProduktion
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
      with
        Pre => (
@@ -43,7 +43,7 @@ package LeseSpeziesDatenbank is
    pragma Inline (SpeziesProduktion);
    
    function SpeziesWirtschaft
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
      with
        Pre => (
@@ -52,7 +52,7 @@ package LeseSpeziesDatenbank is
    pragma Inline (SpeziesWirtschaft);
    
    function SpeziesBewirtschaftung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Speziesverhalten
      with
        Pre => (
@@ -61,7 +61,7 @@ package LeseSpeziesDatenbank is
    pragma Inline (SpeziesBewirtschaftung);
    
    function SpeziesGültigeStaatsform
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       StaatsformExtern : SpeziesDatentypen.Staatsform_Enum)
       return Boolean
      with

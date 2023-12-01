@@ -49,13 +49,13 @@ package StadtKonstanten is
    LeerMeldung : constant StadtDatentypen.Stadt_Meldung_Enum := StadtDatentypen.Leer_Stadt_Meldung_Enum;
    LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe_Enum;
    
-   Stadtkartengröße : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeID'Last))));
+   Stadtkartengröße : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeIDVorhanden'Last))));
    
    
 
    MaximaleBauzeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    
-   LeerGebäudeID : constant StadtDatentypen.GebäudeIDMitNullwert := 0;
+   LeerGebäudeID : constant StadtDatentypen.GebäudeID := 0;
    LeerGebäudeBenötigt : constant Boolean := False;
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
@@ -74,7 +74,7 @@ package StadtKonstanten is
    
    
    -- Das auch so ändern dass es davon einen Standardwert und einen einstellbaren Wert gibt. äöü
-   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of StadtDatentypen.Einwohner;
+   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.Einwohner;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypen.Anfangswert_Enum =>
                                                                      (

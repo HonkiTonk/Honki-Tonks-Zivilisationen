@@ -15,7 +15,7 @@ package FeldkampfStadtLogik is
 
    function Feldkampf
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum;
       KampfBasiswertExtern : in KampfDatentypen.KampfwerteEinheiten;
       StadttypExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;

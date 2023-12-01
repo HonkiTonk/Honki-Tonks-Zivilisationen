@@ -19,7 +19,7 @@ package DiplomatieDatentypen is
    -- Das hier später noch in eine eigene Datei auslagern? äöü
    -- Vielleicht generell alle Arrays aus den Datentypen und rein in die Records? äöü
    -- Beziehungsweise alle Konstanten Arrays in die Konstanten schieben. äöü
-   type MeinungsänderungFeldeffekteArray is array (KartenRecords.EffekteArray'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Meinung;
+   type MeinungsänderungFeldeffekteArray is array (KartenRecords.EffekteArray'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Meinung;
    MeinungsänderungFeldeffekte : constant MeinungsänderungFeldeffekteArray := (
                                                                                  KartenextraDatentypen.Strahlung_Enum =>
                                                                                    (

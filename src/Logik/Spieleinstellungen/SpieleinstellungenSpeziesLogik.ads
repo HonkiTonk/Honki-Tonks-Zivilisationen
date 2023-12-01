@@ -27,8 +27,8 @@ private
    SpielerartAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    SpieleranzahlAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
-   SpeziesMenschSchnellstart : SpeziesDatentypen.Spezies_Verwendet_Enum;
-   SpeziesKISchnellstart : SpeziesDatentypen.Spezies_Verwendet_Enum;
+   SpeziesMenschSchnellstart : SpeziesDatentypen.Spezies_Vorhanden_Enum;
+   SpeziesKISchnellstart : SpeziesDatentypen.Spezies_Vorhanden_Enum;
    
    GezogeneKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -38,10 +38,10 @@ private
    StartKoordinaten : KoordinatenArray;
    
    procedure BelegungÄndern
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum);
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
 
    procedure StartpunktFestlegen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       StartkoordinateEinsExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StartkoordinateZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
@@ -58,13 +58,13 @@ private
    
 
    function StartpunktPrüfen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
       return Boolean;
    
    function ZusatzfeldBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with

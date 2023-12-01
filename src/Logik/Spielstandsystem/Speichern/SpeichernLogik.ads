@@ -43,7 +43,7 @@ private
       return Boolean;
 
    function StädteEinheitenSpeichern
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type)
       return Boolean
      with
@@ -52,7 +52,7 @@ private
               );
 
    function Spezieswerte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type)
       return Boolean
      with

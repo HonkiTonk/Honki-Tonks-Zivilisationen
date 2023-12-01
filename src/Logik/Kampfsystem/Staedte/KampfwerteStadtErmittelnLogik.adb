@@ -14,7 +14,7 @@ package body KampfwerteStadtErmittelnLogik is
    function AktuelleVerteidigungStadt
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GebäudeExtern : in StadtArrays.GebäudeArray;
       EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;
       TaskExtern : in SystemDatentypen.Task_Enum)
@@ -66,7 +66,7 @@ package body KampfwerteStadtErmittelnLogik is
    function AktuellerAngriffStadt
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GebäudeExtern : in StadtArrays.GebäudeArray;
       EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;
       TaskExtern : in SystemDatentypen.Task_Enum)

@@ -3,7 +3,7 @@ with SpielVariablen;
 package body LeseSpeziesbelegung is
 
    function Belegung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spieler_Enum
    is begin
       
@@ -14,7 +14,7 @@ package body LeseSpeziesbelegung is
    
    
    function Besiegt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -25,7 +25,7 @@ package body LeseSpeziesbelegung is
    
    
    function GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpielRecords.SpeziesRecords
    is begin
       

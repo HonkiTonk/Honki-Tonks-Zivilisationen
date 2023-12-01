@@ -60,7 +60,7 @@ package body MausauswahlLogik is
    
    
    function Forschungsmenü
-     return ForschungenDatentypen.ForschungIDMitNullWert
+     return ForschungenDatentypen.ForschungID
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -141,7 +141,7 @@ package body MausauswahlLogik is
                                                                        view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste));
             
             GebäudeSchleife:
-            for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+            for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
                if
                  InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) = False
@@ -454,7 +454,7 @@ package body MausauswahlLogik is
    
    
    function Verkaufsmenü
-     return StadtDatentypen.GebäudeIDMitNullwert
+     return StadtDatentypen.GebäudeID
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -462,7 +462,7 @@ package body MausauswahlLogik is
                                                                  view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudelisteVerkaufen));
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          case
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)

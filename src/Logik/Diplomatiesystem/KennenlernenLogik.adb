@@ -9,8 +9,8 @@ with KIDiplomatieLogik;
 package body KennenlernenLogik is
 
    procedure Erstkontakt
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       case
@@ -52,8 +52,8 @@ package body KennenlernenLogik is
    
    
    procedure ErstkontaktMenschMensch
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       null;
@@ -63,8 +63,8 @@ package body KennenlernenLogik is
    
    
    procedure ErstkontaktMenschKI
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       null;

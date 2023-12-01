@@ -12,7 +12,7 @@ with ForschungsauswahlLogik;
 package body ForschungsfortschrittLogik is
          
    procedure Forschungsfortschritt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type ForschungenDatentypen.ForschungIDUnmöglich;
       use type ProduktionDatentypen.Produktion;

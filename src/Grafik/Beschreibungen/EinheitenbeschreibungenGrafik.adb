@@ -10,7 +10,7 @@ package body EinheitenbeschreibungenGrafik is
 
    function Kurzbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
           
@@ -30,7 +30,7 @@ package body EinheitenbeschreibungenGrafik is
    
    function Langbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       

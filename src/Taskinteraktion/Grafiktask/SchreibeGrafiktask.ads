@@ -87,7 +87,7 @@ package SchreibeGrafiktask is
      (AuswahlExtern : in EinheitenRecords.AuswahlRecord);
    
    procedure Gebäudeauswahl
-     (GebäudeExtern : in StadtDatentypen.GebäudeIDMitNullwert);
+     (GebäudeExtern : in StadtDatentypen.GebäudeID);
    
    procedure Einheitenauswahl
      (EinheitExtern : in EinheitenDatentypen.EinheitenID);

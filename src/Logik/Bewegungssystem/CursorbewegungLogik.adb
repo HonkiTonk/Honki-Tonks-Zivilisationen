@@ -15,7 +15,7 @@ package body CursorbewegungLogik is
    
    procedure CursorbewegungBerechnen
      (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
       use type KartenDatentypen.Ebene;

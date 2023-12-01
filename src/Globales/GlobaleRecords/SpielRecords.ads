@@ -31,7 +31,7 @@ package SpielRecords is
       GesamteForschungsrate : ProduktionDatentypen.Lagermenge;
       Forschungsmenge : ProduktionDatentypen.Lagermenge;
       VerbleibendeForschungszeit : ProduktionDatentypen.Lagermenge;
-      Forschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+      Forschungsprojekt : ForschungenDatentypen.ForschungID;
       
       -- Wenn ich ein Record für diese Variable hier anlege, dann könnten man die bereits investierte Forschung behalten. XXX
       Erforscht : ForschungenDatentypen.ErforschtArray;
@@ -97,6 +97,6 @@ package SpielRecords is
       
    end record;
    
-   type SpeziesbelegungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of SpeziesRecords;
+   type SpeziesbelegungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of SpeziesRecords;
 
 end SpielRecords;

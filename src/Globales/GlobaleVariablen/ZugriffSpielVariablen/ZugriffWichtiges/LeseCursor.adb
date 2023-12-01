@@ -3,7 +3,7 @@ with SpielVariablen;
 package body LeseCursor is
 
    function KoordinatenAktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
@@ -14,7 +14,7 @@ package body LeseCursor is
    
    
    function EAchseAktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.Ebene
    is begin
       
@@ -25,7 +25,7 @@ package body LeseCursor is
    
 
    function KoordinatenAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
@@ -36,7 +36,7 @@ package body LeseCursor is
    
    
    function YAchseAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
@@ -47,7 +47,7 @@ package body LeseCursor is
    
    
    function XAchseAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
@@ -58,7 +58,7 @@ package body LeseCursor is
    
       
    function GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.CursorRecord
    is begin
       

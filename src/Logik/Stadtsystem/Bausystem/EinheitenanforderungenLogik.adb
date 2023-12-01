@@ -48,7 +48,7 @@ package body EinheitenanforderungenLogik is
       end if;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          if
            False = LeseEinheitenDatenbank.GebäudeBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,

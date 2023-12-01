@@ -28,7 +28,7 @@ package body KIStaedteverbindungssystemLogik is
    -- Wobei natürlich das Problem ist dass die Verbindung ja getrennt werden kann, also müsste ich noch was einbauen dass das dann alle paar Runden prüft. äöü
    -- Beziehungsweise müsste es nach jeder Plünderun geprüft werden, wobei ich bei der Plünderung prüfen könnte ob da ein Weg zerstört wird und nur dann die Verbundenheit von Städten ernuet prüfen. äöü
    procedure Stadtverbindung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type StadtDatentypen.Städtebereich;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
@@ -86,7 +86,7 @@ package body KIStaedteverbindungssystemLogik is
    
    
    function VerbindungPrüfen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       StartkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -151,7 +151,7 @@ package body KIStaedteverbindungssystemLogik is
    
    
    function PlanenRekursiv
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AktuelleKoordinateExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
@@ -189,7 +189,7 @@ package body KIStaedteverbindungssystemLogik is
    
    
    function PlanschrittFestlegen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       DurchlaufExtern : in Positive;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
@@ -238,7 +238,7 @@ package body KIStaedteverbindungssystemLogik is
    
    
    procedure Felderbewertung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -305,7 +305,7 @@ package body KIStaedteverbindungssystemLogik is
    
    
    function FeldUngeeignet
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
@@ -343,7 +343,7 @@ package body KIStaedteverbindungssystemLogik is
    
    
    function FelderMitWegEntfernen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
       use type KartenverbesserungDatentypen.Weg_Enum;
@@ -404,7 +404,7 @@ package body KIStaedteverbindungssystemLogik is
    
    
    procedure ElementEntfernen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ElementExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
    is begin
       
@@ -419,7 +419,7 @@ package body KIStaedteverbindungssystemLogik is
    
    
    function VerbindungLeeren
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;

@@ -10,7 +10,7 @@ package AbspannGrafik is
 
    procedure Abspann
      (AbspannExtern : in GrafikDatentypen.Abspannhintergrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum);
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
    -- Später wieder einbauen, funktioniert aktuell nicht richtig da die gewinnende Spezies nicht festgetzt wird. äöü
    --  with
    --    Pre => (

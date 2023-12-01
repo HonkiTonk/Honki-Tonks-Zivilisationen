@@ -9,14 +9,14 @@ package NaechsteStadtLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure NächsteStadt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
    procedure NächsteStadtMeldung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -27,7 +27,7 @@ private
    StadtSchleifenbegrenzung : StadtDatentypen.Städtebereich;
    MeldungSchleifenbegrenzung : StadtDatentypen.Städtebereich;
 
-   type AktuelleStadtArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of StadtDatentypen.Städtebereich;
+   type AktuelleStadtArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.Städtebereich;
    AktuelleStadt : AktuelleStadtArray := (others => 0);
    AktuelleStadtMeldung : AktuelleStadtArray := (others => 0);
 

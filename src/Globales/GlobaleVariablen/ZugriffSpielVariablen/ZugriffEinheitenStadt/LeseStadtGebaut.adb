@@ -119,7 +119,7 @@ package body LeseStadtGebaut is
    
    function PermanenteKostenPosten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
+      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Vorhanden_Enum)
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
@@ -186,7 +186,7 @@ package body LeseStadtGebaut is
    
    function GebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
    is begin
       

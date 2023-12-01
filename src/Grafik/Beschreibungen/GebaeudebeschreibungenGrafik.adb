@@ -6,8 +6,8 @@ with TextnummernKonstanten;
 package body GebaeudebeschreibungenGrafik is
 
    function Kurzbeschreibung
-     (IDExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (IDExtern : in StadtDatentypen.GebäudeIDVorhanden;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
@@ -18,8 +18,8 @@ package body GebaeudebeschreibungenGrafik is
    
    
    function Langbeschreibung
-     (IDExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (IDExtern : in StadtDatentypen.GebäudeIDVorhanden;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       

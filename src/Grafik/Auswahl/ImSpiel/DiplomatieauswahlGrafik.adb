@@ -64,7 +64,7 @@ package body DiplomatieauswahlGrafik is
       Textbreite := GrafikKonstanten.Nullwert;
 
       PositionenSchleife:
-      for PositionSchleifenwert in SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Verwendet_Enum'First) .. SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Enum'Last) loop
+      for PositionSchleifenwert in SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Vorhanden_Enum'First) .. SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Enum'Last) loop
       
          if
            True = InteraktionAuswahl.SpeziesMöglich (SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert))

@@ -117,7 +117,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    function ZufälligeSpezies
-     return SpeziesDatentypen.Spezies_Verwendet_Enum
+     return SpeziesDatentypen.Spezies_Vorhanden_Enum
    is begin
       
       ZufälligeSpeziesWählen.Reset (Gen => ZufälligeSpeziesGewählt);
@@ -139,7 +139,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       SpielerSchleife:
       while SpielerVorhanden = False loop
          SpeziesSchleife:
-         for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+         for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
             SpeziesImSpiel := ZufälligeSpeziesbelegungWählen.Random (Gen => ZufälligeSpeziesbelegungGewählt);
 
@@ -162,7 +162,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       MenschFestlegenSchleife:
       loop
          MenschlicherSpielerSchleife:
-         for MenschlicheSpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+         for MenschlicheSpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
 
             if
               LeseSpeziesbelegung.Belegung (SpeziesExtern => MenschlicheSpeziesSchleifenwert) = SpeziesDatentypen.KI_Spieler_Enum

@@ -17,7 +17,7 @@ package BauauswahlGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.EinheitenID;
-   use type StadtDatentypen.GebäudeIDMitNullwert;
+   use type StadtDatentypen.GebäudeID;
 
    procedure Bauauswahl
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord;
@@ -51,8 +51,8 @@ private
       AktuelleAufteilungExtern : in Positive);
 
    procedure Gebäude
-     (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -60,7 +60,7 @@ private
 
    procedure Einheiten
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum

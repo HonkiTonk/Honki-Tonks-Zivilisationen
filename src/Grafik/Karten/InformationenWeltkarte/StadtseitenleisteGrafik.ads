@@ -93,7 +93,7 @@ private
                );
 
    function AktuellesBauprojekt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BauprojektExtern : in StadtRecords.BauprojektRecord;
       BauzeitExtern : in ProduktionDatentypen.Produktion)
       return Unbounded_Wide_Wide_String

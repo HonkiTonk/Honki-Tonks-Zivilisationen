@@ -3,7 +3,7 @@ with SpielVariablen;
 package body LeseWichtiges is
 
    function Geldmenge
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Integer
    is begin
 
@@ -14,7 +14,7 @@ package body LeseWichtiges is
 
 
    function GeldZugewinnProRunde
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Produktion
    is begin
 
@@ -25,7 +25,7 @@ package body LeseWichtiges is
    
 
    function GesamteForschungsrate
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Lagermenge
    is begin
       
@@ -36,7 +36,7 @@ package body LeseWichtiges is
    
    
    function Forschungsmenge
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Lagermenge
    is begin
 
@@ -47,7 +47,7 @@ package body LeseWichtiges is
    
    
    function VerbleibendeForschungszeit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Lagermenge
    is begin
 
@@ -58,8 +58,8 @@ package body LeseWichtiges is
    
    
    function Forschungsprojekt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ForschungenDatentypen.ForschungIDMitNullWert
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return ForschungenDatentypen.ForschungID
    is begin
 
       return SpielVariablen.Wichtiges (SpeziesExtern).Forschungsprojekt;
@@ -69,8 +69,8 @@ package body LeseWichtiges is
    
 
    function Erforscht
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcheTechnologieExtern : in ForschungenDatentypen.ForschungID)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      WelcheTechnologieExtern : in ForschungenDatentypen.ForschungIDVorhanden)
       return Boolean
    is begin
 
@@ -81,7 +81,7 @@ package body LeseWichtiges is
    
    
    function AnzahlStädte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return StadtDatentypen.Städtebereich
    is begin
       
@@ -92,7 +92,7 @@ package body LeseWichtiges is
    
    
    function AnzahlEinheiten
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Einheitenbereich
    is begin
       
@@ -103,7 +103,7 @@ package body LeseWichtiges is
    
      
    function AnzahlArbeiter
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Einheitenbereich
    is begin
       
@@ -114,7 +114,7 @@ package body LeseWichtiges is
    
      
    function AnzahlKämpfer
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Einheitenbereich
    is begin
       
@@ -125,7 +125,7 @@ package body LeseWichtiges is
    
      
    function AnzahlSonstiges
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.Einheitenbereich
    is begin
       
@@ -136,7 +136,7 @@ package body LeseWichtiges is
    
    
    function GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpielRecords.WichtigesRecord
    is begin
       

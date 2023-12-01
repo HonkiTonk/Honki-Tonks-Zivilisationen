@@ -83,7 +83,7 @@ package body SiegbedingungenLogik is
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          case
            LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert)
@@ -120,7 +120,7 @@ package body SiegbedingungenLogik is
       VorhandeneSpezies := 0;
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
@@ -161,7 +161,7 @@ package body SiegbedingungenLogik is
    begin
       
       SpeziesGeldSchleife:
-      for SpeziesGeldSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesGeldSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesGeldSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
@@ -193,7 +193,7 @@ package body SiegbedingungenLogik is
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
                
          if
            LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert) = False

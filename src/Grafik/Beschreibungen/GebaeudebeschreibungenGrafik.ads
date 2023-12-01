@@ -5,13 +5,13 @@ package GebaeudebeschreibungenGrafik is
    pragma Elaborate_Body;
 
    function Kurzbeschreibung
-     (IDExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (IDExtern : in StadtDatentypen.GebäudeIDVorhanden;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String;
    
    function Langbeschreibung
-     (IDExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (IDExtern : in StadtDatentypen.GebäudeIDVorhanden;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String;
 
 end GebaeudebeschreibungenGrafik;

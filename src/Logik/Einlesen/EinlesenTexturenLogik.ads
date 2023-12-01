@@ -51,7 +51,7 @@ private
 
    procedure Spezieshintergrund
      (DateipfadExtern : in Wide_Wide_String;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  DateipfadExtern'Length > 0
@@ -59,7 +59,7 @@ private
 
    procedure Einheiten
      (DateipfadExtern : in Wide_Wide_String;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  DateipfadExtern'Length > 0
@@ -67,7 +67,7 @@ private
 
    procedure Gebäude
      (DateipfadExtern : in Wide_Wide_String;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  DateipfadExtern'Length > 0

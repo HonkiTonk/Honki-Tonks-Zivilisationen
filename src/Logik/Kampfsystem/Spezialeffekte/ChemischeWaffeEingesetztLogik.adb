@@ -102,7 +102,7 @@ package body ChemischeWaffeEingesetztLogik is
       end loop EAchseSchleife;
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            SpeziesSchleifenwert = EinheitSpeziesNummerExtern.Spezies

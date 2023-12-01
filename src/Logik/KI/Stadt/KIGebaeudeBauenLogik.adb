@@ -18,7 +18,7 @@ package body KIGebaeudeBauenLogik is
       return KIRecords.GebäudeIDBewertungRecord
    is
       use type KIDatentypen.BauenBewertung;
-      use type StadtDatentypen.GebäudeIDMitNullwert;
+      use type StadtDatentypen.GebäudeID;
    begin
       
       GebäudeBewertet := KIKonstanten.LeerGebäudebewertung;
@@ -64,7 +64,7 @@ package body KIGebaeudeBauenLogik is
    
    function GebäudeBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -95,7 +95,7 @@ package body KIGebaeudeBauenLogik is
    
    function NahrungsproduktionBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type ProduktionDatentypen.Produktion;
@@ -146,7 +146,7 @@ package body KIGebaeudeBauenLogik is
    
    function GeldproduktionBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type ProduktionDatentypen.Produktion;
@@ -197,7 +197,7 @@ package body KIGebaeudeBauenLogik is
      
    function WissensgewinnBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type ProduktionDatentypen.Produktion;
@@ -225,7 +225,7 @@ package body KIGebaeudeBauenLogik is
           
    function MaterialproduktionBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type ProduktionDatentypen.Produktion;
@@ -276,7 +276,7 @@ package body KIGebaeudeBauenLogik is
      
    function VerteidigungBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -302,7 +302,7 @@ package body KIGebaeudeBauenLogik is
      
    function AngriffBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -328,7 +328,7 @@ package body KIGebaeudeBauenLogik is
      
    function KostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;

@@ -23,8 +23,8 @@ with TextaccessverwaltungssystemEinfachGrafik;
 package body BauauswahlGebaeudeGrafik is
 
    procedure Gebäudeinformationen
-     (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ViewbereichExtern : in Positive)
    is begin
                   
@@ -118,8 +118,8 @@ package body BauauswahlGebaeudeGrafik is
    
    
    procedure Gebäudebeschreibung
-     (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ViewbereichExtern : in Positive)
    is
       use type Sf.System.Vector2.sfVector2f;

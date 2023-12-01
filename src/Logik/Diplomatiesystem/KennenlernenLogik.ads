@@ -8,8 +8,8 @@ package KennenlernenLogik is
    use type SpeziesDatentypen.Spezies_Enum;
 
    procedure Erstkontakt
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  EigeneSpeziesExtern /= FremdeSpeziesExtern
@@ -22,8 +22,8 @@ package KennenlernenLogik is
 private
 
    procedure ErstkontaktMenschMensch
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  EigeneSpeziesExtern /= FremdeSpeziesExtern
@@ -34,8 +34,8 @@ private
               );
 
    procedure ErstkontaktMenschKI
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  EigeneSpeziesExtern /= FremdeSpeziesExtern

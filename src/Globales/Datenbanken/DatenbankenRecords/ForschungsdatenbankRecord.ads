@@ -11,6 +11,6 @@ package ForschungsdatenbankRecord is
 
    end record;
    
-   type ForschungslisteArray is array (ForschungenDatentypen.ForschungID'Range) of ForschungslisteRecord;
+   type ForschungslisteArray is array (ForschungenDatentypen.ForschungIDVorhanden'Range) of ForschungslisteRecord;
 
 end ForschungsdatenbankRecord;

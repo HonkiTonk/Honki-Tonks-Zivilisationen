@@ -116,7 +116,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    procedure RahmenBesetztesFeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
@@ -159,7 +159,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    procedure RahmenZeichnen
      (WelcheRichtungExtern : in KartenartDatentypen.Himmelsrichtungen_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
             
       case

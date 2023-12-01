@@ -3,8 +3,8 @@ with SpielVariablen;
 package body LeseDiplomatie is
 
    function AktuellerZustand
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return DiplomatieDatentypen.Status_Untereinander_Enum
    is begin
       
@@ -15,8 +15,8 @@ package body LeseDiplomatie is
    
    
    function AktuelleSympathie
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return DiplomatieDatentypen.Meinung
    is begin
       
@@ -27,8 +27,8 @@ package body LeseDiplomatie is
    
    
    function ZeitSeitÄnderung
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ZahlenDatentypen.EigenesNatural
    is begin
       
@@ -39,8 +39,8 @@ package body LeseDiplomatie is
    
    
    function GanzerEintrag
-     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpielRecords.DiplomatieRecord
    is begin
       

@@ -14,7 +14,7 @@ package KIForschungLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Forschung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
@@ -24,9 +24,9 @@ private
    
    ForschungMöglich : Boolean;
    
-   Ladezeit : ForschungenDatentypen.ForschungID;
+   Ladezeit : ForschungenDatentypen.ForschungIDVorhanden;
    
-   WelchesProjekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   WelchesProjekt : ForschungenDatentypen.ForschungID;
    
    Bewertung : KIDatentypen.AufgabenWichtigkeitKlein;
    
@@ -34,7 +34,7 @@ private
    MöglicheForschungen : MöglicheForschungenArray;
       
    procedure NeuesForschungsprojekt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum

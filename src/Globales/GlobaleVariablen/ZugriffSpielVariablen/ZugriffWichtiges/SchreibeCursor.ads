@@ -9,7 +9,7 @@ package SchreibeCursor is
    use type KartenDatentypen.Kartenfeld;
 
    procedure KoordinatenAktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -20,12 +20,12 @@ package SchreibeCursor is
    pragma Inline (KoordinatenAktuell);
    
    procedure EAchseAktuell
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EAchseExtern : in KartenDatentypen.EbeneVorhanden);
    pragma Inline (EAchseAktuell);
 
    procedure KoordinatenAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -36,7 +36,7 @@ package SchreibeCursor is
    pragma Inline (KoordinatenAlt);
    
    procedure EAchseAlt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EAchseExtern : in KartenDatentypen.EbeneVorhanden);
    pragma Inline (EAchseAlt);
    
@@ -44,7 +44,7 @@ package SchreibeCursor is
    pragma Inline (Standardeinstellungen);
    
    procedure GanzerEintrag
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EintragExtern : in KartenRecords.CursorRecord)
      with
        Pre => (

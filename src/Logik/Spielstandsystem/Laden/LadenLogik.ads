@@ -66,13 +66,13 @@ private
 
    function StädteEinheitenLaden
      (LadenPrüfenExtern : in Boolean;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean;
 
    function Spezieswerte
      (LadenPrüfenExtern : in Boolean;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean;
 

@@ -12,7 +12,7 @@ with NaechsteStadtLogik;
 package body BefehlsauswahlLogik is
 
    function Befehlsauswahl
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
@@ -35,7 +35,7 @@ package body BefehlsauswahlLogik is
    
    
    function Tasteneingabe
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BefehlExtern : in TastenbelegungDatentypen.Allgemeine_Belegung_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin

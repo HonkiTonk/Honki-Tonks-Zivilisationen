@@ -11,14 +11,14 @@ package DiplomatieLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure DiplomatieMöglich
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
    procedure DiplomatieRundenende
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -26,7 +26,7 @@ package DiplomatieLogik is
 
 private
 
-   KontaktierteSpezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
+   KontaktierteSpezies : SpeziesDatentypen.Spezies_Vorhanden_Enum;
 
    AktionAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
@@ -41,14 +41,14 @@ private
                                                                                 );
 
    procedure Speziesprüfungen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
    procedure Diplomatie
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

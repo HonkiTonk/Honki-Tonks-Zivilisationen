@@ -13,7 +13,7 @@ package body Spielertests is
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            SpeziesSchleifenwert = SpeziesExtern
@@ -43,7 +43,7 @@ package body Spielertests is
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            SpeziesSchleifenwert = SpeziesExtern
@@ -73,7 +73,7 @@ package body Spielertests is
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            SpeziesSchleifenwert = SpeziesExtern
@@ -101,7 +101,7 @@ package body Spielertests is
       VorhandeneMenschen := 0;
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)

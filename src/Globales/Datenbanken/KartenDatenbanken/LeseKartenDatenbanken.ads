@@ -19,7 +19,7 @@ package LeseKartenDatenbanken is
    
    function BewertungBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
@@ -28,7 +28,7 @@ package LeseKartenDatenbanken is
    
    function BewertungZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
@@ -37,7 +37,7 @@ package LeseKartenDatenbanken is
    
    function BewegungBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.BewegungspunkteVorhanden
      with
        Pre => (
@@ -46,7 +46,7 @@ package LeseKartenDatenbanken is
      
    function BewegungZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.BewegungspunkteVorhanden
      with
        Pre => (
@@ -55,7 +55,7 @@ package LeseKartenDatenbanken is
    
    function BewertungFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -64,7 +64,7 @@ package LeseKartenDatenbanken is
    
    function BewertungRessource
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -73,7 +73,7 @@ package LeseKartenDatenbanken is
    
    function ProduktionBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
@@ -83,7 +83,7 @@ package LeseKartenDatenbanken is
    
    function ProduktionZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
@@ -93,7 +93,7 @@ package LeseKartenDatenbanken is
    
    function ProduktionFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
@@ -103,7 +103,7 @@ package LeseKartenDatenbanken is
    
    function ProduktionRessourcen
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
@@ -113,7 +113,7 @@ package LeseKartenDatenbanken is
    
    function KampfBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
      with
@@ -123,7 +123,7 @@ package LeseKartenDatenbanken is
    
    function KampfZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
      with
@@ -133,7 +133,7 @@ package LeseKartenDatenbanken is
    
    function KampfFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
      with
@@ -143,7 +143,7 @@ package LeseKartenDatenbanken is
    
    function KampfRessource
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
      with

@@ -19,7 +19,7 @@ with MeldungenSetzenLogik;
 package body EinheitInUmgebungLogik is
 
    procedure EinheitInUmgebung
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       UmgebungStadt (SpeziesExtern => SpeziesExtern);
@@ -30,7 +30,7 @@ package body EinheitInUmgebungLogik is
    
    
    procedure UmgebungStadt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       StadtSchleife:
@@ -63,7 +63,7 @@ package body EinheitInUmgebungLogik is
    
    
    procedure UmgebungEinheit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
       EinheitenSchleife:
@@ -98,7 +98,7 @@ package body EinheitInUmgebungLogik is
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       UmgebungExtern : in KartenDatentypen.Sichtweite;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
       use type EinheitenDatentypen.Einheitenbereich;

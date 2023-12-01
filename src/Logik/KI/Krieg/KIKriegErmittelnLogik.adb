@@ -6,14 +6,14 @@ with LeseDiplomatie;
 package body KIKriegErmittelnLogik is
 
    function IstImKrieg
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            SpeziesSchleifenwert = SpeziesExtern
@@ -41,7 +41,7 @@ package body KIKriegErmittelnLogik is
    
    
    function KriegAnfangen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spezies_Enum
    is begin
       
@@ -59,7 +59,7 @@ package body KIKriegErmittelnLogik is
       Bewertungen := (others => 0);
       
       SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
            SpeziesSchleifenwert = SpeziesExtern
@@ -82,8 +82,8 @@ package body KIKriegErmittelnLogik is
    
    
    function StärkeVerhältnisErmitteln
-     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spezies_Enum
    is
       use type ProduktionDatentypen.Produktion;

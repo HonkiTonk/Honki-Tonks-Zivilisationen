@@ -250,7 +250,7 @@ package body StadtproduktionLogik is
    is
       use type ProduktionDatentypen.Produktion;
       use type EinheitenDatentypen.EinheitenID;
-      use type StadtDatentypen.GebäudeIDMitNullwert;
+      use type StadtDatentypen.GebäudeID;
    begin
       
       SchreibeStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

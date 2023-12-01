@@ -16,7 +16,7 @@ with MausauswahlLogik;
 package body AuswahlStadtEinheitLogik is
 
    function AuswahlStadtEinheit
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       -- Wenn die StadtNummerExtern = 0 ist, dann wird von einem beladenen Transporter ausgegangen.
       StadtnummerExtern : in StadtDatentypen.Städtebereich;
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)

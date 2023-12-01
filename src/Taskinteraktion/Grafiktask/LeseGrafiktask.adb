@@ -243,7 +243,7 @@ package body LeseGrafiktask is
    
    
    function Gebäudeauswahl
-     return StadtDatentypen.GebäudeIDMitNullwert
+     return StadtDatentypen.GebäudeID
    is begin
       
       return Grafiktask.Auswahl.Bauauswahl.Gebäude;

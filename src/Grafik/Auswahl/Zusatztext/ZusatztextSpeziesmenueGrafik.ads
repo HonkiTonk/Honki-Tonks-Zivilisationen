@@ -24,7 +24,7 @@ package ZusatztextSpeziesmenueGrafik is
 
 private
 
-   SpeziesAnzeigen : SpeziesDatentypen.Spezies_Verwendet_Enum;
+   SpeziesAnzeigen : SpeziesDatentypen.Spezies_Vorhanden_Enum;
 
    Textposition : Sf.System.Vector2.sfVector2f;
 

@@ -8,8 +8,8 @@ with TextnummernKonstanten;
 package body ForschungsbeschreibungenGrafik is
 
    function Kurzbeschreibung
-     (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (IDExtern : in ForschungenDatentypen.ForschungID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
@@ -28,8 +28,8 @@ package body ForschungsbeschreibungenGrafik is
    
    
    function Langbeschreibung
-     (IDExtern : in ForschungenDatentypen.ForschungID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (IDExtern : in ForschungenDatentypen.ForschungIDVorhanden;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
