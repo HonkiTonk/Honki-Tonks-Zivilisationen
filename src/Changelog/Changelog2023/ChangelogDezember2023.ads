@@ -140,79 +140,69 @@ package ChangelogDezember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (11.12.2023):
+   -- Version 0.05.5105 => 0.05. (11.12.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (10.12.2023):
+   -- Version 0.05.5085 => 0.05.5105 (10.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (09.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GNAT aktualisiert.
    
    
 
-   -- Version 0.05. => 0.05. (08.12.2023):
+   -- Version 0.05.5085 => 0.05.5085 (09.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (07.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.05. => 0.05. (06.12.2023):
+   -- Version 0.05.5085 => 0.05.5085 (08.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (05.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.05. => 0.05. (04.12.2023):
+   -- Version 0.05.5085 => 0.05.5085 (07.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (03.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.05. => 0.05. (02.12.2023):
+   -- Version 0.05.5085 => 0.05.5085 (06.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.05.5085 => 0.05. (01.12.2023):
+   -- Version 0.05.5085 => 0.05.5085 (05.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
+   
+   
+
+   -- Version 0.05.5085 => 0.05.5085 (04.12.2023):
+   
+   -- null
+   
+   
+
+   -- Version 0.05.5085 => 0.05.5085 (03.12.2023):
+   
+   -- null
+   
+   
+
+   -- Version 0.05.5085 => 0.05.5085 (02.12.2023):
+   
+   -- null
+   
+   
+
+   -- Version 0.05.5085 => 0.05.5085 (01.12.2023):
+   
+   -- null
 
 end ChangelogDezember2023;

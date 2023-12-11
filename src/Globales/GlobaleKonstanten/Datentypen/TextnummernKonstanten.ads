@@ -157,9 +157,9 @@ package TextnummernKonstanten is
    
    
    
-   subtype ZeugVorhanden is Positive range TextnummernKonstanten.AnfangZeug .. EndeZeug;
+   subtype ZeugVorhanden is Positive range AnfangZeug .. EndeZeug;
    
-   subtype FragenVorhanden is Positive range TextnummernKonstanten.AnfangFrage .. EndeFrage;
+   subtype FragenVorhanden is Positive range AnfangFrage .. EndeFrage;
      
    subtype Spielmeldungen is Natural range 0 .. EndeMeldung;
    subtype SpielmeldungenVorhanden is Positive range AnfangMeldung .. Spielmeldungen'Last;
