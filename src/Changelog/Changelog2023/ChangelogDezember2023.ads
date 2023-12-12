@@ -133,17 +133,17 @@ package ChangelogDezember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (12.12.2023):
+   -- Version 0.05.5135 => 0.05. (12.12.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.5105 => 0.05. (11.12.2023):
+   -- Version 0.05.5105 => 0.05.5135 (11.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- CSFML lokal auf Version 2.5.2 aktualisiert.
+   -- Mit SFML 2.6 herumexperimentiert, scheint aber Probleme bei voller Optimierung zu erzeugen.
    
    
 
