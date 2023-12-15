@@ -112,37 +112,34 @@ package ChangelogDezember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (15.12.2023):
+   -- Version 0.05.5155 => 0.05. (15.12.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (14.12.2023):
+   -- Version 0.05.5135 => 0.05.5155 (14.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (13.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GNAT aktualisiert.
    
    
 
-   -- Version 0.05.5135 => 0.05. (12.12.2023):
+   -- Version 0.05.5135 => 0.05.5135 (13.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
+   
+   
+
+   -- Version 0.05.5135 => 0.05.5135 (12.12.2023):
+   
+   -- null
    
    
 
    -- Version 0.05.5105 => 0.05.5135 (11.12.2023):
    
-   -- CSFML lokal auf Version 2.5.2 aktualisiert.
+   -- CSFML lokal auf Version 2.5.2 aktualisiert, scheint keine Probleme zu erzeugen.
    -- Mit SFML 2.6 herumexperimentiert, scheint aber Probleme bei voller Optimierung zu erzeugen.
    
    
