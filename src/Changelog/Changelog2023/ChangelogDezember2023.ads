@@ -98,24 +98,22 @@ package ChangelogDezember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (17.12.2023):
+   -- Version 0.05.5175 => 0.05. (17.12.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (16.12.2023):
+   -- Version 0.05.5155 => 0.05.5175 (16.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- gprconfig 23 auf gprconfig 24 aktualisiert.
    
    
 
-   -- Version 0.05.5155 => 0.05. (15.12.2023):
+   -- Version 0.05.5155 => 0.05.5155 (15.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
