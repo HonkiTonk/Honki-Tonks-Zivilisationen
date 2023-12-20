@@ -59,6 +59,7 @@ package TextnummernKonstanten is
    ZeugRiesige : constant Positive := 52;
    ZeugGigantisch : constant Positive := 53;
    
+   -- Die Auswahlteile für das Baumenü muss immer nacheinandern kommen, da mit der Position Berechnungen angestellt werden.
    ZeugStadt : constant Positive := 54;
    ZeugEinheit : constant Positive := 55;
    

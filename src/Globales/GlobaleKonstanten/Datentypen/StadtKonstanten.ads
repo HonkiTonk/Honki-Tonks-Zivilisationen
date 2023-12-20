@@ -73,6 +73,11 @@ package StadtKonstanten is
    
    
    
+   BaumenüGebäude : constant Positive := 1;
+   BaumenüEinheiten : constant Positive := 2;
+   
+   
+   
    -- Das auch so ändern dass es davon einen Standardwert und einen einstellbaren Wert gibt. äöü
    type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.Einwohner;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (

@@ -77,31 +77,32 @@ package ChangelogDezember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (20.12.2023):
+   -- Version 0.05.5235 => 0.05. (20.12.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (19.12.2023):
+   -- Version 0.05.5175 => 0.05.5235 (19.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (18.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neues Baumenü fertiggestellt.
+   -- Zahlen durch Konstante ersetzt.
+   -- Eigene Farbe für Menübereiche eingebaut.
+   -- Angefangen das Einlesen der Einstellungen zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.5175 => 0.05. (17.12.2023):
+   -- Version 0.05.5175 => 0.05.5175 (18.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
+   
+   
+
+   -- Version 0.05.5175 => 0.05.5175 (17.12.2023):
+   
+   -- null
    
    
 

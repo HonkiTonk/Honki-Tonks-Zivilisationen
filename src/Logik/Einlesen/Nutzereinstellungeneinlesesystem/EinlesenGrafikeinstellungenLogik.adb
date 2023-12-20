@@ -283,6 +283,17 @@ package body EinlesenGrafikeinstellungenLogik is
                Sf.sfBool'Read (Stream (File => DateiLadenExtern),
                                VSync);
          end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftfarben (TextDatentypen.Aktiver_Menübereich_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Aktiver_Menübereich_Enum);
+            
+            when False =>
+               Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
+                                               Schriftfarben (TextDatentypen.Aktiver_Menübereich_Enum));
+         end case;
          
          -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig eingelesen wurde!
          -- Sollte Probleme mit geänderten Datentypen teilweise vorbeugen.

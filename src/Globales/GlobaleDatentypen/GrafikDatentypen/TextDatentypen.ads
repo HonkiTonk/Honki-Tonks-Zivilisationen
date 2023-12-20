@@ -6,7 +6,13 @@ package TextDatentypen is
                                );
       
    type Schriftfarbe_Enum is (
-                              Überschrift_Enum, Standard_Enum, Ausgewählt_Enum, Mensch_Enum, KI_Enum, Sonstiges_Enum
+                              Überschrift_Enum,
+                              
+                              Standard_Enum, Ausgewählt_Enum, Aktiver_Menübereich_Enum,
+                              
+                              Mensch_Enum, KI_Enum,
+                              
+                              Sonstiges_Enum
                              );
 
 end TextDatentypen;

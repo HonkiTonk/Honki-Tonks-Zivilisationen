@@ -90,21 +90,21 @@ package body SteuerungsmenueGrafik is
            and
              AufteilungSchleifenwert = 1
          then
-            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum);
             
          elsif
            WelcheSteuerungExtern = TastenbelegungDatentypen.Einheitenbelegung_Enum
            and
              AufteilungSchleifenwert = 2
          then
-            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum);
             
          elsif
            WelcheSteuerungExtern = TastenbelegungDatentypen.Stadtbelegung_Enum
            and
              AufteilungSchleifenwert = 3
          then
-            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum);
            
          else
             Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);

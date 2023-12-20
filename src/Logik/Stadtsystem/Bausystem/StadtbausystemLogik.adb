@@ -162,7 +162,7 @@ package body StadtbausystemLogik is
                if
                  AktuelleAuswahl.BaumenüanzeigeÄndern /= 0
                then
-                  Grafiktask.Test := AktuelleAuswahl.BaumenüanzeigeÄndern;
+                  Grafiktask.WelchesBaumenü := AktuelleAuswahl.BaumenüanzeigeÄndern;
                   
                elsif
                  AktuelleAuswahl.Gebäude = AuswahlKonstanten.LeerGebäudeauswahl

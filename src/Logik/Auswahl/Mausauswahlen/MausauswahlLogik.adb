@@ -133,9 +133,9 @@ package body MausauswahlLogik is
       end loop AufteilungSchleife;
       
       case
-        Grafiktask.Test
+        Grafiktask.WelchesBaumenü
       is
-         when 1 =>
+         when StadtKonstanten.BaumenüGebäude =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                        point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                        view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste));
@@ -160,7 +160,7 @@ package body MausauswahlLogik is
                
             end loop GebäudeSchleife;
             
-         when 2 =>
+         when StadtKonstanten.BaumenüEinheiten =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                        point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                        view         => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste));

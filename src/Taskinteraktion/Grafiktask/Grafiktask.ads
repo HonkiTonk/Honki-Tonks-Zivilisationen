@@ -59,7 +59,7 @@ package Grafiktask is
                                                  Fragenanzeige     => ZahlenDatentypen.EigenesNatural'First
                                                 );
    
-   Test : Positive := 1;
+   WelchesBaumenü : Positive := 1;
    
    Einheitenbewegung : TaskRecords.EinheitenbewegungGrafikRecord := (others => False);
    

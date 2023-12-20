@@ -29,12 +29,13 @@ package EinstellungenGrafik is
                                                                                                                   ),
                                                                                       
                                                                                       Schriftfarben          => (
-                                                                                                                 TextDatentypen.Überschrift_Enum => Sf.Graphics.Color.sfRed,
-                                                                                                                 TextDatentypen.Standard_Enum    => Sf.Graphics.Color.sfWhite,
-                                                                                                                 TextDatentypen.Ausgewählt_Enum  => Sf.Graphics.Color.sfGreen,
-                                                                                                                 TextDatentypen.Mensch_Enum      => Sf.Graphics.Color.sfBlue,
-                                                                                                                 TextDatentypen.KI_Enum          => Sf.Graphics.Color.sfYellow,
-                                                                                                                 TextDatentypen.Sonstiges_Enum   => Sf.Graphics.Color.sfCyan
+                                                                                                                 TextDatentypen.Überschrift_Enum         => Sf.Graphics.Color.sfRed,
+                                                                                                                 TextDatentypen.Standard_Enum            => Sf.Graphics.Color.sfWhite,
+                                                                                                                 TextDatentypen.Ausgewählt_Enum          => Sf.Graphics.Color.sfGreen,
+                                                                                                                 TextDatentypen.Aktiver_Menübereich_Enum => Sf.Graphics.Color.sfBlue,
+                                                                                                                 TextDatentypen.Mensch_Enum              => Sf.Graphics.Color.sfBlue,
+                                                                                                                 TextDatentypen.KI_Enum                  => Sf.Graphics.Color.sfYellow,
+                                                                                                                 TextDatentypen.Sonstiges_Enum           => Sf.Graphics.Color.sfCyan
                                                                                                                 ),
                                                                                       
                                                                                       Schriftstil            => 0,

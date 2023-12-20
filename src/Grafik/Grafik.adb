@@ -260,7 +260,7 @@ package body Grafik is
          when GrafikDatentypen.Bauen_Enum =>
             BauauswahlGrafik.Bauauswahl (BauauswahlExtern         => UebergabeRecordErmittelnGrafik.Bauauswahl (StadtSpeziesNummerExtern => (LeseGrafiktask.AktiveSpezies, LeseGrafiktask.Stadtnummer)),
                                          AktuelleAuswahlExtern    => (LeseGrafiktask.Gebäudeauswahl, LeseGrafiktask.Einheitenauswahl, Grafiktask.Auswahl.Bauauswahl.BaumenüanzeigeÄndern),
-                                         AktuelleAufteilungExtern => Grafiktask.Test);
+                                         AktuelleAufteilungExtern => Grafiktask.WelchesBaumenü);
             
          when GrafikDatentypen.Verkaufen_Enum =>
             VerkaufsauswahlGrafik.Verkaufsauswahl (SpeziesExtern         => LeseGrafiktask.AktiveSpezies,

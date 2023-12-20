@@ -47,11 +47,11 @@ package body BauauswahlGrafik is
       case
         AktuelleAufteilungExtern
       is
-         when 1 =>
+         when StadtKonstanten.BaumenüGebäude =>
             Gebäude (AuswahlExtern => AktuelleAuswahlExtern.Gebäude,
                       SpeziesExtern => BauauswahlExtern.Spezies);
             
-         when 2 =>
+         when StadtKonstanten.BaumenüEinheiten =>
             Einheiten (AuswahlExtern => AktuelleAuswahlExtern.Einheit,
                        SpeziesExtern => BauauswahlExtern.Spezies);
             
@@ -95,8 +95,7 @@ package body BauauswahlGrafik is
          elsif
            AktuelleAufteilungExtern = AufteilungSchleifenwert
          then
-            -- Hier und auch bei der Steuerungsauswahl mal eine eigene Farbe festlegen, damit das später leichter zu ändern ist. äöü
-            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum);
            
          else
             Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);

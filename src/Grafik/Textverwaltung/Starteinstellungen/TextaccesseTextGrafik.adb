@@ -98,9 +98,9 @@ package body TextaccesseTextGrafik is
       
       BauaufteilungSchleife:
       for BauaufteilungSchleifenwert in TextaccessVariablen.GebäudeaufteilungAccess'Range loop
-         
+                  
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudeaufteilungAccess (BauaufteilungSchleifenwert),
-                                            str  => "Test");
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugStadt + BauaufteilungSchleifenwert - 1)));
          
       end loop BauaufteilungSchleife;
       

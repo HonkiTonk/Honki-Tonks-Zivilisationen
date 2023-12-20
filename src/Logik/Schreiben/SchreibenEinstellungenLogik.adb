@@ -148,6 +148,9 @@ package body SchreibenEinstellungenLogik is
                        LeseEinstellungenGrafik.VSync);
       -- GrafikRecords.GrafikeinstellungenRecord
       
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum));
+      
       Close (File => DateiGrafikeinstellungen);
       
    exception
