@@ -226,7 +226,7 @@ package body SpeichernLogik is
       end loop AnzahlEinheitenSchleife;
       
       EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
-                                                              VorhandeneEinheiten);
+                                                  VorhandeneEinheiten);
       
       EinheitenSchleife:
       for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. VorhandeneEinheiten loop
@@ -256,7 +256,7 @@ package body SpeichernLogik is
       end loop AnzahlStädteSchleife;
       
       StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichernExtern),
-                                                        VorhandeneStädte);
+                                            VorhandeneStädte);
       
       StadtSchleife:
       for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. VorhandeneStädte loop

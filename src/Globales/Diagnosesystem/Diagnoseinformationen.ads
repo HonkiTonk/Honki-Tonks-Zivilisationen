@@ -1,4 +1,5 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with System;
 
@@ -11,6 +12,7 @@ with EinheitenRecords;
 with StadtRecords;
 
 private with WeltkarteRecords;
+private with StadtDatentypen;
 
 package Diagnoseinformationen is
    pragma Elaborate_Body;
@@ -18,6 +20,7 @@ package Diagnoseinformationen is
    
    procedure GrößenprüfungKartenfeld;
    procedure Größenprüfung;
+   procedure GrößenprüfungDatei;
    procedure Zeilenabstand;
    
    procedure Zahl
@@ -71,6 +74,10 @@ private
    MegabyteTeiler : constant Positive := KilobyteTeiler * 1_024;
    
    Kartenfeld : constant Positive := WeltkarteRecords.WeltkarteRecord'Size;
-   ZuPrüfendeGröße : constant Positive := Positive'Size;
+   ZuPrüfendeGröße : constant Positive := StadtDatentypen.Städtebereich'Size;
+   
+   ZuSpeichern : StadtDatentypen.Städtebereich;
+      
+   DateiSpeichern : File_Type;
 
 end Diagnoseinformationen;

@@ -12,6 +12,7 @@ with SchreibeEinstellungenGrafik;
 with Fehlermeldungssystem;
 with EinstellungenGrafik;
 
+
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenGrafikeinstellungenLogik is
 
@@ -74,6 +75,7 @@ package body EinlesenGrafikeinstellungenLogik is
       if
         LadenPrüfenExtern = False
       then
+         -- GrafikRecords.GrafikeinstellungenRecord
          case
            End_Of_File (File => DateiLadenExtern)
          is
@@ -294,6 +296,7 @@ package body EinlesenGrafikeinstellungenLogik is
                Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
                                                Schriftfarben (TextDatentypen.Aktiver_Menübereich_Enum));
          end case;
+         -- GrafikRecords.GrafikeinstellungenRecord
          
          -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig eingelesen wurde!
          -- Sollte Probleme mit geänderten Datentypen teilweise vorbeugen.

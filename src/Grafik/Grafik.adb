@@ -49,6 +49,7 @@ package body Grafik is
       FensterGrafik.FensterErzeugen;
       
       -- Diagnoseinformationen.Größenprüfung;
+      -- Diagnoseinformationen.GrößenprüfungDatei;
       
       Startzeit := Clock;
       

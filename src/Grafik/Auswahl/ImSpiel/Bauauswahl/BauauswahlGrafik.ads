@@ -32,6 +32,18 @@ package BauauswahlGrafik is
              --    (if AktuelleAuswahlExtern.Einheit /= 0 then AktuelleAuswahlExtern.Gebäude = 0)
               );
 
+
+
+   function Gebäude
+     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      ViewbereichExtern : in Positive)
+      return Float
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
+
 private
 
    Textbreite : Float;
@@ -50,7 +62,7 @@ private
      (AusgewählteAufteilungExtern : in Natural;
       AktuelleAufteilungExtern : in Positive);
 
-   procedure Gebäude
+   procedure GebäudeviewEinstellen
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with

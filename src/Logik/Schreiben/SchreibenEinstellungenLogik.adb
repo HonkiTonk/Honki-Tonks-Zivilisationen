@@ -146,10 +146,10 @@ package body SchreibenEinstellungenLogik is
       
       Sf.sfBool'Write (Stream (File => DateiGrafikeinstellungen),
                        LeseEinstellungenGrafik.VSync);
-      -- GrafikRecords.GrafikeinstellungenRecord
       
       Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
                                        TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum));
+      -- GrafikRecords.GrafikeinstellungenRecord
       
       Close (File => DateiGrafikeinstellungen);
       

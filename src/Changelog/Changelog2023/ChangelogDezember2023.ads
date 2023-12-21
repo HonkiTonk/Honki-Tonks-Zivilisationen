@@ -70,17 +70,19 @@ package ChangelogDezember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (21.12.2023):
+   -- Version 0.05.5285 => 0.05. (21.12.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.5235 => 0.05. (20.12.2023):
+   -- Version 0.05.5235 => 0.05.5285 (20.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diagnosesystem erweitert um Dateigrößen ermitteln zu können.
+   -- Angefangen das Speichersystem zu überarbeiten um die Speicherdateigröße weiter zu reduzieren.
+   -- Angefangen Teile des Bau- und Verkaufmenüs zusammenzufassen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

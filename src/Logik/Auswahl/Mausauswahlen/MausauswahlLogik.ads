@@ -10,8 +10,8 @@ with TastenbelegungDatentypen;
 
 package MausauswahlLogik is
    pragma Elaborate_Body;
-  -- use type StadtDatentypen.GebäudeID;
-  -- use type EinheitenDatentypen.EinheitenID;
+   use type StadtDatentypen.GebäudeID;
+   use type EinheitenDatentypen.EinheitenID;
    use type EinheitenDatentypen.Transportplätze;
 
    function SpeziesauswahlDiplomatie
@@ -21,13 +21,15 @@ package MausauswahlLogik is
      return ForschungenDatentypen.ForschungID;
 
    function Baumenü
-     return StadtRecords.ErweiterterBauprojektRecord;
-    -- with
-    --   Post => (
-    --            (if Baumenü'Result.Gebäude /= 0 then Baumenü'Result.Einheit = 0)
-     --           and
-     --             (if Baumenü'Result.Einheit /= 0 then Baumenü'Result.Gebäude = 0)
-     --          );
+     return StadtRecords.ErweiterterBauprojektRecord
+     with
+       Post => (
+                (if Baumenü'Result.Gebäude /= 0 then (Baumenü'Result.Einheit = 0 and Baumenü'Result.BaumenüanzeigeÄndern = 0))
+                and
+                  (if Baumenü'Result.Einheit /= 0 then (Baumenü'Result.Gebäude = 0 and Baumenü'Result.BaumenüanzeigeÄndern = 0))
+                and
+                  (if Baumenü'Result.BaumenüanzeigeÄndern /= 0 then (Baumenü'Result.Einheit = 0 and Baumenü'Result.Gebäude = 0))
+               );
    
    function Menüs
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
@@ -40,7 +42,11 @@ package MausauswahlLogik is
               );
    
    function JaNein
-     return Natural;
+     return Natural
+     with
+       Post => (
+                  JaNein'Result <= 2
+               );
    
    function Steuerung
      return Integer;

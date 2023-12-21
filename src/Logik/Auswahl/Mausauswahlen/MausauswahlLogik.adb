@@ -152,7 +152,7 @@ package body MausauswahlLogik is
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
                                                     RechteckExtern     => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
                then
-                  return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID, 0);
+                  return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID, AuswahlKonstanten.LeerAuswahl);
          
                else
                   null;
@@ -177,7 +177,7 @@ package body MausauswahlLogik is
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
                                                     RechteckExtern     => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
                then
-                  return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert, 0);
+                  return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert, AuswahlKonstanten.LeerAuswahl);
          
                else
                   null;
@@ -189,7 +189,7 @@ package body MausauswahlLogik is
             null;
       end case;
       
-      return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID, 0);
+      return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID, AuswahlKonstanten.LeerAuswahl);
       
    end Baumenü;
    

@@ -1,24 +1,15 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics.Text;
-
 with Spieltexte;
 with TextnummernKonstanten;
 with GrafikDatentypen;
 with Views;
-with TextaccessVariablen;
-with InteraktionAuswahl;
 with ViewKonstanten;
-with GrafikKonstanten;
 
 with AllgemeineViewsGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with TextberechnungenHoeheGrafik;
-with TextberechnungenBreiteGrafik;
-with TextfarbeGrafik;
-with BauauswahlGebaeudeGrafik;
-with TextaccessverwaltungssystemEinfachGrafik;
+with BauauswahlGrafik;
 
 package body VerkaufsauswahlGrafik is
 
@@ -33,10 +24,6 @@ package body VerkaufsauswahlGrafik is
       
       Gebäude (AuswahlExtern => AktuelleAuswahlExtern,
                 SpeziesExtern => SpeziesExtern);
-      
-      BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AktuelleAuswahlExtern,
-                                                      SpeziesExtern     => SpeziesExtern,
-                                                      ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationenVerkaufen);
       
    end Verkaufsauswahl;
    
@@ -57,40 +44,10 @@ package body VerkaufsauswahlGrafik is
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
-      
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
-      AktuelleTextbreite := GrafikKonstanten.Nullwert;
-      
-      GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
-         
-         case
-           InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
-         is
-            when True =>
-               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                                                                       ViewbreiteExtern => Viewfläche.x);
-               
-               TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                                                        PositionExtern   => Textposition,
-                                                                        FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
-                                                                                                                                   AuswahlExtern    => Natural (AuswahlExtern)));
-                                                                      
-               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
-               
-               AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                                                                           TextbreiteExtern => AktuelleTextbreite);
-               
-               InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
-
-            when False =>
-               null;
-         end case;
-                                                                               
-      end loop GebäudeSchleife;
-      
-      Viewfläche := (AktuelleTextbreite, Textposition.y);
+                  
+      Viewfläche.y := BauauswahlGrafik.Gebäude (AuswahlExtern     => AuswahlExtern,
+                                                  SpeziesExtern     => SpeziesExtern,
+                                                  ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationenVerkaufen);
       
    end Gebäude;
 

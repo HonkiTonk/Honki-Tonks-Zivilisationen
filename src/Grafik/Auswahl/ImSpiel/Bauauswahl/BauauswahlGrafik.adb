@@ -48,8 +48,8 @@ package body BauauswahlGrafik is
         AktuelleAufteilungExtern
       is
          when StadtKonstanten.BaumenüGebäude =>
-            Gebäude (AuswahlExtern => AktuelleAuswahlExtern.Gebäude,
-                      SpeziesExtern => BauauswahlExtern.Spezies);
+            GebäudeviewEinstellen (AuswahlExtern => AktuelleAuswahlExtern.Gebäude,
+                                    SpeziesExtern => BauauswahlExtern.Spezies);
             
          when StadtKonstanten.BaumenüEinheiten =>
             Einheiten (AuswahlExtern => AktuelleAuswahlExtern.Einheit,
@@ -121,7 +121,8 @@ package body BauauswahlGrafik is
    
    
    
-   procedure Gebäude
+   -- Wenn ich den Viewbereich hier mit reingebe, dann sollte ich das alles zusammenfassen können, oder? äöü
+   procedure GebäudeviewEinstellen
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
@@ -137,6 +138,21 @@ package body BauauswahlGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeGebäude);
       
+      ViewflächeGebäude.y := Gebäude (AuswahlExtern     => AuswahlExtern,
+                                      SpeziesExtern     => SpeziesExtern,
+                                      ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationen);
+      
+   end GebäudeviewEinstellen;
+   
+   
+   
+   function Gebäude
+     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      ViewbereichExtern : in Positive)
+      return Float
+   is begin
+
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       
@@ -161,7 +177,7 @@ package body BauauswahlGrafik is
                                                                                
       end loop GebäudeSchleife;
       
-      ViewflächeGebäude.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       case
         AuswahlExtern
@@ -172,9 +188,11 @@ package body BauauswahlGrafik is
          when others =>
             BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AuswahlExtern,
                                                             SpeziesExtern     => SpeziesExtern,
-                                                            ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationen);
+                                                            ViewbereichExtern => ViewbereichExtern);
       end case;
       
+      return Textposition.y;
+
    end Gebäude;
    
    

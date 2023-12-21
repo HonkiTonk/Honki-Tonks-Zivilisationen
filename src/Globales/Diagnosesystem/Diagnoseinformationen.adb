@@ -36,6 +36,25 @@ package body Diagnoseinformationen is
    
    
    
+   procedure GrößenprüfungDatei
+   is begin
+      
+      ZuSpeichern := 0;
+      
+      Create (File => DateiSpeichern,
+              Mode => Out_File,
+              Name => ("Test/" & "Test"),
+              Form => "WCEM=8");
+      
+      StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichern),
+                                            ZuSpeichern);
+      
+      Close (File => DateiSpeichern);
+      
+   end GrößenprüfungDatei;
+   
+   
+   
    procedure Zeilenabstand
    is begin
       
