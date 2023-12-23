@@ -56,24 +56,22 @@ package ChangelogDezember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (23.12.2023):
+   -- Version 0.05.5305 => 0.05. (23.12.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (22.12.2023):
+   -- Version 0.05.5285 => 0.05.5305 (22.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Version veröffentlicht.
    
    
 
-   -- Version 0.05.5285 => 0.05. (21.12.2023):
+   -- Version 0.05.5285 => 0.05.5285 (21.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
