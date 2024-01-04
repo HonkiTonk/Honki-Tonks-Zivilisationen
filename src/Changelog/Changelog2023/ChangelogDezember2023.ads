@@ -1,77 +1,68 @@
 package ChangelogDezember2023 is
    
-   -- Version 0.05. => 0.05. (31.12.2023):
+   -- Version 0.05.5325 => 0.05.5325 (31.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (30.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (29.12.2023):
+   -- Version 0.05.5325 => 0.05.5325 (30.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (28.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (27.12.2023):
+   -- Version 0.05.5325 => 0.05.5325 (29.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (26.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (25.12.2023):
+   -- Version 0.05.5325 => 0.05.5325 (28.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (24.12.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.5305 => 0.05. (23.12.2023):
+   -- Version 0.05.5325 => 0.05.5325 (27.12.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.5285 => 0.05.5305 (22.12.2023):
+   -- Version 0.05.5325 => 0.05.5325 (26.12.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5325 => 0.05.5325 (25.12.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5325 => 0.05.5325 (24.12.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5325 => 0.05.5325 (23.12.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5305 => 0.05.5325 (22.12.2023):
    
    -- Neue Version veröffentlicht.
    
    
 
-   -- Version 0.05.5285 => 0.05.5285 (21.12.2023):
+   -- Version 0.05.5285 => 0.05.5305 (21.12.2023):
    
-   -- null.
+   -- Windowsversion von GNAT auf Version 13.2 aktualisiert.
    
    
 
