@@ -1,5 +1,7 @@
 package VerzeichnisKonstanten is
    pragma Pure;
+   
+   -- Da das hier nicht nur Verzeichnisse sondern auch Dateien enthält sollte ich es mal umbenennen oder aufteilen. äöü
 
    Spielstand : constant String (1 .. 10) := "Spielstand";
    SpielstandStrich : constant String (1 .. 11) := Spielstand & "/";
@@ -61,5 +63,10 @@ package VerzeichnisKonstanten is
    SprachenStrich : constant String (1 .. 9) := Sprachen & "/";
    FontOrdner : constant String (1 .. 15) := SprachenStrich & "Fonts/";
    SchriftartStandard : constant String (1 .. 16) := "wqy-microhei.ttc";
+   
+   
+   
+   -- Einen besseren Namen dafür finden? äöü
+   Notfallspeichern : constant Wide_Wide_String (1 .. 23) := "Programmstoppspielstand";
       
 end VerzeichnisKonstanten;

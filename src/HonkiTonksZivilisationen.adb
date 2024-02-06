@@ -16,11 +16,13 @@ with FehlermeldungSchreiben;
 with StartEndeSound;
 -- with StartEndeMusik;
 with SchreibenEinstellungenLogik;
+with SpeichernLogik;
 
 procedure HonkiTonksZivilisationen
 is
 
    UnerwarteterFehler : Boolean := False;
+   NotfallSpielstand : Boolean;
 
    type Tasks_Enum is (
                        Task_Logik_Enum, Task_Grafik_Enum, Task_Musik_Enum, Task_Sound_Enum
@@ -163,11 +165,13 @@ begin
         and
           TasksLaufen (Task_Sound_Enum) = True
       then
+         NotfallSpielstand := True;
          exit TaskIDsBelegenLassenSchleife;
 
       elsif
         UnerwarteterFehler
       then
+         NotfallSpielstand := False;
          exit TaskIDsBelegenLassenSchleife;
 
       else
@@ -190,6 +194,16 @@ begin
             -- Wird benötigt damit nicht der Fehler "AL lib: (EE) alc_cleanup: 1 device not closed" erzeugt wird.
             StartEndeSound.Entfernen;
             Abort_Task (T => TaskID (Task_Sound_Enum));
+
+            if
+              NotfallSpielstand
+            then
+               SpeichernLogik.Speichern (AutospeichernExtern    => True,
+                                         NotfallspeichernExtern => True);
+
+            else
+               null;
+            end if;
 
             exit SpielLäuftSchleife;
 

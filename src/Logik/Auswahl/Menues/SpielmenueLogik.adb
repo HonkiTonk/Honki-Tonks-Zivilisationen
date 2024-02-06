@@ -25,7 +25,8 @@ package body SpielmenueLogik is
          is
             when RueckgabeDatentypen.Speichern_Enum =>
                SchreibeAllgemeines.SpeziesAmzugNachLaden (SpeziesExtern => SpeziesExtern);
-               SpeichernLogik.Speichern (AutospeichernExtern => False);
+               SpeichernLogik.Speichern (AutospeichernExtern    => False,
+                                         NotfallspeichernExtern => False);
                
             when RueckgabeDatentypen.Laden_Enum =>
                if

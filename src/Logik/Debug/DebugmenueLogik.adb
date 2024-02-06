@@ -58,6 +58,9 @@ package body DebugmenueLogik is
                EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => Einsprachig);
                Einsprachig := not Einsprachig;
                
+            when RueckgabeDatentypen.Auswahl_Acht_Enum =>
+               raise Teststopp;
+               
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
                   

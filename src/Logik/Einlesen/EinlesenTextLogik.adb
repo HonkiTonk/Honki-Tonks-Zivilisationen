@@ -83,7 +83,8 @@ package body EinlesenTextLogik is
       Menuetexte.Debugmenü (6) := To_Unbounded_Wide_Wide_String (Source => "Volle Forschung");
       Menuetexte.Debugmenü (7) := To_Unbounded_Wide_Wide_String (Source => "Einheit erzeugen");
       Menuetexte.Debugmenü (8) := To_Unbounded_Wide_Wide_String (Source => "Einsprachig/Mehrsprachig");
-      Menuetexte.Debugmenü (9) := To_Unbounded_Wide_Wide_String (Source => "Fertig");
+      Menuetexte.Debugmenü (9) := To_Unbounded_Wide_Wide_String (Source => "Teststopp");
+      Menuetexte.Debugmenü (10) := To_Unbounded_Wide_Wide_String (Source => "Fertig");
       
    end Debugmenü;
       

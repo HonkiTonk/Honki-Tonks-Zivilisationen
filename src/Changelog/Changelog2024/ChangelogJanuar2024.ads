@@ -3,7 +3,7 @@ package ChangelogJanuar2024 is
    -- Version 0.05.5380 => 0.05.5410 (31.01.2024):
    
    -- GNAT aktualisiert.
-   -- VMs aktualisiert.
+   -- VM aktualisiert.
    
    
 

@@ -23,8 +23,8 @@ package TextaccessverwaltungssystemEinfachGrafik is
        Pre => (
                  TextaccessExtern /= null
                and
-                 PositionExtern.x >= 0.00
-               and
+               --   PositionExtern.x >= 0.00
+               --  and
                  PositionExtern.y >= 0.00
                and
                  SkalierungExtern.x >= 0.00

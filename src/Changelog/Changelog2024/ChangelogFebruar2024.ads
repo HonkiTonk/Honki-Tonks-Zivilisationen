@@ -154,51 +154,48 @@ package ChangelogFebruar2024 is
    
    
 
-   -- Version 0.05. => 0.05. (07.02.2024):
+   -- Version 0.05.5460 => 0.05. (07.02.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (06.02.2024):
+   -- Version 0.05.5410 => 0.05.5460 (06.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (05.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Notfallspeichern eingebaut für den Fall eines unerwarteten Programmstopps.
+   -- Debugmenü erweitert.
+   -- Den Abstandfehler beim ersten Auswählen der Sprache korrigiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05. => 0.05. (04.02.2024):
+   -- Version 0.05.5410 => 0.05.5410 (05.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (03.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (02.02.2024):
+   -- Version 0.05.5410 => 0.05.5410 (04.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.5410 => 0.05. (01.02.2024):
+   -- Version 0.05.5410 => 0.05.5410 (03.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.5410 => 0.05.5410 (02.02.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5410 => 0.05.5410 (01.02.2024):
+   
+   -- null.
 
 end ChangelogFebruar2024;

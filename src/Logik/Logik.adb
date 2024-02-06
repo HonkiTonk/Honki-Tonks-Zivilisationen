@@ -51,6 +51,7 @@ package body Logik is
       end loop FensterVorhandenSchleife;
       
       EinlesenLogik.EinlesenMitAnzeige;
+      
       SchreibeGrafiktask.SchriftgrößeSetzen (JaNeinExtern => True);
       SchreibeGrafiktask.SchriftfarbeSetzen (JaNeinExtern => True);
       SchreibeGrafiktask.SchriftstilSetzen (JaNeinExtern => True);

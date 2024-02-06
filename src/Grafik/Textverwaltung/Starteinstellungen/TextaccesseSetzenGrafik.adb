@@ -11,6 +11,15 @@ with TextaccesseTextGrafik;
 -- Schriftart wird hier nicht mehr gesetzt, damit das System mit verschiedenen Fonts klarkommt, siehe dazu auch TexteinstellungenGrafik.SchriftartFestlegen.
 package body TextaccesseSetzenGrafik is
    
+   procedure Abstandstext
+   is begin
+      
+      null;
+      
+   end Abstandstext;
+   
+   
+   
    procedure Schriftgröße
    is begin
       

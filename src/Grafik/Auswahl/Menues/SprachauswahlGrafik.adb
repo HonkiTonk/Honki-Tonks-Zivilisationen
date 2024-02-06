@@ -47,6 +47,7 @@ package body SprachauswahlGrafik is
       AktuelleSprachen := SprachauswahlLogik.AktuelleSprachen;
       
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
+      
       AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       AnzeigeSchleife:
@@ -84,14 +85,14 @@ package body SprachauswahlGrafik is
             end if;
             
             TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                         TextExtern       => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)),
-                                                         FarbeExtern      => AktuelleTextFarbe);
+                                                                TextExtern       => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)),
+                                                                FarbeExtern      => AktuelleTextFarbe);
             
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                                     ViewbreiteExtern => Viewfläche.x);
             
             TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                                PositionExtern   => Textposition);
+                                                                       PositionExtern   => Textposition);
             
             NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                                     TextbreiteExtern => GrafikKonstanten.Nullwert);

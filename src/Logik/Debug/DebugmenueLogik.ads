@@ -30,6 +30,8 @@ private
 
    Einheitenauswahl : SystemRecords.ZahlenEingabeRecord;
 
+   Teststopp : exception;
+
    procedure KarteAufdecken
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with

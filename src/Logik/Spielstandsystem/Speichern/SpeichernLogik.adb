@@ -34,7 +34,8 @@ with MeldungFestlegenLogik;
 package body SpeichernLogik is
 
    procedure Speichern
-     (AutospeichernExtern : in Boolean)
+     (AutospeichernExtern : in Boolean;
+      NotfallspeichernExtern : in Boolean)
    is begin
       
       SpeichernSchleife:
@@ -44,7 +45,14 @@ package body SpeichernLogik is
            AutospeichernExtern
          is
             when True =>
-               Spielstandname := NameAutoSpeichern;
+               if
+                 NotfallspeichernExtern = False
+               then
+                  Spielstandname := NameAutoSpeichern;
+                  
+               else
+                  Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.Notfallspeichern);
+               end if;
             
             when False =>
                Spielstandname := SpielstandlisteLogik.Spielstandliste (SpeichernLadenExtern => True);
@@ -390,7 +398,8 @@ package body SpeichernLogik is
         LeseAllgemeines.Rundenanzahl mod LeseOptionen.RundenAutospeichern
       is
          when 0 =>
-            Speichern (AutospeichernExtern => True);
+            Speichern (AutospeichernExtern    => True,
+                       NotfallspeichernExtern => False);
          
          when others =>
             null;

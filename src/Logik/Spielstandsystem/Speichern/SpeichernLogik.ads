@@ -12,7 +12,12 @@ package SpeichernLogik is
    pragma Elaborate_Body;
 
    procedure Speichern
-     (AutospeichernExtern : in Boolean);
+     (AutospeichernExtern : in Boolean;
+      NotfallspeichernExtern : in Boolean)
+     with
+       Pre => (
+                 if NotfallspeichernExtern then AutospeichernExtern
+              );
 
    procedure AutoSpeichern;
 
