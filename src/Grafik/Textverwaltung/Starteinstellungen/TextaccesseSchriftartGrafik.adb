@@ -28,7 +28,7 @@ package body TextaccesseSchriftartGrafik is
       
    end SchriftartSetzen;
    
-   
+      
    
    procedure Allgemeines
      (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
@@ -43,8 +43,13 @@ package body TextaccesseSchriftartGrafik is
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZeilenumbruchAccess,
                                 font => SchriftaccessExtern);
       
-      Sf.Graphics.Text.setFont (text => TextaccessVariablen.TexthöheAccess,
-                                font => SchriftaccessExtern);
+      TexthöhenSchleife:
+      for TexthöhenSchleifenwert in TextaccessVariablen.TexthöhenaccessArray'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.TexthöhenAccess (TexthöhenSchleifenwert),
+                                   font => SchriftaccessExtern);
+         
+      end loop TexthöhenSchleife;
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.Spielmeldung,
                                 font => SchriftaccessExtern);

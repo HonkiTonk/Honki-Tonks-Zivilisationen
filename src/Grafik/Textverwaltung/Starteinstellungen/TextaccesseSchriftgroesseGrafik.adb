@@ -1,14 +1,19 @@
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
+with TextDatentypen;
 
 package body TextaccesseSchriftgroesseGrafik is
-
+   
    procedure SchriftgrößeSetzen
      (ÜberschriftExtern : in Sf.sfUint32;
       StandardExtern : in Sf.sfUint32;
       KleinExtern : in Sf.sfUint32)
    is begin
+      
+      Texthöhen (ÜberschriftExtern => ÜberschriftExtern,
+                  StandardExtern    => StandardExtern,
+                  KleinExtern       => KleinExtern);
       
       Allgemeines (ÜberschriftExtern => ÜberschriftExtern,
                    StandardExtern    => StandardExtern,
@@ -48,6 +53,26 @@ package body TextaccesseSchriftgroesseGrafik is
    
    
    
+   procedure Texthöhen
+     (ÜberschriftExtern : in Sf.sfUint32;
+      StandardExtern : in Sf.sfUint32;
+      KleinExtern : in Sf.sfUint32)
+   is begin
+      
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TexthöhenAccess (TextDatentypen.Überschrift_Enum),
+                                         size => ÜberschriftExtern);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TexthöhenAccess (TextDatentypen.Standard_Enum),
+                                         size => StandardExtern);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TexthöhenAccess (TextDatentypen.Klein_Enum),
+                                         size => KleinExtern);
+      
+   end Texthöhen;
+   
+   
+   
    procedure Allgemeines
      (ÜberschriftExtern : in Sf.sfUint32;
       StandardExtern : in Sf.sfUint32;
@@ -62,9 +87,6 @@ package body TextaccesseSchriftgroesseGrafik is
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZeilenumbruchAccess,
                                          size => KleinExtern);
-      
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TexthöheAccess,
-                                         size => StandardExtern);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.Spielmeldung,
                                          size => StandardExtern);

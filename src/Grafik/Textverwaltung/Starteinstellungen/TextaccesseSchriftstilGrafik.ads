@@ -10,6 +10,13 @@ package TextaccesseSchriftstilGrafik is
        Pre => (
                  StilExtern <= 8
               );
+   
+   procedure Texthöhen
+     (StilExtern : in Sf.Graphics.Text.sfTextStyle)
+     with
+       Pre => (
+                 StilExtern <= 8
+              );
 
 private
 

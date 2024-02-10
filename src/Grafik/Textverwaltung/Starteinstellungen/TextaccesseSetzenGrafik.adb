@@ -11,12 +11,16 @@ with TextaccesseTextGrafik;
 -- Schriftart wird hier nicht mehr gesetzt, damit das System mit verschiedenen Fonts klarkommt, siehe dazu auch TexteinstellungenGrafik.SchriftartFestlegen.
 package body TextaccesseSetzenGrafik is
    
-   procedure Abstandstext
+   procedure Texthöhe
    is begin
       
-      null;
+      TextaccesseTextGrafik.Texthöhen;
+      TextaccesseSchriftgroesseGrafik.Texthöhen (ÜberschriftExtern => TexteinstellungenGrafik.SchriftgrößeLesen (WelcheGrößeExtern => TextDatentypen.Überschrift_Enum),
+                                                  StandardExtern    => TexteinstellungenGrafik.SchriftgrößeLesen (WelcheGrößeExtern => TextDatentypen.Standard_Enum),
+                                                  KleinExtern       => TexteinstellungenGrafik.SchriftgrößeLesen (WelcheGrößeExtern => TextDatentypen.Klein_Enum));
+      TextaccesseSchriftstilGrafik.Texthöhen (StilExtern => TexteinstellungenGrafik.SchriftstilLesen);
       
-   end Abstandstext;
+   end Texthöhe;
    
    
    

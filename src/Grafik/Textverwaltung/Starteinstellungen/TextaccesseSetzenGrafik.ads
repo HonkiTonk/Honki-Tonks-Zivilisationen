@@ -1,7 +1,7 @@
 package TextaccesseSetzenGrafik is
    pragma Elaborate_Body;
 
-   procedure Abstandstext;
+   procedure Texthöhe;
    procedure Schriftgröße;
    procedure Schriftfarbe;
    procedure Schriftstil;

@@ -30,8 +30,6 @@ with UebergabeRecordErmittelnGrafik;
 with TexteinstellungenGrafik;
 with BildrateAnzeigenGrafik;
 
-with TextaccesseTextGrafik;
-
 -- with Diagnoseinformationen;
 
 package body Grafik is
@@ -49,8 +47,7 @@ package body Grafik is
       -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
       -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
       FensterGrafik.FensterErzeugen;
-      TextaccesseSetzenGrafik.Abstandstext;
-      TextaccesseTextGrafik.Abstandstext;
+      TextaccesseSetzenGrafik.Texthöhe;
       
       -- Diagnoseinformationen.Größenprüfung;
       -- Diagnoseinformationen.GrößenprüfungDatei;

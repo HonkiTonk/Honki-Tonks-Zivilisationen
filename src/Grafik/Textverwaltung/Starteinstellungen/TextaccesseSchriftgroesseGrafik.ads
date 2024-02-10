@@ -8,6 +8,11 @@ package TextaccesseSchriftgroesseGrafik is
       StandardExtern : in Sf.sfUint32;
       KleinExtern : in Sf.sfUint32);
 
+   procedure Texthöhen
+     (ÜberschriftExtern : in Sf.sfUint32;
+      StandardExtern : in Sf.sfUint32;
+      KleinExtern : in Sf.sfUint32);
+
 private
 
    procedure Allgemeines

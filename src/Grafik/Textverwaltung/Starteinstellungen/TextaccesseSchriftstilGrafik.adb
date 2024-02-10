@@ -6,6 +6,7 @@ package body TextaccesseSchriftstilGrafik is
      (StilExtern : in Sf.Graphics.Text.sfTextStyle)
    is begin
       
+      Texthöhen (StilExtern => StilExtern);
       Allgemeines (StilExtern => StilExtern);
       Menüs (StilExtern => StilExtern);
       Spezies (StilExtern => StilExtern);
@@ -26,48 +27,61 @@ package body TextaccesseSchriftstilGrafik is
    
    
    
+   procedure Texthöhen
+     (StilExtern : in Sf.Graphics.Text.sfTextStyle)
+   is begin
+      
+      TexthöhenSchleife:
+      for TexthöhenSchleifenwert in TextaccessVariablen.TexthöhenaccessArray'Range loop
+         
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.TexthöhenAccess (TexthöhenSchleifenwert),
+                                    style => StilExtern);
+         
+      end loop TexthöhenSchleife;
+      
+   end Texthöhen;
+   
+   
+   
    procedure Allgemeines
      (StilExtern : in Sf.Graphics.Text.sfTextStyle)
    is begin
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.ÜberschriftAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.ÜberschriftAccess,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.VersionsnummerAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.VersionsnummerAccess,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.ZeilenumbruchAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.ZeilenumbruchAccess,
+                                 style => StilExtern);
+            
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.Spielmeldung,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.TexthöheAccess,
-                                 style => StilExtern);
-      
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.Spielmeldung,
-                                 style => StilExtern);
-                  
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.BildrateAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.BildrateAccess,
                                  style => StilExtern);
       
       -- Später das Zeug überall sortieren. äöü
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.DiplomatieAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.DiplomatieAccess,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.EinheitenseitenleisteAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.EinheitenseitenleisteAccess,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.EingabenanzeigeAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.EingabenanzeigeAccess,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.EinheitenbauinformationenAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.EinheitenbauinformationenAccess,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.GebäudebauinformationenAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.GebäudebauinformationenAccess,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.StadtkarteAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.StadtkarteAccess,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.StadtumgebungAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.StadtumgebungAccess,
                                  style => StilExtern);
       -- Später das Zeug überall sortieren. äöü
       
@@ -76,7 +90,7 @@ package body TextaccesseSchriftstilGrafik is
       IntroSchleife:
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
                                     style => StilExtern);
          
       end loop IntroSchleife;
@@ -86,7 +100,7 @@ package body TextaccesseSchriftstilGrafik is
       OutroSchleife:
       for OutroSchleifenwert in TextaccessVariablen.OutroAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.OutroAccess (OutroSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.OutroAccess (OutroSchleifenwert),
                                     style => StilExtern);
          
       end loop OutroSchleife;
@@ -104,7 +118,7 @@ package body TextaccesseSchriftstilGrafik is
          MenüsInnenSchleife:
          for InnenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (2) loop
             
-            Sf.Graphics.Text.setStyle (text => TextaccessVariablen.MenüsAccess (AußenSchleifenwert, InnenSchleifenwert),
+            Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.MenüsAccess (AußenSchleifenwert, InnenSchleifenwert),
                                        style => StilExtern);
             
          end loop MenüsInnenSchleife;
@@ -115,7 +129,7 @@ package body TextaccesseSchriftstilGrafik is
       SteuerungSchleife:
       for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.SteuerungAccess (SteuerungSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SteuerungAccess (SteuerungSchleifenwert),
                                     style => StilExtern);
          
       end loop SteuerungSchleife;
@@ -125,7 +139,7 @@ package body TextaccesseSchriftstilGrafik is
       SpielstandSchleife:
       for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.SpielstandAccess (SpielstandSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SpielstandAccess (SpielstandSchleifenwert),
                                     style => StilExtern);
          
       end loop SpielstandSchleife;
@@ -151,10 +165,10 @@ package body TextaccesseSchriftstilGrafik is
       SpeziesSchleife:
       for SpeziesSchleifenwert in TextaccessVariablen.SpeziesnamenAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.SpeziesnamenAccess (SpeziesSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SpeziesnamenAccess (SpeziesSchleifenwert),
                                     style => StilExtern);
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesSchleifenwert),
                                     style => StilExtern);
          
          
@@ -162,7 +176,7 @@ package body TextaccesseSchriftstilGrafik is
          GebäudetextSchleife:
          for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccess'Range (2) loop
             
-            Sf.Graphics.Text.setStyle (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
+            Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                        style => StilExtern);
          
             case
@@ -172,7 +186,7 @@ package body TextaccesseSchriftstilGrafik is
                   null;
                
                when others =>
-                  Sf.Graphics.Text.setStyle (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
+                  Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.GebäudezusatztextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                              style => StilExtern);
             end case;
             
@@ -183,7 +197,7 @@ package body TextaccesseSchriftstilGrafik is
          EinheitentextSchleife:
          for EinheitentextSchleifenwert in TextaccessVariablen.EinheitentextAccess'Range (2) loop
             
-            Sf.Graphics.Text.setStyle (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
+            Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                        style => StilExtern);
          
             case
@@ -193,7 +207,7 @@ package body TextaccesseSchriftstilGrafik is
                   null;
                
                when others =>
-                  Sf.Graphics.Text.setStyle (text => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
+                  Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                              style => StilExtern);
             end case;
             
@@ -204,23 +218,23 @@ package body TextaccesseSchriftstilGrafik is
          ForschungenSchleife:
          for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccess'Range (2) loop
          
-            Sf.Graphics.Text.setStyle (text => TextaccessVariablen.ForschungsmenüAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
+            Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.ForschungsmenüAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
                                        style => StilExtern);
             
-            Sf.Graphics.Text.setStyle (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
+            Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
                                        style => StilExtern);
          
          end loop ForschungenSchleife;
          
       end loop SpeziesSchleife;
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.AktuellesBauprojekt,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.AktuellesBauprojekt,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.AktuellesForschungsprojekt,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.AktuellesForschungsprojekt,
                                  style => StilExtern);
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                  style => StilExtern);
       
    end Spezies;
@@ -234,7 +248,7 @@ package body TextaccesseSchriftstilGrafik is
       ZusatztextKartengrößeSchleife:
       for ZusatztextSchleifenwert in TextaccessVariablen.ZusatztextKartengrößeAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.ZusatztextKartengrößeAccess (ZusatztextSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.ZusatztextKartengrößeAccess (ZusatztextSchleifenwert),
                                     style => StilExtern);
          
       end loop ZusatztextKartengrößeSchleife;
@@ -247,7 +261,7 @@ package body TextaccesseSchriftstilGrafik is
      (StilExtern : in Sf.Graphics.Text.sfTextStyle)
    is begin
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.SprachauswahlAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SprachauswahlAccess,
                                  style => StilExtern);
       
    end Sprachauswahl;
@@ -261,7 +275,7 @@ package body TextaccesseSchriftstilGrafik is
       KartenformauswahlSchleife:
       for KartenformauswahlSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'Range loop
             
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.KartenformauswahlAccess (KartenformauswahlSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.KartenformauswahlAccess (KartenformauswahlSchleifenwert),
                                     style => StilExtern);
             
       end loop KartenformauswahlSchleife;
@@ -277,7 +291,7 @@ package body TextaccesseSchriftstilGrafik is
       StadtInformationenSchleife:
       for StadtInformationenSchleifenwert in TextaccessVariablen.StadtInformationenAccess'Range loop
             
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.StadtInformationenAccess (StadtInformationenSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.StadtInformationenAccess (StadtInformationenSchleifenwert),
                                     style => StilExtern);
             
       end loop StadtInformationenSchleife;
@@ -293,7 +307,7 @@ package body TextaccesseSchriftstilGrafik is
       EinheitenInformationenSchleife:
       for EinheitenInformationenSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
             
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.EinheitenInformationenAccess (EinheitenInformationenSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.EinheitenInformationenAccess (EinheitenInformationenSchleifenwert),
                                     style => StilExtern);
             
       end loop EinheitenInformationenSchleife;
@@ -309,7 +323,7 @@ package body TextaccesseSchriftstilGrafik is
       KarteWichtigesSchleife:
       for KarteWichtigesSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
             
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.KarteWichtigesAccess (KarteWichtigesSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.KarteWichtigesAccess (KarteWichtigesSchleifenwert),
                                     style => StilExtern);
             
       end loop KarteWichtigesSchleife;
@@ -325,7 +339,7 @@ package body TextaccesseSchriftstilGrafik is
       KarteAllgemeinesSchleife:
       for KarteAllgemeinesSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
             
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.KarteAllgemeinesAccess (KarteAllgemeinesSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.KarteAllgemeinesAccess (KarteAllgemeinesSchleifenwert),
                                     style => StilExtern);
             
       end loop KarteAllgemeinesSchleife;
@@ -338,7 +352,7 @@ package body TextaccesseSchriftstilGrafik is
      (StilExtern : in Sf.Graphics.Text.sfTextStyle)
    is begin
       
-      Sf.Graphics.Text.setStyle (text => TextaccessVariablen.KarteAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.KarteAccess,
                                  style => StilExtern);
       
    end Karte;
@@ -352,7 +366,7 @@ package body TextaccesseSchriftstilGrafik is
       EinheitStadtSchleife:
       for EinheitStadtSchleifenwert in TextaccessVariablen.AnzeigeEinheitStadtAccessArray'Range loop
       
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (EinheitStadtSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (EinheitStadtSchleifenwert),
                                     style => StilExtern);
          
       end loop EinheitStadtSchleife;
@@ -368,7 +382,7 @@ package body TextaccesseSchriftstilGrafik is
       AnzeigeEingabeSchleife:
       for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
                                     style => StilExtern);
          
       end loop AnzeigeEingabeSchleife;
@@ -384,7 +398,7 @@ package body TextaccesseSchriftstilGrafik is
       LadezeitenSpielweltSchleife:
       for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
                                     style => StilExtern);
          
       end loop LadezeitenSpielweltSchleife;
@@ -394,7 +408,7 @@ package body TextaccesseSchriftstilGrafik is
       KIZeitenSchleife:
       for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.KIZeitenAccess (KIZeitenSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.KIZeitenAccess (KIZeitenSchleifenwert),
                                     style => StilExtern);
          
       end loop KIZeitenSchleife;
@@ -404,7 +418,7 @@ package body TextaccesseSchriftstilGrafik is
       RundenendeSchleife:
       for RundenendeSchleifenwert in TextaccessVariablen.RundenendeAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.RundenendeAccess (RundenendeSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.RundenendeAccess (RundenendeSchleifenwert),
                                     style => StilExtern);
          
       end loop RundenendeSchleife;
@@ -414,7 +428,7 @@ package body TextaccesseSchriftstilGrafik is
       SpeichernLadenSchleife:
       for SpeichernLadenSchleifenwert in TextaccessVariablen.SpeichernLadenAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text => TextaccessVariablen.SpeichernLadenAccess (SpeichernLadenSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SpeichernLadenAccess (SpeichernLadenSchleifenwert),
                                     style => StilExtern);
          
       end loop SpeichernLadenSchleife;

@@ -63,8 +63,9 @@ package body TextaccesseSchriftfarbeGrafik is
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZeilenumbruchAccess,
                                  color => SonstigeExtern);
       
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TexthöheAccess,
-                                 color => StandardExtern);
+      -- Für die Texthöhe brauche ich keine Farbe, mal ausgeklammert drin lassen um mich später ni9cht zu verwirren.
+      -- Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TexthöheAccess,
+      --                           color => StandardExtern);
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.Spielmeldung,
                                  color => StandardExtern);

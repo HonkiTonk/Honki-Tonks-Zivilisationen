@@ -126,38 +126,36 @@ package ChangelogFebruar2024 is
    
    
 
-   -- Version 0.05. => 0.05. (11.02.2024):
+   -- Version 0.05.5495 => 0.05. (11.02.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (10.02.2024):
+   -- Version 0.05.5460 => 0.05.5495 (10.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (09.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Allgemeine Texthöhen für alle Schriftgrößen eingebaut.
+   -- Das Festlegen der allgemeinen Texthöhen von den restlichen Texten separiert. 
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (08.02.2024):
+   -- Version 0.05.5460 => 0.05.5460 (09.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.5460 => 0.05. (07.02.2024):
+   -- Version 0.05.5460 => 0.05.5460 (08.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.5460 => 0.05.5460 (07.02.2024):
+   
+   -- null.
    
    
 

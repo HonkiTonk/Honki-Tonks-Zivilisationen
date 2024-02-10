@@ -17,16 +17,6 @@ with GebaeudebeschreibungenGrafik;
 
 package body TextaccesseTextGrafik is
    
-   procedure Abstandstext
-   is begin
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TexthöheAccess,
-                                         str  => "abcdefghijklmnopqrstuvwxyzäöüß - ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ - 0123456789 - ?!§$%&/()=:;.,<>|'*+#");
-      
-   end Abstandstext;
-   
-   
-
    procedure TextSetzen
    is begin
       
@@ -47,6 +37,21 @@ package body TextaccesseTextGrafik is
       Befehle;
       
    end TextSetzen;
+   
+   
+   
+   procedure Texthöhen
+   is begin
+      
+      TexthöhenSchleife:
+      for TexthöhenSchleifenwert in TextaccessVariablen.TexthöhenaccessArray'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TexthöhenAccess (TexthöhenSchleifenwert),
+                                            str  => "abcdefghijklmnopqrstuvwxyzäöüß - ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ - 0123456789 - ?!§$%&/()=:;.,<>|'*+#_");
+         
+      end loop TexthöhenSchleife;
+      
+   end Texthöhen;
    
    
    

@@ -8,6 +8,7 @@ with ForschungenDatentypen;
 with MenueKonstanten;
 with MenueDatentypen;
 with Sequenzentexte;
+with TextDatentypen;
 
 with InteraktionAuswahl;
 
@@ -19,7 +20,7 @@ package TextaccessVariablen is
    ÜberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    VersionsnummerAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
-   TexthöheAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   -- TexthöheAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    ZeilenumbruchAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
@@ -40,6 +41,9 @@ package TextaccessVariablen is
    -- Debug, mal anpassen. äöü
    EinheitenseitenleisteAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    -- Debug, mal anpassen. äöü
+   
+   type TexthöhenaccessArray is array (TextDatentypen.Schriftgröße_Enum'Range) of Sf.Graphics.sfText_Ptr;
+   TexthöhenAccess : constant TexthöhenaccessArray := (others => Sf.Graphics.Text.create);
    
    -- Für alle Varianten undefinierte Arrays anlegen? äöü
    -- Für die Arrays hier (und eventuell auch bei anderen Dingen) auch noch Konstante anlegen, damit ich die dann einfacher verwenden kann, wo beispielsweise keine Schleife möglich ist? äöü

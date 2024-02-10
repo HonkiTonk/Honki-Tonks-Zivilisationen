@@ -1,6 +1,7 @@
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
+with TextDatentypen;
 
 with FensterGrafik;
 
@@ -36,13 +37,14 @@ package body TextberechnungenHoeheGrafik is
    
    
    
+   -- Das hier auch mal auf Klein, Standard und Überschrift aufteilen? Vermutlich werde ich das nicht brauchen, aber sicher ist sicher. äöü
    function NeueTextposition
      (PositionExtern : in Float;
       ZusatzwertExtern : in Float)
       return Float
    is begin
       
-      return PositionExtern + ZusatzwertExtern + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TexthöheAccess).height;
+      return PositionExtern + ZusatzwertExtern + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TexthöhenAccess (TextDatentypen.Standard_Enum)).height;
       
    end NeueTextposition;
    

@@ -1,8 +1,8 @@
 package TextaccesseTextGrafik is
    pragma Elaborate_Body;
 
-   procedure Abstandstext;
    procedure TextSetzen;
+   procedure Texthöhen;
 
 private
 
