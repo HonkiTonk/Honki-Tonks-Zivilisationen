@@ -1,135 +1,116 @@
 package ChangelogFebruar2024 is
 
-   -- Version 0.05. => 0.05. (29.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (29.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (28.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (27.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (28.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (26.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (25.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (27.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (24.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (23.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (26.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (22.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (21.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (25.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (20.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (19.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (24.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (18.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (17.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (23.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (16.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (15.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (22.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (14.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (13.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (21.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (12.02.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.5495 => 0.05. (11.02.2024):
+   -- Version 0.05.5495 => 0.05.5495 (20.02.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.5495 => 0.05.5495 (19.02.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5495 => 0.05.5495 (18.02.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5495 => 0.05.5495 (17.02.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5495 => 0.05.5495 (16.02.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5495 => 0.05.5495 (15.02.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5495 => 0.05.5495 (14.02.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5495 => 0.05.5495 (13.02.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5495 => 0.05.5495 (12.02.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5495 => 0.05.5495 (11.02.2024):
+   
+   -- null.
    
    
 
