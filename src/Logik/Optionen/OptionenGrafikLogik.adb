@@ -21,7 +21,9 @@ package body OptionenGrafikLogik is
 
    function OptionenGrafik
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
+   is
+      use type Sf.sfBool;
+   begin
             
       GrafikSchleife:
       loop
@@ -38,7 +40,7 @@ package body OptionenGrafikLogik is
                VollbildFenster;
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               SchreibeEinstellungenGrafik.VSync;
+               SchreibeEinstellungenGrafik.VSync (AktivierenDeaktivierenExtern => not LeseEinstellungenGrafik.VSync);
                SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Bildrate_Ändern_Enum);
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
@@ -130,7 +132,7 @@ package body OptionenGrafikLogik is
             
          when True =>
             SchreibeEinstellungenGrafik.Bildrate (BildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
-            SchreibeEinstellungenGrafik.VSync;
+            SchreibeEinstellungenGrafik.VSync (AktivierenDeaktivierenExtern => Sf.sfFalse);
             SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Bildrate_Ändern_Enum);
       end case;
       

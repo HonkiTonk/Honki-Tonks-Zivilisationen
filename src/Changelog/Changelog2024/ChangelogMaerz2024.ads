@@ -126,31 +126,31 @@ package ChangelogMaerz2024 is
    
    
 
-   -- Version 0.05. => 0.05. (13.03.2024):
+   -- Version 0.05.5575 => 0.05. (13.03.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (12.03.2024):
+   -- Version 0.05.5530 => 0.05.5575 (12.03.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (11.03.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der in bestimmten Fällen dazu führte dass die Framerate falsch gesetzt wurde wenn man VSync deaktivierte.
+   -- Angefangen die Aufteilung der Spielstände zu überarbeiten.
+   -- Angefangen eine Funktion einzubauen die das Überspeichern automatisch angelegter Spielstände verhindert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.5530 => 0.05. (10.03.2024):
+   -- Version 0.05.5530 => 0.05.5530 (11.03.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.5530 => 0.05.5530 (10.03.2024):
+   
+   -- null.
    
    
 

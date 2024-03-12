@@ -5,6 +5,10 @@ package VerzeichnisKonstanten is
 
    Spielstand : constant String (1 .. 10) := "Spielstand";
    SpielstandStrich : constant String (1 .. 11) := Spielstand & "/";
+   SpielstandSpieler : constant Wide_Wide_String (1 .. 8) := "Manuell/";
+   SpielstandAuto : constant Wide_Wide_String (1 .. 5) := "Auto/";
+   -- Einen besseren Namen dafür finden? äöü
+   Notfallspeichern : constant Wide_Wide_String (1 .. 27) := "->Programmstoppspielstand<-";
    
    
    
@@ -63,10 +67,5 @@ package VerzeichnisKonstanten is
    SprachenStrich : constant String (1 .. 9) := Sprachen & "/";
    FontOrdner : constant String (1 .. 15) := SprachenStrich & "Fonts/";
    SchriftartStandard : constant String (1 .. 16) := "wqy-microhei.ttc";
-   
-   
-   
-   -- Einen besseren Namen dafür finden? äöü
-   Notfallspeichern : constant Wide_Wide_String (1 .. 23) := "Programmstoppspielstand";
-      
+         
 end VerzeichnisKonstanten;

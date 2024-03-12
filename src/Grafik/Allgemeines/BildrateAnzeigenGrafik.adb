@@ -13,7 +13,9 @@ with TextberechnungenHoeheGrafik;
 package body BildrateAnzeigenGrafik is
    
    procedure Bildrate
-   is begin
+   is
+      use type Sf.sfBool;
+   begin
       
       Zeitunterschied := Float (Clock - LetzteZeit);
       LetzteZeit := Clock;
@@ -29,7 +31,14 @@ package body BildrateAnzeigenGrafik is
               
       ZielBildrate := Float (LeseEinstellungenGrafik.Bildrate);
       
+      -- Die Farbe bei VSync kann aktuell nicht grün sein, da die tatsächlich erreichte Bildrate ja niedriger sein kann als VSync.
+      -- Außerdem scheint es keine Funktion zum Abrufen der aktuellen Framerate zu geben, oder? äöü
       if
+        LeseEinstellungenGrafik.VSync = Sf.sfTrue
+      then
+         Farbe := Sf.Graphics.Color.sfWhite;
+                 
+      elsif
         ZielBildrate = 0.00
       then
          Farbe := Sf.Graphics.Color.sfGreen;
@@ -47,7 +56,7 @@ package body BildrateAnzeigenGrafik is
       else
          Farbe := Sf.Graphics.Color.sfGreen;
       end if;
-                     
+      
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Bildratenbereich.width,
                                                                                               GrafikRecordKonstanten.Bildratenbereich.height));

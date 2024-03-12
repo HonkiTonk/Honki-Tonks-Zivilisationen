@@ -43,11 +43,10 @@ package body SchreibeEinstellungenGrafik is
    
    
    procedure VSync
-   is
-      use type Sf.sfBool;
-   begin
+     (AktivierenDeaktivierenExtern : in Sf.sfBool)
+   is begin
       
-      EinstellungenGrafik.Grafikeinstellungen.VSync := not EinstellungenGrafik.Grafikeinstellungen.VSync;
+      EinstellungenGrafik.Grafikeinstellungen.VSync := AktivierenDeaktivierenExtern;
       
    end VSync;
    

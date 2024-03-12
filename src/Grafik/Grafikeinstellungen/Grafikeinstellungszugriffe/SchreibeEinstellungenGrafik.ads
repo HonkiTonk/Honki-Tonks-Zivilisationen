@@ -44,7 +44,8 @@ package SchreibeEinstellungenGrafik is
               );
    pragma Inline (Bildrate);
    
-   procedure VSync;
+   procedure VSync
+     (AktivierenDeaktivierenExtern : in Sf.sfBool);
    pragma Inline (VSync);
    
    procedure EbenenUnterhalbSichtbar;
