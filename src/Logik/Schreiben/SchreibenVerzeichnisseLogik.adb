@@ -22,6 +22,25 @@ package body SchreibenVerzeichnisseLogik is
       end case;
       
       case
+        Exists (Name => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandSpieler)
+      is
+         when True =>
+            null;
+            
+         when False =>
+            Create_Directory (New_Directory => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandSpieler);
+      end case;
+      
+      case Exists (Name => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandAuto)
+      is
+         when True =>
+            null;
+            
+         when False =>
+            Create_Directory (New_Directory => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandAuto);
+      end case;
+      
+      case
         Exists (Name => VerzeichnisKonstanten.Datenbanken)
       is
          when True =>

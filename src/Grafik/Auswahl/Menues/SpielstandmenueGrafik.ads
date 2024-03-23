@@ -10,7 +10,7 @@ package SpielstandmenueGrafik is
    pragma Elaborate_Body;
 
    procedure Spielstandmenü
-     (AuswahlExtern : in Natural);
+     (AuswahlExtern : in Integer);
    
 private
    
@@ -26,6 +26,8 @@ private
    NeueTextbreite : Float;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   ViewflächeAufteilung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   ViewflächeBelegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
    Skalierung : Sf.System.Vector2.sfVector2f;
 
@@ -36,6 +38,10 @@ private
    Erstellungszeit : Time;
    
    
+   
+   function Spielstandaufteilung
+     (AuswahlExtern : in Integer)
+      return Sf.System.Vector2.sfVector2f;
    
    function Textanzeige
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;

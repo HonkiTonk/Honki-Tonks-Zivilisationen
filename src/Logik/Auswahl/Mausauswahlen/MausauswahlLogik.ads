@@ -73,7 +73,7 @@ package MausauswahlLogik is
      return StadtDatentypen.GebäudeID;
    
    function SpeichernLaden
-     return Natural;
+     return Integer;
    
    function StadtEinheitauswahl
      (AnfangExtern : in EinheitenDatentypen.Transportplätze;

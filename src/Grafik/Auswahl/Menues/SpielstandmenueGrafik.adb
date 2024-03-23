@@ -30,8 +30,39 @@ with SpielstandVariablen;
 package body SpielstandmenueGrafik is
 
    procedure Spielstandmenü
-     (AuswahlExtern : in Natural)
+     (AuswahlExtern : in Integer)
    is begin
+      
+      ViewflächeAufteilung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAufteilung,
+                                                                                  VerhältnisExtern => (GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandKategorie).width,
+                                                                                                        GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandKategorie).height));
+      
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SpielstandKategorie),
+                                            GrößeExtern          => ViewflächeAufteilung,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandKategorie));
+      
+      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+                                     AbmessungenExtern => ViewflächeAufteilung);
+                  
+      ViewflächeAufteilung := Spielstandaufteilung (AuswahlExtern => AuswahlExtern);
+      
+      
+      
+      
+      
+      ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeBelegung,
+                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl).width,
+                                                                                                    GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl).height));
+      
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SpielstandAuswahl),
+                                            GrößeExtern          => ViewflächeBelegung,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl));
+      
+      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+                                     AbmessungenExtern => ViewflächeBelegung);
+      
+      
+      
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.MenüEinfachbereich.width, GrafikRecordKonstanten.MenüEinfachbereich.height));
@@ -47,6 +78,30 @@ package body SpielstandmenueGrafik is
                                   AuswahlExtern    => AuswahlExtern);
       
    end Spielstandmenü;
+   
+   
+   
+   function Spielstandaufteilung
+     (AuswahlExtern : in Integer)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.x := TextberechnungenBreiteGrafik.Spaltenabstand;
+      
+      case
+        AuswahlExtern
+      is
+         when 0 =>
+            null;
+         
+         when others =>
+            null;
+      end case;
+      
+      return (0.00, 0.00);
+      
+   end Spielstandaufteilung;
    
    
    

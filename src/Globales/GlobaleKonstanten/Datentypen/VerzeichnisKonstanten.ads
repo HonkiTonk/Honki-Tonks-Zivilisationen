@@ -5,8 +5,10 @@ package VerzeichnisKonstanten is
 
    Spielstand : constant String (1 .. 10) := "Spielstand";
    SpielstandStrich : constant String (1 .. 11) := Spielstand & "/";
-   SpielstandSpieler : constant Wide_Wide_String (1 .. 8) := "Manuell/";
-   SpielstandAuto : constant Wide_Wide_String (1 .. 5) := "Auto/";
+   SpielstandSpieler : constant String (1 .. 7) := "Manuell";
+   SpielstandAuto : constant String (1 .. 4) := "Auto";
+   SpielstandSpielerStrich : constant Wide_Wide_String (1 .. 8) := "Manuell/";
+   SpielstandAutoStrich : constant Wide_Wide_String (1 .. 5) := "Auto/";
    -- Einen besseren Namen dafür finden? äöü
    Notfallspeichern : constant Wide_Wide_String (1 .. 27) := "->Programmstoppspielstand<-";
    

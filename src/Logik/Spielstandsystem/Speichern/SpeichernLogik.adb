@@ -76,7 +76,7 @@ package body SpeichernLogik is
             when False =>
                LadezeitenLogik.SpeichernLadenNullsetzen;
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
-               Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandSpieler) & Spielstandname;
+               Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandSpielerStrich) & Spielstandname;
          end case;
          
          Create (File => DateiSpeichern,
@@ -359,7 +359,7 @@ package body SpeichernLogik is
             null;
          end if;
          
-         Autospeichernname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandAuto & "Auto" & AktuellerAutospeichernwert'Wide_Wide_Image);
+         Autospeichernname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandAutoStrich & "Auto" & AktuellerAutospeichernwert'Wide_Wide_Image);
          
          if
            MaximalerAutospeichernwert = 1

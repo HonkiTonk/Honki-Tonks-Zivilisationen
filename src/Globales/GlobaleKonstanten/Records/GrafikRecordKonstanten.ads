@@ -58,6 +58,12 @@ package GrafikRecordKonstanten is
                                                                                     ViewKonstanten.SteuerungAuswahl   => (0.00, Überschriftbereich.height + 0.05, 1.00, 1.00 - Überschriftbereich.height - 0.05)
                                                                                    );
    
+   -- Das so lassen? Oder mit Steuerungbereich zusammenfassen? äöü
+   Spielstandbereich : constant BereicheArray (Views.SpielstandviewAccesse'Range) := (
+                                                                                      ViewKonstanten.SpielstandKategorie => Steuerungbereich (1),
+                                                                                      ViewKonstanten.SpielstandAuswahl   => Steuerungbereich (2)
+                                                                                     );
+   
    Kartenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
    Weltkartenbereich : constant BereicheArray (Views.WeltkarteAccesse'Range) := (
                                                                                  ViewKonstanten.WeltKarte                  => Kartenbereich,

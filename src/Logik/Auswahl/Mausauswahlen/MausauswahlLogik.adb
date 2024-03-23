@@ -491,7 +491,7 @@ package body MausauswahlLogik is
    
    
    function SpeichernLaden
-     return Natural
+     return Integer
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
