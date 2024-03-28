@@ -62,9 +62,11 @@ package TextnummernKonstanten is
    -- Die Auswahlteile für das Baumenü muss immer nacheinandern kommen, da mit der Position Berechnungen angestellt werden.
    ZeugStadt : constant Positive := 54;
    ZeugEinheit : constant Positive := 55;
+   ZeugGebäudeBaumenü : constant Positive := 56;
+   ZeugEinheitenBaumenü : constant Positive := 57;
    
    AnfangZeug : constant Positive := 1;
-   EndeZeug : constant Positive := 55;
+   EndeZeug : constant Positive := 57;
    
    
    

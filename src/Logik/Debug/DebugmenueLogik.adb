@@ -18,6 +18,7 @@ with DebugmenueAllgemeinesLogik;
 with ZahleneingabeLogik;
 with EinheitenErzeugenEntfernenLogik;
 with EinlesenTextLogik;
+with DebugmenueTextausgabeLogik;
 
 package body DebugmenueLogik is
 
@@ -60,6 +61,9 @@ package body DebugmenueLogik is
                
             when RueckgabeDatentypen.Auswahl_Acht_Enum =>
                raise Teststopp;
+               
+            when RueckgabeDatentypen.Auswahl_Neun_Enum =>
+               DebugmenueTextausgabeLogik.TexteAusgeben;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -221,5 +225,5 @@ package body DebugmenueLogik is
       end case;
       
    end EinheitErzeugen;
-
+   
 end DebugmenueLogik;

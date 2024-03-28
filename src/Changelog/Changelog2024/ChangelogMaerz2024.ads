@@ -21,37 +21,36 @@ package ChangelogMaerz2024 is
    
    
 
-   -- Version 0.05. => 0.05. (28.03.2024):
+   -- Version 0.05.5685 => 0.05. (28.03.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (27.03.2024):
+   -- Version 0.05.5645 => 0.05.5685 (27.03.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (26.03.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der zur falschen Anzeige von Text führte.
+   -- Debugmenü erweitert, so dass es jetzt möglich ist sich die eingelesene Texte anzeigen zu lassen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05. => 0.05. (25.03.2024):
+   -- Version 0.05.5645 => 0.05.5645 (26.03.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.5620 => 0.05. (24.03.2024):
+   -- Version 0.05.5645 => 0.05.5645 (25.03.2024):
    
-   -- 
+   -- null.
+   
+   
+
+   -- Version 0.05.5620 => 0.05.5645 (24.03.2024):
+   
+   -- GNAT aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

@@ -109,7 +109,7 @@ private
      (VerzeichnisExtern : in Wide_Wide_String;
       EinsprachigExtern : in Boolean)
      with
-   -- Den Contracts später mal noch um die Länge des Sprachenordners und /0 erweitern. äöü
+   -- Den Contract später mal noch um die Länge des Sprachenordners und /0 erweitern. äöü
      Pre => (
                VerzeichnisExtern'Length > 0
             );

@@ -39,7 +39,7 @@ package body StadtbefehleGrafik is
                                                                                  ViewbreiteExtern => Viewfläche.x);
          
          TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
-                                                             PositionExtern   => Textposition);
+                                                                    PositionExtern   => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
