@@ -29,17 +29,32 @@ package body SpielstandlisteLogik is
       return Unbounded_Wide_Wide_String
    is begin
       
+      -- Spielstandart := SpielstandDatentypen.Manueller_Spielstand_Enum;
+      
       SpielstandSchleife:
       loop
          
          Schleifenanfang := TextArrays.SpielstandArray'First;
          SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => False);
          
-         Start_Search (Search    => Suche,
-                       Directory => VerzeichnisKonstanten.Spielstand,
-                       Pattern   => "",
-                       Filter    => (Ordinary_File => True,
-                                     others        => False));
+         case
+           Spielstandart
+         is
+            when SpielstandDatentypen.Manueller_Spielstand_Enum =>
+               Start_Search (Search    => Suche,
+                             Directory => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandSpieler,
+                             Pattern   => "",
+                             Filter    => (Ordinary_File => True,
+                                           others        => False));
+               
+            when SpielstandDatentypen.Automatischer_Spielstand_Enum =>
+               Start_Search (Search    => Suche,
+                             Directory => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandAuto,
+                             Pattern   => "",
+                             Filter    => (Ordinary_File => True,
+                                           others        => False));
+               
+         end case;
          
          MittelSchleife:
          loop
@@ -149,6 +164,14 @@ package body SpielstandlisteLogik is
                      else
                         null;
                      end if;
+                     
+                  when -1 =>
+                     Spielstandart := SpielstandDatentypen.Manueller_Spielstand_Enum;
+                     exit MittelSchleife;
+                     
+                  when -2 =>
+                     Spielstandart := SpielstandDatentypen.Automatischer_Spielstand_Enum;
+                     exit MittelSchleife;
                   
                   when others =>
                      if
@@ -182,7 +205,7 @@ package body SpielstandlisteLogik is
    
    function Mausauswahl
      (SpeichernLadenExtern : in Boolean)
-      return Natural
+      return Integer
    is begin
       
       SchreibeGrafiktask.SpeichernLaden (JaNeinExtern => SpeichernLadenExtern);
@@ -193,7 +216,23 @@ package body SpielstandlisteLogik is
       loop
       
          AktuelleAuswahl := MausauswahlLogik.SpeichernLaden;
-         SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
+         
+         if
+           AktuelleAuswahl < 0
+         then
+            SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
+            SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AktuelleAuswahl);
+            
+         elsif
+           AktuelleAuswahl > 0
+         then
+            SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
+            SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
+            
+         else
+            SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
+            SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
+         end if;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -203,6 +242,12 @@ package body SpielstandlisteLogik is
                  AktuelleAuswahl = AuswahlKonstanten.LeerAuswahl
                then
                   null;
+                  
+               elsif
+                 AktuelleAuswahl < AuswahlKonstanten.LeerAuswahl
+               then
+                  SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
+                  return AktuelleAuswahl;
                   
                else
                   SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);

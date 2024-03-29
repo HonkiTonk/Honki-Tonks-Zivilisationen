@@ -496,23 +496,47 @@ package body MausauswahlLogik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
-                                                                 view         => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl));
+                                                                 view         => Views.SpielstandviewAccesse (ViewKonstanten.SpielstandKategorie));
       
-      PositionSchleife:
-      for PositionSchleifenwert in InteraktionAuswahl.PositionenSpielstand'Range loop
+      AufteilungSchleife:
+      for AufteilungSchleifenwert in InteraktionAuswahl.PositionenSpielstandaufteilung'Range loop
+         
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       RechteckExtern     => InteraktionAuswahl.PositionenSpielstandaufteilung (AufteilungSchleifenwert))
+         is
+            when True =>
+               return -AufteilungSchleifenwert;
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop AufteilungSchleife;
+      
+      
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                                 point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
+                                                                 view         => Views.SpielstandviewAccesse (ViewKonstanten.SpielstandAuswahl));
+      
+      
+      
+      SpielstandSchleife:
+      for SpielstandSchleifenwert in InteraktionAuswahl.PositionenSpielstand'Range loop
                   
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       RechteckExtern     => InteraktionAuswahl.PositionenSpielstand (PositionSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenSpielstand (SpielstandSchleifenwert))
          is
             when True =>
-               return PositionSchleifenwert;
+               return SpielstandSchleifenwert;
             
             when False =>
                null;
          end case;
          
-      end loop PositionSchleife;
+      end loop SpielstandSchleife;
       
       return AuswahlKonstanten.LeerAuswahl;
       

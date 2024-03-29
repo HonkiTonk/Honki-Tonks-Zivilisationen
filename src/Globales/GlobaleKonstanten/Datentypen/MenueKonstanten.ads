@@ -38,7 +38,7 @@ package MenueKonstanten is
                                            MenueDatentypen.Steuerung_Menü_Enum          => 63,
 
                                            -- Spielstandmenü
-                                           MenueDatentypen.Spielstand_Menü_Enum         => 15
+                                           MenueDatentypen.Spielstand_Menü_Enum         => 17
                                           );
 
    -- Theoretich kann man hier noch -1 machen um die Überschrift abzuziehen, wird in den Positionen/Textaccessen nicht mehr benötigt. äöü
@@ -91,5 +91,12 @@ package MenueKonstanten is
    StadtsteuerungEnumausgleich : constant Positive := Stadtsteuerung - 1;
    SonstigesSteuerung : constant Positive := 59;
    -- Steuerung
+
+
+
+   -- Spielstand
+   SpielstandAnfang : constant Positive := StandardArrayanpassung + 2;
+
+   -- Spielstand
 
 end MenueKonstanten;

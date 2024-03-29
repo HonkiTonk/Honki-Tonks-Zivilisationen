@@ -5,27 +5,29 @@ private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 private with TextArrays;
+private with SpielstandDatentypen;
+
+with SystemRecords;
 
 package SpielstandmenueGrafik is
    pragma Elaborate_Body;
 
    procedure Spielstandmenü
-     (AuswahlExtern : in Integer);
+     (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord);
    
 private
    
    SpeichernLaden : Boolean;
    MehrereSeiten : Boolean;
    
-   SpielstandlisteAnfang : constant Positive := 2;
-   SpielstandlisteEnde : constant Positive := 11;
-   MehrAnzeigen : constant Positive := 12;
-   NeuerSpielstand : constant Positive := 13;
+   SpielstandlisteAnfang : constant Positive := 4;
+   SpielstandlisteEnde : constant Positive := 13;
+   MehrAnzeigen : constant Positive := 14;
+   NeuerSpielstand : constant Positive := 15;
    
    Textbreite : Float;
    NeueTextbreite : Float;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeAufteilung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeBelegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
@@ -40,8 +42,15 @@ private
    
    
    function Spielstandaufteilung
-     (AuswahlExtern : in Integer)
-      return Sf.System.Vector2.sfVector2f;
+     (AuswahlExtern : in Integer;
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Spielstandaufteilung'Result.x >= 0.00
+                and
+                  Spielstandaufteilung'Result.y >= 0.00
+               );
    
    function Textanzeige
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;

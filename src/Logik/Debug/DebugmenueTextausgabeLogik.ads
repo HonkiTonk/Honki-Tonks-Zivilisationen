@@ -1,3 +1,5 @@
+private with TextArrays;
+
 package DebugmenueTextausgabeLogik is
 
    procedure TexteAusgeben;
@@ -13,6 +15,9 @@ private
    procedure SequenztexteAusgeben;
    procedure KartentexteAusgeben;
    procedure SpeziestexteAusgeben;
+
+   procedure Test
+     (ArrayExtern : in TextArrays.AllgemeinesTextArray);
 
 
    function Pause

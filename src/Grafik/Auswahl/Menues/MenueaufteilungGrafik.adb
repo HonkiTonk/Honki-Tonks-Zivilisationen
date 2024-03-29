@@ -30,7 +30,7 @@ package body MenueaufteilungGrafik is
             SteuerungsmenueGrafik.Steuerungsmenü (AuswahlExtern => AktuelleAuswahlExtern.Erstauswahl);
             
          when MenueDatentypen.Spielstand_Menü_Enum =>
-            SpielstandmenueGrafik.Spielstandmenü (AuswahlExtern => AktuelleAuswahlExtern.Erstauswahl);
+            SpielstandmenueGrafik.Spielstandmenü (AuswahlExtern => AktuelleAuswahlExtern);
       end case;
       
       case

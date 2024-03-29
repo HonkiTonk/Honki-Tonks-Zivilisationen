@@ -15,6 +15,7 @@ with TextKonstanten;
 with VerzeichnisKonstanten;
 with GrafikKonstanten;
 with ViewKonstanten;
+with TextDatentypen;
 
 with LeseGrafiktask;
 
@@ -26,80 +27,101 @@ with TextfarbeGrafik;
 with TextaccessverwaltungssystemEinfachGrafik;
 with TextskalierungGrafik;
 with SpielstandVariablen;
+with TexteinstellungenGrafik;
+with SpielstandlisteLogik;
 
 package body SpielstandmenueGrafik is
 
    procedure Spielstandmenü
-     (AuswahlExtern : in Integer)
+     (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord)
    is begin
       
       ViewflächeAufteilung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAufteilung,
                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandKategorie).width,
                                                                                                         GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandKategorie).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SpielstandKategorie),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SpielstandviewAccesse (ViewKonstanten.SpielstandKategorie),
                                             GrößeExtern          => ViewflächeAufteilung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandKategorie));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeAufteilung);
                   
-      ViewflächeAufteilung := Spielstandaufteilung (AuswahlExtern => AuswahlExtern);
-      
-      
-      
+      ViewflächeAufteilung := Spielstandaufteilung (AuswahlExtern       => AuswahlExtern.Zweitauswahl,
+                                                     SpielstandartExtern => SpielstandlisteLogik.Spielstandart);
+            
       
       
       ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeBelegung,
                                                                               VerhältnisExtern => (GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl).width,
                                                                                                     GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SpielstandAuswahl),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SpielstandviewAccesse (ViewKonstanten.SpielstandAuswahl),
                                             GrößeExtern          => ViewflächeBelegung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBelegung);
       
-      
-      
-      
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (GrafikRecordKonstanten.MenüEinfachbereich.width, GrafikRecordKonstanten.MenüEinfachbereich.height));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl),
-                                            GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche);
-      
-      Viewfläche := Textanzeige (ViewflächeExtern => Viewfläche,
-                                  AuswahlExtern    => AuswahlExtern);
+      ViewflächeBelegung := Textanzeige (ViewflächeExtern => ViewflächeBelegung,
+                                          AuswahlExtern    => AuswahlExtern.Erstauswahl);
       
    end Spielstandmenü;
    
    
    
    function Spielstandaufteilung
-     (AuswahlExtern : in Integer)
+     (AuswahlExtern : in Integer;
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
       return Sf.System.Vector2.sfVector2f
-   is begin
+   is
+      use type SpielstandDatentypen.Spielstand_Enum;
+   begin
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.Spaltenabstand;
       
-      case
-        AuswahlExtern
-      is
-         when 0 =>
-            null;
+      AufteilungSchleife:
+      for AufteilungSchleifenwert in InteraktionAuswahl.PositionenSpielstandaufteilung'Range loop
          
-         when others =>
-            null;
-      end case;
+         if
+           AuswahlExtern = -AufteilungSchleifenwert
+         then
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum);
+         
+         elsif
+           SpielstandartExtern = SpielstandDatentypen.Manueller_Spielstand_Enum
+           and
+             AufteilungSchleifenwert = 1
+         then
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum);
+            
+         elsif
+           SpielstandartExtern = SpielstandDatentypen.Automatischer_Spielstand_Enum
+           and
+             AufteilungSchleifenwert = 2
+         then
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum);
+           
+         else
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+         end if;
+         
+         TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SpielstandAccess (AufteilungSchleifenwert + 1),
+                                                                         PositionExtern   => Textposition,
+                                                                         FarbeExtern      => Farbe);
+         
+         InteraktionAuswahl.PositionenSpielstandaufteilung (AufteilungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (AufteilungSchleifenwert + 1));
       
-      return (0.00, 0.00);
+         Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SpielstandAccess (AufteilungSchleifenwert + 1)).width
+           + GrafikKonstanten.Verdoppelung * TextberechnungenBreiteGrafik.Spaltenabstand;
+         
+      end loop AufteilungSchleife;
+      
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+      
+      return (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
    end Spielstandaufteilung;
    
@@ -119,7 +141,7 @@ package body SpielstandmenueGrafik is
       Spielstand := SpielstandVariablen.GanzeSpielstandliste;
       
       TextSchleife:
-      for TextSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) loop
+      for TextSchleifenwert in MenueKonstanten.SpielstandAnfang .. MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) loop
          
          if
            SpeichernLaden = False
@@ -141,7 +163,7 @@ package body SpielstandmenueGrafik is
             is
                when SpielstandlisteAnfang .. SpielstandlisteEnde =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                     str  => TextSetzen (TextExtern => To_Wide_Wide_String (Spielstand (TextSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik))));
+                                                     str  => TextSetzen (TextExtern => To_Wide_Wide_String (Spielstand (TextSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik - 2))));
                   
                when others =>
                   null;
@@ -165,15 +187,15 @@ package body SpielstandmenueGrafik is
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                                                                 TextbreiteExtern => GrafikKonstanten.Nullwert);
             Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
-                                                                    ErlaubteBreiteExtern => ViewflächeExtern.x);
+                                                                ErlaubteBreiteExtern => ViewflächeExtern.x);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
             
             NeueTextbreite := Textbreite;
             
             TextaccessverwaltungssystemEinfachGrafik.PositionSkalierenFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                                              PositionExtern   => Textposition,
-                                                                              SkalierungExtern => Skalierung,
-                                                                              FarbeExtern      => Farbe);
+                                                                                     PositionExtern   => Textposition,
+                                                                                     SkalierungExtern => Skalierung,
+                                                                                     FarbeExtern      => Farbe);
             
             InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik)
               := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
