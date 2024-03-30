@@ -10,6 +10,7 @@ package SpielstandlisteLogik is
      (SpeichernLadenExtern : in Boolean)
       return Unbounded_Wide_Wide_String;
 
+   -- Das hier mal noch nach SpielstandVariablen verschieben. äöü
    Spielstandart : SpielstandDatentypen.Spielstand_Enum := SpielstandDatentypen.Manueller_Spielstand_Enum;
 
 private

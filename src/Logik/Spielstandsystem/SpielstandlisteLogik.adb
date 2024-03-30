@@ -28,9 +28,7 @@ package body SpielstandlisteLogik is
      (SpeichernLadenExtern : in Boolean)
       return Unbounded_Wide_Wide_String
    is begin
-      
-      -- Spielstandart := SpielstandDatentypen.Manueller_Spielstand_Enum;
-      
+            
       SpielstandSchleife:
       loop
          
@@ -114,13 +112,22 @@ package body SpielstandlisteLogik is
                
                Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
                
+               if
+                 Ausgewählt > 0
+               then
+                  Ausgewählt := Ausgewählt - 2;
+                    
+               else
+                  null;
+               end if;
+               
                case
                  Ausgewählt
                is
                   when AuswahlKonstanten.LeerAuswahl | Zurück =>
                      RückgabeWert := TextKonstanten.LeerUnboundedString;
                      exit SpielstandSchleife;
-                  
+                     
                   when MehrAnzeigen =>
                      if
                        SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt) = TextKonstanten.LeerUnboundedString
@@ -150,9 +157,10 @@ package body SpielstandlisteLogik is
                      Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
                      
                      if
-                       Ausgewählt in SpielstandlisteAnfang .. SpielstandlisteEnde
+                       Ausgewählt - 2 in SpielstandlisteAnfang .. SpielstandlisteEnde
                      then
-                        SpielstandEntfernenLogik.SpielstandEntfernen (SpielstandnameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt)));
+                        SpielstandEntfernenLogik.SpielstandEntfernen (SpielstandnameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt - 2)),
+                                                                      ManuellAutoExtern    => Spielstandart);
                         exit MittelSchleife;
                         
                      elsif
@@ -170,9 +178,16 @@ package body SpielstandlisteLogik is
                      exit MittelSchleife;
                      
                   when -2 =>
-                     Spielstandart := SpielstandDatentypen.Automatischer_Spielstand_Enum;
-                     exit MittelSchleife;
-                  
+                     if
+                       SpeichernLadenExtern
+                     then
+                        null;
+                        
+                     else
+                        Spielstandart := SpielstandDatentypen.Automatischer_Spielstand_Enum;
+                        exit MittelSchleife;
+                     end if;
+                                       
                   when others =>
                      if
                        SpeichernLadenExtern

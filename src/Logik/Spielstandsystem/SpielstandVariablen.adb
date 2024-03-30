@@ -38,5 +38,25 @@ package body SpielstandVariablen is
       Spielstand := (others => TextKonstanten.LeerUnboundedString);
       
    end Nullsetzung;
+   
+   
+   
+   procedure SpielstandartSchreiben
+     (SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
+   is begin
+      
+      Spielstandart := SpielstandartExtern;
+      
+   end SpielstandartSchreiben;
+   
+   
+   
+   function SpielstandartLesen
+     return SpielstandDatentypen.Spielstand_Enum
+   is begin
+      
+      return Spielstandart;
+      
+   end SpielstandartLesen;
 
 end SpielstandVariablen;

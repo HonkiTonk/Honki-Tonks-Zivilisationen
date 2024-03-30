@@ -2,6 +2,7 @@ with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with TextKonstanten;
+with VerzeichnisKonstanten;
 
 with SchreibeGrafiktask;
 
@@ -38,7 +39,7 @@ package body SpielstandAllgemeinesLogik is
       return Boolean
    is begin
       
-      return Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandnameExtern)));
+      return Exists (Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => VerzeichnisKonstanten.SpielstandSpielerStrich) & Encode (Item => To_Wide_Wide_String (Source => SpielstandnameExtern)));
       
    end SpielstandVorhanden;
    

@@ -28,12 +28,12 @@ with TextaccessverwaltungssystemEinfachGrafik;
 with TextskalierungGrafik;
 with SpielstandVariablen;
 with TexteinstellungenGrafik;
-with SpielstandlisteLogik;
 
 package body SpielstandmenueGrafik is
 
    procedure Spielstandmenü
-     (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord)
+     (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord;
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
    is begin
       
       ViewflächeAufteilung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAufteilung,
@@ -48,7 +48,7 @@ package body SpielstandmenueGrafik is
                                      AbmessungenExtern => ViewflächeAufteilung);
                   
       ViewflächeAufteilung := Spielstandaufteilung (AuswahlExtern       => AuswahlExtern.Zweitauswahl,
-                                                     SpielstandartExtern => SpielstandlisteLogik.Spielstandart);
+                                                     SpielstandartExtern => SpielstandartExtern);
             
       
       
@@ -63,8 +63,9 @@ package body SpielstandmenueGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBelegung);
       
-      ViewflächeBelegung := Textanzeige (ViewflächeExtern => ViewflächeBelegung,
-                                          AuswahlExtern    => AuswahlExtern.Erstauswahl);
+      ViewflächeBelegung := Textanzeige (ViewflächeExtern   => ViewflächeBelegung,
+                                          AuswahlExtern       => AuswahlExtern.Erstauswahl,
+                                          SpielstandartExtern => SpielstandartExtern);
       
    end Spielstandmenü;
    
@@ -129,7 +130,8 @@ package body SpielstandmenueGrafik is
    
    function Textanzeige
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
-      AuswahlExtern : in Natural)
+      AuswahlExtern : in Integer;
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -163,7 +165,8 @@ package body SpielstandmenueGrafik is
             is
                when SpielstandlisteAnfang .. SpielstandlisteEnde =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                     str  => TextSetzen (TextExtern => To_Wide_Wide_String (Spielstand (TextSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik - 2))));
+                                                     str  => TextSetzen (TextExtern          => To_Wide_Wide_String (Spielstand (TextSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik - 2)),
+                                                                         SpielstandartExtern => SpielstandartExtern));
                   
                when others =>
                   null;
@@ -213,7 +216,8 @@ package body SpielstandmenueGrafik is
    
    
    function TextSetzen
-     (TextExtern : in Wide_Wide_String)
+     (TextExtern : in Wide_Wide_String;
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
       return Wide_Wide_String
    is begin
       
@@ -223,14 +227,31 @@ package body SpielstandmenueGrafik is
          return TextExtern;
          
       elsif
-        Exists (Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => TextExtern)) = False
+        Exists (Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => VerzeichnisKonstanten.SpielstandSpielerStrich) & Encode (Item => TextExtern)) = False
+        and
+          Exists (Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => VerzeichnisKonstanten.SpielstandAutoStrich) & Encode (Item => TextExtern)) = False
       then
          return TextExtern;
          
       else
-         return (TextExtern & TextKonstanten.StandardAbstand & Decode (Item => Local_Image (Date                  => Modification_Time (Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => TextExtern))),
-                                                                                            Include_Time_Fraction => False)));
+         null;
       end if;
+      
+      case
+        SpielstandartExtern
+      is
+         when SpielstandDatentypen.Manueller_Spielstand_Enum =>
+            return (TextExtern & TextKonstanten.StandardAbstand & Decode (Item => Local_Image (Date                  => Modification_Time (Name => (VerzeichnisKonstanten.SpielstandStrich
+                                                                                                                                                    & Encode (Item => VerzeichnisKonstanten.SpielstandSpielerStrich)
+                                                                                                                                                    & Encode (Item => TextExtern))),
+                                                                                               Include_Time_Fraction => False)));
+            
+         when SpielstandDatentypen.Automatischer_Spielstand_Enum =>
+            return (TextExtern & TextKonstanten.StandardAbstand & Decode (Item => Local_Image (Date                  => Modification_Time (Name => (VerzeichnisKonstanten.SpielstandStrich
+                                                                                                                                                    & Encode (Item => VerzeichnisKonstanten.SpielstandAutoStrich)
+                                                                                                                                                    & Encode (Item => TextExtern))),
+                                                                                               Include_Time_Fraction => False)));
+      end case;
       
    end TextSetzen;
 

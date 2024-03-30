@@ -5,15 +5,16 @@ private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 private with TextArrays;
-private with SpielstandDatentypen;
 
+with SpielstandDatentypen;
 with SystemRecords;
 
 package SpielstandmenueGrafik is
    pragma Elaborate_Body;
 
    procedure Spielstandmenü
-     (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord);
+     (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord;
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum);
    
 private
    
@@ -54,7 +55,8 @@ private
    
    function Textanzeige
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
-      AuswahlExtern : in Natural)
+      AuswahlExtern : in Integer;
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
@@ -70,7 +72,8 @@ private
                );
       
    function TextSetzen
-     (TextExtern : in Wide_Wide_String)
+     (TextExtern : in Wide_Wide_String;
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
       return Wide_Wide_String;
    
 end SpielstandmenueGrafik;

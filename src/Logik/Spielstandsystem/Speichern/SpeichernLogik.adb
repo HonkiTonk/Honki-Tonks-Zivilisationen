@@ -45,13 +45,15 @@ package body SpeichernLogik is
            AutospeichernExtern
          is
             when True =>
+               Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandAutoStrich);
+               
                if
                  NotfallspeichernExtern = False
                then
-                  Spielstandname := NameAutoSpeichern;
+                  Spielstandname := Spielstandname & NameAutoSpeichern;
                   
                else
-                  Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.Notfallspeichern);
+                  Spielstandname := Spielstandname & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.Notfallspeichern);
                end if;
             
             when False =>
@@ -359,7 +361,7 @@ package body SpeichernLogik is
             null;
          end if;
          
-         Autospeichernname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandAutoStrich & "Auto" & AktuellerAutospeichernwert'Wide_Wide_Image);
+         Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & AktuellerAutospeichernwert'Wide_Wide_Image);
          
          if
            MaximalerAutospeichernwert = 1

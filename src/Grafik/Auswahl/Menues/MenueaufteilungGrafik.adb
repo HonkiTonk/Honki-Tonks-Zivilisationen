@@ -5,6 +5,7 @@ with SteuerungsmenueGrafik;
 with AllgemeineViewsGrafik;
 with DoppelmenueGrafik;
 with SpielstandmenueGrafik;
+with SpielstandlisteLogik;
 
 package body MenueaufteilungGrafik is
 
@@ -30,7 +31,8 @@ package body MenueaufteilungGrafik is
             SteuerungsmenueGrafik.Steuerungsmenü (AuswahlExtern => AktuelleAuswahlExtern.Erstauswahl);
             
          when MenueDatentypen.Spielstand_Menü_Enum =>
-            SpielstandmenueGrafik.Spielstandmenü (AuswahlExtern => AktuelleAuswahlExtern);
+            SpielstandmenueGrafik.Spielstandmenü (AuswahlExtern       => AktuelleAuswahlExtern,
+                                                   SpielstandartExtern => SpielstandlisteLogik.Spielstandart);
       end case;
       
       case

@@ -23,6 +23,7 @@ with SpielstandlisteLogik;
 with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
+with SpielstandDatentypen;
 
 with Fehlermeldungssystem;
 
@@ -48,12 +49,24 @@ package body LadenLogik is
             LadezeitenLogik.SpeichernLadenNullsetzen;
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
       
-            Open (File => DateiLaden,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)),
-                  Form => "WCEM=8");
+            case
+              SpielstandlisteLogik.Spielstandart
+            is
+               when SpielstandDatentypen.Manueller_Spielstand_Enum =>
+                  Open (File => DateiLaden,
+                        Mode => In_File,
+                        Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => VerzeichnisKonstanten.SpielstandSpielerStrich) & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)),
+                        Form => "WCEM=8");
+                  
+               when SpielstandDatentypen.Automatischer_Spielstand_Enum =>
+                  Open (File => DateiLaden,
+                        Mode => In_File,
+                        Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item =>VerzeichnisKonstanten.SpielstandAutoStrich) & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)),
+                        Form => "WCEM=8");
+            end case;
+            
          end if;
-                        
+         
          case
            Prüfen (DateiLadenExtern => DateiLaden)
          is
