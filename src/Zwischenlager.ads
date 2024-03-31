@@ -292,24 +292,3 @@ package body BauauswahlGrafik is
    end Aktuell;
 
 end BauauswahlGrafik;
-
-
-
-
-
-
-
-
-
-
-
-
-Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                  VerhältnisExtern => (GrafikRecordKonstanten.MenüEinfachbereich.width, GrafikRecordKonstanten.MenüEinfachbereich.height));
-
-ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl),
-                                      GrößeExtern          => Viewfläche,
-                                      AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
-
-HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
-                               AbmessungenExtern => Viewfläche);

@@ -2,7 +2,6 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Exceptions; use Ada.Exceptions;
 
 with GrafikDatentypen;
-with VerzeichnisKonstanten;
 with TextKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
@@ -23,7 +22,8 @@ with SpielstandlisteLogik;
 with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
-with SpielstandDatentypen;
+with SpielstandVariablen;
+with UmwandlungenVerzeichnisse;
 
 with Fehlermeldungssystem;
 
@@ -48,22 +48,12 @@ package body LadenLogik is
          else
             LadezeitenLogik.SpeichernLadenNullsetzen;
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
-      
-            case
-              SpielstandlisteLogik.Spielstandart
-            is
-               when SpielstandDatentypen.Manueller_Spielstand_Enum =>
-                  Open (File => DateiLaden,
-                        Mode => In_File,
-                        Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => VerzeichnisKonstanten.SpielstandSpielerStrich) & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)),
-                        Form => "WCEM=8");
-                  
-               when SpielstandDatentypen.Automatischer_Spielstand_Enum =>
-                  Open (File => DateiLaden,
-                        Mode => In_File,
-                        Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item =>VerzeichnisKonstanten.SpielstandAutoStrich) & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)),
-                        Form => "WCEM=8");
-            end case;
+            
+            Open (File => DateiLaden,
+                  Mode => In_File,
+                  Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
+                                                                    SpielstandnameExtern => Spielstandname),
+                  Form => "WCEM=8");
             
          end if;
          

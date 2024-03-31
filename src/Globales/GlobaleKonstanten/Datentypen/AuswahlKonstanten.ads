@@ -14,4 +14,18 @@ package AuswahlKonstanten is
 
    LeerStadtEinheitAuswahl : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
 
+
+
+   -- Für das Speichersystem
+   SpielstandlisteAnfang : constant Positive := 1;
+   SpielstandlisteEnde : constant Positive := 10;
+   MehrAnzeigen : constant Positive := 11;
+   NeuerSpielstand : constant Positive := 12;
+   Löschen : constant Positive := 13;
+   Zurück : constant Positive := 14;
+
+   ManuellerSpielstand : constant Integer := -1;
+   AutomatischerSpielstand : constant Integer := -2;
+   -- Für das Speichersystem
+
 end AuswahlKonstanten;

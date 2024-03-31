@@ -66,6 +66,8 @@ package body EinlesenTextLogik is
                end if;
                
             end loop SprachenSchleife;
+            
+            End_Search (Search => Suche);
       end case;
       
    end EinlesenDateien;

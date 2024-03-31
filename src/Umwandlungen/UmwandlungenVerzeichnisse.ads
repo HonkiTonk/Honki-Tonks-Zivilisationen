@@ -7,15 +7,15 @@ with SpielstandDatentypen;
 package UmwandlungenVerzeichnisse is
    pragma Elaborate_Body;
 
-   function Spielstandverzeichnis
+   function Verzeichnispfad
      (SpielstandarteExtern : in SpielstandDatentypen.Spielstand_Enum)
       return String
      with
        Post => (
-                  Spielstandverzeichnis'Result'Length > 0
+                  Verzeichnispfad'Result'Length > 0
                );
    
-   function Spielstand
+   function Spielstandpfad
      (SpielstandarteExtern : in SpielstandDatentypen.Spielstand_Enum;
       SpielstandnameExtern : in Unbounded_Wide_Wide_String)
       return String
@@ -25,17 +25,26 @@ package UmwandlungenVerzeichnisse is
               ),
          
        Post => (
-                  Spielstandverzeichnis'Result'Length > 0
+                  Spielstandpfad'Result'Length > 0
                );
    
 private
    
    type VerzeichnisseArray is array (SpielstandDatentypen.Spielstand_Enum'Range) of Unbounded_Wide_Wide_String;
-   Verzeichnisse : constant VerzeichnisseArray := (
-                                                   SpielstandDatentypen.Manueller_Spielstand_Enum     => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
-                                                   & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandSpielerStrich),
-                                                   SpielstandDatentypen.Automatischer_Spielstand_Enum => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
-                                                   & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandAutoStrich)
-                                                  );
+   Verzeichnispfade : constant VerzeichnisseArray := (
+                                                      SpielstandDatentypen.Manueller_Spielstand_Enum     => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
+                                                      & To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SpielstandSpieler)),
+                                                   
+                                                      SpielstandDatentypen.Automatischer_Spielstand_Enum => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
+                                                      & To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SpielstandAuto))
+                                                     );
+   
+   Spielstandpfade : constant VerzeichnisseArray := (
+                                                     SpielstandDatentypen.Manueller_Spielstand_Enum     => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
+                                                     & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandSpielerStrich),
+                                                   
+                                                     SpielstandDatentypen.Automatischer_Spielstand_Enum => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
+                                                     & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandAutoStrich)
+                                                    );
 
 end UmwandlungenVerzeichnisse;

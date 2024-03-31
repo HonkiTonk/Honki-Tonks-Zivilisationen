@@ -66,6 +66,8 @@ package body EinlesenSpracheLogik is
 
       end loop VerzeichnisAußenSchleife;
       
+      End_Search (Search => Suche);
+      
       if
         TextArrays.SprachenEinlesen (1) = TextKonstanten.LeerUnboundedString
       then

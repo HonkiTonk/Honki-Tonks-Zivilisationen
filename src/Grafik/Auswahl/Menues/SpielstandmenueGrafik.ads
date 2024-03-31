@@ -1,10 +1,10 @@
-with Ada.Calendar; use Ada.Calendar;
-
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 private with TextArrays;
+private with AuswahlKonstanten;
+private with MenueKonstanten;
 
 with SpielstandDatentypen;
 with SystemRecords;
@@ -14,17 +14,20 @@ package SpielstandmenueGrafik is
 
    procedure Spielstandmenü
      (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum);
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum;
+      SpeichernLadenExtern : in Boolean);
    
 private
    
-   SpeichernLaden : Boolean;
    MehrereSeiten : Boolean;
    
-   SpielstandlisteAnfang : constant Positive := 4;
-   SpielstandlisteEnde : constant Positive := 13;
-   MehrAnzeigen : constant Positive := 14;
-   NeuerSpielstand : constant Positive := 15;
+   -- Das +3 ist als Ausgleich notwendig da die Menütexte die ersten Plätze belegt.
+   SpielstandlisteAnfang : constant Positive := AuswahlKonstanten.SpielstandlisteAnfang + MenueKonstanten.SchleifenanpassungGrafikLogik + MenueKonstanten.SpielstandausgleichLogikGrafik;
+   SpielstandlisteEnde : constant Positive := AuswahlKonstanten.SpielstandlisteEnde + MenueKonstanten.SchleifenanpassungGrafikLogik + MenueKonstanten.SpielstandausgleichLogikGrafik;
+   MehrAnzeigen : constant Positive := AuswahlKonstanten.MehrAnzeigen + MenueKonstanten.SchleifenanpassungGrafikLogik + MenueKonstanten.SpielstandausgleichLogikGrafik;
+   NeuerSpielstand : constant Positive := AuswahlKonstanten.NeuerSpielstand + MenueKonstanten.SchleifenanpassungGrafikLogik + MenueKonstanten.SpielstandausgleichLogikGrafik;
+   Lademenü : constant Positive := 1;
+   Speichermenü : constant Positive := 2;
    
    Textbreite : Float;
    NeueTextbreite : Float;
@@ -37,8 +40,6 @@ private
    Farbe : Sf.Graphics.Color.sfColor;
       
    Spielstand : TextArrays.SpielstandArray;
-   
-   Erstellungszeit : Time;
    
    
    
@@ -56,7 +57,8 @@ private
    function Textanzeige
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       AuswahlExtern : in Integer;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum;
+      SpeichernLadenExtern : in Boolean)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (

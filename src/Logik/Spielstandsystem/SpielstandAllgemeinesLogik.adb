@@ -1,13 +1,12 @@
 with Ada.Directories; use Ada.Directories;
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with TextKonstanten;
-with VerzeichnisKonstanten;
 
 with SchreibeGrafiktask;
 
 with TexteingabeLogik;
 with LadezeitenLogik;
+with UmwandlungenVerzeichnisse;
 
 package body SpielstandAllgemeinesLogik is
 
@@ -35,11 +34,13 @@ package body SpielstandAllgemeinesLogik is
    
    
    function SpielstandVorhanden
-     (SpielstandnameExtern : in Unbounded_Wide_Wide_String)
+     (SpielstandnameExtern : in Unbounded_Wide_Wide_String;
+      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
       return Boolean
    is begin
       
-      return Exists (Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => VerzeichnisKonstanten.SpielstandSpielerStrich) & Encode (Item => To_Wide_Wide_String (Source => SpielstandnameExtern)));
+      return Exists (Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandartExtern,
+                                                                       SpielstandnameExtern => SpielstandnameExtern));
       
    end SpielstandVorhanden;
    

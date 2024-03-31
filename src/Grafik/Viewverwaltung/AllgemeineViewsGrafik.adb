@@ -61,7 +61,8 @@ package body AllgemeineViewsGrafik is
    
    
    procedure ÜberschriftErmitteln
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
+      ZeileExtern : in Positive)
    is begin
       
       case
@@ -73,7 +74,7 @@ package body AllgemeineViewsGrafik is
                           SpielenamenExtern => True);
             
          when others =>
-            Überschrift (ÜberschriftExtern => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => 1,
+            Überschrift (ÜberschriftExtern => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => ZeileExtern,
                                                                                              WelchesMenüExtern => WelchesMenüExtern),
                           HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                           SpielenamenExtern => False);

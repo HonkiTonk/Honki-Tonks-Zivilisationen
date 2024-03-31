@@ -5,7 +5,9 @@ with SteuerungsmenueGrafik;
 with AllgemeineViewsGrafik;
 with DoppelmenueGrafik;
 with SpielstandmenueGrafik;
-with SpielstandlisteLogik;
+with SpielstandVariablen;
+
+with LeseGrafiktask;
 
 package body MenueaufteilungGrafik is
 
@@ -14,7 +16,16 @@ package body MenueaufteilungGrafik is
       AktuelleAuswahlExtern : in SystemRecords.MehrfachauswahlRecord)
    is begin
       
-      AllgemeineViewsGrafik.ÜberschriftErmitteln (WelchesMenüExtern => WelchesMenüExtern);
+      case
+        WelchesMenüExtern
+      is
+         when MenueDatentypen.Spielstand_Menü_Enum =>
+            null;
+            
+         when others =>
+            AllgemeineViewsGrafik.ÜberschriftErmitteln (WelchesMenüExtern => WelchesMenüExtern,
+                                                        ZeileExtern       => 1);
+      end case;
       
       case
         WelchesMenüExtern
@@ -31,8 +42,9 @@ package body MenueaufteilungGrafik is
             SteuerungsmenueGrafik.Steuerungsmenü (AuswahlExtern => AktuelleAuswahlExtern.Erstauswahl);
             
          when MenueDatentypen.Spielstand_Menü_Enum =>
-            SpielstandmenueGrafik.Spielstandmenü (AuswahlExtern       => AktuelleAuswahlExtern,
-                                                   SpielstandartExtern => SpielstandlisteLogik.Spielstandart);
+            SpielstandmenueGrafik.Spielstandmenü (AuswahlExtern        => AktuelleAuswahlExtern,
+                                                   SpielstandartExtern  => SpielstandVariablen.SpielstandartLesen,
+                                                   SpeichernLadenExtern => LeseGrafiktask.SpeichernLaden);
       end case;
       
       case

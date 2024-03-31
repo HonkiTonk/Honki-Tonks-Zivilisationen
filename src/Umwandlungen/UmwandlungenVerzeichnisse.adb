@@ -1,25 +1,25 @@
 package body UmwandlungenVerzeichnisse is
 
-   function Spielstandverzeichnis
+   function Verzeichnispfad
      (SpielstandarteExtern : in SpielstandDatentypen.Spielstand_Enum)
       return String
    is begin
       
-      return ;
+      return Encode (Item => To_Wide_Wide_String (Source => (Verzeichnispfade (SpielstandarteExtern))));
       
-   end Spielstandverzeichnis;
+   end Verzeichnispfad;
    
    
    
-   function Spielstand
+   function Spielstandpfad
      (SpielstandarteExtern : in SpielstandDatentypen.Spielstand_Enum;
       SpielstandnameExtern : in Unbounded_Wide_Wide_String)
       return String
    is begin
       
-      return ;
+      return Encode (Item => To_Wide_Wide_String (Source => (Spielstandpfade (SpielstandarteExtern)))) & Encode (Item => (To_Wide_Wide_String (Source => SpielstandnameExtern)));
       
-   end Spielstand;
+   end Spielstandpfad;
      
 
 end UmwandlungenVerzeichnisse;

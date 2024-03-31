@@ -1,8 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Directories; use Ada.Directories;
 
-with SpielstandDatentypen;
-
 package SpielstandlisteLogik is
    pragma Elaborate_Body;
 
@@ -10,22 +8,16 @@ package SpielstandlisteLogik is
      (SpeichernLadenExtern : in Boolean)
       return Unbounded_Wide_Wide_String;
 
-   -- Das hier mal noch nach SpielstandVariablen verschieben. äöü
-   Spielstandart : SpielstandDatentypen.Spielstand_Enum := SpielstandDatentypen.Manueller_Spielstand_Enum;
-
 private
 
-   SpielstandlisteAnfang : constant Positive := 1;
-   SpielstandlisteEnde : constant Positive := 10;
-   MehrAnzeigen : constant Positive := 11;
-   NeuerSpielstand : constant Positive := 12;
-   Löschen : constant Positive := 13;
-   Zurück : constant Positive := 14;
+   LöschenAktiv : Boolean;
+
    Schleifenanfang : Positive;
    AktuellerSpielstand : Positive;
 
    AktuelleAuswahl : Integer;
    Ausgewählt : Integer;
+   Löschauswahl : Integer;
 
    Zwischenspeicher : Unbounded_Wide_Wide_String;
    RückgabeWert : Unbounded_Wide_Wide_String;

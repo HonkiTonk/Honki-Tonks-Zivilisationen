@@ -29,6 +29,7 @@ with SpielstandAllgemeinesLogik;
 with SpeichernKarteLogik;
 with Fehlermeldungssystem;
 with MeldungFestlegenLogik;
+with UmwandlungenVerzeichnisse;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -45,15 +46,13 @@ package body SpeichernLogik is
            AutospeichernExtern
          is
             when True =>
-               Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandAutoStrich);
-               
                if
                  NotfallspeichernExtern = False
                then
-                  Spielstandname := Spielstandname & NameAutoSpeichern;
+                  Spielstandname := NameAutoSpeichern;
                   
                else
-                  Spielstandname := Spielstandname & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.Notfallspeichern);
+                  Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.Notfallspeichern);
                end if;
             
             when False =>
@@ -73,17 +72,18 @@ package body SpeichernLogik is
            AutospeichernExtern
          is
             when True =>
-               null;
+               Spielstandart := SpielstandDatentypen.Automatischer_Spielstand_Enum;
             
             when False =>
                LadezeitenLogik.SpeichernLadenNullsetzen;
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
-               Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandSpielerStrich) & Spielstandname;
+               Spielstandart := SpielstandDatentypen.Manueller_Spielstand_Enum;
          end case;
          
          Create (File => DateiSpeichern,
                  Mode => Out_File,
-                 Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => Spielstandname)))),
+                 Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
+                                                                   SpielstandnameExtern => Spielstandname),
                  Form => "WCEM=8");
          
          if

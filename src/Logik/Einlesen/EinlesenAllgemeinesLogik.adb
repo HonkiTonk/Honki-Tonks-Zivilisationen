@@ -134,6 +134,7 @@ package body EinlesenAllgemeinesLogik is
          elsif
            Exists (Name => VerzeichnisExtern & "/0") = True
          then
+            End_Search (Search => Prüfungssuche);
             return False;
             
          else
@@ -141,6 +142,8 @@ package body EinlesenAllgemeinesLogik is
          end if;
             
       end loop PrüfenSchleife;
+      
+      End_Search (Search => Prüfungssuche);
          
       return True;
       

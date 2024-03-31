@@ -5,7 +5,8 @@ with TastenbelegungDatentypen;
 
 package SteuerungsauswahlLogik is
    pragma Elaborate_Body;
-      
+   
+   -- Das auch mal auslagern und mit Schreibe/Leseprozeduren/funktionen versehen. äöü
    WelcheSteuerung : TastenbelegungDatentypen.Tastenbelegungskategorie_Enum := TastenbelegungDatentypen.Allgemeinbelegung_Enum;
    
    

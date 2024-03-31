@@ -14,7 +14,8 @@ package AllgemeineViewsGrafik is
       SpielenamenExtern : in Boolean);
    
    procedure ÜberschriftErmitteln
-     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum);
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
+      ZeileExtern : in Positive);
    
    procedure Versionsnummer
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum);

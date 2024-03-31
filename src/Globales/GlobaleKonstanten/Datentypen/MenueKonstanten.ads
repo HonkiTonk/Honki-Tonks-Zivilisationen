@@ -38,7 +38,7 @@ package MenueKonstanten is
                                            MenueDatentypen.Steuerung_Menü_Enum          => 63,
 
                                            -- Spielstandmenü
-                                           MenueDatentypen.Spielstand_Menü_Enum         => 17
+                                           MenueDatentypen.Spielstand_Menü_Enum         => 18
                                           );
 
    -- Theoretich kann man hier noch -1 machen um die Überschrift abzuziehen, wird in den Positionen/Textaccessen nicht mehr benötigt. äöü
@@ -95,8 +95,8 @@ package MenueKonstanten is
 
 
    -- Spielstand
-   SpielstandAnfang : constant Positive := StandardArrayanpassung + 2;
-
+   SpielstandausgleichLogikGrafik : constant Positive := 3;
+   SpielstandAnfang : constant Positive := StandardArrayanpassung + SpielstandausgleichLogikGrafik;
    -- Spielstand
 
 end MenueKonstanten;

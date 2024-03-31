@@ -7,7 +7,7 @@ package SystemKonstanten is
    pragma Pure;
    
    MaximaleZeichenlängeDateisystem : constant Positive := 255;
-   MaximaleSpielstandlängeWindows : constant Positive := MaximaleZeichenlängeDateisystem - VerzeichnisKonstanten.SpielstandStrich'Length - VerzeichnisKonstanten.SpielstandSpieler'Length;
+   MaximaleSpielstandlängeWindows : constant Positive := MaximaleZeichenlängeDateisystem - VerzeichnisKonstanten.SpielstandStrich'Length - VerzeichnisKonstanten.SpielstandSpielerStrich'Length;
    
    LeerMeldung : constant TextnummernKonstanten.Spielmeldungen := TextnummernKonstanten.Spielmeldungen'First;
    

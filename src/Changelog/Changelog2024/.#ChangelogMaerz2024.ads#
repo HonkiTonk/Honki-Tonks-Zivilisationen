@@ -1,13 +1,13 @@
 package ChangelogMaerz2024 is
    
-   -- Version 0.05. => 0.05. (31.03.2024):
+   -- Version 0.05.5880 => 0.05. (31.03.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.5795 => 0.05. (30.03.2024):
+   -- Version 0.05.5795 => 0.05.5880 (30.03.2024):
    
    -- Code zusammengeführt.
    -- Unnötigen Code gelöscht.

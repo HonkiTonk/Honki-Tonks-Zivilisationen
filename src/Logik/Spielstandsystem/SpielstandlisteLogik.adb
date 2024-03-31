@@ -1,6 +1,5 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-with VerzeichnisKonstanten;
 with TastenbelegungDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
@@ -10,6 +9,7 @@ with AuswahlKonstanten;
 with Projekteinstellungen;
 with TextArrays;
 with BetriebssystemKonstanten;
+with MenueKonstanten;
 
 with LeseAllgemeines;
 with SchreibeGrafiktask;
@@ -21,13 +21,18 @@ with JaNeinLogik;
 with SpielstandEntfernenLogik;
 with SpielstandVariablen;
 with EinlesenAllgemeinesLogik;
+with SpielstandDatentypen;
+with UmwandlungenVerzeichnisse;
 
 package body SpielstandlisteLogik is
 
+   -- Noch einen Weg finden die Spielstände nach Datum/Name zu sortieren. äöü
    function Spielstandliste
      (SpeichernLadenExtern : in Boolean)
       return Unbounded_Wide_Wide_String
    is begin
+      
+      LöschenAktiv := False;
             
       SpielstandSchleife:
       loop
@@ -35,24 +40,11 @@ package body SpielstandlisteLogik is
          Schleifenanfang := TextArrays.SpielstandArray'First;
          SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => False);
          
-         case
-           Spielstandart
-         is
-            when SpielstandDatentypen.Manueller_Spielstand_Enum =>
-               Start_Search (Search    => Suche,
-                             Directory => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandSpieler,
-                             Pattern   => "",
-                             Filter    => (Ordinary_File => True,
-                                           others        => False));
-               
-            when SpielstandDatentypen.Automatischer_Spielstand_Enum =>
-               Start_Search (Search    => Suche,
-                             Directory => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandAuto,
-                             Pattern   => "",
-                             Filter    => (Ordinary_File => True,
-                                           others        => False));
-               
-         end case;
+         Start_Search (Search    => Suche,
+                       Directory => UmwandlungenVerzeichnisse.Verzeichnispfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen),
+                       Pattern   => "",
+                       Filter    => (Ordinary_File => True,
+                                     others        => False));
          
          MittelSchleife:
          loop
@@ -110,25 +102,24 @@ package body SpielstandlisteLogik is
             AuswahlSchleife:
             loop
                
-               Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
-               
-               if
-                 Ausgewählt > 0
-               then
-                  Ausgewählt := Ausgewählt - 2;
-                    
-               else
-                  null;
-               end if;
+               case
+                 LöschenAktiv
+               is
+                  when False =>
+                     Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
+                     
+                  when True =>
+                     Ausgewählt := AuswahlKonstanten.Löschen;
+               end case;
                
                case
                  Ausgewählt
                is
-                  when AuswahlKonstanten.LeerAuswahl | Zurück =>
+                  when AuswahlKonstanten.LeerAuswahl | AuswahlKonstanten.Zurück =>
                      RückgabeWert := TextKonstanten.LeerUnboundedString;
                      exit SpielstandSchleife;
                      
-                  when MehrAnzeigen =>
+                  when AuswahlKonstanten.MehrAnzeigen =>
                      if
                        SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt) = TextKonstanten.LeerUnboundedString
                      then
@@ -140,7 +131,7 @@ package body SpielstandlisteLogik is
                         exit AuswahlSchleife;
                      end if;
                   
-                  when NeuerSpielstand =>
+                  when AuswahlKonstanten.NeuerSpielstand =>
                      RückgabeWert := NameNutzer;
                      
                      if
@@ -152,41 +143,68 @@ package body SpielstandlisteLogik is
                         exit SpielstandSchleife;
                      end if;
                      
-                  when Löschen =>
+                  when AuswahlKonstanten.Löschen =>
+                     LöschenAktiv := True;
                      SchreibeGrafiktask.Löschauswahl (JaNeinExtern => True);
-                     Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
+                     Löschauswahl := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
                      
                      if
-                       Ausgewählt - 2 in SpielstandlisteAnfang .. SpielstandlisteEnde
+                       Löschauswahl in AuswahlKonstanten.SpielstandlisteAnfang .. AuswahlKonstanten.SpielstandlisteEnde
                      then
-                        SpielstandEntfernenLogik.SpielstandEntfernen (SpielstandnameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt - 2)),
-                                                                      ManuellAutoExtern    => Spielstandart);
+                        SpielstandEntfernenLogik.SpielstandEntfernen (SpielstandnameExtern => SpielstandVariablen.SpielstandnameLesen (NummerExtern => Löschauswahl),
+                                                                      ManuellAutoExtern    => SpielstandVariablen.SpielstandartLesen);
                         exit MittelSchleife;
                         
                      elsif
-                       Ausgewählt = Zurück
+                       Löschauswahl = AuswahlKonstanten.MehrAnzeigen
+                       and then
+                         SpielstandVariablen.SpielstandnameLesen (NummerExtern => Löschauswahl) = TextKonstanten.LeerUnboundedString
                      then
+                        exit MittelSchleife;
+                     
+                     elsif
+                       Löschauswahl = AuswahlKonstanten.MehrAnzeigen
+                     then
+                        -- Schleifenanfang muss hier auf einen Wert ungleich SpielstandVariablen.SpielstandArray'First gesetzt werden, damit bei mehreren Seiten es korrekt weitergeht.
+                        Schleifenanfang := TextArrays.SpielstandArray'First + 1;
+                        exit AuswahlSchleife;
+                        
+                     elsif
+                       Löschauswahl = AuswahlKonstanten.Zurück
+                     then
+                        LöschenAktiv := False;
                         RückgabeWert := TextKonstanten.LeerUnboundedString;
+                        SchreibeGrafiktask.Löschauswahl (JaNeinExtern => False);
                         exit SpielstandSchleife;
                         
-                     else
-                        null;
-                     end if;
-                     
-                  when -1 =>
-                     Spielstandart := SpielstandDatentypen.Manueller_Spielstand_Enum;
-                     exit MittelSchleife;
-                     
-                  when -2 =>
-                     if
-                       SpeichernLadenExtern
+                     elsif
+                       Löschauswahl = AuswahlKonstanten.ManuellerSpielstand
                      then
-                        null;
+                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SpielstandDatentypen.Manueller_Spielstand_Enum);
+                        End_Search (Search => Suche);
+                        exit MittelSchleife;
+                     
+                     elsif
+                       Löschauswahl = AuswahlKonstanten.AutomatischerSpielstand
+                     then
+                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SpielstandDatentypen.Automatischer_Spielstand_Enum);
+                        End_Search (Search => Suche);
+                        exit MittelSchleife;
                         
                      else
-                        Spielstandart := SpielstandDatentypen.Automatischer_Spielstand_Enum;
-                        exit MittelSchleife;
+                        LöschenAktiv := False;
+                        SchreibeGrafiktask.Löschauswahl (JaNeinExtern => False);
                      end if;
+                     
+                  when AuswahlKonstanten.ManuellerSpielstand =>
+                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SpielstandDatentypen.Manueller_Spielstand_Enum);
+                     End_Search (Search => Suche);
+                     exit MittelSchleife;
+                     
+                  when AuswahlKonstanten.AutomatischerSpielstand =>
+                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SpielstandDatentypen.Automatischer_Spielstand_Enum);
+                     End_Search (Search => Suche);
+                     exit MittelSchleife;
                                        
                   when others =>
                      if
@@ -212,6 +230,8 @@ package body SpielstandlisteLogik is
          end loop MittelSchleife;
       end loop SpielstandSchleife;
       
+      End_Search (Search => Suche);
+      
       return RückgabeWert;
       
    end Spielstandliste;
@@ -233,13 +253,13 @@ package body SpielstandlisteLogik is
          AktuelleAuswahl := MausauswahlLogik.SpeichernLaden;
          
          if
-           AktuelleAuswahl < 0
+           AktuelleAuswahl < AuswahlKonstanten.LeerAuswahl
          then
             SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
             SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AktuelleAuswahl);
             
          elsif
-           AktuelleAuswahl > 0
+           AktuelleAuswahl > AuswahlKonstanten.LeerAuswahl
          then
             SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
             SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
@@ -266,12 +286,10 @@ package body SpielstandlisteLogik is
                   
                else
                   SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
-                  SchreibeGrafiktask.Löschauswahl (JaNeinExtern => False);
-                  return AktuelleAuswahl;
+                  return AktuelleAuswahl - MenueKonstanten.SpielstandausgleichLogikGrafik;
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               SchreibeGrafiktask.Löschauswahl (JaNeinExtern => False);
                return AuswahlKonstanten.LeerAuswahl;
                
             when others =>
@@ -303,7 +321,8 @@ package body SpielstandlisteLogik is
             
          else
             case
-              SpielstandAllgemeinesLogik.SpielstandVorhanden (SpielstandnameExtern => Spielstandname)
+              SpielstandAllgemeinesLogik.SpielstandVorhanden (SpielstandnameExtern => Spielstandname,
+                                                              SpielstandartExtern  => SpielstandDatentypen.Manueller_Spielstand_Enum)
             is
                when False =>
                   null;
