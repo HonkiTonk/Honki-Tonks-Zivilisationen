@@ -5,6 +5,7 @@ with TextaccesseSchriftgroesseGrafik;
 with TextaccesseSchriftfarbeGrafik;
 with TextaccesseSchriftstilGrafik;
 with TextaccesseTextGrafik;
+with TextaccesseSchriftrahmenGrafik;
 
 -- In allen Bereichen immer alles gleich anlegen, auch dann wenn es dann leer ist.
 -- So weiß ich immer ob ich alles durchgegangen bin.
@@ -52,6 +53,15 @@ package body TextaccesseSetzenGrafik is
       TextaccesseSchriftstilGrafik.SchriftstilSetzen (TexteinstellungenGrafik.SchriftstilLesen);
       
    end Schriftstil;
+   
+   
+   
+   procedure Schriftrahmen
+   is begin
+      
+      TextaccesseSchriftrahmenGrafik.SchriftrahmenSetzen (RahmendickeExtern => TexteinstellungenGrafik.SchriftrahmenLesen);
+      
+   end Schriftrahmen;
    
    
      

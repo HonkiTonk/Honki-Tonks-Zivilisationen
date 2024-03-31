@@ -10,6 +10,8 @@ with Projekteinstellungen;
 with TextArrays;
 with BetriebssystemKonstanten;
 with MenueKonstanten;
+with SpielstandVariablen;
+with SystemDatentypen;
 
 with LeseAllgemeines;
 with SchreibeGrafiktask;
@@ -19,9 +21,7 @@ with TasteneingabeLogik;
 with SpielstandAllgemeinesLogik;
 with JaNeinLogik;
 with SpielstandEntfernenLogik;
-with SpielstandVariablen;
 with EinlesenAllgemeinesLogik;
-with SpielstandDatentypen;
 with UmwandlungenVerzeichnisse;
 
 package body SpielstandlisteLogik is
@@ -180,14 +180,14 @@ package body SpielstandlisteLogik is
                      elsif
                        Löschauswahl = AuswahlKonstanten.ManuellerSpielstand
                      then
-                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SpielstandDatentypen.Manueller_Spielstand_Enum);
+                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypen.Manueller_Spielstand_Enum);
                         End_Search (Search => Suche);
                         exit MittelSchleife;
                      
                      elsif
                        Löschauswahl = AuswahlKonstanten.AutomatischerSpielstand
                      then
-                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SpielstandDatentypen.Automatischer_Spielstand_Enum);
+                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypen.Automatischer_Spielstand_Enum);
                         End_Search (Search => Suche);
                         exit MittelSchleife;
                         
@@ -197,12 +197,12 @@ package body SpielstandlisteLogik is
                      end if;
                      
                   when AuswahlKonstanten.ManuellerSpielstand =>
-                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SpielstandDatentypen.Manueller_Spielstand_Enum);
+                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypen.Manueller_Spielstand_Enum);
                      End_Search (Search => Suche);
                      exit MittelSchleife;
                      
                   when AuswahlKonstanten.AutomatischerSpielstand =>
-                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SpielstandDatentypen.Automatischer_Spielstand_Enum);
+                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypen.Automatischer_Spielstand_Enum);
                      End_Search (Search => Suche);
                      exit MittelSchleife;
                                        
@@ -309,35 +309,30 @@ package body SpielstandlisteLogik is
       if
         LeseAllgemeines.Ironman /= TextKonstanten.LeerUnboundedString
       then
-         Spielstandname := LeseAllgemeines.Ironman;
+         return LeseAllgemeines.Ironman;
                
       else
          Spielstandname := SpielstandAllgemeinesLogik.SpielstandNameErmitteln;
+      end if;
          
-         if
-           Spielstandname = TextKonstanten.LeerUnboundedString
-         then
-            null;
+      if
+        Spielstandname = TextKonstanten.LeerUnboundedString
+      then
+         null;
             
-         else
-            case
-              SpielstandAllgemeinesLogik.SpielstandVorhanden (SpielstandnameExtern => Spielstandname,
-                                                              SpielstandartExtern  => SpielstandDatentypen.Manueller_Spielstand_Enum)
-            is
-               when False =>
-                  null;
-                  
-               when True =>
-                  if
-                    JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
-                  then
-                     null;
+      elsif
+        False = SpielstandAllgemeinesLogik.SpielstandVorhanden (SpielstandnameExtern => Spielstandname,
+                                                                SpielstandartExtern  => SystemDatentypen.Manueller_Spielstand_Enum)
+      then
+         null;
+            
+      elsif
+        True = JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben)
+      then
+         null;
                      
-                  else
-                     Spielstandname := TextKonstanten.LeerUnboundedString;
-                  end if;
-            end case;
-         end if;
+      else
+         Spielstandname := TextKonstanten.LeerUnboundedString;
       end if;
       
       return Spielstandname;

@@ -35,7 +35,7 @@ package body SpielstandAllgemeinesLogik is
    
    function SpielstandVorhanden
      (SpielstandnameExtern : in Unbounded_Wide_Wide_String;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
+      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
       return Boolean
    is begin
       

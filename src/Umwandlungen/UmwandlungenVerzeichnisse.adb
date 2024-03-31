@@ -1,7 +1,7 @@
 package body UmwandlungenVerzeichnisse is
 
    function Verzeichnispfad
-     (SpielstandarteExtern : in SpielstandDatentypen.Spielstand_Enum)
+     (SpielstandarteExtern : in SystemDatentypen.Spielstand_Enum)
       return String
    is begin
       
@@ -12,7 +12,7 @@ package body UmwandlungenVerzeichnisse is
    
    
    function Spielstandpfad
-     (SpielstandarteExtern : in SpielstandDatentypen.Spielstand_Enum;
+     (SpielstandarteExtern : in SystemDatentypen.Spielstand_Enum;
       SpielstandnameExtern : in Unbounded_Wide_Wide_String)
       return String
    is begin

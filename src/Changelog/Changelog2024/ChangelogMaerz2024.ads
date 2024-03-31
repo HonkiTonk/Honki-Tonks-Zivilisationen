@@ -1,9 +1,11 @@
 package ChangelogMaerz2024 is
    
-   -- Version 0.05.5880 => 0.05. (31.03.2024):
+   -- Version 0.05.5880 => 0.05.5930 (31.03.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textdateien an das neue Spielstandmenü angepasst.
+   -- System eingebaut um die Umrandung von Buchstaben festlegen zu können.
+   -- Lesbarkeit der Texte teilweise deutlich verbessert durch das Hinzufügen einer Umrandung der Buchstaben und Anpassung der verwendeten Farben.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

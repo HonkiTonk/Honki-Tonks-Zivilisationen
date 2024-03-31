@@ -72,12 +72,12 @@ package body SpeichernLogik is
            AutospeichernExtern
          is
             when True =>
-               Spielstandart := SpielstandDatentypen.Automatischer_Spielstand_Enum;
+               Spielstandart := SystemDatentypen.Automatischer_Spielstand_Enum;
             
             when False =>
                LadezeitenLogik.SpeichernLadenNullsetzen;
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
-               Spielstandart := SpielstandDatentypen.Manueller_Spielstand_Enum;
+               Spielstandart := SystemDatentypen.Manueller_Spielstand_Enum;
          end case;
          
          Create (File => DateiSpeichern,

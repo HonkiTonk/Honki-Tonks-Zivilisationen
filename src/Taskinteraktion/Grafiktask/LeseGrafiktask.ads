@@ -41,6 +41,9 @@ package LeseGrafiktask is
    function SchriftstilSetzen
      return Boolean;
    
+   function SchriftrahmenSetzen
+     return Boolean;
+   
    function TextSetzen
      return Boolean;
    

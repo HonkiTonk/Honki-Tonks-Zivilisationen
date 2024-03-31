@@ -10,7 +10,6 @@ with ZahlenDatentypen;
 with TextnummernKonstanten;
 with EinheitenRecords;
 
--- Hier noch Contracts einbauen. äöü
 package SchreibeGrafiktask is
    pragma Elaborate_Body;
 
@@ -39,6 +38,9 @@ package SchreibeGrafiktask is
      (JaNeinExtern : in Boolean);
    
    procedure SchriftstilSetzen
+     (JaNeinExtern : in Boolean);
+   
+   procedure SchriftrahmenSetzen
      (JaNeinExtern : in Boolean);
    
    procedure TextSetzen

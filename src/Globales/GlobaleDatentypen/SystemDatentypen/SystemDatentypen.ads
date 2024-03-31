@@ -46,5 +46,9 @@ package SystemDatentypen is
    
    -- Wird gespeichert als ein Byte.
    type FeldelementVorhanden is mod 2**8;
+   
+   
+   
+   type Spielstand_Enum is (Manueller_Spielstand_Enum, Automatischer_Spielstand_Enum);
 
 end SystemDatentypen;

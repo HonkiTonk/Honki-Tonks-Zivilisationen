@@ -296,6 +296,17 @@ package body EinlesenGrafikeinstellungenLogik is
                Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
                                                Schriftfarben (TextDatentypen.Aktiver_Menübereich_Enum));
          end case;
+         
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftrahmen := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftrahmen;
+               
+            when False =>
+               Float'Read (Stream (File => DateiLadenExtern),
+                           Schriftrahmen);
+         end case;
          -- GrafikRecords.GrafikeinstellungenRecord
          
          -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig eingelesen wurde!
@@ -314,6 +325,7 @@ package body EinlesenGrafikeinstellungenLogik is
                                                                                          Schriftgrößen          => Schriftgrößen,
                                                                                          Schriftfarben          => Schriftfarben,
                                                                                          Schriftstil            => Schriftstil,
+                                                                                         Schriftrahmen          => Schriftrahmen,
                                                                                       
                                                                                          Speziesfarben          => SpeziesFarben,
                                                                                                           

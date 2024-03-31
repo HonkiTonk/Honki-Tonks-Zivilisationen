@@ -92,6 +92,16 @@ package body SchreibeGrafiktask is
    
    
    
+   procedure SchriftrahmenSetzen
+     (JaNeinExtern : in Boolean)
+   is begin
+      
+      Grafiktask.Texteinstellungen.SchriftrahmenSetzen := JaNeinExtern;
+      
+   end SchriftrahmenSetzen;
+   
+   
+   
    procedure TextSetzen
      (JaNeinExtern : in Boolean)
    is begin

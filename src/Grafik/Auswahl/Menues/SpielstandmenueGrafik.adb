@@ -14,6 +14,7 @@ with TextKonstanten;
 with GrafikKonstanten;
 with ViewKonstanten;
 with TextDatentypen;
+with SpielstandVariablen;
 
 with LeseGrafiktask;
 
@@ -24,7 +25,6 @@ with TextberechnungenBreiteGrafik;
 with TextfarbeGrafik;
 with TextaccessverwaltungssystemEinfachGrafik;
 with TextskalierungGrafik;
-with SpielstandVariablen;
 with TexteinstellungenGrafik;
 with UmwandlungenVerzeichnisse;
 with AllgemeineViewsGrafik;
@@ -33,7 +33,7 @@ package body SpielstandmenueGrafik is
 
    procedure Spielstandmenü
      (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum;
+      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum;
       SpeichernLadenExtern : in Boolean)
    is begin
       
@@ -87,10 +87,10 @@ package body SpielstandmenueGrafik is
    
    function Spielstandaufteilung
      (AuswahlExtern : in Integer;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
+      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
       return Sf.System.Vector2.sfVector2f
    is
-      use type SpielstandDatentypen.Spielstand_Enum;
+      use type SystemDatentypen.Spielstand_Enum;
    begin
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
@@ -105,14 +105,14 @@ package body SpielstandmenueGrafik is
             Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum);
          
          elsif
-           SpielstandartExtern = SpielstandDatentypen.Manueller_Spielstand_Enum
+           SpielstandartExtern = SystemDatentypen.Manueller_Spielstand_Enum
            and
              AufteilungSchleifenwert = -AuswahlKonstanten.ManuellerSpielstand
          then
             Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum);
             
          elsif
-           SpielstandartExtern = SpielstandDatentypen.Automatischer_Spielstand_Enum
+           SpielstandartExtern = SystemDatentypen.Automatischer_Spielstand_Enum
            and
              AufteilungSchleifenwert = -AuswahlKonstanten.AutomatischerSpielstand
          then
@@ -146,7 +146,7 @@ package body SpielstandmenueGrafik is
    function Textanzeige
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       AuswahlExtern : in Integer;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum;
+      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum;
       SpeichernLadenExtern : in Boolean)
       return Sf.System.Vector2.sfVector2f
    is begin
@@ -244,7 +244,7 @@ package body SpielstandmenueGrafik is
    
    function TextSetzen
      (TextExtern : in Wide_Wide_String;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
+      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
       return Wide_Wide_String
    is begin
       
@@ -254,8 +254,8 @@ package body SpielstandmenueGrafik is
          return TextExtern;
          
       elsif
-        Exists (Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandartExtern,
-                                                                  SpielstandnameExtern => To_Unbounded_Wide_Wide_String (Source => TextExtern))) = False
+        False = Exists (Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandartExtern,
+                                                                          SpielstandnameExtern => To_Unbounded_Wide_Wide_String (Source => TextExtern)))
       then
          return TextExtern;
          

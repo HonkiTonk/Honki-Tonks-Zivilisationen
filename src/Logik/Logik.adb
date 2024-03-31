@@ -55,6 +55,7 @@ package body Logik is
       SchreibeGrafiktask.SchriftgrößeSetzen (JaNeinExtern => True);
       SchreibeGrafiktask.SchriftfarbeSetzen (JaNeinExtern => True);
       SchreibeGrafiktask.SchriftstilSetzen (JaNeinExtern => True);
+      SchreibeGrafiktask.SchriftrahmenSetzen (JaNeinExtern => True);
       SchreibeGrafiktask.TextSetzen (JaNeinExtern => True);
             
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Intro_Enum);

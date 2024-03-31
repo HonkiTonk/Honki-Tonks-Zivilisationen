@@ -6,7 +6,7 @@ private with TextArrays;
 private with AuswahlKonstanten;
 private with MenueKonstanten;
 
-with SpielstandDatentypen;
+with SystemDatentypen;
 with SystemRecords;
 
 package SpielstandmenueGrafik is
@@ -14,7 +14,7 @@ package SpielstandmenueGrafik is
 
    procedure Spielstandmenü
      (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum;
+      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum;
       SpeichernLadenExtern : in Boolean);
    
 private
@@ -45,7 +45,7 @@ private
    
    function Spielstandaufteilung
      (AuswahlExtern : in Integer;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
+      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -57,7 +57,7 @@ private
    function Textanzeige
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       AuswahlExtern : in Integer;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum;
+      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum;
       SpeichernLadenExtern : in Boolean)
       return Sf.System.Vector2.sfVector2f
      with
@@ -75,7 +75,7 @@ private
       
    function TextSetzen
      (TextExtern : in Wide_Wide_String;
-      SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
+      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
       return Wide_Wide_String;
    
 end SpielstandmenueGrafik;

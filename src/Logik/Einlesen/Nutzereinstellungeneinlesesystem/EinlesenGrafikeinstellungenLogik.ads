@@ -39,6 +39,8 @@ private
    
    Schriftstil : Sf.Graphics.Text.sfTextStyle;
    
+   Schriftrahmen : Float;
+   
    SpeziesFarben : GrafikRecords.SpeziesFarbenArray;
    
    EbenenUnterhalbSichtbar : Boolean;

@@ -5,6 +5,7 @@ package TextaccesseSetzenGrafik is
    procedure Schriftgröße;
    procedure Schriftfarbe;
    procedure Schriftstil;
+   procedure Schriftrahmen;
    procedure Text;
 
 end TextaccesseSetzenGrafik;

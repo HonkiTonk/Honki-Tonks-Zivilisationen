@@ -1,3 +1,4 @@
+-- Ds hier später auch wie die Anderen Variablen in Schreibe/Leseteile aufteilen? äöü
 package body SpielstandVariablen is
    
    procedure SpielstandnameSchreiben
@@ -42,7 +43,7 @@ package body SpielstandVariablen is
    
    
    procedure SpielstandartSchreiben
-     (SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum)
+     (SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
    is begin
       
       Spielstandart := SpielstandartExtern;
@@ -52,7 +53,7 @@ package body SpielstandVariablen is
    
    
    function SpielstandartLesen
-     return SpielstandDatentypen.Spielstand_Enum
+     return SystemDatentypen.Spielstand_Enum
    is begin
       
       return Spielstandart;

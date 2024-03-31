@@ -149,6 +149,9 @@ package body SchreibenEinstellungenLogik is
       
       Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
                                        TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Aktiver_Menübereich_Enum));
+      
+      Float'Write (Stream (File => DateiGrafikeinstellungen),
+                   TexteinstellungenGrafik.SchriftrahmenLesen);
       -- GrafikRecords.GrafikeinstellungenRecord
       
       Close (File => DateiGrafikeinstellungen);

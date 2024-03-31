@@ -6,6 +6,7 @@ with TextKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
 with TextnummernKonstanten;
+with SpielstandVariablen;
 
 with SchreibeWichtiges;
 with SchreibeGrenzen;
@@ -22,7 +23,6 @@ with SpielstandlisteLogik;
 with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
-with SpielstandVariablen;
 with UmwandlungenVerzeichnisse;
 
 with Fehlermeldungssystem;

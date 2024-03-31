@@ -1,11 +1,11 @@
 with GrafikDatentypen;
+with SpielstandVariablen;
 
 with EinfachmenueGrafik;
 with SteuerungsmenueGrafik;
 with AllgemeineViewsGrafik;
 with DoppelmenueGrafik;
 with SpielstandmenueGrafik;
-with SpielstandVariablen;
 
 with LeseGrafiktask;
 

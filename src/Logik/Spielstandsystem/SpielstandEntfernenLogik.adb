@@ -9,7 +9,7 @@ package body SpielstandEntfernenLogik is
 
    procedure SpielstandEntfernen
      (SpielstandnameExtern : in Unbounded_Wide_Wide_String;
-      ManuellAutoExtern : in SpielstandDatentypen.Spielstand_Enum)
+      ManuellAutoExtern : in SystemDatentypen.Spielstand_Enum)
    is begin
       
       case

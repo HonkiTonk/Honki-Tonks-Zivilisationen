@@ -5,7 +5,7 @@ private with SpeziesDatentypen;
 private with StadtDatentypen;
 private with EinheitenDatentypen;
 private with ZahlenDatentypen;
-private with SpielstandDatentypen;
+private with SystemDatentypen;
 
 private with LeseSpeziesbelegung;
 
@@ -25,7 +25,7 @@ package SpeichernLogik is
 private
    use type SpeziesDatentypen.Spieler_Enum;
 
-   Spielstandart : SpielstandDatentypen.Spielstand_Enum;
+   Spielstandart : SystemDatentypen.Spielstand_Enum;
 
    VorhandeneStädte : StadtDatentypen.Städtebereich;
 

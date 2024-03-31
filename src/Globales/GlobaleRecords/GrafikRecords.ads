@@ -31,6 +31,7 @@ package GrafikRecords is
       Schriftgrößen : SchriftgrößenArray;
       Schriftfarben : SchriftfarbenArray;
       Schriftstil : Sf.Graphics.Text.sfTextStyle;
+      Schriftrahmen : Float;
       
       Speziesfarben : SpeziesFarbenArray;
       

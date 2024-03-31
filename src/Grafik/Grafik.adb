@@ -135,6 +135,17 @@ package body Grafik is
       end case;
       
       case
+        LeseGrafiktask.SchriftrahmenSetzen
+      is
+         when True =>
+            TextaccesseSetzenGrafik.Schriftrahmen;
+            SchreibeGrafiktask.SchriftrahmenSetzen (JaNeinExtern => False);
+            
+         when False =>
+            null;
+      end case;
+      
+      case
         LeseGrafiktask.TextSetzen
       is
          when True =>

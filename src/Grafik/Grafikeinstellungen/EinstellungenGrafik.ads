@@ -32,13 +32,15 @@ package EinstellungenGrafik is
                                                                                                                  TextDatentypen.Überschrift_Enum         => Sf.Graphics.Color.sfRed,
                                                                                                                  TextDatentypen.Standard_Enum            => Sf.Graphics.Color.sfWhite,
                                                                                                                  TextDatentypen.Ausgewählt_Enum          => Sf.Graphics.Color.sfGreen,
-                                                                                                                 TextDatentypen.Aktiver_Menübereich_Enum => Sf.Graphics.Color.sfBlue,
+                                                                                                                 TextDatentypen.Aktiver_Menübereich_Enum => Sf.Graphics.Color.sfMagenta,
                                                                                                                  TextDatentypen.Mensch_Enum              => Sf.Graphics.Color.sfBlue,
                                                                                                                  TextDatentypen.KI_Enum                  => Sf.Graphics.Color.sfYellow,
                                                                                                                  TextDatentypen.Sonstiges_Enum           => Sf.Graphics.Color.sfCyan
                                                                                                                 ),
                                                                                       
                                                                                       Schriftstil            => 0,
+                                                                                      
+                                                                                      Schriftrahmen          => 2.00,
                                                                                       
                                                                                       Speziesfarben          => (
                                                                                                                  SpeziesDatentypen.Menschen_Enum         => (255, 230, 200, 75),

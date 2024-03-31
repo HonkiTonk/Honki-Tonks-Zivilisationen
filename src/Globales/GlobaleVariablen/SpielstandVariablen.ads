@@ -2,7 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with TextKonstanten;
 with TextArrays;
-with SpielstandDatentypen;
+with SystemDatentypen;
 
 package SpielstandVariablen is
    pragma Elaborate_Body;
@@ -14,7 +14,7 @@ package SpielstandVariablen is
       NummerExtern : in Positive);
    
    procedure SpielstandartSchreiben
-     (SpielstandartExtern : in SpielstandDatentypen.Spielstand_Enum);
+     (SpielstandartExtern : in SystemDatentypen.Spielstand_Enum);
    
    
    
@@ -26,12 +26,12 @@ package SpielstandVariablen is
      return TextArrays.SpielstandArray;
    
    function SpielstandartLesen
-     return SpielstandDatentypen.Spielstand_Enum;
+     return SystemDatentypen.Spielstand_Enum;
    
 private
       
    Spielstand : TextArrays.SpielstandArray := (others => TextKonstanten.LeerUnboundedString);
    
-   Spielstandart : SpielstandDatentypen.Spielstand_Enum := SpielstandDatentypen.Manueller_Spielstand_Enum;
+   Spielstandart : SystemDatentypen.Spielstand_Enum := SystemDatentypen.Manueller_Spielstand_Enum;
    
 end SpielstandVariablen;

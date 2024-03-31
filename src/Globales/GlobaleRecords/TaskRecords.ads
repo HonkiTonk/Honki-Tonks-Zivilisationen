@@ -66,6 +66,7 @@ package TaskRecords is
       SchriftgrößeSetzen : Boolean;
       SchriftfarbeSetzen : Boolean;
       SchriftstilSetzen : Boolean;
+      SchriftrahmenSetzen : Boolean;
       TextSetzen : Boolean;
       
    end record;

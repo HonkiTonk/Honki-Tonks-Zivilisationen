@@ -24,6 +24,13 @@ package TexteinstellungenGrafik is
    procedure SchriftstilSchreiben
      (StilExtern : in Sf.Graphics.Text.sfTextStyle);
    
+   procedure SchriftrahmenSchreiben
+     (SchriftrahmenExtern : in Float)
+     with
+       Pre => (
+                 SchriftrahmenExtern >= 0.00
+              );
+   
    
    
    function SchriftartLesen
@@ -62,6 +69,13 @@ package TexteinstellungenGrafik is
    
    function SchriftstilLesen
      return Sf.Graphics.Text.sfTextStyle;
+   
+   function SchriftrahmenLesen
+     return Float
+     with
+       Post => (
+                 SchriftrahmenLesen'Result >= 0.00 
+               );
    
 private
    

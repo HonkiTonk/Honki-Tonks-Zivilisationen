@@ -92,6 +92,16 @@ package body LeseGrafiktask is
    
    
    
+   function SchriftrahmenSetzen
+     return Boolean
+   is begin
+      
+      return Grafiktask.Texteinstellungen.SchriftrahmenSetzen;
+      
+   end SchriftrahmenSetzen;
+   
+   
+   
    function TextSetzen
      return Boolean
    is begin

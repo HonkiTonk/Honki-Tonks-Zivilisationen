@@ -13,6 +13,7 @@ with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with TextaccesseSchriftartGrafik;
 
+-- Das hier auch mal in Lesen und Schreiben aufteilen? äöü
 package body TexteinstellungenGrafik is
    
    procedure SchriftartFestlegen
@@ -172,5 +173,26 @@ package body TexteinstellungenGrafik is
       return EinstellungenGrafik.Grafikeinstellungen.Schriftstil;
       
    end SchriftstilLesen;
+   
+   
+   
+   procedure SchriftrahmenSchreiben
+     (SchriftrahmenExtern : in Float)
+   is begin
+      
+      EinstellungenGrafik.Grafikeinstellungen.Schriftrahmen := SchriftrahmenExtern;
+      
+   end SchriftrahmenSchreiben;
+   
+   
+   
+   function SchriftrahmenLesen
+     return Float
+   is begin
+      
+      return EinstellungenGrafik.Grafikeinstellungen.Schriftrahmen;
+      
+   end SchriftrahmenLesen;
+        
 
 end TexteinstellungenGrafik;
