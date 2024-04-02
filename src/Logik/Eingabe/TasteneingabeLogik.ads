@@ -25,10 +25,23 @@ package TasteneingabeLogik is
    
 private
    
-   Maustaste : Sf.Window.Mouse.sfMouseButton;
+   type TastenRecord is record
+      
+      Maustaste : Sf.Window.Mouse.sfMouseButton;
+      
+      Tastaturtaste : Sf.Window.Keyboard.sfKeyCode;
+      
+   end record;
    
-   Taste : Sf.Window.Keyboard.sfKeyCode;
+   VereinfachteEingabeTasten : TastenRecord;
+   AllgemeineTasteTasten : TastenRecord;
+   EinheitentasteTasten : TastenRecord;
+   StadttasteTasten : TastenRecord;
+   TastenbelegungAnpassenTasten : TastenRecord;
    
-   procedure EingabeanfangSetzen;
+   
+   
+   function EingabeanfangSetzen
+     return TastenRecord;
    
 end TasteneingabeLogik;

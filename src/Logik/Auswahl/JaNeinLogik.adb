@@ -11,14 +11,21 @@ with EingabeAllgemeinLogik;
 
 package body JaNeinLogik is
 
-   -- Das noch einmal in umgedreht bauen oder über einen zusätzlichen Parameter kreieren und dann die Abfragen deaktivierbar machen. äöü
    function JaNein
      (FrageZeileExtern : in Positive)
       return Boolean
    is begin
       
-      SchreibeGrafiktask.Fragenanzeige (FrageExtern => FrageZeileExtern);
-      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Ja_Nein_Enum);
+      case
+        LeseOptionen.SicherheitsfragenAnzeigen
+      is
+         when False =>
+            return True;
+            
+         when True =>
+            SchreibeGrafiktask.Fragenanzeige (FrageExtern => FrageZeileExtern);
+            SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Ja_Nein_Enum);
+      end case;
       
       AuswahlSchleife:
       loop
@@ -51,21 +58,10 @@ package body JaNeinLogik is
       
       EingabeAllgemeinLogik.LeerEingabeartFrage;
       
-      -- Hülle für später. äöü
-      case
-        LeseOptionen.SicherheitsfragenAnzeigen
-      is
-         when True =>
-            null;
-            
-         when False =>
-            null;
-      end case;
-      
       case
         AktuelleAuswahl
       is
-         when 1 =>
+         when AuswahlKonstanten.ErstAuswahl =>
             return True;
             
          when others =>

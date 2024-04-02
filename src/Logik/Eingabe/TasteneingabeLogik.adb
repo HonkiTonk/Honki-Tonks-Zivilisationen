@@ -7,7 +7,8 @@ with EingabeAllgemeinLogik;
 
 package body TasteneingabeLogik is
    
-   procedure EingabeanfangSetzen
+   function EingabeanfangSetzen
+     return TastenRecord
    is begin
       
       SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
@@ -15,8 +16,7 @@ package body TasteneingabeLogik is
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
-      Maustaste := LeseLogiktask.Maustaste;
-      Taste := LeseLogiktask.Tastaturtaste;
+      return (LeseLogiktask.Maustaste, LeseLogiktask.Tastaturtaste);
       
    end EingabeanfangSetzen;
    
@@ -29,23 +29,23 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      EingabeanfangSetzen;
+      VereinfachteEingabeTasten := EingabeanfangSetzen;
       
       if
-        Maustaste = Sf.Window.Mouse.sfMouseLeft
+        VereinfachteEingabeTasten.Maustaste = Sf.Window.Mouse.sfMouseLeft
         or
-          (Taste /= Sf.Window.Keyboard.sfKeyUnknown
+          (VereinfachteEingabeTasten.Tastaturtaste /= Sf.Window.Keyboard.sfKeyUnknown
            and
-             Taste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Auswählen_Enum))
+             VereinfachteEingabeTasten.Tastaturtaste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Auswählen_Enum))
       then
          return TastenbelegungDatentypen.Auswählen_Enum;
          
       elsif
-        Maustaste = Sf.Window.Mouse.sfMouseRight
+        VereinfachteEingabeTasten.Maustaste = Sf.Window.Mouse.sfMouseRight
         or
-          (Taste /= Sf.Window.Keyboard.sfKeyUnknown
+          (VereinfachteEingabeTasten.Tastaturtaste /= Sf.Window.Keyboard.sfKeyUnknown
            and
-             Taste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Abwählen_Enum))
+             VereinfachteEingabeTasten.Tastaturtaste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Abwählen_Enum))
       then
          return TastenbelegungDatentypen.Abwählen_Enum;
          
@@ -64,20 +64,20 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      EingabeanfangSetzen;
+      AllgemeineTasteTasten := EingabeanfangSetzen;
       
       if
-        Maustaste = Sf.Window.Mouse.sfMouseLeft
+        AllgemeineTasteTasten.Maustaste = Sf.Window.Mouse.sfMouseLeft
       then
          return TastenbelegungDatentypen.Auswählen_Enum;
          
       elsif
-        Maustaste = Sf.Window.Mouse.sfMouseRight
+        AllgemeineTasteTasten.Maustaste = Sf.Window.Mouse.sfMouseRight
       then
          return TastenbelegungDatentypen.Abwählen_Enum;
          
       elsif
-        Taste = Sf.Window.Keyboard.sfKeyUnknown
+        AllgemeineTasteTasten.Tastaturtaste = Sf.Window.Keyboard.sfKeyUnknown
       then
          return TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum;
             
@@ -89,7 +89,7 @@ package body TasteneingabeLogik is
       for AllgemeineBelegungSchleifenwert in TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Range loop
             
          if
-           LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => AllgemeineBelegungSchleifenwert) = Taste
+           LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => AllgemeineBelegungSchleifenwert) = AllgemeineTasteTasten.Tastaturtaste
          then
             return AllgemeineBelegungSchleifenwert;
                
@@ -112,20 +112,20 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      EingabeanfangSetzen;
+      EinheitentasteTasten := EingabeanfangSetzen;
       
       if
-        Maustaste = Sf.Window.Mouse.sfMouseLeft
+        EinheitentasteTasten.Maustaste = Sf.Window.Mouse.sfMouseLeft
       then
          return BefehleDatentypen.Auswählen_Enum;
          
       elsif
-        Maustaste = Sf.Window.Mouse.sfMouseRight
+        EinheitentasteTasten.Maustaste = Sf.Window.Mouse.sfMouseRight
       then
          return BefehleDatentypen.Abwählen_Enum;
          
       elsif
-        Taste = Sf.Window.Keyboard.sfKeyUnknown
+        EinheitentasteTasten.Tastaturtaste = Sf.Window.Keyboard.sfKeyUnknown
       then
          return BefehleDatentypen.Leer_Einheitenbelegung_Enum;
             
@@ -137,7 +137,7 @@ package body TasteneingabeLogik is
       for EinheitenbelegungSchleifenwert in BefehleDatentypen.Einheitenbelegung_Vorhanden_Enum'Range loop
             
          if
-           LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => EinheitenbelegungSchleifenwert) = Taste
+           LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => EinheitenbelegungSchleifenwert) = EinheitentasteTasten.Tastaturtaste
          then
             return EinheitenbelegungSchleifenwert;
                
@@ -160,20 +160,20 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      EingabeanfangSetzen;
+      StadttasteTasten := EingabeanfangSetzen;
       
       if
-        Maustaste = Sf.Window.Mouse.sfMouseLeft
+        StadttasteTasten.Maustaste = Sf.Window.Mouse.sfMouseLeft
       then
          return BefehleDatentypen.Auswählen_Enum;
          
       elsif
-        Maustaste = Sf.Window.Mouse.sfMouseRight
+        StadttasteTasten.Maustaste = Sf.Window.Mouse.sfMouseRight
       then
          return BefehleDatentypen.Verlassen_Enum;
          
       elsif
-        Taste = Sf.Window.Keyboard.sfKeyUnknown
+        StadttasteTasten.Tastaturtaste = Sf.Window.Keyboard.sfKeyUnknown
       then
          return BefehleDatentypen.Leer_Stadtbefehle_Enum;
             
@@ -185,7 +185,7 @@ package body TasteneingabeLogik is
       for StadtbelegungSchleifenwert in BefehleDatentypen.Stadtbefehle_Auswählen_Enum'Range loop
             
          if
-           LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => StadtbelegungSchleifenwert) = Taste
+           LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => StadtbelegungSchleifenwert) = StadttasteTasten.Tastaturtaste
          then
             return StadtbelegungSchleifenwert;
                
@@ -208,25 +208,27 @@ package body TasteneingabeLogik is
       TasteneingabeSchleife:
       loop
          
-         SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
-         SchreibeGrafiktask.Tasteneingabe (JaNeinExtern => True);
+         TastenbelegungAnpassenTasten := EingabeanfangSetzen;
          
-         EingabeAllgemeinLogik.EingabeAbwarten;
+         -- SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
+         -- SchreibeGrafiktask.Tasteneingabe (JaNeinExtern => True);
+         
+         -- EingabeAllgemeinLogik.EingabeAbwarten;
       
-         Maustaste := LeseLogiktask.Maustaste;
+         -- Maustaste := LeseLogiktask.Maustaste;
          
          case
-           Maustaste
+           TastenbelegungAnpassenTasten.Maustaste
          is
             when Sf.Window.Mouse.sfMouseRight =>
                return Sf.Window.Keyboard.sfKeyUnknown;
             
             when others =>
-               Taste := LeseLogiktask.Tastaturtaste;
+               null;
          end case;
       
          case
-           Taste
+           TastenbelegungAnpassenTasten.Tastaturtaste
          is
             when Sf.Window.Keyboard.sfKeyEscape =>
                return Sf.Window.Keyboard.sfKeyUnknown;
@@ -235,7 +237,7 @@ package body TasteneingabeLogik is
                null;
                
             when others =>
-               return Taste;
+               return TastenbelegungAnpassenTasten.Tastaturtaste;
          end case;
          
       end loop TasteneingabeSchleife;

@@ -13,7 +13,7 @@ package StandardTastenbelegungDatenbank is
    procedure Stadtbelegung;
 
    AllgemeineBelegungStandard : constant TastenbelegungDatenbank.AllgemeineBelegungArray := (
-                                                                                             TastenbelegungDatentypen.Auswählen_Enum                      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                                             TastenbelegungDatentypen.Auswählen_Enum                      => Sf.Window.Keyboard.sfKeyEnter,
                                                                                              -- Hier noch einen Wert für die rechte Maustaste einbauen und da dann Informationen auf der Karten anzeigen? äöü
                                                                                              -- Eventuell lassen dafür weitere Nutzungsmöglichkeiten finden? äöü
 
@@ -56,7 +56,7 @@ package StandardTastenbelegungDatenbank is
 
 
    EinheitenbelegungStandard : constant TastenbelegungDatenbank.EinheitenbelegungArray := (
-                                                                                           BefehleDatentypen.Auswählen_Enum             => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                                           BefehleDatentypen.Auswählen_Enum             => Sf.Window.Keyboard.sfKeyEnter,
 
                                                                                            -- Bewegung
                                                                                            BefehleDatentypen.Oben_Enum                  => Sf.Window.Keyboard.sfKeyNumpad8,

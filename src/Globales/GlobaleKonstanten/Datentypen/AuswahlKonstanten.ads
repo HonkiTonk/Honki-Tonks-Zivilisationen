@@ -7,6 +7,7 @@ package AuswahlKonstanten is
    -- Nur die StadtEinheitenauswahl nutzt aktuell keine 0, eventuell anpassen? äöü
    -- Also um eine LeerStadtEinheitenauswahl erweitern? äöü
    LeerAuswahl : constant Natural := 0;
+   ErstAuswahl : constant Positive := 1;
 
    LeerGebäudeauswahl : constant StadtDatentypen.GebäudeID := StadtDatentypen.GebäudeID'First;
 
