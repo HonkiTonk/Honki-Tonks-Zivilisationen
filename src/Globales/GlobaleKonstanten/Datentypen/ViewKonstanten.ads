@@ -17,13 +17,10 @@ package ViewKonstanten is
    StadtKarte : constant Positive := StadtBefehle + 1;
    
    BaumenüKategorie : constant Positive := 1;
-   BaumenüGebäudeliste : constant Positive := BaumenüKategorie + 1;
-   BaumenüEinheitenliste : constant Positive := BaumenüGebäudeliste + 1;
-   BaumenüGebäudeinformationen : constant Positive := BaumenüEinheitenliste + 1;
-   BaumenüGebäudebeschreibung : constant Positive := BaumenüGebäudeinformationen + 1;
-   BaumenüEinheiteninformationen : constant Positive := BaumenüGebäudebeschreibung + 1;
-   BaumenüEinheitenbeschreibung : constant Positive := BaumenüEinheiteninformationen + 1;
-   BaumenüAktuell : constant Positive := BaumenüEinheitenbeschreibung + 1;
+   BaumenüBauliste : constant Positive := BaumenüKategorie + 1;
+   BaumenüInformationen : constant Positive := BaumenüBauliste + 1;
+   BaumenüBeschreibung : constant Positive := BaumenüInformationen + 1;
+   BaumenüAktuell : constant Positive := BaumenüBeschreibung + 1;
    BaumenüGebäudelisteVerkaufen : constant Positive := BaumenüAktuell + 1;
    BaumenüGebäudeinformationenVerkaufen : constant Positive := BaumenüGebäudelisteVerkaufen + 1;
    BaumenüGebäudebeschreibungVerkaufen : constant Positive := BaumenüGebäudeinformationenVerkaufen + 1;

@@ -22,6 +22,7 @@ package body TasteneingabeLogik is
    
    
    
+   -- Davon eventuell eine erweiterte Version einbauen damit ich auch bei sowas wie JaNeinLogik die Return-Taste zum bestätigen benutzen kann? äöü
    function VereinfachteEingabe
      return TastenbelegungDatentypen.Allgemeine_Belegung_Enum
    is

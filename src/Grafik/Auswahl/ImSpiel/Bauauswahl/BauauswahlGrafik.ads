@@ -36,13 +36,16 @@ package BauauswahlGrafik is
 
    function Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ViewbereichExtern : in Positive)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Float
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
-              );
+              ),
+
+       Post => (
+                  Gebäude'Result >= 0.00
+               );
 
 private
 
@@ -50,33 +53,25 @@ private
 
    Text : Unbounded_Wide_Wide_String;
 
-   ViewflächeGebäude : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
-   ViewflächeEinheiten : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   ViewflächeBauliste : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeAktuell : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeAufteilung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
 
    Farbe : Sf.Graphics.Color.sfColor;
 
+   procedure BaulistenviewEinstellen
+     (AuswahlExtern : in Natural;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      GebäudeEinheitExtern : in Boolean)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
+
    procedure Bauaufteilung
      (AusgewählteAufteilungExtern : in Natural;
       AktuelleAufteilungExtern : in Positive);
-
-   procedure GebäudeviewEinstellen
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
-              );
-
-   procedure Einheiten
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
-              );
 
    procedure Aktuell
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord)
@@ -84,5 +79,20 @@ private
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => BauauswahlExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
+
+
+
+   function Einheiten
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return Float
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+              ),
+
+       Post => (
+                  Einheiten'Result >= 0.00
+               );
 
 end BauauswahlGrafik;

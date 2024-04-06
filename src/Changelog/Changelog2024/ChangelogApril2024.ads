@@ -161,45 +161,42 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (07.04.2024):
+   -- Version 0.05.6015 => 0.05. (07.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (06.04.2024):
+   -- Version 0.05.5980 => 0.05.6015 (06.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (05.04.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Baumenü angefangen zu überarbeiten.
+   -- Code zusammengeführt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (04.04.2024):
+   -- Version 0.05.5980 => 0.05.5980 (05.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (03.04.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Warum will GNAT-14 denn nicht?
    
    
 
-   -- Version 0.05.5980 => 0.05. (02.04.2024):
+   -- Version 0.05.5980 => 0.05.5980 (04.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.5980 => 0.05.5980 (03.04.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.5980 => 0.05.5980 (02.04.2024):
+   
+   -- null.
    
    
 

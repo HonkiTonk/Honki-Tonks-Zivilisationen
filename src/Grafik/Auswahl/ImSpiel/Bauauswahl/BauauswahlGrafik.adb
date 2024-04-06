@@ -48,12 +48,14 @@ package body BauauswahlGrafik is
         AktuelleAufteilungExtern
       is
          when StadtKonstanten.BaumenüGebäude =>
-            GebäudeviewEinstellen (AuswahlExtern => AktuelleAuswahlExtern.Gebäude,
-                                    SpeziesExtern => BauauswahlExtern.Spezies);
+            BaulistenviewEinstellen (AuswahlExtern        => Natural (AktuelleAuswahlExtern.Gebäude),
+                                     SpeziesExtern        => BauauswahlExtern.Spezies,
+                                     GebäudeEinheitExtern => True);
             
          when StadtKonstanten.BaumenüEinheiten =>
-            Einheiten (AuswahlExtern => AktuelleAuswahlExtern.Einheit,
-                       SpeziesExtern => BauauswahlExtern.Spezies);
+            BaulistenviewEinstellen (AuswahlExtern        => Natural (AktuelleAuswahlExtern.Einheit),
+                                     SpeziesExtern        => BauauswahlExtern.Spezies,
+                                     GebäudeEinheitExtern => False);
             
          when others =>
             null;
@@ -121,35 +123,42 @@ package body BauauswahlGrafik is
    
    
    
-   -- Wenn ich den Viewbereich hier mit reingebe, dann sollte ich das alles zusammenfassen können, oder? äöü
-   procedure GebäudeviewEinstellen
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+   procedure BaulistenviewEinstellen
+     (AuswahlExtern : in Natural;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      GebäudeEinheitExtern : in Boolean)
    is begin
       
-      ViewflächeGebäude := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeGebäude,
-                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
-                                                                                                    GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height));
+      ViewflächeBauliste := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeBauliste,
+                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBauliste).width,
+                                                                                                    GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBauliste).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste),
-                                            GrößeExtern          => ViewflächeGebäude,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste));
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüBauliste),
+                                            GrößeExtern          => ViewflächeBauliste,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBauliste));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                     AbmessungenExtern => ViewflächeGebäude);
+                                     AbmessungenExtern => ViewflächeBauliste);
       
-      ViewflächeGebäude.y := Gebäude (AuswahlExtern     => AuswahlExtern,
-                                      SpeziesExtern     => SpeziesExtern,
-                                      ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationen);
+      case
+        GebäudeEinheitExtern
+      is
+         when True =>
+            ViewflächeBauliste.y := Gebäude (AuswahlExtern => StadtDatentypen.GebäudeID (AuswahlExtern),
+                                               SpeziesExtern => SpeziesExtern);
+            
+         when False =>
+            ViewflächeBauliste.y := Einheiten (AuswahlExtern => EinheitenDatentypen.EinheitenID (AuswahlExtern),
+                                                SpeziesExtern => SpeziesExtern);
+      end case;
       
-   end GebäudeviewEinstellen;
+   end BaulistenviewEinstellen;
    
    
    
    function Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ViewbereichExtern : in Positive)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Float
    is begin
 
@@ -164,7 +173,7 @@ package body BauauswahlGrafik is
          is
             when True =>
                Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                                    MaximaleTextbreiteExtern => ViewflächeGebäude.x,
+                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x,
                                                                                                     TextAccessExtern         => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                                     FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
                                                                                                                                                                        AuswahlExtern    => Natural (AuswahlExtern)));
@@ -186,9 +195,8 @@ package body BauauswahlGrafik is
             null;
             
          when others =>
-            BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AuswahlExtern,
-                                                            SpeziesExtern     => SpeziesExtern,
-                                                            ViewbereichExtern => ViewbereichExtern);
+            BauauswahlGebaeudeGrafik.Informationen (AuswahlExtern => AuswahlExtern,
+                                                    SpeziesExtern => SpeziesExtern);
       end case;
       
       return Textposition.y;
@@ -197,21 +205,11 @@ package body BauauswahlGrafik is
    
    
    
-   procedure Einheiten
+   function Einheiten
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return Float
    is begin
-      
-      ViewflächeEinheiten := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeEinheiten,
-                                                                               VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).width,
-                                                                                                     GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).height));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste),
-                                            GrößeExtern          => ViewflächeEinheiten,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste));
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                     AbmessungenExtern => ViewflächeEinheiten);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
@@ -224,7 +222,7 @@ package body BauauswahlGrafik is
          is
             when True =>
                Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                                    MaximaleTextbreiteExtern => ViewflächeEinheiten.x,
+                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x,
                                                                                                     TextAccessExtern         => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
                                                                                                     FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (EinheitenSchleifenwert),
                                                                                                                                                                        AuswahlExtern    => Natural (AuswahlExtern)));
@@ -237,7 +235,7 @@ package body BauauswahlGrafik is
          
       end loop EinheitenSchleife;
       
-      ViewflächeEinheiten.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       case
         AuswahlExtern
@@ -249,6 +247,8 @@ package body BauauswahlGrafik is
             BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern => AuswahlExtern,
                                                               SpeziesExtern => SpeziesExtern);
       end case;
+      
+      return Textposition.y;
       
    end Einheiten;
    

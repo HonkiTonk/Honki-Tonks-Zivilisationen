@@ -31,12 +31,12 @@ package body BauauswahlEinheitenGrafik is
    begin
       
       ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeInformationen,
-                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen).width,
-                                                                                                         GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen).height));
+                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüInformationen).width,
+                                                                                                         GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüInformationen).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheiteninformationen),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüInformationen),
                                             GrößeExtern          => ViewflächeInformationen,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüInformationen));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeInformationen);
@@ -122,12 +122,12 @@ package body BauauswahlEinheitenGrafik is
    is begin
       
       ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeBeschreibung,
-                                                                                  VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung).width,
-                                                                                                        GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung).height));
+                                                                                  VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBeschreibung).width,
+                                                                                                        GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBeschreibung).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenbeschreibung),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüBeschreibung),
                                             GrößeExtern          => ViewflächeBeschreibung,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBeschreibung));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBeschreibung);

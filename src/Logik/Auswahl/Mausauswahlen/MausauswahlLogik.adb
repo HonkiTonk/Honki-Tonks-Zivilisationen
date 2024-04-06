@@ -138,7 +138,7 @@ package body MausauswahlLogik is
          when StadtKonstanten.BaumenüGebäude =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                        point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
-                                                                       view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste));
+                                                                       view         => Views.BauviewAccesse (ViewKonstanten.BaumenüBauliste));
             
             GebäudeSchleife:
             for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
@@ -163,7 +163,7 @@ package body MausauswahlLogik is
          when StadtKonstanten.BaumenüEinheiten =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                        point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
-                                                                       view         => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste));
+                                                                       view         => Views.BauviewAccesse (ViewKonstanten.BaumenüBauliste));
       
             EinheitenSchleife:
             for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
