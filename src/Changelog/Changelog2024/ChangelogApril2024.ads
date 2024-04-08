@@ -154,16 +154,19 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (08.04.2024):
+   -- Version 0.05.6070 => 0.05. (08.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6015 => 0.05. (07.04.2024):
+   -- Version 0.05.6015 => 0.05.6070 (07.04.2024):
    
-   -- 
+   -- ASFML auf die stabile Version 2.5.5 aktualisiert.
+   -- Lokale SFML Version 2.5.1 auf Version 2.6.1 aktualisiert.
+   -- Lokale CSFML Version 2.5-1.1 auf Version 2.6.0-3 aktualisiert.
+   -- Nach diversen Tests scheint alles mit Version 2.5 und mit Version 2.6 zu funktionieren.
    -- Kleinigkeiten korrigiert.
    
    
