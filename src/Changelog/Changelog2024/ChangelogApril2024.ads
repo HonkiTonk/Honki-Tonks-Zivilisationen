@@ -135,14 +135,14 @@ package ChangelogApril2024 is
 
    -- Version 0.05.6100 => 0.05.6120 (11.04.2024):
    
-   -- Mit dem Erstellen eines Debianpakets herumgespielt.
+   -- Mit dem Erstellen eines Debianpakets herumexperimentiert.
    
    
 
    -- Version 0.05.6070 => 0.05.6100 (10.04.2024):
    
    -- VMs neu installiert und weitere Testumgebungen hinzugefügt.
-   -- Backup endlich mal automatisiert.
+   -- Backupsystem endlich automatisiert.
    
    
 
