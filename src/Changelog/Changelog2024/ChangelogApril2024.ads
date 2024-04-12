@@ -126,38 +126,35 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (12.04.2024):
+   -- Version 0.05.6120 => 0.05. (12.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (11.04.2024):
+   -- Version 0.05.6100 => 0.05.6120 (11.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (10.04.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mit dem Erstellen eines Debianpakets herumgespielt.
    
    
 
-   -- Version 0.05. => 0.05. (09.04.2024):
+   -- Version 0.05.6070 => 0.05.6100 (10.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- VMs neu installiert und weitere Testumgebungen hinzugefügt.
+   -- Backup endlich mal automatisiert.
    
    
 
-   -- Version 0.05.6070 => 0.05. (08.04.2024):
+   -- Version 0.05.6070 => 0.05.6070 (09.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.6070 => 0.05.6070 (08.04.2024):
+   
+   -- null.
    
    
 
