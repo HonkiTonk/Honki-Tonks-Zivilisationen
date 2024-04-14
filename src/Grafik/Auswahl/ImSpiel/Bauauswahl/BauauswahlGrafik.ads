@@ -26,17 +26,14 @@ package BauauswahlGrafik is
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => BauauswahlExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
-              -- and
-             --    (if AktuelleAuswahlExtern.Gebäude /= 0 then AktuelleAuswahlExtern.Einheit = 0)
-              -- and
-             --    (if AktuelleAuswahlExtern.Einheit /= 0 then AktuelleAuswahlExtern.Gebäude = 0)
               );
 
 
 
    function Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      BauenVerkaufenExtern : in Boolean)
       return Float
      with
        Pre => (
@@ -48,6 +45,10 @@ package BauauswahlGrafik is
                );
 
 private
+
+   Listenanfang : StadtDatentypen.GebäudeIDVorhanden;
+   Listenende : StadtDatentypen.GebäudeIDVorhanden;
+   AktuelleListenlänge : Natural;
 
    Textbreite : Float;
 

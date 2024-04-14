@@ -112,24 +112,28 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (14.04.2024):
+   -- Version 0.05.6200 => 0.05. (14.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (13.04.2024):
+   -- Version 0.05.6120 => 0.05.6200 (13.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das neue Baumenü fertiggestellt.
+   -- Getestet ob man verschiedene Views zusammenführen kann, scheint zu funktionieren stellt sich nur die Frage ob das auch sinnvoll ist.
+   -- Fehlerhafte Anzeige im Verkaufsmenü behoben.
+   -- Code zusammengefüht.
+   -- Die Anzeige in der Stadtkartenkarte entspricht jetzt der Anzeige im Bau- und Verkaufsmenü.
+   -- Angefangen die Anzahl an Auswahlmöglichkeiten in Menüs, beim Überschreiten einer bestimmten Anzahl von Elemente,n auf mehrere Seiten zu verteilen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
-   -- Version 0.05.6120 => 0.05. (12.04.2024):
+   -- Version 0.05.6120 => 0.05.6120 (12.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

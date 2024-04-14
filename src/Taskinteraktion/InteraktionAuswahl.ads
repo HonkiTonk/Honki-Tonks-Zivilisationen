@@ -50,6 +50,9 @@ package InteraktionAuswahl is
 
    PositionenBauaufteilung : PositionenArray (1 .. 2) := (others => GrafikRecordKonstanten.Leerbereich);
 
+   type PositionenGebäudeBauenNeuArray is array (1 .. 15) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenGebäudeBauenNeu : PositionenGebäudeBauenNeuArray := (others => GrafikRecordKonstanten.Leerbereich);
+
    type PositionenGebäudeBauenArray is array (StadtDatentypen.GebäudeIDVorhanden'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenGebäudeBauen : PositionenGebäudeBauenArray := (others => GrafikRecordKonstanten.Leerbereich);
 

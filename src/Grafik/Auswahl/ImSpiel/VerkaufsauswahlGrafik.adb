@@ -45,8 +45,9 @@ package body VerkaufsauswahlGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
                   
-      Viewfläche.y := BauauswahlGrafik.Gebäude (AuswahlExtern => AuswahlExtern,
-                                                SpeziesExtern => SpeziesExtern);
+      Viewfläche.y := BauauswahlGrafik.Gebäude (AuswahlExtern        => AuswahlExtern,
+                                                SpeziesExtern        => SpeziesExtern,
+                                                BauenVerkaufenExtern => False);
       
    end Gebäude;
 

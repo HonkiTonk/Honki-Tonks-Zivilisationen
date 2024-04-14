@@ -1,14 +1,40 @@
-Baumenübereich : constant BereicheArray (Views.BauviewAccesse'Range) := (
-                                                                          ViewKonstanten.BaumenüKategorie                     => (0.00, Überschriftbereich.height, 1.00, 0.05),
-                                                                          ViewKonstanten.BaumenüGebäudeliste                  => (0.00, 0.15, 0.50, 0.80),
-                                                                          ViewKonstanten.BaumenüEinheitenliste                => (0.00, 0.15, 0.50, 0.80),
-                                                                          ViewKonstanten.BaumenüGebäudeinformationen          => (0.50, 0.15, 0.50, 0.40),
-                                                                          ViewKonstanten.BaumenüGebäudebeschreibung           => (0.50, 0.55, 0.50, 0.40),
-                                                                          ViewKonstanten.BaumenüEinheiteninformationen        => (0.50, 0.15, 0.50, 0.40),
-                                                                          ViewKonstanten.BaumenüEinheitenbeschreibung         => (0.50, 0.55, 0.50, 0.40),
-                                                                          ViewKonstanten.BaumenüAktuell                       => (0.00, 0.95, 1.00, 0.05),
+function Gebäude
+  (AuswahlExtern : in StadtDatentypen.GebäudeID;
+   SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+   BauenVerkaufenExtern : in Boolean)
+      return Float
+is begin
 
-                                                                          ViewKonstanten.BaumenüGebäudelisteVerkaufen         => (0.00, 0.10, 0.50, 0.90),
-                                                                          ViewKonstanten.BaumenüGebäudeinformationenVerkaufen => (0.50, 0.10, 0.50, 0.45),
-                                                                          ViewKonstanten.BaumenüGebäudebeschreibungVerkaufen  => (0.50, 0.55, 0.50, 0.45)
-                                                                         );
+   Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+   Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
+
+   GebäudeSchleife:
+   for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
+
+      case
+        InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
+      is
+         when True =>
+            Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
+                                                                                                 MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                                 TextAccessExtern         => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
+                                                                                                 FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
+                                                                                                                                                                    AuswahlExtern    => Natural (AuswahlExtern)));
+
+            InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
+
+         when False =>
+            null;
+      end case;
+
+   end loop GebäudeSchleife;
+
+   Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+
+   BauauswahlGebaeudeGrafik.Informationen (AuswahlExtern        => AuswahlExtern,
+                                           SpeziesExtern        => SpeziesExtern,
+                                           BauenVerkaufenExtern => BauenVerkaufenExtern);
+
+   return Textposition.y;
+
+end Gebäude;

@@ -41,6 +41,18 @@ package body BauauswahlEinheitenGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeInformationen);
       
+      case
+        AuswahlExtern
+      is
+         when EinheitenKonstanten.LeerID =>
+            Einheitenbeschreibung (AuswahlExtern => AuswahlExtern,
+                                   SpeziesExtern => SpeziesExtern);
+            return;
+         
+         when others =>
+            null;
+      end case;
+      
       Einheitentexte (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,
                                                                                                                               IDExtern      => AuswahlExtern)'Wide_Wide_Image;
       Einheitentexte (2) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
@@ -132,20 +144,28 @@ package body BauauswahlEinheitenGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBeschreibung);
       
-      YPosition := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      case
+        AuswahlExtern
+      is
+         when EinheitenKonstanten.LeerID =>
+            null;
+            
+         when others =>
+            YPosition := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
-      -- Sollche Konstrukte mal auseinanderziehen, damit es übersichtlicher ist. äöü
-      YPosition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               =>
-                                                                                       ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
-                                                                                         (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern      => AuswahlExtern,
-                                                                                                                                                                  SpeziesExtern => SpeziesExtern),
-                                                                                          TextfeldbreiteExtern => ViewflächeBeschreibung.x,
-                                                                                          BreitenabzugExtern   => TextberechnungenBreiteGrafik.WinzigerSpaltenabstand),
-                                                                                     TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, YPosition),
-                                                                                     MaximaleTextbreiteExtern => ViewflächeBeschreibung.x,
-                                                                                     TextAccessExtern         => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern));
+            -- Sollche Konstrukte mal auseinanderziehen, damit es übersichtlicher ist. äöü
+            YPosition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               =>
+                                                                                              ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
+                                                                                             (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern      => AuswahlExtern,
+                                                                                                                                                                      SpeziesExtern => SpeziesExtern),
+                                                                                              TextfeldbreiteExtern => ViewflächeBeschreibung.x,
+                                                                                              BreitenabzugExtern   => TextberechnungenBreiteGrafik.WinzigerSpaltenabstand),
+                                                                                           TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, YPosition),
+                                                                                           MaximaleTextbreiteExtern => ViewflächeBeschreibung.x,
+                                                                                           TextAccessExtern         => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern));
       
-      ViewflächeBeschreibung.y := YPosition + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+            ViewflächeBeschreibung.y := YPosition + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      end case;
       
    end Einheitenbeschreibung;
 

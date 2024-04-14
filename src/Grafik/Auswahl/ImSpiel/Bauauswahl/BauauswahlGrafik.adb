@@ -5,7 +5,6 @@ with Spieltexte;
 with TextnummernKonstanten;
 with TextaccessVariablen;
 with Views;
-with EinheitenKonstanten;
 with ViewKonstanten;
 with StadtKonstanten;
 with GrafikKonstanten;
@@ -144,8 +143,9 @@ package body BauauswahlGrafik is
         GebäudeEinheitExtern
       is
          when True =>
-            ViewflächeBauliste.y := Gebäude (AuswahlExtern => StadtDatentypen.GebäudeID (AuswahlExtern),
-                                               SpeziesExtern => SpeziesExtern);
+            ViewflächeBauliste.y := Gebäude (AuswahlExtern        => StadtDatentypen.GebäudeID (AuswahlExtern),
+                                             SpeziesExtern        => SpeziesExtern,
+                                             BauenVerkaufenExtern => True);
             
          when False =>
             ViewflächeBauliste.y := Einheiten (AuswahlExtern => EinheitenDatentypen.EinheitenID (AuswahlExtern),
@@ -158,15 +158,21 @@ package body BauauswahlGrafik is
    
    function Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      BauenVerkaufenExtern : in Boolean)
       return Float
    is begin
+      
+      Listenanfang := StadtDatentypen.GebäudeIDVorhanden'First;
+      Listenende := StadtDatentypen.GebäudeIDVorhanden'Last;
+      AktuelleListenlänge := 0;
 
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       
+      -- Vielleicht erst alle Elemente prüfen und bei einem zweiten Durchgang aufteilen? äöü
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
+      for GebäudeSchleifenwert in Listenanfang .. Listenende loop
          
          case
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
@@ -180,6 +186,18 @@ package body BauauswahlGrafik is
                
                InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
 
+               AktuelleListenlänge := AktuelleListenlänge + 1;
+               
+               if
+                 AktuelleListenlänge >= 14
+               then
+                  null;
+                  -- Listenanfang := GebäudeSchleifenwert + 1;
+                  
+               else
+                  null;
+               end if;
+
             when False =>
                null;
          end case;
@@ -188,16 +206,9 @@ package body BauauswahlGrafik is
       
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
-      case
-        AuswahlExtern
-      is
-         when StadtKonstanten.LeerGebäudeID =>
-            null;
-            
-         when others =>
-            BauauswahlGebaeudeGrafik.Informationen (AuswahlExtern => AuswahlExtern,
-                                                    SpeziesExtern => SpeziesExtern);
-      end case;
+      BauauswahlGebaeudeGrafik.Informationen (AuswahlExtern        => AuswahlExtern,
+                                              SpeziesExtern        => SpeziesExtern,
+                                              BauenVerkaufenExtern => BauenVerkaufenExtern);
       
       return Textposition.y;
 
@@ -237,16 +248,8 @@ package body BauauswahlGrafik is
       
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
-      case
-        AuswahlExtern
-      is
-         when EinheitenKonstanten.LeerID =>
-            null;
-            
-         when others =>
-            BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern => AuswahlExtern,
-                                                              SpeziesExtern => SpeziesExtern);
-      end case;
+      BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern => AuswahlExtern,
+                                                        SpeziesExtern => SpeziesExtern);
       
       return Textposition.y;
       

@@ -4,6 +4,7 @@ package TextArrays is
    pragma Preelaborate;
 
    type AllgemeinesTextArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
+   -- type NullTextArray is array (Natural range <>) of Unbounded_Wide_Wide_String;
 
    type SpielstandArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
 

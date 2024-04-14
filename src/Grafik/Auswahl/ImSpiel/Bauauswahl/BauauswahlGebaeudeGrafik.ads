@@ -2,9 +2,9 @@ private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with StadtDatentypen;
+with TextArrays;
 
 private with GrafikRecordKonstanten;
-private with TextArrays;
 private with KampfDatentypen;
 private with GrafikRecords;
 
@@ -18,11 +18,19 @@ package BauauswahlGebaeudeGrafik is
 
    procedure Informationen
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      BauenVerkaufenExtern : in Boolean)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
+   
+   
+   
+   function Informationstexte
+     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return TextArrays.AllgemeinesTextArray;
    
 private
    
@@ -36,14 +44,15 @@ private
 
    procedure Gebäudebeschreibung
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      BauenVerkaufenExtern : in Boolean)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
    
-   
+      
    function KommazahlAlsString is new UmwandlungenAdaEigenes.KommazahlAlsString (Kommazahl => KampfDatentypen.Kampfbonus);
 
 end BauauswahlGebaeudeGrafik;

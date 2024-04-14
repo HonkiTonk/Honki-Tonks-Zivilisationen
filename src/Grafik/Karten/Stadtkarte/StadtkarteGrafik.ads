@@ -11,8 +11,11 @@ private with StadtDatentypen;
 private with KartenRecords;
 private with GrafikRecordKonstanten;
 private with TextArrays;
+private with KampfDatentypen;
 
 with LeseSpeziesbelegung;
+
+private with UmwandlungenAdaEigenes;
 
 package StadtkarteGrafik is
    pragma Elaborate_Body;
@@ -65,5 +68,9 @@ private
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
+
+
+
+   function KommazahlAlsString is new UmwandlungenAdaEigenes.KommazahlAlsString (Kommazahl => KampfDatentypen.Kampfbonus);
 
 end StadtkarteGrafik;
