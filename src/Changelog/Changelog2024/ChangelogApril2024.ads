@@ -126,7 +126,7 @@ package ChangelogApril2024 is
    -- Fehlerhafte Anzeige im Verkaufsmenü behoben.
    -- Code zusammengefüht.
    -- Die Anzeige in der Stadtkartenkarte entspricht jetzt der Anzeige im Bau- und Verkaufsmenü.
-   -- Angefangen die Anzahl an Auswahlmöglichkeiten in Menüs, beim Überschreiten einer bestimmten Anzahl von Elemente,n auf mehrere Seiten zu verteilen.
+   -- Angefangen die Anzahl an Auswahlmöglichkeiten in Menüs, beim Überschreiten einer bestimmten Anzahl von Elementen, auf mehrere Seiten zu verteilen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
