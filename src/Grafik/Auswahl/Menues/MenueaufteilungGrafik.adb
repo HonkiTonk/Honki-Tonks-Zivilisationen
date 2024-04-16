@@ -13,7 +13,7 @@ package body MenueaufteilungGrafik is
 
    procedure Menüaufteilung
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
-      AktuelleAuswahlExtern : in SystemRecords.MehrfachauswahlRecord)
+      AktuelleAuswahlExtern : in SystemRecords.DoppelauswahlRecord)
    is begin
       
       case

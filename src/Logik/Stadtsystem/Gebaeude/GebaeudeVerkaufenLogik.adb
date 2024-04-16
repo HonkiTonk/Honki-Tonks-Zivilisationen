@@ -47,7 +47,7 @@ package body GebaeudeVerkaufenLogik is
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                                                            WelchesGebäudeExtern     => GebäudeSchleifenwert);
+                                                                                                                   WelchesGebäudeExtern     => GebäudeSchleifenwert);
          
          if
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) = True

@@ -32,7 +32,7 @@ with AllgemeineViewsGrafik;
 package body SpielstandmenueGrafik is
 
    procedure Spielstandmenü
-     (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord;
+     (AuswahlExtern : in SystemRecords.DoppelauswahlRecord;
       SpielstandartExtern : in SystemDatentypen.Spielstand_Enum;
       SpeichernLadenExtern : in Boolean)
    is begin

@@ -160,20 +160,15 @@ package body BauauswahlGrafik is
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BauenVerkaufenExtern : in Boolean)
-      return Float
+   return Float
    is begin
-      
-      Listenanfang := StadtDatentypen.GebäudeIDVorhanden'First;
-      Listenende := StadtDatentypen.GebäudeIDVorhanden'Last;
-      AktuelleListenlänge := 0;
 
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-      
-      -- Vielleicht erst alle Elemente prüfen und bei einem zweiten Durchgang aufteilen? äöü
+
       GebäudeSchleife:
-      for GebäudeSchleifenwert in Listenanfang .. Listenende loop
-         
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
+
          case
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
          is
@@ -183,33 +178,21 @@ package body BauauswahlGrafik is
                                                                                                     TextAccessExtern         => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                                     FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
                                                                                                                                                                        AuswahlExtern    => Natural (AuswahlExtern)));
-               
-               InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
 
-               AktuelleListenlänge := AktuelleListenlänge + 1;
-               
-               if
-                 AktuelleListenlänge >= 14
-               then
-                  null;
-                  -- Listenanfang := GebäudeSchleifenwert + 1;
-                  
-               else
-                  null;
-               end if;
+               InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
 
             when False =>
                null;
          end case;
-                                                                               
+
       end loop GebäudeSchleife;
-      
+
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
-      
+
       BauauswahlGebaeudeGrafik.Informationen (AuswahlExtern        => AuswahlExtern,
                                               SpeziesExtern        => SpeziesExtern,
                                               BauenVerkaufenExtern => BauenVerkaufenExtern);
-      
+
       return Textposition.y;
 
    end Gebäude;

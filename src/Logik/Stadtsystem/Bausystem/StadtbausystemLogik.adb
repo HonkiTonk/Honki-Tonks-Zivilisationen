@@ -1,8 +1,8 @@
 with GrafikDatentypen;
 with TastenbelegungDatentypen;
-with AuswahlKonstanten;
 with TextnummernKonstanten;
 with Grafiktask;
+with AuswahlKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -55,9 +55,9 @@ package body StadtbausystemLogik is
    is begin
 
       if
-        MöglicheGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = False
+        MöglicheGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = KeineBaumöglichkeit
         and
-          MöglicheEinheitenErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = False
+          MöglicheEinheitenErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = KeineBaumöglichkeit
       then
          return StadtKonstanten.LeerBauprojekt;
          
@@ -71,23 +71,21 @@ package body StadtbausystemLogik is
    
    function MöglicheGebäudeErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return Boolean
+      return Natural
    is begin
       
-      BauenMöglich := False;
+      BaubareGebäude := KeineBaumöglichkeit;
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
          InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := GebaeudeanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                                                                           IDExtern                 => GebäudeSchleifenwert);
+                                                                                                                                  IDExtern                 => GebäudeSchleifenwert);
          
          if
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) = True
-           and
-             BauenMöglich = False
          then
-            BauenMöglich := True;
+            BaubareGebäude := BaubareGebäude + 1;
             
          else
             null;
@@ -95,7 +93,7 @@ package body StadtbausystemLogik is
          
       end loop GebäudeSchleife;
       
-      return BauenMöglich;
+      return BaubareGebäude;
       
    end MöglicheGebäudeErmitteln;
    
@@ -103,30 +101,21 @@ package body StadtbausystemLogik is
    
    function MöglicheEinheitenErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return Boolean
+      return Natural
    is begin
       
-      BauenMöglich := False;
-      InteraktionAuswahl.MöglicheEinheiten := (others => False);
+      BaubareEinheiten := KeineBaumöglichkeit;
       
       EinheitenSchleife:
       for EinheitSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
          
+         InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) := EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                                                                                   IDExtern                 => EinheitSchleifenwert);
+         
          if
-           True = EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                     IDExtern                 => EinheitSchleifenwert)
+           InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) = True
          then
-            InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) := True;
-            
-            case
-              BauenMöglich
-            is
-               when False =>
-                  BauenMöglich := True;
-                  
-               when True =>
-                  null;
-            end case;
+            BaubareEinheiten := BaubareEinheiten + 1;
             
          else
             null;
@@ -134,7 +123,7 @@ package body StadtbausystemLogik is
          
       end loop EinheitenSchleife;
       
-      return BauenMöglich;
+      return BaubareEinheiten;
       
    end MöglicheEinheitenErmitteln;
    

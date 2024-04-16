@@ -105,17 +105,18 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (15.04.2024):
+   -- Version 0.05.6235 => 0.05. (15.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6200 => 0.05. (14.04.2024):
+   -- Version 0.05.6200 => 0.05.6235 (14.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anpassungen vorgenommen um den Code bei Veränderungen flexibler zu halten.
+   -- Angefangen die Menüsystem auf Mehrseitigkeit umzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

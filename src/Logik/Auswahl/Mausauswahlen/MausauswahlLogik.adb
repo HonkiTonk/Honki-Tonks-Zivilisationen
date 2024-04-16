@@ -143,6 +143,7 @@ package body MausauswahlLogik is
             GebäudeSchleife:
             for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
          
+               -- Die erste Prüfung kann raus, aber dann vergleicht er immer die Koordinaten was eventuell langsamer ist. Relevant? äöü
                if
                  InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) = False
                then
@@ -168,6 +169,7 @@ package body MausauswahlLogik is
             EinheitenSchleife:
             for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
          
+               -- Die erste Prüfung kann raus, aber dann vergleicht er immer die Koordinaten was eventuell langsamer ist. Relevant? äöü
                if
                  InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert) = False
                then

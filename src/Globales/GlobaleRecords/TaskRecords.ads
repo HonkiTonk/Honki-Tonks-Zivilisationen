@@ -100,7 +100,7 @@ package TaskRecords is
       
       Endauswahl : ZahlenDatentypen.EigenesNatural;
       
-      Gesamtauswahl : SystemRecords.MehrfachauswahlRecord;
+      Gesamtauswahl : SystemRecords.DoppelauswahlRecord;
       
       StadtEinheitAuswahl : EinheitenRecords.AuswahlRecord;
       

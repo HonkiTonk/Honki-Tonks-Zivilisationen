@@ -9,6 +9,9 @@ package AuswahlKonstanten is
    LeerAuswahl : constant Natural := 0;
    ErstAuswahl : constant Positive := 1;
 
+   StandardanzahlMenütexte : constant Positive := 15;
+   StandardanzahlMenütexteFloat : constant Float := Float (StandardanzahlMenütexte);
+
    LeerGebäudeauswahl : constant StadtDatentypen.GebäudeID := StadtDatentypen.GebäudeID'First;
 
    LeerEinheitenauswahl : constant EinheitenDatentypen.EinheitenID := EinheitenDatentypen.EinheitenID'First;

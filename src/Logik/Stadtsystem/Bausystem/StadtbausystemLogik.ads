@@ -25,7 +25,9 @@ private
    use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
 
-   BauenMöglich : Boolean;
+   KeineBaumöglichkeit : constant Natural := 0;
+   BaubareGebäude : Natural;
+   BaubareEinheiten : Natural;
 
    AktuelleAuswahl : StadtRecords.ErweiterterBauprojektRecord := (0, 0, 0);
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
@@ -34,7 +36,7 @@ private
 
    function MöglicheGebäudeErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return Boolean
+      return Natural
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -44,7 +46,7 @@ private
 
    function MöglicheEinheitenErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return Boolean
+      return Natural
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

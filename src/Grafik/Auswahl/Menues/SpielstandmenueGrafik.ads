@@ -13,7 +13,7 @@ package SpielstandmenueGrafik is
    pragma Elaborate_Body;
 
    procedure Spielstandmenü
-     (AuswahlExtern : in SystemRecords.MehrfachauswahlRecord;
+     (AuswahlExtern : in SystemRecords.DoppelauswahlRecord;
       SpielstandartExtern : in SystemDatentypen.Spielstand_Enum;
       SpeichernLadenExtern : in Boolean);
    

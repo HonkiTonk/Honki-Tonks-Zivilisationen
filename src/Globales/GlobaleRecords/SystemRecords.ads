@@ -59,7 +59,7 @@ package SystemRecords is
    
    
    -- Das hier vielleicht lieber in ein Array umwandeln? äöü
-   type MehrfachauswahlRecord is record
+   type DoppelauswahlRecord is record
       
       Erstauswahl : Integer;
       Zweitauswahl : Integer;

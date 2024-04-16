@@ -48,6 +48,7 @@ package StadtRecords is
       
       BaumenüanzeigeÄndern : Natural;
       
+      
    end record;
    
    
