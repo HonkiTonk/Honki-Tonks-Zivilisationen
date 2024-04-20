@@ -45,5 +45,16 @@ package StadtDatentypen is
    type Einwohner is range 0 .. 100;
    subtype EinwohnerVorhanden is Einwohner range 1 .. Einwohner'Last;
    -- Für Stadt
+   
+   
+   
+   -- Fürs Baumenü
+   type Bauprojektart_Enum is (
+                               Leer_Bauprojektart,
+                               
+                               Gebäudeart_Enum, Einheitenart_Enum
+                              );
+   subtype Bauprojektart_Vorhanden_Enum is Bauprojektart_Enum range Bauprojektart_Enum'Succ (Bauprojektart_Enum'First) .. Bauprojektart_Enum'Last;
+   -- Fürs Baumenü
 
 end StadtDatentypen;

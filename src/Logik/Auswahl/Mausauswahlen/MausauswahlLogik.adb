@@ -135,7 +135,7 @@ package body MausauswahlLogik is
       case
         Grafiktask.WelchesBaumenü
       is
-         when StadtKonstanten.BaumenüGebäude =>
+         when StadtDatentypen.Gebäudeart_Enum =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                        point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                        view         => Views.BauviewAccesse (ViewKonstanten.BaumenüBauliste));
@@ -153,7 +153,7 @@ package body MausauswahlLogik is
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
                                                     RechteckExtern     => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
                then
-                  return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID, AuswahlKonstanten.LeerAuswahl);
+                  return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID, StadtDatentypen.Leer_Bauprojektart);
          
                else
                   null;
@@ -161,7 +161,7 @@ package body MausauswahlLogik is
                
             end loop GebäudeSchleife;
             
-         when StadtKonstanten.BaumenüEinheiten =>
+         when StadtDatentypen.Einheitenart_Enum =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                        point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                        view         => Views.BauviewAccesse (ViewKonstanten.BaumenüBauliste));
@@ -179,19 +179,16 @@ package body MausauswahlLogik is
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
                                                     RechteckExtern     => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
                then
-                  return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert, AuswahlKonstanten.LeerAuswahl);
+                  return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert, StadtDatentypen.Leer_Bauprojektart);
          
                else
                   null;
                end if;
                
             end loop EinheitenSchleife;
-            
-         when others =>
-            null;
       end case;
       
-      return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID, AuswahlKonstanten.LeerAuswahl);
+      return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID, StadtDatentypen.Leer_Bauprojektart);
       
    end Baumenü;
    

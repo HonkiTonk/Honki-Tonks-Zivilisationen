@@ -79,7 +79,8 @@ package TextaccessVariablen is
    
    
    
-   GebäudeaufteilungAccess : constant TextaccessArray (InteraktionAuswahl.PositionenBauaufteilung'Range) := (others => Sf.Graphics.Text.create);
+   type GebäudeaufteilungAccessArray is array (InteraktionAuswahl.PositionenBauaufteilung'Range) of Sf.Graphics.sfText_Ptr;
+   GebäudeaufteilungAccess : constant GebäudeaufteilungAccessArray := (others => Sf.Graphics.Text.create);
       
    type GebäudetextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
    GebäudetextAccess : constant GebäudetextAccessArray := (others => (others => Sf.Graphics.Text.create));

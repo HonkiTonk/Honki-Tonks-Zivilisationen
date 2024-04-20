@@ -22,7 +22,7 @@ package BauauswahlGrafik is
    procedure Bauauswahl
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord;
       AktuelleAuswahlExtern : in StadtRecords.ErweiterterBauprojektRecord;
-      AktuelleAufteilungExtern : in Positive)
+      AktuelleAufteilungExtern : in StadtDatentypen.Bauprojektart_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => BauauswahlExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -71,8 +71,8 @@ private
               );
 
    procedure Bauaufteilung
-     (AusgewählteAufteilungExtern : in Natural;
-      AktuelleAufteilungExtern : in Positive);
+     (BauprojektartExtern : in StadtDatentypen.Bauprojektart_Enum;
+      AktuelleAufteilungExtern : in StadtDatentypen.Bauprojektart_Enum);
 
    procedure Aktuell
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord)

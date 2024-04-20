@@ -10,6 +10,7 @@ with SpeziesKonstanten;
 with AuswahlKonstanten;
 with SystemKonstanten;
 with TaskRecords;
+with StadtDatentypen;
 
 package Grafiktask is
    pragma Elaborate_Body;
@@ -42,7 +43,7 @@ package Grafiktask is
                                                  Endauswahl          => AuswahlKonstanten.LeerAuswahl,
                                                  Gesamtauswahl       => (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl),
                                                  StadtEinheitAuswahl => (False, (others => AuswahlKonstanten.LeerStadtEinheitAuswahl)),
-                                                 Bauauswahl          => (AuswahlKonstanten.LeerGebäudeauswahl, AuswahlKonstanten.LeerEinheitenauswahl, 0)
+                                                 Bauauswahl          => (AuswahlKonstanten.LeerGebäudeauswahl, AuswahlKonstanten.LeerEinheitenauswahl, StadtDatentypen.Leer_Bauprojektart)
                                                 );
          
    Eingabe : TaskRecords.EingabeGrafikRecord := (
@@ -59,7 +60,7 @@ package Grafiktask is
                                                  Fragenanzeige     => ZahlenDatentypen.EigenesNatural'First
                                                 );
    
-   WelchesBaumenü : Positive := 1;
+   WelchesBaumenü : StadtDatentypen.Bauprojektart_Vorhanden_Enum := StadtDatentypen.Gebäudeart_Enum;
    
    Einheitenbewegung : TaskRecords.EinheitenbewegungGrafikRecord := (others => False);
    

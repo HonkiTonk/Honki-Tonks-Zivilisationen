@@ -6,7 +6,6 @@ with TextnummernKonstanten;
 with TextaccessVariablen;
 with Views;
 with ViewKonstanten;
-with StadtKonstanten;
 with GrafikKonstanten;
 with AuswahlKonstanten;
 with TextDatentypen;
@@ -33,25 +32,25 @@ package body BauauswahlGrafik is
    procedure Bauauswahl
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord;
       AktuelleAuswahlExtern : in StadtRecords.ErweiterterBauprojektRecord;
-      AktuelleAufteilungExtern : in Positive)
+      AktuelleAufteilungExtern : in StadtDatentypen.Bauprojektart_Enum)
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageBauprojekt)),
                                           HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                           SpielenamenExtern => False);
       
-      Bauaufteilung (AusgewählteAufteilungExtern => AktuelleAuswahlExtern.BaumenüanzeigeÄndern,
-                     AktuelleAufteilungExtern    => AktuelleAufteilungExtern);
+      Bauaufteilung (BauprojektartExtern      => AktuelleAuswahlExtern.Bauprojektart,
+                     AktuelleAufteilungExtern => AktuelleAufteilungExtern);
       
       case
         AktuelleAufteilungExtern
       is
-         when StadtKonstanten.BaumenüGebäude =>
+         when StadtDatentypen.Gebäudeart_Enum =>
             BaulistenviewEinstellen (AuswahlExtern        => Natural (AktuelleAuswahlExtern.Gebäude),
                                      SpeziesExtern        => BauauswahlExtern.Spezies,
                                      GebäudeEinheitExtern => True);
             
-         when StadtKonstanten.BaumenüEinheiten =>
+         when StadtDatentypen.Einheitenart_Enum =>
             BaulistenviewEinstellen (AuswahlExtern        => Natural (AktuelleAuswahlExtern.Einheit),
                                      SpeziesExtern        => BauauswahlExtern.Spezies,
                                      GebäudeEinheitExtern => False);
@@ -67,9 +66,11 @@ package body BauauswahlGrafik is
    
    
    procedure Bauaufteilung
-     (AusgewählteAufteilungExtern : in Natural;
-      AktuelleAufteilungExtern : in Positive)
-   is begin
+     (BauprojektartExtern : in StadtDatentypen.Bauprojektart_Enum;
+      AktuelleAufteilungExtern : in StadtDatentypen.Bauprojektart_Enum)
+   is
+      use type StadtDatentypen.Bauprojektart_Enum;
+   begin
       
       ViewflächeAufteilung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAufteilung,
                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüKategorie).width,
@@ -89,7 +90,7 @@ package body BauauswahlGrafik is
       for AufteilungSchleifenwert in InteraktionAuswahl.PositionenBauaufteilung'Range loop
          
          if
-           AusgewählteAufteilungExtern = AufteilungSchleifenwert
+           BauprojektartExtern = AufteilungSchleifenwert
          then
             Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum);
             

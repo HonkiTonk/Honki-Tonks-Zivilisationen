@@ -13,7 +13,8 @@ package MausauswahlLogik is
    use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
    use type EinheitenDatentypen.Transportplätze;
-
+   use type StadtDatentypen.Bauprojektart_Enum;
+   
    function SpeziesauswahlDiplomatie
      return Natural;
    
@@ -24,11 +25,11 @@ package MausauswahlLogik is
      return StadtRecords.ErweiterterBauprojektRecord
      with
        Post => (
-                (if Baumenü'Result.Gebäude /= 0 then (Baumenü'Result.Einheit = 0 and Baumenü'Result.BaumenüanzeigeÄndern = 0))
+                (if Baumenü'Result.Gebäude /= 0 then (Baumenü'Result.Einheit = 0 and Baumenü'Result.Bauprojektart = StadtDatentypen.Leer_Bauprojektart))
                 and
-                  (if Baumenü'Result.Einheit /= 0 then (Baumenü'Result.Gebäude = 0 and Baumenü'Result.BaumenüanzeigeÄndern = 0))
+                  (if Baumenü'Result.Einheit /= 0 then (Baumenü'Result.Gebäude = 0 and Baumenü'Result.Bauprojektart = StadtDatentypen.Leer_Bauprojektart))
                 and
-                  (if Baumenü'Result.BaumenüanzeigeÄndern /= 0 then (Baumenü'Result.Einheit = 0 and Baumenü'Result.Gebäude = 0))
+                  (if Baumenü'Result.Bauprojektart /= StadtDatentypen.Leer_Bauprojektart then (Baumenü'Result.Einheit = 0 and Baumenü'Result.Gebäude = 0))
                );
    
    function Menüs

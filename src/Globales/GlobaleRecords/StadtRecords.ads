@@ -46,7 +46,7 @@ package StadtRecords is
       Gebäude : StadtDatentypen.GebäudeID;
       Einheit : EinheitenDatentypen.EinheitenID;
       
-      BaumenüanzeigeÄndern : Natural;
+      Bauprojektart : StadtDatentypen.Bauprojektart_Enum;
       
       
    end record;

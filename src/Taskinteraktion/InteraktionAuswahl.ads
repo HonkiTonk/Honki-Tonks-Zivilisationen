@@ -48,7 +48,8 @@ package InteraktionAuswahl is
 
 
 
-   PositionenBauaufteilung : PositionenArray (1 .. 2) := (others => GrafikRecordKonstanten.Leerbereich);
+   type PositionenBauaufteilungArray is array (StadtDatentypen.Bauprojektart_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenBauaufteilung : PositionenBauaufteilungArray := (others => GrafikRecordKonstanten.Leerbereich);
 
    type PositionenGebäudeBauenArray is array (StadtDatentypen.GebäudeIDVorhanden'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenGebäudeBauen : PositionenGebäudeBauenArray := (others => GrafikRecordKonstanten.Leerbereich);

@@ -91,23 +91,24 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (17.04.2024):
+   -- Version 0.05.6300 => 0.05. (17.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6260 => 0.05. (16.04.2024):
+   -- Version 0.05.6260 => 0.05.6300 (16.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die bauprojektart in ein Enum gepackt und alles daran angepasst.
+   -- Weiter am mehrseitigen Baumenü gearbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
    -- Version 0.05.6235 => 0.05.6260 (15.04.2024):
    
-   -- Sprachdateien alle erweitert.
+   -- Sprachdateien erweitert.
    -- Kleinigkeiten korrigiert.
    
    

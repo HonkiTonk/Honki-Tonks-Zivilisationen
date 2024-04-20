@@ -9,6 +9,7 @@ with SonstigesKonstanten;
 with Menuetexte;
 with BefehleDatentypen;
 with Sequenzentexte;
+with StadtDatentypen;
 
 with SpeziesbeschreibungenGrafik;
 with ForschungsbeschreibungenGrafik;
@@ -112,7 +113,7 @@ package body TextaccesseTextGrafik is
       for BauaufteilungSchleifenwert in TextaccessVariablen.GebäudeaufteilungAccess'Range loop
                   
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudeaufteilungAccess (BauaufteilungSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugStadt + BauaufteilungSchleifenwert - 1)));
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugStadt + StadtDatentypen.Bauprojektart_Vorhanden_Enum'Pos (BauaufteilungSchleifenwert) - 1)));
          
       end loop BauaufteilungSchleife;
       

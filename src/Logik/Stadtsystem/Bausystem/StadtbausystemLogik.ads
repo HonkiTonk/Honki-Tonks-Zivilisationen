@@ -25,18 +25,17 @@ private
    use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
 
-   KeineBaumöglichkeit : constant Natural := 0;
    BaubareGebäude : Natural;
    BaubareEinheiten : Natural;
 
-   AktuelleAuswahl : StadtRecords.ErweiterterBauprojektRecord := (0, 0, 0);
+   AktuelleAuswahl : StadtRecords.ErweiterterBauprojektRecord := (0, 0, StadtDatentypen.Leer_Bauprojektart);
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
 
+   type TestArray is array (1 .. 16) of Integer;
+   Test : TestArray;
 
-
-   function MöglicheGebäudeErmitteln
+   procedure MöglicheGebäudeErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return Natural
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -44,9 +43,8 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
-   function MöglicheEinheitenErmitteln
+   procedure MöglicheEinheitenErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return Natural
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -55,23 +53,18 @@ private
               );
 
 
-
-   function BauobjektAuswählen
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.BauprojektRecord
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
-              );
 
    function AuswahlBauprojekt
-     (AktuelleBauprojektExtern : in StadtRecords.BauprojektRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      AktuelleBauprojektExtern : in StadtRecords.BauprojektRecord)
       return StadtRecords.BauprojektRecord
      with
        Pre => (
-               (if AktuelleBauprojektExtern.Gebäude /= 0 then AktuelleBauprojektExtern.Einheit = 0)
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+               and
+                 (if AktuelleBauprojektExtern.Gebäude /= 0 then AktuelleBauprojektExtern.Einheit = 0)
                and
                  (if AktuelleBauprojektExtern.Einheit /= 0 then AktuelleBauprojektExtern.Gebäude = 0)
               ),
