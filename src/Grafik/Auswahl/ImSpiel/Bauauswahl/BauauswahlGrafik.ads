@@ -2,6 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
+private with Sf.Graphics.Rect;
 
 with SpeziesDatentypen;
 with StadtDatentypen;
@@ -60,6 +61,8 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
 
    Farbe : Sf.Graphics.Color.sfColor;
+
+   Auswahlposition : Sf.Graphics.Rect.sfFloatRect;
 
    procedure BaulistenviewEinstellen
      (AuswahlExtern : in Natural;

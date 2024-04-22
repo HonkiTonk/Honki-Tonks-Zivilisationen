@@ -14,7 +14,10 @@ with EinheitenanforderungenLogik;
 with InteraktionAuswahl;
 with MausauswahlLogik;
 with OftVerwendetSound;
+with UmwandlungenDatentypen;
 with JaNeinLogik;
+
+with Diagnoseinformationen;
 
 package body StadtbausystemLogik is
 
@@ -37,6 +40,7 @@ package body StadtbausystemLogik is
          null;
             
       else
+         Diagnoseinformationen.Zahl (ZahlExtern => Integer (NeuesBauprojekt.Gebäude));
          SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          BauprojektExtern         => NeuesBauprojekt);
          SchreibeStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
@@ -58,6 +62,8 @@ package body StadtbausystemLogik is
       use type StadtDatentypen.Bauprojektart_Enum;
    begin
       
+      InteraktionAuswahl.MöglicheBauoptionen := (others => AuswahlKonstanten.LeerAuswahl);
+            
       case
         Grafiktask.WelchesBaumenü
       is
@@ -74,9 +80,9 @@ package body StadtbausystemLogik is
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Baumenü;
-         SchreibeGrafiktask.Gebäudeauswahl (GebäudeExtern => AktuelleAuswahl.Gebäude);
-         SchreibeGrafiktask.Einheitenauswahl (EinheitExtern => AktuelleAuswahl.Einheit);
          
+         SchreibeGrafiktask.Bauauswahl (AuswahlExtern => UmwandlungenDatentypen.AuswahlBauprojekt (AuswahlExtern => AktuelleAuswahl.Bauauswahl));
+               
          -- Das auch mal in die Lese/Schreibebereiche packen. äöü
          Grafiktask.Auswahl.Bauauswahl.Bauprojektart := AktuelleAuswahl.Bauprojektart;
          
@@ -88,6 +94,7 @@ package body StadtbausystemLogik is
                  AktuelleAuswahl.Bauprojektart /= StadtDatentypen.Leer_Bauprojektart
                then
                   Grafiktask.WelchesBaumenü := AktuelleAuswahl.Bauprojektart;
+                  InteraktionAuswahl.MöglicheBauoptionen := (others => AuswahlKonstanten.LeerAuswahl);
                   
                   case
                     Grafiktask.WelchesBaumenü
@@ -100,24 +107,22 @@ package body StadtbausystemLogik is
                   end case;
                   
                elsif
-                 AktuelleAuswahl.Gebäude = AuswahlKonstanten.LeerGebäudeauswahl
-                 and
-                   AktuelleAuswahl.Einheit = AuswahlKonstanten.LeerEinheitenauswahl
+                 AktuelleAuswahl.Bauauswahl = AuswahlKonstanten.LeerAuswahl
                then
                   null;
                   
-              -- elsif
-              --   AktuelleAuswahl. = Test'Last
-              -- then
-              --    case
-              --      Grafiktask.WelchesBaumenü
-              --    is
-              --       when StadtDatentypen.Gebäudeart_Enum =>
-              --          MöglicheGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+               elsif
+                 AktuelleAuswahl.Bauauswahl = InteraktionAuswahl.MöglicheBauoptionen'Last
+               then
+                  case
+                    Grafiktask.WelchesBaumenü
+                  is
+                     when StadtDatentypen.Gebäudeart_Enum =>
+                        MöglicheGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
-              --       when StadtDatentypen.Einheitenart_Enum =>
-              --          MöglicheEinheitenErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-             --     end case;
+                     when StadtDatentypen.Einheitenart_Enum =>
+                        MöglicheEinheitenErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+                  end case;
                   
                elsif
                  AktuelleBauprojektExtern.Gebäude = AuswahlKonstanten.LeerGebäudeauswahl
@@ -125,24 +130,33 @@ package body StadtbausystemLogik is
                    AktuelleBauprojektExtern.Einheit = AuswahlKonstanten.LeerEinheitenauswahl
                then
                   OftVerwendetSound.Klick;
-                  return (AktuelleAuswahl.Gebäude, AktuelleAuswahl.Einheit);
+                  return UmwandlungenDatentypen.AuswahlBauprojekt (AuswahlExtern => InteraktionAuswahl.MöglicheBauoptionen (AktuelleAuswahl.Bauauswahl));
                   
                elsif
-                 ((AktuelleAuswahl.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl
-                   and
-                     AktuelleBauprojektExtern.Gebäude /= AktuelleAuswahl.Gebäude)
-                  or
-                    (AktuelleAuswahl.Einheit /= AuswahlKonstanten.LeerEinheitenauswahl
-                     and
-                       AktuelleBauprojektExtern.Einheit /= AktuelleAuswahl.Einheit))
-                 and then
-                   JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBauprojektWechseln) = False
+                 AktuelleAuswahl.Bauauswahl /= AuswahlKonstanten.LeerAuswahl
                then
-                  null;
+                  GewähltesBauprojekt := UmwandlungenDatentypen.AuswahlBauprojekt (AuswahlExtern => AktuelleAuswahl.Bauauswahl);
+                    
+                  if
+                    ((GewähltesBauprojekt.Gebäude /= AktuelleBauprojektExtern.Gebäude
+                     and
+                       GewähltesBauprojekt.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl)
+                    or
+                      (GewähltesBauprojekt.Einheit /= AktuelleBauprojektExtern.Einheit
+                       and
+                         GewähltesBauprojekt.Einheit /= AuswahlKonstanten.LeerEinheitenauswahl))
+                    and then
+                      JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBauprojektWechseln) = False
+                  then
+                     null;
+                     
+                  else
+                     OftVerwendetSound.Klick;
+                     return UmwandlungenDatentypen.AuswahlBauprojekt (AuswahlExtern => InteraktionAuswahl.MöglicheBauoptionen (AktuelleAuswahl.Bauauswahl));
+                  end if;
                   
                else
-                  OftVerwendetSound.Klick;
-                  return (AktuelleAuswahl.Gebäude, AktuelleAuswahl.Einheit);
+                  null;
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
@@ -162,31 +176,45 @@ package body StadtbausystemLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      BaubareGebäude := 0;
+      BaubareGebäude := 1;
+      
+      if
+        InteraktionAuswahl.MöglicheBauoptionen (16) = -1
+        and
+          InteraktionAuswahl.MöglicheBauoptionen (15) = AuswahlKonstanten.LeerAuswahl
+      then
+         GebäudeAnfang := StadtDatentypen.GebäudeIDVorhanden'First;
+         
+      elsif
+        InteraktionAuswahl.MöglicheBauoptionen (16) = -1
+      then
+         GebäudeAnfang := StadtDatentypen.GebäudeIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (15) + 1);
+           
+      else
+         GebäudeAnfang := StadtDatentypen.GebäudeIDVorhanden'First;
+      end if;
+      
+      InteraktionAuswahl.MöglicheBauoptionen (1 .. 15) := (others => AuswahlKonstanten.LeerAuswahl);
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
+      for GebäudeSchleifenwert in GebäudeAnfang .. StadtDatentypen.GebäudeIDVorhanden'Last loop
          
-         case
-           GebaeudeanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                             IDExtern                 => GebäudeSchleifenwert)
-         is
-            when True =>
-               InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := True;
-               
-               if
-                 BaubareGebäude <= 15
-               then
-                  BaubareGebäude := BaubareGebäude + 1;
-                  Test (BaubareGebäude) := Positive (GebäudeSchleifenwert);
+         if
+           False = GebaeudeanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                     IDExtern                 => GebäudeSchleifenwert)
+         then
+            null;
+            
+         elsif
+           BaubareGebäude <= 15
+         then
+            InteraktionAuswahl.MöglicheBauoptionen (BaubareGebäude) := Positive (GebäudeSchleifenwert);
+            BaubareGebäude := BaubareGebäude + 1;
                   
-               else
-                  Test (Test'Last) := -1;
-               end if;
-               
-            when False =>
-               InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := False;
-         end case;
+         else
+            InteraktionAuswahl.MöglicheBauoptionen (InteraktionAuswahl.MöglicheBauoptionen'Last) := -1;
+            exit GebäudeSchleife;
+         end if;
          
       end loop GebäudeSchleife;
       
@@ -199,6 +227,8 @@ package body StadtbausystemLogik is
    is begin
       
       BaubareEinheiten := 0;
+      
+      InteraktionAuswahl.MöglicheBauoptionen := (others => AuswahlKonstanten.LeerAuswahl);
       
       EinheitenSchleife:
       for EinheitSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
@@ -214,10 +244,11 @@ package body StadtbausystemLogik is
                  BaubareEinheiten <= 15
                then
                   BaubareEinheiten := BaubareEinheiten + 1;
-                  Test (BaubareEinheiten) := Positive (EinheitSchleifenwert);
+                  InteraktionAuswahl.MöglicheBauoptionen (BaubareEinheiten) := Positive (EinheitSchleifenwert);
                   
                else
-                  Test (Test'Last) := -1;
+                  InteraktionAuswahl.MöglicheBauoptionen (InteraktionAuswahl.MöglicheBauoptionen'Last) := -1;
+                  exit EinheitenSchleife;
                end if;
                
             when False =>

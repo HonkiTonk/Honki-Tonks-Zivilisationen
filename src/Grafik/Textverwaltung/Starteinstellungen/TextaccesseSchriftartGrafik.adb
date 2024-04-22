@@ -100,6 +100,16 @@ package body TextaccesseSchriftartGrafik is
          
       end loop OutroSchleife;
       
+      
+      
+      ZeugSchleife:
+      for ZeugSchleifenwert in TextaccessVariablen.ZeugAccess'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZeugAccess (ZeugSchleifenwert),
+                                   font => SchriftaccessExtern);
+         
+      end loop ZeugSchleife;
+      
    end Allgemeines;
    
    

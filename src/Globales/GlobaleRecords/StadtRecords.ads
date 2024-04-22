@@ -53,6 +53,16 @@ package StadtRecords is
    
    
    
+   type BauprojektauswahlRecord is record
+      
+      Bauauswahl : Integer;
+      
+      Bauprojektart : StadtDatentypen.Bauprojektart_Enum;
+      
+   end record;
+   
+   
+   
    -- XXX äöü
    type GebäudeRecord is record
       

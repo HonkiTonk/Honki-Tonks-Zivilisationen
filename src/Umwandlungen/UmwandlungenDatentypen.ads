@@ -4,9 +4,10 @@ with SpeziesDatentypen;
 with SpielDatentypen;
 with BefehleDatentypen;
 with KartenartDatentypen;
+with StadtRecords;
 
 package UmwandlungenDatentypen is
-   pragma Pure;
+   pragma Elaborate_Body;
 
    function BefehleNachKartenverbesserung
      (TasteExtern : in BefehleDatentypen.Siedler_Konstruktionen_Enum)
@@ -27,6 +28,10 @@ package UmwandlungenDatentypen is
    function RückgabeNachSchwierigkeitsgrad
      (RückgabeExtern : in RueckgabeDatentypen.Schwierigkeitsgrad_Enum)
       return SpielDatentypen.Schwierigkeitsgrad_Enum;
+   
+   function AuswahlBauprojekt
+     (AuswahlExtern : in Integer)
+      return StadtRecords.BauprojektRecord;
    
 private
    

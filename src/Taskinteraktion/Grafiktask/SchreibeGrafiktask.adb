@@ -272,6 +272,17 @@ package body SchreibeGrafiktask is
    
    
    
+   procedure Bauauswahl
+     (AuswahlExtern : in StadtRecords.BauprojektRecord)
+   is begin
+
+      Grafiktask.Auswahl.Bauauswahl.Gebäude := AuswahlExtern.Gebäude;
+      Grafiktask.Auswahl.Bauauswahl.Einheit := AuswahlExtern.Einheit;
+
+   end Bauauswahl;
+   
+   
+   
    procedure Tasteneingabe
      (JaNeinExtern : in Boolean)
    is begin

@@ -9,6 +9,7 @@ with MenueKonstanten;
 with MenueDatentypen;
 with Sequenzentexte;
 with TextDatentypen;
+with Spieltexte;
 
 with InteraktionAuswahl;
 
@@ -51,6 +52,11 @@ package TextaccessVariablen is
    
    IntroAccess : constant TextaccessArray (Positive'First .. Sequenzentexte.IntroEnde) := (others => Sf.Graphics.Text.create);
    OutroAccess : constant TextaccessArray (Positive'First .. Sequenzentexte.OutroEnde) := (others => Sf.Graphics.Text.create);
+   
+   ZeugAccess : constant TextaccessArray (Spieltexte.Zeug'Range) := (others => Sf.Graphics.Text.create);
+   FragenAccess : constant TextaccessArray (Spieltexte.Fragen'Range) := (others => Sf.Graphics.Text.create);
+   MeldungenAccess : constant TextaccessArray (Spieltexte.Meldungen'Range) := (others => Sf.Graphics.Text.create);
+   -- LadezeitenAccess : constant TextaccessArray (Spieltexte.Ladezeit'Range) := (others => Sf.Graphics.Text.create);
    -- Allgemeines
 
    -- Menüs

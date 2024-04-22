@@ -6,7 +6,6 @@ with InteraktionAuswahl;
 with SpeziesDatentypen;
 with ForschungKonstanten;
 with StadtKonstanten;
-with EinheitenKonstanten;
 with ViewKonstanten;
 with GrafikRecordKonstanten;
 with AuswahlKonstanten;
@@ -109,7 +108,7 @@ package body MausauswahlLogik is
    
    
    function Baumenü
-     return StadtRecords.ErweiterterBauprojektRecord
+     return StadtRecords.BauprojektauswahlRecord
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -124,7 +123,7 @@ package body MausauswahlLogik is
                                        RechteckExtern     => InteraktionAuswahl.PositionenBauaufteilung (AufteilungSchleifenwert))
          is
             when True =>
-               return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID, AufteilungSchleifenwert);
+               return (AuswahlKonstanten.LeerAuswahl, AufteilungSchleifenwert);
                
             when False =>
                null;
@@ -141,19 +140,14 @@ package body MausauswahlLogik is
                                                                        view         => Views.BauviewAccesse (ViewKonstanten.BaumenüBauliste));
             
             GebäudeSchleife:
-            for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
+            for GebäudeSchleifenwert in InteraktionAuswahl.PositionenBaumöglichkeiten'Range loop
          
                -- Die erste Prüfung kann raus, aber dann vergleicht er immer die Koordinaten was eventuell langsamer ist. Relevant? äöü
                if
-                 InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) = False
-               then
-                  null;
-                  
-               elsif
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    RechteckExtern     => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
+                                                    RechteckExtern     => InteraktionAuswahl.PositionenBaumöglichkeiten (GebäudeSchleifenwert))
                then
-                  return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID, StadtDatentypen.Leer_Bauprojektart);
+                  return (GebäudeSchleifenwert, StadtDatentypen.Leer_Bauprojektart);
          
                else
                   null;
@@ -179,7 +173,7 @@ package body MausauswahlLogik is
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
                                                     RechteckExtern     => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
                then
-                  return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert, StadtDatentypen.Leer_Bauprojektart);
+                  return (Integer (EinheitenSchleifenwert), StadtDatentypen.Leer_Bauprojektart);
          
                else
                   null;
@@ -188,7 +182,7 @@ package body MausauswahlLogik is
             end loop EinheitenSchleife;
       end case;
       
-      return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID, StadtDatentypen.Leer_Bauprojektart);
+      return (AuswahlKonstanten.LeerAuswahl, StadtDatentypen.Leer_Bauprojektart);
       
    end Baumenü;
    

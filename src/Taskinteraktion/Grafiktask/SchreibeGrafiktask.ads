@@ -9,6 +9,7 @@ with KartenRecords;
 with ZahlenDatentypen;
 with TextnummernKonstanten;
 with EinheitenRecords;
+with StadtRecords;
 
 package SchreibeGrafiktask is
    pragma Elaborate_Body;
@@ -93,6 +94,9 @@ package SchreibeGrafiktask is
    
    procedure Einheitenauswahl
      (EinheitExtern : in EinheitenDatentypen.EinheitenID);
+   
+   procedure Bauauswahl
+     (AuswahlExtern : in StadtRecords.BauprojektRecord);
    
    procedure Tasteneingabe
      (JaNeinExtern : in Boolean);

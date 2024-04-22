@@ -10,8 +10,6 @@ with TastenbelegungDatentypen;
 
 package MausauswahlLogik is
    pragma Elaborate_Body;
-   use type StadtDatentypen.GebäudeID;
-   use type EinheitenDatentypen.EinheitenID;
    use type EinheitenDatentypen.Transportplätze;
    use type StadtDatentypen.Bauprojektart_Enum;
    
@@ -22,14 +20,12 @@ package MausauswahlLogik is
      return ForschungenDatentypen.ForschungID;
 
    function Baumenü
-     return StadtRecords.ErweiterterBauprojektRecord
+     return StadtRecords.BauprojektauswahlRecord
      with
        Post => (
-                (if Baumenü'Result.Gebäude /= 0 then (Baumenü'Result.Einheit = 0 and Baumenü'Result.Bauprojektart = StadtDatentypen.Leer_Bauprojektart))
+                (if Baumenü'Result.Bauauswahl /= 0 then Baumenü'Result.Bauprojektart = StadtDatentypen.Leer_Bauprojektart)
                 and
-                  (if Baumenü'Result.Einheit /= 0 then (Baumenü'Result.Gebäude = 0 and Baumenü'Result.Bauprojektart = StadtDatentypen.Leer_Bauprojektart))
-                and
-                  (if Baumenü'Result.Bauprojektart /= StadtDatentypen.Leer_Bauprojektart then (Baumenü'Result.Einheit = 0 and Baumenü'Result.Gebäude = 0))
+                  (if Baumenü'Result.Bauprojektart /= StadtDatentypen.Leer_Bauprojektart then Baumenü'Result.Bauauswahl = 0)
                );
    
    function Menüs

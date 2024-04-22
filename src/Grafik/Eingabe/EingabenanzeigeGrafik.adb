@@ -79,7 +79,7 @@ package body EingabenanzeigeGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
@@ -127,7 +127,7 @@ package body EingabenanzeigeGrafik is
                                                                               ViewbreiteExtern => Viewfläche.x);
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
@@ -164,7 +164,7 @@ package body EingabenanzeigeGrafik is
       
       TextaccessverwaltungssystemEinfachGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess);
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
@@ -200,9 +200,9 @@ package body EingabenanzeigeGrafik is
                                                                                  ViewbreiteExtern => Viewfläche.x);
          
          TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
-                                                                  PositionExtern   => Textposition,
-                                                                  FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert,
-                                                                                                                             AuswahlExtern    => AktuelleAuswahl));
+                                                                         PositionExtern   => Textposition,
+                                                                         FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert,
+                                                                                                                                    AuswahlExtern    => AktuelleAuswahl));
          
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
@@ -285,9 +285,9 @@ package body EingabenanzeigeGrafik is
             
          else
             TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                         TextExtern       => To_Wide_Wide_String (Source => Text),
-                                                         FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Natural (AuswahlSchleifenwert),
-                                                                                                                    AuswahlExtern    => AktuelleAuswahlExtern));
+                                                                TextExtern       => To_Wide_Wide_String (Source => Text),
+                                                                FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Natural (AuswahlSchleifenwert),
+                                                                                                                           AuswahlExtern    => AktuelleAuswahlExtern));
             
             Textbox := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             
@@ -318,7 +318,7 @@ package body EingabenanzeigeGrafik is
                                                                                 TextbreiteExtern => Textbreite);
       
             Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
-                                                                    ErlaubteBreiteExtern => MaximaleTextbreite);
+                                                                ErlaubteBreiteExtern => MaximaleTextbreite);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
             
             -- Das nicht entfernen, ist für eine bessere Skalierung notwendig.
@@ -333,8 +333,8 @@ package body EingabenanzeigeGrafik is
             end if;
             
             TextaccessverwaltungssystemEinfachGrafik.PositionSkalierenZeichnen (TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                                         PositionExtern   => Textposition,
-                                                                         SkalierungExtern => Skalierung);
+                                                                                PositionExtern   => Textposition,
+                                                                                SkalierungExtern => Skalierung);
             
             InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             

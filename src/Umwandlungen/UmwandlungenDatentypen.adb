@@ -1,3 +1,9 @@
+with EinheitenDatentypen;
+with StadtDatentypen;
+with AuswahlKonstanten;
+
+with Grafiktask;
+
 package body UmwandlungenDatentypen is
 
    function BefehleNachKartenverbesserung
@@ -52,5 +58,25 @@ package body UmwandlungenDatentypen is
       return RückgabeSchwierigkeitsgrad (RückgabeExtern);
       
    end RückgabeNachSchwierigkeitsgrad;
+   
+   
+   
+   -- Das hier noch in eine eigene Datei verschieben? Eventuell aufteilen in Pur und nicht Pure? äöü
+   function AuswahlBauprojekt
+     (AuswahlExtern : in Integer)
+      return StadtRecords.BauprojektRecord
+   is begin
+      
+      case
+        Grafiktask.WelchesBaumenü
+      is
+         when StadtDatentypen.Gebäudeart_Enum =>
+            return (StadtDatentypen.GebäudeID (AuswahlExtern), EinheitenDatentypen.EinheitenID (AuswahlKonstanten.LeerAuswahl));
+               
+         when StadtDatentypen.Einheitenart_Enum =>
+            return (StadtDatentypen.GebäudeID (AuswahlKonstanten.LeerAuswahl), EinheitenDatentypen.EinheitenID (AuswahlExtern));
+      end case;
+      
+   end AuswahlBauprojekt;
 
 end UmwandlungenDatentypen;

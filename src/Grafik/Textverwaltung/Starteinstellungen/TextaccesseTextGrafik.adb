@@ -82,6 +82,16 @@ package body TextaccesseTextGrafik is
          
       end loop OutroSchleife;
       
+      
+      
+      ZeugSchleife:
+      for ZeugSchleifenwert in TextaccessVariablen.ZeugAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZeugAccess (ZeugSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Zeug (ZeugSchleifenwert)));
+         
+      end loop ZeugSchleife;
+      
    end Allgemeines;
    
    

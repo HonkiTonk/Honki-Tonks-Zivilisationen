@@ -145,8 +145,8 @@ package body BauauswahlGrafik is
       is
          when True =>
             ViewflächeBauliste.y := Gebäude (AuswahlExtern        => StadtDatentypen.GebäudeID (AuswahlExtern),
-                                             SpeziesExtern        => SpeziesExtern,
-                                             BauenVerkaufenExtern => True);
+                                               SpeziesExtern        => SpeziesExtern,
+                                               BauenVerkaufenExtern => True);
             
          when False =>
             ViewflächeBauliste.y := Einheiten (AuswahlExtern => EinheitenDatentypen.EinheitenID (AuswahlExtern),
@@ -161,39 +161,67 @@ package body BauauswahlGrafik is
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BauenVerkaufenExtern : in Boolean)
-   return Float
+      return Float
    is begin
 
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
 
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeIDVorhanden'Range loop
-
+      for GebäudeSchleifenwert in InteraktionAuswahl.MöglicheBauoptionen'Range loop
+         
          case
-           InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
+           InteraktionAuswahl.MöglicheBauoptionen (GebäudeSchleifenwert)
          is
-            when True =>
+            when 0 =>
+               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+               
+               Auswahlposition := GrafikRecordKonstanten.Leerbereich;
+
+            when -1 =>
                Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
                                                                                                     MaximaleTextbreiteExtern => ViewflächeBauliste.x,
-                                                                                                    TextAccessExtern         => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                                                                                    FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
+                                                                                                    TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
+                                                                                                    FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => GebäudeSchleifenwert,
                                                                                                                                                                        AuswahlExtern    => Natural (AuswahlExtern)));
+               
+               Auswahlposition := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter));
 
-               InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
+            when others =>
+               Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
+                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                                    TextAccessExtern         =>
+                                                                                                       TextaccessVariablen.GebäudetextAccess (SpeziesExtern,
+                                                                                                      StadtDatentypen.GebäudeIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (GebäudeSchleifenwert))),
+                                                                                                    FarbeExtern              =>
+                                                                                                       TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => GebäudeSchleifenwert,
+                                                                                                                                              AuswahlExtern    => Natural (AuswahlExtern)));
 
-            when False =>
-               null;
+               Auswahlposition := Sf.Graphics.Text.getGlobalBounds
+                 (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, StadtDatentypen.GebäudeIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (GebäudeSchleifenwert))));
          end case;
+         
+         InteraktionAuswahl.PositionenBaumöglichkeiten (GebäudeSchleifenwert) := Auswahlposition;
 
       end loop GebäudeSchleife;
 
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
 
-      BauauswahlGebaeudeGrafik.Informationen (AuswahlExtern        => AuswahlExtern,
-                                              SpeziesExtern        => SpeziesExtern,
-                                              BauenVerkaufenExtern => BauenVerkaufenExtern);
-
+      case
+        AuswahlExtern
+      is
+         when 16 =>
+            BauauswahlGebaeudeGrafik.Informationen (AuswahlExtern        => AuswahlKonstanten.LeerGebäudeauswahl,
+                                                    SpeziesExtern        => SpeziesExtern,
+                                                    BauenVerkaufenExtern => BauenVerkaufenExtern);
+            
+         when others =>
+            BauauswahlGebaeudeGrafik.Informationen (AuswahlExtern        => AuswahlExtern,
+                                                    SpeziesExtern        => SpeziesExtern,
+                                                    BauenVerkaufenExtern => BauenVerkaufenExtern);
+      end case;
+      
       return Textposition.y;
 
    end Gebäude;

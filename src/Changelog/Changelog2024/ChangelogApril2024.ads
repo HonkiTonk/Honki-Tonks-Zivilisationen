@@ -77,17 +77,19 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (19.04.2024):
+   -- Version 0.05.6385 => 0.05. (19.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6335 => 0.05. (18.04.2024):
+   -- Version 0.05.6335 => 0.05.6385 (18.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am mehrseitigen Baumenü gearbeitet.
+   -- Festlegen der Textaccesse erweitert.
+   -- Die Gebäudeauswahl im Baumenü hat jetzt mehrere Seiten.
+   -- Contracts, Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

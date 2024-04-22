@@ -25,14 +25,17 @@ private
    use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
 
+   EinheitenAnfang : EinheitenDatentypen.EinheitenIDVorhanden;
+   EinheitenEnde : EinheitenDatentypen.EinheitenIDVorhanden;
+
+   GebäudeAnfang : StadtDatentypen.GebäudeIDVorhanden;
+
    BaubareGebäude : Natural;
    BaubareEinheiten : Natural;
 
-   AktuelleAuswahl : StadtRecords.ErweiterterBauprojektRecord := (0, 0, StadtDatentypen.Leer_Bauprojektart);
+   AktuelleAuswahl : StadtRecords.BauprojektauswahlRecord := (0, StadtDatentypen.Leer_Bauprojektart);
+   GewähltesBauprojekt : StadtRecords.BauprojektRecord;
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
-
-   type TestArray is array (1 .. 16) of Integer;
-   Test : TestArray;
 
    procedure MöglicheGebäudeErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
