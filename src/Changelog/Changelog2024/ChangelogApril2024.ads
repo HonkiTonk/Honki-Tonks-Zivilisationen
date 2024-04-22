@@ -84,23 +84,24 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (18.04.2024):
+   -- Version 0.05.6335 => 0.05. (18.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6300 => 0.05. (17.04.2024):
+   -- Version 0.05.6300 => 0.05.6335 (17.04.2024):
    
-   -- 
+   -- Wieder einmal mit Fonts herumexperimentiert.
+   -- Unifont scheint mit dem Rahmen um den Text ordentlich lesbar zu sein und kann auch mehr Sprachen, sieht aber nicht so gut aus.
    -- Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.05.6260 => 0.05.6300 (16.04.2024):
    
-   -- Die bauprojektart in ein Enum gepackt und alles daran angepasst.
+   -- Die Bauprojektart in ein Enum gepackt und alles daran angepasst.
    -- Weiter am mehrseitigen Baumenü gearbeitet.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
