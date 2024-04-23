@@ -90,6 +90,36 @@ package body TextaccesseSchriftrahmenGrafik is
          
       end loop OutroSchleife;
       
+      
+      
+      ZeugSchleife:
+      for ZeugSchleifenwert in TextaccessVariablen.ZeugAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.ZeugAccess (ZeugSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop ZeugSchleife;
+      
+      
+      
+      FragenSchleife:
+      for FragenSchleifenwert in TextaccessVariablen.FragenAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.FragenAccess (FragenSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop FragenSchleife;
+      
+      
+      
+      MeldungenSchleife:
+      for MeldungenSchleifenwert in TextaccessVariablen.MeldungenAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.MeldungenAccess (MeldungenSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop MeldungenSchleife;
+      
    end Allgemeines;
    
    

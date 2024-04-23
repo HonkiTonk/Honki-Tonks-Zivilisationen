@@ -9,7 +9,6 @@ with StadtKonstanten;
 with ViewKonstanten;
 with GrafikRecordKonstanten;
 with AuswahlKonstanten;
-with Grafiktask;
 
 with Vergleiche;
 with SichtweitenGrafik;
@@ -131,56 +130,25 @@ package body MausauswahlLogik is
          
       end loop AufteilungSchleife;
       
-      case
-        Grafiktask.WelchesBaumenü
-      is
-         when StadtDatentypen.Gebäudeart_Enum =>
-            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                       point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
-                                                                       view         => Views.BauviewAccesse (ViewKonstanten.BaumenüBauliste));
-            
-            GebäudeSchleife:
-            for GebäudeSchleifenwert in InteraktionAuswahl.PositionenBaumöglichkeiten'Range loop
-         
-               -- Die erste Prüfung kann raus, aber dann vergleicht er immer die Koordinaten was eventuell langsamer ist. Relevant? äöü
-               if
-                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    RechteckExtern     => InteraktionAuswahl.PositionenBaumöglichkeiten (GebäudeSchleifenwert))
-               then
-                  return (GebäudeSchleifenwert, StadtDatentypen.Leer_Bauprojektart);
-         
-               else
-                  null;
-               end if;
-               
-            end loop GebäudeSchleife;
-            
-         when StadtDatentypen.Einheitenart_Enum =>
-            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                       point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
-                                                                       view         => Views.BauviewAccesse (ViewKonstanten.BaumenüBauliste));
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                                 point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
+                                                                 view         => Views.BauviewAccesse (ViewKonstanten.BaumenüBauliste));
       
-            EinheitenSchleife:
-            for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
-         
-               -- Die erste Prüfung kann raus, aber dann vergleicht er immer die Koordinaten was eventuell langsamer ist. Relevant? äöü
-               if
-                 InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert) = False
-               then
-                  null;
+      BauprojektSchleife:
+      for BauprojektSchleifenwert in InteraktionAuswahl.PositionenBaumöglichkeiten'Range loop
                   
-               elsif
-                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    RechteckExtern     => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
-               then
-                  return (Integer (EinheitenSchleifenwert), StadtDatentypen.Leer_Bauprojektart);
-         
-               else
-                  null;
-               end if;
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       RechteckExtern     => InteraktionAuswahl.PositionenBaumöglichkeiten (BauprojektSchleifenwert))
+         is
+            when True =>
+               return (BauprojektSchleifenwert, StadtDatentypen.Leer_Bauprojektart);
                
-            end loop EinheitenSchleife;
-      end case;
+            when False =>
+               null;
+         end case;
+         
+      end loop BauprojektSchleife;
       
       return (AuswahlKonstanten.LeerAuswahl, StadtDatentypen.Leer_Bauprojektart);
       

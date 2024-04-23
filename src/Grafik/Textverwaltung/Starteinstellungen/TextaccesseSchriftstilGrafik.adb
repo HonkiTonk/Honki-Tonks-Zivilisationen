@@ -105,6 +105,36 @@ package body TextaccesseSchriftstilGrafik is
          
       end loop OutroSchleife;
       
+      
+      
+      ZeugSchleife:
+      for ZeugSchleifenwert in TextaccessVariablen.ZeugAccess'Range loop
+         
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.ZeugAccess (ZeugSchleifenwert),
+                                    style => StilExtern);
+         
+      end loop ZeugSchleife;
+      
+      
+      
+      FragenSchleife:
+      for FragenSchleifenwert in TextaccessVariablen.FragenAccess'Range loop
+         
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.FragenAccess (FragenSchleifenwert),
+                                    style => StilExtern);
+         
+      end loop FragenSchleife;
+      
+      
+      
+      MeldungenSchleife:
+      for MeldungenSchleifenwert in TextaccessVariablen.MeldungenAccess'Range loop
+         
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.MeldungenAccess (MeldungenSchleifenwert),
+                                    style => StilExtern);
+         
+      end loop MeldungenSchleife;
+      
    end Allgemeines;
    
    

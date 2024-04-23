@@ -26,6 +26,8 @@ with TextaccessverwaltungssystemErweitertGrafik;
 with TexteinstellungenGrafik;
 with StandardtexteGrafik;
 
+-- with Diagnoseinformationen;
+
 -- Kann man das so anpassen dass eine teilweise Verschmelzung mit VerkaufsauswahlGrafik möglich wäre? äöü
 package body BauauswahlGrafik is
 
@@ -238,30 +240,55 @@ package body BauauswahlGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
           
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
+      for EinheitenSchleifenwert in InteraktionAuswahl.MöglicheBauoptionen'Range loop
          
          case
-           InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
+           InteraktionAuswahl.MöglicheBauoptionen (EinheitenSchleifenwert)
          is
-            when True =>
+            when 0 =>
+               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+               
+               Auswahlposition := GrafikRecordKonstanten.Leerbereich;
+
+            when -1 =>
                Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
                                                                                                     MaximaleTextbreiteExtern => ViewflächeBauliste.x,
-                                                                                                    TextAccessExtern         => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
-                                                                                                    FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (EinheitenSchleifenwert),
+                                                                                                    TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
+                                                                                                    FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => EinheitenSchleifenwert,
                                                                                                                                                                        AuswahlExtern    => Natural (AuswahlExtern)));
                
-               InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert));
+               Auswahlposition := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter));
 
-            when False =>
-               null;
+            when others =>
+               Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
+                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                                    TextAccessExtern         => TextaccessVariablen.EinheitentextAccess (SpeziesExtern,
+                                                                                                      EinheitenDatentypen.EinheitenIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (EinheitenSchleifenwert))),
+                                                                                                    FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => EinheitenSchleifenwert,
+                                                                                                                                                                       AuswahlExtern    => Natural (AuswahlExtern)));
+               
+               Auswahlposition := Sf.Graphics.Text.getGlobalBounds
+                 (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenDatentypen.EinheitenIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (EinheitenSchleifenwert))));
          end case;
+         
+         InteraktionAuswahl.PositionenBaumöglichkeiten (EinheitenSchleifenwert) := Auswahlposition;
          
       end loop EinheitenSchleife;
       
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
-      BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern => AuswahlExtern,
-                                                        SpeziesExtern => SpeziesExtern);
+      case
+        AuswahlExtern
+      is
+         when 16 =>
+            BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern => AuswahlKonstanten.LeerEinheitenauswahl,
+                                                              SpeziesExtern => SpeziesExtern);
+            
+         when others =>
+            BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern => AuswahlExtern,
+                                                              SpeziesExtern => SpeziesExtern);
+      end case;
       
       return Textposition.y;
       

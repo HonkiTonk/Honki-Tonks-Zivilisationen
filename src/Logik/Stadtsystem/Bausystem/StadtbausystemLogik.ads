@@ -26,7 +26,6 @@ private
    use type EinheitenDatentypen.EinheitenID;
 
    EinheitenAnfang : EinheitenDatentypen.EinheitenIDVorhanden;
-   EinheitenEnde : EinheitenDatentypen.EinheitenIDVorhanden;
 
    GebäudeAnfang : StadtDatentypen.GebäudeIDVorhanden;
 

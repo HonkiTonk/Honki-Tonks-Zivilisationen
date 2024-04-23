@@ -17,8 +17,6 @@ with OftVerwendetSound;
 with UmwandlungenDatentypen;
 with JaNeinLogik;
 
-with Diagnoseinformationen;
-
 package body StadtbausystemLogik is
 
    procedure Bauen
@@ -40,7 +38,6 @@ package body StadtbausystemLogik is
          null;
             
       else
-         Diagnoseinformationen.Zahl (ZahlExtern => Integer (NeuesBauprojekt.Gebäude));
          SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          BauprojektExtern         => NeuesBauprojekt);
          SchreibeStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
@@ -139,12 +136,12 @@ package body StadtbausystemLogik is
                     
                   if
                     ((GewähltesBauprojekt.Gebäude /= AktuelleBauprojektExtern.Gebäude
-                     and
-                       GewähltesBauprojekt.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl)
-                    or
-                      (GewähltesBauprojekt.Einheit /= AktuelleBauprojektExtern.Einheit
-                       and
-                         GewähltesBauprojekt.Einheit /= AuswahlKonstanten.LeerEinheitenauswahl))
+                      and
+                        GewähltesBauprojekt.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl)
+                     or
+                       (GewähltesBauprojekt.Einheit /= AktuelleBauprojektExtern.Einheit
+                        and
+                          GewähltesBauprojekt.Einheit /= AuswahlKonstanten.LeerEinheitenauswahl))
                     and then
                       JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBauprojektWechseln) = False
                   then
@@ -226,35 +223,81 @@ package body StadtbausystemLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      BaubareEinheiten := 0;
+      BaubareEinheiten := 1;
       
-      InteraktionAuswahl.MöglicheBauoptionen := (others => AuswahlKonstanten.LeerAuswahl);
+     -- case
+     --   InteraktionAuswahl.MöglicheBauoptionen (16)
+     -- is
+     --    when -1 =>
+      --      TestSchleife:
+      --      for TestSchleifenwert in InteraktionAuswahl.MöglicheBauoptionen'First .. 15 loop
+               
+      --         if
+      --           InteraktionAuswahl.MöglicheBauoptionen (TestSchleifenwert) = AuswahlKonstanten.LeerAuswahl
+      ----         then
+      --            EinheitenAnfang := EinheitenDatentypen.EinheitenIDVorhanden'First;
+       --           exit TestSchleife;
+                  
+       --        elsif
+      --           EinheitenDatentypen.EinheitenIDVorhanden'Last = EinheitenDatentypen.EinheitenID (InteraktionAuswahl.MöglicheBauoptionen (TestSchleifenwert))
+       --        then
+       ---           EinheitenAnfang := EinheitenDatentypen.EinheitenIDVorhanden'First;
+       --           exit TestSchleife;
+                  
+        --       elsif
+        --         TestSchleifenwert = 15
+       --        then
+       --           EinheitenAnfang := EinheitenDatentypen.EinheitenIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (15) + 1);
+        --          exit TestSchleife;
+                  
+         --      else
+         --         null;
+        --       end if;
+               
+        --    end loop TestSchleife;
+
+       --  when others =>
+       --     EinheitenAnfang := EinheitenDatentypen.EinheitenIDVorhanden'First;
+    --  end case;
+      
+      if
+        InteraktionAuswahl.MöglicheBauoptionen (16) = -1
+        and
+          InteraktionAuswahl.MöglicheBauoptionen (15) = AuswahlKonstanten.LeerAuswahl
+      then
+         EinheitenAnfang := EinheitenDatentypen.EinheitenIDVorhanden'First;
+         
+      elsif
+        InteraktionAuswahl.MöglicheBauoptionen (16) = -1
+      then
+         EinheitenAnfang := EinheitenDatentypen.EinheitenIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (15) + 1);
+           
+      else
+         EinheitenAnfang := EinheitenDatentypen.EinheitenIDVorhanden'First;
+      end if;
+    
+      InteraktionAuswahl.MöglicheBauoptionen (1 ..15) := (others => AuswahlKonstanten.LeerAuswahl);
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
+      for EinheitSchleifenwert in EinheitenAnfang .. EinheitenDatentypen.EinheitenIDVorhanden'Last loop
          
-         case
-           EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                              IDExtern                 => EinheitSchleifenwert)
-         is
-            when True =>
-               InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) := True;
-               
-               if
-                 BaubareEinheiten <= 15
-               then
-                  BaubareEinheiten := BaubareEinheiten + 1;
-                  InteraktionAuswahl.MöglicheBauoptionen (BaubareEinheiten) := Positive (EinheitSchleifenwert);
+         if
+           False = EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                      IDExtern                 => EinheitSchleifenwert)
+         then
+            null;
+         
+         elsif
+           BaubareEinheiten <= 15
+         then
+            InteraktionAuswahl.MöglicheBauoptionen (BaubareEinheiten) := Positive (EinheitSchleifenwert);
+            BaubareEinheiten := BaubareEinheiten + 1;
                   
-               else
-                  InteraktionAuswahl.MöglicheBauoptionen (InteraktionAuswahl.MöglicheBauoptionen'Last) := -1;
-                  exit EinheitenSchleife;
-               end if;
-               
-            when False =>
-               InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) := False;
-         end case;
-         
+         else
+            InteraktionAuswahl.MöglicheBauoptionen (InteraktionAuswahl.MöglicheBauoptionen'Last) := -1;
+            exit EinheitenSchleife;
+         end if;
+      
       end loop EinheitenSchleife;
       
    end MöglicheEinheitenErmitteln;

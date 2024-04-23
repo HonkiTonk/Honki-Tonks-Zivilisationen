@@ -110,6 +110,26 @@ package body TextaccesseSchriftartGrafik is
          
       end loop ZeugSchleife;
       
+      
+      
+      FragenSchleife:
+      for FragenSchleifenwert in TextaccessVariablen.FragenAccess'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.FragenAccess (FragenSchleifenwert),
+                                   font => SchriftaccessExtern);
+         
+      end loop FragenSchleife;
+      
+      
+      
+      MeldungenSchleife:
+      for MeldungenSchleifenwert in TextaccessVariablen.MeldungenAccess'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.MeldungenAccess (MeldungenSchleifenwert),
+                                   font => SchriftaccessExtern);
+         
+      end loop MeldungenSchleife;
+      
    end Allgemeines;
    
    

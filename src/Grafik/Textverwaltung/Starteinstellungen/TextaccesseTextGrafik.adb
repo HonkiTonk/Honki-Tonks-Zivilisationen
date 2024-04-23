@@ -92,6 +92,26 @@ package body TextaccesseTextGrafik is
          
       end loop ZeugSchleife;
       
+      
+      
+      FragenSchleife:
+      for FragenSchleifenwert in TextaccessVariablen.FragenAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.FragenAccess (FragenSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Fragen (FragenSchleifenwert)));
+         
+      end loop FragenSchleife;
+      
+      
+      
+      MeldungenSchleife:
+      for MeldungenSchleifenwert in TextaccessVariablen.MeldungenAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MeldungenAccess (MeldungenSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Meldungen (MeldungenSchleifenwert)));
+         
+      end loop MeldungenSchleife;
+      
    end Allgemeines;
    
    

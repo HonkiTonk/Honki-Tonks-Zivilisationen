@@ -113,6 +113,36 @@ package body TextaccesseSchriftfarbeGrafik is
          
       end loop OutroSchleife;
       
+      
+      
+      ZeugSchleife:
+      for ZeugSchleifenwert in TextaccessVariablen.ZeugAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZeugAccess (ZeugSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop ZeugSchleife;
+      
+      
+      
+      FragenSchleife:
+      for FragenSchleifenwert in TextaccessVariablen.FragenAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.FragenAccess (FragenSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop FragenSchleife;
+      
+      
+      
+      MeldungenSchleife:
+      for MeldungenSchleifenwert in TextaccessVariablen.MeldungenAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MeldungenAccess (MeldungenSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop MeldungenSchleife;
+      
    end Allgemeines;
    
    

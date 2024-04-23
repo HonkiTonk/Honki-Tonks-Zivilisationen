@@ -137,6 +137,36 @@ package body TextaccesseSchriftgroesseGrafik is
          
       end loop OutroSchleife;
       
+      
+      
+      ZeugSchleife:
+      for ZeugSchleifenwert in TextaccessVariablen.ZeugAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZeugAccess (ZeugSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop ZeugSchleife;
+      
+      
+      
+      FragenSchleife:
+      for FragenSchleifenwert in TextaccessVariablen.FragenAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.FragenAccess (FragenSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop FragenSchleife;
+      
+      
+      
+      MeldungenSchleife:
+      for MeldungenSchleifenwert in TextaccessVariablen.MeldungenAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MeldungenAccess (MeldungenSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop MeldungenSchleife;
+      
    end Allgemeines;
    
    

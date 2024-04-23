@@ -63,17 +63,21 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (21.04.2024):
+   -- Version 0.05.6480 => 0.05. (21.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6410 => 0.05. (20.04.2024):
+   -- Version 0.05.6410 => 0.05.6480 (20.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am Baumenü gearbeitet.
+   -- Die Einheitenauswahl im Baumenü ist jetzt mehrseitig.
+   -- Es sollte jetzt einfacher möglich sein weitere Kategorien zum Baumenü hinzuzufügen.
+   -- Code zusammengeführt.
+   -- Festlegen der Textaccesse erweitert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
