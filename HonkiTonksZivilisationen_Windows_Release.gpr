@@ -1,13 +1,13 @@
 with "asfml_Windows.gpr";
 
-project HonkiTonksZivilisationen_Windows_Test is
-      
+project HonkiTonksZivilisationen_Windows is
+
    type Betriebssystem_Type is
       ("Linux", "Windows");
    Betriebssystem : Betriebssystem_Type := external ("Betriebssystem", "Windows");
    type Status_Type is
       ("Entwicklung", "Veroeffentlichung");
-   Status : Status_Type := external ("Status", "Entwicklung");
+   Status : Status_Type := external ("Status", "Veroeffentlichung");
 
    case Betriebssystem is
 
@@ -55,7 +55,7 @@ project HonkiTonksZivilisationen_Windows_Test is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-fstack-check", "-gnato", "-g", "-gnata", "-gnatVacdefimoprst", 
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-O3", "-gnatn", "-funroll-loops", "-fPIC", "-fstack-check", "-gnatVacdefimoprst", 
          "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L8");
       for Local_Configuration_Pragmas use "Lokale Pragmas";
    end Compiler;
@@ -79,5 +79,5 @@ project HonkiTonksZivilisationen_Windows_Test is
       for Switches ("ada") use ("-s", "-Wl,--gc-sections");
    end Linker;
 
-end HonkiTonksZivilisationen_Windows_Test;
+end HonkiTonksZivilisationen_Windows;
 
