@@ -49,16 +49,16 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (23.04.2024):
+   -- Version 0.05.6565 => 0.05. (23.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6540 => 0.05. (22.04.2024):
+   -- Version 0.05.6540 => 0.05.6565 (22.04.2024):
    
-   -- 
+   -- Alte und unnötig gewordene Dateien aussortiert.
    -- Kleinigkeiten korrigiert.
    
    

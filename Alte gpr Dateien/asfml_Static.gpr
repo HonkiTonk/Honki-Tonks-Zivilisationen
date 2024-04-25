@@ -1,4 +1,4 @@
-library project ASFML_Dynamic is
+library project ASFML is
 
    type T_OS is ("Windows_NT", "Linux");
    V_OS : T_OS := external ("OS", "Linux");
@@ -7,13 +7,13 @@ library project ASFML_Dynamic is
 
    for Create_Missing_Dirs use "True";
 
-   for Source_Dirs use ("/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLDynamic/include");
-   for Object_Dir  use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLDynamic/obj";
+   for Source_Dirs use ("/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLStatic/include");
+   for Object_Dir  use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLStatic/obj";
 
    for Library_Name use "asfml";
 
-   for Library_Dir  use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLDynamic/lib";
-   for Library_ALI_Dir use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLDynamic/lib";
+   for Library_Dir  use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLStatic/lib";
+   for Library_ALI_Dir use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLStatic/lib";
    for Library_Kind use "static";
 
 
@@ -109,4 +109,4 @@ library project ASFML_Dynamic is
       for HTML_Custom_Dir use "tools/gnatdoc_html";
    end Documentation;
 
-end ASFML_Dynamic;
+end ASFML;

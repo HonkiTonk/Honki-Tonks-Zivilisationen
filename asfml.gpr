@@ -7,13 +7,13 @@ library project ASFML is
 
    for Create_Missing_Dirs use "True";
 
-   for Source_Dirs use ("/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFML/include");
-   for Object_Dir  use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFML/obj";
+   for Source_Dirs use ("/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLDynamic/include");
+   for Object_Dir  use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLDynamic/obj";
 
    for Library_Name use "asfml";
 
-   for Library_Dir  use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFML/lib";
-   for Library_ALI_Dir use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFML/lib";
+   for Library_Dir  use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLDynamic/lib";
+   for Library_ALI_Dir use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/ASFMLDynamic/lib";
    for Library_Kind use "static";
 
 

@@ -1,4 +1,4 @@
-with "asfml.gpr";
+with "asfml_Static.gpr";
 
 project HonkiTonksZivilisationen_Static is
 
