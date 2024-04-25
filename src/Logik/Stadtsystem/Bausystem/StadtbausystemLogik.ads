@@ -4,9 +4,12 @@ with StadtKonstanten;
 
 private with StadtDatentypen;
 private with EinheitenDatentypen;
+private with SystemDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
+
+private with InteraktionAuswahl;
 
 package StadtbausystemLogik is
    pragma Elaborate_Body;
@@ -26,17 +29,43 @@ private
    use type EinheitenDatentypen.EinheitenID;
 
    EinheitenAnfang : EinheitenDatentypen.EinheitenIDVorhanden;
+   EinheitenEnde : EinheitenDatentypen.EinheitenIDVorhanden;
 
    GebäudeAnfang : StadtDatentypen.GebäudeIDVorhanden;
+   GebäudeEnde : StadtDatentypen.GebäudeIDVorhanden;
 
-   BaubareGebäude : Natural;
-   BaubareEinheiten : Natural;
+   Baumöglichkeiten : Natural;
 
    AktuelleAuswahl : StadtRecords.BauprojektauswahlRecord := (0, StadtDatentypen.Leer_Bauprojektart);
    GewähltesBauprojekt : StadtRecords.BauprojektRecord;
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
 
+   type AuswahlaufteilungArray is array (InteraktionAuswahl.BaulisteZurück .. InteraktionAuswahl.BaulisteWeiter) of SystemDatentypen.Erweiterter_Boolean_Enum;
+   Auswahlaufteilung : constant AuswahlaufteilungArray := (
+                                                           InteraktionAuswahl.BaulisteZurück => SystemDatentypen.True_Enum,
+                                                           InteraktionAuswahl.BaulisteWeiter => SystemDatentypen.False_Enum
+                                                          );
+
    procedure MöglicheGebäudeErmitteln
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      ListenrichtungExtern : in SystemDatentypen.Erweiterter_Boolean_Enum)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
+
+   procedure GebäudeermittlungVorwärts
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
+
+   procedure GebäudeermittlungRückwärts
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
        Pre => (
@@ -46,6 +75,25 @@ private
               );
 
    procedure MöglicheEinheitenErmitteln
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      ListenrichtungExtern : in SystemDatentypen.Erweiterter_Boolean_Enum)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
+
+   procedure EinheitenermittlungVorwärts
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
+
+   procedure EinheitenermittlungRückwärts
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
        Pre => (

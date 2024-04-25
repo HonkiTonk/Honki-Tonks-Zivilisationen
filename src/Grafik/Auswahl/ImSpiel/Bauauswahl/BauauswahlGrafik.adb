@@ -11,7 +11,6 @@ with AuswahlKonstanten;
 with TextDatentypen;
 
 with TextberechnungenBreiteGrafik;
-with InteraktionAuswahl;
 with TextberechnungenHoeheGrafik;
 with GebaeudebeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
@@ -148,11 +147,13 @@ package body BauauswahlGrafik is
          when True =>
             ViewflächeBauliste.y := Gebäude (AuswahlExtern        => StadtDatentypen.GebäudeID (AuswahlExtern),
                                                SpeziesExtern        => SpeziesExtern,
-                                               BauenVerkaufenExtern => True);
+                                               BauenVerkaufenExtern => True,
+                                               BaulisteExtern       => InteraktionAuswahl.MöglicheBauoptionen);
             
          when False =>
-            ViewflächeBauliste.y := Einheiten (AuswahlExtern => EinheitenDatentypen.EinheitenID (AuswahlExtern),
-                                                SpeziesExtern => SpeziesExtern);
+            ViewflächeBauliste.y := Einheiten (AuswahlExtern  => EinheitenDatentypen.EinheitenID (AuswahlExtern),
+                                                SpeziesExtern  => SpeziesExtern,
+                                                BaulisteExtern => InteraktionAuswahl.MöglicheBauoptionen);
       end case;
       
    end BaulistenviewEinstellen;
@@ -162,7 +163,8 @@ package body BauauswahlGrafik is
    function Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      BauenVerkaufenExtern : in Boolean)
+      BauenVerkaufenExtern : in Boolean;
+      BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
       return Float
    is begin
 
@@ -170,50 +172,88 @@ package body BauauswahlGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
 
       GebäudeSchleife:
-      for GebäudeSchleifenwert in InteraktionAuswahl.MöglicheBauoptionen'Range loop
+      for GebäudeSchleifenwert in InteraktionAuswahl.BaulisteAnfang .. InteraktionAuswahl.BaulisteEnde loop
          
          case
-           InteraktionAuswahl.MöglicheBauoptionen (GebäudeSchleifenwert)
+           BaulisteExtern (GebäudeSchleifenwert)
          is
-            when 0 =>
+            when AuswahlKonstanten.LeerAuswahl =>
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
                
                Auswahlposition := GrafikRecordKonstanten.Leerbereich;
-
-            when -1 =>
-               Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x,
-                                                                                                    TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
-                                                                                                    FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => GebäudeSchleifenwert,
-                                                                                                                                                                       AuswahlExtern    => Natural (AuswahlExtern)));
-               
-               Auswahlposition := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter));
 
             when others =>
                Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
                                                                                                     MaximaleTextbreiteExtern => ViewflächeBauliste.x,
                                                                                                     TextAccessExtern         =>
                                                                                                        TextaccessVariablen.GebäudetextAccess (SpeziesExtern,
-                                                                                                      StadtDatentypen.GebäudeIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (GebäudeSchleifenwert))),
+                                                                                                      StadtDatentypen.GebäudeIDVorhanden (BaulisteExtern (GebäudeSchleifenwert))),
                                                                                                     FarbeExtern              =>
                                                                                                        TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => GebäudeSchleifenwert,
                                                                                                                                               AuswahlExtern    => Natural (AuswahlExtern)));
 
                Auswahlposition := Sf.Graphics.Text.getGlobalBounds
-                 (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, StadtDatentypen.GebäudeIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (GebäudeSchleifenwert))));
+                 (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, StadtDatentypen.GebäudeID (BaulisteExtern (GebäudeSchleifenwert))));
          end case;
          
          InteraktionAuswahl.PositionenBaumöglichkeiten (GebäudeSchleifenwert) := Auswahlposition;
 
       end loop GebäudeSchleife;
+      
+      if
+        BaulisteExtern (InteraktionAuswahl.BaulisteZurück) = AuswahlKonstanten.ErstAuswahl
+        and
+          BaulisteExtern (InteraktionAuswahl.BaulisteWeiter) = AuswahlKonstanten.ErstAuswahl
+      then
+         LeerYTextposition := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
+                                                                                                 MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                                 TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück),
+                                                                                                 FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteZurück,
+                                                                                                                                                                    AuswahlExtern    => Natural (AuswahlExtern)));
+         
+         InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteZurück) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück));
+         
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => (Textposition.x + ViewflächeBauliste.x / 2.00, Textposition.y),
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
+                                                                                              FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteWeiter,
+                                                                                                                                                                 AuswahlExtern    => Natural (AuswahlExtern)));
+               
+         InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteWeiter) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter));
+         
+      elsif
+        BaulisteExtern (InteraktionAuswahl.BaulisteZurück) = AuswahlKonstanten.ErstAuswahl
+      then
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück),
+                                                                                              FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteZurück,
+                                                                                                                                                                 AuswahlExtern    => Natural (AuswahlExtern)));
+               
+         InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteZurück) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück));
+         
+      elsif
+        BaulisteExtern (InteraktionAuswahl.BaulisteWeiter) = AuswahlKonstanten.ErstAuswahl
+      then
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
+                                                                                              FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteWeiter,
+                                                                                                                                                                 AuswahlExtern    => Natural (AuswahlExtern)));
+               
+         InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteWeiter) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter));
+         
+      else
+         null;
+      end if;
 
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
 
       case
-        AuswahlExtern
+        Natural (AuswahlExtern)
       is
-         when 16 =>
+         when InteraktionAuswahl.BaulisteZurück .. InteraktionAuswahl.BaulisteWeiter =>
             BauauswahlGebaeudeGrafik.Informationen (AuswahlExtern        => AuswahlKonstanten.LeerGebäudeauswahl,
                                                     SpeziesExtern        => SpeziesExtern,
                                                     BauenVerkaufenExtern => BauenVerkaufenExtern);
@@ -232,7 +272,8 @@ package body BauauswahlGrafik is
    
    function Einheiten
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
       return Float
    is begin
       
@@ -240,48 +281,93 @@ package body BauauswahlGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
           
       EinheitenSchleife:
-      for EinheitenSchleifenwert in InteraktionAuswahl.MöglicheBauoptionen'Range loop
+      for EinheitenSchleifenwert in InteraktionAuswahl.BaulisteAnfang .. InteraktionAuswahl.BaulisteEnde loop
          
          case
-           InteraktionAuswahl.MöglicheBauoptionen (EinheitenSchleifenwert)
+           BaulisteExtern (EinheitenSchleifenwert)
          is
-            when 0 =>
+            when AuswahlKonstanten.LeerAuswahl =>
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
                
                Auswahlposition := GrafikRecordKonstanten.Leerbereich;
 
-            when -1 =>
-               Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x,
-                                                                                                    TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
-                                                                                                    FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => EinheitenSchleifenwert,
-                                                                                                                                                                       AuswahlExtern    => Natural (AuswahlExtern)));
-               
-               Auswahlposition := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter));
-
             when others =>
                Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
                                                                                                     MaximaleTextbreiteExtern => ViewflächeBauliste.x,
                                                                                                     TextAccessExtern         => TextaccessVariablen.EinheitentextAccess (SpeziesExtern,
-                                                                                                      EinheitenDatentypen.EinheitenIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (EinheitenSchleifenwert))),
+                                                                                                      EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert))),
                                                                                                     FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => EinheitenSchleifenwert,
                                                                                                                                                                        AuswahlExtern    => Natural (AuswahlExtern)));
                
-               Auswahlposition := Sf.Graphics.Text.getGlobalBounds
-                 (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenDatentypen.EinheitenIDVorhanden (InteraktionAuswahl.MöglicheBauoptionen (EinheitenSchleifenwert))));
+               -- Diagnoseinformationen.Zahl (ZahlExtern => BaulisteExtern (EinheitenSchleifenwert));
+               -- Diagnoseinformationen.Zahl (ZahlExtern => Integer (EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert))));
+               -- Diagnoseinformationen.Boxinformationen
+               --   (BoxExtern => Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert)))));
+               -- Diagnoseinformationen.Zeilenabstand;
+               
+               -- Sollte auch mit EinheitenIDVorhanden anstelle von EinheitenID funktionieren, tut es aber nicht. Später mal herausfinden warum. äöü
+               -- Das Problem existiert auch bei den Gebäuden. äöü
+               Auswahlposition := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenDatentypen.EinheitenID (BaulisteExtern (EinheitenSchleifenwert))));
          end case;
          
          InteraktionAuswahl.PositionenBaumöglichkeiten (EinheitenSchleifenwert) := Auswahlposition;
          
       end loop EinheitenSchleife;
       
+      if
+        BaulisteExtern (InteraktionAuswahl.BaulisteZurück) = AuswahlKonstanten.ErstAuswahl
+        and
+          BaulisteExtern (InteraktionAuswahl.BaulisteWeiter) = AuswahlKonstanten.ErstAuswahl
+      then
+         LeerYTextposition := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
+                                                                                                 MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                                 TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück),
+                                                                                                 FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteZurück,
+                                                                                                                                                                    AuswahlExtern    => Natural (AuswahlExtern)));
+         
+         InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteZurück) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück));
+         
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => (Textposition.x + ViewflächeBauliste.x / 2.00, Textposition.y),
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
+                                                                                              FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteWeiter,
+                                                                                                                                                                 AuswahlExtern    => Natural (AuswahlExtern)));
+               
+         InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteWeiter) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter));
+         
+      elsif
+        BaulisteExtern (InteraktionAuswahl.BaulisteZurück) = AuswahlKonstanten.ErstAuswahl
+      then
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück),
+                                                                                              FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteZurück,
+                                                                                                                                                                 AuswahlExtern    => Natural (AuswahlExtern)));
+               
+         InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteZurück) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück));
+         
+      elsif
+        BaulisteExtern (InteraktionAuswahl.BaulisteWeiter) = AuswahlKonstanten.ErstAuswahl
+      then
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
+                                                                                              FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteWeiter,
+                                                                                                                                                                 AuswahlExtern    => Natural (AuswahlExtern)));
+               
+         InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteWeiter) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter));
+         
+      else
+         Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
+      end if;
+      
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       case
-        AuswahlExtern
+        Natural (AuswahlExtern)
       is
-         when 16 =>
+         when InteraktionAuswahl.BaulisteZurück .. InteraktionAuswahl.BaulisteWeiter =>
             BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern => AuswahlKonstanten.LeerEinheitenauswahl,
                                                               SpeziesExtern => SpeziesExtern);
             

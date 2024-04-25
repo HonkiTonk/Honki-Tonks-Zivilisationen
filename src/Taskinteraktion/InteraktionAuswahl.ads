@@ -51,8 +51,15 @@ package InteraktionAuswahl is
    type PositionenBauaufteilungArray is array (StadtDatentypen.Bauprojektart_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenBauaufteilung : PositionenBauaufteilungArray := (others => GrafikRecordKonstanten.Leerbereich);
 
-   type MöglicheBauoptionenArray is array (1 .. 16) of Integer;
+   -- 1 .. 15 sind die Baumöglichkeiten, 16 ist zurück in der Liste und 17 ist weiter in der Liste.
+   type MöglicheBauoptionenArray is array (1 .. 17) of Natural;
    MöglicheBauoptionen : MöglicheBauoptionenArray;
+
+   -- Das hier überall verwenden, keine lokalen Werte erstellen und entsprechend immer anpassen!
+   BaulisteAnfang : constant Positive := MöglicheBauoptionenArray'First;
+   BaulisteEnde : constant Positive := MöglicheBauoptionenArray'Last - 2;
+   BaulisteZurück : constant Positive := 16;
+   BaulisteWeiter : constant Positive := 17;
 
    type PositionenBaumöglichkeitenArray is array (MöglicheBauoptionenArray'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenBaumöglichkeiten : PositionenBaumöglichkeitenArray := (others => GrafikRecordKonstanten.Leerbereich);

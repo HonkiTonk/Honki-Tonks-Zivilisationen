@@ -10,6 +10,7 @@ with AllgemeineViewsGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with BauauswahlGrafik;
+with InteraktionAuswahl;
 
 package body VerkaufsauswahlGrafik is
 
@@ -46,8 +47,9 @@ package body VerkaufsauswahlGrafik is
                                      AbmessungenExtern => Viewfläche);
                   
       Viewfläche.y := BauauswahlGrafik.Gebäude (AuswahlExtern        => AuswahlExtern,
-                                                SpeziesExtern        => SpeziesExtern,
-                                                BauenVerkaufenExtern => False);
+                                                  SpeziesExtern        => SpeziesExtern,
+                                                  BauenVerkaufenExtern => False,
+                                                  BaulisteExtern       => InteraktionAuswahl.MöglicheBauoptionen);
       
    end Gebäude;
 

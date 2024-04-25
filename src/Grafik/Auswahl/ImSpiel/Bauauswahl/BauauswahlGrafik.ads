@@ -14,6 +14,8 @@ private with GrafikRecordKonstanten;
 
 with LeseSpeziesbelegung;
 
+with InteraktionAuswahl;
+
 package BauauswahlGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
@@ -34,7 +36,8 @@ package BauauswahlGrafik is
    function Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      BauenVerkaufenExtern : in Boolean)
+      BauenVerkaufenExtern : in Boolean;
+      BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
       return Float
      with
        Pre => (
@@ -52,6 +55,7 @@ private
    AktuelleListenlänge : Natural;
 
    Textbreite : Float;
+   LeerYTextposition : Float;
 
    Text : Unbounded_Wide_Wide_String;
 
@@ -88,7 +92,8 @@ private
 
    function Einheiten
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
       return Float
      with
        Pre => (
