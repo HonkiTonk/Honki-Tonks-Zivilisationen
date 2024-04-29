@@ -42,16 +42,16 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (24.04.2024):
+   -- Version 0.05.6590 => 0.05. (24.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6565 => 0.05. (23.04.2024):
+   -- Version 0.05.6565 => 0.05.6590 (23.04.2024):
    
-   -- 
+   -- Unifont hinzugefügt um Sprachen anzeigen zu können, die wqy-microhei nicht darstellen kann.
    -- Kleinigkeiten korrigiert.
    
    

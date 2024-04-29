@@ -80,8 +80,8 @@ package body TexteinstellungenGrafik is
                
          when False =>
             EigeneSchriftart := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiSchriftart,
-                                                                       AktuelleZeileExtern => 1,
-                                                                       DateinameExtern     => "TexteinstellungenGrafik.EigeneSchriftartVerwenden");
+                                                                                 AktuelleZeileExtern => 1,
+                                                                                 DateinameExtern     => "TexteinstellungenGrafik.EigeneSchriftartVerwenden");
             
             if
               Exists (Name => VerzeichnisKonstanten.FontOrdner & Encode (Item => To_Wide_Wide_String (Source => EigeneSchriftart))) = False
