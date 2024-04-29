@@ -28,27 +28,27 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (26.04.2024):
+   -- Version 0.05.6705 => 0.05. (26.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6680 => 0.05. (25.04.2024):
+   -- Version 0.05.6680 => 0.05.6705 (25.04.2024):
    
-   -- 
+   -- GNAT 13 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.05.6590 => 0.05.6680 (24.04.2024):
    
-   -- Angefangen die Textverwaltung so umzubauen das die Stadnardwerte für alle Texte schon beim Starten des Spiels gesetzt werden.
+   -- Angefangen die Textverwaltung so umzubauen das die Standardwerte für alle Texte schon beim Starten des Spiels gesetzt werden.
    -- Fehler korrigiert, der bei der Verwendung von mehreren Fonts zu extremen Speicherverbrauch führen konnte.
    -- Unnötigen Code gelöscht.
    -- Code zusammengeführt.
-   -- Fehelr korrigiert der zur fehlerhaften Anzeige der Spezienbeschreibungen führte.
+   -- Fehler korrigiert der zur fehlerhaften Anzeige der Spezienbeschreibungen führte.
    -- Fehler korrigiert der bei der Kartenformauswahl zu Abstürzen führte.
    -- Fehler in den Sprachdateien korrigiert.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
