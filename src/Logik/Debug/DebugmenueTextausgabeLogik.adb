@@ -394,9 +394,9 @@ package body DebugmenueTextausgabeLogik is
                
             when '3' =>
                WürdigungSchleife:
-               for WürdigungSchleifenwert in Spieltexte.Würdigung'Range loop
+               for WürdigungSchleifenwert in Spieltexte.Würdigungen'Range loop
          
-                  Put_Line (Item => Zeile'Wide_Wide_Image & " /" & WürdigungSchleifenwert'Wide_Wide_Image & ": " & To_Wide_Wide_String (Source => Spieltexte.Würdigung (WürdigungSchleifenwert)));
+                  Put_Line (Item => Zeile'Wide_Wide_Image & " /" & WürdigungSchleifenwert'Wide_Wide_Image & ": " & To_Wide_Wide_String (Source => Spieltexte.Würdigungen (WürdigungSchleifenwert)));
          
                   Zeile := Zeile + 1;
          
@@ -424,9 +424,9 @@ package body DebugmenueTextausgabeLogik is
                
             when '6' =>
                LadezeitSchleife:
-               for LadezeitSchleifenwert in Spieltexte.Ladezeit'Range loop
+               for LadezeitSchleifenwert in Spieltexte.Ladezeiten'Range loop
          
-                  Put_Line (Item => Zeile'Wide_Wide_Image & " /" & LadezeitSchleifenwert'Wide_Wide_Image & ": " & To_Wide_Wide_String (Source => Spieltexte.Ladezeit (LadezeitSchleifenwert)));
+                  Put_Line (Item => Zeile'Wide_Wide_Image & " /" & LadezeitSchleifenwert'Wide_Wide_Image & ": " & To_Wide_Wide_String (Source => Spieltexte.Ladezeiten (LadezeitSchleifenwert)));
          
                   Zeile := Zeile + 1;
          

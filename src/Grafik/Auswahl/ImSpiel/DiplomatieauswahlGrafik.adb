@@ -92,15 +92,15 @@ package body DiplomatieauswahlGrafik is
             end case;
                
             TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.DiplomatieAccess,
-                                                         TextExtern       => To_Wide_Wide_String (Source => Text),
-                                                         FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
-                                                                                                                    AuswahlExtern    => AuswahlExtern));
+                                                                TextExtern       => To_Wide_Wide_String (Source => Text),
+                                                                FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
+                                                                                                                           AuswahlExtern    => AuswahlExtern));
                
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.DiplomatieAccess,
                                                                                     ViewbreiteExtern => ViewflächeExtern.x);
                
             TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.DiplomatieAccess,
-                                                                PositionExtern   => Textposition);
+                                                                       PositionExtern   => Textposition);
                
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.DiplomatieAccess,
                                                                                 TextbreiteExtern => Textbreite);

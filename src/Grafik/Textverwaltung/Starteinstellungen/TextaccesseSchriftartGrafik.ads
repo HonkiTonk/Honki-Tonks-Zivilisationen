@@ -48,13 +48,6 @@ private
                  SchriftaccessExtern /= null
               );
 
-   procedure Kartenformauswahl
-     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
-     with
-       Pre => (
-                 SchriftaccessExtern /= null
-              );
-
    procedure StadtInformationen
      (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
      with

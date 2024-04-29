@@ -2,6 +2,7 @@ with Sf.Graphics.Texture;
 
 with KartenartDatentypen;
 with GrafikKonstanten;
+with GrafikDatentypen;
 
 with KartengeneratorVariablenLogik;
 with EingeleseneTexturenGrafik;
@@ -18,8 +19,8 @@ package body ZusatztextKartenformGrafik is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
       
-      Texturfläche := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.BilderAccess (1)).x),
-                        Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.BilderAccess (1)).y));
+      Texturfläche := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.HintergrundAccess (GrafikDatentypen.Kartenformen_Enum)).x),
+                        Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.HintergrundAccess (GrafikDatentypen.Kartenformen_Enum)).y));
             
       case
         AktuelleAuswahlExtern
@@ -142,7 +143,7 @@ package body ZusatztextKartenformGrafik is
       
       -- Für solche Skalierungen auch mal ein eigenes System bauen. äöü
       SpritesverwaltungssystemGrafik.SetzenBereichSkalierenZeichnen (SpriteAccessExtern => SpriteAccess,
-                                                                     TexturExtern       => EingeleseneTexturenGrafik.BilderAccess (1),
+                                                                     TexturExtern       => EingeleseneTexturenGrafik.HintergrundAccess (GrafikDatentypen.Kartenformen_Enum),
                                                                      BereichExtern      => (Integer (Texturanfang.x), Integer (Texturanfang.y), Integer (Texturfläche.x / 4.00), Integer (Texturfläche.y / 5.00)),
                                                                      SkalierungExtern   => (ViewflächeExtern.x / (Texturfläche.x / 4.00), ViewflächeExtern.y / (Texturfläche.y / 5.00)));
       

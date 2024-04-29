@@ -1,6 +1,7 @@
 package TextDatentypen is
    pragma Pure;
 
+   -- Da noch ein Leer_Enum hinzufügen um auch nicht zu akzeptieren? äöü
    type Schriftgröße_Enum is (
                                 Überschrift_Enum, Standard_Enum, Klein_Enum
                                );

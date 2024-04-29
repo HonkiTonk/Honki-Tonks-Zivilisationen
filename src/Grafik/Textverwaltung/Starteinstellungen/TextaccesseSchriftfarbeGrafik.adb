@@ -23,9 +23,6 @@ package body TextaccesseSchriftfarbeGrafik is
       
       Sprachauswahl (StandardExtern => StandardExtern);
       
-      Kartenformauswahl (ÜberschriftExtern => ÜberschriftExtern,
-                         StandardExtern    => StandardExtern);
-      
       StadtInformationen (StandardExtern => StandardExtern);
       
       EinheitenInformationen (StandardExtern => StandardExtern);
@@ -143,6 +140,26 @@ package body TextaccesseSchriftfarbeGrafik is
          
       end loop MeldungenSchleife;
       
+      
+      
+      WürdigungenSchleife:
+      for WürdigungenSchleifenwert in TextaccessVariablen.WürdigungenAccess'Range loop
+
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.WürdigungenAccess (WürdigungenSchleifenwert),
+                                    color => StandardExtern);
+
+      end loop WürdigungenSchleife;
+      
+      
+      
+      BeschäftigungenSchleife:
+      for BeschäftigungenSchleifenwert in TextaccessVariablen.BeschäftigungenAccess'Range loop
+
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.BeschäftigungenAccess (BeschäftigungenSchleifenwert),
+                                    color => StandardExtern);
+
+      end loop BeschäftigungenSchleife;
+      
    end Allgemeines;
    
    
@@ -150,6 +167,197 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure Menüs
      (StandardExtern : in Sf.Graphics.Color.sfColor)
    is begin
+      
+      -- Ohne Überschrift.
+      HauptmenüSchleife:
+      for HauptmenüSchleifenwert in TextaccessVariablen.HauptmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.HauptmenüAccess (HauptmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop HauptmenüSchleife;
+      
+      
+            
+      SpielmenüSchleife:
+      for SpielmenüSchleifenwert in TextaccessVariablen.SpielmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpielmenüAccess (SpielmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop SpielmenüSchleife;
+                
+      
+      
+      -- Mit Überschrift.
+      OptionsmenüSchleife:
+      for OptionsmenüSchleifenwert in TextaccessVariablen.OptionsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.OptionsmenüAccess (OptionsmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop OptionsmenüSchleife;
+      
+      
+            
+      EinstellungsmenüSchleife:
+      for EinstellungsmenüSchleifenwert in TextaccessVariablen.EinstellungsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinstellungsmenüAccess (EinstellungsmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop EinstellungsmenüSchleife;
+      
+      
+            
+      EditorenmenüSchleife:
+      for EditorenmenüSchleifenwert in TextaccessVariablen.EditorenmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EditorenmenüAccess (EditorenmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop EditorenmenüSchleife;
+      
+      
+            
+      SpieleinstellungsmenüSchleife:
+      for SpieleinstellungsmenüSchleifenwert in TextaccessVariablen.SpieleinstellungsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpieleinstellungsmenüAccess (SpieleinstellungsmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop SpieleinstellungsmenüSchleife;
+      
+      
+            
+      DebugmenüSchleife:
+      for DebugmenüSchleifenwert in TextaccessVariablen.DebugmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.DebugmenüAccess (DebugmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop DebugmenüSchleife;
+            
+      
+            
+      GrafikmenüSchleife:
+      for GrafikmenüSchleifenwert in TextaccessVariablen.GrafikmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GrafikmenüAccess (GrafikmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop GrafikmenüSchleife;
+      
+      
+            
+      KartengrößeSchleife:
+      for KartengrößeSchleifenwert in TextaccessVariablen.KartengrößeAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartengrößeAccess (KartengrößeSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop KartengrößeSchleife;
+      
+      
+            
+      KartenartSchleife:
+      for KartenartSchleifenwert in TextaccessVariablen.KartenartAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenartAccess (KartenartSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop KartenartSchleife;
+            
+      
+      
+      KartentemperaturSchleife:
+      for KartentemperaturSchleifenwert in TextaccessVariablen.KartentemperaturAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartentemperaturAccess (KartentemperaturSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop KartentemperaturSchleife;
+            
+      
+      
+      SchwierigkeitsgradSchleife:
+      for SchwierigkeitsgradSchleifenwert in TextaccessVariablen.SchwierigkeitsgradAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SchwierigkeitsgradAccess (SchwierigkeitsgradSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop SchwierigkeitsgradSchleife;
+            
+      
+      
+      RessourcenmengeSchleife:
+      for RessourcenmengeSchleifenwert in TextaccessVariablen.RessourcenmengeAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RessourcenmengeAccess (RessourcenmengeSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop RessourcenmengeSchleife;
+            
+      
+            
+      DiplomatiemenüSchleife:
+      for DiplomatiemenüSchleifenwert in TextaccessVariablen.DiplomatiemenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.DiplomatiemenüAccess (DiplomatiemenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop DiplomatiemenüSchleife;
+            
+            
+      
+      KartenpoleSchleife:
+      for KartenpoleSchleifenwert in TextaccessVariablen.KartenpoleAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenpoleAccess (KartenpoleSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop KartenpoleSchleife;
+      
+      
+            
+      SoundmenüSchleife:
+      for SoundmenüSchleifenwert in TextaccessVariablen.SoundmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SoundmenüAccess (SoundmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop SoundmenüSchleife;
+            
+      
+      
+      HandelsmenüSchleife:
+      for HandelsmenüSchleifenwert in TextaccessVariablen.HandelsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.HandelsmenüAccess (HandelsmenüSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop HandelsmenüSchleife;
+      
+      
+                               
+      -- Doppelte Menüs.
+      SpeziesauswahlSchleife:
+      for SpeziesauswahlSchleifenwert in TextaccessVariablen.SpeziesauswahlAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeziesauswahlAccess (SpeziesauswahlSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop SpeziesauswahlSchleife;
+      
+      
+            
+      KartenformSchleife:
+      for KartenformSchleifenwert in TextaccessVariablen.KartenformAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformAccess (KartenformSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop KartenformSchleife;
             
       MenüsEinfachAußenSchleife:
       for AußenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (1) loop
@@ -164,6 +372,7 @@ package body TextaccesseSchriftfarbeGrafik is
       
       
       
+      -- Steuerungsmenü.
       SteuerungSchleife:
       for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
@@ -174,6 +383,7 @@ package body TextaccesseSchriftfarbeGrafik is
       
       
       
+      -- SpeichernLadenmenü
       SpielstandSchleife:
       for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
          
@@ -307,26 +517,6 @@ package body TextaccesseSchriftfarbeGrafik is
       
    end Sprachauswahl;
    
-      
-   
-   procedure Kartenformauswahl
-     (ÜberschriftExtern : in Sf.Graphics.Color.sfColor;
-      StandardExtern : in Sf.Graphics.Color.sfColor)
-   is begin
-            
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccess'First),
-                                 color => ÜberschriftExtern);
-      
-      SchriftfarbeSchleife:
-      for SchriftfarbeSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'First + 1 .. TextaccessVariablen.KartenformauswahlAccess'Last loop
-         
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (SchriftfarbeSchleifenwert),
-                                    color => StandardExtern);
-         
-      end loop SchriftfarbeSchleife;
-      
-   end Kartenformauswahl;
-   
    
    
    procedure StadtInformationen
@@ -397,8 +587,78 @@ package body TextaccesseSchriftfarbeGrafik is
      (StandardExtern : in Sf.Graphics.Color.sfColor)
    is begin
             
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAccess,
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.StadtnameKarteAccess,
                                  color => StandardExtern);
+      
+      
+      
+      BasisgrundSchleife:
+      for BasisgrundSchleifenwert in TextaccessVariablen.BasisgrundAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.BasisgrundAccess (BasisgrundSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop BasisgrundSchleife;
+      
+      
+      
+      ZusatzgrundSchleife:
+      for ZusatzgrundSchleifenwert in TextaccessVariablen.ZusatzgrundAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZusatzgrundAccess (ZusatzgrundSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop ZusatzgrundSchleife;
+      
+      
+      
+      FlüsseSchleife:
+      for FlüsseSchleifenwert in TextaccessVariablen.FlüsseAccess'Range loop 
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.FlüsseAccess (FlüsseSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop FlüsseSchleife;
+      
+      
+      
+      RessourcenSchleife:
+      for RessourcenSchleifenwert in TextaccessVariablen.RessourcenAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RessourcenAccess (RessourcenSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop RessourcenSchleife;
+      
+      
+      
+      FeldeffekteSchleife:
+      for FeldeffekteSchleifenwert in TextaccessVariablen.FeldeffekteAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.FeldeffekteAccess (FeldeffekteSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop FeldeffekteSchleife;
+      
+      
+      
+      VerbesserungenSchleife:
+      for VerbesserungenSchleifenwert in TextaccessVariablen.VerbesserungenAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.VerbesserungenAccess (VerbesserungenSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop VerbesserungenSchleife;
+      
+      
+      
+      WegeSchleife:
+      for WegeSchleifenwert in TextaccessVariablen.WegeAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.WegeAccess (WegeSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop WegeSchleife;
       
    end Karte;
    

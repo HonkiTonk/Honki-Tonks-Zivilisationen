@@ -5,11 +5,11 @@ with SpeziesDatentypen;
 with EinheitenDatentypen;
 with StadtDatentypen;
 with ForschungenDatentypen;
-with MenueKonstanten;
-with MenueDatentypen;
 with Sequenzentexte;
 with TextDatentypen;
 with Spieltexte;
+with Kartentexte;
+with Menuetexte;
 
 with InteraktionAuswahl;
 
@@ -20,9 +20,7 @@ package TextaccessVariablen is
    -- Allgemeines
    ÜberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    VersionsnummerAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   
-   -- TexthöheAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   
+      
    ZeilenumbruchAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    BildrateAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
@@ -52,21 +50,77 @@ package TextaccessVariablen is
    
    IntroAccess : constant TextaccessArray (Positive'First .. Sequenzentexte.IntroEnde) := (others => Sf.Graphics.Text.create);
    OutroAccess : constant TextaccessArray (Positive'First .. Sequenzentexte.OutroEnde) := (others => Sf.Graphics.Text.create);
+   -- Allgemeines
+
    
+   
+   -- Menüs
+   type MenüsAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1), InteraktionAuswahl.PositionenMenüeinträgeArray'Range (2)) of Sf.Graphics.sfText_Ptr;
+    MenüsAccess : constant MenüsAccessArray := (others => (others => Sf.Graphics.Text.create));
+   
+   -- Ohne Überschrift.
+   HauptmenüAccess : constant TextaccessArray (Menuetexte.Hauptmenü'Range) := (others => Sf.Graphics.Text.create);
+   SpielmenüAccess : constant TextaccessArray (Menuetexte.Spielmenü'Range) := (others => Sf.Graphics.Text.create);
+                               
+   -- Mit Überschrift.
+   OptionsmenüAccess : constant TextaccessArray (Menuetexte.Optionsmenü'Range) := (others => Sf.Graphics.Text.create);
+   EinstellungsmenüAccess : constant TextaccessArray (Menuetexte.Einstellungsmenü'Range) := (others => Sf.Graphics.Text.create);
+   EditorenmenüAccess : constant TextaccessArray (Menuetexte.Editorenmenü'Range) := (others => Sf.Graphics.Text.create);
+   SpieleinstellungsmenüAccess : constant TextaccessArray (Menuetexte.Spieleinstellungsmenü'Range) := (others => Sf.Graphics.Text.create);
+   DebugmenüAccess : constant TextaccessArray (Menuetexte.Debugmenü'Range) := (others => Sf.Graphics.Text.create);
+   GrafikmenüAccess : constant TextaccessArray (Menuetexte.Grafikmenü'Range) := (others => Sf.Graphics.Text.create);
+   KartengrößeAccess : constant TextaccessArray (Menuetexte.Kartengröße'Range) := (others => Sf.Graphics.Text.create);
+   KartenartAccess : constant TextaccessArray (Menuetexte.Kartenart'Range) := (others => Sf.Graphics.Text.create);
+   KartentemperaturAccess : constant TextaccessArray (Menuetexte.Kartentemperatur'Range) := (others => Sf.Graphics.Text.create);
+   SchwierigkeitsgradAccess : constant TextaccessArray (Menuetexte.Schwierigkeitsgrad'Range) := (others => Sf.Graphics.Text.create);
+   RessourcenmengeAccess : constant TextaccessArray (Menuetexte.Ressourcenmenge'Range) := (others => Sf.Graphics.Text.create);
+   DiplomatiemenüAccess : constant TextaccessArray (Menuetexte.Diplomatiemenü'Range) := (others => Sf.Graphics.Text.create);
+   KartenpoleAccess : constant TextaccessArray (Menuetexte.Kartenpole'Range) := (others => Sf.Graphics.Text.create);
+   SoundmenüAccess : constant TextaccessArray (Menuetexte.Soundmenü'Range) := (others => Sf.Graphics.Text.create);
+   HandelsmenüAccess : constant TextaccessArray (Menuetexte.Handelsmenü'Range) := (others => Sf.Graphics.Text.create);
+                               
+   -- Doppelte Menüs.
+   SpeziesauswahlAccess : constant TextaccessArray (Menuetexte.Speziesauswahl'Range) := (others => Sf.Graphics.Text.create);
+   KartenformAccess : constant TextaccessArray (Menuetexte.Kartenform'Range) := (others => Sf.Graphics.Text.create);
+   
+   -- Steuerungsmenü.
+   SteuerungAccess : constant TextaccessArray (Menuetexte.Steuerungsmenü'Range) := (others => Sf.Graphics.Text.create);
+   
+   -- SpeichernLadenmenü
+   SpielstandAccess : constant TextaccessArray (InteraktionAuswahl.PositionenSpielstand'Range) := (others => Sf.Graphics.Text.create);
+   -- Menüs
+   
+   
+   
+   -- Kartentexte
+   BasisgrundAccess : constant TextaccessArray (Kartentexte.Basisgrund'Range) := (others => Sf.Graphics.Text.create);
+   ZusatzgrundAccess : constant TextaccessArray (Kartentexte.Zusatzgrund'Range) := (others => Sf.Graphics.Text.create);
+   
+   FlüsseAccess : constant TextaccessArray (Kartentexte.Flüsse'Range) := (others => Sf.Graphics.Text.create);
+   RessourcenAccess : constant TextaccessArray (Kartentexte.Ressourcen'Range) := (others => Sf.Graphics.Text.create);
+   FeldeffekteAccess : constant TextaccessArray (Kartentexte.Feldeffekte'Range) := (others => Sf.Graphics.Text.create);
+   
+   VerbesserungenAccess : constant TextaccessArray (Kartentexte.Verbesserungen'Range) := (others => Sf.Graphics.Text.create);
+   WegeAccess : constant TextaccessArray (Kartentexte.Wege'Range) := (others => Sf.Graphics.Text.create);
+   
+   
+   
+   StadtnameKarteAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   -- Kartentexte
+   
+   
+   
+   -- Spieltexte
    ZeugAccess : constant TextaccessArray (Spieltexte.Zeug'Range) := (others => Sf.Graphics.Text.create);
    FragenAccess : constant TextaccessArray (Spieltexte.Fragen'Range) := (others => Sf.Graphics.Text.create);
    MeldungenAccess : constant TextaccessArray (Spieltexte.Meldungen'Range) := (others => Sf.Graphics.Text.create);
-   -- LadezeitenAccess : constant TextaccessArray (Spieltexte.Ladezeit'Range) := (others => Sf.Graphics.Text.create);
-   -- Allgemeines
-
-   -- Menüs
-   type MenüsAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1), InteraktionAuswahl.PositionenMenüeinträgeArray'Range (2)) of Sf.Graphics.sfText_Ptr;
-   MenüsAccess : constant MenüsAccessArray := (others => (others => Sf.Graphics.Text.create));
    
-   SteuerungAccess : constant TextaccessArray (1 .. MenueKonstanten.LängstesMenü) := (others => Sf.Graphics.Text.create);
+   WürdigungenAccess : constant TextaccessArray (Spieltexte.Würdigungen'Range) := (others => Sf.Graphics.Text.create);
    
-   SpielstandAccess : constant TextaccessArray (InteraktionAuswahl.PositionenSpielstand'Range) := (others => Sf.Graphics.Text.create);
-   -- Menüs
+   -- StadtbefehleAccess : constant TextaccessArray (Spieltexte.Stadtbefehle'Range) := (others => Sf.Graphics.Text.create);
+   -- LadezeitenAccess : constant TextaccessArray (Spieltexte.Ladezeiten'Range) := (others => Sf.Graphics.Text.create);
+   BeschäftigungenAccess : constant TextaccessArray (Spieltexte.Beschäftigungen'Range) := (others => Sf.Graphics.Text.create);
+   -- Spieltexte
    
    
    
@@ -121,12 +175,6 @@ package TextaccessVariablen is
    -- Sprachauswahl
    SprachauswahlAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    -- Sprachauswahl
-   
-   
-   
-   -- Kartenformauswahl
-   KartenformauswahlAccess : constant TextaccessArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum)) := (others => Sf.Graphics.Text.create);
-   -- Kartenformauswahl
 
    
    
@@ -151,12 +199,6 @@ package TextaccessVariablen is
    -- KarteAllgemeines
    KarteAllgemeinesAccess : constant TextaccessArray (1 .. 6) := (others => Sf.Graphics.Text.create);
    -- KarteAllgemeines
-   
-   
-   
-   -- Karte
-   KarteAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   -- Karte
    
    
    

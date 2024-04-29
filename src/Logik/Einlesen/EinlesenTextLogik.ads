@@ -50,10 +50,10 @@ private
    -- Spieltexte
    Fragen : constant Positive := Spieltexte.Fragen'Last;
    Meldungen : constant Positive := Fragen + Spieltexte.Meldungen'Last;
-   Würdigungen : constant Positive := Meldungen + Spieltexte.Würdigung'Last;
+   Würdigungen : constant Positive := Meldungen + Spieltexte.Würdigungen'Last;
    Zeug : constant Positive := Würdigungen + Spieltexte.Zeug'Last;
    Stadtbefehle : constant Positive := Zeug + Spieltexte.Stadtbefehle'Last;
-   Ladezeiten : constant Positive := Stadtbefehle + Spieltexte.Ladezeit'Last;
+   Ladezeiten : constant Positive := Stadtbefehle + Spieltexte.Ladezeiten'Last;
    Beschäftigungen : constant Positive := Ladezeiten + Spieltexte.Beschäftigungen'Last;
    -- Spieltexte
    

@@ -55,13 +55,6 @@ private
                  StilExtern <= 8
               );
 
-   procedure Kartenformauswahl
-     (StilExtern : in Sf.Graphics.Text.sfTextStyle)
-     with
-       Pre => (
-                 StilExtern <= 8
-              );
-
    procedure StadtInformationen
      (StilExtern : in Sf.Graphics.Text.sfTextStyle)
      with

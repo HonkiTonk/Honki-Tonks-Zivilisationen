@@ -498,9 +498,9 @@ package body EinlesenTextLogik is
                elsif
                  AktuelleZeile in Meldungen + 1 .. Würdigungen
                then
-                  Spieltexte.Würdigung (AktuelleZeile - Meldungen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                  Spieltexte.Würdigungen (AktuelleZeile - Meldungen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                                                                     EingelesenerTextExtern => Zwischenspeicher,
-                                                                                    VorhandenerTextExtern  => Spieltexte.Würdigung (AktuelleZeile - Meldungen));
+                                                                                    VorhandenerTextExtern  => Spieltexte.Würdigungen (AktuelleZeile - Meldungen));
                   
                elsif
                  AktuelleZeile in Würdigungen + 1 .. Zeug
@@ -519,9 +519,9 @@ package body EinlesenTextLogik is
                elsif
                  AktuelleZeile in Stadtbefehle + 1 .. Ladezeiten
                then
-                  Spieltexte.Ladezeit (AktuelleZeile - Stadtbefehle) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                  Spieltexte.Ladezeiten (AktuelleZeile - Stadtbefehle) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                                                                      EingelesenerTextExtern => Zwischenspeicher,
-                                                                                     VorhandenerTextExtern  => Spieltexte.Ladezeit (AktuelleZeile - Stadtbefehle));
+                                                                                     VorhandenerTextExtern  => Spieltexte.Ladezeiten (AktuelleZeile - Stadtbefehle));
                   
                elsif
                  AktuelleZeile in Ladezeiten + 1 .. Beschäftigungen
@@ -914,7 +914,8 @@ package body EinlesenTextLogik is
             if
               VorhandenerTextExtern = TextKonstanten.FehlenderText
               or
-                To_Wide_Wide_String (Source => VorhandenerTextExtern)'Length < To_Wide_Wide_String (Source => EingelesenerTextExtern)'Length
+                -- Sollte das nicht besser nach der grafischen Länge statt der Anzahl der Zeichen beurteilt werden? äöü
+              To_Wide_Wide_String (Source => VorhandenerTextExtern)'Length < To_Wide_Wide_String (Source => EingelesenerTextExtern)'Length
             then
                return EingelesenerTextExtern;
                   

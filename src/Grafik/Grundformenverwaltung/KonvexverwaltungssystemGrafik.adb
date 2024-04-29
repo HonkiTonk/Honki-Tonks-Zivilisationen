@@ -3,6 +3,7 @@ with Sf.Graphics.RenderWindow;
 
 with FensterGrafik;
 
+-- Dafür eine Standardpfeil- und eine bliebige Pfeilversion bauen? äöü
 package body KonvexverwaltungssystemGrafik is
 
    procedure PositionFarbeZeichnen

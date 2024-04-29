@@ -45,13 +45,6 @@ private
                  RahmendickeExtern >= 0.00
               );
 
-   procedure Kartenformauswahl
-     (RahmendickeExtern : in Float)
-     with
-       Pre => (
-                 RahmendickeExtern >= 0.00
-              );
-
    procedure StadtInformationen
      (RahmendickeExtern : in Float)
      with

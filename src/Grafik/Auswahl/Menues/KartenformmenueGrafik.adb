@@ -32,15 +32,15 @@ package body KartenformmenueGrafik is
       for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
          TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Kartenform_Menü_Enum, PositionSchleifenwert),
-                                                      TextExtern       => TextEinlesen (SchleifenwertExtern => PositionSchleifenwert),
-                                                      FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
-                                                                                                                 AuswahlExtern    => AktuelleAuswahlExtern + MenueKonstanten.SchleifenanpassungGrafikLogik));
+                                                             TextExtern       => TextEinlesen (SchleifenwertExtern => PositionSchleifenwert),
+                                                             FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
+                                                                                                                        AuswahlExtern    => AktuelleAuswahlExtern + MenueKonstanten.SchleifenanpassungGrafikLogik));
          
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                                  ViewbreiteExtern => ViewflächeExtern.x);
          
          TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                             PositionExtern   => Textposition);
+                                                                    PositionExtern   => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);

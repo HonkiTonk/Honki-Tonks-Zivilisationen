@@ -37,6 +37,25 @@ package TextberechnungenHoeheGrafik is
                   NeueTextposition'Result > 0.00
                );
    
+   
+   
+   function NeueTextpositionOhneTexthöhe
+     (PositionExtern : in Float;
+      ZusatzwertExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 PositionExtern >= 0.00
+               and
+                 ZusatzwertExtern >= 0.00
+              ),
+         
+       Post => (
+                  NeueTextpositionOhneTexthöhe'Result > 0.00
+               );
+     
+     
+   
    function Leerzeilen
      (LeerzeilenExtern : in Natural;
       PositionExtern : in Float)

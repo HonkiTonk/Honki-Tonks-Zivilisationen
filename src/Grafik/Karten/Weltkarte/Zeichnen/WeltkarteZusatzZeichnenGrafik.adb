@@ -210,22 +210,22 @@ package body WeltkarteZusatzZeichnenGrafik is
       else
          StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern);
       
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtnameKarteAccess,
                                             -- Der Zugriff auf LeseStadtGebaut kann hier nur schwer vermieden werden im aktuellen System. äöü
                                             -- Erst einmal drin lassen und eventuell bei späteren Änderungen am System dann auch hier anpassen. äöü
                                             str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)));
       
-         Textgröße := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).height);
+         Textgröße := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtnameKarteAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtnameKarteAccess).height);
          Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textgröße.x,
                                                                  -- Die erlaubte Breite unabhängig/unabhängiger von der Kartfenfeldgröße gestalten. äöü
                                                                  ErlaubteBreiteExtern => 5.00 * SichtweitenGrafik.Kartenfeldfläche.x);
          Skalierung.y := 0.70;
       
-         TextaccessverwaltungssystemEinfachGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.KarteAccess,
+         TextaccessverwaltungssystemEinfachGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.StadtnameKarteAccess,
                                                       SkalierungExtern => Skalierung);
       
          Textposition.x := PositionExtern.x
-           - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.KarteAccess) + SichtweitenGrafik.Kartenfeldfläche.x / GrafikKonstanten.Halbierung;
+           - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.StadtnameKarteAccess) + SichtweitenGrafik.Kartenfeldfläche.x / GrafikKonstanten.Halbierung;
       end if;
       
       if
@@ -257,7 +257,7 @@ package body WeltkarteZusatzZeichnenGrafik is
                                                    PositionExtern         => Textposition,
                                                    DurchsichtigkeitExtern => GrafikKonstanten.Bewegungsfeldtransparents);
       
-      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAccess,
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtnameKarteAccess,
                                                           PositionExtern   => Textposition);
       
    end StadtnameAnzeigen;

@@ -1,3 +1,5 @@
+with Sf.Graphics.Text;
+
 with TextaccessVariablen;
 with GrafikKonstanten;
 
@@ -22,15 +24,17 @@ package body ZusatztextSpeziesmenueGrafik is
       SpeziesAnzeigen := SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleAuswahlExtern);
       
       TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),
-                                                              TextExtern       =>
-                                                                ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
-                                                                  (TextExtern           => SpeziesbeschreibungenGrafik.Langbeschreibung (SpeziesExtern => SpeziesAnzeigen),
-                                                                   TextfeldbreiteExtern => ViewflächeExtern.x,
-                                                                   BreitenabzugExtern   => GrafikKonstanten.Verdreifachung * Textposition.x),
-                                                              PositionExtern   => Textposition);
+                                                                     TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => SpeziesbeschreibungenGrafik.Langbeschreibung
+                                                                                                                                                (SpeziesExtern => SpeziesAnzeigen),
+                                                                                                                                                TextfeldbreiteExtern => ViewflächeExtern.x,
+                                                                                                                                                BreitenabzugExtern   => GrafikKonstanten.Verdreifachung * Textposition.x),
+                                                                     PositionExtern   => Textposition);
       
-      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextpositionOhneTexthöhe (PositionExtern   => Textposition.y,
+                                                                                   ZusatzwertExtern => Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen)).height);
+      
+      -- Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+      --                                                                 ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
       
       return Textposition;
       

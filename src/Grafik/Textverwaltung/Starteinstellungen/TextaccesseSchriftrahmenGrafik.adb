@@ -13,7 +13,6 @@ package body TextaccesseSchriftrahmenGrafik is
       Spezies (RahmendickeExtern => RahmendickeExtern);
       ZusatztextKartengröße (RahmendickeExtern => RahmendickeExtern);
       Sprachauswahl (RahmendickeExtern => RahmendickeExtern);
-      Kartenformauswahl (RahmendickeExtern => RahmendickeExtern);
       StadtInformationen (RahmendickeExtern => RahmendickeExtern);
       EinheitenInformationen (RahmendickeExtern => RahmendickeExtern);
       KarteWichtiges (RahmendickeExtern => RahmendickeExtern);
@@ -120,6 +119,26 @@ package body TextaccesseSchriftrahmenGrafik is
          
       end loop MeldungenSchleife;
       
+      
+      
+      WürdigungenSchleife:
+      for WürdigungenSchleifenwert in TextaccessVariablen.WürdigungenAccess'Range loop
+
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.WürdigungenAccess (WürdigungenSchleifenwert),
+                                               thickness => RahmendickeExtern);
+
+      end loop WürdigungenSchleife;
+      
+      
+      
+      BeschäftigungenSchleife:
+      for BeschäftigungenSchleifenwert in TextaccessVariablen.BeschäftigungenAccess'Range loop
+
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.BeschäftigungenAccess (BeschäftigungenSchleifenwert),
+                                               thickness => RahmendickeExtern);
+
+      end loop BeschäftigungenSchleife;
+      
    end Allgemeines;
    
    
@@ -127,6 +146,197 @@ package body TextaccesseSchriftrahmenGrafik is
    procedure Menüs
      (RahmendickeExtern : in Float)
    is begin
+      
+      -- Ohne Überschrift.
+      HauptmenüSchleife:
+      for HauptmenüSchleifenwert in TextaccessVariablen.HauptmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.HauptmenüAccess (HauptmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop HauptmenüSchleife;
+      
+      
+            
+      SpielmenüSchleife:
+      for SpielmenüSchleifenwert in TextaccessVariablen.SpielmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.SpielmenüAccess (SpielmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop SpielmenüSchleife;
+                
+      
+      
+      -- Mit Überschrift.
+      OptionsmenüSchleife:
+      for OptionsmenüSchleifenwert in TextaccessVariablen.OptionsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.OptionsmenüAccess (OptionsmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop OptionsmenüSchleife;
+      
+      
+            
+      EinstellungsmenüSchleife:
+      for EinstellungsmenüSchleifenwert in TextaccessVariablen.EinstellungsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.EinstellungsmenüAccess (EinstellungsmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop EinstellungsmenüSchleife;
+      
+      
+            
+      EditorenmenüSchleife:
+      for EditorenmenüSchleifenwert in TextaccessVariablen.EditorenmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.EditorenmenüAccess (EditorenmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop EditorenmenüSchleife;
+      
+      
+            
+      SpieleinstellungsmenüSchleife:
+      for SpieleinstellungsmenüSchleifenwert in TextaccessVariablen.SpieleinstellungsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.SpieleinstellungsmenüAccess (SpieleinstellungsmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop SpieleinstellungsmenüSchleife;
+      
+      
+            
+      DebugmenüSchleife:
+      for DebugmenüSchleifenwert in TextaccessVariablen.DebugmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.DebugmenüAccess (DebugmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop DebugmenüSchleife;
+            
+      
+            
+      GrafikmenüSchleife:
+      for GrafikmenüSchleifenwert in TextaccessVariablen.GrafikmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.GrafikmenüAccess (GrafikmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop GrafikmenüSchleife;
+      
+      
+            
+      KartengrößeSchleife:
+      for KartengrößeSchleifenwert in TextaccessVariablen.KartengrößeAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.KartengrößeAccess (KartengrößeSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop KartengrößeSchleife;
+      
+      
+            
+      KartenartSchleife:
+      for KartenartSchleifenwert in TextaccessVariablen.KartenartAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.KartenartAccess (KartenartSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop KartenartSchleife;
+            
+      
+      
+      KartentemperaturSchleife:
+      for KartentemperaturSchleifenwert in TextaccessVariablen.KartentemperaturAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.KartentemperaturAccess (KartentemperaturSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop KartentemperaturSchleife;
+            
+      
+      
+      SchwierigkeitsgradSchleife:
+      for SchwierigkeitsgradSchleifenwert in TextaccessVariablen.SchwierigkeitsgradAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.SchwierigkeitsgradAccess (SchwierigkeitsgradSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop SchwierigkeitsgradSchleife;
+            
+      
+      
+      RessourcenmengeSchleife:
+      for RessourcenmengeSchleifenwert in TextaccessVariablen.RessourcenmengeAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.RessourcenmengeAccess (RessourcenmengeSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop RessourcenmengeSchleife;
+            
+      
+            
+      DiplomatiemenüSchleife:
+      for DiplomatiemenüSchleifenwert in TextaccessVariablen.DiplomatiemenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.DiplomatiemenüAccess (DiplomatiemenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop DiplomatiemenüSchleife;
+            
+            
+      
+      KartenpoleSchleife:
+      for KartenpoleSchleifenwert in TextaccessVariablen.KartenpoleAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.KartenpoleAccess (KartenpoleSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop KartenpoleSchleife;
+      
+      
+            
+      SoundmenüSchleife:
+      for SoundmenüSchleifenwert in TextaccessVariablen.SoundmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.SoundmenüAccess (SoundmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop SoundmenüSchleife;
+            
+      
+      
+      HandelsmenüSchleife:
+      for HandelsmenüSchleifenwert in TextaccessVariablen.HandelsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.HandelsmenüAccess (HandelsmenüSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop HandelsmenüSchleife;
+      
+      
+                               
+      -- Doppelte Menüs.
+      SpeziesauswahlSchleife:
+      for SpeziesauswahlSchleifenwert in TextaccessVariablen.SpeziesauswahlAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.SpeziesauswahlAccess (SpeziesauswahlSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop SpeziesauswahlSchleife;
+      
+      
+            
+      KartenformSchleife:
+      for KartenformSchleifenwert in TextaccessVariablen.KartenformAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.KartenformAccess (KartenformSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop KartenformSchleife;
       
       MenüsAußenSchleife:
       for AußenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (1) loop
@@ -141,6 +351,7 @@ package body TextaccesseSchriftrahmenGrafik is
       
       
       
+      -- Steuerungsmenü.
       SteuerungSchleife:
       for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
@@ -151,6 +362,7 @@ package body TextaccesseSchriftrahmenGrafik is
       
       
       
+      -- SpeichernLadenmenü
       SpielstandSchleife:
       for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
          
@@ -283,22 +495,6 @@ package body TextaccesseSchriftrahmenGrafik is
    
    
    
-   procedure Kartenformauswahl
-     (RahmendickeExtern : in Float)
-   is begin
-      
-      KartenformauswahlSchleife:
-      for KartenformauswahlSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'Range loop
-            
-         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.KartenformauswahlAccess (KartenformauswahlSchleifenwert),
-                                               thickness => RahmendickeExtern);
-            
-      end loop KartenformauswahlSchleife;
-      
-   end Kartenformauswahl;
-   
-   
-   
    procedure StadtInformationen
      (RahmendickeExtern : in Float)
    is begin
@@ -367,8 +563,78 @@ package body TextaccesseSchriftrahmenGrafik is
      (RahmendickeExtern : in Float)
    is begin
       
-      Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.KarteAccess,
+      Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.StadtnameKarteAccess,
                                             thickness => RahmendickeExtern);
+      
+      
+      
+      BasisgrundSchleife:
+      for BasisgrundSchleifenwert in TextaccessVariablen.BasisgrundAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.BasisgrundAccess (BasisgrundSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop BasisgrundSchleife;
+      
+      
+      
+      ZusatzgrundSchleife:
+      for ZusatzgrundSchleifenwert in TextaccessVariablen.ZusatzgrundAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.ZusatzgrundAccess (ZusatzgrundSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop ZusatzgrundSchleife;
+      
+      
+      
+      FlüsseSchleife:
+      for FlüsseSchleifenwert in TextaccessVariablen.FlüsseAccess'Range loop 
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.FlüsseAccess (FlüsseSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop FlüsseSchleife;
+      
+      
+      
+      RessourcenSchleife:
+      for RessourcenSchleifenwert in TextaccessVariablen.RessourcenAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.RessourcenAccess (RessourcenSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop RessourcenSchleife;
+      
+      
+      
+      FeldeffekteSchleife:
+      for FeldeffekteSchleifenwert in TextaccessVariablen.FeldeffekteAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.FeldeffekteAccess (FeldeffekteSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop FeldeffekteSchleife;
+      
+      
+      
+      VerbesserungenSchleife:
+      for VerbesserungenSchleifenwert in TextaccessVariablen.VerbesserungenAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.VerbesserungenAccess (VerbesserungenSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop VerbesserungenSchleife;
+      
+      
+      
+      WegeSchleife:
+      for WegeSchleifenwert in TextaccessVariablen.WegeAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.WegeAccess (WegeSchleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop WegeSchleife;
       
    end Karte;
       

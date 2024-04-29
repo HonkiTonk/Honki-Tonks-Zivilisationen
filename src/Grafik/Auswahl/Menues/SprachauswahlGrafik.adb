@@ -76,6 +76,8 @@ package body SprachauswahlGrafik is
               NeuerPfad /= AktuellerPfad
             then
                AktuellerPfad := NeuerPfad;
+               -- Muss imemr erst destroyed werden da es sonst bei der Verwendung mehrerer Fonts zu einem Speicherleck kommt.
+               Sf.Graphics.Font.destroy (font => SchriftartAccess);
                SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => To_String (Source => AktuellerPfad));
                Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
                                          font => SchriftartAccess);

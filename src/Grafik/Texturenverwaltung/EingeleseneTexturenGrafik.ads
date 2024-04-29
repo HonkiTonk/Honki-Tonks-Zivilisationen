@@ -15,13 +15,8 @@ package EingeleseneTexturenGrafik is
    -- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird? äöü
    -- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen. äöü
 
-   -- Das hier dann in System umbenennen. äöü
-   -- Das hier in den Hintergrund einbauen. äöü
-   type BilderAccessArray is array (1 .. 1) of Sf.Graphics.sfTexture_Ptr;
-   BilderAccess : BilderAccessArray := (others => null);
-
    -- System und Hintergrund zusammenführen? äöü
-   -- System hier mal in Kartenirgendwas umbenennen. äöü
+   -- System hier mal in Kartenirgendwas umbenennen? äöü
    type SystemAccessArray is array (BefehleDatentypen.Befehlsknöpfe_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    SystemAccess : SystemAccessArray := (others => null);
 

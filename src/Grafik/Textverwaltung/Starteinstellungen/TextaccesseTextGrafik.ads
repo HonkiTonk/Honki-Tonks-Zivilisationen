@@ -11,7 +11,6 @@ private
    procedure Spezies;
    procedure ZusatztextKartengröße;
    procedure Sprachauswahl;
-   procedure Kartenformauswahl;
    procedure StadtInformationen;
    procedure EinheitenInformationen;
    procedure KarteWichtiges;

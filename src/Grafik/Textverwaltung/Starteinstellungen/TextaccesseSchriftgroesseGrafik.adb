@@ -28,9 +28,6 @@ package body TextaccesseSchriftgroesseGrafik is
       
       Sprachauswahl (StandardExtern => StandardExtern);
       
-      Kartenformauswahl (ÜberschriftExtern => StandardExtern,
-                         StandardExtern    => StandardExtern);
-      
       StadtInformationen (StandardExtern => StandardExtern);
       
       EinheitenInformationen (StandardExtern => StandardExtern);
@@ -167,6 +164,26 @@ package body TextaccesseSchriftgroesseGrafik is
          
       end loop MeldungenSchleife;
       
+      
+      
+      WürdigungenSchleife:
+      for WürdigungenSchleifenwert in TextaccessVariablen.WürdigungenAccess'Range loop
+
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.WürdigungenAccess (WürdigungenSchleifenwert),
+                                            size => StandardExtern);
+
+      end loop WürdigungenSchleife;
+      
+      
+      
+      BeschäftigungenSchleife:
+      for BeschäftigungenSchleifenwert in TextaccessVariablen.BeschäftigungenAccess'Range loop
+
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.BeschäftigungenAccess (BeschäftigungenSchleifenwert),
+                                            size => StandardExtern);
+
+      end loop BeschäftigungenSchleife;
+      
    end Allgemeines;
    
    
@@ -174,6 +191,197 @@ package body TextaccesseSchriftgroesseGrafik is
    procedure Menüs
      (StandardExtern : in Sf.sfUint32)
    is begin
+      
+      -- Ohne Überschrift.
+      HauptmenüSchleife:
+      for HauptmenüSchleifenwert in TextaccessVariablen.HauptmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.HauptmenüAccess (HauptmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop HauptmenüSchleife;
+      
+      
+            
+      SpielmenüSchleife:
+      for SpielmenüSchleifenwert in TextaccessVariablen.SpielmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SpielmenüAccess (SpielmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop SpielmenüSchleife;
+                
+      
+      
+      -- Mit Überschrift.
+      OptionsmenüSchleife:
+      for OptionsmenüSchleifenwert in TextaccessVariablen.OptionsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.OptionsmenüAccess (OptionsmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop OptionsmenüSchleife;
+      
+      
+            
+      EinstellungsmenüSchleife:
+      for EinstellungsmenüSchleifenwert in TextaccessVariablen.EinstellungsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinstellungsmenüAccess (EinstellungsmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop EinstellungsmenüSchleife;
+      
+      
+            
+      EditorenmenüSchleife:
+      for EditorenmenüSchleifenwert in TextaccessVariablen.EditorenmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EditorenmenüAccess (EditorenmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop EditorenmenüSchleife;
+      
+      
+            
+      SpieleinstellungsmenüSchleife:
+      for SpieleinstellungsmenüSchleifenwert in TextaccessVariablen.SpieleinstellungsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SpieleinstellungsmenüAccess (SpieleinstellungsmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop SpieleinstellungsmenüSchleife;
+      
+      
+            
+      DebugmenüSchleife:
+      for DebugmenüSchleifenwert in TextaccessVariablen.DebugmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.DebugmenüAccess (DebugmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop DebugmenüSchleife;
+            
+      
+            
+      GrafikmenüSchleife:
+      for GrafikmenüSchleifenwert in TextaccessVariablen.GrafikmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GrafikmenüAccess (GrafikmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop GrafikmenüSchleife;
+      
+      
+            
+      KartengrößeSchleife:
+      for KartengrößeSchleifenwert in TextaccessVariablen.KartengrößeAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartengrößeAccess (KartengrößeSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop KartengrößeSchleife;
+      
+      
+            
+      KartenartSchleife:
+      for KartenartSchleifenwert in TextaccessVariablen.KartenartAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenartAccess (KartenartSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop KartenartSchleife;
+            
+      
+      
+      KartentemperaturSchleife:
+      for KartentemperaturSchleifenwert in TextaccessVariablen.KartentemperaturAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartentemperaturAccess (KartentemperaturSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop KartentemperaturSchleife;
+            
+      
+      
+      SchwierigkeitsgradSchleife:
+      for SchwierigkeitsgradSchleifenwert in TextaccessVariablen.SchwierigkeitsgradAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SchwierigkeitsgradAccess (SchwierigkeitsgradSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop SchwierigkeitsgradSchleife;
+            
+      
+      
+      RessourcenmengeSchleife:
+      for RessourcenmengeSchleifenwert in TextaccessVariablen.RessourcenmengeAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RessourcenmengeAccess (RessourcenmengeSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop RessourcenmengeSchleife;
+            
+      
+            
+      DiplomatiemenüSchleife:
+      for DiplomatiemenüSchleifenwert in TextaccessVariablen.DiplomatiemenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.DiplomatiemenüAccess (DiplomatiemenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop DiplomatiemenüSchleife;
+            
+            
+      
+      KartenpoleSchleife:
+      for KartenpoleSchleifenwert in TextaccessVariablen.KartenpoleAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenpoleAccess (KartenpoleSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop KartenpoleSchleife;
+      
+      
+            
+      SoundmenüSchleife:
+      for SoundmenüSchleifenwert in TextaccessVariablen.SoundmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SoundmenüAccess (SoundmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop SoundmenüSchleife;
+            
+      
+      
+      HandelsmenüSchleife:
+      for HandelsmenüSchleifenwert in TextaccessVariablen.HandelsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.HandelsmenüAccess (HandelsmenüSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop HandelsmenüSchleife;
+      
+      
+                               
+      -- Doppelte Menüs.
+      SpeziesauswahlSchleife:
+      for SpeziesauswahlSchleifenwert in TextaccessVariablen.SpeziesauswahlAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SpeziesauswahlAccess (SpeziesauswahlSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop SpeziesauswahlSchleife;
+      
+      
+            
+      KartenformSchleife:
+      for KartenformSchleifenwert in TextaccessVariablen.KartenformAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenformAccess (KartenformSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop KartenformSchleife;
             
       MenüsEinfachAußenSchleife:
       for AußenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (1) loop
@@ -188,6 +396,7 @@ package body TextaccesseSchriftgroesseGrafik is
       
       
       
+      -- Steuerungsmenü.
       SteuerungSchleife:
       for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
@@ -198,6 +407,7 @@ package body TextaccesseSchriftgroesseGrafik is
       
       
       
+      -- SpeichernLadenmenü
       SpielstandSchleife:
       for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
          
@@ -333,26 +543,6 @@ package body TextaccesseSchriftgroesseGrafik is
    
    
    
-   procedure Kartenformauswahl
-     (ÜberschriftExtern : in Sf.sfUint32;
-      StandardExtern : in Sf.sfUint32)
-   is begin
-      
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccess'First),
-                                         size => ÜberschriftExtern);
-      
-      SchriftgrößeSchleife:
-      for SchriftgrößeSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'First + 1 .. TextaccessVariablen.KartenformauswahlAccess'Last loop
-         
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KartenformauswahlAccess (SchriftgrößeSchleifenwert),
-                                            size => StandardExtern);
-         
-      end loop SchriftgrößeSchleife;
-      
-   end Kartenformauswahl;
-   
-   
-   
    procedure StadtInformationen
      (StandardExtern : in Sf.sfUint32)
    is begin
@@ -423,8 +613,78 @@ package body TextaccesseSchriftgroesseGrafik is
      (ÜberschriftExtern : in Sf.sfUint32)
    is begin
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.KarteAccess,
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.StadtnameKarteAccess,
                                          size => ÜberschriftExtern);
+      
+      
+      
+      BasisgrundSchleife:
+      for BasisgrundSchleifenwert in TextaccessVariablen.BasisgrundAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.BasisgrundAccess (BasisgrundSchleifenwert),
+                                            size => ÜberschriftExtern);
+         
+      end loop BasisgrundSchleife;
+      
+      
+      
+      ZusatzgrundSchleife:
+      for ZusatzgrundSchleifenwert in TextaccessVariablen.ZusatzgrundAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZusatzgrundAccess (ZusatzgrundSchleifenwert),
+                                            size => ÜberschriftExtern);
+         
+      end loop ZusatzgrundSchleife;
+      
+      
+      
+      FlüsseSchleife:
+      for FlüsseSchleifenwert in TextaccessVariablen.FlüsseAccess'Range loop 
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.FlüsseAccess (FlüsseSchleifenwert),
+                                            size => ÜberschriftExtern);
+         
+      end loop FlüsseSchleife;
+      
+      
+      
+      RessourcenSchleife:
+      for RessourcenSchleifenwert in TextaccessVariablen.RessourcenAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RessourcenAccess (RessourcenSchleifenwert),
+                                            size => ÜberschriftExtern);
+         
+      end loop RessourcenSchleife;
+      
+      
+      
+      FeldeffekteSchleife:
+      for FeldeffekteSchleifenwert in TextaccessVariablen.FeldeffekteAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.FeldeffekteAccess (FeldeffekteSchleifenwert),
+                                            size => ÜberschriftExtern);
+         
+      end loop FeldeffekteSchleife;
+      
+      
+      
+      VerbesserungenSchleife:
+      for VerbesserungenSchleifenwert in TextaccessVariablen.VerbesserungenAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.VerbesserungenAccess (VerbesserungenSchleifenwert),
+                                            size => ÜberschriftExtern);
+         
+      end loop VerbesserungenSchleife;
+      
+      
+      
+      WegeSchleife:
+      for WegeSchleifenwert in TextaccessVariablen.WegeAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.WegeAccess (WegeSchleifenwert),
+                                            size => ÜberschriftExtern);
+         
+      end loop WegeSchleife;
       
    end Karte;
    

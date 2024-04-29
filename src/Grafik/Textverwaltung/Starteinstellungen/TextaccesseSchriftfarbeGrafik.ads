@@ -28,10 +28,6 @@ private
    procedure Sprachauswahl
      (StandardExtern : in Sf.Graphics.Color.sfColor);
 
-   procedure Kartenformauswahl
-     (ÜberschriftExtern : in Sf.Graphics.Color.sfColor;
-      StandardExtern : in Sf.Graphics.Color.sfColor);
-
    procedure StadtInformationen
      (StandardExtern : in Sf.Graphics.Color.sfColor);
 

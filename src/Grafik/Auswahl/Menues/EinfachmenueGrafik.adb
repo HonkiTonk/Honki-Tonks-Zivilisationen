@@ -73,17 +73,17 @@ package body EinfachmenueGrafik is
       for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
          TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                      TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
-                                                                                                                       WelchesMenüExtern => WelchesMenüExtern),
-                                                      FarbeExtern      => TextfarbeGrafik.FarbeEinfachmenü (WelchesMenüExtern    => WelchesMenüExtern,
-                                                                                                             AktuelleAuswahlExtern => AktuelleAuswahlExtern + MenueKonstanten.SchleifenanpassungGrafikLogik,
-                                                                                                             AktuellerTextExtern   => PositionSchleifenwert));
+                                                             TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
+                                                                                                                              WelchesMenüExtern => WelchesMenüExtern),
+                                                             FarbeExtern      => TextfarbeGrafik.FarbeEinfachmenü (WelchesMenüExtern    => WelchesMenüExtern,
+                                                                                                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern + MenueKonstanten.SchleifenanpassungGrafikLogik,
+                                                                                                                    AktuellerTextExtern   => PositionSchleifenwert));
          
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                                  ViewbreiteExtern => ViewflächeExtern.x);
          
          TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                             PositionExtern   => Textposition);
+                                                                    PositionExtern   => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);

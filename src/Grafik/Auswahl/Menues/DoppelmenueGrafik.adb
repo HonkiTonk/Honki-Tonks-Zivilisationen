@@ -24,7 +24,7 @@ package body DoppelmenueGrafik is
      (WelchesMenüExtern : in MenueDatentypen.Menü_Doppelt_Enum;
       AktuelleAuswahlExtern : in Natural)
    is begin
-      
+            
       Viewfläche (Auswahlbereich) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Auswahlbereich),
                                                                                          VerhältnisExtern => (GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich).width,
                                                                                                                GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich).height));
@@ -89,16 +89,16 @@ package body DoppelmenueGrafik is
       for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
          TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                      TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
-                                                                                                                       WelchesMenüExtern => WelchesMenüExtern),
-                                                      FarbeExtern      => TextfarbeGrafik.FarbeDoppelmenü (AktuellerTextExtern   => PositionSchleifenwert,
-                                                                                                            AktuelleAuswahlExtern => AktuelleAuswahlExtern + MenueKonstanten.SchleifenanpassungGrafikLogik));
+                                                             TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
+                                                                                                                              WelchesMenüExtern => WelchesMenüExtern),
+                                                             FarbeExtern      => TextfarbeGrafik.FarbeDoppelmenü (AktuellerTextExtern   => PositionSchleifenwert,
+                                                                                                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern + MenueKonstanten.SchleifenanpassungGrafikLogik));
                   
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                                  ViewbreiteExtern => ViewflächeExtern.x);
          
          TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                             PositionExtern   => Textposition);
+                                                                    PositionExtern   => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);

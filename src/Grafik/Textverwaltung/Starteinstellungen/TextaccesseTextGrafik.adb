@@ -10,6 +10,7 @@ with Menuetexte;
 with BefehleDatentypen;
 with Sequenzentexte;
 with StadtDatentypen;
+with Kartentexte;
 
 with SpeziesbeschreibungenGrafik;
 with ForschungsbeschreibungenGrafik;
@@ -26,7 +27,6 @@ package body TextaccesseTextGrafik is
       Spezies;
       ZusatztextKartengröße;
       Sprachauswahl;
-      Kartenformauswahl;
       StadtInformationen;
       EinheitenInformationen;
       KarteWichtiges;
@@ -112,13 +112,227 @@ package body TextaccesseTextGrafik is
          
       end loop MeldungenSchleife;
       
+      
+      
+      WürdigungenSchleife:
+      for WürdigungenSchleifenwert in TextaccessVariablen.WürdigungenAccess'Range loop
+
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.WürdigungenAccess (WürdigungenSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Würdigungen (WürdigungenSchleifenwert)));
+
+      end loop WürdigungenSchleife;
+      
+      
+      
+      BeschäftigungenSchleife:
+      for BeschäftigungenSchleifenwert in TextaccessVariablen.BeschäftigungenAccess'Range loop
+
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.BeschäftigungenAccess (BeschäftigungenSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Beschäftigungen (BeschäftigungenSchleifenwert)));
+
+      end loop BeschäftigungenSchleife;
+      
    end Allgemeines;
    
    
    
    procedure Menüs
    is begin
+      
+      -- Ohne Überschrift.
+      HauptmenüSchleife:
+      for HauptmenüSchleifenwert in TextaccessVariablen.HauptmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.HauptmenüAccess (HauptmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Hauptmenü (HauptmenüSchleifenwert)));
+         
+      end loop HauptmenüSchleife;
+      
+      
             
+      SpielmenüSchleife:
+      for SpielmenüSchleifenwert in TextaccessVariablen.SpielmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpielmenüAccess (SpielmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Spielmenü (SpielmenüSchleifenwert)));
+         
+      end loop SpielmenüSchleife;
+                
+      
+      
+      -- Mit Überschrift.
+      OptionsmenüSchleife:
+      for OptionsmenüSchleifenwert in TextaccessVariablen.OptionsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.OptionsmenüAccess (OptionsmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Optionsmenü (OptionsmenüSchleifenwert)));
+         
+      end loop OptionsmenüSchleife;
+      
+      
+            
+      EinstellungsmenüSchleife:
+      for EinstellungsmenüSchleifenwert in TextaccessVariablen.EinstellungsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinstellungsmenüAccess (EinstellungsmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Einstellungsmenü (EinstellungsmenüSchleifenwert)));
+         
+      end loop EinstellungsmenüSchleife;
+      
+      
+            
+      EditorenmenüSchleife:
+      for EditorenmenüSchleifenwert in TextaccessVariablen.EditorenmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EditorenmenüAccess (EditorenmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Editorenmenü (EditorenmenüSchleifenwert)));
+         
+      end loop EditorenmenüSchleife;
+      
+      
+            
+      SpieleinstellungsmenüSchleife:
+      for SpieleinstellungsmenüSchleifenwert in TextaccessVariablen.SpieleinstellungsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpieleinstellungsmenüAccess (SpieleinstellungsmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Spieleinstellungsmenü (SpieleinstellungsmenüSchleifenwert)));
+         
+      end loop SpieleinstellungsmenüSchleife;
+      
+      
+            
+      DebugmenüSchleife:
+      for DebugmenüSchleifenwert in TextaccessVariablen.DebugmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.DebugmenüAccess (DebugmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Debugmenü (DebugmenüSchleifenwert)));
+         
+      end loop DebugmenüSchleife;
+            
+      
+            
+      GrafikmenüSchleife:
+      for GrafikmenüSchleifenwert in TextaccessVariablen.GrafikmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GrafikmenüAccess (GrafikmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Grafikmenü (GrafikmenüSchleifenwert)));
+         
+      end loop GrafikmenüSchleife;
+      
+      
+            
+      KartengrößeSchleife:
+      for KartengrößeSchleifenwert in TextaccessVariablen.KartengrößeAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KartengrößeAccess (KartengrößeSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Kartengröße (KartengrößeSchleifenwert)));
+         
+      end loop KartengrößeSchleife;
+      
+      
+            
+      KartenartSchleife:
+      for KartenartSchleifenwert in TextaccessVariablen.KartenartAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KartenartAccess (KartenartSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Kartenart (KartenartSchleifenwert)));
+         
+      end loop KartenartSchleife;
+            
+      
+      
+      KartentemperaturSchleife:
+      for KartentemperaturSchleifenwert in TextaccessVariablen.KartentemperaturAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KartentemperaturAccess (KartentemperaturSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Kartentemperatur (KartentemperaturSchleifenwert)));
+         
+      end loop KartentemperaturSchleife;
+            
+      
+      
+      SchwierigkeitsgradSchleife:
+      for SchwierigkeitsgradSchleifenwert in TextaccessVariablen.SchwierigkeitsgradAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SchwierigkeitsgradAccess (SchwierigkeitsgradSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Schwierigkeitsgrad (SchwierigkeitsgradSchleifenwert)));
+         
+      end loop SchwierigkeitsgradSchleife;
+            
+      
+      
+      RessourcenmengeSchleife:
+      for RessourcenmengeSchleifenwert in TextaccessVariablen.RessourcenmengeAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RessourcenmengeAccess (RessourcenmengeSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Ressourcenmenge (RessourcenmengeSchleifenwert)));
+         
+      end loop RessourcenmengeSchleife;
+            
+      
+            
+      DiplomatiemenüSchleife:
+      for DiplomatiemenüSchleifenwert in TextaccessVariablen.DiplomatiemenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.DiplomatiemenüAccess (DiplomatiemenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Diplomatiemenü (DiplomatiemenüSchleifenwert)));
+         
+      end loop DiplomatiemenüSchleife;
+            
+            
+      
+      KartenpoleSchleife:
+      for KartenpoleSchleifenwert in TextaccessVariablen.KartenpoleAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KartenpoleAccess (KartenpoleSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Kartenpole (KartenpoleSchleifenwert)));
+         
+      end loop KartenpoleSchleife;
+      
+      
+            
+      SoundmenüSchleife:
+      for SoundmenüSchleifenwert in TextaccessVariablen.SoundmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SoundmenüAccess (SoundmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Soundmenü (SoundmenüSchleifenwert)));
+         
+      end loop SoundmenüSchleife;
+            
+      
+      
+      HandelsmenüSchleife:
+      for HandelsmenüSchleifenwert in TextaccessVariablen.HandelsmenüAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.HandelsmenüAccess (HandelsmenüSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Handelsmenü (HandelsmenüSchleifenwert)));
+         
+      end loop HandelsmenüSchleife;
+      
+      
+                               
+      -- Doppelte Menüs.
+      SpeziesauswahlSchleife:
+      for SpeziesauswahlSchleifenwert in TextaccessVariablen.SpeziesauswahlAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeziesauswahlAccess (SpeziesauswahlSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Speziesauswahl (SpeziesauswahlSchleifenwert)));
+         
+      end loop SpeziesauswahlSchleife;
+      
+      
+            
+      KartenformSchleife:
+      for KartenformSchleifenwert in TextaccessVariablen.KartenformAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KartenformAccess (KartenformSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Kartenform (KartenformSchleifenwert)));
+         
+      end loop KartenformSchleife;
+      
+      
+      
+      -- Steuerungsmenü.
       SteuerungSchleife:
       for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
@@ -129,6 +343,7 @@ package body TextaccesseTextGrafik is
       
       
       
+      -- SpeichernLadenmenü
       SpielstandSchleife:
       for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
          
@@ -249,15 +464,6 @@ package body TextaccesseTextGrafik is
    
    
    
-   procedure Kartenformauswahl
-   is begin
-      
-      null;
-      
-   end Kartenformauswahl;
-   
-   
-   
    procedure StadtInformationen
    is begin
       
@@ -298,7 +504,73 @@ package body TextaccesseTextGrafik is
    procedure Karte
    is begin
       
-      null;
+      BasisgrundSchleife:
+      for BasisgrundSchleifenwert in TextaccessVariablen.BasisgrundAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.BasisgrundAccess (BasisgrundSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Kartentexte.Basisgrund (BasisgrundSchleifenwert)));
+         
+      end loop BasisgrundSchleife;
+      
+      
+      
+      ZusatzgrundSchleife:
+      for ZusatzgrundSchleifenwert in TextaccessVariablen.ZusatzgrundAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatzgrundAccess (ZusatzgrundSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Kartentexte.Zusatzgrund (ZusatzgrundSchleifenwert)));
+         
+      end loop ZusatzgrundSchleife;
+      
+      
+      
+      FlüsseSchleife:
+      for FlüsseSchleifenwert in TextaccessVariablen.FlüsseAccess'Range loop 
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.FlüsseAccess (FlüsseSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Kartentexte.Flüsse (FlüsseSchleifenwert)));
+         
+      end loop FlüsseSchleife;
+      
+      
+      
+      RessourcenSchleife:
+      for RessourcenSchleifenwert in TextaccessVariablen.RessourcenAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RessourcenAccess (RessourcenSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Kartentexte.Ressourcen (RessourcenSchleifenwert)));
+         
+      end loop RessourcenSchleife;
+      
+      
+      
+      FeldeffekteSchleife:
+      for FeldeffekteSchleifenwert in TextaccessVariablen.FeldeffekteAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.FeldeffekteAccess (FeldeffekteSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Kartentexte.Feldeffekte (FeldeffekteSchleifenwert)));
+         
+      end loop FeldeffekteSchleife;
+      
+      
+      
+      VerbesserungenSchleife:
+      for VerbesserungenSchleifenwert in TextaccessVariablen.VerbesserungenAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.VerbesserungenAccess (VerbesserungenSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Kartentexte.Verbesserungen (VerbesserungenSchleifenwert)));
+         
+      end loop VerbesserungenSchleife;
+      
+      
+      
+      WegeSchleife:
+      for WegeSchleifenwert in TextaccessVariablen.WegeAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.WegeAccess (WegeSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Kartentexte.Wege (WegeSchleifenwert)));
+         
+      end loop WegeSchleife;
       
    end Karte;
    

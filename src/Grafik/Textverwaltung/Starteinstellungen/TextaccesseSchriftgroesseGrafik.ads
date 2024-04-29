@@ -33,10 +33,6 @@ private
    procedure Sprachauswahl
      (StandardExtern : in Sf.sfUint32);
 
-   procedure Kartenformauswahl
-     (ÜberschriftExtern : in Sf.sfUint32;
-      StandardExtern : in Sf.sfUint32);
-
    procedure StadtInformationen
      (StandardExtern : in Sf.sfUint32);
 

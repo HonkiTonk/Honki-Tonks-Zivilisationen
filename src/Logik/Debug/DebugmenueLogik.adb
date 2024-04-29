@@ -56,6 +56,7 @@ package body DebugmenueLogik is
                EinheitErzeugen (SpeziesExtern => SpeziesExtern);
                
             when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+               -- Das verwendet nur die Font die die aktuelle Sprache verwendet, sollte man das anpassen? äöü
                EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => Einsprachig);
                Einsprachig := not Einsprachig;
                

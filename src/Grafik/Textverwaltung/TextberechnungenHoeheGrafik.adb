@@ -37,7 +37,7 @@ package body TextberechnungenHoeheGrafik is
    
    
    
-   -- Das hier auch mal auf Klein, Standard und Überschrift aufteilen? Vermutlich werde ich das nicht brauchen, aber sicher ist sicher. äöü
+   -- Das hier auch mal auf Kein, Klein, Standard und Überschrift aufteilen? Vermutlich werde ich das nicht brauchen, aber sicher ist sicher. äöü
    function NeueTextposition
      (PositionExtern : in Float;
       ZusatzwertExtern : in Float)
@@ -47,6 +47,18 @@ package body TextberechnungenHoeheGrafik is
       return PositionExtern + ZusatzwertExtern + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TexthöhenAccess (TextDatentypen.Standard_Enum)).height;
       
    end NeueTextposition;
+   
+   
+   
+   function NeueTextpositionOhneTexthöhe
+     (PositionExtern : in Float;
+      ZusatzwertExtern : in Float)
+      return Float
+   is begin
+      
+      return PositionExtern + ZusatzwertExtern;
+      
+   end NeueTextpositionOhneTexthöhe;
    
    
    
