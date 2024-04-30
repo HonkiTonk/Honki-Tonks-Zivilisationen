@@ -6,7 +6,6 @@ with Sf.Graphics;
 
 private with Sf;
 private with Sf.Graphics.Texture;
-private with Sf.System.Vector2;
 
 with VerzeichnisKonstanten;
 
@@ -73,10 +72,6 @@ private
 
    Verzeichnisprüfung : Directory_Entry_Type;
 
-   KleinsteOrdnergröße : constant File_Size := 0;
-
    MaximaleTexturengröße : constant Sf.sfUint32 := Sf.Graphics.Texture.getMaximumSize;
-
-   Texturengröße : Sf.System.Vector2.sfVector2u;
 
 end EinlesenAllgemeinesLogik;

@@ -61,7 +61,7 @@ package SystemDatentypen is
    subtype Betriebsystem_Zeichenabzug_Enum is Betriebssystem_Enum range Windows_Enum .. Windows_Enum;
    
    type Zeichenabzug_Enum is (
-                              Speichern_Enum
+                              Speichern_Enum, Text_Enum, Texturen_Enum
                              );
    
 end SystemDatentypen;

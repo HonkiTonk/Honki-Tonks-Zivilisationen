@@ -3,6 +3,7 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with TextArrays;
 with TextKonstanten;
 with VerzeichnisKonstanten;
+with SystemDatentypen;
 
 with EinlesenAllgemeinesLogik;
 
@@ -29,12 +30,17 @@ package body EinlesenSpracheLogik is
                          Directory_Entry => Verzeichnis);
          
          if
+           False = VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => (Decode (Item => Simple_Name (Directory_Entry => Verzeichnis)))),
+                                                                   ZeichenabzugExtern => SystemDatentypen.Text_Enum)
+         then
+            null;
+            
+         elsif
            EinlesenAllgemeinesLogik.VerboteneVerzeichnissnamen (NameExtern => Simple_Name (Directory_Entry => Verzeichnis)) = True
          then
             null;
             
          elsif
-           -- Das hier noch durch eine Windows uns eine Linuxversion ersetzen. äöü
            -- Kann das nicht einfach raus wenn irgendwann einmal Wide_Wide_Directories da ist? äöü
            -- Das ist je nur vorhandene Ordner durchgehen und man kann ja keine Dateien/Ordner anlegen die das Dateisystem nicht unterstützen. äöü
            VerzeichnisDateinamenTests.GültigerNamen (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
@@ -42,7 +48,7 @@ package body EinlesenSpracheLogik is
             null;
              
          elsif
-           -- Das ausgeklammerte funktioniert unter Windwos nicht, wenn man Sonderzeichen verwendet.
+           -- Das ausgeklammerte unten drunter funktioniert unter Windwos nicht, wenn man Sonderzeichen verwendet.
            -- EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
            Exists (Name => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei) = False
          then

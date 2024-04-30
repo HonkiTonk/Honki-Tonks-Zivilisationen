@@ -1,10 +1,13 @@
 with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with Projekteinstellungen;
 with BetriebssystemKonstanten;
 
 with SchreibeLogiktask;
 with LeseLogiktask;
+
+with Fehlermeldungssystem;
 
 package body VerzeichnisDateinamenTests is
 
@@ -35,11 +38,37 @@ package body VerzeichnisDateinamenTests is
                return True;
                
             else
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => TextExtern));
                return False;
             end if;
       end case;
       
    end GültigeZeichenlänge;
+   
+   
+   
+   function Standardeinleseprüfung
+     (VerzeichnisDateinameExtern : in Wide_Wide_String)
+     return Boolean
+   is begin
+      
+      if
+        False = GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => VerzeichnisDateinameExtern),
+                                     ZeichenabzugExtern => SystemDatentypen.Text_Enum)
+      then
+         return False;
+            
+      elsif
+        Exists (Name => Encode (Item => VerzeichnisDateinameExtern)) = False
+      then
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
+         return False;
+            
+      else
+         return True;
+      end if;
+      
+   end Standardeinleseprüfung;
    
    
    

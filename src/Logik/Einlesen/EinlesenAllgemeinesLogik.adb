@@ -124,24 +124,16 @@ package body EinlesenAllgemeinesLogik is
    function Texturenlimit
      (TexturenpfadExtern : in String)
       return Sf.Graphics.sfTexture_Ptr
-   is
-      use type Sf.sfUint32;
-   begin
-            
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => Sf.Graphics.Texture.createFromFile (filename => TexturenpfadExtern));
-               
-      if
-        Texturengröße.x > MaximaleTexturengröße
-        or
-          Texturengröße.y > MaximaleTexturengröße
-      then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => Decode (Item => TexturenpfadExtern) & " überschreitet Grafikkartetexturennmaximum:" & MaximaleTexturengröße'Wide_Wide_Image);
-         return null;
-                  
-      else
-         return Sf.Graphics.Texture.createFromFile (filename => TexturenpfadExtern);
-      end if;
+   is begin
       
+      return Sf.Graphics.Texture.createFromFile (filename => TexturenpfadExtern);
+      
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.Texturenlimit: " & Decode (Item => TexturenpfadExtern) & " Texturenmaximum:" & MaximaleTexturengröße'Wide_Wide_Image & " "
+                                     & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         return null;
+         
    end Texturenlimit;
    
    

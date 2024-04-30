@@ -8,9 +8,11 @@ with KartenverbesserungDatentypen;
 with KartenextraDatentypen;
 with BefehleDatentypen;
 with GrafikDatentypen;
+with SystemDatentypen;
 
 with EinlesenAllgemeinesLogik;
 with Fehlermeldungssystem;
+with VerzeichnisDateinamenTests;
 
 package body EinlesenTexturenLogik is
    
@@ -28,22 +30,27 @@ package body EinlesenTexturenLogik is
    procedure Karte
    is begin
       
-      case
-        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei)
-      is
-         when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Karte: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei));
-            return;
+      if
+        False = VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei)),
+                                                                  ZeichenabzugExtern => SystemDatentypen.Texturen_Enum)
+      then
+         return;
             
-         when True =>
-            EinzulesendeZeile := 1;
-            AktuelleZeile := 1;
+      elsif
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei) = False
+      then
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Karte: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei));
+         return;
             
-            Open (File => DateiKarte,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei,
-                  Form => "WCEM=8");
-      end case;
+      else
+         EinzulesendeZeile := 1;
+         AktuelleZeile := 1;
+            
+         Open (File => DateiKarte,
+               Mode => In_File,
+               Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei,
+               Form => "WCEM=8");
+      end if;
       
       KarteSchleife:
       loop
@@ -337,21 +344,26 @@ package body EinlesenTexturenLogik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
-      case
-        Exists (Name => Encode (Item => DateipfadExtern))
-      is
-         when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Gebäude: Es fehlt: " & DateipfadExtern);
-            return;
+      if
+        False = VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei)),
+                                                                  ZeichenabzugExtern => SystemDatentypen.Texturen_Enum)
+      then
+         return;
             
-         when True =>
-            ZeileGebäude := 1;
+      elsif
+        Exists (Name => Encode (Item => DateipfadExtern)) = False
+      then
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Gebäude: Es fehlt: " & DateipfadExtern);
+         return;
             
-            Open (File => DateiGebäude,
-                  Mode => In_File,
-                  Name => Encode (Item => DateipfadExtern),
-                  Form => "WCEM=8");
-      end case;
+      else
+         ZeileGebäude := 1;
+            
+         Open (File => DateiGebäude,
+               Mode => In_File,
+               Name => Encode (Item => DateipfadExtern),
+               Form => "WCEM=8");
+      end if;
       
       TexturenSchleife:
       for TexturSchleifenwert in EingeleseneTexturenGrafik.GebäudeAccessArray'Range (2) loop
@@ -372,18 +384,23 @@ package body EinlesenTexturenLogik is
                ZeileGebäude := ZeileGebäude + 1;
          end case;
          
-         case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
-         is
-            when True =>
-               EingeleseneTexturenGrafik.GebäudeAccess (SpeziesExtern, TexturSchleifenwert)
-                 := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
+         if
+           False = VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         => Verzeichnisname,
+                                                                     ZeichenabzugExtern => SystemDatentypen.Texturen_Enum)
+         then
+            EingeleseneTexturenGrafik.GebäudeAccess (SpeziesExtern, TexturSchleifenwert) := null;
+            
+         elsif
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname))) = True
+         then
+            EingeleseneTexturenGrafik.GebäudeAccess (SpeziesExtern, TexturSchleifenwert)
+              := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                 
-            when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Gebäude: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
-               EingeleseneTexturenGrafik.GebäudeAccess (SpeziesExtern, TexturSchleifenwert) := null;
-         end case;
-                  
+         else
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Gebäude: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+            EingeleseneTexturenGrafik.GebäudeAccess (SpeziesExtern, TexturSchleifenwert) := null;
+         end if;
+         
       end loop TexturenSchleife;
       
       Close (File => DateiGebäude);

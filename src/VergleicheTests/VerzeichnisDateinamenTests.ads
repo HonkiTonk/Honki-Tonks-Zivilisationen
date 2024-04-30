@@ -16,6 +16,14 @@ package VerzeichnisDateinamenTests is
                  To_Wide_Wide_String (Source => TextExtern)'Length > 0
               );
 
+   function Standardeinleseprüfung
+     (VerzeichnisDateinameExtern : in Wide_Wide_String)
+      return Boolean
+     with
+       Pre => (
+                 VerzeichnisDateinameExtern'Length > 0
+              );
+
    function GültigesZeichen
      (ZeichenExtern : in Wide_Wide_Character)
       return Boolean;
@@ -45,7 +53,9 @@ private
    type ZeichenabzugArray is array (SystemDatentypen.Betriebsystem_Zeichenabzug_Enum'Range, SystemDatentypen.Zeichenabzug_Enum'Range) of Natural;
    Zeichenabzug : constant ZeichenabzugArray := (SystemDatentypen.Windows_Enum =>
                                                    (
-                                                    SystemDatentypen.Speichern_Enum => VerzeichnisKonstanten.ExtrazeichenSpielstand
+                                                    SystemDatentypen.Speichern_Enum => VerzeichnisKonstanten.ExtrazeichenSpielstand,
+                                                    SystemDatentypen.Text_Enum      => 0,
+                                                    SystemDatentypen.Texturen_Enum  => 0
                                                    )
                                                 );
 
