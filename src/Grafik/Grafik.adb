@@ -51,7 +51,7 @@ package body Grafik is
       
       -- Diagnoseinformationen.Größenprüfung;
       -- Diagnoseinformationen.GrößenprüfungDatei;
-      
+            
       Startzeit := Clock;
       
       GrafikSchleife:

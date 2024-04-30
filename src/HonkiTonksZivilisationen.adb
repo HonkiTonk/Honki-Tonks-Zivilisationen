@@ -53,7 +53,7 @@ is
    exception
       when StandardAdaFehler : others =>
          case
-           Projekteinstellungen.Debug.FehlerWarnung
+           Projekteinstellungen.Einstellungen.FehlerWarnung
          is
             when True =>
                Put_Line (Item => "Logiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
@@ -81,7 +81,7 @@ is
    exception
       when StandardAdaFehler : others =>
          case
-           Projekteinstellungen.Debug.FehlerWarnung
+           Projekteinstellungen.Einstellungen.FehlerWarnung
          is
             when True =>
                Put_Line (Item => "Grafiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
@@ -109,7 +109,7 @@ is
    exception
       when StandardAdaFehler : others =>
          case
-           Projekteinstellungen.Debug.FehlerWarnung
+           Projekteinstellungen.Einstellungen.FehlerWarnung
          is
             when True =>
                Put_Line (Item => "Musiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
@@ -137,7 +137,7 @@ is
    exception
       when StandardAdaFehler : others =>
          case
-           Projekteinstellungen.Debug.FehlerWarnung
+           Projekteinstellungen.Einstellungen.FehlerWarnung
          is
             when True =>
                Put_Line (Item => "Soundtask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));

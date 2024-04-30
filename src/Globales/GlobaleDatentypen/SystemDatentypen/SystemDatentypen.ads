@@ -50,5 +50,18 @@ package SystemDatentypen is
    
    
    type Spielstand_Enum is (Manueller_Spielstand_Enum, Automatischer_Spielstand_Enum);
-
+   
+   
+   
+   type Betriebssystem_Enum is (
+                                Linux_Enum,
+                                
+                                Windows_Enum
+                               );
+   subtype Betriebsystem_Zeichenabzug_Enum is Betriebssystem_Enum range Windows_Enum .. Windows_Enum;
+   
+   type Zeichenabzug_Enum is (
+                              Speichern_Enum
+                             );
+   
 end SystemDatentypen;

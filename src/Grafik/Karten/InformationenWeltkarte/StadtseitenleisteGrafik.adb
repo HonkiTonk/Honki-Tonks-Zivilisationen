@@ -100,7 +100,7 @@ package body StadtseitenleisteGrafik is
       if
         StadtauswahlExtern.SpeziesNummer.Spezies = SpeziesExtern
         or
-          Projekteinstellungen.Debug.VolleInformation
+          Projekteinstellungen.Einstellungen.VolleInformation
       then
          AnzuzeigenderText (2) := Nahrung (ProduktionExtern => StadtauswahlExtern.Nahrungsproduktion,
                                            VorhandenExtern  => StadtauswahlExtern.Nahrungsmittel);

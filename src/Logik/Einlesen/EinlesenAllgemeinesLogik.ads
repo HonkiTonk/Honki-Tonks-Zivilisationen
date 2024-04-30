@@ -43,14 +43,6 @@ package EinlesenAllgemeinesLogik is
                  DateinameExtern'Length > 0
               );
 
-   function NamensprüfungWindows
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-     with
-       Pre => (
-                 NameExtern'Length > 0
-              );
-
    function LeeresVerzeichnis
      (VerzeichnisExtern : in String)
       return Boolean

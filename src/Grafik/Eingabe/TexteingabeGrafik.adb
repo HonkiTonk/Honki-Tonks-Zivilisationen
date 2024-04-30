@@ -4,9 +4,8 @@ with Sf.Window.Mouse;
 with Sf.Graphics.RenderWindow;
 
 with SystemRecordKonstanten;
-with SystemKonstanten;
 with BetriebssystemKonstanten;
-with Projekteinstellungen;
+with SystemDatentypen;
 
 with SchreibeLogiktask;
 with LeseLogiktask;
@@ -14,6 +13,7 @@ with SchreibeGrafiktask;
 with LeseGrafiktask;
 
 with FensterGrafik;
+with VerzeichnisDateinamenTests;
 
 package body TexteingabeGrafik is
 
@@ -57,7 +57,7 @@ package body TexteingabeGrafik is
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                then
                   case
-                    Extraprüfungen
+                    VerzeichnisDateinamenTests.Namensprüfungen (TextExtern => LeseLogiktask.Texteingabe)
                   is
                      when True =>
                         SchreibeLogiktask.ErfolgTexteingabe (ErfolgExtern => True);
@@ -135,233 +135,25 @@ package body TexteingabeGrafik is
    
    
    
+   -- Für den Fall dass das mal verschoben/verallgemeintert werden soll immer beachten dass das so nur die korrekten Abzugswerte für das Speichern übergibt!
    function Spielstandnamen
      (EingegebenesZeichenExtern : in Wide_Wide_Character)
       return Boolean
    is begin
       
       case
-        Projekteinstellungen.Debug.LinuxWindows
+        VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         => LeseLogiktask.Texteingabe,
+                                                        ZeichenabzugExtern => SystemDatentypen.Speichern_Enum)
       is
-         when True =>
-            return SpielstandnamenLinux (EingegebenesZeichenExtern => EingegebenesZeichenExtern);
-            
          when False =>
-            return SpielstandnamenWindows (EingegebenesZeichenExtern => EingegebenesZeichenExtern);
+            return False;
+            
+         when True =>
+            return VerzeichnisDateinamenTests.GültigesZeichen (ZeichenExtern => EingegebenesZeichenExtern);
       end case;
             
    end Spielstandnamen;
    
-   
-   
-   function SpielstandnamenLinux
-     (EingegebenesZeichenExtern : in Wide_Wide_Character)
-      return Boolean
-   is begin
-      
-      if
-        To_Wide_Wide_String (Source => LeseLogiktask.Texteingabe)'Length >= SystemKonstanten.MaximaleZeichenlängeDateisystem
-      then
-         return False;
-         
-      else
-         null;
-      end if;
-      
-      case
-        EingegebenesZeichenExtern
-      is
-         when '/' | BetriebssystemKonstanten.NUL =>
-            return False;
-            
-         when others =>
-            return True;
-      end case;
-      
-   end SpielstandnamenLinux;
-   
-   
-     
-   function SpielstandnamenWindows
-     (EingegebenesZeichenExtern : in Wide_Wide_Character)
-      return Boolean
-   is begin
-      
-      if
-        To_Wide_Wide_String (Source => LeseLogiktask.Texteingabe)'Length >= SystemKonstanten.MaximaleSpielstandlängeWindows
-      then
-         return False;
-         
-      else
-         null;
-      end if;
-      
-      case
-        EingegebenesZeichenExtern
-      is
-         when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstanten.NUL .. BetriebssystemKonstanten.US =>
-            return False;
-            
-         when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstanten.Leerzeichen | BetriebssystemKonstanten.Bindestrich | BetriebssystemKonstanten.Unterstrich | BetriebssystemKonstanten.Punkt =>
-            return True;
-            
-         when others =>
-            return False; -- True;
-      end case;
-      
-   end SpielstandnamenWindows;
-   
-   
-   
-   function Extraprüfungen
-     return Boolean
-   is begin
-      
-      VerboteneNamenSchleife:
-      for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneNamen'Range loop
-         
-         if
-           To_Wide_Wide_String (Source => LeseLogiktask.Texteingabe) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneNamen (VerboteneNamenSchleifenwert))
-         then
-            return False;
-         
-         else
-            null;
-         end if;
-         
-      end loop VerboteneNamenSchleife;
-      
-      case
-        Projekteinstellungen.Debug.LinuxWindows
-      is
-         when True =>
-            return True;
-            
-         when False =>
-            return ExtraprüfungenWindows;
-      end case;
-      
-   end Extraprüfungen;
-      
-      
-      
-   function ExtraprüfungenWindows
-     return Boolean
-   is begin
-      
-      PunktLeerzeichenSchleife:
-      loop
-         
-         Text := LeseLogiktask.Texteingabe;
-         
-         if
-           To_Wide_Wide_String (Source => Text)'Length = 0
-         then
-            return False;
-            
-         elsif
-           -- Full_Stop = Period, nicht erlaubt am Ende unter Windows!
-           BetriebssystemKonstanten.Punkt = Element (Source => Text,
-                                                     Index  => To_Wide_Wide_String (Source => Text)'Last)
-         then
-            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                 From    => To_Wide_Wide_String (Source => Text)'Last,
-                                                                                                 Through => To_Wide_Wide_String (Source => Text)'Last));
-            
-         elsif
-           -- Leerzeichen ist am Anfang unter Windows nicht erlaubt!
-           BetriebssystemKonstanten.Leerzeichen = Element (Source => Text,
-                                                           Index  => To_Wide_Wide_String (Source => Text)'First)
-         then
-            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                 From    => To_Wide_Wide_String (Source => Text)'First,
-                                                                                                 Through => To_Wide_Wide_String (Source => Text)'First));
-            
-         elsif
-           -- Leerzeichen ist am Ende unter Windows nicht erlaubt!
-           BetriebssystemKonstanten.Leerzeichen = Element (Source => Text,
-                                                           Index  => To_Wide_Wide_String (Source => Text)'Last)
-         then
-            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                 From    => To_Wide_Wide_String (Source => Text)'Last,
-                                                                                                 Through => To_Wide_Wide_String (Source => Text)'Last));
-            
-         else
-            exit PunktLeerzeichenSchleife;
-         end if;
-         
-      end loop PunktLeerzeichenSchleife;
-      
-      
-      
-      VerboteneNamenSchleife:
-      for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenGroß'Range loop
-         
-         Text := LeseLogiktask.Texteingabe;
-         
-         if
-           To_Wide_Wide_String (Source => Text)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Length
-         then
-            Erlaubt := True;
-            
-         elsif
-           To_Wide_Wide_String (Source => Text) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))
-           or
-             To_Wide_Wide_String (Source => Text) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert))
-         then
-            return False;
-               
-         else
-            Erlaubt := False;
-                     
-            WörterSchleife:
-            for WörterSchleifenwert in To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Range loop
-         
-               if
-                 To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert)) (WörterSchleifenwert) = Element (Source => Text,
-                                                                                                                                                                     Index  => WörterSchleifenwert)
-                 or
-                   To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert)) (WörterSchleifenwert) = Element (Source => Text,
-                                                                                                                                                                       Index  => WörterSchleifenwert)
-               then
-                  null;
-               
-               else
-                  Erlaubt := True;
-                  exit WörterSchleife;
-               end if;
-                
-            end loop WörterSchleife;
-         end if;
-            
-         case
-           Erlaubt
-         is
-            when True =>
-               null;
-               
-            when False =>
-               if
-                 To_Wide_Wide_String (Source => Text)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1
-               then
-                  return False;
-                  
-               elsif
-                 BetriebssystemKonstanten.Punkt = To_Wide_Wide_String (Source => Text) (To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1)
-               then
-                  return False;
-                     
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop VerboteneNamenSchleife;
-      
-      return True;
-      
-   end ExtraprüfungenWindows;
-       
    
    
    procedure ZeichenEntfernen

@@ -13,7 +13,7 @@ package body Fehlermeldungssystem is
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logikfehler: " & FehlermeldungExtern);
       
       case
-        Projekteinstellungen.Debug.FehlerWarnung
+        Projekteinstellungen.Einstellungen.FehlerWarnung
       is
          when True =>
             Put_Line (Item => "Logikfehler: " & FehlermeldungExtern);
@@ -34,7 +34,7 @@ package body Fehlermeldungssystem is
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafikfehler: " & FehlermeldungExtern);
       
       case
-        Projekteinstellungen.Debug.FehlerWarnung
+        Projekteinstellungen.Einstellungen.FehlerWarnung
       is
          when True =>
             Put_Line (Item => "Grafikfehler: " & FehlermeldungExtern);
@@ -55,7 +55,7 @@ package body Fehlermeldungssystem is
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musikfehler: " & FehlermeldungExtern);
       
       case
-        Projekteinstellungen.Debug.FehlerWarnung
+        Projekteinstellungen.Einstellungen.FehlerWarnung
       is
          when True =>
             Put_Line (Item => "Musikfehler: " & FehlermeldungExtern);
@@ -76,7 +76,7 @@ package body Fehlermeldungssystem is
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundfehler: " & FehlermeldungExtern);
       
       case
-        Projekteinstellungen.Debug.FehlerWarnung
+        Projekteinstellungen.Einstellungen.FehlerWarnung
       is
          when True =>
             Put_Line (Item => "Soundfehler: " & FehlermeldungExtern);
@@ -97,7 +97,7 @@ package body Fehlermeldungssystem is
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Mehrfachfehler: " & FehlermeldungExtern);
       
       case
-        Projekteinstellungen.Debug.FehlerWarnung
+        Projekteinstellungen.Einstellungen.FehlerWarnung
       is
          when True =>
             Put_Line (Item => "Mehrfachfehler: " & FehlermeldungExtern);

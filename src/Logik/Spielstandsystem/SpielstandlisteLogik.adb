@@ -6,9 +6,7 @@ with GrafikDatentypen;
 with TextnummernKonstanten;
 with TextKonstanten;
 with AuswahlKonstanten;
-with Projekteinstellungen;
 with TextArrays;
-with BetriebssystemKonstanten;
 with MenueKonstanten;
 with SpielstandVariablen;
 with SystemDatentypen;
@@ -21,8 +19,8 @@ with TasteneingabeLogik;
 with SpielstandAllgemeinesLogik;
 with JaNeinLogik;
 with SpielstandEntfernenLogik;
-with EinlesenAllgemeinesLogik;
 with UmwandlungenVerzeichnisse;
+with VerzeichnisDateinamenTests;
 
 package body SpielstandlisteLogik is
 
@@ -82,7 +80,9 @@ package body SpielstandlisteLogik is
                                                             NummerExtern => AktuellerSpielstand);
                
                if
-                 NamePrüfen (NameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => AktuellerSpielstand))) = False
+                 -- Wird diese Prüfung hier so überhaupt gebraucht? äöü
+                 -- Eventuell bis Wide_Wide_Directories? äöü
+                 VerzeichnisDateinamenTests.GültigerNamen (NameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => AktuellerSpielstand))) = False
                then
                   SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => TextKonstanten.LeerUnboundedString,
                                                                NummerExtern => AktuellerSpielstand);
@@ -338,50 +338,5 @@ package body SpielstandlisteLogik is
       return Spielstandname;
       
    end NameNutzer;
-   
-   
-   
-   function NamePrüfen
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-   is begin
-      
-      case
-        Projekteinstellungen.Debug.LinuxWindows
-      is
-         when True =>
-            return NamePrüfenLinux (NameExtern => NameExtern);
-            
-         when False =>
-            return EinlesenAllgemeinesLogik.NamensprüfungWindows (NameExtern => NameExtern);
-      end case;
-      
-   end NamePrüfen;
-   
-   
-   
-   function NamePrüfenLinux
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-   is begin
-      
-      PrüfenSchleife:
-      for PrüfenSchleifenwert in NameExtern'Range loop
-         
-         case
-           NameExtern (PrüfenSchleifenwert)
-         is
-            when '/' | BetriebssystemKonstanten.NUL =>
-               return False;
-               
-            when others =>
-               null;
-         end case;
-         
-      end loop PrüfenSchleife;
-      
-      return True;
-      
-   end NamePrüfenLinux;
 
 end SpielstandlisteLogik;

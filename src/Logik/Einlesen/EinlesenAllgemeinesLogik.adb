@@ -1,8 +1,6 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
-with BetriebssystemKonstanten;
-
 with Fehlermeldungssystem;
 
 package body EinlesenAllgemeinesLogik is
@@ -75,34 +73,6 @@ package body EinlesenAllgemeinesLogik is
          return To_Unbounded_Wide_Wide_String (Source => (DateinameExtern & ", Zeile:" & AktuelleZeileExtern'Wide_Wide_Image));
          
    end TextEinlesenUngebunden;
-   
-   
-   
-   -- Eventuell noch mal woanders hin verschieben. äöü
-   -- Die Linuxprüfung und die Aufteilung auch noch in eigene Dateien schieben? äöü
-   function NamensprüfungWindows
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-   is begin
-      
-      PrüfenSchleife:
-      for PrüfenSchleifenwert in NameExtern'Range loop
-         
-         case
-           NameExtern (PrüfenSchleifenwert)
-         is
-            when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstanten.Leerzeichen | BetriebssystemKonstanten.Bindestrich | BetriebssystemKonstanten.Unterstrich | BetriebssystemKonstanten.Punkt =>
-               null;
-               
-            when others =>
-               return False;
-         end case;
-         
-      end loop PrüfenSchleife;
-      
-      return True;
-      
-   end NamensprüfungWindows;
 
 
 

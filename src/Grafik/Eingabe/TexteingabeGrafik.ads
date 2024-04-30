@@ -9,8 +9,6 @@ package TexteingabeGrafik is
 
 private
    
-   Erlaubt : Boolean;
-
    EingegebenesZeichen : Wide_Wide_Character;
    
    Text : Unbounded_Wide_Wide_String;
@@ -28,19 +26,5 @@ private
    function Spielstandnamen
      (EingegebenesZeichenExtern : in Wide_Wide_Character)
       return Boolean;
-   
-   function SpielstandnamenLinux
-     (EingegebenesZeichenExtern : in Wide_Wide_Character)
-      return Boolean;
-     
-   function SpielstandnamenWindows
-     (EingegebenesZeichenExtern : in Wide_Wide_Character)
-      return Boolean;
-   
-   function Extraprüfungen
-     return Boolean;
-   
-   function ExtraprüfungenWindows
-     return Boolean;
    
 end TexteingabeGrafik;

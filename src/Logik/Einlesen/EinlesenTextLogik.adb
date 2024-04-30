@@ -11,6 +11,8 @@ with LeseOptionen;
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 
+with VerzeichnisDateinamenTests;
+
 -- Bei allen Einlesungen noch eine Pfadbegrenzung auf 256 Zeichen einbauen! äöü
 package body EinlesenTextLogik is
 
@@ -49,7 +51,7 @@ package body EinlesenTextLogik is
                  -- Das hier noch durch eine Windows uns eine Linuxversion ersetzen. äöü
                  -- Kann das nicht einfach raus wenn irgendwann einmal Wide_Wide_Directories da ist? äöü
                  -- Das ist je nur vorhandene Ordner durchgehen und man kann ja keine Dateien/Ordner anlegen die das Dateisystem nicht unterstützen. äöü
-                 EinlesenAllgemeinesLogik.NamensprüfungWindows (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
+                 VerzeichnisDateinamenTests.GültigerNamen (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
                then
                   null;
              

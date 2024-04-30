@@ -28,7 +28,7 @@ package body EinheitenanforderungenLogik is
         EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                               IDExtern      => IDExtern)
       then
-         return Projekteinstellungen.Debug.VolleInformation;
+         return Projekteinstellungen.Einstellungen.VolleInformation;
          
       elsif
         False = PassierbarkeitspruefungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

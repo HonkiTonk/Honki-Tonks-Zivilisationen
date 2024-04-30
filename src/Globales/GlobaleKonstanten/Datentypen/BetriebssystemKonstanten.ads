@@ -6,6 +6,8 @@ package BetriebssystemKonstanten is
    pragma Elaborate_Body;
    
    -- Allgemein
+   MaximaleZeichenlängeDateisystem : constant Positive := 255;
+   
    -- Die folgenden Zeichen sind Kopien aus Ada.Characters.Wide_Wide_Latin_1 und werden verwendet um das lokale Pragma "pragma Restrictions (No_Implementation_Units)" benutzen zu können!
    NUL : constant Wide_Wide_Character := Wide_Wide_Character'Val (0);
    SOH : constant Wide_Wide_Character := Wide_Wide_Character'Val (1);

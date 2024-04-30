@@ -1,4 +1,6 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Directories; use Ada.Directories;
+with Ada.Text_IO;
 with Ada.Float_Text_IO;
 
 package body Diagnoseinformationen is
@@ -113,6 +115,25 @@ package body Diagnoseinformationen is
       Put_Line (Item => To_Wide_Wide_String (Source => TextExtern));
       
    end UngebundenerText;
+   
+   
+   
+   procedure KurzerText
+     (TextExtern : in String)
+   is begin
+      
+      Ada.Text_IO.Put_Line (Item => TextExtern);
+      
+   end KurzerText;
+   
+   
+   
+   procedure Verzeichnisnamen
+   is begin
+      
+      Ada.Text_IO.Put_Line (Item => Current_Directory);
+      
+   end Verzeichnisnamen;
    
    
 

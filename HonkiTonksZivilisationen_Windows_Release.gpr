@@ -1,6 +1,6 @@
 with "asfml_Windows.gpr";
 
-project HonkiTonksZivilisationen_Windows is
+project HonkiTonksZivilisationen_Windows_Release is
 
    type Betriebssystem_Type is
       ("Linux", "Windows");
@@ -79,5 +79,5 @@ project HonkiTonksZivilisationen_Windows is
       for Switches ("ada") use ("-s", "-Wl,--gc-sections");
    end Linker;
 
-end HonkiTonksZivilisationen_Windows;
+end HonkiTonksZivilisationen_Windows_Release;
 

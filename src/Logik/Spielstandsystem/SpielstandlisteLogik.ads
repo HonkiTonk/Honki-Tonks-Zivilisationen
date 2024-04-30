@@ -34,20 +34,4 @@ private
    function NameNutzer
      return Unbounded_Wide_Wide_String;
 
-   function NamePrüfen
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-     with
-       Pre => (
-                 NameExtern'Length > 0
-              );
-
-   function NamePrüfenLinux
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-     with
-       Pre => (
-                 NameExtern'Length > 0
-              );
-
 end SpielstandlisteLogik;

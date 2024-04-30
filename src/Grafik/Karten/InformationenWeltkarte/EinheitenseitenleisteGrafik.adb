@@ -68,7 +68,7 @@ package body EinheitenseitenleisteGrafik is
       end case;
       
       case
-        Projekteinstellungen.Debug.VolleInformation
+        Projekteinstellungen.Einstellungen.VolleInformation
       is
          when True =>
             YTextposition := DebuginformationenGrafik.EInheiteninformationenKI (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -107,7 +107,7 @@ package body EinheitenseitenleisteGrafik is
       if
         SpeziesExtern = EinheitSpeziesNummerExtern.Spezies
         or
-          Projekteinstellungen.Debug.VolleInformation
+          Projekteinstellungen.Einstellungen.VolleInformation
       then
          AnzuzeigenderText (3) := Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                    IDExtern                   => IDExtern);

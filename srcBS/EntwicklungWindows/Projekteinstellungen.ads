@@ -1,12 +1,13 @@
 with SystemRecords;
+with SystemDatentypen;
 
 package Projekteinstellungen is
    pragma Preelaborate;
 
-   Debug : SystemRecords.DebugRecord := (
+   Einstellungen : constant SystemRecords.DebugRecord := (
                                          VolleInformation => True,
                                          FehlerWarnung    => True,
-                                         LinuxWindows     => False
+                                         Betriebssystem     => SystemDatentypen.Windows_Enum
                                         );
 
 end Projekteinstellungen;

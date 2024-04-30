@@ -45,6 +45,15 @@ package Diagnoseinformationen is
        Pre => (
                  To_Wide_Wide_String (Source => TextExtern)'Length > 0
               );
+   
+   procedure KurzerText
+     (TextExtern : in String)
+     with
+       Pre => (
+                 TextExtern'Length > 0
+              );
+   
+   procedure Verzeichnisnamen;
 
    procedure Koordinateninformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord);
