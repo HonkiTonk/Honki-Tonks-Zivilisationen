@@ -1,4 +1,3 @@
-with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
@@ -10,7 +9,7 @@ with TastenbelegungDatentypen;
 with BefehleDatentypen;
 
 with SchreibeTastenbelegungDatenbank;
-
+with VerzeichnisDateinamenTests;
 with Fehlermeldungssystem;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
@@ -20,7 +19,7 @@ package body EinlesenTastatureinstellungenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Tastatureinstellungen)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Tastatureinstellungen))
       is
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;

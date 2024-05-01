@@ -7,23 +7,30 @@ package ChangelogApril2024 is
    
    
 
-   -- Version 0.05. => 0.05. (29.04.2024):
+   -- Version 0.05.6930 => 0.05. (29.04.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6830 => 0.05. (28.04.2024):
+   -- Version 0.05.6830 => 0.05.6930 (28.04.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an Verzeichnisnamen- und Dateinamentests gearbeitet um Fehler unter verschiedenen Betriebssystemen auszuschließen.
+   -- Es sollten jetzt keine Sprachen mehr zum Einlesen kommen, die die maximale Zeichenanzahl überschreiten.
+   -- Datenbanken werden jetzt auch auf erlaubte Zeichenlänge geprüft.
+   -- Code zusammengeführt.
+   -- Sound- und Musikdateien sollten jetzt auch nicht mehr eingelesen werden, wenn der Datei/Verzeichnisname zu lang ist.
+   -- Texturdateien sollten jetzt auch nicht mehr eingelesen werden, wenn der Datei/Verzeichnisname zu lang ist.
+   -- Spielereinstellungen sollten jetzt auch nicht mehr eingelesen werden, wenn der Datei/Verzeichnisname zu lang ist.
+   -- Festgestellt dass die Datei/Verzeichnisprüfung Müll ist.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
    -- Version 0.05.6785 => 0.05.6830 (27.04.2024):
    
-   -- Fehler korrigiert der es ermöglichte Texturen über dem maximalen Limit einzulesen.
+   -- Fehler korrigiert der es ermöglichte Texturen über dem maximalen Texturenlimit einzulesen.
    -- Weiter an Verzeichnisnamen- und Dateinamentests gearbeitet um Fehler unter verschiedenen Betriebssystemen auszuschließen.
    -- Es sollten jetzt keine Sprachdateien mit einem zu langen Namen/Verzeichnis mehr eingelesen werden.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.

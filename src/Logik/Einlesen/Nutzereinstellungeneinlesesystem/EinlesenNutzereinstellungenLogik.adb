@@ -1,4 +1,3 @@
-with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
@@ -9,6 +8,7 @@ with SystemRecordKonstanten;
 with SchreibeOptionen;
 
 with Fehlermeldungssystem;
+with VerzeichnisDateinamenTests;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenNutzereinstellungenLogik is
@@ -17,7 +17,7 @@ package body EinlesenNutzereinstellungenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Spieleinstellungen)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Spieleinstellungen))
       is
          when False =>
             OptionenVariablen.StandardNutzereinstellungenLaden;

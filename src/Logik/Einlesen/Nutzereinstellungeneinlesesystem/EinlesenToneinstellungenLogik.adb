@@ -1,4 +1,3 @@
-with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
@@ -8,6 +7,7 @@ with SchreibeEinstellungenTon;
 
 with Fehlermeldungssystem;
 with EinstellungenTon;
+with VerzeichnisDateinamenTests;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenToneinstellungenLogik is
@@ -16,7 +16,7 @@ package body EinlesenToneinstellungenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Toneinstellungen)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Toneinstellungen))
       is
          when False =>
             EinstellungenTon.StandardeinstellungenLaden;

@@ -1,4 +1,3 @@
-with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with Sf.Audio.SoundBuffer;
@@ -8,6 +7,7 @@ with VerzeichnisKonstanten;
 with EingeleseneSounds;
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
+with VerzeichnisDateinamenTests;
 
 package body EinlesenSoundsLogik is
 
@@ -15,7 +15,7 @@ package body EinlesenSoundsLogik is
    is begin
             
       case
-        Exists (Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei)
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: "
@@ -51,7 +51,7 @@ package body EinlesenSoundsLogik is
          end case;
          
          case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Sound)))
+           VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => To_Wide_Wide_String (Source => Sound))
          is
             when False =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: " & To_Wide_Wide_String (Source => Sound));

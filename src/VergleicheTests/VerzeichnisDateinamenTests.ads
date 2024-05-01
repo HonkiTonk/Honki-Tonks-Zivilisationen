@@ -16,7 +16,24 @@ package VerzeichnisDateinamenTests is
                  To_Wide_Wide_String (Source => TextExtern)'Length > 0
               );
 
+   function GültigeZeichenlängeNeu
+     (TextExtern : in Unbounded_Wide_Wide_String;
+      ZusatztextExtern : in Wide_Wide_String)
+      return Boolean
+     with
+       Pre => (
+                 To_Wide_Wide_String (Source => TextExtern)'Length > 0
+              );
+
    function Standardeinleseprüfung
+     (VerzeichnisDateinameExtern : in Wide_Wide_String)
+      return Boolean
+     with
+       Pre => (
+                 VerzeichnisDateinameExtern'Length > 0
+              );
+
+   function StandardwerteEinleseprüfung
      (VerzeichnisDateinameExtern : in Wide_Wide_String)
       return Boolean
      with

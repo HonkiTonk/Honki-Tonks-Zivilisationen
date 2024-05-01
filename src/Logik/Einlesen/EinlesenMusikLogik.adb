@@ -1,4 +1,3 @@
-with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with Sf.Audio.Music;
@@ -9,7 +8,9 @@ with SpeziesKonstanten;
 with EingeleseneMusik;
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
+with VerzeichnisDateinamenTests;
 
+-- Die Prüfungen ob die Zeichenlänge der Musik passt, passen so eventuell nicht richtig. Beim richtigen Einbauen korrigieren. äöü
 package body EinlesenMusikLogik is
 
    procedure EinlesenMusik
@@ -25,7 +26,7 @@ package body EinlesenMusikLogik is
       end if;
       
       case
-        Exists (Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei)
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
@@ -85,7 +86,7 @@ package body EinlesenMusikLogik is
       end case;
       
       case
-        Exists (Name => Encode (Item => DateipfadExtern))
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => DateipfadExtern)
       is
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenLieder: Es fehlt: " & DateipfadExtern);
@@ -117,7 +118,7 @@ package body EinlesenMusikLogik is
          end case;
          
          case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Lied)))
+           VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => To_Wide_Wide_String (Source => Lied))
          is
             when False =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenLieder: Es fehlt: " & To_Wide_Wide_String (Source => Lied));

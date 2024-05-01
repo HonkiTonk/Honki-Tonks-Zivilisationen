@@ -1,4 +1,3 @@
-with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
@@ -11,6 +10,7 @@ with SchreibeEinstellungenGrafik;
 
 with Fehlermeldungssystem;
 with EinstellungenGrafik;
+with VerzeichnisDateinamenTests;
 
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
@@ -20,7 +20,7 @@ package body EinlesenGrafikeinstellungenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Grafikeinstellungen)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Grafikeinstellungen))
       is
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;

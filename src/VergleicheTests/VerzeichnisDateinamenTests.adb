@@ -46,6 +46,41 @@ package body VerzeichnisDateinamenTests is
    end GültigeZeichenlänge;
    
    
+
+   function GültigeZeichenlängeNeu
+     (TextExtern : in Unbounded_Wide_Wide_String;
+      ZusatztextExtern : in Wide_Wide_String)
+      return Boolean
+   is begin
+      
+      case
+        Projekteinstellungen.Einstellungen.Betriebssystem
+      is
+         when SystemDatentypen.Linux_Enum =>
+            if
+              To_Wide_Wide_String (Source => TextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem
+            then
+               return True;
+               
+            else
+               return False;
+            end if;
+            
+         when SystemDatentypen.Windows_Enum =>
+            if
+              To_Wide_Wide_String (Source => TextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem - Current_Directory'Length - ZusatztextExtern'Length
+            then
+               return True;
+               
+            else
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => TextExtern));
+               return False;
+            end if;
+      end case;
+      
+   end GültigeZeichenlängeNeu;
+   
+   
    
    function Standardeinleseprüfung
      (VerzeichnisDateinameExtern : in Wide_Wide_String)
@@ -69,6 +104,30 @@ package body VerzeichnisDateinamenTests is
       end if;
       
    end Standardeinleseprüfung;
+   
+   
+   
+   function StandardwerteEinleseprüfung
+     (VerzeichnisDateinameExtern : in Wide_Wide_String)
+      return Boolean
+   is begin
+      
+      if
+        False = GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => VerzeichnisDateinameExtern),
+                                       ZeichenabzugExtern => SystemDatentypen.Text_Enum)
+      then
+         return False;
+            
+      elsif
+        Exists (Name => Encode (Item => VerzeichnisDateinameExtern)) = False
+      then
+         return False;
+            
+      else
+         return True;
+      end if;
+      
+   end StandardwerteEinleseprüfung;
    
    
    

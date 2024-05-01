@@ -30,8 +30,10 @@ package body EinlesenSpracheLogik is
                          Directory_Entry => Verzeichnis);
          
          if
-           False = VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => (Decode (Item => Simple_Name (Directory_Entry => Verzeichnis)))),
-                                                                   ZeichenabzugExtern => SystemDatentypen.Text_Enum)
+           False = VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         =>
+                                                                       To_Unbounded_Wide_Wide_String (Source => (Decode (Item => VerzeichnisKonstanten.SprachenStrich
+                                                                                                                         & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei))),
+                                                                     ZeichenabzugExtern => SystemDatentypen.Text_Enum)
          then
             null;
             

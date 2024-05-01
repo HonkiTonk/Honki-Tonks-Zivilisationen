@@ -1,4 +1,3 @@
-with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
@@ -13,6 +12,7 @@ with StandardEinheitenDatenbank;
 with StandardEffekteDatenbank;
 
 with Fehlermeldungssystem;
+with VerzeichnisDateinamenTests;
 
 package body EinlesenDatenbankenLogik is
    
@@ -35,7 +35,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.EinheitenDatenbank)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.EinheitenDatenbank)))
       is
          when False =>
             StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
@@ -115,7 +115,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.ForschungenDatenbank)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.ForschungenDatenbank)))
       is
          when False =>
             StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
@@ -207,7 +207,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.GebaeudeDatenbank)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.GebaeudeDatenbank)))
       is
          when False =>
             StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
@@ -287,7 +287,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.KartenDatenbank)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.KartenDatenbank)))
       is
          when False =>
             StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
@@ -388,7 +388,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.VerbesserungenDatenbank)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.VerbesserungenDatenbank)))
       is
          when False =>
             StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
@@ -475,7 +475,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.SpeziesDatenbank)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.SpeziesDatenbank)))
       is
          when False =>
             StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
@@ -555,7 +555,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.EffekteDatenbank)
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.EffekteDatenbank)))
       is
          when False =>
             StandardEffekteDatenbank.StandardEffekteDatenbankLaden;

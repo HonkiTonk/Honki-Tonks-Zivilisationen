@@ -5,7 +5,6 @@ with SpeziesKonstanten;
 with StadtDatentypen;
 with ForschungenDatentypen;
 with EinheitenDatentypen;
-with SystemDatentypen;
 
 with LeseOptionen;
 
@@ -100,24 +99,18 @@ package body EinlesenTextLogik is
       EinsprachigExtern : in Boolean)
    is begin
       
-      if
-        False = VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => VerzeichnisExtern & "0"),
-                                                                  ZeichenabzugExtern => SystemDatentypen.Text_Enum)
-      then
-         return;
+      case
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => VerzeichnisExtern & "0")
+      is
+         when False =>
+            return;
             
-      elsif
-        Exists (Name => Encode (Item => VerzeichnisExtern & "0")) = False
-      then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Einlesen: Es fehlt: " & VerzeichnisExtern & "0");
-         return;
-            
-      else
-         Open (File => DateiVerzeichnisse,
-               Mode => In_File,
-               Name => Encode (Item => VerzeichnisExtern & "0"),
-               Form => "WCEM=8");
-      end if;
+         when True =>
+            Open (File => DateiVerzeichnisse,
+                  Mode => In_File,
+                  Name => Encode (Item => VerzeichnisExtern & "0"),
+                  Form => "WCEM=8");
+      end case;
       
       EinlesenSchleife:
       for WelcheDateienSchleifenwert in 1 .. AnzahlTextdateien loop
@@ -153,24 +146,18 @@ package body EinlesenTextLogik is
       EinsprachigExtern : in Boolean)
    is begin
       
-      if
-        False = VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => VerzeichnisExtern),
-                                                                  ZeichenabzugExtern => SystemDatentypen.Text_Enum)
-      then
-         return;
-      
-      elsif
-        Exists (Name => Encode (Item => VerzeichnisExtern)) = False
-      then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenAufteilen: Es fehlt: " & VerzeichnisExtern);
-         return;
+      case
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => VerzeichnisExtern)
+      is
+         when False =>
+            return;
             
-      else
-         Open (File => DateiText,
-               Mode => In_File,
-               Name => Encode (Item => VerzeichnisExtern),
-               Form => "WCEM=8");
-      end if;
+         when True =>
+            Open (File => DateiText,
+                  Mode => In_File,
+                  Name => Encode (Item => VerzeichnisExtern),
+                  Form => "WCEM=8");
+      end case;
       
       case
         WelcheDateiExtern
