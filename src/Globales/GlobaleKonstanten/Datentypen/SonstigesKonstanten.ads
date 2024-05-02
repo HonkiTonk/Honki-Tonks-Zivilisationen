@@ -3,6 +3,6 @@ package SonstigesKonstanten is
 
    Spielname : constant Wide_Wide_String (1 .. 26) := "Honki Tonks Zivilisationen";
 
-   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.05.6930";
+   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.05.6965";
 
 end SonstigesKonstanten;
