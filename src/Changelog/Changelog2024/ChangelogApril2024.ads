@@ -1,8 +1,9 @@
 package ChangelogApril2024 is
 
-   -- Version 0.05.6965 => 0.05. (30.04.2024):
+   -- Version 0.05.6965 => 0.05.7000 (30.04.2024):
    
-   -- 
+   -- Verzeichnisstruktur der Sounds angepasst um später leichter nutzererstellte Sounds hinzufügen zu können.
+   -- Zu Testzwecken die Standardsounds ein zweites Mal eingefügt.
    -- Kleinigkeiten korrigiert.
    
    

@@ -210,7 +210,7 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (01.05.2024):
+   -- Version 0.05.7000 => 0.05. (01.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.

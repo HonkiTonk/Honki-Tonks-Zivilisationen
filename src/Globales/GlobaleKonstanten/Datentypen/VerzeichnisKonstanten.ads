@@ -44,7 +44,7 @@ package VerzeichnisKonstanten is
    
    
    Grafik : constant String (1 .. 15) := "Grafik/Standard";
-   Audio : constant String (1 .. 5) := "Audio";
+   Audio : constant String (1 .. 14) := "Audio/Standard";
    Musik : constant String (1 .. 6) := "/Musik";
    Sound : constant String (1 .. 6) := "/Sound";
    
