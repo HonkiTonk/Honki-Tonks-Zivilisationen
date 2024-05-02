@@ -7,6 +7,7 @@ with VerzeichnisKonstanten;
 with StandardTastenbelegungDatenbank;
 with TastenbelegungDatentypen;
 with BefehleDatentypen;
+with TextKonstanten;
 
 with SchreibeTastenbelegungDatenbank;
 with VerzeichnisDateinamenTests;
@@ -19,7 +20,8 @@ package body EinlesenTastatureinstellungenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Tastatureinstellungen))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.Tastatureinstellungen))
       is
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;

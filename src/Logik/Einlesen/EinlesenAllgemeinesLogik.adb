@@ -73,51 +73,6 @@ package body EinlesenAllgemeinesLogik is
          return To_Unbounded_Wide_Wide_String (Source => (DateinameExtern & ", Zeile:" & AktuelleZeileExtern'Wide_Wide_Image));
          
    end TextEinlesenUngebunden;
-
-
-
-   -- Später eventuell noch um weitere Prüfungen erweitern? äöü
-   -- Eventuell eine bestimmte Menge an Dateien die vorhanden sein müssen mit übergeben und die dann durchgehen? äöü
-   -- Funktioniert nicht unter Windows, wenn man Sonderzeichen verwendet.
-   function LeeresVerzeichnis
-     (VerzeichnisExtern : in String)
-      return Boolean
-   is begin
-            
-      Start_Search (Search    => Prüfungssuche,
-                    Directory => VerzeichnisExtern,
-                    Pattern   => "",
-                    Filter    => (others => True));
-      
-      PrüfenSchleife:
-      while More_Entries (Search => Prüfungssuche) = True loop
-
-         Get_Next_Entry (Search          => Prüfungssuche,
-                         Directory_Entry => Verzeichnisprüfung);
-         
-         -- Mit BetriebssystemKonstanten verschmelzen? äöü
-         if
-           VerboteneVerzeichnissnamen (NameExtern => Simple_Name (Directory_Entry => Verzeichnisprüfung)) = True
-         then
-            null;
-            
-         elsif
-           Exists (Name => VerzeichnisExtern & "/0") = True
-         then
-            End_Search (Search => Prüfungssuche);
-            return False;
-            
-         else
-            null;
-         end if;
-            
-      end loop PrüfenSchleife;
-      
-      End_Search (Search => Prüfungssuche);
-         
-      return True;
-      
-   end LeeresVerzeichnis;
    
    
    
@@ -135,27 +90,5 @@ package body EinlesenAllgemeinesLogik is
          return null;
          
    end Texturenlimit;
-   
-   
-   
-   function VerboteneVerzeichnissnamen
-     (NameExtern : in String)
-      return Boolean
-   is begin
-      
-      if
-        NameExtern = "."
-        or
-          NameExtern = ".."
-          or
-            NameExtern = "Fonts"
-      then
-         return True;
-         
-      else
-         return False;
-      end if;
-   
-   end VerboteneVerzeichnissnamen;
    
 end EinlesenAllgemeinesLogik;

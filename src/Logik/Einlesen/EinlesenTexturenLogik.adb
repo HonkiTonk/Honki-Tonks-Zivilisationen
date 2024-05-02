@@ -29,7 +29,8 @@ package body EinlesenTexturenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei))
+        VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                               WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
             return;
@@ -57,78 +58,80 @@ package body EinlesenTexturenLogik is
                return;
                
             when False =>
-               Zwischenspeicher := Decode (Item => VerzeichnisKonstanten.Grafik) & "/" & EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiKarte,
-                                                                                                                                          AktuelleZeileExtern => EinzulesendeZeile,
-                                                                                                                                          DateinameExtern     => "EinlesenTexturenLogik.Karte");
+               Dateiname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiKarte,
+                                                                             AktuelleZeileExtern => EinzulesendeZeile,
+                                                                             DateinameExtern     => "EinlesenTexturenLogik.Karte");
+               GesamterPfad := Decode (Item => VerzeichnisKonstanten.Grafik) & "/" & Dateiname;
                EinzulesendeZeile := EinzulesendeZeile + 1;
          end case;
          
          case
            -- Muss +2 sein, da "/" ein Zeichen ist und es ja noch eins weiter gehen muss.
-           To_Wide_Wide_String (Source => Zwischenspeicher) (VerzeichnisKonstanten.Grafik'Length + 2)
+           To_Wide_Wide_String (Source => Dateiname) (1)
          is
             when TextKonstanten.TrennzeichenTextdateien =>
                null;
                
             when others =>
                if
-                 VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => To_Wide_Wide_String (Source => Zwischenspeicher)) = False
+                 False = VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                                                                                WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
                then
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Karte: Datei oder Pfad existiert nicht");
-            
+               
                elsif
                  AktuelleZeile <= Basisgrund
                then
                   EingeleseneTexturenGrafik.BasisgrundAccess (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (AktuelleZeile))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile in Basisgrund + 1 .. Zusatzgrund
                then
                   EingeleseneTexturenGrafik.ZusatzgrundAccess (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (AktuelleZeile - Basisgrund))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile in Zusatzgrund + 1 .. Flüsse
                then
                   EingeleseneTexturenGrafik.KartenflussAccess (KartenextraDatentypen.Fluss_Vorhanden_Enum'Val (AktuelleZeile - Zusatzgrund))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile in Flüsse + 1 .. Ressourcen
                then
                   EingeleseneTexturenGrafik.KartenressourceAccess (KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Val (AktuelleZeile - Flüsse))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile in Ressourcen + 1 .. Feldeffekte
                then
                   EingeleseneTexturenGrafik.FeldeffekteAccess (KartenextraDatentypen.Effekt_Vorhanden_Enum'Val (AktuelleZeile - Ressourcen))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile in Feldeffekte + 1 .. Verbesserungen
                then
                   EingeleseneTexturenGrafik.VerbesserungenAccess (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Val (AktuelleZeile - Feldeffekte))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile in Verbesserungen + 1 .. Wege
                then
                   EingeleseneTexturenGrafik.WegeAccess (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (AktuelleZeile - Verbesserungen))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile in Wege + 1 .. System
                then
                   EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Befehlsknöpfe_Enum'Val (AktuelleZeile - Wege - 1))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile in System + 1 .. Hintergrund
                then
                   EingeleseneTexturenGrafik.HintergrundAccess (GrafikDatentypen.Hintergrund_Enum'Val (AktuelleZeile - System - 1))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                else
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Karte: Außerhalb des Einlesebereichs");
@@ -155,7 +158,8 @@ package body EinlesenTexturenLogik is
    is begin
                                                                
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei))
+        VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                               WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Spezies: Es fehlt: "

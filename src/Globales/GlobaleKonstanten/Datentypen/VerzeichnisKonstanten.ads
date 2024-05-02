@@ -44,9 +44,8 @@ package VerzeichnisKonstanten is
    
    
    Grafik : constant String (1 .. 15) := "Grafik/Standard";
-   Audio : constant String (1 .. 14) := "Audio/Standard";
-   Musik : constant String (1 .. 6) := "/Musik";
-   Sound : constant String (1 .. 6) := "/Sound";
+   Musik : constant String (1 .. 14) := "Musik/Standard";
+   Sound : constant String (1 .. 14) := "Sound/Standard";
    
    
    
@@ -73,5 +72,6 @@ package VerzeichnisKonstanten is
    SprachenStrich : constant String (1 .. 9) := Sprachen & "/";
    FontOrdner : constant String (1 .. 15) := SprachenStrich & "Fonts/";
    SchriftartStandard : constant String (1 .. 16) := "wqy-microhei.ttc";
+   FontsOrdner : constant String (1 .. 5) := "Fonts";
          
 end VerzeichnisKonstanten;

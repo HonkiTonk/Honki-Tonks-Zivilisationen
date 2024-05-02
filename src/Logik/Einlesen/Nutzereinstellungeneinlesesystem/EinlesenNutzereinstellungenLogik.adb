@@ -4,6 +4,7 @@ with Ada.Exceptions; use Ada.Exceptions;
 with OptionenVariablen;
 with VerzeichnisKonstanten;
 with SystemRecordKonstanten;
+with TextKonstanten;
 
 with SchreibeOptionen;
 
@@ -17,7 +18,8 @@ package body EinlesenNutzereinstellungenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Spieleinstellungen))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.Spieleinstellungen))
       is
          when False =>
             OptionenVariablen.StandardNutzereinstellungenLaden;

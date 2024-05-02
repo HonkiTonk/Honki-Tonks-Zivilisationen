@@ -5,6 +5,7 @@ with Sf.Graphics.Color;
 
 with VerzeichnisKonstanten;
 with TextDatentypen;
+with TextKonstanten;
 
 with SchreibeEinstellungenGrafik;
 
@@ -20,7 +21,8 @@ package body EinlesenGrafikeinstellungenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Grafikeinstellungen))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.Grafikeinstellungen))
       is
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;

@@ -2,6 +2,7 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Exceptions; use Ada.Exceptions;
 
 with VerzeichnisKonstanten;
+with TextKonstanten;
 
 with StandardVerbesserungenDatenbank;
 with StandardSpeziesDatenbank;
@@ -35,7 +36,8 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.EinheitenDatenbank)))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.EinheitenDatenbank))
       is
          when False =>
             StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
@@ -115,7 +117,8 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.ForschungenDatenbank)))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.ForschungenDatenbank))
       is
          when False =>
             StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
@@ -207,7 +210,8 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.GebaeudeDatenbank)))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.GebaeudeDatenbank))
       is
          when False =>
             StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
@@ -287,7 +291,8 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.KartenDatenbank)))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.KartenDatenbank))
       is
          when False =>
             StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
@@ -388,7 +393,8 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.VerbesserungenDatenbank)))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.VerbesserungenDatenbank))
       is
          when False =>
             StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
@@ -475,7 +481,8 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.SpeziesDatenbank)))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.SpeziesDatenbank))
       is
          when False =>
             StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
@@ -555,7 +562,8 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => (Decode (Item => VerzeichnisKonstanten.EffekteDatenbank)))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.EffekteDatenbank))
       is
          when False =>
             StandardEffekteDatenbank.StandardEffekteDatenbankLaden;

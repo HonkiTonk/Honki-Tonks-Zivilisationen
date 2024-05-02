@@ -7,8 +7,6 @@ with Sf.Graphics;
 private with Sf;
 private with Sf.Graphics.Texture;
 
-with VerzeichnisKonstanten;
-
 package EinlesenAllgemeinesLogik is
    pragma Elaborate_Body;
 
@@ -42,28 +40,12 @@ package EinlesenAllgemeinesLogik is
                  DateinameExtern'Length > 0
               );
 
-   function LeeresVerzeichnis
-     (VerzeichnisExtern : in String)
-      return Boolean
-     with
-       Pre => (
-                 VerzeichnisExtern'Length > VerzeichnisKonstanten.Sprachenordner'Length
-              );
-
    function Texturenlimit
      (TexturenpfadExtern : in String)
       return Sf.Graphics.sfTexture_Ptr
      with
        Pre => (
                  TexturenpfadExtern'Length > 0
-              );
-
-   function VerboteneVerzeichnissnamen
-     (NameExtern : in String)
-      return Boolean
-     with
-       Pre => (
-                 NameExtern'Length > 0
               );
 
 private

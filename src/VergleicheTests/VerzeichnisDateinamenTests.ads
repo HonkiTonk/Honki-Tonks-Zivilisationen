@@ -1,4 +1,5 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Directories; use Ada.Directories;
 
 with SystemDatentypen;
 
@@ -8,21 +9,12 @@ package VerzeichnisDateinamenTests is
    pragma Elaborate_Body;
 
    function GültigeZeichenlänge
-     (TextExtern : in Unbounded_Wide_Wide_String;
-      ZeichenabzugExtern : in SystemDatentypen.Zeichenabzug_Enum)
+     (LinuxTextExtern : in Unbounded_Wide_Wide_String;
+      WindowsTextExtern : in Unbounded_Wide_Wide_String)
       return Boolean
      with
        Pre => (
-                 To_Wide_Wide_String (Source => TextExtern)'Length > 0
-              );
-
-   function GültigeZeichenlängeNeu
-     (TextExtern : in Unbounded_Wide_Wide_String;
-      ZusatztextExtern : in Wide_Wide_String)
-      return Boolean
-     with
-       Pre => (
-                 To_Wide_Wide_String (Source => TextExtern)'Length > 0
+                 To_Wide_Wide_String (Source => WindowsTextExtern)'Length >= To_Wide_Wide_String (Source => LinuxTextExtern)'Length
               );
 
    function Standardeinleseprüfung
@@ -33,12 +25,24 @@ package VerzeichnisDateinamenTests is
                  VerzeichnisDateinameExtern'Length > 0
               );
 
-   function StandardwerteEinleseprüfung
-     (VerzeichnisDateinameExtern : in Wide_Wide_String)
+   function StandardeinleseprüfungNeu
+     (LinuxTextExtern : in Wide_Wide_String;
+      WindowsTextExtern : in Wide_Wide_String)
       return Boolean
      with
        Pre => (
-                 VerzeichnisDateinameExtern'Length > 0
+                 WindowsTextExtern'Length >= LinuxTextExtern'Length
+              );
+
+   function StandardwerteEinleseprüfung
+     (LinuxTextExtern : in Wide_Wide_String;
+      WindowsTextExtern : in Wide_Wide_String)
+      return Boolean
+     with
+       Pre => (
+                 WindowsTextExtern'Length > 0
+               and
+                 WindowsTextExtern'Length >= LinuxTextExtern'Length
               );
 
    function GültigesZeichen
@@ -64,6 +68,8 @@ package VerzeichnisDateinamenTests is
 private
 
    Erlaubt : Boolean;
+
+   LängeAktuellesVerzeichnis : constant Positive := Current_Directory'Length;
 
    Text : Unbounded_Wide_Wide_String;
 

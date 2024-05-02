@@ -1,3 +1,5 @@
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+
 with Sf;
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
@@ -5,7 +7,7 @@ with Sf.Graphics.RenderWindow;
 
 with SystemRecordKonstanten;
 with BetriebssystemKonstanten;
-with SystemDatentypen;
+with VerzeichnisKonstanten;
 
 with SchreibeLogiktask;
 with LeseLogiktask;
@@ -141,9 +143,11 @@ package body TexteingabeGrafik is
       return Boolean
    is begin
       
+      -- Hier mal die Textlänge anzeigen lassen um herauszufinden warum das nicht funktioneirt.
+      
       case
-        VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         => LeseLogiktask.Texteingabe,
-                                                        ZeichenabzugExtern => SystemDatentypen.Speichern_Enum)
+        VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => LeseLogiktask.Texteingabe & EingegebenesZeichenExtern,
+                                                             WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.VerzeichnisSpielstand) & LeseLogiktask.Texteingabe & EingegebenesZeichenExtern)
       is
          when False =>
             return False;

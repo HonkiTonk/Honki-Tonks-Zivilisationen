@@ -1,4 +1,3 @@
-with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with Projekteinstellungen;
@@ -11,9 +10,10 @@ with Fehlermeldungssystem;
 
 package body VerzeichnisDateinamenTests is
 
+   -- Bei Linux nur den Dateinamen übergeben, bei Windows zusätzlich noch den gesamten Pfad der Unterverzeichnisse.
    function GültigeZeichenlänge
-     (TextExtern : in Unbounded_Wide_Wide_String;
-      ZeichenabzugExtern : in SystemDatentypen.Zeichenabzug_Enum)
+     (LinuxTextExtern : in Unbounded_Wide_Wide_String;
+      WindowsTextExtern : in Unbounded_Wide_Wide_String)
       return Boolean
    is begin
       
@@ -22,63 +22,28 @@ package body VerzeichnisDateinamenTests is
       is
          when SystemDatentypen.Linux_Enum =>
             if
-              To_Wide_Wide_String (Source => TextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem
+              To_Wide_Wide_String (Source => LinuxTextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem
             then
                return True;
                
             else
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
             
          when SystemDatentypen.Windows_Enum =>
             if
-              To_Wide_Wide_String (Source => TextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem - Current_Directory'Length
-              - Zeichenabzug (Projekteinstellungen.Einstellungen.Betriebssystem, ZeichenabzugExtern)
+              To_Wide_Wide_String (Source => WindowsTextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem - LängeAktuellesVerzeichnis
             then
                return True;
                
             else
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => TextExtern));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
       end case;
       
    end GültigeZeichenlänge;
-   
-   
-
-   function GültigeZeichenlängeNeu
-     (TextExtern : in Unbounded_Wide_Wide_String;
-      ZusatztextExtern : in Wide_Wide_String)
-      return Boolean
-   is begin
-      
-      case
-        Projekteinstellungen.Einstellungen.Betriebssystem
-      is
-         when SystemDatentypen.Linux_Enum =>
-            if
-              To_Wide_Wide_String (Source => TextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem
-            then
-               return True;
-               
-            else
-               return False;
-            end if;
-            
-         when SystemDatentypen.Windows_Enum =>
-            if
-              To_Wide_Wide_String (Source => TextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem - Current_Directory'Length - ZusatztextExtern'Length
-            then
-               return True;
-               
-            else
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => TextExtern));
-               return False;
-            end if;
-      end case;
-      
-   end GültigeZeichenlängeNeu;
    
    
    
@@ -88,12 +53,12 @@ package body VerzeichnisDateinamenTests is
    is begin
       
       if
-        False = GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => VerzeichnisDateinameExtern),
-                                     ZeichenabzugExtern => SystemDatentypen.Text_Enum)
-      then
-         return False;
+    --    False = GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => VerzeichnisDateinameExtern),
+   ----                                  ZeichenabzugExtern => SystemDatentypen.Text_Enum)
+    --  then
+    --     return False;
             
-      elsif
+   --   elsif
         Exists (Name => Encode (Item => VerzeichnisDateinameExtern)) = False
       then
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
@@ -107,19 +72,46 @@ package body VerzeichnisDateinamenTests is
    
    
    
-   function StandardwerteEinleseprüfung
-     (VerzeichnisDateinameExtern : in Wide_Wide_String)
+   function StandardeinleseprüfungNeu
+     (LinuxTextExtern : in Wide_Wide_String;
+      WindowsTextExtern : in Wide_Wide_String)
       return Boolean
    is begin
       
       if
-        False = GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => VerzeichnisDateinameExtern),
-                                       ZeichenabzugExtern => SystemDatentypen.Text_Enum)
+        False = GültigeZeichenlänge (LinuxTextExtern   => To_Unbounded_Wide_Wide_String (Source => LinuxTextExtern),
+                                       WindowsTextExtern => To_Unbounded_Wide_Wide_String (Source => WindowsTextExtern))
+      then
+         return False;
+         
+      elsif
+        Exists (Name => Encode (Item => WindowsTextExtern)) = False
+      then
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
+         return False;
+            
+      else
+         return True;
+      end if;
+      
+   end StandardeinleseprüfungNeu;
+   
+   
+   
+   function StandardwerteEinleseprüfung
+     (LinuxTextExtern : in Wide_Wide_String;
+      WindowsTextExtern : in Wide_Wide_String)
+      return Boolean
+   is begin
+      
+      if
+        False = GültigeZeichenlänge (LinuxTextExtern   => To_Unbounded_Wide_Wide_String (Source => LinuxTextExtern),
+                                       WindowsTextExtern => To_Unbounded_Wide_Wide_String (Source => WindowsTextExtern))
       then
          return False;
             
       elsif
-        Exists (Name => Encode (Item => VerzeichnisDateinameExtern)) = False
+        Exists (Name => Encode (Item => WindowsTextExtern)) = False
       then
          return False;
             
@@ -174,6 +166,20 @@ package body VerzeichnisDateinamenTests is
      (NameExtern : in Wide_Wide_String)
       return Boolean
    is begin
+      
+      AllgemeinesSchleife:
+      for AllgemeinesSchleifenwert in BetriebssystemKonstanten.VerboteneNamen'Range loop
+        
+         if
+           NameExtern = BetriebssystemKonstanten.VerboteneNamen (AllgemeinesSchleifenwert)
+         then
+            return False;
+            
+         else
+            null;
+         end if;
+        
+      end loop AllgemeinesSchleife;
       
       case
         Projekteinstellungen.Einstellungen.Betriebssystem

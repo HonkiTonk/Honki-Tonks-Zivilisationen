@@ -33,7 +33,7 @@ with UmwandlungenVerzeichnisse;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
-
+      
    procedure Speichern
      (AutospeichernExtern : in Boolean;
       NotfallspeichernExtern : in Boolean)

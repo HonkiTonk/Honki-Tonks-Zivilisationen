@@ -1,7 +1,11 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Text_IO;
 with Ada.Float_Text_IO;
+
+with BetriebssystemKonstanten;
+with TextKonstanten;
 
 package body Diagnoseinformationen is
 
@@ -236,5 +240,32 @@ package body Diagnoseinformationen is
       New_Line;
       
    end Farbinformationen;
+   
+   
+   
+   procedure MaximaleDateinamenlänge
+   is begin
+      
+      Zwischenspeicher := TextKonstanten.LeerUnboundedString;
+      
+      DateilängeSchleife:
+      for DateilängeSchleifenwert in 1 .. BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem loop
+         
+         Put_Line (Item => DateilängeSchleifenwert'Wide_Wide_Image);
+         
+         Zwischenspeicher := Zwischenspeicher & "a";
+      
+         Create (File => DateiSpeichern,
+                 Mode => Out_File,
+                 Name => "Test/" & Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)),
+                 Form => "WCEM=8");
+            
+         Close (File => DateiSpeichern);
+         
+         Delete_File (Name => "Test/" & Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+         
+      end loop DateilängeSchleife;
+      
+   end MaximaleDateinamenlänge;
 
 end Diagnoseinformationen;

@@ -42,21 +42,19 @@ package body EinlesenTextLogik is
                                Directory_Entry => Verzeichnis);
          
                if
-                 EinlesenAllgemeinesLogik.VerboteneVerzeichnissnamen (NameExtern => Simple_Name (Directory_Entry => Verzeichnis)) = True
+                 VerzeichnisDateinamenTests.GültigerNamen (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
                then
                   null;
-            
+                  
                elsif
-                 -- Das hier noch durch eine Windows uns eine Linuxversion ersetzen. äöü
-                 -- Kann das nicht einfach raus wenn irgendwann einmal Wide_Wide_Directories da ist? äöü
-                 -- Das ist je nur vorhandene Ordner durchgehen und man kann ja keine Dateien/Ordner anlegen die das Dateisystem nicht unterstützen. äöü
-                 VerzeichnisDateinamenTests.GültigerNamen (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
+                 False = VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
+                                                                              WindowsTextExtern => To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SprachenStrich
+                                                                                                                                                    & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                                                    & VerzeichnisKonstanten.NullDatei)))
                then
                   null;
              
                elsif
-                 -- Das ausgeklammerte funktioniert unter Windwos nicht, wenn man Sonderzeichen verwendet.
-                 -- EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
                  Exists (Name => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei) = False
                then
                   null;
@@ -100,7 +98,8 @@ package body EinlesenTextLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => VerzeichnisExtern & "0")
+        VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                              WindowsTextExtern => VerzeichnisExtern & "0")
       is
          when False =>
             return;
@@ -126,9 +125,10 @@ package body EinlesenTextLogik is
                
             when False =>
                EinlesenAufteilen (WelcheDateiExtern => WelcheDateienSchleifenwert,
-                                  VerzeichnisExtern => VerzeichnisExtern & EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiVerzeichnisse,
-                                                                                                                  AktuelleZeileExtern => WelcheDateienSchleifenwert,
-                                                                                                                  DateinameExtern     => "EinlesenTextLogik.Einlesen"),
+                                  VerzeichnisExtern => VerzeichnisExtern,
+                                  DateinameExtern   => EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiVerzeichnisse,
+                                                                                              AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                                                              DateinameExtern     => "EinlesenTextLogik.Einlesen"),
                                   EinsprachigExtern => EinsprachigExtern);
          end case;
 
@@ -143,11 +143,13 @@ package body EinlesenTextLogik is
    procedure EinlesenAufteilen
      (WelcheDateiExtern : in Positive;
       VerzeichnisExtern : in Wide_Wide_String;
+      DateinameExtern : in Wide_Wide_String;
       EinsprachigExtern : in Boolean)
    is begin
       
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => VerzeichnisExtern)
+        VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => DateinameExtern,
+                                                               WindowsTextExtern => VerzeichnisExtern & DateinameExtern)
       is
          when False =>
             return;
@@ -155,7 +157,7 @@ package body EinlesenTextLogik is
          when True =>
             Open (File => DateiText,
                   Mode => In_File,
-                  Name => Encode (Item => VerzeichnisExtern),
+                  Name => Encode (Item => VerzeichnisExtern & DateinameExtern),
                   Form => "WCEM=8");
       end case;
       

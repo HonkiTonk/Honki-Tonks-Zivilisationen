@@ -76,6 +76,8 @@ package Diagnoseinformationen is
    procedure Farbinformationen
      (FarbeExtern : in Sf.Graphics.Color.sfColor);
    
+   procedure MaximaleDateinamenlänge;
+   
 private
    
    ByteTeiler : constant Positive := System.Storage_Unit;
@@ -88,5 +90,7 @@ private
    ZuSpeichern : StadtDatentypen.Städtebereich;
       
    DateiSpeichern : File_Type;
+   
+   Zwischenspeicher : Unbounded_Wide_Wide_String;
 
 end Diagnoseinformationen;

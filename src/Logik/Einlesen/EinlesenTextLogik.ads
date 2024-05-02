@@ -117,12 +117,15 @@ private
    procedure EinlesenAufteilen
      (WelcheDateiExtern : in Positive;
       VerzeichnisExtern : in Wide_Wide_String;
+      DateinameExtern : in Wide_Wide_String;
       EinsprachigExtern : in Boolean)
      with
        Pre => (
                  WelcheDateiExtern <= AnzahlTextdateien
                and
                  VerzeichnisExtern'Length > 0
+               and
+                 DateinameExtern'Length > 0
               );
    
    procedure Ersetzungen

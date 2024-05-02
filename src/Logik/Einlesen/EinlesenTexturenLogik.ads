@@ -29,7 +29,8 @@ private
    ZeileGebäude : Positive;
 
    Verzeichnisname : Unbounded_Wide_Wide_String;
-   Zwischenspeicher : Unbounded_Wide_Wide_String;
+   Dateiname : Unbounded_Wide_Wide_String;
+   GesamterPfad : Unbounded_Wide_Wide_String;
 
    DateiKarte : File_Type;
    DateiSystem : File_Type;
@@ -45,6 +46,8 @@ private
    DateiGebäude : File_Type;
 
    Speziesverzeichnisse : TextArrays.AllgemeinesTextArray (1 .. 3);
+   SpeziesDateiname : TextArrays.AllgemeinesTextArray (1 .. 3);
+   SpeziesGesamterPfad : TextArrays.AllgemeinesTextArray (SpeziesDateiname'Range);
 
    procedure Spezies;
    procedure Karte;

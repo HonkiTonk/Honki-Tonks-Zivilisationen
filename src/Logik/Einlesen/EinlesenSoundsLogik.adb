@@ -15,11 +15,11 @@ package body EinlesenSoundsLogik is
    is begin
             
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei))
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: "
-                                        & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
+                                        & Decode (Item => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
@@ -27,7 +27,7 @@ package body EinlesenSoundsLogik is
             
             Open (File => DateiSounds,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei,
+                  Name => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei,
                   Form => "WCEM=8");
       end case;
       
@@ -41,7 +41,7 @@ package body EinlesenSoundsLogik is
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: "
-                                           & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
+                                           & Decode (Item => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                exit SoundsSchleife;
                
             when False =>

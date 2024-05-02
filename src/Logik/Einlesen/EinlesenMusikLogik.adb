@@ -26,10 +26,10 @@ package body EinlesenMusikLogik is
       end if;
       
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei))
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
@@ -37,7 +37,7 @@ package body EinlesenMusikLogik is
             
             Open (File => DateiVerzeichnisse,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei,
+                  Name => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei,
                   Form => "WCEM=8");
       end case;
       
@@ -51,7 +51,7 @@ package body EinlesenMusikLogik is
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Fehlende Zeilen: "
-                                           & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
+                                           & Decode (Item => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                exit VerzeichnisseSchleife;
                
             when False =>

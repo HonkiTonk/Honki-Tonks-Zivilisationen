@@ -203,16 +203,19 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (02.05.2024):
+   -- Version 0.05.7060 => 0.05. (02.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7000 => 0.05. (01.05.2024):
+   -- Version 0.05.7000 => 0.05.7060 (01.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Prüfsystem für Datei/Ordnernamenlänge gearbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Musik und Sound in eigene Ordner aufgeteilt.
+   -- Diagnosesystem erweitert.
+   -- Contracts, Komemntare und Kleinigkeiten korrigiert/erweitert.
 
 end ChangelogMai2024;

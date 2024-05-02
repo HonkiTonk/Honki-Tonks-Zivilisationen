@@ -3,9 +3,6 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with TextArrays;
 with TextKonstanten;
 with VerzeichnisKonstanten;
-with SystemDatentypen;
-
-with EinlesenAllgemeinesLogik;
 
 with VerzeichnisDateinamenTests;
 
@@ -30,15 +27,15 @@ package body EinlesenSpracheLogik is
                          Directory_Entry => Verzeichnis);
          
          if
-           False = VerzeichnisDateinamenTests.GültigeZeichenlänge (TextExtern         =>
-                                                                       To_Unbounded_Wide_Wide_String (Source => (Decode (Item => VerzeichnisKonstanten.SprachenStrich
-                                                                                                                         & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei))),
-                                                                     ZeichenabzugExtern => SystemDatentypen.Text_Enum)
+           Simple_Name (Directory_Entry => Verzeichnis) = VerzeichnisKonstanten.FontsOrdner
          then
             null;
             
          elsif
-           EinlesenAllgemeinesLogik.VerboteneVerzeichnissnamen (NameExtern => Simple_Name (Directory_Entry => Verzeichnis)) = True
+           False = VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
+                                                                        WindowsTextExtern => To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SprachenStrich
+                                                                                                                                              & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                                              & VerzeichnisKonstanten.NullDatei)))
          then
             null;
             

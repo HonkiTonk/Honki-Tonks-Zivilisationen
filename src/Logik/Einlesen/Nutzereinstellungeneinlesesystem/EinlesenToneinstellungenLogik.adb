@@ -2,6 +2,7 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Exceptions; use Ada.Exceptions;
 
 with VerzeichnisKonstanten;
+with TextKonstanten;
 
 with SchreibeEinstellungenTon;
 
@@ -16,7 +17,8 @@ package body EinlesenToneinstellungenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Toneinstellungen))
+        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.Toneinstellungen))
       is
          when False =>
             EinstellungenTon.StandardeinstellungenLaden;
