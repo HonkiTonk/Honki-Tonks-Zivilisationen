@@ -12,6 +12,8 @@ with KartenextraDatentypen;
 package EingeleseneTexturenGrafik is
    pragma Elaborate_Body;
 
+   BasisgrundGesamt : Sf.Graphics.sfTexture_Ptr := null;
+
    -- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird? äöü
    -- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen. äöü
 

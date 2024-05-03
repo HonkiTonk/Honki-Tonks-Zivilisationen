@@ -11,6 +11,7 @@ with GrafikDatentypen;
 with EinlesenAllgemeinesLogik;
 with Fehlermeldungssystem;
 with VerzeichnisDateinamenTests;
+with TexturenfelderBerechnenGrafik;
 
 package body EinlesenTexturenLogik is
    
@@ -27,6 +28,9 @@ package body EinlesenTexturenLogik is
    
    procedure Karte
    is begin
+      
+      EingeleseneTexturenGrafik.BasisgrundGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => "Grafik/Standard/Basisgrund.png");
+      TexturenfelderBerechnenGrafik.TexturenfelderBerechnen;
       
       case
         VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,

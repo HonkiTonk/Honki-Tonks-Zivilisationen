@@ -189,17 +189,17 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (04.05.2024):
+   -- Version 0.05.7120 => 0.05. (04.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7095 => 0.05. (03.05.2024):
+   -- Version 0.05.7095 => 0.05.7120 (03.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen ein Berechnugnssystem für die Positionen der einzelnen Kartenfelder in den zusammengefassten Texturen einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
