@@ -71,6 +71,9 @@ package Diagnoseinformationen is
      (PositionExtern : in Sf.System.Vector2.sfVector2f);
    
    procedure Boxinformationen
+     (BoxExtern : in Sf.Graphics.Rect.sfIntRect);
+   
+   procedure KommaBoxinformationen
      (BoxExtern : in Sf.Graphics.Rect.sfFloatRect);
    
    procedure Farbinformationen

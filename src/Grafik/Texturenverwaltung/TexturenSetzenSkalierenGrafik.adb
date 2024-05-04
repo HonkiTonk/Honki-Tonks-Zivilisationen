@@ -4,6 +4,7 @@ with Sf.Graphics.Sprite;
 with FensterGrafik;
 with SichtweitenGrafik;
 with PruefungenGrafik;
+with TexturenfelderBerechnenGrafik;
 
 -- Bei der Verwendung dieser Funktionen immer darauf achten erste die Skalierung aufzurufen und in einem Extraschritt sie zu zeichnen/umzufärben/usw., da es sonst zu Fehlern kommen kann!
 package body TexturenSetzenSkalierenGrafik is
@@ -28,6 +29,33 @@ package body TexturenSetzenSkalierenGrafik is
       return SkalierungKartenfeld;
       
    end Weltkarte;
+   
+   
+   
+   function WeltkarteNeu
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
+                                     texture   => TextureAccessExtern,
+                                     resetRect => Sf.sfTrue);
+      
+      Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccessExtern,
+                                         rectangle => TexturenfelderBerechnenGrafik.BasisgrundFelderwerte (BasisgrundExtern => BasisgrundExtern));
+      
+      Rechteck := (32.00, 32.00);
+     -- Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
+      KartenfelderAbmessung := SichtweitenGrafik.Kartenfeldfläche;
+      
+      SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.x;
+      SkalierungKartenfeld.y := KartenfelderAbmessung.y / Rechteck.y;
+      
+      return SkalierungKartenfeld;
+      
+   end WeltkarteNeu;
    
    
    

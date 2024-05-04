@@ -3,6 +3,7 @@ with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Text_IO;
 with Ada.Float_Text_IO;
+with Ada.Integer_Text_IO;
 
 with BetriebssystemKonstanten;
 with TextKonstanten;
@@ -202,6 +203,32 @@ package body Diagnoseinformationen is
    
    
    procedure Boxinformationen
+     (BoxExtern : in Sf.Graphics.Rect.sfIntRect)
+   is begin
+      
+      Put ("Left: ");
+      
+      Ada.Integer_Text_IO.Put (Item => BoxExtern.left);
+      
+      Put ("    top: ");
+      
+      Ada.Integer_Text_IO.Put (Item => BoxExtern.top);
+      
+      Put ("    width: ");
+      
+      Ada.Integer_Text_IO.Put (Item => BoxExtern.width);
+      
+      Put ("    height: ");
+      
+      Ada.Integer_Text_IO.Put (Item => BoxExtern.height);
+      
+      New_Line;
+      
+   end Boxinformationen;
+   
+   
+   
+   procedure KommaBoxinformationen
      (BoxExtern : in Sf.Graphics.Rect.sfFloatRect)
    is begin
       
@@ -227,7 +254,7 @@ package body Diagnoseinformationen is
       
       New_Line;
       
-   end Boxinformationen;
+   end KommaBoxinformationen;
    
    
    

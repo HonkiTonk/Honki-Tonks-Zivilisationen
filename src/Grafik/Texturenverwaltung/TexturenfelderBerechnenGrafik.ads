@@ -1,4 +1,5 @@
 with Sf.System.Vector2;
+with Sf.Graphics.Rect;
 
 with KartengrundDatentypen;
 
@@ -10,7 +11,7 @@ package TexturenfelderBerechnenGrafik is
    
    function BasisgrundFelderwerte
      (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
-     return Sf.System.Vector2.sfVector2u;
+     return Sf.Graphics.Rect.sfIntRect;
    
 private
    
@@ -20,8 +21,8 @@ private
    Texturenauflösung : Sf.System.Vector2.sfVector2u;
    AktuelleFeldposition : Sf.System.Vector2.sfVector2u;
    
-   type TestArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Sf.System.Vector2.sfVector2u;
-   Test : TestArray;
+   type BasisgrundArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   Basisgrund : BasisgrundArray;
    
    procedure BasisgrundBerechnen;
    

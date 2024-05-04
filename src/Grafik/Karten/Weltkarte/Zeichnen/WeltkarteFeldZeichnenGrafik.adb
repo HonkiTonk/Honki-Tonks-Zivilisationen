@@ -19,6 +19,10 @@ package body WeltkarteFeldZeichnenGrafik is
       KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
                                                       PositionExtern         => PositionExtern,
                                                       DurchsichtigkeitExtern => DurchsichtigkeitExtern);
+    
+      --  KartenspritesZeichnenGrafik.KartenfeldZeichnenNeu (BasisgrundExtern       => Gesamtgrund.Basisgrund,
+      --                                                    PositionExtern         => PositionExtern,
+      --                                                    DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       
       case
         Gesamtgrund.Zusatzgrund

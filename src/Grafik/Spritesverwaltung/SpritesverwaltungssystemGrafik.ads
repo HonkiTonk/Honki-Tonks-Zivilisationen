@@ -24,6 +24,13 @@ package SpritesverwaltungssystemGrafik is
                  SkalierungExtern.y > 0.00
               );
    
+   procedure SetzenBereichSkalierenZeichnenNeu
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TexturExtern : in Sf.Graphics.sfTexture_Ptr;
+      BereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f);
+   
    procedure PositionSkalierungZeichnen
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;

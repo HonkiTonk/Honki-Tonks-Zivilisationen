@@ -4,12 +4,25 @@ with Sf.System.Vector2;
 private with Sf.Graphics.Sprite;
 private with Sf.Graphics.Color;
 
+with KartengrundDatentypen;
+
 package KartenspritesZeichnenGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfSprite_Ptr;
 
    procedure KartenfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigkeitExtern : in Sf.sfUint8)
+     with
+       Pre => (
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+
+   procedure KartenfeldZeichnenNeu
+     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
      with

@@ -2,6 +2,8 @@ with Sf.Graphics.Texture;
 
 with EingeleseneTexturenGrafik;
 
+with Diagnoseinformationen;
+
 package body TexturenfelderBerechnenGrafik is
 
    procedure TexturenfelderBerechnen
@@ -22,21 +24,26 @@ package body TexturenfelderBerechnenGrafik is
       
       Feldauflösung := (Texturenauflösung.x / FeldanzahlBasisgrund.x, Texturenauflösung.y / FeldanzahlBasisgrund.y);
       
-      AktuelleFeldposition := (0, 0);
+      AktuelleFeldposition := (1, 1);
       
       BasisgrundSchleife:
-      for BasisgrundSchleifenwert in TestArray'Range loop
+      for BasisgrundSchleifenwert in BasisgrundArray'Range loop
          
-         Test (BasisgrundSchleifenwert) := (0, 0);
+         Basisgrund (BasisgrundSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldauflösung.x - Feldauflösung.x),
+                                                  Integer (AktuelleFeldposition.y * Feldauflösung.y - Feldauflösung.y),
+                                                  Integer (AktuelleFeldposition.x * Feldauflösung.x),
+                                                  Integer (AktuelleFeldposition.y * Feldauflösung.y));
+         
+         Diagnoseinformationen.Boxinformationen (BoxExtern => Basisgrund (BasisgrundSchleifenwert));
          
          if
-           AktuelleFeldposition.x >= FeldanzahlBasisgrund.x
+           AktuelleFeldposition.x < FeldanzahlBasisgrund.x
          then
-            AktuelleFeldposition.x := 0;
-            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
+            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
             
          else
-            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
+            AktuelleFeldposition.x := 1;
+            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
          end if;
          
       end loop BasisgrundSchleife;
@@ -47,10 +54,10 @@ package body TexturenfelderBerechnenGrafik is
    
    function BasisgrundFelderwerte
      (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
-      return Sf.System.Vector2.sfVector2u
+      return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return Test (BasisgrundExtern);
+      return Basisgrund (BasisgrundExtern);
       
    end BasisgrundFelderwerte;
 

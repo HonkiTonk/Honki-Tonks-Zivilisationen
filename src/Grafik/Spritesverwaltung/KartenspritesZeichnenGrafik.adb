@@ -1,9 +1,11 @@
 with GrafikRecordKonstanten;
 with GrafikKonstanten;
+with EingeleseneTexturenGrafik;
 
 with TexturenSetzenSkalierenGrafik;
 with Fehlermeldungssystem;
 with SpritesverwaltungssystemGrafik;
+with TexturenfelderBerechnenGrafik;
 
 package body KartenspritesZeichnenGrafik is
    
@@ -31,6 +33,40 @@ package body KartenspritesZeichnenGrafik is
       end if;
       
    end KartenfeldZeichnen;
+   
+   
+   
+   procedure KartenfeldZeichnenNeu
+     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigkeitExtern : in Sf.sfUint8)
+   is begin
+            
+      Skalierung := TexturenSetzenSkalierenGrafik.WeltkarteNeu (SpriteAccessExtern  => SpriteAccess,
+                                                                TextureAccessExtern => EingeleseneTexturenGrafik.BasisgrundGesamt,
+                                                                BasisgrundExtern    => BasisgrundExtern);
+         
+      case
+        DurchsichtigkeitExtern
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            null;
+      end case;
+      --  DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
+      --                                PositionExtern         => PositionExtern,
+      --                                SkalierungExtern       => Skalierung,
+      --                                DurchsichtigkeitExtern => DurchsichtigkeitExtern);
+      
+      SpritesverwaltungssystemGrafik.SetzenBereichSkalierenZeichnenNeu (SpriteAccessExtern => SpriteAccess,
+                                                                        TexturExtern       => EingeleseneTexturenGrafik.BasisgrundGesamt,
+                                                                        BereichExtern      => TexturenfelderBerechnenGrafik.BasisgrundFelderwerte (BasisgrundExtern => BasisgrundExtern),
+                                                                        PositionExtern     => PositionExtern,
+                                                                        SkalierungExtern   => Skalierung);
+      
+   end KartenfeldZeichnenNeu;
    
    
    

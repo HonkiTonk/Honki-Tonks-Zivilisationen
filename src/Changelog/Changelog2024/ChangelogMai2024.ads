@@ -182,16 +182,18 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (05.05.2024):
+   -- Version 0.05.7165 => 0.05. (05.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7120 => 0.05. (04.05.2024):
+   -- Version 0.05.7120 => 0.05.7165 (04.05.2024):
    
-   -- 
+   -- Weiter am Berechnungsystem für die Texturen gearbeitet.
+   -- Diagnosesystem erweitert.
+   -- Angefangen die Texturenanzeige/skalierung an das neue Texturenberechnungssystem anzupassen.
    -- Kleinigkeiten korrigiert.
    
    

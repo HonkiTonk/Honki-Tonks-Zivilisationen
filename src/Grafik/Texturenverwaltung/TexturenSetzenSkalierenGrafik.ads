@@ -1,6 +1,8 @@
 with Sf.Graphics;
 with Sf.System.Vector2;
 
+with KartengrundDatentypen;
+
 package TexturenSetzenSkalierenGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfSprite_Ptr;
@@ -33,6 +35,24 @@ package TexturenSetzenSkalierenGrafik is
                   Weltkarte'Result.x >= 0.00
                 and
                   Weltkarte'Result.y >= 0.00
+               );
+   
+   function WeltkarteNeu
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Pre => (
+                 SpriteAccessExtern /= null
+               and
+                 TextureAccessExtern /= null
+              ),
+         
+       Post => (
+                  WeltkarteNeu'Result.x >= 0.00
+                and
+                  WeltkarteNeu'Result.y >= 0.00
                );
 
    function Stadtbewirtschaftung

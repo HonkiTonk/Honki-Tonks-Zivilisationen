@@ -29,6 +29,34 @@ package body SpritesverwaltungssystemGrafik is
    
    
    
+   procedure SetzenBereichSkalierenZeichnenNeu
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TexturExtern : in Sf.Graphics.sfTexture_Ptr;
+      BereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
+                                      position => PositionExtern);
+      
+      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
+                                     texture   => TexturExtern,
+                                     resetRect => Sf.sfTrue);
+      
+      Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccessExtern,
+                                         rectangle => BereichExtern);
+      
+      Sf.Graphics.Sprite.setScale (sprite => SpriteAccessExtern,
+                                   scale  => SkalierungExtern);
+      
+      Sf.Graphics.RenderWindow.drawSprite (renderWindow => FensterGrafik.FensterLesen,
+                                           object       => SpriteAccessExtern);
+      
+   end SetzenBereichSkalierenZeichnenNeu;
+   
+   
+   
    procedure PositionSkalierungZeichnen
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
