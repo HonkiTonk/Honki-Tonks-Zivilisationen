@@ -184,6 +184,7 @@ package ChangelogMai2024 is
 
    -- Version 0.05.7165 => 0.05. (05.05.2024):
    
+   -- gpr Dateien angepasst
    -- 
    -- Kleinigkeiten korrigiert.
    
