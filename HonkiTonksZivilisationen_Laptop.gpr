@@ -1,0 +1,84 @@
+with "asfml_Laptop.gpr";
+
+project HonkiTonksZivilisationen_Laptop is
+
+   type Betriebssystem_Type is
+      ("Linux", "Windows");
+   Betriebssystem : Betriebssystem_Type := external ("Betriebssystem", "Linux");
+   type Status_Type is
+      ("Entwicklung", "Veroeffentlichung");
+   Status : Status_Type := external ("Status", "Entwicklung");
+
+   case Betriebssystem is
+
+      when "Linux" =>
+
+         case Status is
+
+            when "Entwicklung" =>
+               for Exec_Dir use "Honki Tonks Zivilisationen";
+               for Object_Dir use "obj";
+               for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux");
+               for Create_Missing_Dirs use "True";
+               for Main use ("HonkiTonksZivilisationen.adb");
+
+            when "Veroeffentlichung" =>
+               for Exec_Dir use "Honki Tonks Zivilisationen";
+               for Object_Dir use "obj";
+               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungLinux");
+               for Create_Missing_Dirs use "True";
+               for Main use ("HonkiTonksZivilisationen.adb");
+         end case;
+
+      when "Windows" =>
+
+         case Status is
+
+            when "Entwicklung" =>
+               for Exec_Dir use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/Zivilisationen Win/Honki Tonks Zivilisationen";
+               for Object_Dir use "obj_windows";
+               for Source_Dirs use ("src/**", "srcBS/EntwicklungWindows");
+               for Create_Missing_Dirs use "True";
+               for Main use ("HonkiTonksZivilisationen.adb");
+
+            when "Veroeffentlichung" =>
+               for Exec_Dir use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/Zivilisationen Win/Honki Tonks Zivilisationen";
+               for Object_Dir use "obj_windows";
+               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungWindows");
+               for Create_Missing_Dirs use "True";
+               for Main use ("HonkiTonksZivilisationen.adb");
+         end case;
+   end case;
+
+   package Naming is
+      for Casing use "MixedCase";
+   end Naming;
+
+   package Compiler is
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-gnato", "-fstack-check", "-g", "-gnata", "-gnatVacdefimoprst", 
+         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcghiklopqrtuvwxyz_c_re.u_pajfmd", "-gnatyACOSadefhiklnprsxM222L7");
+      for Local_Configuration_Pragmas use "Lokale Pragmas";
+   end Compiler;
+
+   package Builder is
+      for Switches ("ada") use ("-k", "-s", "-C", "-gnatW8");
+   end Builder;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-static", "-d_C", "-W8");
+   end Binder;
+
+   package Pretty_Printer is
+      for Default_Switches ("ada") use ("-W8");
+   end Pretty_Printer;
+
+   package Prove is
+   end Prove;
+
+   package Linker is
+      for Switches ("ada") use ("-s", "-Wl,--gc-sections");
+      for Linker_Options use ("-static");
+   end Linker;
+
+end HonkiTonksZivilisationen_Laptop;
+
