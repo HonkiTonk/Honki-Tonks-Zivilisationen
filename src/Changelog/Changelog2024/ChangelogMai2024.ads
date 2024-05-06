@@ -175,17 +175,18 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (06.05.2024):
+   -- Version 0.05.7210 => 0.05. (06.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7165 => 0.05. (05.05.2024):
+   -- Version 0.05.7165 => 0.05.7210 (05.05.2024):
    
-   -- gpr Dateien angepasst
-   -- 
+   -- gpr-Dateien angepasst
+   -- Neue Version veröffentlicht.
+   -- Weiter Texturen zusammengefasst.
    -- Kleinigkeiten korrigiert.
    
    
@@ -201,7 +202,7 @@ package ChangelogMai2024 is
 
    -- Version 0.05.7095 => 0.05.7120 (03.05.2024):
    
-   -- Angefangen ein Berechnugnssystem für die Positionen der einzelnen Kartenfelder in den zusammengefassten Texturen einzubauen.
+   -- Angefangen ein Berechnungssystem für die Positionen der einzelnen Kartenfelder in den zusammengefassten Texturen einzubauen.
    -- Kommentare und Kleinigkeiten korrigiert.
    
    
