@@ -161,30 +161,30 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (08.05.2024):
+   -- Version 0.05.7260 => 0.05. (08.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (07.05.2024):
+   -- Version 0.05.7235 => 0.05.7260 (07.05.2024):
    
-   -- 
+   -- Alle Texturen neu zusammengefasst.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7210 => 0.05. (06.05.2024):
+   -- Version 0.05.7210 => 0.05.7235 (06.05.2024):
    
-   -- 
+   -- Weiter Texturen zusammengefasst.
    -- Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.05.7165 => 0.05.7210 (05.05.2024):
    
-   -- gpr-Dateien angepasst
+   -- gpr-Dateien angepasst.
    -- Neue Version veröffentlicht.
    -- Weiter Texturen zusammengefasst.
    -- Kleinigkeiten korrigiert.
