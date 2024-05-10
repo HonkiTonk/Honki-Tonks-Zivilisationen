@@ -34,15 +34,19 @@ package body SpritesverwaltungssystemGrafik is
       TexturExtern : in Sf.Graphics.sfTexture_Ptr;
       BereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
    is begin
+            
+      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
+                                     texture   => TexturExtern,
+                                     resetRect => Sf.sfTrue);
       
       Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
                                       position => PositionExtern);
       
-      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
-                                     texture   => TexturExtern,
-                                     resetRect => Sf.sfTrue);
+      Sf.Graphics.Sprite.setColor (sprite => SpriteAccessExtern,
+                                   color  => FarbeExtern);
       
       Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccessExtern,
                                          rectangle => BereichExtern);

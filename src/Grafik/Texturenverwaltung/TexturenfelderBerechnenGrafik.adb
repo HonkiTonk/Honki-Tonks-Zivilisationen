@@ -2,8 +2,6 @@ with Sf.Graphics.Texture;
 
 with EingeleseneTexturenGrafik;
 
-with Diagnoseinformationen;
-
 package body TexturenfelderBerechnenGrafik is
 
    procedure TexturenfelderBerechnen
@@ -33,9 +31,7 @@ package body TexturenfelderBerechnenGrafik is
                                                   Integer (AktuelleFeldposition.y * Feldauflösung.y - Feldauflösung.y),
                                                   Integer (AktuelleFeldposition.x * Feldauflösung.x),
                                                   Integer (AktuelleFeldposition.y * Feldauflösung.y));
-         
-         Diagnoseinformationen.Boxinformationen (BoxExtern => Basisgrund (BasisgrundSchleifenwert));
-         
+                  
          if
            AktuelleFeldposition.x < FeldanzahlBasisgrund.x
          then

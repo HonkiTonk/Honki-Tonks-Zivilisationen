@@ -5,6 +5,7 @@ with LeseWeltkarte;
 
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
+with TexturenfelderBerechnenGrafik;
 
 package body WeltkarteFeldZeichnenGrafik is
 
@@ -16,13 +17,14 @@ package body WeltkarteFeldZeichnenGrafik is
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
-                                                      PositionExtern         => PositionExtern,
-                                                      DurchsichtigkeitExtern => DurchsichtigkeitExtern);
+      -- KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
+      --                                                  PositionExtern         => PositionExtern,
+      --                                                 DurchsichtigkeitExtern => DurchsichtigkeitExtern);
     
-      --  KartenspritesZeichnenGrafik.KartenfeldZeichnenNeu (BasisgrundExtern       => Gesamtgrund.Basisgrund,
-      --                                                    PositionExtern         => PositionExtern,
-      --                                                    DurchsichtigkeitExtern => DurchsichtigkeitExtern);
+      KartenspritesZeichnenGrafik.KartenfeldZeichnenNeu (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundGesamt,
+                                                         TexturenbereichExtern  => TexturenfelderBerechnenGrafik.BasisgrundFelderwerte (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                         PositionExtern         => PositionExtern,
+                                                         DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       
       case
         Gesamtgrund.Zusatzgrund
@@ -31,9 +33,10 @@ package body WeltkarteFeldZeichnenGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.ZusatzgrundAccess (Gesamtgrund.Zusatzgrund),
-                                                            PositionExtern         => PositionExtern,
-                                                            DurchsichtigkeitExtern => DurchsichtigkeitExtern);
+            null;
+          --  KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.ZusatzgrundAccess (Gesamtgrund.Zusatzgrund),
+          --                                                  PositionExtern         => PositionExtern,
+          --                                                  DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end case;
       
    end KartenfeldZeichnen;

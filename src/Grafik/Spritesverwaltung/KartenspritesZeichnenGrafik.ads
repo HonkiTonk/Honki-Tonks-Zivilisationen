@@ -1,10 +1,9 @@
 with Sf.Graphics;
 with Sf.System.Vector2;
+with Sf.Graphics.Rect;
 
 private with Sf.Graphics.Sprite;
 private with Sf.Graphics.Color;
-
-with KartengrundDatentypen;
 
 package KartenspritesZeichnenGrafik is
    pragma Elaborate_Body;
@@ -22,7 +21,8 @@ package KartenspritesZeichnenGrafik is
               );
 
    procedure KartenfeldZeichnenNeu
-     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturenbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
      with
