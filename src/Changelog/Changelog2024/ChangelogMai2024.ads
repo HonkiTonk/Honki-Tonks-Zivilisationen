@@ -147,16 +147,16 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (10.05.2024):
+   -- Version 0.05.7320 => 0.05. (10.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7295 => 0.05. (09.05.2024):
+   -- Version 0.05.7295 => 0.05.7320 (09.05.2024):
    
-   -- 
+   -- Lokale Pragmas überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
