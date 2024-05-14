@@ -140,17 +140,19 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (11.05.2024):
+   -- Version 0.05.7365 => 0.05. (11.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7320 => 0.05. (10.05.2024):
+   -- Version 0.05.7320 => 0.05.7365 (10.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler im neuen Texturenanzeigesystem korrigiert.
+   -- Angefangen das neue Texturenanzeigesystem zu verallgemeinern.
+   -- Angefangen die zusammengefassten Texturen einzubauen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

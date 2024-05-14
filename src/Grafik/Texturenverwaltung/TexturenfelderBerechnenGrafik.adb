@@ -18,7 +18,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
             
-      Texturenauflösung := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.BasisgrundGesamt);
+      Texturenauflösung := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.BasisgrundAccessGesamt);
       
       Feldauflösung := (Texturenauflösung.x / FeldanzahlBasisgrund.x, Texturenauflösung.y / FeldanzahlBasisgrund.y);
       
@@ -29,9 +29,9 @@ package body TexturenfelderBerechnenGrafik is
          
          Basisgrund (BasisgrundSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldauflösung.x - Feldauflösung.x),
                                                   Integer (AktuelleFeldposition.y * Feldauflösung.y - Feldauflösung.y),
-                                                  Integer (AktuelleFeldposition.x * Feldauflösung.x),
-                                                  Integer (AktuelleFeldposition.y * Feldauflösung.y));
-                  
+                                                  Integer (Feldauflösung.x),
+                                                  Integer (Feldauflösung.y));
+         
          if
            AktuelleFeldposition.x < FeldanzahlBasisgrund.x
          then

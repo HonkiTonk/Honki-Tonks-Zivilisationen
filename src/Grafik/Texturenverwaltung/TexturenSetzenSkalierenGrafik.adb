@@ -32,21 +32,11 @@ package body TexturenSetzenSkalierenGrafik is
    
    
    function WeltkarteNeu
-    -- (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-    --  TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-    --  TexturenbereichExtern : in Sf.Graphics.Rect.sfIntRect)
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-    --  Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
-    --                                 texture   => TextureAccessExtern,
-    --                                 resetRect => Sf.sfTrue);
-      
-    --  Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccessExtern,
-    --                                     rectangle => TexturenbereichExtern);
-      
-      Rechteck := (32.00, 32.00);
-     -- Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
+      Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => (Float (TexturengrößeExtern.x), Float (TexturengrößeExtern.y)));
       KartenfelderAbmessung := SichtweitenGrafik.Kartenfeldfläche;
       
       SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.x;

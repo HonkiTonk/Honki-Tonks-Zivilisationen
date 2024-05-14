@@ -29,7 +29,7 @@ package body SpritesverwaltungssystemGrafik is
    
    
    
-   procedure SetzenBereichSkalierenZeichnenNeu
+   procedure SetzenBereichPositionFarbeSkalierenZeichnen
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TexturExtern : in Sf.Graphics.sfTexture_Ptr;
       BereichExtern : in Sf.Graphics.Rect.sfIntRect;
@@ -42,14 +42,14 @@ package body SpritesverwaltungssystemGrafik is
                                      texture   => TexturExtern,
                                      resetRect => Sf.sfTrue);
       
+      Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccessExtern,
+                                         rectangle => BereichExtern);
+      
       Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
                                       position => PositionExtern);
       
       Sf.Graphics.Sprite.setColor (sprite => SpriteAccessExtern,
                                    color  => FarbeExtern);
-      
-      Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccessExtern,
-                                         rectangle => BereichExtern);
       
       Sf.Graphics.Sprite.setScale (sprite => SpriteAccessExtern,
                                    scale  => SkalierungExtern);
@@ -57,7 +57,7 @@ package body SpritesverwaltungssystemGrafik is
       Sf.Graphics.RenderWindow.drawSprite (renderWindow => FensterGrafik.FensterLesen,
                                            object       => SpriteAccessExtern);
       
-   end SetzenBereichSkalierenZeichnenNeu;
+   end SetzenBereichPositionFarbeSkalierenZeichnen;
    
    
    
@@ -137,5 +137,17 @@ package body SpritesverwaltungssystemGrafik is
                                            object       => SpriteAccessExtern);
       
    end FarbeZeichnen;
+   
+   
+   
+   procedure Farbe
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+      
+      Sf.Graphics.Sprite.setColor (sprite => SpriteAccessExtern,
+                                   color  => FarbeExtern);
+      
+   end Farbe;
 
 end SpritesverwaltungssystemGrafik;

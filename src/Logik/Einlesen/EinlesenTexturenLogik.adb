@@ -29,7 +29,7 @@ package body EinlesenTexturenLogik is
    procedure Karte
    is begin
       
-      EingeleseneTexturenGrafik.BasisgrundGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => "Grafik/Standard/Basisgrund.png");
+      EingeleseneTexturenGrafik.BasisgrundAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => "Grafik/Standard/Basisgrund.png");
       TexturenfelderBerechnenGrafik.TexturenfelderBerechnen;
       
       case

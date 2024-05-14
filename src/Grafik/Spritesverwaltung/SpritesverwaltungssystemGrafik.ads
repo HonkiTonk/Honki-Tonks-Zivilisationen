@@ -24,7 +24,7 @@ package SpritesverwaltungssystemGrafik is
                  SkalierungExtern.y > 0.00
               );
    
-   procedure SetzenBereichSkalierenZeichnenNeu
+   procedure SetzenBereichPositionFarbeSkalierenZeichnen
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TexturExtern : in Sf.Graphics.sfTexture_Ptr;
       BereichExtern : in Sf.Graphics.Rect.sfIntRect;
@@ -88,6 +88,14 @@ package SpritesverwaltungssystemGrafik is
               );
 
    procedure FarbeZeichnen
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 SpriteAccessExtern /= null
+              );
+   
+   procedure Farbe
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       FarbeExtern : in Sf.Graphics.Color.sfColor)
      with

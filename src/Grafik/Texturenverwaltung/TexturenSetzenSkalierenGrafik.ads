@@ -37,22 +37,14 @@ package TexturenSetzenSkalierenGrafik is
                );
    
    function WeltkarteNeu
-   --  (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-  --    TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-  --   TexturenbereichExtern : in Sf.Graphics.Rect.sfIntRect)
-      return Sf.System.Vector2.sfVector2f;
-  --   with
-   --    Pre => (
-   --              SpriteAccessExtern /= null
-    --           and
-    --             TextureAccessExtern /= null
-    --          ),
-   --      
-   --    Post => (
-   --               WeltkarteNeu'Result.x >= 0.00
-   --             and
-   --               WeltkarteNeu'Result.y >= 0.00
-    --           );
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  WeltkarteNeu'Result.x >= 0.00
+                and
+                  WeltkarteNeu'Result.y >= 0.00
+               );
 
    function Stadtbewirtschaftung
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;

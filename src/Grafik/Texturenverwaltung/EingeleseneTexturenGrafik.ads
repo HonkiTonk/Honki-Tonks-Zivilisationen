@@ -12,10 +12,21 @@ with KartenextraDatentypen;
 package EingeleseneTexturenGrafik is
    pragma Elaborate_Body;
 
-   BasisgrundGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   BasisgrundAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   ZusatzgrundAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   KartenflussAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   KartenressourcenAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   VerbesserungenAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   WegeAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   FeldeffekteAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
 
-   -- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird? äöü
-   -- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen. äöü
+   type SpeziesAccessArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   EinheitenAccessGesamt : SpeziesAccessArray := (others => null);
+   GebäudeAccessGesamt : SpeziesAccessArray := (others => null);
+   HintergrundAccessGesamt : SpeziesAccessArray := (others => null);
+   --  BasisgrundGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   --  BasisgrundGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   --  BasisgrundGesamt : Sf.Graphics.sfTexture_Ptr := null;
 
    -- System und Hintergrund zusammenführen? äöü
    -- System hier mal in Kartenirgendwas umbenennen? äöü
