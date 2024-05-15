@@ -2,8 +2,6 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
-private with TextArrays;
-private with EingeleseneTexturenGrafik;
 
 package EinlesenTexturenLogik is
    pragma Elaborate_Body;
@@ -12,68 +10,41 @@ package EinlesenTexturenLogik is
 
 private
 
-   Basisgrund : constant Positive := EingeleseneTexturenGrafik.BasisgrundAccessArray'Length;
-   Zusatzgrund : constant Positive := Basisgrund + EingeleseneTexturenGrafik.ZusatzgrundAccessArray'Length;
-   Flüsse : constant Positive := Zusatzgrund + EingeleseneTexturenGrafik.KartenflussAccessArray'Length;
-   Ressourcen : constant Positive := Flüsse + EingeleseneTexturenGrafik.KartenressourcenAccessArray'Length;
-   Feldeffekte : constant Positive := Ressourcen + EingeleseneTexturenGrafik.FeldeffekteAccessArray'Length;
-   Verbesserungen : constant Positive := Feldeffekte + EingeleseneTexturenGrafik.VerbesserungenAccessArray'Length;
-   Wege : constant Positive := Verbesserungen + EingeleseneTexturenGrafik.WegeAccessArray'Length;
-   System : constant Positive := Wege + EingeleseneTexturenGrafik.SystemAccessArray'Length;
-   Hintergrund : constant Positive := System + EingeleseneTexturenGrafik.HintergrundAccessArray'Length;
+   Basisgrund : constant Positive := 1;
+   Zusatzgrund : constant Positive := Basisgrund + 1;
+   Flüsse : constant Positive := Zusatzgrund + 1;
+   Ressourcen : constant Positive := Flüsse + 1;
+   Verbesserungen : constant Positive := Ressourcen + 1;
+   Wege : constant Positive := Verbesserungen + 1;
+   Feldeffekte : constant Positive := Wege + 1;
+   Einheitenbefehle : constant Positive := Feldeffekte + 1;
+   Kartenbefehle : constant Positive := Einheitenbefehle + 1;
+   RoterKnopf : constant Positive := Kartenbefehle + 1;
+   Intro : constant Positive := RoterKnopf + 1;
+   Kartenformen : constant Positive := Intro + 1;
+   Seitenleiste : constant Positive := Kartenformen + 1;
+   Bauen : constant Positive := Seitenleiste + 1;
+   Forschung : constant Positive := Bauen + 1;
+   Menues : constant Positive := Forschung + 1;
+   PZBEnde : constant Positive := Menues + 1;
+   Auswahl : constant Positive := PZBEnde + 1;
+   Meldung : constant Positive := Auswahl + 1;
+
+   HintergründeAnfang : constant Positive := Meldung + 1;
+   HintergründeEnde : constant Positive := Meldung + SpeziesDatentypen.SpeziesnummernVorhanden'Last;
+
+   EinheitenAnfang : constant Positive := HintergründeEnde + 1;
+   EinheitenEnde : constant Positive := HintergründeEnde + SpeziesDatentypen.SpeziesnummernVorhanden'Last;
+
+   GebäudeAnfang : constant Positive := EinheitenEnde + 1;
+   GebäudeEnde : constant Positive := EinheitenEnde + SpeziesDatentypen.SpeziesnummernVorhanden'Last;
 
    AktuelleZeile : Positive;
    EinzulesendeZeile : Positive;
-   ZeileSpezieshintergrund : Positive;
-   ZeileEinheiten : Positive;
-   ZeileGebäude : Positive;
 
-   Verzeichnisname : Unbounded_Wide_Wide_String;
    Dateiname : Unbounded_Wide_Wide_String;
    GesamterPfad : Unbounded_Wide_Wide_String;
 
-   DateiKarte : File_Type;
-   DateiSystem : File_Type;
-   DateiHintergrund : File_Type;
-   DateiKartenfelder : File_Type;
-   DateiKartenflüsse : File_Type;
-   DateiKartenressourcen : File_Type;
-   DateiVerbesserungen : File_Type;
-   DateiWege : File_Type;
-   DateiSpezies : File_Type;
-   DateiSpezieshintergründe : File_Type;
-   DateiEinheiten : File_Type;
-   DateiGebäude : File_Type;
-
-   Speziesverzeichnisse : TextArrays.AllgemeinesTextArray (1 .. 3);
-   SpeziesDateiname : TextArrays.AllgemeinesTextArray (1 .. 3);
-   SpeziesGesamterPfad : TextArrays.AllgemeinesTextArray (SpeziesDateiname'Range);
-
-   procedure Spezies;
-   procedure Karte;
-
-   procedure Spezieshintergrund
-     (DateipfadExtern : in Wide_Wide_String;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-     with
-       Pre => (
-                 DateipfadExtern'Length > 0
-              );
-
-   procedure Einheiten
-     (DateipfadExtern : in Wide_Wide_String;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-     with
-       Pre => (
-                 DateipfadExtern'Length > 0
-              );
-
-   procedure Gebäude
-     (DateipfadExtern : in Wide_Wide_String;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-     with
-       Pre => (
-                 DateipfadExtern'Length > 0
-              );
+   DateiTexturen : File_Type;
 
 end EinlesenTexturenLogik;

@@ -50,7 +50,7 @@ package body KartenspritesZeichnenGrafik is
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnenNeu: TexturAccessExtern: null");
          
       else
-         Skalierung := TexturenSetzenSkalierenGrafik.WeltkarteNeu (TexturengrößeExtern => (Sf.sfUint32 (TexturenbereichExtern.width), Sf.sfUint32 (TexturenbereichExtern.height)));
+         Skalierung := TexturenSetzenSkalierenGrafik.AllgemeineSkalierung (TexturengrößeExtern => (Sf.sfUint32 (TexturenbereichExtern.width), Sf.sfUint32 (TexturenbereichExtern.height)));
       
          Farbe := Sf.Graphics.Sprite.getColor (sprite => SpriteAccess);
       
@@ -65,6 +65,34 @@ package body KartenspritesZeichnenGrafik is
       end if;
       
    end KartenfeldZeichnenNeu;
+   
+   
+   
+   procedure StadtbewirtschaftungZeichnenNeu
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturenbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
+      
+      if
+        TexturAccessExtern = null
+      then
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern: null");
+         
+      else
+         Skalierung := TexturenSetzenSkalierenGrafik.Stadtbewirtschaftung (SpriteAccessExtern  => SpriteAccess,
+                                                                           TextureAccessExtern => TexturAccessExtern,
+                                                                           GrößeExtern         => GrößeExtern);
+         
+         DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
+                                       PositionExtern         => PositionExtern,
+                                       SkalierungExtern       => Skalierung,
+                                       DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+      end if;
+      
+   end StadtbewirtschaftungZeichnenNeu;
    
    
    

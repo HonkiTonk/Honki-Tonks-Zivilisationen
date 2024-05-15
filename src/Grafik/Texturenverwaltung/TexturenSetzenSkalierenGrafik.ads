@@ -36,14 +36,14 @@ package TexturenSetzenSkalierenGrafik is
                   Weltkarte'Result.y >= 0.00
                );
    
-   function WeltkarteNeu
+   function AllgemeineSkalierung
      (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  WeltkarteNeu'Result.x >= 0.00
+                  AllgemeineSkalierung'Result.x >= 0.00
                 and
-                  WeltkarteNeu'Result.y >= 0.00
+                  AllgemeineSkalierung'Result.y >= 0.00
                );
 
    function Stadtbewirtschaftung

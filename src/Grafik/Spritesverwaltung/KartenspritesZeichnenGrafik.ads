@@ -32,6 +32,17 @@ package KartenspritesZeichnenGrafik is
                  PositionExtern.y >= 0.00
               );
 
+   procedure StadtbewirtschaftungZeichnenNeu
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturenbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+
    procedure StadtbewirtschaftungZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;

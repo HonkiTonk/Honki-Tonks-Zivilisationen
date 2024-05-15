@@ -126,23 +126,24 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (13.05.2024):
+   -- Version 0.05.7425 => 0.05. (13.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (12.05.2024):
+   -- Version 0.05.7390 => 0.05.7425 (12.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neues Textureneinlesesystem fertiggestellt.
+   -- Weiter das neue Texturenanzeigesystem verallgemeinert.
+   -- Kommenatre und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7365 => 0.05. (11.05.2024):
+   -- Version 0.05.7365 => 0.05.7390 (11.05.2024):
    
-   -- 
+   -- GNAT aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

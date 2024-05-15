@@ -16,28 +16,36 @@ package EingeleseneTexturenGrafik is
    ZusatzgrundAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
    KartenflussAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
    KartenressourcenAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   -- Auch auf Spezies erweitern, damit man verschieden aussehende Städte/Verbesserungen hat? äöü
    VerbesserungenAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
    WegeAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
    FeldeffekteAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
+
+   EinheitenbefehleAccess : Sf.Graphics.sfTexture_Ptr := null;
+   KartenbefehleAccess : Sf.Graphics.sfTexture_Ptr := null;
+   RoterKnopfAccess : Sf.Graphics.sfTexture_Ptr := null;
+   IntroAccess : Sf.Graphics.sfTexture_Ptr := null;
+   KartenformenAccess : Sf.Graphics.sfTexture_Ptr := null;
+   SeitenleisteAccess : Sf.Graphics.sfTexture_Ptr := null;
+   BauenAccess : Sf.Graphics.sfTexture_Ptr := null;
+   ForschungAccess : Sf.Graphics.sfTexture_Ptr := null;
+   MenuesAccess : Sf.Graphics.sfTexture_Ptr := null;
+   PZBEndeAccess : Sf.Graphics.sfTexture_Ptr := null;
+   AuswahlAccess : Sf.Graphics.sfTexture_Ptr := null;
+   MeldungAccess : Sf.Graphics.sfTexture_Ptr := null;
 
    type SpeziesAccessArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    EinheitenAccessGesamt : SpeziesAccessArray := (others => null);
    GebäudeAccessGesamt : SpeziesAccessArray := (others => null);
    HintergrundAccessGesamt : SpeziesAccessArray := (others => null);
-   --  BasisgrundGesamt : Sf.Graphics.sfTexture_Ptr := null;
-   --  BasisgrundGesamt : Sf.Graphics.sfTexture_Ptr := null;
-   --  BasisgrundGesamt : Sf.Graphics.sfTexture_Ptr := null;
 
-   -- System und Hintergrund zusammenführen? äöü
-   -- System hier mal in Kartenirgendwas umbenennen? äöü
+
+
    type SystemAccessArray is array (BefehleDatentypen.Befehlsknöpfe_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    SystemAccess : SystemAccessArray := (others => null);
 
    type HintergrundAccessArray is array (GrafikDatentypen.Hintergrund_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    HintergrundAccess : HintergrundAccessArray := (others => null);
-
-   type BasisgrundAccessArray is array (KartenDatenbank.BasisgrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
-   BasisgrundAccess : BasisgrundAccessArray := (others => null);
 
    type ZusatzgrundAccessArray is array (KartenDatenbank.ZusatzgrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    ZusatzgrundAccess : ZusatzgrundAccessArray := (others => null);
@@ -51,7 +59,6 @@ package EingeleseneTexturenGrafik is
    type KartenressourcenAccessArray is array (KartenDatenbank.KartenressourcenlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenressourceAccess : KartenressourcenAccessArray := (others => null);
 
-   -- Auch auf Spezies erweitern, damit man verschieden aussehende Städte/Verbesserungen hat? äöü
    type VerbesserungenAccessArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    VerbesserungenAccess : VerbesserungenAccessArray := (others => null);
 

@@ -31,7 +31,7 @@ package body TexturenSetzenSkalierenGrafik is
    
    
    
-   function WeltkarteNeu
+   function AllgemeineSkalierung
      (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
       return Sf.System.Vector2.sfVector2f
    is begin
@@ -44,7 +44,7 @@ package body TexturenSetzenSkalierenGrafik is
       
       return SkalierungKartenfeld;
       
-   end WeltkarteNeu;
+   end AllgemeineSkalierung;
    
    
    

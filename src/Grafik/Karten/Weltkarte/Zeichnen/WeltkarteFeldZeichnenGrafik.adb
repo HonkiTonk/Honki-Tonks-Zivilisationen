@@ -16,11 +16,7 @@ package body WeltkarteFeldZeichnenGrafik is
    is begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
-      
-      -- KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
-      --                                                  PositionExtern         => PositionExtern,
-      --                                                 DurchsichtigkeitExtern => DurchsichtigkeitExtern);
-    
+          
       KartenspritesZeichnenGrafik.KartenfeldZeichnenNeu (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundAccessGesamt,
                                                          TexturenbereichExtern  => TexturenfelderBerechnenGrafik.BasisgrundFelderwerte (BasisgrundExtern => Gesamtgrund.Basisgrund),
                                                          PositionExtern         => PositionExtern,
