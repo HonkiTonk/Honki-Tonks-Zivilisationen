@@ -27,9 +27,7 @@ package EingeleseneTexturenGrafik is
    IntroAccess : Sf.Graphics.sfTexture_Ptr := null;
    KartenformenAccess : Sf.Graphics.sfTexture_Ptr := null;
    SeitenleisteAccess : Sf.Graphics.sfTexture_Ptr := null;
-   BauenAccess : Sf.Graphics.sfTexture_Ptr := null;
-   ForschungAccess : Sf.Graphics.sfTexture_Ptr := null;
-   MenuesAccess : Sf.Graphics.sfTexture_Ptr := null;
+   MenüsAccess : Sf.Graphics.sfTexture_Ptr := null;
    PZBEndeAccess : Sf.Graphics.sfTexture_Ptr := null;
    AuswahlAccess : Sf.Graphics.sfTexture_Ptr := null;
    MeldungAccess : Sf.Graphics.sfTexture_Ptr := null;

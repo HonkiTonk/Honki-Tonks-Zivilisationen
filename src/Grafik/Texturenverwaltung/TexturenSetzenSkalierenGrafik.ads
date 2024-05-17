@@ -47,15 +47,18 @@ package TexturenSetzenSkalierenGrafik is
                );
 
    function Stadtbewirtschaftung
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      GrößeExtern : in Sf.System.Vector2.sfVector2f)
+     (FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
+      TexturengrößeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 SpriteAccessExtern /= null
+                 FeldgrößeExtern.x >= 0.00
                and
-                 TextureAccessExtern /= null
+                 FeldgrößeExtern.y >= 0.00
+               and
+                 TexturengrößeExtern.x >= 0.00
+               and
+                 TexturengrößeExtern.y >= 0.00
               ),
          
        Post => (
@@ -106,5 +109,8 @@ private
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    Kartenabmessung : Sf.System.Vector2.sfVector2f;
    Rechteck : Sf.System.Vector2.sfVector2f;
+      
+   Texturengröße : Sf.System.Vector2.sfVector2f;
+   Feldgröße : Sf.System.Vector2.sfVector2f;
 
 end TexturenSetzenSkalierenGrafik;

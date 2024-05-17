@@ -23,10 +23,8 @@ private
    Intro : constant Positive := RoterKnopf + 1;
    Kartenformen : constant Positive := Intro + 1;
    Seitenleiste : constant Positive := Kartenformen + 1;
-   Bauen : constant Positive := Seitenleiste + 1;
-   Forschung : constant Positive := Bauen + 1;
-   Menues : constant Positive := Forschung + 1;
-   PZBEnde : constant Positive := Menues + 1;
+   Menüs : constant Positive := Seitenleiste + 1;
+   PZBEnde : constant Positive := Menüs + 1;
    Auswahl : constant Positive := PZBEnde + 1;
    Meldung : constant Positive := Auswahl + 1;
 

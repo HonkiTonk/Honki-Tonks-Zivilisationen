@@ -36,11 +36,11 @@ package body TexturenSetzenSkalierenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => (Float (TexturengrößeExtern.x), Float (TexturengrößeExtern.y)));
+      Texturengröße := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => (Float (TexturengrößeExtern.x), Float (TexturengrößeExtern.y)));
       KartenfelderAbmessung := SichtweitenGrafik.Kartenfeldfläche;
       
-      SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.x;
-      SkalierungKartenfeld.y := KartenfelderAbmessung.y / Rechteck.y;
+      SkalierungKartenfeld.x := KartenfelderAbmessung.x / Texturengröße.x;
+      SkalierungKartenfeld.y := KartenfelderAbmessung.y / Texturengröße.y;
       
       return SkalierungKartenfeld;
       
@@ -49,21 +49,16 @@ package body TexturenSetzenSkalierenGrafik is
    
    
    function Stadtbewirtschaftung
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      GrößeExtern : in Sf.System.Vector2.sfVector2f)
+     (FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
+      TexturengrößeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
-                                     texture   => TextureAccessExtern,
-                                     resetRect => Sf.sfTrue);
+      Feldgröße := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => (FeldgrößeExtern.x, FeldgrößeExtern.y));
+      Texturengröße := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => (TexturengrößeExtern.x, TexturengrößeExtern.y));
       
-      Rechteck := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
-      Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
-      
-      SkalierungKartenfeld.x := GrößeExtern.x / Rechteck.x;
-      SkalierungKartenfeld.y := GrößeExtern.y / Rechteck.y;
+      SkalierungKartenfeld.x := Feldgröße.x / Texturengröße.x;
+      SkalierungKartenfeld.y := Feldgröße.y / Texturengröße.y;
       
       return SkalierungKartenfeld;
       

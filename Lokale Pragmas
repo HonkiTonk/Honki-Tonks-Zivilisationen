@@ -74,7 +74,8 @@ pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Dom
 -- pragma Restrictions (No_Multiple_Elaboration);	
 -- Werde ich vermutlich nicht einbauen können, da Real_Time keine Datumsfunktion hat. Gibt es dazu eine alternative Lösung?
 -- pragma Restrictions (No_Dependence => Ada.Calendar);
--- pragma Restrictions (No_Calendar); -- Ist das nicht identisch mit dem Oberen?
+-- Ist das nicht identisch mit dem Oberen?
+-- pragma Restrictions (No_Calendar);
 -- Damit kann die ASFML nicht kompiliert werden.
 -- pragma Normalize_Scalars;
 

@@ -68,9 +68,10 @@ package body KartenspritesZeichnenGrafik is
    
    
    
-   procedure StadtbewirtschaftungZeichnenNeu
+   procedure StadtbewirtschaftungZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      TexturenbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      TexturenbereichExtern : in Sf.System.Vector2.sfVector2f;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
       use type Sf.Graphics.sfTexture_Ptr;
@@ -82,37 +83,8 @@ package body KartenspritesZeichnenGrafik is
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern: null");
          
       else
-         Skalierung := TexturenSetzenSkalierenGrafik.Stadtbewirtschaftung (SpriteAccessExtern  => SpriteAccess,
-                                                                           TextureAccessExtern => TexturAccessExtern,
-                                                                           GrößeExtern         => GrößeExtern);
-         
-         DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
-                                       PositionExtern         => PositionExtern,
-                                       SkalierungExtern       => Skalierung,
-                                       DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
-      end if;
-      
-   end StadtbewirtschaftungZeichnenNeu;
-   
-   
-   
-   procedure StadtbewirtschaftungZeichnen
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      GrößeExtern : in Sf.System.Vector2.sfVector2f)
-   is
-      use type Sf.Graphics.sfTexture_Ptr;
-   begin
-      
-      if
-        TexturAccessExtern = null
-      then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern: null");
-         
-      else
-         Skalierung := TexturenSetzenSkalierenGrafik.Stadtbewirtschaftung (SpriteAccessExtern  => SpriteAccess,
-                                                                           TextureAccessExtern => TexturAccessExtern,
-                                                                           GrößeExtern         => GrößeExtern);
+         Skalierung := TexturenSetzenSkalierenGrafik.Stadtbewirtschaftung (FeldgrößeExtern     => FeldgrößeExtern,
+                                                                           TexturengrößeExtern => TexturenbereichExtern);
          
          DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
                                        PositionExtern         => PositionExtern,
