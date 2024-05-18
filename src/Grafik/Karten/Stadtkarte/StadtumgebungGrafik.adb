@@ -1,3 +1,6 @@
+
+with Sf.Graphics.Text;
+
 with KartenDatentypen;
 with Views;
 with KartengrundDatentypen;
@@ -19,8 +22,7 @@ with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with TextaccessverwaltungssystemEinfachGrafik;
 with FeldproduktionLogik;
-
-with Sf.Graphics.Text;
+with TexturenfelderBerechnenGrafik;
 
 package body StadtumgebungGrafik is
 
@@ -259,9 +261,10 @@ package body StadtumgebungGrafik is
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
-                                                                PositionExtern     => PositionExtern,
-                                                                GrößeExtern        => FeldgrößeExtern);
+      KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccessGesamt,
+                                                                TexturenbereichExtern => TexturenfelderBerechnenGrafik.Basisgrundabmessung (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                                FeldgrößeExtern       => FeldgrößeExtern,
+                                                                PositionExtern        => PositionExtern);
         
       case
         Gesamtgrund.Zusatzgrund
@@ -270,9 +273,13 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.ZusatzgrundAccess (Gesamtgrund.Zusatzgrund),
-                                                                      PositionExtern     => PositionExtern,
-                                                                      GrößeExtern        => FeldgrößeExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccessGesamt,
+                                                                      TexturenbereichExtern => TexturenfelderBerechnenGrafik.Basisgrundabmessung (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                                      FeldgrößeExtern       => FeldgrößeExtern,
+                                                                      PositionExtern        => PositionExtern);
+          --  KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.ZusatzgrundAccess (Gesamtgrund.Zusatzgrund),
+          --                                                            PositionExtern     => PositionExtern,
+          --                                                            GrößeExtern        => FeldgrößeExtern);
       end case;
       
    end KartenfeldZeichnen;
@@ -294,9 +301,13 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
-                                                                      PositionExtern     => PositionExtern,
-                                                                      GrößeExtern        => FeldgrößeExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccessGesamt,
+                                                                      TexturenbereichExtern => TexturenfelderBerechnenGrafik.Basisgrundabmessung (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                                      FeldgrößeExtern       => FeldgrößeExtern,
+                                                                      PositionExtern        => PositionExtern);
+          --  KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
+          --                                                            PositionExtern     => PositionExtern,
+          --                                                            GrößeExtern        => FeldgrößeExtern);
       end case;
       
    end FlussZeichnen;
@@ -318,9 +329,13 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
-                                                                      PositionExtern     => PositionExtern,
-                                                                      GrößeExtern        => FeldgrößeExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccessGesamt,
+                                                                      TexturenbereichExtern => TexturenfelderBerechnenGrafik.Basisgrundabmessung (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                                      FeldgrößeExtern       => FeldgrößeExtern,
+                                                                      PositionExtern        => PositionExtern);
+          --  KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
+          --                                                            PositionExtern     => PositionExtern,
+          --                                                            GrößeExtern        => FeldgrößeExtern);
       end case;
       
    end RessourceZeichnen;
@@ -342,9 +357,13 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
-                                                                      PositionExtern     => PositionExtern,
-                                                                      GrößeExtern        => FeldgrößeExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccessGesamt,
+                                                                      TexturenbereichExtern => TexturenfelderBerechnenGrafik.Basisgrundabmessung (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                                      FeldgrößeExtern       => FeldgrößeExtern,
+                                                                      PositionExtern        => PositionExtern);
+          --  KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
+          --                                                            PositionExtern     => PositionExtern,
+          --                                                            GrößeExtern        => FeldgrößeExtern);
       end case;
       
    end WegZeichnen;
@@ -366,9 +385,13 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
-                                                                      PositionExtern     => PositionExtern,
-                                                                      GrößeExtern        => FeldgrößeExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccessGesamt,
+                                                                      TexturenbereichExtern => TexturenfelderBerechnenGrafik.Basisgrundabmessung (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                                      FeldgrößeExtern       => FeldgrößeExtern,
+                                                                      PositionExtern        => PositionExtern);
+           -- KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
+          --                                                            PositionExtern     => PositionExtern,
+          --                                                            GrößeExtern        => FeldgrößeExtern);
       end case;
       
    end VerbesserungZeichnen;
@@ -389,9 +412,13 @@ package body StadtumgebungGrafik is
                                  WelcherEffektExtern => EffektSchleifenwert)
          is
             when True =>
-               KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.FeldeffekteAccess (EffektSchleifenwert),
-                                                                         PositionExtern     => PositionExtern,
-                                                                         GrößeExtern        => FeldgrößeExtern);
+               KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccessGesamt,
+                                                                         TexturenbereichExtern => TexturenfelderBerechnenGrafik.Basisgrundabmessung (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                                         FeldgrößeExtern       => FeldgrößeExtern,
+                                                                         PositionExtern        => PositionExtern);
+            --   KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.FeldeffekteAccess (EffektSchleifenwert),
+             --                                                            PositionExtern     => PositionExtern,
+            --                                                             GrößeExtern        => FeldgrößeExtern);
                
             when False =>
                null;

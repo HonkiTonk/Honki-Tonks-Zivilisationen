@@ -95,7 +95,7 @@ package body StadtkarteGrafik is
      (GrundExtern : in KartenRecords.KartengrundRecord)
    is begin
       
-      KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (GrundExtern.Basisgrund));
+     -- KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (GrundExtern.Basisgrund));
       
       case
         GrundExtern.Zusatzgrund

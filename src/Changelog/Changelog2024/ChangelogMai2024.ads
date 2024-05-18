@@ -98,23 +98,24 @@ package ChangelogMai2024 is
    
    
 
-   -- Version 0.05. => 0.05. (17.05.2024):
+   -- Version 0.05.7545 => 0.05. (17.05.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (16.05.2024):
+   -- Version 0.05.7520 => 0.05.7545 (16.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Texturanzeigesystem gearbeitet.
+   -- Contracts und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7485 => 0.05. (15.05.2024):
+   -- Version 0.05.7485 => 0.05.7520 (15.05.2024):
    
-   -- 
+   -- Die verschiedenen ASFML Versionen zusammengefasst.
+   -- Alte Grafikdateien aussortiert, zur Not aber aufgehoben.
    -- Kleinigkeiten korrigiert.
    
    
