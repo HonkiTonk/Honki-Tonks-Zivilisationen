@@ -100,7 +100,7 @@ package ChangelogMai2024 is
 
    -- Version 0.05.7545 => 0.05. (17.05.2024):
    
-   -- 
+   -- Die ASFML Versionen vollständig zusammengefasst und direkt in das Projekt integriert.
    -- Kleinigkeiten korrigiert.
    
    
