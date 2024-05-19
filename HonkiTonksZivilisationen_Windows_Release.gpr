@@ -1,4 +1,4 @@
-with "asfml_Windows.gpr";
+with "asfml.gpr";
 
 project HonkiTonksZivilisationen_Windows_Release is
 

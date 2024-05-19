@@ -1,0 +1,522 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_ACCESS_SUBPROGRAMS
+RV NO_FLOATING_POINT
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.window.glu%s	sf-window-glu.ads	ff7b816c NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.window%s		sf-window.ads		sf-window.ali
+W sf.window.gl%s	sf-window-gl.ads	sf-window-gl.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-window.ads		20220818093223 ffbfbe11 sf.window%s
+D sf-window-gl.ads	20220818093223 f7b87a2b sf.window.gl%s
+D sf-window-glu.ads	20220818093223 f77c4556 sf.window.glu%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [glubegincurve sf__window__glu 162 14 none]
+G c Z s s [glubeginpolygon sf__window__glu 163 14 none]
+G c Z s s [glubeginsurface sf__window__glu 164 14 none]
+G c Z s s [glubegintrim sf__window__glu 165 14 none]
+G c Z s s [glubuild1dmipmaps sf__window__glu 166 13 none]
+G c Z s s [glubuild2dmipmaps sf__window__glu 174 13 none]
+G c Z s s [glucylinder sf__window__glu 183 14 none]
+G c Z s s [gludeletenurbsrenderer sf__window__glu 190 14 none]
+G c Z s s [gludeletequadric sf__window__glu 191 14 none]
+G c Z s s [gludeletetess sf__window__glu 192 14 none]
+G c Z s s [gludisk sf__window__glu 193 14 none]
+G c Z s s [gluendcurve sf__window__glu 199 14 none]
+G c Z s s [gluendpolygon sf__window__glu 200 14 none]
+G c Z s s [gluendsurface sf__window__glu 201 14 none]
+G c Z s s [gluendtrim sf__window__glu 202 14 none]
+G c Z s s [gluerrorstring sf__window__glu 203 13 none]
+G c Z s s [gluerrorunicodestringext sf__window__glu 204 13 none]
+G c Z s s [glugetnurbsproperty sf__window__glu 205 14 none]
+G c Z s s [glugetstring sf__window__glu 206 13 none]
+G c Z s s [glugettessproperty sf__window__glu 207 14 none]
+G c Z s s [gluloadsamplingmatrices sf__window__glu 208 14 none]
+G c Z s s [glulookat sf__window__glu 213 14 none]
+G c Z s s [glunewnurbsrenderer sf__window__glu 223 13 none]
+G c Z s s [glunewquadric sf__window__glu 224 13 none]
+G c Z s s [glunewtess sf__window__glu 225 13 none]
+G c Z s s [glunextcontour sf__window__glu 226 14 none]
+G c Z s s [glunurbscallback sf__window__glu 227 14 none]
+G c Z s s [glunurbscurve sf__window__glu 228 14 none]
+G c Z s s [glunurbsproperty sf__window__glu 236 14 none]
+G c Z s s [glunurbssurface sf__window__glu 237 14 none]
+G c Z s s [gluortho2d sf__window__glu 249 14 none]
+G c Z s s [glupartialdisk sf__window__glu 254 14 none]
+G c Z s s [gluperspective sf__window__glu 262 14 none]
+G c Z s s [glupickmatrix sf__window__glu 267 14 none]
+G c Z s s [gluproject sf__window__glu 273 13 none]
+G c Z s s [glupwlcurve sf__window__glu 284 14 none]
+G c Z s s [gluquadriccallback sf__window__glu 290 14 none]
+G c Z s s [gluquadricdrawstyle sf__window__glu 291 14 none]
+G c Z s s [gluquadricnormals sf__window__glu 292 14 none]
+G c Z s s [gluquadricorientation sf__window__glu 293 14 none]
+G c Z s s [gluquadrictexture sf__window__glu 294 14 none]
+G c Z s s [gluscaleimage sf__window__glu 295 13 none]
+G c Z s s [glusphere sf__window__glu 306 14 none]
+G c Z s s [glutessbegincontour sf__window__glu 311 14 none]
+G c Z s s [glutessbeginpolygon sf__window__glu 312 14 none]
+G c Z s s [glutesscallback sf__window__glu 313 14 none]
+G c Z s s [glutessendcontour sf__window__glu 314 14 none]
+G c Z s s [glutessendpolygon sf__window__glu 315 14 none]
+G c Z s s [glutessnormal sf__window__glu 316 14 none]
+G c Z s s [glutessproperty sf__window__glu 321 14 none]
+G c Z s s [glutessvertex sf__window__glu 322 14 none]
+G c Z s s [gluunproject sf__window__glu 323 13 none]
+G c Z s s [gluunproject4 sf__window__glu 334 13 none]
+X 17 sf.ads
+39K9*Sf 128e7 20|28r6 30r9 31r8 406r5
+X 18 sf-window.ads
+26K12*Window 17|39k9 18|48e14 20|28r9 30r12 31r11 406r8
+X 19 sf-window-gl.ads
+25K19*GL 2182e17 20|28w16 31r18
+30M9*GLuint
+31P9*GLuint_Ptr(30M9) 20|204r62
+32M9*GLenum 20|43r46 44r46 45r46 46r46 47r46 48r46 49r46 50r46 51r46 52r46
+. 53r46 54r46 55r46 56r46 57r46 58r46 59r46 60r46 61r46 62r46 63r46 64r46
+. 65r46 66r46 67r46 68r46 69r46 70r46 71r46 72r46 73r46 74r46 75r46 76r46
+. 77r46 78r46 79r46 80r46 81r46 82r46 83r46 84r46 85r46 86r46 87r46 88r46
+. 89r46 90r46 91r46 92r46 93r46 94r46 95r46 96r46 97r46 98r46 99r46 100r46
+. 101r46 102r46 103r46 104r46 105r46 106r46 107r46 108r46 109r46 110r46 111r46
+. 112r46 113r46 114r46 115r46 116r46 117r46 118r46 119r46 120r46 121r46 122r46
+. 123r46 124r46 125r46 126r46 127r46 128r46 129r46 130r46 131r46 132r46 133r46
+. 134r46 135r46 136r46 137r46 138r46 139r46 140r46 141r46 142r46 143r46 144r46
+. 145r46 146r46 147r46 148r46 149r46 150r46 151r46 152r46 153r46 154r46 155r46
+. 156r46 157r46 157r59 167r24 170r24 171r24 175r24 179r24 180r24 203r37 204r47
+. 205r65 206r34 207r61 226r58 227r59 235r19 236r62 248r20 289r16 290r61 291r61
+. 292r61 293r70 296r17 299r17 303r17 313r58 321r58
+34M9*GLboolean 20|41r46 42r46 294r62
+36R9*GLvoid
+37P9*GLvoid_Ptr(36R9) 20|162r36 163r38 164r38 165r35 172r24 181r24 184r16
+. 190r45 191r39 192r36 194r16 199r34 200r36 201r36 202r33 205r42 207r41 209r21
+. 223r40 224r34 225r31 226r37 227r39 229r19 236r39 238r20 255r16 285r16 290r41
+. 291r42 292r40 293r44 294r40 300r17 304r17 307r16 311r42 312r42 312r61 313r38
+. 314r40 315r40 317r16 321r38 322r36 322r83
+41I9*GLint<integer> 20|168r24 173r23 176r24 182r23 188r16 189r16 197r16 198r16
+. 212r28 230r19 232r19 234r19 239r20 241r20 243r20 244r20 246r20 247r20 258r16
+. 259r16 272r25 279r22 283r14 286r16 288r16 305r16 309r16 310r16 329r22 333r14
+. 341r24 348r16
+42M9*GLubyte
+44P9*GLubyte_Ptr(42M9) 20|203r52 206r49
+46I9*GLsizei<integer> 20|169r24 177r24 178r24 297r17 298r17 301r17 302r17
+47F9*GLfloat<float> 20|205r87 210r28 211r28 231r26 233r26 236r78 240r27 242r27
+. 245r27 287r23
+49F9*GLdouble<long_float> 20|185r16 186r16 187r16 195r16 196r16 207r83 214r17
+. 215r17 216r17 217r17 218r17 219r17 220r17 221r17 222r17 250r16 251r16 252r16
+. 253r16 256r16 257r16 260r16 261r16 263r16 264r16 265r16 266r16 268r18 269r18
+. 270r18 271r18 274r15 275r15 276r15 277r22 278r22 280r22 281r22 282r22 308r16
+. 318r16 319r16 320r16 321r73 322r66 324r15 325r15 326r15 327r22 328r22 330r22
+. 331r22 332r22 335r17 336r17 337r17 338r17 339r24 340r24 342r17 343r17 344r24
+. 345r24 346r24 347r24
+X 20 sf-window-glu.ads
+30K19*GLU 18|26k12 20|352E43 406l15 406e18
+36P9*u_GLUfuncptr 227r82 290r84 313r81
+41m4*GLU_FALSE{19|34M9}
+42m4*GLU_TRUE{19|34M9}
+43m4*GLU_VERSION_1_1{19|32M9}
+44m4*GLU_VERSION_1_2{19|32M9}
+45m4*GLU_VERSION{19|32M9}
+46m4*GLU_EXTENSIONS{19|32M9}
+47m4*GLU_INVALID_ENUM{19|32M9}
+48m4*GLU_INVALID_VALUE{19|32M9}
+49m4*GLU_OUT_OF_MEMORY{19|32M9}
+50m4*GLU_INVALID_OPERATION{19|32M9}
+51m4*GLU_OUTLINE_POLYGON{19|32M9}
+52m4*GLU_OUTLINE_PATCH{19|32M9}
+53m4*GLU_NURBS_ERROR1{19|32M9}
+54m4*GLU_NURBS_ERROR2{19|32M9}
+55m4*GLU_NURBS_ERROR3{19|32M9}
+56m4*GLU_NURBS_ERROR4{19|32M9}
+57m4*GLU_NURBS_ERROR5{19|32M9}
+58m4*GLU_NURBS_ERROR6{19|32M9}
+59m4*GLU_NURBS_ERROR7{19|32M9}
+60m4*GLU_NURBS_ERROR8{19|32M9}
+61m4*GLU_NURBS_ERROR9{19|32M9}
+62m4*GLU_NURBS_ERROR10{19|32M9}
+63m4*GLU_NURBS_ERROR11{19|32M9}
+64m4*GLU_NURBS_ERROR12{19|32M9}
+65m4*GLU_NURBS_ERROR13{19|32M9}
+66m4*GLU_NURBS_ERROR14{19|32M9}
+67m4*GLU_NURBS_ERROR15{19|32M9}
+68m4*GLU_NURBS_ERROR16{19|32M9}
+69m4*GLU_NURBS_ERROR17{19|32M9}
+70m4*GLU_NURBS_ERROR18{19|32M9}
+71m4*GLU_NURBS_ERROR19{19|32M9}
+72m4*GLU_NURBS_ERROR20{19|32M9}
+73m4*GLU_NURBS_ERROR21{19|32M9}
+74m4*GLU_NURBS_ERROR22{19|32M9}
+75m4*GLU_NURBS_ERROR23{19|32M9}
+76m4*GLU_NURBS_ERROR24{19|32M9}
+77m4*GLU_NURBS_ERROR25{19|32M9}
+78m4*GLU_NURBS_ERROR26{19|32M9}
+79m4*GLU_NURBS_ERROR27{19|32M9}
+80m4*GLU_NURBS_ERROR28{19|32M9}
+81m4*GLU_NURBS_ERROR29{19|32M9}
+82m4*GLU_NURBS_ERROR30{19|32M9}
+83m4*GLU_NURBS_ERROR31{19|32M9}
+84m4*GLU_NURBS_ERROR32{19|32M9}
+85m4*GLU_NURBS_ERROR33{19|32M9}
+86m4*GLU_NURBS_ERROR34{19|32M9}
+87m4*GLU_NURBS_ERROR35{19|32M9}
+88m4*GLU_NURBS_ERROR36{19|32M9}
+89m4*GLU_NURBS_ERROR37{19|32M9}
+90m4*GLU_AUTO_LOAD_MATRIX{19|32M9}
+91m4*GLU_CULLING{19|32M9}
+92m4*GLU_SAMPLING_TOLERANCE{19|32M9}
+93m4*GLU_DISPLAY_MODE{19|32M9}
+94m4*GLU_PARAMETRIC_TOLERANCE{19|32M9}
+95m4*GLU_SAMPLING_METHOD{19|32M9}
+96m4*GLU_U_STEP{19|32M9}
+97m4*GLU_V_STEP{19|32M9}
+98m4*GLU_PATH_LENGTH{19|32M9}
+99m4*GLU_PARAMETRIC_ERROR{19|32M9}
+100m4*GLU_DOMAIN_DISTANCE{19|32M9}
+101m4*GLU_MAP1_TRIM_2{19|32M9}
+102m4*GLU_MAP1_TRIM_3{19|32M9}
+103m4*GLU_POINT{19|32M9}
+104m4*GLU_LINE{19|32M9}
+105m4*GLU_FILL{19|32M9}
+106m4*GLU_SILHOUETTE{19|32M9}
+107m4*GLU_ERROR{19|32M9}
+108m4*GLU_SMOOTH{19|32M9}
+109m4*GLU_FLAT{19|32M9}
+110m4*GLU_NONE{19|32M9}
+111m4*GLU_OUTSIDE{19|32M9}
+112m4*GLU_INSIDE{19|32M9}
+113m4*GLU_TESS_BEGIN{19|32M9}
+114m4*GLU_BEGIN{19|32M9}
+115m4*GLU_TESS_VERTEX{19|32M9}
+116m4*GLU_VERTEX{19|32M9}
+117m4*GLU_TESS_END{19|32M9}
+118m4*GLU_END{19|32M9}
+119m4*GLU_TESS_ERROR{19|32M9}
+120m4*GLU_TESS_EDGE_FLAG{19|32M9}
+121m4*GLU_EDGE_FLAG{19|32M9}
+122m4*GLU_TESS_COMBINE{19|32M9}
+123m4*GLU_TESS_BEGIN_DATA{19|32M9}
+124m4*GLU_TESS_VERTEX_DATA{19|32M9}
+125m4*GLU_TESS_END_DATA{19|32M9}
+126m4*GLU_TESS_ERROR_DATA{19|32M9}
+127m4*GLU_TESS_EDGE_FLAG_DATA{19|32M9}
+128m4*GLU_TESS_COMBINE_DATA{19|32M9}
+129m4*GLU_CW{19|32M9}
+130m4*GLU_CCW{19|32M9}
+131m4*GLU_INTERIOR{19|32M9}
+132m4*GLU_EXTERIOR{19|32M9}
+133m4*GLU_UNKNOWN{19|32M9}
+134m4*GLU_TESS_WINDING_RULE{19|32M9}
+135m4*GLU_TESS_BOUNDARY_ONLY{19|32M9}
+136m4*GLU_TESS_TOLERANCE{19|32M9}
+137m4*GLU_TESS_ERROR1{19|32M9}
+138m4*GLU_TESS_ERROR2{19|32M9}
+139m4*GLU_TESS_ERROR3{19|32M9}
+140m4*GLU_TESS_ERROR4{19|32M9}
+141m4*GLU_TESS_ERROR5{19|32M9}
+142m4*GLU_TESS_ERROR6{19|32M9}
+143m4*GLU_TESS_ERROR7{19|32M9}
+144m4*GLU_TESS_ERROR8{19|32M9}
+145m4*GLU_TESS_MISSING_BEGIN_POLYGON{19|32M9}
+146m4*GLU_TESS_MISSING_BEGIN_CONTOUR{19|32M9}
+147m4*GLU_TESS_MISSING_END_POLYGON{19|32M9}
+148m4*GLU_TESS_MISSING_END_CONTOUR{19|32M9}
+149m4*GLU_TESS_COORD_TOO_LARGE{19|32M9}
+150m4*GLU_TESS_NEED_COMBINE_CALLBACK{19|32M9}
+151m4*GLU_TESS_WINDING_ODD{19|32M9}
+152m4*GLU_TESS_WINDING_NONZERO{19|32M9}
+153m4*GLU_TESS_WINDING_POSITIVE{19|32M9}
+154m4*GLU_TESS_WINDING_NEGATIVE{19|32M9}
+155m4*GLU_TESS_WINDING_ABS_GEQ_TWO{19|32M9}
+156m4*GLU_INCOMPATIBLE_GL_VERSION{19|32M9}
+157m4*GLU_TESS_MAX_COORD{19|32M9}
+162U14*gluBeginCurve 162>29 352b28
+162p29 nurb{19|37P9}
+163U14*gluBeginPolygon 163>31 353b28
+163p31 tess{19|37P9}
+164U14*gluBeginSurface 164>31 354b28
+164p31 nurb{19|37P9}
+165U14*gluBeginTrim 165>28 355b28
+165p28 nurb{19|37P9}
+166V13*gluBuild1DMipmaps{19|41I9} 167>7 168>7 169>7 170>7 171>7 172>7 356b28
+167m7 target{19|32M9}
+168i7 internalFormat{19|41I9}
+169i7 width{19|46I9}
+170m7 format{19|32M9}
+171m7 c_type{19|32M9}
+172p7 data{19|37P9}
+174V13*gluBuild2DMipmaps{19|41I9} 175>7 176>7 177>7 178>7 179>7 180>7 181>7
+. 357b28
+175m7 target{19|32M9}
+176i7 internalFormat{19|41I9}
+177i7 width{19|46I9}
+178i7 height{19|46I9}
+179m7 format{19|32M9}
+180m7 c_type{19|32M9}
+181p7 data{19|37P9}
+183U14*gluCylinder 184>7 185>7 186>7 187>7 188>7 189>7 358b28
+184p7 quad{19|37P9}
+185f7 base{19|49F9}
+186f7 top{19|49F9}
+187f7 height{19|49F9}
+188i7 slices{19|41I9}
+189i7 stacks{19|41I9}
+190U14*gluDeleteNurbsRenderer 190>38 359b28
+190p38 nurb{19|37P9}
+191U14*gluDeleteQuadric 191>32 360b28
+191p32 quad{19|37P9}
+192U14*gluDeleteTess 192>29 361b28
+192p29 tess{19|37P9}
+193U14*gluDisk 194>7 195>7 196>7 197>7 198>7 362b28
+194p7 quad{19|37P9}
+195f7 inner{19|49F9}
+196f7 outer{19|49F9}
+197i7 slices{19|41I9}
+198i7 loops{19|41I9}
+199U14*gluEndCurve 199>27 363b28
+199p27 nurb{19|37P9}
+200U14*gluEndPolygon 200>29 364b28
+200p29 tess{19|37P9}
+201U14*gluEndSurface 201>29 365b28
+201p29 nurb{19|37P9}
+202U14*gluEndTrim 202>26 366b28
+202p26 nurb{19|37P9}
+203V13*gluErrorString{19|44P9} 203>29 367b28
+203m29 error{19|32M9}
+204V13*gluErrorUnicodeStringEXT{19|31P9} 204>39 368b28
+204m39 error{19|32M9}
+205U14*gluGetNurbsProperty 205>35 205>54 205^73 369b28
+205p35 nurb{19|37P9}
+205m54 property{19|32M9}
+205p73 data(19|47F9)
+206V13*gluGetString{19|44P9} 206>27 370b28
+206m27 name{19|32M9}
+207U14*gluGetTessProperty 207>34 207>53 207^69 371b28
+207p34 tess{19|37P9}
+207m53 which{19|32M9}
+207p69 data(19|49F9)
+208U14*gluLoadSamplingMatrices 209>7 210^7 211^7 212^7 372b28
+209p7 nurb{19|37P9}
+210p7 model(19|47F9)
+211p7 perspective(19|47F9)
+212p7 view(19|41I9)
+213U14*gluLookAt 214>7 215>7 216>7 217>7 218>7 219>7 220>7 221>7 222>7 373b28
+214f7 eyeX{19|49F9}
+215f7 eyeY{19|49F9}
+216f7 eyeZ{19|49F9}
+217f7 centerX{19|49F9}
+218f7 centerY{19|49F9}
+219f7 centerZ{19|49F9}
+220f7 upX{19|49F9}
+221f7 upY{19|49F9}
+222f7 upZ{19|49F9}
+223V13*gluNewNurbsRenderer{19|37P9} 374b28
+224V13*gluNewQuadric{19|37P9} 375b28
+225V13*gluNewTess{19|37P9} 376b28
+226U14*gluNextContour 226>30 226>49 377b28
+226p30 tess{19|37P9}
+226m49 c_type{19|32M9}
+227U14*gluNurbsCallback 227>32 227>51 227>67 378b28
+227p32 nurb{19|37P9}
+227m51 which{19|32M9}
+227p67 CallBackFunc{36P9}
+228U14*gluNurbsCurve 229>7 230>7 231^7 232>7 233^7 234>7 235>7 379b28
+229p7 nurb{19|37P9}
+230i7 knotCount{19|41I9}
+231p7 knots(19|47F9)
+232i7 stride{19|41I9}
+233p7 control(19|47F9)
+234i7 order{19|41I9}
+235m7 c_type{19|32M9}
+236U14*gluNurbsProperty 236>32 236>51 236>70 380b28
+236p32 nurb{19|37P9}
+236m51 property{19|32M9}
+236f70 value{19|47F9}
+237U14*gluNurbsSurface 238>7 239>7 240^7 241>7 242^7 243>7 244>7 245^7 246>7
+. 247>7 248>7 381b28
+238p7 nurb{19|37P9}
+239i7 sKnotCount{19|41I9}
+240p7 sKnots(19|47F9)
+241i7 tKnotCount{19|41I9}
+242p7 tKnots(19|47F9)
+243i7 sStride{19|41I9}
+244i7 tStride{19|41I9}
+245p7 control(19|47F9)
+246i7 sOrder{19|41I9}
+247i7 tOrder{19|41I9}
+248m7 c_type{19|32M9}
+249U14*gluOrtho2D 250>7 251>7 252>7 253>7 382b28
+250f7 left{19|49F9}
+251f7 right{19|49F9}
+252f7 bottom{19|49F9}
+253f7 top{19|49F9}
+254U14*gluPartialDisk 255>7 256>7 257>7 258>7 259>7 260>7 261>7 383b28
+255p7 quad{19|37P9}
+256f7 inner{19|49F9}
+257f7 outer{19|49F9}
+258i7 slices{19|41I9}
+259i7 loops{19|41I9}
+260f7 start{19|49F9}
+261f7 sweep{19|49F9}
+262U14*gluPerspective 263>7 264>7 265>7 266>7 384b28
+263f7 fovy{19|49F9}
+264f7 aspect{19|49F9}
+265f7 zNear{19|49F9}
+266f7 zFar{19|49F9}
+267U14*gluPickMatrix 268>7 269>7 270>7 271>7 272^7 385b28
+268f7 x{19|49F9}
+269f7 y{19|49F9}
+270f7 delX{19|49F9}
+271f7 delY{19|49F9}
+272p7 viewport(19|41I9)
+273V13*gluProject{19|41I9} 274>7 275>7 276>7 277^7 278^7 279^7 280^7 281^7
+. 282^7 386b28
+274f7 objX{19|49F9}
+275f7 objY{19|49F9}
+276f7 objZ{19|49F9}
+277p7 model(19|49F9)
+278p7 proj(19|49F9)
+279p7 view(19|41I9)
+280p7 winX(19|49F9)
+281p7 winY(19|49F9)
+282p7 winZ(19|49F9)
+284U14*gluPwlCurve 285>7 286>7 287^7 288>7 289>7 387b28
+285p7 nurb{19|37P9}
+286i7 count{19|41I9}
+287p7 data(19|47F9)
+288i7 stride{19|41I9}
+289m7 c_type{19|32M9}
+290U14*gluQuadricCallback 290>34 290>53 290>69 388b28
+290p34 quad{19|37P9}
+290m53 which{19|32M9}
+290p69 CallBackFunc{36P9}
+291U14*gluQuadricDrawStyle 291>35 291>54 389b28
+291p35 quad{19|37P9}
+291m54 draw{19|32M9}
+292U14*gluQuadricNormals 292>33 292>52 390b28
+292p33 quad{19|37P9}
+292m52 normal{19|32M9}
+293U14*gluQuadricOrientation 293>37 293>56 391b28
+293p37 quad{19|37P9}
+293m56 orientation{19|32M9}
+294U14*gluQuadricTexture 294>33 294>52 392b28
+294p33 quad{19|37P9}
+294m52 texture{19|34M9}
+295V13*gluScaleImage{19|41I9} 296>7 297>7 298>7 299>7 300>7 301>7 302>7 303>7
+. 304>7 393b28
+296m7 format{19|32M9}
+297i7 wIn{19|46I9}
+298i7 hIn{19|46I9}
+299m7 typeIn{19|32M9}
+300p7 dataIn{19|37P9}
+301i7 wOut{19|46I9}
+302i7 hOut{19|46I9}
+303m7 typeOut{19|32M9}
+304p7 dataOut{19|37P9}
+306U14*gluSphere 307>7 308>7 309>7 310>7 394b28
+307p7 quad{19|37P9}
+308f7 radius{19|49F9}
+309i7 slices{19|41I9}
+310i7 stacks{19|41I9}
+311U14*gluTessBeginContour 311>35 395b28
+311p35 tess{19|37P9}
+312U14*gluTessBeginPolygon 312>35 312>54 396b28
+312p35 tess{19|37P9}
+312p54 data{19|37P9}
+313U14*gluTessCallback 313>31 313>50 313>66 397b28
+313p31 tess{19|37P9}
+313m50 which{19|32M9}
+313p66 CallBackFunc{36P9}
+314U14*gluTessEndContour 314>33 398b28
+314p33 tess{19|37P9}
+315U14*gluTessEndPolygon 315>33 399b28
+315p33 tess{19|37P9}
+316U14*gluTessNormal 317>7 318>7 319>7 320>7 400b28
+317p7 tess{19|37P9}
+318f7 valueX{19|49F9}
+319f7 valueY{19|49F9}
+320f7 valueZ{19|49F9}
+321U14*gluTessProperty 321>31 321>50 321>66 401b28
+321p31 tess{19|37P9}
+321m50 which{19|32M9}
+321f66 data{19|49F9}
+322U14*gluTessVertex 322>29 322^48 322>76 402b28
+322p29 tess{19|37P9}
+322p48 location(19|49F9)
+322p76 data{19|37P9}
+323V13*gluUnProject{19|41I9} 324>7 325>7 326>7 327^7 328^7 329^7 330^7 331^7
+. 332^7 403b28
+324f7 winX{19|49F9}
+325f7 winY{19|49F9}
+326f7 winZ{19|49F9}
+327p7 model(19|49F9)
+328p7 proj(19|49F9)
+329p7 view(19|41I9)
+330p7 objX(19|49F9)
+331p7 objY(19|49F9)
+332p7 objZ(19|49F9)
+334V13*gluUnProject4{19|41I9} 335>7 336>7 337>7 338>7 339^7 340^7 341^7 342>7
+. 343>7 344^7 345^7 346^7 347^7 404b28
+335f7 winX{19|49F9}
+336f7 winY{19|49F9}
+337f7 winZ{19|49F9}
+338f7 clipW{19|49F9}
+339p7 model(19|49F9)
+340p7 proj(19|49F9)
+341p7 view(19|41I9)
+342f7 nearVal{19|49F9}
+343f7 farVal{19|49F9}
+344p7 objX(19|49F9)
+345p7 objY(19|49F9)
+346p7 objZ(19|49F9)
+347p7 objW(19|49F9)
+

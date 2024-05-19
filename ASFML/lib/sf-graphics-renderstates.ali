@@ -1,0 +1,103 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.graphics.renderstates%s  sf-graphics-renderstates.ads  8aa291cb NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.graphics%s		sf-graphics.ads		sf-graphics.ali
+W sf.graphics.blendmode%s  sf-graphics-blendmode.ads  sf-graphics-blendmode.ali
+W sf.graphics.transform%s  sf-graphics-transform.ads  sf-graphics-transform.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-graphics.ads	20220818093223 ac713dd8 sf.graphics%s
+D sf-graphics-blendmode.ads  20230929172031 22fbb8f0 sf.graphics.blendmode%s
+D sf-graphics-rect.ads	20220818093223 73657927 sf.graphics.rect%s
+D sf-graphics-renderstates.ads  20230929172031 c5489388 sf.graphics.renderstates%s
+D sf-graphics-transform.ads  20220818093223 c160876b sf.graphics.transform%s
+D sf-system.ads		20220818093223 1a66005a sf.system%s
+D sf-system-vector2.ads	20220818093223 ae51255e sf.system.vector2%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [create sf__graphics__renderstates 55 13 none]
+G c Z s s [default sf__graphics__renderstates 78 13 none]
+G c Z s s [sfrenderstatesIP sf__graphics__renderstates 29 9 none]
+X 17 sf.ads
+39K9*Sf 128e7 21|20r6 21r6 23r9 30r27 30r64 32r27 32r64 56r19 56r56 57r19
+. 57r56 84r5
+X 18 sf-graphics.ads
+26K12*Graphics 17|39k9 18|112e16 21|20r9 21r9 23r12 30r30 30r67 32r30 32r67
+. 56r22 56r59 57r22 57r59 84r8
+40R9*sfShader
+41P9*sfShader_Ptr(40R9) 21|36r16 59r16
+61R9*sfTexture
+62P9*sfTexture_Ptr(61R9) 21|34r17 58r17
+X 19 sf-graphics-blendmode.ads
+19K21*BlendMode 85e26 21|20w18 30r39 30r76 56r31 56r68
+54R9*sfBlendMode 61e14 21|30r49 56r41
+65r4*sfBlendAlpha{54R9} 21|30r86 56r78
+X 21 sf-graphics-renderstates.ads
+23K21*RenderStates 18|26k12 21|29E9 84l17 84e29
+29R9*sfRenderStates 38e14 39r42 59r45 78r28 81r39
+30r7*blendMode{19|54R9} 60m10
+32r7*transform{22|28R9} 61m10
+34p7*texture{18|62P9} 62m10
+36p7*shader{18|41P9} 63m10
+39P9*sfRenderStates_Ptr(29R9) 82r26
+55V13*create{29R9} 56>7 57>7 58>7 59>7 78s47
+56r7 blendMode{19|54R9} 60r23
+57r7 transform{22|28R9} 61r23
+58p7 texture{18|62P9} 62r21
+59p7 shader{18|41P9} 63r20
+78V13*default{29R9}
+X 22 sf-graphics-transform.ads
+21K21*Transform 21|21w18 32r39 32r76 57r31 57r68 22|247e26
+28R9*sfTransform 21|32r49 57r41 22|30e14
+37r4*Identity{28R9} 21|32r86 57r78
+

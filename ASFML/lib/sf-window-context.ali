@@ -1,0 +1,103 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.window.context%s	sf-window-context.ads	4574e378 NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.window%s		sf-window.ads		sf-window.ali
+W sf.window.window%s	sf-window-window.adb	sf-window-window.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D i-cstrin.ads		20230727081304 f40c8db4 interfaces.c.strings%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-system.ads		20220818093223 1a66005a sf.system%s
+D sf-system-vector2.ads	20220818093223 ae51255e sf.system.vector2%s
+D sf-system-vector3.ads	20220818093223 a831ffaf sf.system.vector3%s
+D sf-window.ads		20220818093223 ffbfbe11 sf.window%s
+D sf-window-context.ads	20220818093223 8db8c416 sf.window.context%s
+D sf-window-event.ads	20230929172031 7c6ce7de sf.window.event%s
+D sf-window-joystick.ads  20230929172031 0cefb492 sf.window.joystick%s
+D sf-window-joystickidentification.ads  20220818093223 393c0ec5 sf.window.joystickidentification%s
+D sf-window-keyboard.ads  20230929172031 711fb87f sf.window.keyboard%s
+D sf-window-mouse.ads	20230929172031 8666682b sf.window.mouse%s
+D sf-window-sensor.ads	20230929172031 a3e91619 sf.window.sensor%s
+D sf-window-videomode.ads  20230929172031 21d0ed42 sf.window.videomode%s
+D sf-window-window.ads	20230929172031 3773997f sf.window.window%s
+D sf-window-windowhandle.ads  20220818093223 29f159ca sf.window.windowhandle%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [create sf__window__context 37 13 none]
+G c Z s s [destroy sf__window__context 45 14 none]
+G c Z s s [setactive sf__window__context 56 13 none]
+G c Z s s [getsettings sf__window__context 68 13 none]
+G c Z s s [getactivecontextid sf__window__context 79 13 none]
+X 14 interfac.ads
+83M9*Unsigned_64
+X 18 sf.ads
+39K9*Sf 128e7 23|20r6 22r9 68r58 90r5
+52B9*sfBool<boolean> 23|56r58 56r73
+103M9*sfUint64<14|83M9> 23|79r39
+X 22 sf-window.ads
+26K12*Window 18|39k9 22|48e14 23|20r9 22r12 68r61 90r8
+28R9*sfContext
+29P9*sfContext_Ptr(28R9) 23|37r27 45r33 56r34 68r36
+X 23 sf-window-context.ads
+22K19*Context 22|26k12 23|83E30 90l15 90e22
+37V13*create{22|29P9} 83b<c,sfContext_create>22
+45U14*destroy 45>23 84b<c,sfContext_destroy>22
+45p23 context{22|29P9}
+56V13*setActive{18|52E9} 56>24 56>49 85b<c,sfContext_setActive>22
+56p24 context{22|29P9}
+56b49 active{18|52E9}
+68V13*getSettings{31|60R9} 68>26 86b<c,sfContext_getSettings>22
+68p26 context{22|29P9}
+79V13*getActiveContextId{18|103M9} 87b<c,sfContext_getActiveContextId>22
+X 31 sf-window-window.ads
+23K19*Window 23|20w16 68r68 31|549e21
+60R9*sfContextSettings 23|68r75 31|68e14
+

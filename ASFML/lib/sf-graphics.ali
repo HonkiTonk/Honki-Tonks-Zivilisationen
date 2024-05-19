@@ -1,0 +1,114 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.graphics%s		sf-graphics.ads		09c9f886 NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-graphics.ads	20220818093223 ac713dd8 sf.graphics%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [sfcircleshapeIP sf__graphics 28 9 none]
+G c Z s s [sfconvexshapeIP sf__graphics 31 9 none]
+G c Z s s [sffontIP sf__graphics 34 9 none]
+G c Z s s [sfimageIP sf__graphics 37 9 none]
+G c Z s s [sfshaderIP sf__graphics 40 9 none]
+G c Z s s [sfrectangleshapeIP sf__graphics 43 9 none]
+G c Z s s [sfrendertextureIP sf__graphics 46 9 none]
+G c Z s s [sfrenderwindowIP sf__graphics 49 9 none]
+G c Z s s [sfshapeIP sf__graphics 52 9 none]
+G c Z s s [sfspriteIP sf__graphics 55 9 none]
+G c Z s s [sftextIP sf__graphics 58 9 none]
+G c Z s s [sftextureIP sf__graphics 61 9 none]
+G c Z s s [sftransformableIP sf__graphics 64 9 none]
+G c Z s s [sfvertexIP sf__graphics 67 9 none]
+G c Z s s [sfvertexarrayIP sf__graphics 70 9 none]
+G c Z s s [sfvertexbufferIP sf__graphics 73 9 none]
+G c Z s s [sfviewIP sf__graphics 76 9 none]
+X 17 sf.ads
+39K9*Sf 128e7 18|26r9 112r5
+X 18 sf-graphics.ads
+26K12*Graphics 17|39k9 18|28E9 112l8 112e16
+28R9*sfCircleShape 29r41 81r26
+29P9*sfCircleShape_Ptr(28R9) 82r26
+31R9*sfConvexShape 32r41 83r26
+32P9*sfConvexShape_Ptr(31R9) 84r26
+34R9*sfFont 35r34 85r26
+35P9*sfFont_Ptr(34R9) 86r26
+37R9*sfImage 38r35 87r26
+38P9*sfImage_Ptr(37R9) 88r26
+40R9*sfShader 41r36 89r26
+41P9*sfShader_Ptr(40R9) 90r26
+43R9*sfRectangleShape 44r44 91r26
+44P9*sfRectangleShape_Ptr(43R9) 92r26
+46R9*sfRenderTexture 47r43 93r26
+47P9*sfRenderTexture_Ptr(46R9) 94r26
+49R9*sfRenderWindow 50r42 95r26
+50P9*sfRenderWindow_Ptr(49R9) 96r26
+52R9*sfShape 53r35 97r26
+53P9*sfShape_Ptr(52R9) 98r26
+55R9*sfSprite 56r36 99r26
+56P9*sfSprite_Ptr(55R9) 100r26
+58R9*sfText 59r34 101r26
+59P9*sfText_Ptr(58R9) 102r26
+61R9*sfTexture 62r37 103r26
+62P9*sfTexture_Ptr(61R9) 104r26
+64R9*sfTransformable 65r43 105r26
+65P9*sfTransformable_Ptr(64R9) 106r26
+67R9*sfVertex 68r36
+68P9*sfVertex_Ptr(67R9)
+70R9*sfVertexArray 71r41 107r26
+71P9*sfVertexArray_Ptr(70R9) 108r26
+73R9*sfVertexBuffer 74r42
+74P9*sfVertexBuffer_Ptr(73R9)
+76R9*sfView 77r34 109r26
+77P9*sfView_Ptr(76R9) 110r26
+

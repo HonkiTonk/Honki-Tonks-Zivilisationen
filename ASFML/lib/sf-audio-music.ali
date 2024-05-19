@@ -1,0 +1,231 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.audio.music%b	sf-audio-music.adb	f2a243a1 NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W interfaces%s		interfac.ads		interfac.ali
+W interfaces.c%s	i-c.adb			i-c.ali
+W interfaces.c.strings%s  i-cstrin.adb		i-cstrin.ali
+W sf.audio%s		sf-audio.ads		sf-audio.ali
+
+U sf.audio.music%s	sf-audio-music.ads	4c8a6cb5 EE NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.audio%s		sf-audio.ads		sf-audio.ali
+W sf.audio.soundstatus%s  sf-audio-soundstatus.ads  sf-audio-soundstatus.ali
+W sf.system%s		sf-system.ads		sf-system.ali
+W sf.system.inputstream%s  sf-system-inputstream.ads  sf-system-inputstream.ali
+W sf.system.time%s	sf-system-time.ads	sf-system-time.ali
+W sf.system.vector3%s	sf-system-vector3.ads	sf-system-vector3.ali
+W system%s		system.ads		system.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D i-cstrin.ads		20230727081304 f40c8db4 interfaces.c.strings%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-audio.ads		20220818093223 c2b1b593 sf.audio%s
+D sf-audio-music.ads	20230929172031 11198575 sf.audio.music%s
+D sf-audio-music.adb	20220818093223 17b74b60 sf.audio.music%b
+D sf-audio-soundstatus.ads  20220818093223 14879d8c sf.audio.soundstatus%s
+D sf-system.ads		20220818093223 1a66005a sf.system%s
+D sf-system-inputstream.ads  20230929172031 a9b17ead sf.system.inputstream%s
+D sf-system-time.ads	20220818093223 c848ef65 sf.system.time%s
+D sf-system-vector3.ads	20220818093223 a831ffaf sf.system.vector3%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [createfromfile sf__audio__music 57 13 none]
+G c Z s s [createfrommemory sf__audio__music 74 13 none]
+G c Z s s [createfromstream sf__audio__music 90 13 none]
+G c Z s s [destroy sf__audio__music 99 14 none]
+G c Z s s [setloop sf__audio__music 113 14 none]
+G c Z s s [getloop sf__audio__music 123 13 none]
+G c Z s s [getduration sf__audio__music 133 13 none]
+G c Z s s [getlooppoints sf__audio__music 150 13 none]
+G c Z s s [setlooppoints sf__audio__music 172 14 none]
+G c Z s s [play sf__audio__music 186 14 none]
+G c Z s s [pause sf__audio__music 197 14 none]
+G c Z s s [stop sf__audio__music 209 14 none]
+G c Z s s [getchannelcount sf__audio__music 221 13 none]
+G c Z s s [getsamplerate sf__audio__music 234 13 none]
+G c Z s s [getstatus sf__audio__music 244 13 none]
+G c Z s s [getplayingoffset sf__audio__music 254 13 none]
+G c Z s s [setpitch sf__audio__music 269 14 none]
+G c Z s s [setvolume sf__audio__music 281 14 none]
+G c Z s s [setposition sf__audio__music 293 14 none]
+G c Z s s [setrelativetolistener sf__audio__music 308 14 none]
+G c Z s s [setmindistance sf__audio__music 324 14 none]
+G c Z s s [setattenuation sf__audio__music 342 14 none]
+G c Z s s [setplayingoffset sf__audio__music 354 14 none]
+G c Z s s [getpitch sf__audio__music 364 13 none]
+G c Z s s [getvolume sf__audio__music 374 13 none]
+G c Z s s [getposition sf__audio__music 384 13 none]
+G c Z s s [isrelativetolistener sf__audio__music 395 13 none]
+G c Z s s [getmindistance sf__audio__music 405 13 none]
+G c Z s s [getattenuation sf__audio__music 415 13 none]
+G c Z s s [sftimespanIP sf__audio__music 36 9 none]
+X 14 interfac.ads
+38K9*Interfaces 232e15 21|32r6 35r8
+X 15 i-c.ads
+29K20*C 597e17 21|32r17 35r19
+X 17 i-cstrin.ads
+44K22*Strings 156e25 21|32w19 35r21
+59P9*chars_ptr 21|46r37 48r14
+77V13*New_String{59P9} 21|48s27
+82U14*Free 21|51s7
+X 18 sf.ads
+39K9*Sf 128e7 20|22r6 24r6 25r6 26r6 28r9 37r24 39r24 90r47 133r54 244r52
+. 254r59 293r59 354r66 384r54 451r5 21|34r14 55r5
+52B9*sfBool<boolean> 20|113r53 123r50 308r69 395r63
+92M9*sfUint32 20|221r58 234r56
+108M9*sfSize_t 20|74r77
+X 19 sf-audio.ads
+32K12*Audio 18|39k9 19|62e13 20|25r9 28r12 244r55 451r8 21|34r17 55r8
+34R9*sfMusic
+35P9*sfMusic_Ptr(34R9) 20|57r55 74r94 91r45 99r31 113r31 123r30 133r34 150r36
+. 172r37 186r28 197r29 209r28 221r38 234r36 244r32 254r39 269r32 281r33 293r35
+. 308r45 324r38 342r38 354r40 364r31 374r32 384r34 395r43 405r37 415r37 21|45r55
+. 46r55 49r23
+X 20 sf-audio-music.ads
+28K18*Music 19|32k12 20|421E40 451l14 451e19 21|34b23 55l14 55t19
+36R9*sfTimeSpan 41e14 150r56 172r63 419r39
+37r7*offset{25|28R9}
+39r7*length{25|28R9}
+57V13*createFromFile{19|35P9} 57>29 21|45b13 53l8 53t22
+57a29 filename{string} 21|45b29 48r39
+74V13*createFromMemory{19|35P9} 74>31 74>63 421b<c,sfMusic_createFromMemory>22
+74m31 data{27|67M9}
+74m63 sizeInBytes{18|108M9}
+90V13*createFromStream{19|35P9} 90^31 422b<c,sfMusic_createFromStream>22
+90p31 stream(24|45R9)
+99U14*destroy 99>23 423b<c,sfMusic_destroy>22
+99p23 music{19|35P9}
+113U14*setLoop 113>23 113>44 424b<c,sfMusic_setLoop>22
+113p23 music{19|35P9}
+113b44 inLoop{18|52E9}
+123V13*getLoop{18|52E9} 123>22 425b<c,sfMusic_getLoop>22
+123p22 music{19|35P9}
+133V13*getDuration{25|28R9} 133>26 426b<c,sfMusic_getDuration>22
+133p26 music{19|35P9}
+150V13*getLoopPoints{36R9} 150>28 427b<c,sfMusic_getLoopPoints>22
+150p28 music{19|35P9}
+172U14*setLoopPoints 172>29 172>50 428b<c,sfMusic_setLoopPoints>22
+172p29 music{19|35P9}
+172r50 timePoints{36R9}
+186U14*play 186>20 429b<c,sfMusic_play>22
+186p20 music{19|35P9}
+197U14*pause 197>21 430b<c,sfMusic_pause>22
+197p21 music{19|35P9}
+209U14*stop 209>20 431b<c,sfMusic_stop>22
+209p20 music{19|35P9}
+221V13*getChannelCount{18|92M9} 221>30 432b<c,sfMusic_getChannelCount>22
+221p30 music{19|35P9}
+234V13*getSampleRate{18|92M9} 234>28 433b<c,sfMusic_getSampleRate>22
+234p28 music{19|35P9}
+244V13*getStatus{22|20E9} 244>24 434b<c,sfMusic_getStatus>22
+244p24 music{19|35P9}
+254V13*getPlayingOffset{25|28R9} 254>31 435b<c,sfMusic_getPlayingOffset>22
+254p31 music{19|35P9}
+269U14*setPitch 269>24 269>45 436b<c,sfMusic_setPitch>22
+269p24 music{19|35P9}
+269f45 pitch{float}
+281U14*setVolume 281>25 281>46 437b<c,sfMusic_setVolume>22
+281p25 music{19|35P9}
+281f46 volume{float}
+293U14*setPosition 293>27 293>48 438b<c,sfMusic_setPosition>22
+293p27 music{19|35P9}
+293r48 position{26|32R9}
+308U14*setRelativeToListener 308>37 308>58 439b<c,sfMusic_setRelativeToListener>22
+308p37 music{19|35P9}
+308b58 relative{18|52E9}
+324U14*setMinDistance 324>30 324>51 440b<c,sfMusic_setMinDistance>22
+324p30 music{19|35P9}
+324f51 distance{float}
+342U14*setAttenuation 342>30 342>51 441b<c,sfMusic_setAttenuation>22
+342p30 music{19|35P9}
+342f51 attenuation{float}
+354U14*setPlayingOffset 354>32 354>53 442b<c,sfMusic_setPlayingOffset>22
+354p32 music{19|35P9}
+354r53 timeOffset{25|28R9}
+364V13*getPitch{float} 364>23 443b<c,sfMusic_getPitch>22
+364p23 music{19|35P9}
+374V13*getVolume{float} 374>24 444b<c,sfMusic_getVolume>22
+374p24 music{19|35P9}
+384V13*getPosition{26|32R9} 384>26 445b<c,sfMusic_getPosition>22
+384p26 music{19|35P9}
+395V13*isRelativeToListener{18|52E9} 395>35 446b<c,sfMusic_isRelativeToListener>22
+395p35 music{19|35P9}
+405V13*getMinDistance{float} 405>29 447b<c,sfMusic_getMinDistance>22
+405p29 music{19|35P9}
+415V13*getAttenuation{float} 415>29 448b<c,sfMusic_getAttenuation>22
+415p29 music{19|35P9}
+X 21 sf-audio-music.adb
+46V16*Internal{19|35P9} 46>26 47b<c,sfMusic_createFromFile>25 49s38
+46p26 Filename{17|59P9}
+48p7 Temp{17|59P9} 49r48 51m13 51r13
+49p7 R{19|35P9} 52r14
+X 22 sf-audio-soundstatus.ads
+18K18*SoundStatus 20|25w15 244r61 22|30e25
+20E9*sfSoundStatus 20|244r73 22|24e7
+X 23 sf-system.ads
+28K12*System 20|22r9 24r9 26r9 37r27 39r27 90r50 133r57 254r62 293r62 354r69
+. 384r57 23|46e14
+X 24 sf-system-inputstream.ads
+22K19*InputStream 20|22w16 90r57 24|62e26
+45R9*sfInputStream 20|90r69 24|51e14
+X 25 sf-system-time.ads
+21K19*Time 20|24w16 37r34 39r34 133r64 254r69 354r76 25|109e19
+28R9*sfTime 20|37r39 39r39 133r69 254r74 354r81 25|30e14
+X 26 sf-system-vector3.ads
+21K19*Vector3 20|26w16 293r69 384r64 26|39e22
+32R9*sfVector3f 20|293r77 384r72 26|36e14
+X 27 system.ads
+37K9*System 20|20w6 74r47 27|153e11
+67M9*Address 20|74r54
+

@@ -1,0 +1,219 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.graphics.convexshape%s  sf-graphics-convexshape.ads  354a5602 NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.graphics%s		sf-graphics.ads		sf-graphics.ali
+W sf.graphics.color%s	sf-graphics-color.ads	sf-graphics-color.ali
+W sf.graphics.rect%s	sf-graphics-rect.ads	sf-graphics-rect.ali
+W sf.graphics.transform%s  sf-graphics-transform.ads  sf-graphics-transform.ali
+W sf.system%s		sf-system.ads		sf-system.ali
+W sf.system.vector2%s	sf-system-vector2.ads	sf-system-vector2.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-graphics.ads	20220818093223 ac713dd8 sf.graphics%s
+D sf-graphics-color.ads	20220818093223 9b199be3 sf.graphics.color%s
+D sf-graphics-convexshape.ads  20220818093223 1e762b2b sf.graphics.convexshape%s
+D sf-graphics-rect.ads	20220818093223 73657927 sf.graphics.rect%s
+D sf-graphics-transform.ads  20220818093223 c160876b sf.graphics.transform%s
+D sf-system.ads		20220818093223 1a66005a sf.system%s
+D sf-system-vector2.ads	20220818093223 ae51255e sf.system.vector2%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [create sf__graphics__convexshape 33 13 none]
+G c Z s s [copy sf__graphics__convexshape 43 13 none]
+G c Z s s [destroy sf__graphics__convexshape 51 14 none]
+G c Z s s [setposition sf__graphics__convexshape 64 14 none]
+G c Z s s [setrotation sf__graphics__convexshape 77 14 none]
+G c Z s s [setscale sf__graphics__convexshape 90 14 none]
+G c Z s s [setorigin sf__graphics__convexshape 106 14 none]
+G c Z s s [getposition sf__graphics__convexshape 116 13 none]
+G c Z s s [getrotation sf__graphics__convexshape 128 13 none]
+G c Z s s [getscale sf__graphics__convexshape 138 13 none]
+G c Z s s [getorigin sf__graphics__convexshape 148 13 none]
+G c Z s s [move sf__graphics__convexshape 160 14 none]
+G c Z s s [rotate sf__graphics__convexshape 172 14 none]
+G c Z s s [scale sf__graphics__convexshape 184 14 none]
+G c Z s s [gettransform sf__graphics__convexshape 194 13 none]
+G c Z s s [getinversetransform sf__graphics__convexshape 204 13 none]
+G c Z s s [settexture sf__graphics__convexshape 225 14 none]
+G c Z s s [settexturerect sf__graphics__convexshape 241 14 none]
+G c Z s s [setfillcolor sf__graphics__convexshape 257 14 none]
+G c Z s s [setoutlinecolor sf__graphics__convexshape 269 14 none]
+G c Z s s [setoutlinethickness sf__graphics__convexshape 282 14 none]
+G c Z s s [gettexture sf__graphics__convexshape 296 13 none]
+G c Z s s [gettexturerect sf__graphics__convexshape 306 13 none]
+G c Z s s [getfillcolor sf__graphics__convexshape 316 13 none]
+G c Z s s [getoutlinecolor sf__graphics__convexshape 326 13 none]
+G c Z s s [getoutlinethickness sf__graphics__convexshape 336 13 none]
+G c Z s s [getpointcount sf__graphics__convexshape 346 13 none]
+G c Z s s [getpoint sf__graphics__convexshape 359 13 none]
+G c Z s s [setpointcount sf__graphics__convexshape 370 14 none]
+G c Z s s [setpoint sf__graphics__convexshape 386 14 none]
+G c Z s s [getlocalbounds sf__graphics__convexshape 405 13 none]
+G c Z s s [getglobalbounds sf__graphics__convexshape 421 13 none]
+X 17 sf.ads
+39K9*Sf 128e7 20|20r6 21r6 22r6 23r6 25r9 64r65 90r59 106r61 116r60 138r57
+. 148r58 160r56 184r58 194r61 204r68 241r64 257r63 269r66 306r63 316r61 326r64
+. 359r75 389r15 405r63 421r64 458r5
+52B9*sfBool<boolean> 20|228r19
+108M9*sfSize_t 20|346r62 359r58 370r64 388r15
+X 18 sf-graphics.ads
+26K12*Graphics 17|39k9 18|112e16 20|21r9 22r9 23r9 25r12 194r64 204r71 241r67
+. 257r66 269r69 306r66 316r64 326r67 405r66 421r67 458r8
+31R9*sfConvexShape
+32P9*sfConvexShape_Ptr(31R9) 20|33r27 43r27 43r53 51r31 64r35 77r35 90r32
+. 106r33 116r34 128r34 138r31 148r32 160r28 172r30 184r29 194r35 204r42 226r15
+. 227r17 241r38 257r36 269r39 282r43 296r33 306r37 316r35 326r38 336r42 346r36
+. 359r31 370r37 387r15 405r37 421r38
+61R9*sfTexture
+62P9*sfTexture_Ptr(61R9) 20|296r59
+X 19 sf-graphics-color.ads
+23K21*Color 149e22 20|23w18 257r75 269r78 316r73 326r76
+33R9*sfColor 38e14 20|257r81 269r84 316r79 326r82
+X 20 sf-graphics-convexshape.ads
+25K21*ConvexShape 18|26k12 20|425E30 458l17 458e28
+33V13*create{18|32P9} 425b<c,sfConvexShape_create>22
+43V13*copy{18|32P9} 43>19 426b<c,sfConvexShape_copy>22
+43p19 shape{18|32P9}
+51U14*destroy 51>23 427b<c,sfConvexShape_destroy>22
+51p23 shape{18|32P9}
+64U14*setPosition 64>27 64>54 428b<c,sfConvexShape_setPosition>22
+64p27 shape{18|32P9}
+64r54 position{24|43R9}
+77U14*setRotation 77>27 77>54 429b<c,sfConvexShape_setRotation>22
+77p27 shape{18|32P9}
+77f54 angle{float}
+90U14*setScale 90>24 90>51 430b<c,sfConvexShape_setScale>22
+90p24 shape{18|32P9}
+90r51 scale{24|43R9}
+106U14*setOrigin 106>25 106>52 431b<c,sfConvexShape_setOrigin>22
+106p25 shape{18|32P9}
+106r52 origin{24|43R9}
+116V13*getPosition{24|43R9} 116>26 432b<c,sfConvexShape_getPosition>22
+116p26 shape{18|32P9}
+128V13*getRotation{float} 128>26 433b<c,sfConvexShape_getRotation>22
+128p26 shape{18|32P9}
+138V13*getScale{24|43R9} 138>23 434b<c,sfConvexShape_getScale>22
+138p23 shape{18|32P9}
+148V13*getOrigin{24|43R9} 148>24 435b<c,sfConvexShape_getOrigin>22
+148p24 shape{18|32P9}
+160U14*move 160>20 160>47 436b<c,sfConvexShape_move>22
+160p20 shape{18|32P9}
+160r47 offset{24|43R9}
+172U14*rotate 172>22 172>49 437b<c,sfConvexShape_rotate>22
+172p22 shape{18|32P9}
+172f49 angle{float}
+184U14*scale 184>21 184>48 438b<c,sfConvexShape_scale>22
+184p21 shape{18|32P9}
+184r48 factors{24|43R9}
+194V13*getTransform{22|28R9} 194>27 439b<c,sfConvexShape_getTransform>22
+194p27 shape{18|32P9}
+204V13*getInverseTransform{22|28R9} 204>34 440b<c,sfConvexShape_getInverseTransform>22
+204p34 shape{18|32P9}
+225U14*setTexture 226>7 227>7 228>7 441b<c,sfConvexShape_setTexture>22
+226p7 shape{18|32P9}
+227p7 texture{18|32P9}
+228b7 resetRect{17|52E9}
+241U14*setTextureRect 241>30 241>57 442b<c,sfConvexShape_setTextureRect>22
+241p30 shape{18|32P9}
+241r57 rect{21|35R9}
+257U14*setFillColor 257>28 257>55 443b<c,sfConvexShape_setFillColor>22
+257p28 shape{18|32P9}
+257r55 color{19|33R9}
+269U14*setOutlineColor 269>31 269>58 444b<c,sfConvexShape_setOutlineColor>22
+269p31 shape{18|32P9}
+269r58 color{19|33R9}
+282U14*setOutlineThickness 282>35 282>62 445b<c,sfConvexShape_setOutlineThickness>22
+282p35 shape{18|32P9}
+282f62 thickness{float}
+296V13*getTexture{18|62P9} 296>25 446b<c,sfConvexShape_getTexture>22
+296p25 shape{18|32P9}
+306V13*getTextureRect{21|35R9} 306>29 447b<c,sfConvexShape_getTextureRect>22
+306p29 shape{18|32P9}
+316V13*getFillColor{19|33R9} 316>27 448b<c,sfConvexShape_getFillColor>22
+316p27 shape{18|32P9}
+326V13*getOutlineColor{19|33R9} 326>30 449b<c,sfConvexShape_getOutlineColor>22
+326p30 shape{18|32P9}
+336V13*getOutlineThickness{float} 336>34 450b<c,sfConvexShape_getOutlineThickness>22
+336p34 shape{18|32P9}
+346V13*getPointCount{17|108M9} 346>28 451b<c,sfConvexShape_getPointCount>22
+346p28 shape{18|32P9}
+359V13*getPoint{24|43R9} 359>23 359>50 452b<c,sfConvexShape_getPoint>22
+359p23 shape{18|32P9}
+359m50 index{17|108M9}
+370U14*setPointCount 370>29 370>56 453b<c,sfConvexShape_setPointCount>22
+370p29 shape{18|32P9}
+370m56 count{17|108M9}
+386U14*setPoint 387>7 388>7 389>7 454b<c,sfConvexShape_setPoint>22
+387p7 shape{18|32P9}
+388m7 index{17|108M9}
+389r7 point{24|43R9}
+405V13*getLocalBounds{21|28R9} 405>29 455b<c,sfConvexShape_getLocalBounds>22
+405p29 shape{18|32P9}
+421V13*getGlobalBounds{21|28R9} 421>30 456b<c,sfConvexShape_getGlobalBounds>22
+421p30 shape{18|32P9}
+X 21 sf-graphics-rect.ads
+22K21*Rect 20|22w18 241r76 306r75 405r75 421r76 21|95e21
+28R9*sfFloatRect 20|405r80 421r81 21|33e14
+35R9*sfIntRect 20|241r81 306r80 21|40e14
+X 22 sf-graphics-transform.ads
+21K21*Transform 20|21w18 194r73 204r80 22|247e26
+28R9*sfTransform 20|194r83 204r90 22|30e14
+X 23 sf-system.ads
+28K12*System 20|20r9 64r68 90r62 106r64 116r63 138r60 148r61 160r59 184r61
+. 359r78 389r18 23|46e14
+X 24 sf-system-vector2.ads
+19K19*Vector2 20|20w16 64r75 90r69 106r71 116r70 138r67 148r68 160r66 184r68
+. 359r85 389r25 24|54e22
+43R9*sfVector2f 20|64r83 90r77 106r79 116r78 138r75 148r76 160r74 184r76
+. 359r93 389r33 24|46e14
+

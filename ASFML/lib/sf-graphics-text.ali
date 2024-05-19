@@ -1,0 +1,300 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.graphics.text%b	sf-graphics-text.adb	c322667d NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W interfaces%s		interfac.ads		interfac.ali
+W interfaces.c%s	i-c.adb			i-c.ali
+W interfaces.c.strings%s  i-cstrin.adb		i-cstrin.ali
+W sf.graphics%s		sf-graphics.ads		sf-graphics.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+
+U sf.graphics.text%s	sf-graphics-text.ads	10640503 EE NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.graphics%s		sf-graphics.ads		sf-graphics.ali
+W sf.graphics.color%s	sf-graphics-color.ads	sf-graphics-color.ali
+W sf.graphics.rect%s	sf-graphics-rect.ads	sf-graphics-rect.ali
+W sf.graphics.transform%s  sf-graphics-transform.ads  sf-graphics-transform.ali
+W sf.system%s		sf-system.ads		sf-system.ali
+W sf.system.vector2%s	sf-system-vector2.ads	sf-system-vector2.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D i-cstrin.ads		20230727081304 f40c8db4 interfaces.c.strings%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-graphics.ads	20220818093223 ac713dd8 sf.graphics%s
+D sf-graphics-color.ads	20220818093223 9b199be3 sf.graphics.color%s
+D sf-graphics-rect.ads	20220818093223 73657927 sf.graphics.rect%s
+D sf-graphics-text.ads	20230929172031 3b58782a sf.graphics.text%s
+D sf-graphics-text.adb	20220818093223 0c7693e3 sf.graphics.text%b
+D sf-graphics-transform.ads  20220818093223 c160876b sf.graphics.transform%s
+D sf-system.ads		20220818093223 1a66005a sf.system%s
+D sf-system-vector2.ads	20220818093223 ae51255e sf.system.vector2%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [create sf__graphics__text 44 13 none]
+G c Z s s [copy sf__graphics__text 54 13 none]
+G c Z s s [destroy sf__graphics__text 62 14 none]
+G c Z s s [setposition sf__graphics__text 75 14 none]
+G c Z s s [setrotation sf__graphics__text 88 14 none]
+G c Z s s [setscale sf__graphics__text 101 14 none]
+G c Z s s [setorigin sf__graphics__text 117 14 none]
+G c Z s s [getposition sf__graphics__text 127 13 none]
+G c Z s s [getrotation sf__graphics__text 139 13 none]
+G c Z s s [getscale sf__graphics__text 149 13 none]
+G c Z s s [getorigin sf__graphics__text 159 13 none]
+G c Z s s [move sf__graphics__text 171 14 none]
+G c Z s s [rotate sf__graphics__text 183 14 none]
+G c Z s s [scale sf__graphics__text 195 14 none]
+G c Z s s [gettransform sf__graphics__text 205 13 none]
+G c Z s s [getinversetransform sf__graphics__text 215 13 none]
+G c Z s b [setstring sf__graphics__text 226 14 none]
+G c Z s b [setunicodestring sf__graphics__text 236 14 none]
+G c Z s s [setfont sf__graphics__text 252 14 none]
+G c Z s s [setcharactersize sf__graphics__text 263 14 none]
+G c Z s s [setlinespacing sf__graphics__text 278 14 none]
+G c Z s s [setletterspacing sf__graphics__text 298 14 none]
+G c Z s s [setstyle sf__graphics__text 311 14 none]
+G c Z s s [setcolor sf__graphics__text 327 14 none]
+G c Z s s [setfillcolor sf__graphics__text 340 14 none]
+G c Z s s [setoutlinecolor sf__graphics__text 351 14 none]
+G c Z s s [setoutlinethickness sf__graphics__text 366 14 none]
+G c Z s b [getstring sf__graphics__text 377 13 none]
+G c Z s b [getunicodestring sf__graphics__text 387 13 none]
+G c Z s s [getfont sf__graphics__text 401 13 none]
+G c Z s s [getcharactersize sf__graphics__text 412 13 none]
+G c Z s s [getletterspacing sf__graphics__text 424 13 none]
+G c Z s s [getlinespacing sf__graphics__text 436 13 none]
+G c Z s s [getstyle sf__graphics__text 446 13 none]
+G c Z s s [getcolor sf__graphics__text 459 13 none]
+G c Z s s [getfillcolor sf__graphics__text 469 13 none]
+G c Z s s [getoutlinecolor sf__graphics__text 479 13 none]
+G c Z s s [getoutlinethickness sf__graphics__text 489 13 none]
+G c Z s s [findcharacterpos sf__graphics__text 507 13 none]
+G c Z s s [getlocalbounds sf__graphics__text 523 13 none]
+G c Z s s [getglobalbounds sf__graphics__text 539 13 none]
+G c Z b b [sftext_getunicodestring sf__graphics__text 83 13 none]
+X 14 interfac.ads
+38K9*Interfaces 232e15 23|28r6 31r8
+X 15 i-c.ads
+29K20*C 597e17 23|28r17 31r19 60r52 63r23 83r71 88r14
+477E9*char32_t<wide_wide_character> 23|83r73
+496A9*char32_array(477E9)<88M9> 23|60r54
+523V13*To_C{496A9} 23|63s25
+537V13*To_Ada{wide_wide_string} 23|88s16
+X 16 i-cpoint.ads
+54V13*Value{15|496A9} 23|88s36[18|123]
+X 17 i-cstrin.ads
+44K22*Strings 156e25 23|28w19 31r21
+59P9*chars_ptr 23|43r52 45r14 75r52 77r23
+77V13*New_String{59P9} 23|45s27
+82U14*Free 23|48s7
+100V13*Value{string} 23|78s42
+X 18 sf.ads
+39K9*Sf 128e7 22|20r6 21r6 22r6 23r6 25r9 75r57 101r51 117r53 127r52 149r49
+. 159r50 171r48 195r50 205r53 215r60 327r51 340r55 351r58 459r49 469r53 479r56
+. 507r75 523r55 539r56 581r5 23|30r14 91r5
+92M9*sfUint32 22|30r27 263r58 412r57
+108M9*sfSize_t 22|507r58
+123K12 Char32_Ptrs[16|44] 23|88r24
+X 19 sf-graphics.ads
+26K12*Graphics 18|39k9 19|112e16 22|21r9 22r9 23r9 25r12 205r56 215r63 327r54
+. 340r58 351r61 459r52 469r56 479r59 523r58 539r59 581r8 23|30r17 91r8
+34R9*sfFont
+35P9*sfFont_Ptr(34R9) 22|252r49 401r48
+58R9*sfText
+59P9*sfText_Ptr(58R9) 22|44r27 54r26 54r45 62r30 75r34 88r34 101r31 117r32
+. 127r33 139r33 149r30 159r31 171r27 183r29 195r28 205r34 215r41 226r32 236r39
+. 252r30 263r39 278r37 298r39 311r31 327r31 340r35 351r38 366r42 377r31 387r38
+. 401r29 412r38 424r38 436r36 446r30 459r30 469r34 479r37 489r41 507r38 523r36
+. 539r37 23|42r32 43r34 59r39 60r34 74r31 75r33 83r45 86r38
+X 20 sf-graphics-color.ads
+23K21*Color 149e22 22|22w18 327r63 340r67 351r70 459r61 469r65 479r68
+33R9*sfColor 38e14 22|327r69 340r73 351r76 459r67 469r71 479r74
+X 21 sf-graphics-rect.ads
+22K21*Rect 95e21 22|23w18 523r67 539r68
+28R9*sfFloatRect 33e14 22|523r72 539r73
+X 22 sf-graphics-text.ads
+25K21*Text 19|26k12 22|543E30 581l17 581e21 23|30b26 91l17 91t21
+30M12*sfTextStyle{18|92M9} 31r29 32r26 33r28 34r32 35r35 311r51 446r49
+31m4*sfTextRegular{30M12}
+32m4*sfTextBold{30M12}
+33m4*sfTextItalic{30M12}
+34m4*sfTextUnderlined{30M12}
+35m4*sfTextStrikeThrough{30M12}
+44V13*create{19|59P9} 543b<c,sfText_create>22
+54V13*copy{19|59P9} 54>19 544b<c,sfText_copy>22
+54p19 text{19|59P9}
+62U14*destroy 62>23 545b<c,sfText_destroy>22
+62p23 text{19|59P9}
+75U14*setPosition 75>27 75>46 546b<c,sfText_setPosition>22
+75p27 text{19|59P9}
+75r46 position{26|43R9}
+88U14*setRotation 88>27 88>46 547b<c,sfText_setRotation>22
+88p27 text{19|59P9}
+88f46 angle{float}
+101U14*setScale 101>24 101>43 548b<c,sfText_setScale>22
+101p24 text{19|59P9}
+101r43 scale{26|43R9}
+117U14*setOrigin 117>25 117>44 549b<c,sfText_setOrigin>22
+117p25 text{19|59P9}
+117r44 origin{26|43R9}
+127V13*getPosition{26|43R9} 127>26 550b<c,sfText_getPosition>22
+127p26 text{19|59P9}
+139V13*getRotation{float} 139>26 551b<c,sfText_getRotation>22
+139p26 text{19|59P9}
+149V13*getScale{26|43R9} 149>23 552b<c,sfText_getScale>22
+149p23 text{19|59P9}
+159V13*getOrigin{26|43R9} 159>24 553b<c,sfText_getOrigin>22
+159p24 text{19|59P9}
+171U14*move 171>20 171>39 554b<c,sfText_move>22
+171p20 text{19|59P9}
+171r39 offset{26|43R9}
+183U14*rotate 183>22 183>41 555b<c,sfText_rotate>22
+183p22 text{19|59P9}
+183f41 angle{float}
+195U14*scale 195>21 195>40 556b<c,sfText_scale>22
+195p21 text{19|59P9}
+195r40 factors{26|43R9}
+205V13*getTransform{24|28R9} 205>27 557b<c,sfText_getTransform>22
+205p27 text{19|59P9}
+215V13*getInverseTransform{24|28R9} 215>34 558b<c,sfText_getInverseTransform>22
+215p34 text{19|59P9}
+226U14*setString 226>25 226>44 23|42b14 49l8 49t17
+226p25 text{19|59P9} 23|42b25 47r17
+226a44 str{string} 23|42b44 45r39
+236U14*setUnicodeString 236>32 236>51 23|59b14 64l8 64t24
+236p32 text{19|59P9} 23|59b32 63r17
+236a51 str{wide_wide_string} 23|59b51 63r31
+252U14*setFont 252>23 252>42 559b<c,sfText_setFont>22
+252p23 text{19|59P9}
+252p42 font{19|35P9}
+263U14*setCharacterSize 263>32 263>51 560b<c,sfText_setCharacterSize>22
+263p32 text{19|59P9}
+263m51 size{18|92M9}
+278U14*setLineSpacing 278>30 278>49 561b<c,sfText_setLineSpacing>22
+278p30 text{19|59P9}
+278f49 spacingFactor{float}
+298U14*setLetterSpacing 298>32 298>51 562b<c,sfText_setLetterSpacing>22
+298p32 text{19|59P9}
+298f51 spacingFactor{float}
+311U14*setStyle 311>24 311>43 563b<c,sfText_setStyle>22
+311p24 text{19|59P9}
+311m43 style{30M12}
+327U14*setColor 327>24 327>43 564b<c,sfText_setColor>22
+327p24 text{19|59P9}
+327r43 color{20|33R9}
+340U14*setFillColor 340>28 340>47 565b<c,sfText_setFillColor>22
+340p28 text{19|59P9}
+340r47 color{20|33R9}
+351U14*setOutlineColor 351>31 351>50 566b<c,sfText_setOutlineColor>22
+351p31 text{19|59P9}
+351r50 color{20|33R9}
+366U14*setOutlineThickness 366>35 366>54 567b<c,sfText_setOutlineThickness>22
+366p35 text{19|59P9}
+366f54 thickness{float}
+377V13*getString{string} 377>24 23|74b13 81l8 81t17
+377p24 text{19|59P9} 23|74b24 77r46
+387V13*getUnicodeString{wide_wide_string} 387>31 23|86b13 89l8 89t24
+387p31 text{19|59P9} 23|86b31 88r68
+401V13*getFont{19|35P9} 401>22 568b<c,sfText_getFont>22
+401p22 text{19|59P9}
+412V13*getCharacterSize{18|92M9} 412>31 569b<c,sfText_getCharacterSize>22
+412p31 text{19|59P9}
+424V13*getLetterSpacing{float} 424>31 570b<c,sfText_getLetterSpacing>22
+424p31 text{19|59P9}
+436V13*getLineSpacing{float} 436>29 571b<c,sfText_getLineSpacing>22
+436p29 text{19|59P9}
+446V13*getStyle{30M12} 446>23 572b<c,sfText_getStyle>22
+446p23 text{19|59P9}
+459V13*getColor{20|33R9} 459>23 573b<c,sfText_getColor>22
+459p23 text{19|59P9}
+469V13*getFillColor{20|33R9} 469>27 574b<c,sfText_getFillColor>22
+469p27 text{19|59P9}
+479V13*getOutlineColor{20|33R9} 479>30 575b<c,sfText_getOutlineColor>22
+479p30 text{19|59P9}
+489V13*getOutlineThickness{float} 489>34 576b<c,sfText_getOutlineThickness>22
+489p34 text{19|59P9}
+507V13*findCharacterPos{26|43R9} 507>31 507>50 577b<c,sfText_findCharacterPos>22
+507p31 text{19|59P9}
+507m50 index{18|108M9}
+523V13*getLocalBounds{21|28R9} 523>29 578b<c,sfText_getLocalBounds>22
+523p29 text{19|59P9}
+539V13*getGlobalBounds{21|28R9} 539>30 579b<c,sfText_getGlobalBounds>22
+539p30 text{19|59P9}
+X 23 sf-graphics-text.adb
+43U17*Internal 43>27 43>46 44b<c,sfText_setString>25 47s7
+43p27 Text{19|59P9}
+43p46 Str{17|59P9}
+45p7 Temp{17|59P9} 47r23 48m13 48r13
+60U17*Internal 60>27 60>46 61b<c,sfText_setUnicodeString>25 63s7
+60p27 Text{19|59P9}
+60a46 Str{15|496A9}
+75V16*Internal{17|59P9} 75>26 76b<c,sfText_getString>25 77s36
+75p26 Text{19|59P9}
+77p7 Temp{17|59P9} 78r49
+78a7 Res{string} 80r14
+83V13 sfText_getUnicodeString(15|477E9) 83>38 84b<c,sfText_getUnicodeString>22
+. 88s43
+83p38 Text{19|59P9}
+X 24 sf-graphics-transform.ads
+21K21*Transform 22|21w18 205r65 215r72 24|247e26
+28R9*sfTransform 22|205r75 215r82 24|30e14
+X 25 sf-system.ads
+28K12*System 22|20r9 75r60 101r54 117r56 127r55 149r52 159r53 171r51 195r53
+. 507r78 25|46e14
+X 26 sf-system-vector2.ads
+19K19*Vector2 22|20w16 75r67 101r61 117r63 127r62 149r59 159r60 171r58 195r60
+. 507r85 26|54e22
+43R9*sfVector2f 22|75r75 101r69 117r71 127r70 149r67 159r68 171r66 195r68
+. 507r93 26|46e14
+

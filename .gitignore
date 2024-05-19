@@ -7,10 +7,11 @@ Honki Tonks Zivilisationen/Test/
 Honki Tonks Zivilisationen/Meldungen
 Honki Tonks Zivilisationen/HonkiTonksZivilisationen
 Honki Tonks Zivilisationen/Start
-obj_windows/
 GNAT*
 alire/
 config/
 share/
 obj/
 obj_alire/
+obj_windows/
+obj_sfml/

@@ -1,0 +1,213 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+
+U sf.window.event%s	sf-window-event.ads	dbac2b10 NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.window%s		sf-window.ads		sf-window.ali
+W sf.window.joystick%s	sf-window-joystick.ads	sf-window-joystick.ali
+W sf.window.keyboard%s	sf-window-keyboard.ads	sf-window-keyboard.ali
+W sf.window.mouse%s	sf-window-mouse.ads	sf-window-mouse.ali
+W sf.window.sensor%s	sf-window-sensor.ads	sf-window-sensor.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D i-cstrin.ads		20230727081304 f40c8db4 interfaces.c.strings%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-system.ads		20220818093223 1a66005a sf.system%s
+D sf-system-vector2.ads	20220818093223 ae51255e sf.system.vector2%s
+D sf-system-vector3.ads	20220818093223 a831ffaf sf.system.vector3%s
+D sf-window.ads		20220818093223 ffbfbe11 sf.window%s
+D sf-window-event.ads	20230929172031 7c6ce7de sf.window.event%s
+D sf-window-joystick.ads  20230929172031 0cefb492 sf.window.joystick%s
+D sf-window-joystickidentification.ads  20220818093223 393c0ec5 sf.window.joystickidentification%s
+D sf-window-keyboard.ads  20230929172031 711fb87f sf.window.keyboard%s
+D sf-window-mouse.ads	20230929172031 8666682b sf.window.mouse%s
+D sf-window-sensor.ads	20230929172031 a3e91619 sf.window.sensor%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [sfkeyeventIP sf__window__event 64 9 none]
+G c Z s s [sftexteventIP sf__window__event 77 9 none]
+G c Z s s [sfmousemoveeventIP sf__window__event 86 9 none]
+G c Z s s [sfmousebuttoneventIP sf__window__event 96 9 none]
+G c Z s s [sfmousewheeleventIP sf__window__event 110 9 none]
+G c Z s s [sfmousewheelscrolleventIP sf__window__event 121 9 none]
+G c Z s s [sfjoystickmoveeventIP sf__window__event 133 9 none]
+G c Z s s [sfjoystickbuttoneventIP sf__window__event 144 9 none]
+G c Z s s [sfjoystickconnecteventIP sf__window__event 154 9 none]
+G c Z s s [sfsizeeventIP sf__window__event 163 9 none]
+G c Z s s [sftoucheventIP sf__window__event 173 9 none]
+G c Z s s [sfsensoreventIP sf__window__event 184 9 none]
+G c Z s s [sfeventIP sf__window__event 209 9 none]
+X 18 sf.ads
+39K9*Sf 128e7 23|20r6 22r6 23r6 24r6 26r9 66r22 98r24 123r23 136r22 186r28
+. 258r5
+52B9*sfBool<boolean> 23|67r21 68r25 69r23 70r24
+87I9*sfInt32<integer> 23|88r19 89r19 99r19 100r19 112r28 113r19 114r19 125r19
+. 126r19 176r19 177r19
+92M9*sfUint32 23|79r25 135r28 146r28 147r24 156r28 165r23 166r24 175r24 209r26
+X 22 sf-window.ads
+26K12*Window 18|39k9 22|48e14 23|20r9 22r9 23r9 24r9 26r12 66r25 98r27 123r26
+. 136r25 186r31 258r8
+X 23 sf-window-event.ads
+26K19*Event 22|26k12 23|33E9 258l15 258e20
+33E9*sfEventType 58e7 65r27 78r27 87r27 97r27 111r27 122r27 134r27 145r27
+. 155r27 164r27 174r27 185r27 212r33 254r26
+34n7*sfEvtClosed{33E9}
+35n7*sfEvtResized{33E9}
+36n7*sfEvtLostFocus{33E9}
+37n7*sfEvtGainedFocus{33E9}
+38n7*sfEvtTextEntered{33E9}
+39n7*sfEvtKeyPressed{33E9}
+40n7*sfEvtKeyReleased{33E9}
+41n7*sfEvtMouseWheelMoved{33E9}
+42n7*sfEvtMouseWheelScrolled{33E9}
+43n7*sfEvtMouseButtonPressed{33E9}
+44n7*sfEvtMouseButtonReleased{33E9}
+45n7*sfEvtMouseMoved{33E9}
+46n7*sfEvtMouseEntered{33E9}
+47n7*sfEvtMouseLeft{33E9}
+48n7*sfEvtJoystickButtonPressed{33E9}
+49n7*sfEvtJoystickButtonReleased{33E9}
+50n7*sfEvtJoystickMoved{33E9}
+51n7*sfEvtJoystickConnected{33E9}
+52n7*sfEvtJoystickDisconnected{33E9}
+53n7*sfEvtTouchBegan{33E9}
+54n7*sfEvtTouchMoved{33E9}
+55n7*sfEvtTouchEnded{33E9}
+56n7*sfEvtSensorChanged{33E9}
+57n7*sfEvtCount{33E9}
+64R9*sfKeyEvent 71e14 216r27 253r39
+65e7*eventType{33E9}
+66m7*code{26|33M9}
+67b7*alt{18|52E9}
+68b7*control{18|52E9}
+69b7*shift{18|52E9}
+70b7*system{18|52E9}
+77R9*sfTextEvent 80e14 218r28 252r39
+78e7*eventType{33E9}
+79m7*unicode{18|92M9}
+86R9*sfMouseMoveEvent 90e14 220r33 251r39
+87e7*eventType{33E9}
+88i7*x{18|87I9}
+89i7*y{18|87I9}
+96R9*sfMouseButtonEvent 101e14 222r35 250r39
+97e7*eventType{33E9}
+98e7*button{27|33E9}
+99i7*x{18|87I9}
+100i7*y{18|87I9}
+110R9*sfMouseWheelEvent 115e14 224r34 249r39
+111e7*eventType{33E9}
+112i7*eventDelta{18|87I9}
+113i7*x{18|87I9}
+114i7*y{18|87I9}
+121R9*sfMouseWheelScrollEvent 127e14 226r40 248r39
+122e7*eventType{33E9}
+123e7*wheel{27|46E9}
+124f7*eventDelta{float}
+125i7*x{18|87I9}
+126i7*y{18|87I9}
+133R9*sfJoystickMoveEvent 138e14 228r36 247r39
+134e7*eventType{33E9}
+135m7*joystickId{18|92M9}
+136e7*axis{24|42E9}
+137f7*position{float}
+144R9*sfJoystickButtonEvent 148e14 230r38 246r39
+145e7*eventType{33E9}
+146m7*joystickId{18|92M9}
+147m7*button{18|92M9}
+154R9*sfJoystickConnectEvent 157e14 232r39 245r39
+155e7*eventType{33E9}
+156m7*joystickId{18|92M9}
+163R9*sfSizeEvent 167e14 214r28 244r39
+164e7*eventType{33E9}
+165m7*width{18|92M9}
+166m7*height{18|92M9}
+173R9*sfTouchEvent 178e14 234r29 243r39
+174e7*eventType{33E9}
+175m7*finger{18|92M9}
+176i7*x{18|87I9}
+177i7*y{18|87I9}
+184R9*sfSensorEvent 190e14 236r30 242r39
+185e7*eventType{33E9}
+186e7*sensorType{28|34E9}
+187f7*x{float}
+188f7*y{float}
+189f7*z{float}
+209R9*sfEvent 209d18 238e14 255r39 256r28
+209m18*discr{18|92M9} 210r12
+212e13*eventType{33E9}
+214r13*size{163R9}
+216r13*key{64R9}
+218r13*text{77R9}
+220r13*mouseMove{86R9}
+222r13*mouseButton{96R9}
+224r13*mouseWheel{110R9}
+226r13*mouseWheelScroll{121R9}
+228r13*joystickMove{133R9}
+230r13*joystickButton{144R9}
+232r13*joystickConnect{154R9}
+234r13*touch{173R9}
+236r13*sensor{184R9}
+X 24 sf-window-joystick.ads
+23K19*Joystick 23|23w16 136r32 24|149e23
+42E9*sfJoystickAxis 23|136r41 24|51e7
+X 26 sf-window-keyboard.ads
+22K19*Keyboard 23|20w16 66r32 26|174e23
+33M9*sfKeyCode<18|92M9> 23|66r41
+X 27 sf-window-mouse.ads
+24K19*Mouse 23|22w16 98r34 123r33 27|95e20
+33E9*sfMouseButton 23|98r40 27|40e7
+46E9*sfMouseWheel 23|123r39 27|49e7
+X 28 sf-window-sensor.ads
+23K19*Sensor 23|24w16 186r38 28|86e21
+34E9*sfSensorType 23|186r45 28|42e7
+
