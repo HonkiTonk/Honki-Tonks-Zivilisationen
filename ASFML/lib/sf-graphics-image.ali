@@ -1,0 +1,205 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.graphics.image%b	sf-graphics-image.adb	9353e7cb NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W interfaces%s		interfac.ads		interfac.ali
+W interfaces.c%s	i-c.adb			i-c.ali
+W interfaces.c.strings%s  i-cstrin.adb		i-cstrin.ali
+W sf.graphics%s		sf-graphics.ads		sf-graphics.ali
+
+U sf.graphics.image%s	sf-graphics-image.ads	c3082f50 EE NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.graphics%s		sf-graphics.ads		sf-graphics.ali
+W sf.graphics.color%s	sf-graphics-color.ads	sf-graphics-color.ali
+W sf.graphics.rect%s	sf-graphics-rect.ads	sf-graphics-rect.ali
+W sf.system%s		sf-system.ads		sf-system.ali
+W sf.system.inputstream%s  sf-system-inputstream.ads  sf-system-inputstream.ali
+W sf.system.vector2%s	sf-system-vector2.ads	sf-system-vector2.ali
+W system%s		system.ads		system.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D i-cstrin.ads		20230727081304 f40c8db4 interfaces.c.strings%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-graphics.ads	20220818093223 ac713dd8 sf.graphics%s
+D sf-graphics-color.ads	20220818093223 9b199be3 sf.graphics.color%s
+D sf-graphics-image.ads	20220818093223 c2880407 sf.graphics.image%s
+D sf-graphics-image.adb	20220818093223 a5d76e78 sf.graphics.image%b
+D sf-graphics-rect.ads	20220818093223 73657927 sf.graphics.rect%s
+D sf-system.ads		20220818093223 1a66005a sf.system%s
+D sf-system-inputstream.ads  20230929172031 a9b17ead sf.system.inputstream%s
+D sf-system-vector2.ads	20220818093223 ae51255e sf.system.vector2%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [create sf__graphics__image 45 13 none]
+G c Z s s [createfromcolor sf__graphics__image 57 13 none]
+G c Z s s [createfrompixels sf__graphics__image 77 13 none]
+G c Z s b [createfromfile sf__graphics__image 95 13 none]
+G c Z s s [createfrommemory sf__graphics__image 111 13 none]
+G c Z s s [createfromstream sf__graphics__image 126 13 none]
+G c Z s s [copy sf__graphics__image 136 13 none]
+G c Z s s [destroy sf__graphics__image 144 14 none]
+G c Z s b [savetofile sf__graphics__image 160 13 none]
+G c Z s s [getsize sf__graphics__image 170 13 none]
+G c Z s s [createmaskfromcolor sf__graphics__image 184 14 none]
+G c Z s s [copyimage sf__graphics__image 210 14 none]
+G c Z s s [setpixel sf__graphics__image 231 14 none]
+G c Z s s [getpixel sf__graphics__image 251 13 none]
+G c Z s s [getpixelsptr sf__graphics__image 271 13 none]
+G c Z s s [fliphorizontally sf__graphics__image 279 14 none]
+G c Z s s [flipvertically sf__graphics__image 287 14 none]
+X 14 interfac.ads
+38K9*Interfaces 232e15 22|28r6 31r8
+X 15 i-c.ads
+29K20*C 597e17 22|28r17 31r19
+X 17 i-cstrin.ads
+44K22*Strings 156e25 22|28w19 31r21
+59P9*chars_ptr 22|42r37 44r14 61r58 63r14
+77V13*New_String{59P9} 22|44s27 63s27
+82U14*Free 22|47s7 66s7
+X 18 sf.ads
+39K9*Sf 128e7 21|22r6 23r6 24r6 25r6 27r9 60r15 126r47 170r50 186r15 215r20
+. 235r15 254r28 307r5 22|30r14 70r5
+52B9*sfBool<boolean> 21|160r72 216r20 22|60r81 61r76 64r23
+69M9*sfUint8 21|80r23 187r15 271r62
+92M9*sfUint32 21|45r29 45r48 58r15 59r16 78r15 79r16 213r20 214r20 233r11
+. 234r11 253r11 254r11
+108M9*sfSize_t 21|111r70
+X 19 sf-graphics.ads
+26K12*Graphics 18|39k9 19|112e16 21|22r9 25r9 27r12 60r18 186r18 215r23 235r18
+. 254r31 307r8 22|30r17 70r8
+37R9*sfImage
+38P9*sfImage_Ptr(37R9) 21|45r65 60r49 80r39 95r55 111r87 126r91 136r27 136r47
+. 144r31 160r33 170r30 185r15 211r20 212r20 232r15 252r15 271r35 279r40 287r38
+. 22|41r64 42r55 45r23 60r33 61r34
+X 20 sf-graphics-color.ads
+23K21*Color 149e22 21|22w18 60r27 186r27 235r27 254r40
+33R9*sfColor 38e14 21|60r33 186r33 235r33 254r46
+X 21 sf-graphics-image.ads
+27K21*Image 19|26k12 21|291E30 307l17 307e22 22|30b26 70l17 70t22
+45V13*create{19|38P9} 45>21 45>39 291b<c,sfImage_create>22
+45m21 width{18|92M9}
+45m39 height{18|92M9}
+57V13*createFromColor{19|38P9} 58>7 59>7 60>7 292b<c,sfImage_createFromColor>22
+58m7 width{18|92M9}
+59m7 height{18|92M9}
+60r7 color{20|33R9}
+77V13*createFromPixels{19|38P9} 78>7 79>7 80^7 293b<c,sfImage_createFromPixels>22
+78m7 width{18|92M9}
+79m7 height{18|92M9}
+80p7 pixels(18|69M9)
+95V13*createFromFile{19|38P9} 95>29 22|41b13 49l8 49t22
+95a29 filename{string} 22|41b29 44r39
+111V13*createFromMemory{19|38P9} 111>31 111>63 294b<c,sfImage_createFromMemory>22
+111m31 data{27|67M9}
+111m63 size{18|108M9}
+126V13*createFromStream{19|38P9} 126^31 295b<c,sfImage_createFromStream>22
+126p31 stream(25|45R9)
+136V13*copy{19|38P9} 136>19 296b<c,sfImage_copy>22
+136p19 image{19|38P9}
+144U14*destroy 144>23 297b<c,sfImage_destroy>22
+144p23 image{19|38P9}
+160V13*saveToFile{18|52E9} 160>25 160>46 22|60b13 68l8 68t18
+160p25 image{19|38P9} 22|60b25 64r43
+160a46 filename{string} 22|60b46 63r39
+170V13*getSize{26|34R9} 170>22 298b<c,sfImage_getSize>22
+170p22 image{19|38P9}
+184U14*createMaskFromColor 185>7 186>7 187>7 299b<c,sfImage_createMaskFromColor>22
+185p7 image{19|38P9}
+186r7 color{20|33R9}
+187m7 alpha{18|69M9}
+210U14*copyImage 211>7 212>7 213>7 214>7 215>7 216>7 300b<c,sfImage_copyImage>22
+211p7 image{19|38P9}
+212p7 source{19|38P9}
+213m7 destX{18|92M9}
+214m7 destY{18|92M9}
+215r7 sourceRect{23|35R9}
+216b7 applyAlpha{18|52E9}
+231U14*setPixel 232>7 233>7 234>7 235>7 301b<c,sfImage_setPixel>22
+232p7 image{19|38P9}
+233m7 x{18|92M9}
+234m7 y{18|92M9}
+235r7 color{20|33R9}
+251V13*getPixel{20|33R9} 252>7 253>7 254>7 302b<c,sfImage_getPixel>22
+252p7 image{19|38P9}
+253m7 x{18|92M9}
+254m7 y{18|92M9}
+271V13*getPixelsPtr(18|69M9) 271>27 303b<c,sfImage_getPixelsPtr>22
+271p27 image{19|38P9}
+279U14*flipHorizontally 279>32 304b<c,sfImage_flipHorizontally>22
+279p32 image{19|38P9}
+287U14*flipVertically 287>30 305b<c,sfImage_flipVertically>22
+287p30 image{19|38P9}
+X 22 sf-graphics-image.adb
+42V16*Internal{19|38P9} 42>26 43b<c,sfImage_createFromFile>25 45s38
+42p26 Filename{17|59P9}
+44p7 Temp{17|59P9} 45r48 47m13 47r13
+45p7 R{19|38P9} 48r14
+61V16*Internal{18|52E9} 61>26 61>47 62b<c,sfImage_saveToFile>25 64s33
+61p26 Image{19|38P9}
+61p47 Filename{17|59P9}
+63p7 Temp{17|59P9} 64r50 66m13 66r13
+64b7 R{18|52E9} 67r14
+X 23 sf-graphics-rect.ads
+22K21*Rect 21|25w18 215r32 23|95e21
+35R9*sfIntRect 21|215r37 23|40e14
+X 24 sf-system.ads
+28K12*System 21|23r9 24r9 126r50 170r53 24|46e14
+X 25 sf-system-inputstream.ads
+22K19*InputStream 21|23w16 126r57 25|62e26
+45R9*sfInputStream 21|126r69 25|51e14
+X 26 sf-system-vector2.ads
+19K19*Vector2 21|24w16 170r60 26|54e22
+34R9*sfVector2u 21|170r68 26|37e14
+X 27 system.ads
+37K9*System 21|20w6 111r47 27|153e11
+67M9*Address 21|111r54
+

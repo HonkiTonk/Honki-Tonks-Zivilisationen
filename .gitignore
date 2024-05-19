@@ -9,6 +9,7 @@ Honki Tonks Zivilisationen/HonkiTonksZivilisationen
 Honki Tonks Zivilisationen/Start
 GNAT*
 ASFML/libasfml.a
+ASFML/*.ali
 alire/
 config/
 share/

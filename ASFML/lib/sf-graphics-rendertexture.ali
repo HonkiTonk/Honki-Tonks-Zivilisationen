@@ -1,0 +1,287 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.graphics.rendertexture%s  sf-graphics-rendertexture.ads  67270246 NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.graphics%s		sf-graphics.ads		sf-graphics.ali
+W sf.graphics.color%s	sf-graphics-color.ads	sf-graphics-color.ali
+W sf.graphics.primitivetype%s  sf-graphics-primitivetype.ads  sf-graphics-primitivetype.ali
+W sf.graphics.rect%s	sf-graphics-rect.ads	sf-graphics-rect.ali
+W sf.graphics.renderstates%s  sf-graphics-renderstates.ads  sf-graphics-renderstates.ali
+W sf.graphics.vertex%s	sf-graphics-vertex.ads	sf-graphics-vertex.ali
+W sf.system%s		sf-system.ads		sf-system.ali
+W sf.system.vector2%s	sf-system-vector2.ads	sf-system-vector2.ali
+W sf.window%s		sf-window.ads		sf-window.ali
+W sf.window.window%s	sf-window-window.adb	sf-window-window.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D i-cstrin.ads		20230727081304 f40c8db4 interfaces.c.strings%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-graphics.ads	20220818093223 ac713dd8 sf.graphics%s
+D sf-graphics-blendmode.ads  20230929172031 22fbb8f0 sf.graphics.blendmode%s
+D sf-graphics-color.ads	20220818093223 9b199be3 sf.graphics.color%s
+D sf-graphics-primitivetype.ads  20230929172031 ec63c88c sf.graphics.primitivetype%s
+D sf-graphics-rect.ads	20220818093223 73657927 sf.graphics.rect%s
+D sf-graphics-renderstates.ads  20230929172031 c5489388 sf.graphics.renderstates%s
+D sf-graphics-rendertexture.ads  20220818093223 37d04113 sf.graphics.rendertexture%s
+D sf-graphics-transform.ads  20220818093223 c160876b sf.graphics.transform%s
+D sf-graphics-vertex.ads  20230929172031 a4f37b6c sf.graphics.vertex%s
+D sf-system.ads		20220818093223 1a66005a sf.system%s
+D sf-system-vector2.ads	20220818093223 ae51255e sf.system.vector2%s
+D sf-system-vector3.ads	20220818093223 a831ffaf sf.system.vector3%s
+D sf-window.ads		20220818093223 ffbfbe11 sf.window%s
+D sf-window-event.ads	20230929172031 7c6ce7de sf.window.event%s
+D sf-window-joystick.ads  20230929172031 0cefb492 sf.window.joystick%s
+D sf-window-joystickidentification.ads  20220818093223 393c0ec5 sf.window.joystickidentification%s
+D sf-window-keyboard.ads  20230929172031 711fb87f sf.window.keyboard%s
+D sf-window-mouse.ads	20230929172031 8666682b sf.window.mouse%s
+D sf-window-sensor.ads	20230929172031 a3e91619 sf.window.sensor%s
+D sf-window-videomode.ads  20230929172031 21d0ed42 sf.window.videomode%s
+D sf-window-window.ads	20230929172031 3773997f sf.window.window%s
+D sf-window-windowhandle.ads  20220818093223 29f159ca sf.window.windowhandle%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [create sf__graphics__rendertexture 43 13 none]
+G c Z s s [createwithsettings sf__graphics__rendertexture 58 13 none]
+G c Z s s [destroy sf__graphics__rendertexture 69 14 none]
+G c Z s s [getsize sf__graphics__rendertexture 79 13 none]
+G c Z s s [setactive sf__graphics__rendertexture 91 13 none]
+G c Z s s [display sf__graphics__rendertexture 100 14 none]
+G c Z s s [clear sf__graphics__rendertexture 109 14 none]
+G c Z s s [setview sf__graphics__rendertexture 119 14 none]
+G c Z s s [getview sf__graphics__rendertexture 130 13 none]
+G c Z s s [getdefaultview sf__graphics__rendertexture 140 13 none]
+G c Z s s [getviewport sf__graphics__rendertexture 151 13 none]
+G c Z s s [mappixeltocoords sf__graphics__rendertexture 179 13 none]
+G c Z s s [mapcoordstopixel sf__graphics__rendertexture 208 13 none]
+G c Z s s [drawsprite sf__graphics__rendertexture 221 14 none]
+G c Z s s [drawtext sf__graphics__rendertexture 226 14 none]
+G c Z s s [drawshape sf__graphics__rendertexture 231 14 none]
+G c Z s s [drawcircleshape sf__graphics__rendertexture 236 14 none]
+G c Z s s [drawconvexshape sf__graphics__rendertexture 241 14 none]
+G c Z s s [drawrectangleshape sf__graphics__rendertexture 246 14 none]
+G c Z s s [drawvertexarray sf__graphics__rendertexture 251 14 none]
+G c Z s s [drawvertexbuffer sf__graphics__rendertexture 256 14 none]
+G c Z s s [drawprimitives sf__graphics__rendertexture 271 14 none]
+G c Z s s [pushglstates sf__graphics__rendertexture 299 14 none]
+G c Z s s [popglstates sf__graphics__rendertexture 310 14 none]
+G c Z s s [resetglstates sf__graphics__rendertexture 324 14 none]
+G c Z s s [gettexture sf__graphics__rendertexture 334 13 none]
+G c Z s s [getmaximumantialiasinglevel sf__graphics__rendertexture 342 13 none]
+G c Z s s [setsmooth sf__graphics__rendertexture 351 14 none]
+G c Z s s [issmooth sf__graphics__rendertexture 361 13 none]
+G c Z s s [setrepeated sf__graphics__rendertexture 370 14 none]
+G c Z s s [isrepeated sf__graphics__rendertexture 380 13 none]
+G c Z s s [generatemipmap sf__graphics__rendertexture 396 13 none]
+X 18 sf.ads
+39K9*Sf 128e7 25|20r6 21r6 22r6 23r6 24r6 25r6 26r6 28r9 61r18 80r44 110r53
+. 152r48 181r23 182r42 210r23 211r42 224r32 229r32 234r32 239r32 244r32 249r32
+. 254r32 259r32 273r39 275r23 276r39 433r5
+52B9*sfBool<boolean> 25|46r21 92r56 92r71 351r71 361r67 370r75 380r69 396r73
+92M9*sfUint32 25|44r21 45r21 59r15 60r16 342r48
+108M9*sfSize_t 25|274r23
+X 19 sf-graphics.ads
+26K12*Graphics 18|39k9 19|112e16 25|22r9 23r9 24r9 25r9 26r9 28r12 110r56
+. 152r51 224r35 229r35 234r35 239r35 244r35 249r35 254r35 259r35 273r42 275r26
+. 276r42 433r8
+28R9*sfCircleShape
+29P9*sfCircleShape_Ptr(28R9) 25|238r16
+31R9*sfConvexShape
+32P9*sfConvexShape_Ptr(31R9) 25|243r16
+43R9*sfRectangleShape
+44P9*sfRectangleShape_Ptr(43R9) 25|248r16
+46R9*sfRenderTexture
+47P9*sfRenderTexture_Ptr(46R9) 25|46r36 61r61 69r39 79r38 91r40 100r39 109r37
+. 119r39 130r38 140r45 151r42 180r23 209r23 222r23 227r23 232r23 237r23 242r23
+. 247r23 252r23 257r23 272r23 299r44 310r43 324r45 334r41 351r41 361r39 370r43
+. 380r41 396r45
+52R9*sfShape
+53P9*sfShape_Ptr(52R9) 25|233r16
+55R9*sfSprite
+56P9*sfSprite_Ptr(55R9) 25|223r16
+58R9*sfText
+59P9*sfText_Ptr(58R9) 25|228r16
+61R9*sfTexture
+62P9*sfTexture_Ptr(61R9) 25|334r69
+70R9*sfVertexArray
+71P9*sfVertexArray_Ptr(70R9) 25|253r16
+73R9*sfVertexBuffer
+74P9*sfVertexBuffer_Ptr(73R9) 25|258r16
+76R9*sfView
+77P9*sfView_Ptr(76R9) 25|120r55 130r66 140r73 151r70 182r23 211r23
+X 21 sf-graphics-color.ads
+23K21*Color 149e22 25|22w18 110r65
+33R9*sfColor 38e14 25|110r71
+X 22 sf-graphics-primitivetype.ads
+19K21*PrimitiveType 41e30 25|26w18 275r35
+29M12*sfPrimitiveType{18|92M9} 25|275r49
+X 23 sf-graphics-rect.ads
+22K21*Rect 95e21 25|23w18 152r60
+35R9*sfIntRect 40e14 25|152r65
+X 24 sf-graphics-renderstates.ads
+23K21*RenderStates 84e29 25|24w18 224r44 229r44 234r44 239r44 244r44 249r44
+. 254r44 259r44 276r51
+29R9*sfRenderStates 38e14 25|224r57 229r57 234r57 239r57 244r57 249r57 254r57
+. 259r57 276r64
+X 25 sf-graphics-rendertexture.ads
+28K21*RenderTexture 19|26k12 25|400E30 433l17 433e30
+43V13*create{19|47P9} 44>7 45>7 46>7 400b<c,sfRenderTexture_create>22
+44m7 width{18|92M9}
+45m7 height{18|92M9}
+46b7 depthBuffer{18|52E9}
+58V13*createWithSettings{19|47P9} 59>7 60>7 61>7 401b<c,sfRenderTexture_createWithSettings>22
+59m7 width{18|92M9}
+60m7 height{18|92M9}
+61r7 settings{39|60R9}
+69U14*destroy 69>23 402b<c,sfRenderTexture_destroy>22
+69p23 renderTexture{19|47P9}
+79V13*getSize{29|34R9} 79>22 403b<c,sfRenderTexture_getSize>22
+79p22 renderTexture{19|47P9}
+91V13*setActive{18|52E9} 91>24 92>40 404b<c,sfRenderTexture_setActive>22
+91p24 renderTexture{19|47P9}
+92b40 active{18|52E9}
+100U14*display 100>23 405b<c,sfRenderTexture_display>22
+100p23 renderTexture{19|47P9}
+109U14*clear 109>21 110>37 406b<c,sfRenderTexture_clear>22
+109p21 renderTexture{19|47P9}
+110r37 color{21|33R9}
+119U14*setView 119>23 120>39 407b<c,sfRenderTexture_setView>22
+119p23 renderTexture{19|47P9}
+120p39 view{19|77P9}
+130V13*getView{19|77P9} 130>22 408b<c,sfRenderTexture_getView>22
+130p22 renderTexture{19|47P9}
+140V13*getDefaultView{19|77P9} 140>29 409b<c,sfRenderTexture_getDefaultView>22
+140p29 renderTexture{19|47P9}
+151V13*getViewport{23|35R9} 151>26 151>63 410b<c,sfRenderTexture_getViewport>22
+151p26 renderTexture{19|47P9}
+151p63 view{19|77P9}
+179V13*mapPixelToCoords{29|43R9} 180>7 181>7 182>7 411b<c,sfRenderTexture_mapPixelToCoords>22
+180p7 renderTexture{19|47P9}
+181r7 point{29|25R9}
+182p7 view{19|77P9}
+208V13*mapCoordsToPixel{29|25R9} 209>7 210>7 211>7 412b<c,sfRenderTexture_mapCoordsToPixel>22
+209p7 renderTexture{19|47P9}
+210r7 point{29|43R9}
+211p7 view{19|77P9}
+221U14*drawSprite 222>7 223>7 224^7 413b<c,sfRenderTexture_drawSprite>22
+222p7 renderTexture{19|47P9}
+223p7 object{19|56P9}
+224p7 states(24|29R9)
+226U14*drawText 227>7 228>7 229^7 414b<c,sfRenderTexture_drawText>22
+227p7 renderTexture{19|47P9}
+228p7 object{19|59P9}
+229p7 states(24|29R9)
+231U14*drawShape 232>7 233>7 234^7 415b<c,sfRenderTexture_drawShape>22
+232p7 renderTexture{19|47P9}
+233p7 object{19|53P9}
+234p7 states(24|29R9)
+236U14*drawCircleShape 237>7 238>7 239^7 416b<c,sfRenderTexture_drawCircleShape>22
+237p7 renderTexture{19|47P9}
+238p7 object{19|29P9}
+239p7 states(24|29R9)
+241U14*drawConvexShape 242>7 243>7 244^7 417b<c,sfRenderTexture_drawConvexShape>22
+242p7 renderTexture{19|47P9}
+243p7 object{19|32P9}
+244p7 states(24|29R9)
+246U14*drawRectangleShape 247>7 248>7 249^7 418b<c,sfRenderTexture_drawRectangleShape>22
+247p7 renderTexture{19|47P9}
+248p7 object{19|44P9}
+249p7 states(24|29R9)
+251U14*drawVertexArray 252>7 253>7 254^7 419b<c,sfRenderTexture_drawVertexArray>22
+252p7 renderTexture{19|47P9}
+253p7 object{19|71P9}
+254p7 states(24|29R9)
+256U14*drawVertexBuffer 257>7 258>7 259^7 420b<c,sfRenderTexture_drawVertexBuffer>22
+257p7 renderTexture{19|47P9}
+258p7 object{19|74P9}
+259p7 states(24|29R9)
+271U14*drawPrimitives 272>7 273^7 274>7 275>7 276^7 421b<c,sfRenderTexture_drawPrimitives>22
+272p7 renderTexture{19|47P9}
+273p7 vertices(27|29R9)
+274m7 vertexCount{18|108M9}
+275m7 primitiveType{22|29M12}
+276p7 states(24|29R9)
+299U14*pushGLStates 299>28 422b<c,sfRenderTexture_pushGLStates>22
+299p28 renderTexture{19|47P9}
+310U14*popGLStates 310>27 423b<c,sfRenderTexture_popGLStates>22
+310p27 renderTexture{19|47P9}
+324U14*resetGLStates 324>29 424b<c,sfRenderTexture_resetGLStates>22
+324p29 renderTexture{19|47P9}
+334V13*getTexture{19|62P9} 334>25 425b<c,sfRenderTexture_getTexture>22
+334p25 renderTexture{19|47P9}
+342V13*getMaximumAntialiasingLevel{18|92M9} 426b<c,sfRenderTexture_getMaximumAntialiasingLevel>22
+351U14*setSmooth 351>25 351>62 427b<c,sfRenderTexture_setSmooth>22
+351p25 renderTexture{19|47P9}
+351b62 smooth{18|52E9}
+361V13*isSmooth{18|52E9} 361>23 428b<c,sfRenderTexture_isSmooth>22
+361p23 renderTexture{19|47P9}
+370U14*setRepeated 370>27 370>64 429b<c,sfRenderTexture_setRepeated>22
+370p27 renderTexture{19|47P9}
+370b64 repeated{18|52E9}
+380V13*isRepeated{18|52E9} 380>25 430b<c,sfRenderTexture_isRepeated>22
+380p25 renderTexture{19|47P9}
+396V13*generateMipmap{18|52E9} 396>29 431b<c,sfRenderTexture_generateMipmap>22
+396p29 renderTexture{19|47P9}
+X 27 sf-graphics-vertex.ads
+21K21*Vertex 25|25w18 273r51 27|39e23
+29R9*sfVertex 25|273r58 27|33e14
+X 28 sf-system.ads
+28K12*System 25|21r9 80r47 181r26 182r45 210r26 211r45 28|46e14
+X 29 sf-system-vector2.ads
+19K19*Vector2 25|21w16 80r54 181r33 182r52 210r33 211r52 29|54e22
+25R9*sfVector2i 25|181r41 211r60 29|28e14
+34R9*sfVector2u 25|80r62 29|37e14
+43R9*sfVector2f 25|182r60 210r41 29|46e14
+X 31 sf-window.ads
+26K12*Window 25|20r9 61r21 31|48e14
+X 39 sf-window-window.ads
+23K19*Window 25|20w16 61r28 39|549e21
+60R9*sfContextSettings 25|61r35 39|68e14
+

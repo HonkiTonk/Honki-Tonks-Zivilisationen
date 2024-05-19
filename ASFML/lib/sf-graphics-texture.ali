@@ -1,0 +1,241 @@
+V "GNAT Lib v13"
+A -O3
+A -gnatA
+A -gnatW8
+A -gnatwa
+A -gnatn
+A -gnata
+A -gnatQ
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U sf.graphics.texture%b	sf-graphics-texture.adb	3dbd14cb NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W interfaces%s		interfac.ads		interfac.ali
+W interfaces.c%s	i-c.adb			i-c.ali
+W interfaces.c.strings%s  i-cstrin.adb		i-cstrin.ali
+W sf.graphics%s		sf-graphics.ads		sf-graphics.ali
+
+U sf.graphics.texture%s	sf-graphics-texture.ads	c0e4d038 EE NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W sf%s			sf.ads			sf.ali
+W sf.graphics%s		sf-graphics.ads		sf-graphics.ali
+W sf.graphics.rect%s	sf-graphics-rect.ads	sf-graphics-rect.ali
+W sf.system%s		sf-system.ads		sf-system.ali
+W sf.system.inputstream%s  sf-system-inputstream.ads  sf-system-inputstream.ali
+W sf.system.vector2%s	sf-system-vector2.ads	sf-system-vector2.ali
+W sf.window%s		sf-window.ads		sf-window.ali
+W system%s		system.ads		system.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-charac.ads		20230727081303 2d3ec45b ada.characters%s
+D a-chlat1.ads		20230727081303 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-strmap.ads		20230727081304 ed8acfdb ada.strings.maps%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20230727081304 7bfb7010 ada.strings.unbounded%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cpoint.ads		20230727081304 ee8a93ec interfaces.c.pointers%s
+D i-cstrin.ads		20230727081304 f40c8db4 interfaces.c.strings%s
+D sf.ads		20230929172031 a5b8c55e sf%s
+D sf-graphics.ads	20220818093223 ac713dd8 sf.graphics%s
+D sf-graphics-rect.ads	20220818093223 73657927 sf.graphics.rect%s
+D sf-graphics-texture.ads  20230929172031 a5c2de9d sf.graphics.texture%s
+D sf-graphics-texture.adb  20220818093223 6c7347e2 sf.graphics.texture%b
+D sf-system.ads		20220818093223 1a66005a sf.system%s
+D sf-system-inputstream.ads  20230929172031 a9b17ead sf.system.inputstream%s
+D sf-system-vector2.ads	20220818093223 ae51255e sf.system.vector2%s
+D sf-window.ads		20220818093223 ffbfbe11 sf.window%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20240514075845 1f39ba92 system.parameters%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s s [create sf__graphics__texture 40 13 none]
+G c Z s b [createfromfile sf__graphics__texture 51 13 none]
+G c Z s s [createfrommemory sf__graphics__texture 66 13 none]
+G c Z s s [createfromstream sf__graphics__texture 81 13 none]
+G c Z s s [createfromimage sf__graphics__texture 95 13 none]
+G c Z s s [copy sf__graphics__texture 108 13 none]
+G c Z s s [destroy sf__graphics__texture 116 14 none]
+G c Z s s [getsize sf__graphics__texture 126 13 none]
+G c Z s s [copytoimage sf__graphics__texture 136 13 none]
+G c Z s s [updatefrompixels sf__graphics__texture 149 14 none]
+G c Z s s [updatefromtexture sf__graphics__texture 174 14 none]
+G c Z s s [updatefromimage sf__graphics__texture 190 14 none]
+G c Z s s [updatefromwindow sf__graphics__texture 205 14 none]
+G c Z s s [updatefromrenderwindow sf__graphics__texture 220 14 none]
+G c Z s s [setsmooth sf__graphics__texture 233 14 none]
+G c Z s s [issmooth sf__graphics__texture 243 13 none]
+G c Z s s [setsrgb sf__graphics__texture 268 14 none]
+G c Z s s [issrgb sf__graphics__texture 278 13 none]
+G c Z s s [setrepeated sf__graphics__texture 301 14 none]
+G c Z s s [isrepeated sf__graphics__texture 311 13 none]
+G c Z s s [generatemipmap sf__graphics__texture 336 13 none]
+G c Z s s [swap sf__graphics__texture 345 14 none]
+G c Z s s [getnativehandle sf__graphics__texture 359 13 none]
+G c Z s s [bind sf__graphics__texture 382 14 none]
+G c Z s s [getmaximumsize sf__graphics__texture 390 13 none]
+X 14 interfac.ads
+38K9*Interfaces 232e15 22|28r6 31r8 44r37
+X 15 i-c.ads
+29K20*C 597e17 22|28r17 31r19 44r48
+X 17 i-cstrin.ads
+44K22*Strings 156e25 22|28w19 31r21 44r50
+59P9*chars_ptr 22|44r58 47r14
+77V13*New_String{59P9} 22|47s27
+82U14*Free 22|50s7
+X 18 sf.ads
+39K9*Sf 128e7 21|21r6 22r6 23r6 24r6 26r9 53r34 53r64 69r30 69r60 82r23 83r30
+. 83r60 97r30 97r60 126r54 207r17 419r5 22|30r14 43r34 43r64 45r49 54r5
+52B9*sfBool<boolean> 21|233r59 243r55 268r55 278r53 301r63 311r57 336r61
+69M9*sfUint8 21|151r23
+92M9*sfUint32 21|40r29 40r48 152r15 153r16 154r11 155r11 177r11 178r11 193r11
+. 194r11 208r17 209r17 223r11 224r11 359r62 390r35
+108M9*sfSize_t 21|68r21
+X 19 sf-graphics.ads
+26K12*Graphics 18|39k9 19|112e16 21|21r9 26r12 53r37 53r67 69r33 69r63 83r33
+. 83r63 97r33 97r63 419r8 22|30r17 43r37 43r67 45r52 54r8
+37R9*sfImage
+38P9*sfImage_Ptr(37R9) 21|96r15 136r58 192r15
+49R9*sfRenderWindow
+50P9*sfRenderWindow_Ptr(49R9) 21|222r22
+61R9*sfTexture
+62P9*sfTexture_Ptr(61R9) 21|40r65 54r13 70r13 84r13 98r13 108r29 108r51 116r33
+. 126r32 136r36 150r17 175r21 176r16 191r17 206r17 221r17 233r35 243r33 268r33
+. 278r31 301r37 311r35 336r39 345r27 345r50 359r40 382r30 22|43r112 45r84
+. 48r23
+X 20 sf-graphics-rect.ads
+22K21*Rect 95e21 21|21w18 53r46 53r76 69r42 69r72 83r42 83r72 97r42 97r72
+. 22|43r46 43r76 45r61
+35R9*sfIntRect 40e14 21|53r51 69r47 83r47 97r47 22|43r51 45r66
+42r4*sfNullRectangle{35R9} 21|53r81 69r77 83r77 97r77 22|43r81
+X 21 sf-graphics-texture.ads
+26K21*Texture 19|26k12 21|394E30 419l17 419e24 22|30b26 54l17 54t24
+40V13*create{19|62P9} 40>21 40>39 394b<c,sfTexture_create>22
+40m21 width{18|92M9}
+40m39 height{18|92M9}
+51V13*createFromFile{19|62P9} 52>7 53^7 22|41b13 52l8 52t22
+52a7 filename{string} 22|42b7 47r39
+53p7 area(20|35R9) 22|43b7 48r56
+66V13*createFromMemory{19|62P9} 67>7 68>7 69^7 395b<c,sfTexture_createFromMemory>22
+67m7 data{27|67M9}
+68m7 sizeInBytes{18|108M9}
+69p7 area(20|35R9)
+81V13*createFromStream{19|62P9} 82^7 83^7 396b<c,sfTexture_createFromStream>22
+82p7 stream(24|45R9)
+83p7 area(20|35R9)
+95V13*createFromImage{19|62P9} 96>7 97^7 397b<c,sfTexture_createFromImage>22
+96p7 image{19|38P9}
+97p7 area(20|35R9)
+108V13*copy{19|62P9} 108>19 398b<c,sfTexture_copy>22
+108p19 texture{19|62P9}
+116U14*destroy 116>23 399b<c,sfTexture_destroy>22
+116p23 texture{19|62P9}
+126V13*getSize{25|34R9} 126>22 400b<c,sfTexture_getSize>22
+126p22 texture{19|62P9}
+136V13*copyToImage{19|38P9} 136>26 401b<c,sfTexture_copyToImage>22
+136p26 texture{19|62P9}
+149U14*updateFromPixels 150>7 151^7 152>7 153>7 154>7 155>7 402b<c,sfTexture_updateFromPixels>22
+150p7 texture{19|62P9}
+151p7 pixels(18|69M9)
+152m7 width{18|92M9}
+153m7 height{18|92M9}
+154m7 x{18|92M9}
+155m7 y{18|92M9}
+174U14*updateFromTexture 175>7 176>7 177>7 178>7 403b<c,sfTexture_updateFromTexture>22
+175p7 destination{19|62P9}
+176p7 source{19|62P9}
+177m7 x{18|92M9}
+178m7 y{18|92M9}
+190U14*updateFromImage 191>7 192>7 193>7 194>7 404b<c,sfTexture_updateFromImage>22
+191p7 texture{19|62P9}
+192p7 image{19|38P9}
+193m7 x{18|92M9}
+194m7 y{18|92M9}
+205U14*updateFromWindow 206>7 207>7 208>7 209>7 405b<c,sfTexture_updateFromWindow>22
+206p7 texture{19|62P9}
+207p7 window{26|33P9}
+208m7 x{18|92M9}
+209m7 y{18|92M9}
+220U14*updateFromRenderWindow 221>7 222>7 223>7 224>7 406b<c,sfTexture_updateFromRenderWindow>22
+221p7 texture{19|62P9}
+222p7 renderWindow{19|50P9}
+223m7 x{18|92M9}
+224m7 y{18|92M9}
+233U14*setSmooth 233>25 233>50 407b<c,sfTexture_setSmooth>22
+233p25 texture{19|62P9}
+233b50 smooth{18|52E9}
+243V13*isSmooth{18|52E9} 243>23 408b<c,sfTexture_isSmooth>22
+243p23 texture{19|62P9}
+268U14*setSrgb 268>23 268>48 409b<c,sfTexture_setSrgb>22
+268p23 texture{19|62P9}
+268b48 sRgb{18|52E9}
+278V13*isSrgb{18|52E9} 278>21 410b<c,sfTexture_isSrgb>22
+278p21 texture{19|62P9}
+301U14*setRepeated 301>27 301>52 411b<c,sfTexture_setRepeated>22
+301p27 texture{19|62P9}
+301b52 repeated{18|52E9}
+311V13*isRepeated{18|52E9} 311>25 412b<c,sfTexture_isRepeated>22
+311p25 texture{19|62P9}
+336V13*generateMipmap{18|52E9} 336>29 413b<c,sfTexture_generateMipmap>22
+336p29 texture{19|62P9}
+345U14*swap 345>20 345>42 414b<c,sfTexture_swap>22
+345p20 left{19|62P9}
+345p42 right{19|62P9}
+359V13*getNativeHandle{18|92M9} 359>30 415b<c,sfTexture_getNativeHandle>22
+359p30 texture{19|62P9}
+382U14*bind 382>20 416b<c,sfTexture_bind>22
+382p20 texture{19|62P9}
+390V13*getMaximumSize{18|92M9} 417b<c,sfTexture_getMaximumSize>22
+X 22 sf-graphics-texture.adb
+44V16*Internal{19|62P9} 44>26 45^26 46b<c,sfTexture_createFromFile>25 48s40
+44p26 filename{17|59P9}
+45p26 Area(20|35R9)
+47p7 Temp{17|59P9} 48r50 50m13 50r13
+48p7 R{19|62P9} 51r14
+X 23 sf-system.ads
+28K12*System 21|22r9 23r9 82r26 126r57 23|46e14
+X 24 sf-system-inputstream.ads
+22K19*InputStream 21|22w16 82r33 24|62e26
+45R9*sfInputStream 21|82r45 24|51e14
+X 25 sf-system-vector2.ads
+19K19*Vector2 21|23w16 126r64 25|54e22
+34R9*sfVector2u 21|126r72 25|37e14
+X 26 sf-window.ads
+26K12*Window 21|24w9 207r20 26|48e14
+32R9*sfWindow
+33P9*sfWindow_Ptr(32R9) 21|207r27
+X 27 system.ads
+37K9*System 21|19w6 67r23 27|153e11
+67M9*Address 21|67r30
+
