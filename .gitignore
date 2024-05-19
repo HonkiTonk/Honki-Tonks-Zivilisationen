@@ -8,8 +8,8 @@ Honki Tonks Zivilisationen/Meldungen
 Honki Tonks Zivilisationen/HonkiTonksZivilisationen
 Honki Tonks Zivilisationen/Start
 GNAT*
-ASFML/libasfml.a
-ASFML/*.ali
+ASFML/lib/libasfml.a
+ASFML/lib/*.ali
 alire/
 config/
 share/
