@@ -1,49 +1,17 @@
 with Sf.System.Vector2;
-with Sf.Graphics.Rect;
 
-with KartengrundDatentypen;
-with KartenextraDatentypen;
-with KartenverbesserungDatentypen;
-with SpeziesDatentypen;
-with EinheitenDatentypen;
-with StadtDatentypen;
+private with SpeziesDatentypen;
 
 package TexturenfelderBerechnenGrafik is
    pragma Elaborate_Body;
 
    procedure TexturenfelderBerechnen;
    
-   
-   
-   function Basisgrundbereich
-     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
-      return Sf.Graphics.Rect.sfIntRect
-     with
-       Post => (
-                  Basisgrundbereich'Result.left >= 0
-                and
-                  Basisgrundbereich'Result.top >= 0
-                and
-                  Basisgrundbereich'Result.width >= 0
-                and
-                  Basisgrundbereich'Result.height >= 0
-               );
-   
-   function Basisgrundabmessung
-     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
-      return Sf.System.Vector2.sfVector2f
-     with
-       Post => (
-                  Basisgrundabmessung'Result.x >= 0.00
-                and
-                  Basisgrundabmessung'Result.y >= 0.00
-               );
-   
 private
    
-   FelderanzahlBasisgrund : constant Sf.System.Vector2.sfVector2u := (10, 10);
-   FelderanzahlZusatzgrund : constant Sf.System.Vector2.sfVector2u := (10, 10);
-   FelderanzahlFlüsse : constant Sf.System.Vector2.sfVector2u := (10, 10);
+   FelderanzahlBasisgrund : constant Sf.System.Vector2.sfVector2u := (10, 6);
+   FelderanzahlZusatzgrund : constant Sf.System.Vector2.sfVector2u := (10, 8);
+   FelderanzahlFlüsse : constant Sf.System.Vector2.sfVector2u := (10, 5);
    FelderanzahlRessourcen : constant Sf.System.Vector2.sfVector2u := (3, 3);
    FelderanzahlVerbesserungen : constant Sf.System.Vector2.sfVector2u := (3, 3);
    FelderanzahlWege : constant Sf.System.Vector2.sfVector2u := (7, 7);
@@ -68,33 +36,6 @@ private
    Texturengröße : Sf.System.Vector2.sfVector2u;
    AktuelleFeldposition : Sf.System.Vector2.sfVector2u;
    
-   type BasisgrundArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
-   Basisgrund : BasisgrundArray;
-   
-   type ZusatzgrundArray is array (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
-   Zusatzgrund : ZusatzgrundArray;
-   
-   type FlüsseArray is array (KartenextraDatentypen.Fluss_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
-   Flüsse : FlüsseArray;
-   
-   type RessourcenArray is array (KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
-   Ressourcen : RessourcenArray;
-   
-   type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
-   Verbesserungen : VerbesserungenArray;
-   
-   type WegeArray is array (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
-   Wege : WegeArray;
-   
-   type FeldeffekteArray is array (KartenextraDatentypen.Effekt_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
-   Feldeffekte : FeldeffekteArray;
-   
-   type EinheitenArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, EinheitenDatentypen.EinheitenIDVorhanden'Range) of Sf.Graphics.Rect.sfIntRect;
-   Einheiten : EinheitenArray;
-   
-   type GebäudeArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, StadtDatentypen.GebäudeIDVorhanden'Range) of Sf.Graphics.Rect.sfIntRect;
-   Gebäude : GebäudeArray;
-   
    procedure BasisgrundBerechnen;
    procedure ZusatzgrundBerechnen;
    procedure FlüsseBerechnen;
@@ -102,7 +43,15 @@ private
    procedure VerbesserungenBerechnen;
    procedure WegeBerechnen;
    procedure FeldeffekteBerechnen;
-   procedure EinheitenBerechnen;
-   procedure GebäudeBerechnen;
+   
+   procedure Speziesberechnungen;
+   procedure HintergründeBerechnen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
+   
+   procedure EinheitenBerechnen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
+   
+   procedure GebäudeBerechnen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
    
 end TexturenfelderBerechnenGrafik;

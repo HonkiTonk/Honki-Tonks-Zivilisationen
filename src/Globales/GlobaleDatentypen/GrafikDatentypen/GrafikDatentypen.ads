@@ -42,7 +42,8 @@ package GrafikDatentypen is
       
    
    
-   -- Bei Änderungen hier muss auch immer die Reihenfolge der 0-Dateien in den Hintergründen angepasst werden!
+   -- Die Hintergründe alle mal neu aufteilen und so mehr spezienspezifische Hintergründe erlauben? äöü
+   -- Bei Änderungen hier muss auch immer die Reihenfolge in der 0-Datei angepasst werden!
    type Hintergrund_Enum is (
                              Intro_Hintergrund_Enum, Kartenformen_Enum,
                              
@@ -56,7 +57,7 @@ package GrafikDatentypen is
    
    
    
-   -- Bei Änderungen hier muss auch immer die Reihenfolge der 0-Dateien in den Spezieshintergründen angepasst werden!
+   -- Bei Änderungen hier muss auch immer die Reihenfolge in der 0-Datei angepasst werden!
    type Spezieshintergrund_Enum is (
                                     Leer_Hintergrund_Enum,
                                    
