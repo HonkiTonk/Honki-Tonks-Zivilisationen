@@ -40,7 +40,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Zusatzgrundabmessung;
    
    
    
@@ -51,7 +51,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Flussbereich;
    
    
    
@@ -62,7 +62,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Flussabmessung;
    
    
    
@@ -73,7 +73,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Ressourcenbereich;
    
    
    
@@ -84,7 +84,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Ressourcenabmessung;
    
    
    
@@ -95,7 +95,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Verbesserungsbereich;
    
    
    
@@ -106,7 +106,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Verbesserungsabmessung;
    
    
    
@@ -117,7 +117,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Wegebereich;
    
    
    
@@ -128,7 +128,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Wegeabmessung;
    
    
    
@@ -139,7 +139,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Feldeffektebereich;
    
    
    
@@ -150,7 +150,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Feldeffekteabmessung;
    
    
    
@@ -162,7 +162,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Hintergrundbereich;
    
    
    
@@ -174,7 +174,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Hintergrundabmessung;
    
    
    
@@ -186,7 +186,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Einheitenbereich;
    
    
    
@@ -198,7 +198,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Einheitenabmessung;
    
    
    
@@ -209,7 +209,7 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Gebäudebereich;
    
    
    
@@ -221,6 +221,6 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Zusatzgrundbereich;
+   end Gebäudeabmessung;
    
 end TexturenfelderVariablenGrafik;

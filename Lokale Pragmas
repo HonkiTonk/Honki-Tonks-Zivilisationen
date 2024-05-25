@@ -2,6 +2,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 pragma License (GPL);
 pragma Ada_2022;
+pragma SPARK_Mode (Off);
 
 pragma Elaboration_Checks (Static);
 pragma Detect_Blocking;
