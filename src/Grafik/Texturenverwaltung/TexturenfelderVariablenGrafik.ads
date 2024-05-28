@@ -268,7 +268,8 @@ package TexturenfelderVariablenGrafik is
                );
    
    function Gebäudebereich
-     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+     (GebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (

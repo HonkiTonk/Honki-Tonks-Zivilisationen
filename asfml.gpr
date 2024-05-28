@@ -90,12 +90,15 @@ library project ASFML is
       for Linker_Options use
         (
 	  "-lcsfml-audio", "-lcsfml-graphics", "-lcsfml-window", "-lcsfml-system", "-lcsfml-network",
+          "-lasfml"
+         -- Wird nur benötigt wenn man es statisch kompilieren will.
          -- "-lsfml-audio", "-lsfml-graphics", "-lsfml-window", "-lsfml-system", "-lsfml-network",
 	 -- "-lopenal",  "-logg", "-lvorbis", "-lvorbisenc", "-lvorbisfile", "-lFLAC", "-lfreetype",
 	 -- "-lOpenGL", "-lGLX", "-ludev", "-lXrandr", "-lX11", "-lstdc++", "-lm",
-	 -- Wird aktuell nicht benötigt, aber vielleicht in der Zukunft? Mal ausgeklammert drin lassen.
-	 -- "-lGLU", "-lpthread",
-         "-lasfml");
+
+	 -- Wird nicht benötigt, vollständigkeitshalber aber dennoch hier.
+	 -- "-lGLU", "-lpthread"
+        );
    end Linker;
 
 

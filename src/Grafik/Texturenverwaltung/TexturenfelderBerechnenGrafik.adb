@@ -27,7 +27,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
             
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.BasisgrundAccessGesamt);
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.BasisgrundAccess);
       
       Feldgröße := (Texturengröße.x / FelderanzahlBasisgrund.x, Texturengröße.y / FelderanzahlBasisgrund.y);
       
@@ -96,13 +96,13 @@ package body TexturenfelderBerechnenGrafik is
    is
       use type Sf.sfUint32;
    begin
-      
+            
       Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenflussAccessGesamt);
       
       Feldgröße := (Texturengröße.x / FelderanzahlFlüsse.x, Texturengröße.y / FelderanzahlFlüsse.y);
       
       AktuelleFeldposition := (1, 1);
-      
+            
       FlüsseSchleife:
       for FlüsseSchleifenwert in TexturenfelderVariablenGrafik.FlüsseArray'Range loop
          

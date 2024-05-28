@@ -12,7 +12,9 @@ with KartenextraDatentypen;
 package EingeleseneTexturenGrafik is
    pragma Elaborate_Body;
 
-   BasisgrundAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
+   BasisgrundAccess : Sf.Graphics.sfTexture_Ptr := null;
+
+
    ZusatzgrundAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
    KartenflussAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;
    KartenressourcenAccessGesamt : Sf.Graphics.sfTexture_Ptr := null;

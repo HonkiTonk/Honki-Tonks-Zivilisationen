@@ -7,7 +7,6 @@ with ViewKonstanten;
 with GrafikKonstanten;
 
 with ViewsEinstellenGrafik;
-with TexturenSetzenSkalierenGrafik;
 with EingeleseneTexturenGrafik;
 with SpritesverwaltungssystemGrafik;
 with TexturenberechnungenGrafik;
@@ -63,7 +62,7 @@ package body WeltkartenbefehleGrafik is
       Texturgröße := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.SystemAccess (WelcheTexturExtern)).x),
                         Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.SystemAccess (WelcheTexturExtern)).y));
       
-      TexturenSetzenSkalierenGrafik.Textursetzung (SpriteAccessExtern  => SpriteAccess,
+      SpritesverwaltungssystemGrafik.Setzen (SpriteAccessExtern  => SpriteAccess,
                                                    TextureAccessExtern => EingeleseneTexturenGrafik.SystemAccess (WelcheTexturExtern));
       SpritesverwaltungssystemGrafik.PositionZeichnen (SpriteAccessExtern => SpriteAccess,
                                                        PositionExtern     => GrafikRecordKonstanten.Nullposition);
@@ -131,7 +130,7 @@ package body WeltkartenbefehleGrafik is
       Texturgröße := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Kartenknöpfe_Enum)).x),
                         Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Kartenknöpfe_Enum)).y));
       
-      TexturenSetzenSkalierenGrafik.Textursetzung (SpriteAccessExtern  => SpriteAccess,
+      SpritesverwaltungssystemGrafik.Setzen (SpriteAccessExtern  => SpriteAccess,
                                                    TextureAccessExtern => EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Kartenknöpfe_Enum));
       SpritesverwaltungssystemGrafik.PositionZeichnen (SpriteAccessExtern => SpriteAccess,
                                                        PositionExtern     => GrafikRecordKonstanten.Nullposition);

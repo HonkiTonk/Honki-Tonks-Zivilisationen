@@ -6,6 +6,7 @@ with LeseGrafiktask;
 
 with CursorbewegungLogik;
 with FensterGrafik;
+
 package body SichtweitenGrafik is
    
    procedure StandardSichtweiten
@@ -170,8 +171,8 @@ package body SichtweitenGrafik is
    procedure StadtumgebungAbmessungBerechnen
    is begin
       
-      StadtumgebungAbmessung.y := FensterGrafik.AktuelleAuflösung.y / Float (StadtKonstanten.Stadtkartengröße);
-      StadtumgebungAbmessung.x := StadtumgebungAbmessung.y;
+      -- StadtumgebungAbmessung.y := FensterGrafik.AktuelleAuflösung.y / Float (StadtKonstanten.Stadtkartengröße);
+      -- StadtumgebungAbmessung.x := StadtumgebungAbmessung.y;
       
       StadtumgebungAbmessung.x := FensterGrafik.AktuelleAuflösung.x / Float (StadtKonstanten.Stadtkartengröße);
       StadtumgebungAbmessung.y := FensterGrafik.AktuelleAuflösung.y / Float (StadtKonstanten.Stadtkartengröße);

@@ -2,7 +2,7 @@ with GrafikKonstanten;
 with GrafikRecordKonstanten;
 
 with EingeleseneTexturenGrafik;
-with TexturenSetzenSkalierenGrafik;
+with TexturenskalierungGrafik;
 with Fehlermeldungssystem;
 with ObjekteZeichnenGrafik;
 with SpritesverwaltungssystemGrafik;
@@ -43,7 +43,7 @@ package body HintergrundGrafik is
                                                  FarbeExtern     => GrafikRecordKonstanten.Fehlerfarbe);
          
       else
-         Skalierung := TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundSpritePositionierbarAccess,
+         Skalierung := TexturenskalierungGrafik.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundSpritePositionierbarAccess,
                                                                                TextureAccessExtern => EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern),
                                                                                GrößeExtern         => AbmessungenExtern);
          Sf.Graphics.Sprite.setScale (sprite => HintergrundSpritePositionierbarAccess,
@@ -89,7 +89,7 @@ package body HintergrundGrafik is
                                                  FarbeExtern     => GrafikRecordKonstanten.Fehlerfarbe);
          
       else
-         Skalierung := TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpezieshintergrundSpriteAccess,
+         Skalierung := TexturenskalierungGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpezieshintergrundSpriteAccess,
                                                                                TextureAccessExtern => EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern),
                                                                                GrößeExtern         => AbmessungenExtern);
          Sf.Graphics.Sprite.setScale (sprite => SpezieshintergrundSpriteAccess,

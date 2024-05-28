@@ -12,9 +12,8 @@ package body SpritesverwaltungssystemGrafik is
       SkalierungExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
-                                     texture   => TexturExtern,
-                                     resetRect => Sf.sfTrue);
+      Setzen (SpriteAccessExtern  => SpriteAccessExtern,
+              TextureAccessExtern => TexturExtern);
       
       Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccessExtern,
                                          rectangle => BereichExtern);
@@ -32,18 +31,17 @@ package body SpritesverwaltungssystemGrafik is
    procedure SetzenBereichPositionFarbeSkalierenZeichnen
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TexturExtern : in Sf.Graphics.sfTexture_Ptr;
-      BereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SkalierungExtern : in Sf.System.Vector2.sfVector2f;
       FarbeExtern : in Sf.Graphics.Color.sfColor)
    is begin
             
-      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
-                                     texture   => TexturExtern,
-                                     resetRect => Sf.sfTrue);
+      Setzen (SpriteAccessExtern  => SpriteAccessExtern,
+              TextureAccessExtern => TexturExtern);
       
       Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccessExtern,
-                                         rectangle => BereichExtern);
+                                         rectangle => TexturbereichExtern);
       
       Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
                                       position => PositionExtern);
@@ -58,6 +56,30 @@ package body SpritesverwaltungssystemGrafik is
                                            object       => SpriteAccessExtern);
       
    end SetzenBereichPositionFarbeSkalierenZeichnen;
+   
+   
+   
+   procedure SetzenBereichPositionSkalieren
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TexturExtern : in Sf.Graphics.sfTexture_Ptr;
+      BereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Setzen (SpriteAccessExtern  => SpriteAccessExtern,
+              TextureAccessExtern => TexturExtern);
+      
+      Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccessExtern,
+                                         rectangle => BereichExtern);
+      
+      Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
+                                      position => PositionExtern);
+      
+      Sf.Graphics.Sprite.setScale (sprite => SpriteAccessExtern,
+                                   scale  => SkalierungExtern);
+      
+   end SetzenBereichPositionSkalieren;
    
    
    
@@ -149,5 +171,18 @@ package body SpritesverwaltungssystemGrafik is
                                    color  => FarbeExtern);
       
    end Farbe;
+   
+   
+   
+   procedure Setzen
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+   is begin
+      
+      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
+                                     texture   => TextureAccessExtern,
+                                     resetRect => Sf.sfTrue);
+      
+   end Setzen;
 
 end SpritesverwaltungssystemGrafik;

@@ -67,7 +67,7 @@ package body EinlesenTexturenLogik is
                elsif
                  AktuelleZeile = Basisgrund
                then
-                  EingeleseneTexturenGrafik.BasisgrundAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.BasisgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile = Zusatzgrund
@@ -77,7 +77,7 @@ package body EinlesenTexturenLogik is
                elsif
                  AktuelleZeile = Flüsse
                then
-                  EingeleseneTexturenGrafik.FeldeffekteAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.KartenflussAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile = Ressourcen
@@ -169,7 +169,7 @@ package body EinlesenTexturenLogik is
                   
                else
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Außerhalb des Einlesebereichs");
-                  return;
+                  exit TexturenSchleife;
                end if;
                
                if
@@ -182,7 +182,7 @@ package body EinlesenTexturenLogik is
                   exit TexturenSchleife;
                end if;
          end case;
-         
+                  
       end loop TexturenSchleife;
       
       Close (File => DateiTexturen);

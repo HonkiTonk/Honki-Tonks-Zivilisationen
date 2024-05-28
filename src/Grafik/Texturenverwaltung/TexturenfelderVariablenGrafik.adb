@@ -27,7 +27,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return Zusatzgrund (ZusatzgrundExtern);
       
    end Zusatzgrundbereich;
    
@@ -38,7 +38,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return (Float (Zusatzgrund (ZusatzgrundExtern).width), Float (Zusatzgrund (ZusatzgrundExtern).height));
       
    end Zusatzgrundabmessung;
    
@@ -49,7 +49,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return Flüsse (FlussExtern);
       
    end Flussbereich;
    
@@ -60,7 +60,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return (Float (Flüsse (FlussExtern).width), Float (Flüsse (FlussExtern).height));
       
    end Flussabmessung;
    
@@ -71,7 +71,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return Ressourcen (RessourceExtern);
       
    end Ressourcenbereich;
    
@@ -82,7 +82,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return (Float (Ressourcen (RessourceExtern).width), Float (Ressourcen (RessourceExtern).height));
       
    end Ressourcenabmessung;
    
@@ -93,7 +93,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return Verbesserungen (VerbesserungExtern);
       
    end Verbesserungsbereich;
    
@@ -104,7 +104,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return (Float (Verbesserungen (VerbesserungExtern).width), Float (Verbesserungen (VerbesserungExtern).height));
       
    end Verbesserungsabmessung;
    
@@ -115,7 +115,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return Wege (WegExtern);
       
    end Wegebereich;
    
@@ -126,7 +126,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return (Float (Wege (WegExtern).width), Float (Wege (WegExtern).height));
       
    end Wegeabmessung;
    
@@ -137,7 +137,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return Feldeffekte (FeldeffektedExtern);
       
    end Feldeffektebereich;
    
@@ -148,7 +148,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return (Float (Feldeffekte (FeldeffektedExtern).width), Float (Feldeffekte (FeldeffektedExtern).height));
       
    end Feldeffekteabmessung;
    
@@ -160,7 +160,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return Hintergründe (SpeziesExtern, HintergrundExtern);
       
    end Hintergrundbereich;
    
@@ -172,7 +172,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return (Float (Hintergründe (SpeziesExtern, HintergrundExtern).width), Float (Hintergründe (SpeziesExtern, HintergrundExtern).height));
       
    end Hintergrundabmessung;
    
@@ -184,7 +184,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return Einheiten (SpeziesExtern, EinheitExtern);
       
    end Einheitenbereich;
    
@@ -196,18 +196,19 @@ package body TexturenfelderVariablenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return (Float (Einheiten (SpeziesExtern, EinheitExtern).width), Float (Einheiten (SpeziesExtern, EinheitExtern).height));
       
    end Einheitenabmessung;
    
    
    
    function Gebäudebereich
-     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+     (GebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return Gebäude (SpeziesExtern, GebäudeExtern);
       
    end Gebäudebereich;
    
@@ -219,7 +220,7 @@ package body TexturenfelderVariablenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
+      return (Float (Gebäude (SpeziesExtern, GebäudeExtern).width), Float (Gebäude (SpeziesExtern, GebäudeExtern).height));
       
    end Gebäudeabmessung;
    

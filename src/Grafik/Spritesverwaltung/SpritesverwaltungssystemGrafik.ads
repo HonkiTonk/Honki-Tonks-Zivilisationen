@@ -27,10 +27,41 @@ package SpritesverwaltungssystemGrafik is
    procedure SetzenBereichPositionFarbeSkalierenZeichnen
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TexturExtern : in Sf.Graphics.sfTexture_Ptr;
-      BereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SkalierungExtern : in Sf.System.Vector2.sfVector2f;
-      FarbeExtern : in Sf.Graphics.Color.sfColor);
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 SpriteAccessExtern /= null
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 SkalierungExtern.x > 0.00
+               and
+                 SkalierungExtern.y > 0.00
+              );
+   
+   procedure SetzenBereichPositionSkalieren
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TexturExtern : in Sf.Graphics.sfTexture_Ptr;
+      BereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 SpriteAccessExtern /= null
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 SkalierungExtern.x > 0.00
+               and
+                 SkalierungExtern.y > 0.00
+              );
    
    procedure PositionSkalierungZeichnen
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
@@ -98,6 +129,14 @@ package SpritesverwaltungssystemGrafik is
    procedure Farbe
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 SpriteAccessExtern /= null
+              );
+   
+   procedure Setzen
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
      with
        Pre => (
                  SpriteAccessExtern /= null

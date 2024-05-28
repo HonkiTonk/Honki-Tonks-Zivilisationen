@@ -1,23 +1,51 @@
 with Sf.Graphics;
 with Sf.System.Vector2;
--- with Sf.Graphics.Rect;
 
-package TexturenSetzenSkalierenGrafik is
+package TexturenskalierungGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfSprite_Ptr;
    use type Sf.Graphics.sfTexture_Ptr;
    
-   procedure Textursetzung
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+   function Kartenfeldskalierung
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
+      return Sf.System.Vector2.sfVector2f
      with
-       Pre => (
-                 SpriteAccessExtern /= null
-               and
-                 TextureAccessExtern /= null
-              );
+       Post => (
+                  Kartenfeldskalierung'Result.x >= 0.00
+                and
+                  Kartenfeldskalierung'Result.y >= 0.00
+               );
    
+   function Stadtfeldskalierung
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Stadtfeldskalierung'Result.x >= 0.00
+                and
+                  Stadtfeldskalierung'Result.y >= 0.00
+               );
    
+   function Vollbildskalierung
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Vollbildskalierung'Result.x >= 0.00
+                and
+                  Vollbildskalierung'Result.y >= 0.00
+               );
+   
+   function VariableSkalierung
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u;
+      BereichsabmessungExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  VariableSkalierung'Result.x >= 0.00
+                and
+                  VariableSkalierung'Result.y >= 0.00
+               );
 
    function Weltkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
@@ -35,17 +63,7 @@ package TexturenSetzenSkalierenGrafik is
                 and
                   Weltkarte'Result.y >= 0.00
                );
-   
-   function AllgemeineSkalierung
-     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
-      return Sf.System.Vector2.sfVector2f
-     with
-       Post => (
-                  AllgemeineSkalierung'Result.x >= 0.00
-                and
-                  AllgemeineSkalierung'Result.y >= 0.00
-               );
-
+      
    function Stadtbewirtschaftung
      (FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       TexturengrößeExtern : in Sf.System.Vector2.sfVector2f)
@@ -104,13 +122,11 @@ package TexturenSetzenSkalierenGrafik is
    
 private
    
-   SkalierungKartenfeld : Sf.System.Vector2.sfVector2f;
-   SkalierungBild : Sf.System.Vector2.sfVector2f;
-   KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
-   Kartenabmessung : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
+   Bereichsabmessung : Sf.System.Vector2.sfVector2f;
    Rechteck : Sf.System.Vector2.sfVector2f;
       
    Texturengröße : Sf.System.Vector2.sfVector2f;
    Feldgröße : Sf.System.Vector2.sfVector2f;
 
-end TexturenSetzenSkalierenGrafik;
+end TexturenskalierungGrafik;
