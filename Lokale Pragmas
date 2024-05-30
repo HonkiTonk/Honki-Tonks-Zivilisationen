@@ -49,6 +49,8 @@ pragma Restrictions (No_Unrecognized_Pragmas);
 pragma Restrictions (Static_Dispatch_Tables);
 pragma Restrictions (No_Implementation_Units);
 pragma Restrictions (No_Obsolescent_Features);
+pragma Restrictions (No_Implementation_Aspect_Specifications);
+pragma Restrictions (No_Implementation_Attributes);
 
 pragma Restrictions (Max_Protected_Entries => 0);
 pragma Restrictions (Max_Select_Alternatives => 0);
@@ -79,6 +81,8 @@ pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Dom
 -- pragma Restrictions (No_Calendar);
 -- Damit kann die ASFML nicht kompiliert werden.
 -- pragma Normalize_Scalars;
+-- Damit ist pragma Ordered nicht verwendbar.
+-- pragma Restrictions (No_Implementation_Pragmas);
 
 
 
@@ -103,6 +107,10 @@ pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Dom
 -- pragma Restrictions (No_Implicit_Loops);
 -- Ist eine entspanntere Version von pragma Restrictions (Simple_Barriers), welches verwendet wird, sollte also nicht nötig sein.
 -- pragma Restrictions (Pure_Barriers);
+-- Prüfen was die folgenden drei Pragmas bewirken.
+-- pragma Restrictions (No_Dependence => No_Specification_of_Aspect);
+-- pragma Restrictions (No_Dependence => No_Use_Of_Attribute);
+-- pragma Restrictions (No_Dependence => No_Use_Of_Pragma);
 
 
 
@@ -113,3 +121,4 @@ pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Dom
 -- pragma Overriding_Renamings;
 -- pragma Suppress_All;
 -- pragma Suppress_Exception_Locations;
+-- pragma Assertion_Policy (Pre => Check);
