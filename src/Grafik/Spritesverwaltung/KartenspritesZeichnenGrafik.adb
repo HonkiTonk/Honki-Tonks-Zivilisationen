@@ -1,6 +1,5 @@
 with GrafikRecordKonstanten;
 with GrafikKonstanten;
-with EingeleseneTexturenGrafik;
 
 with TexturenskalierungGrafik;
 with Fehlermeldungssystem;
@@ -9,33 +8,6 @@ with SpritesverwaltungssystemGrafik;
 package body KartenspritesZeichnenGrafik is
    
    procedure KartenfeldZeichnen
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigkeitExtern : in Sf.sfUint8)
-   is
-      use type Sf.Graphics.sfTexture_Ptr;
-   begin
-      
-      if
-        TexturAccessExtern = null
-      then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern: null");
-         
-      else
-         Skalierung := TexturenskalierungGrafik.Weltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                           TextureAccessExtern => TexturAccessExtern);
-         
-         DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
-                                       PositionExtern         => PositionExtern,
-                                       SkalierungExtern       => Skalierung,
-                                       DurchsichtigkeitExtern => DurchsichtigkeitExtern);
-      end if;
-      
-   end KartenfeldZeichnen;
-   
-   
-   
-   procedure KartenfeldZeichnenNeu
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -47,24 +19,19 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnenNeu: TexturAccessExtern: null");
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern: null");
          
       else
          Skalierung := TexturenskalierungGrafik.Kartenfeldskalierung (TexturengrößeExtern => (Sf.sfUint32 (TexturbereichExtern.width), Sf.sfUint32 (TexturbereichExtern.height)));
-      
-         Farbe := Sf.Graphics.Sprite.getColor (sprite => SpriteAccess);
-      
-         Farbe.a := DurchsichtigkeitExtern;
-      
-         SpritesverwaltungssystemGrafik.SetzenBereichPositionFarbeSkalierenZeichnen (SpriteAccessExtern  => SpriteAccess,
-                                                                                     TexturExtern        => EingeleseneTexturenGrafik.BasisgrundAccess,
-                                                                                     TexturbereichExtern => TexturbereichExtern,
-                                                                                     PositionExtern      => PositionExtern,
-                                                                                     SkalierungExtern    => Skalierung,
-                                                                                     FarbeExtern         => Farbe);
+         
+         DurchsichtigesSpriteZeichnenNeu (TexturAccessExtern     => TexturAccessExtern,
+                                          TexturbereichExtern    => TexturbereichExtern,
+                                          PositionExtern         => PositionExtern,
+                                          SkalierungExtern       => Skalierung,
+                                          DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end if;
       
-   end KartenfeldZeichnenNeu;
+   end KartenfeldZeichnen;
    
    
    

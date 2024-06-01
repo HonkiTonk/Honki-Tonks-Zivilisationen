@@ -24,6 +24,7 @@ with ObjekteZeichnenGrafik;
 with SichtweitenGrafik;
 with TextskalierungGrafik;
 with HintergrundGrafik;
+with TexturenfelderVariablenGrafik;
 
 package body WeltkarteZusatzZeichnenGrafik is
 
@@ -41,9 +42,10 @@ package body WeltkarteZusatzZeichnenGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
-                                                            PositionExtern         => PositionExtern,
-                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccessGesamt,
+                                                               TexturbereichExtern    => TexturenfelderVariablenGrafik.Wegebereich (WegExtern => Wegfeld),
+                                                               PositionExtern         => PositionExtern,
+                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;
       
    end WegZeichnen;
@@ -82,9 +84,10 @@ package body WeltkarteZusatzZeichnenGrafik is
             null;
       end case;
       
-      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
-                                                      PositionExtern         => PositionExtern,
-                                                      DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccessGesamt,
+                                                         TexturbereichExtern    => TexturenfelderVariablenGrafik.Verbesserungsbereich (VerbesserungExtern => Verbesserungsfeld),
+                                                         PositionExtern         => PositionExtern,
+                                                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       
    end VerbesserungZeichnen;
    
@@ -278,9 +281,10 @@ package body WeltkarteZusatzZeichnenGrafik is
                                  WelcherEffektExtern => EffektSchleifenwert)
          is
             when True =>
-               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.FeldeffekteAccess (EffektSchleifenwert),
-                                                               PositionExtern         => PositionExtern,
-                                                               DurchsichtigkeitExtern => GrafikKonstanten.Feldeffekttransparents);
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.FeldeffekteAccessGesamt,
+                                                                  TexturbereichExtern    => TexturenfelderVariablenGrafik.Feldeffektebereich (FeldeffektedExtern => EffektSchleifenwert),
+                                                                  PositionExtern         => PositionExtern,
+                                                                  DurchsichtigkeitExtern => GrafikKonstanten.Feldeffekttransparents);
                
             when False =>
                null;

@@ -14,6 +14,7 @@ with KartenspritesZeichnenGrafik;
 with SichtweitenGrafik;
 with EinheitenbewegungsbereichLogik;
 with WeltkarteZusatzZeichnenGrafik;
+with TexturenfelderVariablenGrafik;
 
 package body WeltkarteEinheitZeichnenGrafik is
 
@@ -58,9 +59,11 @@ package body WeltkarteEinheitZeichnenGrafik is
       then
          FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
          
-         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies, FeldeinheitID),
-                                                         PositionExtern         => PositionExtern,
-                                                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccessGesamt (EinheitSpeziesNummer.Spezies),
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.Einheitenbereich (EinheitExtern => FeldeinheitID,
+                                                                                                                                      SpeziesExtern => EinheitSpeziesNummer.Spezies),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
          return;
          
       elsif
@@ -78,9 +81,11 @@ package body WeltkarteEinheitZeichnenGrafik is
                null;
             
             when others =>
-               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies, FeldeinheitID),
-                                                               PositionExtern         => PositionExtern,
-                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccessGesamt (EinheitSpeziesNummer.Spezies),
+                                                                  TexturbereichExtern    => TexturenfelderVariablenGrafik.Einheitenbereich (EinheitExtern => FeldeinheitID,
+                                                                                                                                            SpeziesExtern => EinheitSpeziesNummer.Spezies),
+                                                                  PositionExtern         => PositionExtern,
+                                                                  DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
          end case;
          
          case
@@ -108,9 +113,11 @@ package body WeltkarteEinheitZeichnenGrafik is
          null;
          
       else
-         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitenauswahlExtern.SpeziesNummer.Spezies, EinheitenauswahlExtern.ID),
-                                                         PositionExtern         => PositionExtern,
-                                                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccessGesamt (EinheitenauswahlExtern.SpeziesNummer.Spezies),
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.Einheitenbereich (EinheitExtern => EinheitenauswahlExtern.ID,
+                                                                                                                                      SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end if;
       
    end AnzeigeEinheit;

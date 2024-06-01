@@ -5,7 +5,6 @@ with FensterGrafik;
 with SichtweitenGrafik;
 with PruefungenGrafik;
 
--- Bei der Verwendung dieser Funktionen immer darauf achten erste die Skalierung aufzurufen und in einem Extraschritt sie zu zeichnen/umzufärben/usw., da es sonst zu Fehlern kommen kann!
 package body TexturenskalierungGrafik is
    
    function Kartenfeldskalierung

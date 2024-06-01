@@ -11,17 +11,6 @@ package KartenspritesZeichnenGrafik is
 
    procedure KartenfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigkeitExtern : in Sf.sfUint8)
-     with
-       Pre => (
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
-
-   procedure KartenfeldZeichnenNeu
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)

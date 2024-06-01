@@ -177,6 +177,7 @@ package body TexturenfelderVariablenGrafik is
    end Hintergrundabmessung;
    
    
+   -- Einheiten/Gebäude und Spezies in den gemeinsamen Record umwandeln. äöü
    
    function Einheitenbereich
      (EinheitExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
