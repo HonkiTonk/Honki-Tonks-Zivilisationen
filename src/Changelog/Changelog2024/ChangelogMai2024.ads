@@ -1,58 +1,50 @@
 package ChangelogMai2024 is
    
-   -- Version 0.05. => 0.05. (31.05.2024):
+   -- Version 0.05.7750 => 0.05.7750 (31.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (30.05.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (29.05.2024):
+   -- Version 0.05.7750 => 0.05.7750 (30.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (28.05.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (27.05.2024):
+   -- Version 0.05.7750 => 0.05.7750 (29.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (26.05.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (25.05.2024):
+   -- Version 0.05.7750 => 0.05.7750 (28.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.7750 => 0.05. (24.05.2024):
+   -- Version 0.05.7750 => 0.05.7750 (27.05.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (26.05.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (25.05.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (24.05.2024):
+   
+   -- null.
    
    
 

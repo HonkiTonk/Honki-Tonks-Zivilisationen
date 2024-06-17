@@ -1,211 +1,195 @@
 package ChangelogJuni2024 is
 
-   -- Version 0.0. => 0.0. (30.06.2024):
+   -- Version 0.05. => 0.05. (30.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.06.2024):
+   -- Version 0.05. => 0.05. (29.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.06.2024):
+   -- Version 0.05. => 0.05. (28.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.06.2024):
+   -- Version 0.05. => 0.05. (27.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.06.2024):
+   -- Version 0.05. => 0.05. (26.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.06.2024):
+   -- Version 0.05. => 0.05. (25.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.06.2024):
+   -- Version 0.05. => 0.05. (24.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.06.2024):
+   -- Version 0.05. => 0.05. (23.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.06.2024):
+   -- Version 0.05. => 0.05. (22.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.06.2024):
+   -- Version 0.05. => 0.05. (21.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.06.2024):
+   -- Version 0.05. => 0.05. (20.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.06.2024):
+   -- Version 0.05. => 0.05. (19.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.06.2024):
+   -- Version 0.05. => 0.05. (18.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.06.2024):
+   -- Version 0.05.7765 => 0.05. (17.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.06.2024):
+   -- Version 0.05.7750 => 0.05.7765 (16.06.2024):
    
-   -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.06.2024):
+   -- Version 0.05.7750 => 0.05.7750 (15.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (14.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (13.06.2024):
+   -- Version 0.05.7750 => 0.05.7750 (14.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (12.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (11.06.2024):
+   -- Version 0.05.7750 => 0.05.7750 (13.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (10.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (09.06.2024):
+   -- Version 0.05.7750 => 0.05.7750 (12.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (08.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (07.06.2024):
+   -- Version 0.05.7750 => 0.05.7750 (11.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (06.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (05.06.2024):
+   -- Version 0.05.7750 => 0.05.7750 (10.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (04.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (03.06.2024):
+   -- Version 0.05.7750 => 0.05.7750 (09.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (02.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (01.06.2024):
+   -- Version 0.05.7750 => 0.05.7750 (08.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (07.06.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (06.06.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (05.06.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (04.06.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (03.06.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (02.06.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7750 => 0.05.7750 (01.06.2024):
+   
+   -- null.
 
 end ChangelogJuni2024;
