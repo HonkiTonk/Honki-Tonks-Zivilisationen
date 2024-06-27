@@ -25,8 +25,8 @@ package body IntroGrafik is
                                             -- Warum benutze ich denn für das Intro auch den Abspannbereich und habe keinen eigenen Introbereich oder generell einen Sequenzenbereich? äöü
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Abspannbereich);
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Intro_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche);
+      HintergrundGrafik.Intro (HintergrundExtern => GrafikDatentypen.Intro_Eins_Enum,
+                               AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;

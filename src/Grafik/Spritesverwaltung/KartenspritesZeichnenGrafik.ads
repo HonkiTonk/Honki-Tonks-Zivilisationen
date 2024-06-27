@@ -7,8 +7,9 @@ private with Sf.Graphics.Color;
 
 package KartenspritesZeichnenGrafik is
    pragma Elaborate_Body;
-   use type Sf.Graphics.sfSprite_Ptr;
 
+   -- Müsste ich hier nicht den Texturenaccess auf /= null prüfen können? Oder wird das hier noch gesetzt? äöü
+   -- Müsste für den Bereich nicht auch immer > 0/0.00 reichen? äöü
    procedure KartenfeldZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
@@ -23,7 +24,7 @@ package KartenspritesZeichnenGrafik is
 
    procedure StadtbewirtschaftungZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      TexturenbereichExtern : in Sf.System.Vector2.sfVector2f;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
@@ -32,56 +33,26 @@ package KartenspritesZeichnenGrafik is
                and
                  PositionExtern.y >= 0.00
                and
+                 TexturbereichExtern.left >= 0
+               and
+                 TexturbereichExtern.top >= 0
+               and
+                 TexturbereichExtern.width >= 0
+               and
+                 TexturbereichExtern.height >= 0
+              );
+
+   procedure StadtkarteZeichnen
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturenbereichExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
                  TexturenbereichExtern.x >= 0.00
                and
                  TexturenbereichExtern.y >= 0.00
               );
 
-   procedure StadtkarteZeichnen
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr);
-
-   procedure SpriteZeichnenVariabel
-     (PositionExtern : in Sf.System.Vector2.sfVector2f;
-      GrößeExtern : in Sf.System.Vector2.sfVector2f;
-      TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr)
-     with
-       Pre => (
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-               and
-                 GrößeExtern.x >= 0.00
-               and
-                 GrößeExtern.y >= 0.00
-              );
-
-private
-
-   Skalierung : Sf.System.Vector2.sfVector2f;
-
-   Farbe : Sf.Graphics.Color.sfColor;
-
-   SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
-
-   procedure DurchsichtigesSpriteZeichnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SkalierungExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigkeitExtern : in Sf.sfUint8)
-     with
-       Pre => (
-                 SpriteAccessExtern /= null
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-               and
-                 SkalierungExtern.x > 0.00
-               and
-                 SkalierungExtern.y > 0.00
-              );
-
-   procedure DurchsichtigesSpriteZeichnenNeu
+   procedure SpriteZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -97,5 +68,13 @@ private
                and
                  SkalierungExtern.y > 0.00
               );
+
+private
+
+   Skalierung : Sf.System.Vector2.sfVector2f;
+
+   Farbe : Sf.Graphics.Color.sfColor;
+
+   SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
 end KartenspritesZeichnenGrafik;

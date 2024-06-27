@@ -45,6 +45,9 @@ package TexturenfelderVariablenGrafik is
    type GebäudeArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, StadtDatentypen.GebäudeIDVorhanden'Range) of Sf.Graphics.Rect.sfIntRect;
    Gebäude : GebäudeArray;
    
+   type IntroArray is array (GrafikDatentypen.Hintergrund_Intro_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   Intro : IntroArray;
+   
    
    
    function Basisgrundbereich
@@ -292,5 +295,13 @@ package TexturenfelderVariablenGrafik is
                 and
                   Gebäudeabmessung'Result.y >= 0.00
                );
+         
+   function Introbereich
+     (IntroExtern : in GrafikDatentypen.Hintergrund_Intro_Enum)
+      return Sf.Graphics.Rect.sfIntRect;
+   
+   function Introabmessung
+     (IntroExtern : in GrafikDatentypen.Hintergrund_Intro_Enum)
+      return Sf.System.Vector2.sfVector2f;
 
 end TexturenfelderVariablenGrafik;

@@ -8,6 +8,7 @@ with GrafikDatentypen;
 with TextaccessVariablen;
 with KartenDatentypen;
 with InteraktionAuswahl;
+with GrafikKonstanten;
 
 with LeseWeltkarte;
 with LeseGrafikVariablen;
@@ -26,6 +27,7 @@ with SichtweitenGrafik;
 with TextaccessverwaltungssystemErweitertGrafik;
 with TextberechnungenHoeheGrafik;
 with BauauswahlGebaeudeGrafik;
+with TexturenfelderVariablenGrafik;
 
 package body StadtkarteGrafik is
 
@@ -66,9 +68,14 @@ package body StadtkarteGrafik is
                   null;
                   
                when True =>
-                  KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
-                                                                      GrößeExtern        => Grafikgröße,
-                                                                      TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies, GebäudeID));
+                  KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies),
+                                                                  TexturbereichExtern    => TexturenfelderVariablenGrafik.Gebäudebereich (GebäudeExtern => GebäudeID,
+                                                                                                                                           SpeziesExtern  => StadtauswahlExtern.Spezies),
+                                                                  PositionExtern         => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
+                                                                  DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+                 -- KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
+                 --                                                     GrößeExtern        => Grafikgröße,
+                 --                                                     TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies, GebäudeID));
                   
                   if
                     True = Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAuswahl.LeseGesamteMausposition,
@@ -95,7 +102,8 @@ package body StadtkarteGrafik is
      (GrundExtern : in KartenRecords.KartengrundRecord)
    is begin
       
-     -- KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (GrundExtern.Basisgrund));
+      KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccess,
+                                                      TexturenbereichExtern => TexturenfelderVariablenGrafik.Basisgrundabmessung (BasisgrundExtern => GrundExtern.Basisgrund));
       
       case
         GrundExtern.Zusatzgrund
@@ -104,7 +112,8 @@ package body StadtkarteGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.ZusatzgrundAccess (GrundExtern.Zusatzgrund));
+            KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.ZusatzgrundAccess,
+                                                            TexturenbereichExtern => TexturenfelderVariablenGrafik.Zusatzgrundabmessung (ZusatzgrundExtern => GrundExtern.Zusatzgrund));
       end case;
             
    end GrafischeDarstellung;

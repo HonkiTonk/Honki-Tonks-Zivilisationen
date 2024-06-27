@@ -17,20 +17,23 @@ private
    FelderanzahlWege : constant Sf.System.Vector2.sfVector2u := (7, 7);
    FelderanzahlFeldeffekte : constant Sf.System.Vector2.sfVector2u := (3, 3);
    
+   FelderanzahlHintergründe : constant Sf.System.Vector2.sfVector2u := (2, 2);
+   FelderanzahlEinheiten : constant Sf.System.Vector2.sfVector2u := (10, 5);
+   FelderanzahlGebäude : constant Sf.System.Vector2.sfVector2u := (6, 5);
+   
+   FelderanzahlIntro : constant Sf.System.Vector2.sfVector2u := (1, 1);
+   
+   
+   
    FelderanzahlEinheitenbefehle : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlKartenbefehle : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlRoterKnopf : constant Sf.System.Vector2.sfVector2u := (1, 1);
-   FelderanzahlIntro : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlKartenformen : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlSeitenleiste : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlMenüs : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlPZBEnde : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlAuswahl : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlMeldung : constant Sf.System.Vector2.sfVector2u := (1, 1);
-   
-   FelderanzahlHintergründe : constant Sf.System.Vector2.sfVector2u := (2, 2);
-   FelderanzahlEinheiten : constant Sf.System.Vector2.sfVector2u := (10, 5);
-   FelderanzahlGebäude : constant Sf.System.Vector2.sfVector2u := (6, 5);
    
    Feldgröße : Sf.System.Vector2.sfVector2u;
    Texturengröße : Sf.System.Vector2.sfVector2u;
@@ -53,5 +56,7 @@ private
    
    procedure GebäudeBerechnen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
+   
+   procedure IntroBerechnen;
    
 end TexturenfelderBerechnenGrafik;

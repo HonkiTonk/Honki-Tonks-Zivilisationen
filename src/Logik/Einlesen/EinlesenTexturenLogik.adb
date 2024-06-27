@@ -72,32 +72,32 @@ package body EinlesenTexturenLogik is
                elsif
                  AktuelleZeile = Zusatzgrund
                then
-                  EingeleseneTexturenGrafik.ZusatzgrundAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.ZusatzgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile = Flüsse
                then
-                  EingeleseneTexturenGrafik.KartenflussAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.FlussAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile = Ressourcen
                then
-                  EingeleseneTexturenGrafik.KartenressourcenAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.RessourcenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile = Verbesserungen
                then
-                  EingeleseneTexturenGrafik.VerbesserungenAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.VerbesserungenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile = Wege
                then
-                  EingeleseneTexturenGrafik.WegeAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.WegeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile = Feldeffekte
                then
-                  EingeleseneTexturenGrafik.FeldeffekteAccessGesamt := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.FeldeffekteAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile = Einheitenbefehle
@@ -158,13 +158,13 @@ package body EinlesenTexturenLogik is
                elsif
                  AktuelleZeile in EinheitenAnfang .. EinheitenEnde
                then
-                  EingeleseneTexturenGrafik.EinheitenAccessGesamt (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - EinheitenAnfang + 1))
+                  EingeleseneTexturenGrafik.EinheitenAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - EinheitenAnfang + 1))
                     := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile in GebäudeAnfang .. GebäudeEnde
                then
-                  EingeleseneTexturenGrafik.GebäudeAccessGesamt (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - GebäudeAnfang + 1))
+                  EingeleseneTexturenGrafik.GebäudeAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - GebäudeAnfang + 1))
                     := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                else

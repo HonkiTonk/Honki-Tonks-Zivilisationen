@@ -43,11 +43,12 @@ package GrafikDatentypen is
    
    
    -- Die Hintergründe alle mal neu aufteilen und so mehr spezienspezifische Hintergründe erlauben? äöü
-   -- Bei Änderungen hier muss auch immer die Reihenfolge in der 0-Datei angepasst werden!
    type Hintergrund_Enum is (
-                             Intro_Hintergrund_Enum, Kartenformen_Enum,
+                             Kartenformen_Enum,
                              
-                             Seitenleiste_Hintergrund_Enum, Bauen_Hintergrund_Enum, Forschung_Hintergrund_Enum, Menü_Hintergrund_Enum, PZB_Ende_Hintergrund_Enum,
+                             Seitenleiste_Hintergrund_Enum, Bauen_Hintergrund_Enum, Forschung_Hintergrund_Enum, Menü_Hintergrund_Enum,
+                             
+                             PZB_Ende_Hintergrund_Enum,
                              
                              Auswahl_Hintergrund_Enum, Meldung_Hintergrund_Enum
                             );
@@ -55,9 +56,10 @@ package GrafikDatentypen is
    subtype Hintergrund_Undurchsichtig_Enum is Hintergrund_Enum range Hintergrund_Enum'First .. PZB_Ende_Hintergrund_Enum;
    subtype Hintergrund_Durchsichtig_Enum is Hintergrund_Enum range Auswahl_Hintergrund_Enum .. Hintergrund_Enum'Last;
    
+   type Hintergrund_Intro_Enum is (
+                                   Intro_Eins_Enum
+                                  );
    
-   
-   -- Bei Änderungen hier muss auch immer die Reihenfolge in der 0-Datei angepasst werden!
    type Spezieshintergrund_Enum is (
                                     Leer_Hintergrund_Enum,
                                    
@@ -74,16 +76,8 @@ package GrafikDatentypen is
    
    subtype Abspannhintergrund_Enum is Spezieshintergrund_Vorhanden_Enum range Gewonnen_Enum .. Spezieshintergrund_Vorhanden_Enum'Last;
    
-   
-   
-   type Systemgrafiken_Enum is (
-                                Test_Enum
-                               );
-   
-   -- subtype  is Systemgrafiken_Enum range  .. ;
-   
-   
-   
+      
+      
    type Editor_Enum is (
                         Kartengrund_Editor_Enum, Einheiten_Editor_Enum, Gebäude_Editor_Enum, Forschungen_Editor_Enum
                        );

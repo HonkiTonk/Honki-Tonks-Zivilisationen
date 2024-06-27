@@ -59,7 +59,7 @@ package body WeltkarteEinheitZeichnenGrafik is
       then
          FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
          
-         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccessGesamt (EinheitSpeziesNummer.Spezies),
+         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies),
                                                             TexturbereichExtern    => TexturenfelderVariablenGrafik.Einheitenbereich (EinheitExtern => FeldeinheitID,
                                                                                                                                       SpeziesExtern => EinheitSpeziesNummer.Spezies),
                                                             PositionExtern         => PositionExtern,
@@ -81,7 +81,7 @@ package body WeltkarteEinheitZeichnenGrafik is
                null;
             
             when others =>
-               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccessGesamt (EinheitSpeziesNummer.Spezies),
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies),
                                                                   TexturbereichExtern    => TexturenfelderVariablenGrafik.Einheitenbereich (EinheitExtern => FeldeinheitID,
                                                                                                                                             SpeziesExtern => EinheitSpeziesNummer.Spezies),
                                                                   PositionExtern         => PositionExtern,
@@ -113,7 +113,7 @@ package body WeltkarteEinheitZeichnenGrafik is
          null;
          
       else
-         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccessGesamt (EinheitenauswahlExtern.SpeziesNummer.Spezies),
+         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitenauswahlExtern.SpeziesNummer.Spezies),
                                                             TexturbereichExtern    => TexturenfelderVariablenGrafik.Einheitenbereich (EinheitExtern => EinheitenauswahlExtern.ID,
                                                                                                                                       SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies),
                                                             PositionExtern         => PositionExtern,

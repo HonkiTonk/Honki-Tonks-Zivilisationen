@@ -21,73 +21,67 @@ package ChangelogJuni2024 is
    
    
 
-   -- Version 0.05. => 0.05. (27.06.2024):
+   -- Version 0.05.7840 => 0.05. (27.06.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (26.06.2024):
+   -- Version 0.05.7790 => 0.05.7840 (26.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (25.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Anzeigesystem gearbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05. => 0.05. (24.06.2024):
+   -- Version 0.05.7790 => 0.05.7790 (25.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (23.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (22.06.2024):
+   -- Version 0.05.7790 => 0.05.7790 (24.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (21.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (20.06.2024):
+   -- Version 0.05.7790 => 0.05.7790 (23.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (19.06.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.7790 => 0.05. (18.06.2024):
+   -- Version 0.05.7790 => 0.05.7790 (22.06.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.7790 => 0.05.7790 (21.06.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7790 => 0.05.7790 (20.06.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7790 => 0.05.7790 (19.06.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.7790 => 0.05.7790 (18.06.2024):
+   
+   -- null.
    
    
 

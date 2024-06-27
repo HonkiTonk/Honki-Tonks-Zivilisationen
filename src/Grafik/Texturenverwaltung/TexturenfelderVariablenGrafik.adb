@@ -225,4 +225,26 @@ package body TexturenfelderVariablenGrafik is
       
    end Gebäudeabmessung;
    
+   
+   
+   function Introbereich
+     (IntroExtern : in GrafikDatentypen.Hintergrund_Intro_Enum)
+      return Sf.Graphics.Rect.sfIntRect
+   is begin
+      
+      return Intro (IntroExtern);
+      
+   end Introbereich;
+   
+   
+   
+   function Introabmessung
+     (IntroExtern : in GrafikDatentypen.Hintergrund_Intro_Enum)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      return (Float (Intro (IntroExtern).width), Float (Intro (IntroExtern).height));
+      
+   end Introabmessung;
+   
 end TexturenfelderVariablenGrafik;

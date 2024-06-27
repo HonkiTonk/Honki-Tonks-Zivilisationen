@@ -24,11 +24,11 @@ package body KartenspritesZeichnenGrafik is
       else
          Skalierung := TexturenskalierungGrafik.Kartenfeldskalierung (TexturengrößeExtern => (Sf.sfUint32 (TexturbereichExtern.width), Sf.sfUint32 (TexturbereichExtern.height)));
          
-         DurchsichtigesSpriteZeichnenNeu (TexturAccessExtern     => TexturAccessExtern,
-                                          TexturbereichExtern    => TexturbereichExtern,
-                                          PositionExtern         => PositionExtern,
-                                          SkalierungExtern       => Skalierung,
-                                          DurchsichtigkeitExtern => DurchsichtigkeitExtern);
+         SpriteZeichnen (TexturAccessExtern     => TexturAccessExtern,
+                         TexturbereichExtern    => TexturbereichExtern,
+                         PositionExtern         => PositionExtern,
+                         SkalierungExtern       => Skalierung,
+                         DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end if;
       
    end KartenfeldZeichnen;
@@ -37,7 +37,7 @@ package body KartenspritesZeichnenGrafik is
    
    procedure StadtbewirtschaftungZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      TexturenbereichExtern : in Sf.System.Vector2.sfVector2f;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
@@ -51,12 +51,13 @@ package body KartenspritesZeichnenGrafik is
          
       else
          Skalierung := TexturenskalierungGrafik.Stadtbewirtschaftung (FeldgrößeExtern     => FeldgrößeExtern,
-                                                                      TexturengrößeExtern => TexturenbereichExtern);
+                                                                      TexturengrößeExtern => (Float (TexturbereichExtern.width), Float (TexturbereichExtern.height)));
          
-         DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
-                                       PositionExtern         => PositionExtern,
-                                       SkalierungExtern       => Skalierung,
-                                       DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+         SpriteZeichnen (TexturAccessExtern     => TexturAccessExtern,
+                         TexturbereichExtern    => TexturbereichExtern,
+                         PositionExtern         => PositionExtern,
+                         SkalierungExtern       => Skalierung,
+                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end if;
       
    end StadtbewirtschaftungZeichnen;
@@ -64,7 +65,8 @@ package body KartenspritesZeichnenGrafik is
    
    
    procedure StadtkarteZeichnen
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturenbereichExtern : in Sf.System.Vector2.sfVector2f)
    is
       use type Sf.Graphics.sfTexture_Ptr;
    begin
@@ -75,8 +77,7 @@ package body KartenspritesZeichnenGrafik is
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtkarteZeichnen: TexturAccessExtern: null");
          
       else
-         Skalierung := TexturenskalierungGrafik.Stadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                            TextureAccessExtern => TexturAccessExtern);
+         Skalierung := TexturenskalierungGrafik.Vollbildskalierung (TexturengrößeExtern => (Sf.sfUint32 (TexturenbereichExtern.x), Sf.sfUint32 (TexturenbereichExtern.y)));
          
          SpritesverwaltungssystemGrafik.PositionSkalierungZeichnen (SpriteAccessExtern => SpriteAccess,
                                                                     PositionExtern     => GrafikRecordKonstanten.Nullposition,
@@ -87,57 +88,7 @@ package body KartenspritesZeichnenGrafik is
    
    
    
-   -- Das hier dann überall wo es möglich ist verwenden und den Rest entsprechend anpassen? äöü
-   procedure SpriteZeichnenVariabel
-     (PositionExtern : in Sf.System.Vector2.sfVector2f;
-      GrößeExtern : in Sf.System.Vector2.sfVector2f;
-      TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr)
-   is
-      use type Sf.Graphics.sfTexture_Ptr;
-   begin
-      
-      if
-        TexturAccessExtern = null
-      then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.SpriteZeichnenVariabel: TexturAccessExtern: null");
-         
-      else
-         Skalierung := TexturenskalierungGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpriteAccess,
-                                                                          TextureAccessExtern => TexturAccessExtern,
-                                                                          GrößeExtern         => GrößeExtern);
-         
-         SpritesverwaltungssystemGrafik.PositionSkalierungZeichnen (SpriteAccessExtern => SpriteAccess,
-                                                                    PositionExtern     => PositionExtern,
-                                                                    SkalierungExtern   => Skalierung);
-      end if;
-      
-   end SpriteZeichnenVariabel;
-   
-   
-
-   procedure DurchsichtigesSpriteZeichnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SkalierungExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigkeitExtern : in Sf.sfUint8)
-   is begin
-
-      SpritesverwaltungssystemGrafik.PositionSkalieren (SpriteAccessExtern => SpriteAccessExtern,
-                                                        PositionExtern     => PositionExtern,
-                                                        SkalierungExtern   => SkalierungExtern);
-      
-      Farbe := Sf.Graphics.Sprite.getColor (sprite => SpriteAccessExtern);
-      
-      Farbe.a := DurchsichtigkeitExtern;
-      
-      SpritesverwaltungssystemGrafik.FarbeZeichnen (SpriteAccessExtern => SpriteAccessExtern,
-                                                    FarbeExtern        => Farbe);
-      
-   end DurchsichtigesSpriteZeichnen;
-   
-   
-   
-   procedure DurchsichtigesSpriteZeichnenNeu
+   procedure SpriteZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -158,6 +109,6 @@ package body KartenspritesZeichnenGrafik is
       SpritesverwaltungssystemGrafik.FarbeZeichnen (SpriteAccessExtern => SpriteAccess,
                                                     FarbeExtern        => Farbe);
       
-   end DurchsichtigesSpriteZeichnenNeu;
+   end SpriteZeichnen;
 
 end KartenspritesZeichnenGrafik;

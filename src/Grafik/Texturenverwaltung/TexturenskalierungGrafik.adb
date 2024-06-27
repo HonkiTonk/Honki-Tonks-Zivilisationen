@@ -117,29 +117,6 @@ package body TexturenskalierungGrafik is
    
    
    
-   function Stadtkarte
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
-      return Sf.System.Vector2.sfVector2f
-   is begin
-      
-      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
-                                     texture   => TextureAccessExtern,
-                                     resetRect => Sf.sfTrue);
-      
-      Rechteck := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
-      Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
-      -- Kartenabmessung := FensterGrafik.AktuelleAuflösung;
-      
-     -- Skalierung.x := Kartenabmessung.x / Rechteck.x;
-    --  Skalierung.y := Kartenabmessung.y / Rechteck.y;
-      
-      return Skalierung;
-      
-   end Stadtkarte;
-   
-   
-   
    function TexturskalierungVariabel
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;

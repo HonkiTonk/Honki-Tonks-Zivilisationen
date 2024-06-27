@@ -3,6 +3,7 @@ with Sf.Graphics.Texture;
 with EingeleseneTexturenGrafik;
 with TexturenfelderVariablenGrafik;
 
+-- Das noch mal in Bereiche aufteilen?
 package body TexturenfelderBerechnenGrafik is
 
    procedure TexturenfelderBerechnen
@@ -17,6 +18,8 @@ package body TexturenfelderBerechnenGrafik is
       FeldeffekteBerechnen;
       
       Speziesberechnungen;
+      
+      IntroBerechnen;
       
    end TexturenfelderBerechnen;
    
@@ -62,7 +65,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.ZusatzgrundAccessGesamt);
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.ZusatzgrundAccess);
       
       Feldgröße := (Texturengröße.x / FelderanzahlZusatzgrund.x, Texturengröße.y / FelderanzahlZusatzgrund.y);
       
@@ -97,7 +100,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
             
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenflussAccessGesamt);
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.FlussAccess);
       
       Feldgröße := (Texturengröße.x / FelderanzahlFlüsse.x, Texturengröße.y / FelderanzahlFlüsse.y);
       
@@ -132,7 +135,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenressourcenAccessGesamt);
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.RessourcenAccess);
       
       Feldgröße := (Texturengröße.x / FelderanzahlRessourcen.x, Texturengröße.y / FelderanzahlRessourcen.y);
       
@@ -167,7 +170,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.VerbesserungenAccessGesamt);
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.VerbesserungenAccess);
       
       Feldgröße := (Texturengröße.x / FelderanzahlVerbesserungen.x, Texturengröße.y / FelderanzahlVerbesserungen.y);
       
@@ -202,7 +205,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.WegeAccessGesamt);
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.WegeAccess);
       
       Feldgröße := (Texturengröße.x / FelderanzahlWege.x, Texturengröße.y / FelderanzahlWege.y);
       
@@ -237,7 +240,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.FeldeffekteAccessGesamt);
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.FeldeffekteAccess);
       
       Feldgröße := (Texturengröße.x / FelderanzahlFeldeffekte.x, Texturengröße.y / FelderanzahlFeldeffekte.y);
       
@@ -325,7 +328,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.EinheitenAccessGesamt (SpeziesExtern));
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.EinheitenAccess (SpeziesExtern));
       
       Feldgröße := (Texturengröße.x / FelderanzahlEinheiten.x, Texturengröße.y / FelderanzahlEinheiten.y);
       
@@ -361,7 +364,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.GebäudeAccessGesamt (SpeziesExtern));
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.GebäudeAccess (SpeziesExtern));
       
       Feldgröße := (Texturengröße.x / FelderanzahlGebäude.x, Texturengröße.y / FelderanzahlGebäude.y);
       
@@ -388,5 +391,40 @@ package body TexturenfelderBerechnenGrafik is
       end loop GebäudeSchleife;
       
    end GebäudeBerechnen;
+   
+   
+   
+   procedure IntroBerechnen
+   is
+      use type Sf.sfUint32;
+   begin
+      
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.IntroAccess);
+      
+      Feldgröße := (Texturengröße.x / FelderanzahlIntro.x, Texturengröße.y / FelderanzahlIntro.y);
+      
+      AktuelleFeldposition := (1, 1);
+      
+      IntroSchleife:
+      for IntroSchleifenwert in TexturenfelderVariablenGrafik.IntroArray'Range loop
+         
+         TexturenfelderVariablenGrafik.Intro (IntroSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
+                                                                      Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
+                                                                      Integer (Feldgröße.x),
+                                                                      Integer (Feldgröße.y));
+         
+         if
+           AktuelleFeldposition.x < FelderanzahlIntro.x
+         then
+            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
+            
+         else
+            AktuelleFeldposition.x := 1;
+            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
+         end if;
+         
+      end loop IntroSchleife;
+      
+   end IntroBerechnen;
 
 end TexturenfelderBerechnenGrafik;

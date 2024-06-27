@@ -42,7 +42,7 @@ package body WeltkarteZusatzZeichnenGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccessGesamt,
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccess,
                                                                TexturbereichExtern    => TexturenfelderVariablenGrafik.Wegebereich (WegExtern => Wegfeld),
                                                                PositionExtern         => PositionExtern,
                                                                DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
@@ -84,7 +84,7 @@ package body WeltkarteZusatzZeichnenGrafik is
             null;
       end case;
       
-      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccessGesamt,
+      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccess,
                                                          TexturbereichExtern    => TexturenfelderVariablenGrafik.Verbesserungsbereich (VerbesserungExtern => Verbesserungsfeld),
                                                          PositionExtern         => PositionExtern,
                                                          DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
@@ -281,7 +281,7 @@ package body WeltkarteZusatzZeichnenGrafik is
                                  WelcherEffektExtern => EffektSchleifenwert)
          is
             when True =>
-               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.FeldeffekteAccessGesamt,
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.FeldeffekteAccess,
                                                                   TexturbereichExtern    => TexturenfelderVariablenGrafik.Feldeffektebereich (FeldeffektedExtern => EffektSchleifenwert),
                                                                   PositionExtern         => PositionExtern,
                                                                   DurchsichtigkeitExtern => GrafikKonstanten.Feldeffekttransparents);

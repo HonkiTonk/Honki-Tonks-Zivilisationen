@@ -6,8 +6,23 @@ with TexturenskalierungGrafik;
 with Fehlermeldungssystem;
 with ObjekteZeichnenGrafik;
 with SpritesverwaltungssystemGrafik;
+with KartenspritesZeichnenGrafik;
+with TexturenfelderVariablenGrafik;
 
 package body HintergrundGrafik is
+   
+   procedure Intro
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Intro_Enum;
+      AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.IntroAccess,
+                      TexturbereichExtern => TexturenfelderVariablenGrafik.Introbereich (IntroExtern => HintergrundExtern),
+                      AbmessungenExtern   => AbmessungenExtern);
+      
+   end Intro;
+   
+   
    
    procedure Hintergrund
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
@@ -23,6 +38,52 @@ package body HintergrundGrafik is
    
    
    
+   procedure HintergrundNeu
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      HintergrundPositionierbarNeu (TexturAccessExtern     => TexturAccessExtern,
+                                    TexturbereichExtern    => TexturbereichExtern,
+                                    AbmessungenExtern      => AbmessungenExtern,
+                                    PositionExtern         => GrafikRecordKonstanten.Nullposition,
+                                    DurchsichtigkeitExtern => GrafikKonstanten.Hintergrundtransparents);
+      
+   end HintergrundNeu;
+   
+   
+   
+   procedure HintergrundPositionierbarNeu
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      AbmessungenExtern : in Sf.System.Vector2.sfVector2f;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigkeitExtern : in Sf.sfUint8)
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
+      
+      if
+        TexturAccessExtern = null
+      then
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.HintergrundPositionierbarNeu: Hintergrund fehlt: " & TexturAccessExtern'Wide_Wide_Image);
+         
+      else
+         Skalierung := TexturenskalierungGrafik.VariableSkalierung (TexturengrößeExtern     => (Sf.sfUint32 (TexturbereichExtern.width), Sf.sfUint32 (TexturbereichExtern.height)),
+                                                                    BereichsabmessungExtern => AbmessungenExtern);
+         
+         KartenspritesZeichnenGrafik.SpriteZeichnen (TexturAccessExtern     => TexturAccessExtern,
+                                                     TexturbereichExtern    => TexturbereichExtern,
+                                                     PositionExtern         => PositionExtern,
+                                                     SkalierungExtern       => Skalierung,
+                                                     DurchsichtigkeitExtern => DurchsichtigkeitExtern);
+      end if;
+      
+   end HintergrundPositionierbarNeu;
+   
+   
+   
    procedure HintergrundPositionierbar
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f;
@@ -35,7 +96,7 @@ package body HintergrundGrafik is
       if
         EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern) = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.Hintergrund: Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.HintergrundPositionierbar: Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
       
          -- Cyan Zeichnen lassen, um zu signalisieren dass hier etwas nicht stimmt.
          ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
