@@ -130,9 +130,9 @@ package body EinlesenTexturenLogik is
                   EingeleseneTexturenGrafik.SeitenleisteAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
-                 AktuelleZeile = Menüs
+                 AktuelleZeile = Allgemeines
                then
-                  EingeleseneTexturenGrafik.MenüsAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.AllgemeinesAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
                   
                elsif
                  AktuelleZeile = PZBEnde

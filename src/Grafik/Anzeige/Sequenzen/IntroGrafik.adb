@@ -25,8 +25,8 @@ package body IntroGrafik is
                                             -- Warum benutze ich denn für das Intro auch den Abspannbereich und habe keinen eigenen Introbereich oder generell einen Sequenzenbereich? äöü
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Abspannbereich);
       
-      HintergrundGrafik.Intro (HintergrundExtern => GrafikDatentypen.Intro_Eins_Enum,
-                               AbmessungenExtern => Viewfläche);
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Intro_Eins_Enum,
+                                    AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
@@ -37,11 +37,11 @@ package body IntroGrafik is
          
          -- Ergibt die Kombination aus ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung und TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln überhaupt Sinn? äöü
          TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
-                                                                 TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
-                                                                   (TextExtern           => To_Wide_Wide_String (Source => Sequenzentexte.Intro (IntroSchleifenwert)),
-                                                                    TextfeldbreiteExtern => Viewfläche.x,
-                                                                    BreitenabzugExtern   => Textposition.x),
-                                                                 PositionExtern   => Textposition);
+                                                                        TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
+                                                                          (TextExtern           => To_Wide_Wide_String (Source => Sequenzentexte.Intro (IntroSchleifenwert)),
+                                                                           TextfeldbreiteExtern => Viewfläche.x,
+                                                                           BreitenabzugExtern   => Textposition.x),
+                                                                        PositionExtern   => Textposition);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);

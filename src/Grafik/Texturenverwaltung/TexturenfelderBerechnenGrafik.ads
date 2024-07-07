@@ -22,13 +22,14 @@ private
    FelderanzahlGebäude : constant Sf.System.Vector2.sfVector2u := (6, 5);
    
    FelderanzahlIntro : constant Sf.System.Vector2.sfVector2u := (1, 1);
+   FelderanzahlAllgemeines : constant Sf.System.Vector2.sfVector2u := (2, 2);
+   FelderanzahlKartenbefehle : constant Sf.System.Vector2.sfVector2u := (3, 4);
+   FelderanzahlEinheitenbefehle : constant Sf.System.Vector2.sfVector2u := (3, 5);
+   FelderanzahlKartenformen : constant Sf.System.Vector2.sfVector2u := (4, 5);
    
    
    
-   FelderanzahlEinheitenbefehle : constant Sf.System.Vector2.sfVector2u := (1, 1);
-   FelderanzahlKartenbefehle : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlRoterKnopf : constant Sf.System.Vector2.sfVector2u := (1, 1);
-   FelderanzahlKartenformen : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlSeitenleiste : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlMenüs : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlPZBEnde : constant Sf.System.Vector2.sfVector2u := (1, 1);
@@ -58,5 +59,9 @@ private
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
    
    procedure IntroBerechnen;
+   procedure AllgemeinesBerechnen;
+   procedure Kartenbefehle;
+   procedure Einheitenbefehle;
+   procedure Kartenformen;
    
 end TexturenfelderBerechnenGrafik;

@@ -5,11 +5,11 @@ with InteraktionAuswahl;
 with EinheitenKonstanten;
 with ViewKonstanten;
 with GrafikKonstanten;
+with TexturenfelderVariablenGrafik;
 
 with ViewsEinstellenGrafik;
 with EingeleseneTexturenGrafik;
 with SpritesverwaltungssystemGrafik;
-with TexturenberechnungenGrafik;
 
 package body WeltkartenbefehleGrafik is
    
@@ -24,11 +24,8 @@ package body WeltkartenbefehleGrafik is
          when EinheitenKonstanten.LeerEinheitArt =>
             return;
             
-         when EinheitenDatentypen.Einmalig_Enum =>
-            WelcherKnopf := BefehleDatentypen.Roter_Knopf_Enum;
-            
          when others =>
-            WelcherKnopf := BefehleDatentypen.Einheitenknöpfe_Enum;
+            null;
       end case;
       
       case
@@ -45,25 +42,23 @@ package body WeltkartenbefehleGrafik is
                                             GrößeExtern          => EinheitenViewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (WelcherViewbereich));
       
-      EinheitenViewfläche := Einheitenbefehlsknöpfe (EinheitenArtExtern => EinheitartExtern,
-                                                       WelcheTexturExtern => WelcherKnopf);
+      EinheitenViewfläche := Einheitenbefehlsknöpfe (EinheitenArtExtern => EinheitartExtern);
       
    end Einheitenbefehle;
    
    
    
-   -- Für alle Einheittypen eine spezifische Anzeige einbauen? äöü
+   -- Für alle Einheittypen eine spezifische Anzeige einbauen. äöü
    function Einheitenbefehlsknöpfe
-     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
-      WelcheTexturExtern : in BefehleDatentypen.Befehlsknöpfe_Enum)
+     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
             
-      Texturgröße := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.SystemAccess (WelcheTexturExtern)).x),
-                        Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.SystemAccess (WelcheTexturExtern)).y));
+      Texturgröße := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.EinheitenbefehleAccess).x),
+                        Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.EinheitenbefehleAccess).y));
       
       SpritesverwaltungssystemGrafik.Setzen (SpriteAccessExtern  => SpriteAccess,
-                                                   TextureAccessExtern => EingeleseneTexturenGrafik.SystemAccess (WelcheTexturExtern));
+                                             TextureAccessExtern => EingeleseneTexturenGrafik.EinheitenbefehleAccess);
       SpritesverwaltungssystemGrafik.PositionZeichnen (SpriteAccessExtern => SpriteAccess,
                                                        PositionExtern     => GrafikRecordKonstanten.Nullposition);
          
@@ -75,21 +70,15 @@ package body WeltkartenbefehleGrafik is
             return Texturgröße;
             
          when others =>
-            Teiler := GrafikKonstanten.Einswert;
-            Knopffläche := TexturenberechnungenGrafik.Texturenfeld (TexturengrößeExtern => Texturgröße,
-                                                                     TeilerExtern        => (3.00, 5.00));
+            null;
       end case;
       
       PositionenSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenEinheitenbefehleArray'Range loop
-            
-         Knopfposition := TexturenberechnungenGrafik.TexturenbereichVariabel (TexturengrößeExtern => Texturgröße,
-                                                                              TeilerExtern        => (3.00, 5.00),
-                                                                              BereichnummerExtern => Teiler);
-            
-         InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := (Knopfposition.x, Knopfposition.y, Knopffläche.x, Knopffläche.y);
+        
+         Rechteck := TexturenfelderVariablenGrafik.EinheitenbefehleRechteck (BefehlExtern => PositionSchleifenwert);
          
-         Teiler := Teiler + 1.00;
+         InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := (Float (Rechteck.left), Float (Rechteck.top), Float (Rechteck.width), Float (Rechteck.height));
          
       end loop PositionenSchleife;
 
@@ -127,28 +116,20 @@ package body WeltkartenbefehleGrafik is
      return Sf.System.Vector2.sfVector2f
    is begin
       
-      Texturgröße := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Kartenknöpfe_Enum)).x),
-                        Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Kartenknöpfe_Enum)).y));
+      Texturgröße := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenbefehleAccess).x),
+                        Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenbefehleAccess).y));
       
       SpritesverwaltungssystemGrafik.Setzen (SpriteAccessExtern  => SpriteAccess,
-                                                   TextureAccessExtern => EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Kartenknöpfe_Enum));
+                                             TextureAccessExtern => EingeleseneTexturenGrafik.KartenbefehleAccess);
       SpritesverwaltungssystemGrafik.PositionZeichnen (SpriteAccessExtern => SpriteAccess,
                                                        PositionExtern     => GrafikRecordKonstanten.Nullposition);
       
-      Teiler := GrafikKonstanten.Einswert;
-      Knopffläche := TexturenberechnungenGrafik.Texturenfeld (TexturengrößeExtern => Texturgröße,
-                                                               TeilerExtern        => (3.00, 4.00));
-      
       PositionenSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenKartenbefehleArray'Range loop
+        
+         Rechteck := TexturenfelderVariablenGrafik.KartenbefehleRechteck (BefehlExtern => PositionSchleifenwert);
          
-         Knopfposition := TexturenberechnungenGrafik.TexturenbereichVariabel (TexturengrößeExtern => Texturgröße,
-                                                                              TeilerExtern        => (3.00, 4.00),
-                                                                              BereichnummerExtern => Teiler);
-            
-         InteraktionAuswahl.PositionenKartenbefehle (PositionSchleifenwert) := (Knopfposition.x, Knopfposition.y, Knopffläche.x, Knopffläche.y);
-         
-         Teiler := Teiler + 1.00;
+         InteraktionAuswahl.PositionenKartenbefehle (PositionSchleifenwert) := (Float (Rechteck.left), Float (Rechteck.top), Float (Rechteck.width), Float (Rechteck.height));
          
       end loop PositionenSchleife;
       

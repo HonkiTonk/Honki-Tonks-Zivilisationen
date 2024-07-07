@@ -69,7 +69,7 @@ package body StadtkarteGrafik is
                   
                when True =>
                   KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies),
-                                                                  TexturbereichExtern    => TexturenfelderVariablenGrafik.Gebäudebereich (GebäudeExtern => GebäudeID,
+                                                                  TexturbereichExtern    => TexturenfelderVariablenGrafik.GebäudeRechteck (GebäudeExtern => GebäudeID,
                                                                                                                                            SpeziesExtern  => StadtauswahlExtern.Spezies),
                                                                   PositionExtern         => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
                                                                   DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
@@ -103,7 +103,7 @@ package body StadtkarteGrafik is
    is begin
       
       KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccess,
-                                                      TexturenbereichExtern => TexturenfelderVariablenGrafik.Basisgrundabmessung (BasisgrundExtern => GrundExtern.Basisgrund));
+                                                      TexturenbereichExtern => TexturenfelderVariablenGrafik.BasisgrundVektor (BasisgrundExtern => GrundExtern.Basisgrund));
       
       case
         GrundExtern.Zusatzgrund
@@ -113,7 +113,7 @@ package body StadtkarteGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.ZusatzgrundAccess,
-                                                            TexturenbereichExtern => TexturenfelderVariablenGrafik.Zusatzgrundabmessung (ZusatzgrundExtern => GrundExtern.Zusatzgrund));
+                                                            TexturenbereichExtern => TexturenfelderVariablenGrafik.ZusatzgrundVektor (ZusatzgrundExtern => GrundExtern.Zusatzgrund));
       end case;
             
    end GrafischeDarstellung;
@@ -172,7 +172,7 @@ package body StadtkarteGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => LeseGrafikVariablen.InformationsfeldBereiche (WelcherBereichExtern => ViewKonstanten.InformationsfeldStadtkarte));
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
       
       Gebäudetexte (1) := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudeIDExtern,

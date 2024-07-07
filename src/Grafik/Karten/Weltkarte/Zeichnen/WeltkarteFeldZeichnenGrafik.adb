@@ -18,7 +18,7 @@ package body WeltkarteFeldZeichnenGrafik is
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
           
       KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundAccess,
-                                                      TexturbereichExtern    => TexturenfelderVariablenGrafik.Basisgrundbereich (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                      TexturbereichExtern    => TexturenfelderVariablenGrafik.BasisgrundRechteck (BasisgrundExtern => Gesamtgrund.Basisgrund),
                                                       PositionExtern         => PositionExtern,
                                                       DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       
@@ -30,7 +30,7 @@ package body WeltkarteFeldZeichnenGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.ZusatzgrundAccess,
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.Zusatzgrundbereich (ZusatzgrundExtern => Gesamtgrund.Zusatzgrund),
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.ZusatzgrundRechteck (ZusatzgrundExtern => Gesamtgrund.Zusatzgrund),
                                                             PositionExtern         => PositionExtern,
                                                             DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end case;
@@ -54,7 +54,7 @@ package body WeltkarteFeldZeichnenGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.FlussAccess,
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.Flussbereich (FlussExtern => KartenfeldFluss),
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.FlussRechteck (FlussExtern => KartenfeldFluss),
                                                             PositionExtern         => PositionExtern,
                                                             DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;
@@ -78,7 +78,7 @@ package body WeltkarteFeldZeichnenGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.RessourcenAccess,
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.Ressourcenbereich (RessourceExtern => KartenfeldRessource),
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.RessourcenRechteck (RessourceExtern => KartenfeldRessource),
                                                             PositionExtern         => PositionExtern,
                                                             DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;

@@ -16,7 +16,7 @@ package body AllgemeineViewsGrafik is
       
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String;
-      HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
+      HintergrundExtern : in GrafikDatentypen.Hintergrund_Allgemein_Enum;
       SpielenamenExtern : in Boolean)
    is begin
       
@@ -35,7 +35,7 @@ package body AllgemeineViewsGrafik is
                                             GrößeExtern          => Viewfläche (Überschrift_Enum),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Überschriftbereich);
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => HintergrundExtern,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => HintergrundExtern,
                                      AbmessungenExtern => Viewfläche (Überschrift_Enum));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
@@ -85,7 +85,7 @@ package body AllgemeineViewsGrafik is
    
    
    procedure Versionsnummer
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum)
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Allgemein_Enum)
    is begin
       
       Viewfläche (Versionsnummer_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Versionsnummer_Enum),
@@ -95,7 +95,7 @@ package body AllgemeineViewsGrafik is
                                             GrößeExtern          => Viewfläche (Versionsnummer_Enum),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Versionsbereich);
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => HintergrundExtern,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => HintergrundExtern,
                                      AbmessungenExtern => Viewfläche (Versionsnummer_Enum));
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,

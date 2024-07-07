@@ -71,7 +71,7 @@ package body ForschungsauswahlGrafik is
                                             GrößeExtern          => Viewfläche (ViewKonstanten.ForschungsmenüForschungsliste),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüForschungsliste));
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche (ViewKonstanten.ForschungsmenüForschungsliste));
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
@@ -126,7 +126,7 @@ package body ForschungsauswahlGrafik is
                                             GrößeExtern          => Viewfläche (ViewKonstanten.ForschungsmenüErmöglicht),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüErmöglicht));
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche (ViewKonstanten.ForschungsmenüErmöglicht));
       
       case
@@ -252,7 +252,7 @@ package body ForschungsauswahlGrafik is
                                             GrößeExtern          => Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüBeschreibung));
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung));
       
       case
@@ -298,7 +298,7 @@ package body ForschungsauswahlGrafik is
                                             GrößeExtern          => Viewfläche (ViewKonstanten.ForschungsmenüAktuell),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüAktuell));
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche (ViewKonstanten.ForschungsmenüAktuell));
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;

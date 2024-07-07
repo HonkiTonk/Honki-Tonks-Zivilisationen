@@ -42,11 +42,8 @@ package GrafikDatentypen is
       
    
    
-   -- Die Hintergründe alle mal neu aufteilen und so mehr spezienspezifische Hintergründe erlauben? äöü
    type Hintergrund_Enum is (
                              Kartenformen_Enum,
-                             
-                             Seitenleiste_Hintergrund_Enum, Bauen_Hintergrund_Enum, Forschung_Hintergrund_Enum, Menü_Hintergrund_Enum,
                              
                              PZB_Ende_Hintergrund_Enum,
                              
@@ -54,11 +51,27 @@ package GrafikDatentypen is
                             );
    
    subtype Hintergrund_Undurchsichtig_Enum is Hintergrund_Enum range Hintergrund_Enum'First .. PZB_Ende_Hintergrund_Enum;
-   subtype Hintergrund_Durchsichtig_Enum is Hintergrund_Enum range Auswahl_Hintergrund_Enum .. Hintergrund_Enum'Last;
+   subtype Hintergrund_Durchsichtig_Enum is Hintergrund_Enum range Auswahl_Hintergrund_Enum .. Meldung_Hintergrund_Enum;
    
-   type Hintergrund_Intro_Enum is (
-                                   Intro_Eins_Enum
-                                  );
+   -- Die Hintergründe alle mal neu aufteilen und so mehr spezienspezifische Hintergründe erlauben oder geht das auch über gut ausgewählte Arrays? äöü
+   type Hintergrund_Gesamt_Enum is (
+                                    Intro_Eins_Enum,
+                                    
+                                    Kartenformen_Eins_Enum, Kartenformen_Zwei_Enum, Kartenformen_Drei_Enum, Kartenformen_Vier_Enum,
+                                    Kartenformen_Fünf_Enum, Kartenformen_Sechs_Enum, Kartenformen_Sieben_Enum, Kartenformen_Acht_Enum,
+                                    Kartenformen_Neun_Enum, Kartenformen_Zehn_Enum, Kartenformen_Elf_Enum, Kartenformen_Zwölf_Enum,
+                                    Kartenformen_Dreizehn_Enum, Kartenformen_Vierzehn_Enum, Kartenformen_Fünfzehn_Enum, Kartenformen_Sechzehn_Enum,
+                                    Kartenformen_Siebzehn_Enum, Kartenformen_Achtzehn_Enum, Kartenformen_Neunzehn_Enum, Kartenformen_Zwanzig_Enum,
+                                    
+                                    Menü_Hintergrund_Enum, Bauen_Hintergrund_Enum, Forschung_Hintergrund_Enum,
+                                    
+                                    Seitenleiste_Hintergrund_Enum
+                                   );
+   
+   subtype Hintergrund_Intro_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'First .. Intro_Eins_Enum;
+   subtype Hintergrund_Kartenformen_Enum is Hintergrund_Gesamt_Enum range Kartenformen_Eins_Enum .. Kartenformen_Zwanzig_Enum;
+   subtype Hintergrund_Allgemein_Enum is Hintergrund_Gesamt_Enum range Menü_Hintergrund_Enum .. Seitenleiste_Hintergrund_Enum;
+   -- Hintergrund_Intro_Enum'Succ (Hintergrund_Intro_Enum'Last).. Seitenleiste_Hintergrund_Enum;
    
    type Spezieshintergrund_Enum is (
                                     Leer_Hintergrund_Enum,

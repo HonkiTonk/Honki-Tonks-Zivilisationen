@@ -1,11 +1,11 @@
 private with Sf.System.Vector2;
 private with Sf.Graphics;
 private with Sf.Graphics.Sprite;
+private with Sf.Graphics.Rect;
 
 with EinheitenDatentypen;
 
 private with GrafikRecordKonstanten;
-private with BefehleDatentypen;
 
 package WeltkartenbefehleGrafik is
    pragma Elaborate_Body;
@@ -18,33 +18,21 @@ package WeltkartenbefehleGrafik is
       RechtsLinksExtern : in Boolean);
    
 private
-         
-   WelcherKnopf : BefehleDatentypen.Befehlsknöpfe_Enum;
    
-   AnfangEinheitenbefehle : constant Positive := 2;
-   AnfangKartenbefehle : constant Positive := 15;
-   AktuellerBefehl : Positive;
    WelcherViewbereich : Positive;
-
-   Textbreite : Float;
-   Teiler : Float;
    
    EinheitenViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    KartenbefehleViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
-   Textposition : Sf.System.Vector2.sfVector2f;
-   Spritegröße : Sf.System.Vector2.sfVector2f;
-   GesamteSpritegröße : Sf.System.Vector2.sfVector2f;
    Texturgröße : Sf.System.Vector2.sfVector2f;
-   Knopfposition : Sf.System.Vector2.sfVector2f;
-   Knopffläche : Sf.System.Vector2.sfVector2f;
+   
+   Rechteck : Sf.Graphics.Rect.sfIntRect;
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
    
    
         
    function Einheitenbefehlsknöpfe
-     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
-      WelcheTexturExtern : in BefehleDatentypen.Befehlsknöpfe_Enum)
+     (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (

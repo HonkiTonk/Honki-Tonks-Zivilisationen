@@ -161,17 +161,20 @@ package ChangelogJuli2024 is
    
    
 
-   -- Version 0.05. => 0.05. (08.07.2024):
+   -- Version 0.05.7915 => 0.05. (08.07.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.7855 => 0.05. (07.07.2024):
+   -- Version 0.05.7855 => 0.05.7915 (07.07.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Weiter am neuen Texturberechnungs- und Anzeigesystem gearbeitet.
+   -- Texturen überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/erweitert.
    
    
 

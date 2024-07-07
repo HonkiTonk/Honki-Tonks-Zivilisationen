@@ -39,7 +39,7 @@ package body SteuerungsmenueGrafik is
                                             GrößeExtern          => ViewflächeAufteilung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungKategorie));
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeAufteilung);
                   
       ViewflächeAufteilung := Steuerungsaufteilung (AuswahlExtern         => AuswahlExtern,
@@ -55,7 +55,7 @@ package body SteuerungsmenueGrafik is
                                             GrößeExtern          => ViewflächeBelegung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl));
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBelegung);
       
       ViewflächeBelegung.y := Steuerung (AuswahlExtern            => AuswahlExtern,

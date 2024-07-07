@@ -14,6 +14,7 @@ package BefehleDatentypen is
    
    
    
+   -- Hier muss noch roter Knopf mit rein. äöü
    type Einheitenbelegung_Enum is (
                                    Leer_Einheitenbelegung_Enum,
                                    
@@ -70,13 +71,5 @@ package BefehleDatentypen is
                                    
                         Feldeffekte_Entfernen_Enum
                        );
-   
-   
-   
-   type Befehlsknöpfe_Enum is (
-                                Einheitenknöpfe_Enum, Kartenknöpfe_Enum, -- , Stadtknöpfe_Enum
-                                
-                                Roter_Knopf_Enum
-                               );
 
 end BefehleDatentypen;

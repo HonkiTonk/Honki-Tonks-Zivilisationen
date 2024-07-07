@@ -1,160 +1,160 @@
 package body TexturenfelderVariablenGrafik is
 
-   function Basisgrundbereich
+   function BasisgrundRechteck
      (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
       return Basisgrund (BasisgrundExtern);
       
-   end Basisgrundbereich;
+   end BasisgrundRechteck;
    
    
    
-   function Basisgrundabmessung
+   function BasisgrundVektor
      (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       return (Float (Basisgrund (BasisgrundExtern).width), Float (Basisgrund (BasisgrundExtern).height));
       
-   end Basisgrundabmessung;
+   end BasisgrundVektor;
    
    
    
-   function Zusatzgrundbereich
+   function ZusatzgrundRechteck
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
       return Zusatzgrund (ZusatzgrundExtern);
       
-   end Zusatzgrundbereich;
+   end ZusatzgrundRechteck;
    
    
    
-   function Zusatzgrundabmessung
+   function ZusatzgrundVektor
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       return (Float (Zusatzgrund (ZusatzgrundExtern).width), Float (Zusatzgrund (ZusatzgrundExtern).height));
       
-   end Zusatzgrundabmessung;
+   end ZusatzgrundVektor;
    
    
    
-   function Flussbereich
+   function FlussRechteck
      (FlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
       return Flüsse (FlussExtern);
       
-   end Flussbereich;
+   end FlussRechteck;
    
    
    
-   function Flussabmessung
+   function FlussVektor
      (FlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       return (Float (Flüsse (FlussExtern).width), Float (Flüsse (FlussExtern).height));
       
-   end Flussabmessung;
+   end FlussVektor;
    
    
    
-   function Ressourcenbereich
+   function RessourcenRechteck
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
       return Ressourcen (RessourceExtern);
       
-   end Ressourcenbereich;
+   end RessourcenRechteck;
    
    
    
-   function Ressourcenabmessung
+   function RessourcenVektor
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       return (Float (Ressourcen (RessourceExtern).width), Float (Ressourcen (RessourceExtern).height));
       
-   end Ressourcenabmessung;
+   end RessourcenVektor;
    
    
    
-   function Verbesserungsbereich
+   function VerbesserungRechteck
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
       return Verbesserungen (VerbesserungExtern);
       
-   end Verbesserungsbereich;
+   end VerbesserungRechteck;
    
    
    
-   function Verbesserungsabmessung
+   function VerbesserungVektor
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       return (Float (Verbesserungen (VerbesserungExtern).width), Float (Verbesserungen (VerbesserungExtern).height));
       
-   end Verbesserungsabmessung;
+   end VerbesserungVektor;
    
    
    
-   function Wegebereich
+   function WegeRechteck
      (WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
       return Wege (WegExtern);
       
-   end Wegebereich;
+   end WegeRechteck;
    
    
    
-   function Wegeabmessung
+   function WegeVektor
      (WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       return (Float (Wege (WegExtern).width), Float (Wege (WegExtern).height));
       
-   end Wegeabmessung;
+   end WegeVektor;
    
    
    
-   function Feldeffektebereich
+   function FeldeffekteRechteck
      (FeldeffektedExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
       return Feldeffekte (FeldeffektedExtern);
       
-   end Feldeffektebereich;
+   end FeldeffekteRechteck;
    
    
    
-   function Feldeffekteabmessung
+   function FeldeffekteVektor
      (FeldeffektedExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       return (Float (Feldeffekte (FeldeffektedExtern).width), Float (Feldeffekte (FeldeffektedExtern).height));
       
-   end Feldeffekteabmessung;
+   end FeldeffekteVektor;
    
    
    
-   function Hintergrundbereich
+   function HintergrundRechteck
      (HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
@@ -162,11 +162,11 @@ package body TexturenfelderVariablenGrafik is
       
       return Hintergründe (SpeziesExtern, HintergrundExtern);
       
-   end Hintergrundbereich;
+   end HintergrundRechteck;
    
    
    
-   function Hintergrundabmessung
+   function HintergrundVektor
      (HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
@@ -174,12 +174,11 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Hintergründe (SpeziesExtern, HintergrundExtern).width), Float (Hintergründe (SpeziesExtern, HintergrundExtern).height));
       
-   end Hintergrundabmessung;
+   end HintergrundVektor;
    
    
    -- Einheiten/Gebäude und Spezies in den gemeinsamen Record umwandeln. äöü
-   
-   function Einheitenbereich
+   function EinheitenRechteck
      (EinheitExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
@@ -187,11 +186,11 @@ package body TexturenfelderVariablenGrafik is
       
       return Einheiten (SpeziesExtern, EinheitExtern);
       
-   end Einheitenbereich;
+   end EinheitenRechteck;
    
    
    
-   function Einheitenabmessung
+   function EinheitenVektor
      (EinheitExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
@@ -199,11 +198,11 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Einheiten (SpeziesExtern, EinheitExtern).width), Float (Einheiten (SpeziesExtern, EinheitExtern).height));
       
-   end Einheitenabmessung;
+   end EinheitenVektor;
    
    
    
-   function Gebäudebereich
+   function GebäudeRechteck
      (GebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
@@ -211,11 +210,11 @@ package body TexturenfelderVariablenGrafik is
       
       return Gebäude (SpeziesExtern, GebäudeExtern);
       
-   end Gebäudebereich;
+   end GebäudeRechteck;
    
    
    
-   function Gebäudeabmessung
+   function GebäudeVektor
      (GebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
@@ -223,28 +222,96 @@ package body TexturenfelderVariablenGrafik is
       
       return (Float (Gebäude (SpeziesExtern, GebäudeExtern).width), Float (Gebäude (SpeziesExtern, GebäudeExtern).height));
       
-   end Gebäudeabmessung;
+   end GebäudeVektor;
    
    
    
-   function Introbereich
-     (IntroExtern : in GrafikDatentypen.Hintergrund_Intro_Enum)
+   function HintergrundRechteck
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return Intro (IntroExtern);
+      case
+        HintergrundExtern
+      is
+         when GrafikDatentypen.Hintergrund_Intro_Enum'Range =>
+            return Intro (HintergrundExtern);
+            
+         when GrafikDatentypen.Hintergrund_Kartenformen_Enum'Range =>
+            return Kartenformen (HintergrundExtern);
+            
+         when GrafikDatentypen.Hintergrund_Allgemein_Enum'Range =>
+            return Allgemeines (HintergrundExtern);
+      end case;
       
-   end Introbereich;
+   end HintergrundRechteck;
    
    
    
-   function Introabmessung
-     (IntroExtern : in GrafikDatentypen.Hintergrund_Intro_Enum)
+   function HintergrundVektor
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Intro (IntroExtern).width), Float (Intro (IntroExtern).height));
+      case
+        HintergrundExtern
+      is
+         when GrafikDatentypen.Hintergrund_Intro_Enum'Range =>
+            Zwischenspeicher := (Float (Intro (HintergrundExtern).width), Float (Intro (HintergrundExtern).height));
+            
+         when GrafikDatentypen.Hintergrund_Kartenformen_Enum'Range =>
+            Zwischenspeicher := (Float (Kartenformen (HintergrundExtern).width), Float (Kartenformen (HintergrundExtern).height));
+            
+         when GrafikDatentypen.Hintergrund_Allgemein_Enum'Range =>
+            Zwischenspeicher := (Float (Allgemeines (HintergrundExtern).width), Float (Allgemeines (HintergrundExtern).height));
+      end case;
       
-   end Introabmessung;
+      return Zwischenspeicher;
+      
+   end HintergrundVektor;
+   
+   
+   
+   function KartenbefehleRechteck
+     (BefehlExtern : in TastenbelegungDatentypen.Kartenbefehle_Enum)
+      return Sf.Graphics.Rect.sfIntRect
+   is begin
+      
+      return Kartenbefehle (BefehlExtern);
+      
+   end KartenbefehleRechteck;
+   
+   
+   
+   function KartenbefehleVektor
+     (BefehlExtern : in TastenbelegungDatentypen.Kartenbefehle_Enum)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      return (Float (Kartenbefehle (BefehlExtern).width), Float (Kartenbefehle (BefehlExtern).height));
+      
+   end KartenbefehleVektor;
+   
+   
+   
+   function EinheitenbefehleRechteck
+     (BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Enum)
+      return Sf.Graphics.Rect.sfIntRect
+   is begin
+      
+      return Einheitenbefehle (BefehlExtern);
+      
+   end EinheitenbefehleRechteck;
+   
+   
+   
+   function EinheitenbefehleVektor
+     (BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Enum)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      return (Float (Einheitenbefehle (BefehlExtern).width), Float (Einheitenbefehle (BefehlExtern).height));
+      
+   end EinheitenbefehleVektor;
    
 end TexturenfelderVariablenGrafik;

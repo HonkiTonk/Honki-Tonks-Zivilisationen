@@ -20,6 +20,10 @@ package body TexturenfelderBerechnenGrafik is
       Speziesberechnungen;
       
       IntroBerechnen;
+      AllgemeinesBerechnen;
+      Kartenbefehle;
+      Einheitenbefehle;
+      Kartenformen;
       
    end TexturenfelderBerechnen;
    
@@ -426,5 +430,145 @@ package body TexturenfelderBerechnenGrafik is
       end loop IntroSchleife;
       
    end IntroBerechnen;
-
+   
+   
+   
+   procedure AllgemeinesBerechnen
+   is
+      use type Sf.sfUint32;
+   begin
+      
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.AllgemeinesAccess);
+      
+      Feldgröße := (Texturengröße.x / FelderanzahlAllgemeines.x, Texturengröße.y / FelderanzahlAllgemeines.y);
+      
+      AktuelleFeldposition := (1, 1);
+      
+      AllgemeinesSchleife:
+      for AllgemeinesSchleifenwert in TexturenfelderVariablenGrafik.AllgemeinesArray'Range loop
+         
+         TexturenfelderVariablenGrafik.Allgemeines (AllgemeinesSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
+                                                                                  Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
+                                                                                  Integer (Feldgröße.x),
+                                                                                  Integer (Feldgröße.y));
+         
+         if
+           AktuelleFeldposition.x < FelderanzahlAllgemeines.x
+         then
+            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
+            
+         else
+            AktuelleFeldposition.x := 1;
+            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
+         end if;
+         
+      end loop AllgemeinesSchleife;
+      
+   end AllgemeinesBerechnen;
+   
+   
+   
+   procedure Kartenbefehle
+   is
+      use type Sf.sfUint32;
+   begin
+      
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenbefehleAccess);
+      
+      Feldgröße := (Texturengröße.x / FelderanzahlKartenbefehle.x, Texturengröße.y / FelderanzahlKartenbefehle.y);
+      
+      AktuelleFeldposition := (1, 1);
+      
+      KartenbefehleSchleife:
+      for KartenbefehleSchleifenwert in TexturenfelderVariablenGrafik.KartenbefehleArray'Range loop
+         
+         TexturenfelderVariablenGrafik.Kartenbefehle (KartenbefehleSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
+                                                                                      Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
+                                                                                      Integer (Feldgröße.x),
+                                                                                      Integer (Feldgröße.y));
+         
+         if
+           AktuelleFeldposition.x < FelderanzahlKartenbefehle.x
+         then
+            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
+            
+         else
+            AktuelleFeldposition.x := 1;
+            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
+         end if;
+         
+      end loop KartenbefehleSchleife;
+      
+   end Kartenbefehle;
+   
+   
+   
+   procedure Einheitenbefehle
+   is
+      use type Sf.sfUint32;
+   begin
+      
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenbefehleAccess);
+      
+      Feldgröße := (Texturengröße.x / FelderanzahlEinheitenbefehle.x, Texturengröße.y / FelderanzahlEinheitenbefehle.y);
+      
+      AktuelleFeldposition := (1, 1);
+      
+      EinheitenbefehleSchleife:
+      for EinheitenbefehleSchleifenwert in TexturenfelderVariablenGrafik.EinheitenbefehleArray'Range loop
+         
+         TexturenfelderVariablenGrafik.Einheitenbefehle (EinheitenbefehleSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
+                                                                                            Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
+                                                                                            Integer (Feldgröße.x),
+                                                                                            Integer (Feldgröße.y));
+         
+         if
+           AktuelleFeldposition.x < FelderanzahlEinheitenbefehle.x
+         then
+            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
+            
+         else
+            AktuelleFeldposition.x := 1;
+            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
+         end if;
+         
+      end loop EinheitenbefehleSchleife;
+      
+   end Einheitenbefehle;
+   
+   
+   
+   procedure Kartenformen
+   is
+      use type Sf.sfUint32;
+   begin
+      
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenformenAccess);
+      
+      Feldgröße := (Texturengröße.x / FelderanzahlKartenformen.x, Texturengröße.y / FelderanzahlKartenformen.y);
+      
+      AktuelleFeldposition := (1, 1);
+      
+      KartenformenSchleife:
+      for KartenformenSchleifenwert in TexturenfelderVariablenGrafik.KartenformenArray'Range loop
+         
+         TexturenfelderVariablenGrafik.Kartenformen (KartenformenSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
+                                                                                    Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
+                                                                                    Integer (Feldgröße.x),
+                                                                                    Integer (Feldgröße.y));
+         
+         if
+           AktuelleFeldposition.x < FelderanzahlKartenformen.x
+         then
+            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
+            
+         else
+            AktuelleFeldposition.x := 1;
+            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
+         end if;
+         
+      end loop KartenformenSchleife;
+      
+   end Kartenformen;
+     
 end TexturenfelderBerechnenGrafik;

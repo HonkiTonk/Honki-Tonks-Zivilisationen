@@ -1,9 +1,9 @@
-with GrafikDatentypen;
+-- with GrafikDatentypen;
 with Views;
 with KartengrundDatentypen;
 with InteraktionAuswahl;
 
-with AllgemeineViewsGrafik;
+-- with AllgemeineViewsGrafik;
 with ViewsEinstellenGrafik;
 -- with ObjekteZeichnenGrafik;
 
@@ -12,9 +12,9 @@ package body KartengrundEditorGrafik is
    procedure KartengrundEditor
    is begin
       
-      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => "Test",
-                                          HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
-                                          SpielenamenExtern => False);
+     -- AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => "Test",
+     --                                     HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
+     --                                     SpielenamenExtern => False);
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       

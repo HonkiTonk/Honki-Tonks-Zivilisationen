@@ -2,7 +2,6 @@ with Sf.Graphics;
 
 with SpeziesDatentypen;
 with GrafikDatentypen;
-with BefehleDatentypen;
 
 package EingeleseneTexturenGrafik is
    pragma Elaborate_Body;
@@ -18,16 +17,15 @@ package EingeleseneTexturenGrafik is
    FeldeffekteAccess : Sf.Graphics.sfTexture_Ptr := null;
 
    IntroAccess : Sf.Graphics.sfTexture_Ptr := null;
-
-
-
-
-   EinheitenbefehleAccess : Sf.Graphics.sfTexture_Ptr := null;
+   AllgemeinesAccess : Sf.Graphics.sfTexture_Ptr := null;
    KartenbefehleAccess : Sf.Graphics.sfTexture_Ptr := null;
-   RoterKnopfAccess : Sf.Graphics.sfTexture_Ptr := null;
+   EinheitenbefehleAccess : Sf.Graphics.sfTexture_Ptr := null;
    KartenformenAccess : Sf.Graphics.sfTexture_Ptr := null;
+
+
+
+   RoterKnopfAccess : Sf.Graphics.sfTexture_Ptr := null;
    SeitenleisteAccess : Sf.Graphics.sfTexture_Ptr := null;
-   MenüsAccess : Sf.Graphics.sfTexture_Ptr := null;
    PZBEndeAccess : Sf.Graphics.sfTexture_Ptr := null;
    AuswahlAccess : Sf.Graphics.sfTexture_Ptr := null;
    MeldungAccess : Sf.Graphics.sfTexture_Ptr := null;
@@ -38,9 +36,6 @@ package EingeleseneTexturenGrafik is
    HintergrundAccessGesamt : SpeziesAccessArray := (others => null);
 
 
-
-   type SystemAccessArray is array (BefehleDatentypen.Befehlsknöpfe_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
-   SystemAccess : SystemAccessArray := (others => null);
 
    type HintergrundAccessArray is array (GrafikDatentypen.Hintergrund_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    HintergrundAccess : HintergrundAccessArray := (others => null);

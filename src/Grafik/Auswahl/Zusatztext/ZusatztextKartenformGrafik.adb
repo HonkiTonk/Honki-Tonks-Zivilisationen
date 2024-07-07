@@ -1,8 +1,7 @@
 with Sf.Graphics.Texture;
 
 with KartenartDatentypen;
-with GrafikKonstanten;
-with GrafikDatentypen;
+with TexturenfelderVariablenGrafik;
 
 with KartengeneratorVariablenLogik;
 with EingeleseneTexturenGrafik;
@@ -10,7 +9,6 @@ with SpritesverwaltungssystemGrafik;
 
 package body ZusatztextKartenformGrafik is
 
-   -- Später noch einmal überarbeiten, gilt auch für die Texturen. äöü
    -- Später mal die Zahlen mit KartenformmenueGrafik Konstanten zusammenführen? äöü
    procedure ZusatztextKartenform
      (AktuelleAuswahlExtern : in Positive;
@@ -19,123 +17,111 @@ package body ZusatztextKartenformGrafik is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
       
-      Texturfläche := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.HintergrundAccess (GrafikDatentypen.Kartenformen_Enum)).x),
-                        Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.HintergrundAccess (GrafikDatentypen.Kartenformen_Enum)).y));
+      Texturfläche := (Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenformenAccess).x),
+                        Float (Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenformenAccess).y));
             
       case
         AktuelleAuswahlExtern
       is
-         when 1 =>
+         when ÜbergangOben =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
             then
-               Texturanfang.x := GrafikKonstanten.Nullwert;
+               Kartenform := GrafikDatentypen.Kartenformen_Eins_Enum;
                
             else
-               Texturanfang.x := Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Zwei_Enum;
             end if;
             
-            Texturanfang.y := GrafikKonstanten.Nullwert;
-            
-         when 2 =>
+         when ÜbergangUnten =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
             then
-               Texturanfang.x := Texturfläche.x / GrafikKonstanten.Halbierung;
+               Kartenform := GrafikDatentypen.Kartenformen_Drei_Enum;
                
             else
-               Texturanfang.x := 3.00 * Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Vier_Enum;
             end if;
-            
-            Texturanfang.y := GrafikKonstanten.Nullwert;
 
-         when 3 =>
+         when ÜbergangNorden =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
             then
-               Texturanfang.x := GrafikKonstanten.Nullwert;
+               Kartenform := GrafikDatentypen.Kartenformen_Fünf_Enum;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Übergang_Enum
             then
-               Texturanfang.x := Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Sechs_Enum;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
             then
-               Texturanfang.x := Texturfläche.x / GrafikKonstanten.Halbierung;
+               Kartenform := GrafikDatentypen.Kartenformen_Sieben_Enum;
 
             else
-               Texturanfang.x := 3.00 * Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Acht_Enum;
             end if;
-            
-            Texturanfang.y := Texturfläche.y / 5.00;
 
-         when 4 =>
+         when ÜbergangSüden =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
             then
-               Texturanfang.x := GrafikKonstanten.Nullwert;
+               Kartenform := GrafikDatentypen.Kartenformen_Neun_Enum;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Übergang_Enum
             then
-               Texturanfang.x := Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Zehn_Enum;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
             then
-               Texturanfang.x := Texturfläche.x / GrafikKonstanten.Halbierung;
+               Kartenform := GrafikDatentypen.Kartenformen_Elf_Enum;
 
             else
-               Texturanfang.x := 3.00 * Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Zwölf_Enum;
             end if;
-            
-            Texturanfang.y := 2.00 * Texturfläche.y / 5.00;
 
-         when 5 =>
+         when ÜbergangWesten =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
             then
-               Texturanfang.x := GrafikKonstanten.Nullwert;
+               Kartenform := GrafikDatentypen.Kartenformen_Dreizehn_Enum;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Übergang_Enum
             then
-               Texturanfang.x := Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Vierzehn_Enum;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
             then
-               Texturanfang.x := Texturfläche.x / GrafikKonstanten.Halbierung;
+               Kartenform := GrafikDatentypen.Kartenformen_Fünfzehn_Enum;
 
             else
-               Texturanfang.x := 3.00 * Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Sechzehn_Enum;
             end if;
-            
-            Texturanfang.y := 3.00 * Texturfläche.y / 5.00;
 
-         when 6 =>
+         when ÜbergangOsten =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
             then
-               Texturanfang.x := GrafikKonstanten.Nullwert;
+               Kartenform := GrafikDatentypen.Kartenformen_Siebzehn_Enum;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Übergang_Enum
             then
-               Texturanfang.x := Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Achtzehn_Enum;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
             then
-               Texturanfang.x := Texturfläche.x / GrafikKonstanten.Halbierung;
+               Kartenform := GrafikDatentypen.Kartenformen_Neunzehn_Enum;
 
             else
-               Texturanfang.x := 3.00 * Texturfläche.x / 4.00;
+               Kartenform := GrafikDatentypen.Kartenformen_Zwanzig_Enum;
             end if;
-            
-            Texturanfang.y := 4.00 * Texturfläche.y / 5.00;
             
          when others =>
             return;
@@ -143,8 +129,8 @@ package body ZusatztextKartenformGrafik is
       
       -- Für solche Skalierungen auch mal ein eigenes System bauen. äöü
       SpritesverwaltungssystemGrafik.SetzenBereichSkalierenZeichnen (SpriteAccessExtern => SpriteAccess,
-                                                                     TexturExtern       => EingeleseneTexturenGrafik.HintergrundAccess (GrafikDatentypen.Kartenformen_Enum),
-                                                                     BereichExtern      => (Integer (Texturanfang.x), Integer (Texturanfang.y), Integer (Texturfläche.x / 4.00), Integer (Texturfläche.y / 5.00)),
+                                                                     TexturExtern       => EingeleseneTexturenGrafik.KartenformenAccess,
+                                                                     BereichExtern      => TexturenfelderVariablenGrafik.HintergrundRechteck (HintergrundExtern => Kartenform),
                                                                      SkalierungExtern   => (ViewflächeExtern.x / (Texturfläche.x / 4.00), ViewflächeExtern.y / (Texturfläche.y / 5.00)));
       
    end ZusatztextKartenform;

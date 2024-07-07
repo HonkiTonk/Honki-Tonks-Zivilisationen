@@ -12,8 +12,8 @@ with GrafikDatentypen;
 package HintergrundGrafik is
    pragma Elaborate_Body;
 
-   procedure Intro
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Intro_Enum;
+   procedure Aufteilung
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (

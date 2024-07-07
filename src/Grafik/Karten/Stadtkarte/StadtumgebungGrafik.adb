@@ -262,7 +262,7 @@ package body StadtumgebungGrafik is
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.BasisgrundAccess,
-                                                                TexturbereichExtern => TexturenfelderVariablenGrafik.Basisgrundbereich (BasisgrundExtern => Gesamtgrund.Basisgrund),
+                                                                TexturbereichExtern => TexturenfelderVariablenGrafik.BasisgrundRechteck (BasisgrundExtern => Gesamtgrund.Basisgrund),
                                                                 FeldgrößeExtern     => FeldgrößeExtern,
                                                                 PositionExtern      => PositionExtern);
         
@@ -274,7 +274,7 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.ZusatzgrundAccess,
-                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.Zusatzgrundbereich (ZusatzgrundExtern => Gesamtgrund.Zusatzgrund),
+                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.ZusatzgrundRechteck (ZusatzgrundExtern => Gesamtgrund.Zusatzgrund),
                                                                       FeldgrößeExtern     => FeldgrößeExtern,
                                                                       PositionExtern      => PositionExtern);
       end case;
@@ -299,7 +299,7 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.FeldeffekteAccess,
-                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.Flussbereich (FlussExtern => KartenfeldFluss),
+                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.FlussRechteck (FlussExtern => KartenfeldFluss),
                                                                       FeldgrößeExtern     => FeldgrößeExtern,
                                                                       PositionExtern      => PositionExtern);
       end case;
@@ -324,7 +324,7 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.RessourcenAccess,
-                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.Ressourcenbereich (RessourceExtern => KartenfeldRessource),
+                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.RessourcenRechteck (RessourceExtern => KartenfeldRessource),
                                                                       FeldgrößeExtern     => FeldgrößeExtern,
                                                                       PositionExtern      => PositionExtern);
       end case;
@@ -349,7 +349,7 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.WegeAccess,
-                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.Wegebereich (WegExtern => Wegfeld),
+                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.WegeRechteck (WegExtern => Wegfeld),
                                                                       FeldgrößeExtern     => FeldgrößeExtern,
                                                                       PositionExtern      => PositionExtern);
       end case;
@@ -374,7 +374,7 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.VerbesserungenAccess,
-                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.Verbesserungsbereich (VerbesserungExtern => Verbesserungsfeld),
+                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.VerbesserungRechteck (VerbesserungExtern => Verbesserungsfeld),
                                                                       FeldgrößeExtern     => FeldgrößeExtern,
                                                                       PositionExtern      => PositionExtern);
       end case;
@@ -398,7 +398,7 @@ package body StadtumgebungGrafik is
          is
             when True =>
                KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.FeldeffekteAccess,
-                                                                         TexturbereichExtern => TexturenfelderVariablenGrafik.Feldeffektebereich (FeldeffektedExtern => EffektSchleifenwert),
+                                                                         TexturbereichExtern => TexturenfelderVariablenGrafik.FeldeffekteRechteck (FeldeffektedExtern => EffektSchleifenwert),
                                                                          FeldgrößeExtern     => FeldgrößeExtern,
                                                                          PositionExtern      => PositionExtern);
                

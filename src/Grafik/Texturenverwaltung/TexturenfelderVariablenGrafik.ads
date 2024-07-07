@@ -8,6 +8,8 @@ with SpeziesDatentypen;
 with EinheitenDatentypen;
 with StadtDatentypen;
 with GrafikDatentypen;
+with TastenbelegungDatentypen;
+with BefehleDatentypen;
 
 package TexturenfelderVariablenGrafik is
    pragma Elaborate_Body;
@@ -48,260 +50,340 @@ package TexturenfelderVariablenGrafik is
    type IntroArray is array (GrafikDatentypen.Hintergrund_Intro_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
    Intro : IntroArray;
    
+   type AllgemeinesArray is array (GrafikDatentypen.Hintergrund_Allgemein_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   Allgemeines : AllgemeinesArray;
+   
+   type KartenbefehleArray is array (TastenbelegungDatentypen.Kartenbefehle_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   Kartenbefehle : KartenbefehleArray;
+   
+   type EinheitenbefehleArray is array (BefehleDatentypen.Einheiten_Aufgaben_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   Einheitenbefehle : EinheitenbefehleArray;
+   
+   type KartenformenArray is array (GrafikDatentypen.Hintergrund_Kartenformen_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   Kartenformen : KartenformenArray;
    
    
-   function Basisgrundbereich
+   
+   function BasisgrundRechteck
      (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Basisgrundbereich'Result.left >= 0
+                  BasisgrundRechteck'Result.left >= 0
                 and
-                  Basisgrundbereich'Result.top >= 0
+                  BasisgrundRechteck'Result.top >= 0
                 and
-                  Basisgrundbereich'Result.width >= 0
+                  BasisgrundRechteck'Result.width >= 0
                 and
-                  Basisgrundbereich'Result.height >= 0
+                  BasisgrundRechteck'Result.height >= 0
                );
    
-   function Basisgrundabmessung
+   function BasisgrundVektor
      (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Basisgrundabmessung'Result.x >= 0.00
+                  BasisgrundVektor'Result.x >= 0.00
                 and
-                  Basisgrundabmessung'Result.y >= 0.00
+                  BasisgrundVektor'Result.y >= 0.00
                );
    
-   function Zusatzgrundbereich
+   function ZusatzgrundRechteck
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Zusatzgrundbereich'Result.left >= 0
+                  ZusatzgrundRechteck'Result.left >= 0
                 and
-                  Zusatzgrundbereich'Result.top >= 0
+                  ZusatzgrundRechteck'Result.top >= 0
                 and
-                  Zusatzgrundbereich'Result.width >= 0
+                  ZusatzgrundRechteck'Result.width >= 0
                 and
-                  Zusatzgrundbereich'Result.height >= 0
+                  ZusatzgrundRechteck'Result.height >= 0
                );
    
-   function Zusatzgrundabmessung
+   function ZusatzgrundVektor
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Zusatzgrundabmessung'Result.x >= 0.00
+                  ZusatzgrundVektor'Result.x >= 0.00
                 and
-                  Zusatzgrundabmessung'Result.y >= 0.00
+                  ZusatzgrundVektor'Result.y >= 0.00
                );
    
-   function Flussbereich
+   function FlussRechteck
      (FlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Flussbereich'Result.left >= 0
+                  FlussRechteck'Result.left >= 0
                 and
-                  Flussbereich'Result.top >= 0
+                  FlussRechteck'Result.top >= 0
                 and
-                  Flussbereich'Result.width >= 0
+                  FlussRechteck'Result.width >= 0
                 and
-                  Flussbereich'Result.height >= 0
+                  FlussRechteck'Result.height >= 0
                );
    
-   function Flussabmessung
+   function FlussVektor
      (FlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Flussabmessung'Result.x >= 0.00
+                  FlussVektor'Result.x >= 0.00
                 and
-                  Flussabmessung'Result.y >= 0.00
+                  FlussVektor'Result.y >= 0.00
                );
    
-   function Ressourcenbereich
+   function RessourcenRechteck
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Ressourcenbereich'Result.left >= 0
+                  RessourcenRechteck'Result.left >= 0
                 and
-                  Ressourcenbereich'Result.top >= 0
+                  RessourcenRechteck'Result.top >= 0
                 and
-                  Ressourcenbereich'Result.width >= 0
+                  RessourcenRechteck'Result.width >= 0
                 and
-                  Ressourcenbereich'Result.height >= 0
+                  RessourcenRechteck'Result.height >= 0
                );
    
-   function Ressourcenabmessung
+   function RessourcenVektor
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Ressourcenabmessung'Result.x >= 0.00
+                  RessourcenVektor'Result.x >= 0.00
                 and
-                  Ressourcenabmessung'Result.y >= 0.00
+                  RessourcenVektor'Result.y >= 0.00
                );
    
-   function Verbesserungsbereich
+   function VerbesserungRechteck
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Verbesserungsbereich'Result.left >= 0
+                  VerbesserungRechteck'Result.left >= 0
                 and
-                  Verbesserungsbereich'Result.top >= 0
+                  VerbesserungRechteck'Result.top >= 0
                 and
-                  Verbesserungsbereich'Result.width >= 0
+                  VerbesserungRechteck'Result.width >= 0
                 and
-                  Verbesserungsbereich'Result.height >= 0
+                  VerbesserungRechteck'Result.height >= 0
                );
    
-   function Verbesserungsabmessung
+   function VerbesserungVektor
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Verbesserungsabmessung'Result.x >= 0.00
+                  VerbesserungVektor'Result.x >= 0.00
                 and
-                  Verbesserungsabmessung'Result.y >= 0.00
+                  VerbesserungVektor'Result.y >= 0.00
                );
    
-   function Wegebereich
+   function WegeRechteck
      (WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Wegebereich'Result.left >= 0
+                  WegeRechteck'Result.left >= 0
                 and
-                  Wegebereich'Result.top >= 0
+                  WegeRechteck'Result.top >= 0
                 and
-                  Wegebereich'Result.width >= 0
+                  WegeRechteck'Result.width >= 0
                 and
-                  Wegebereich'Result.height >= 0
+                  WegeRechteck'Result.height >= 0
                );
    
-   function Wegeabmessung
+   function WegeVektor
      (WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Wegeabmessung'Result.x >= 0.00
+                  WegeVektor'Result.x >= 0.00
                 and
-                  Wegeabmessung'Result.y >= 0.00
+                  WegeVektor'Result.y >= 0.00
                );
    
-   function Feldeffektebereich
+   function FeldeffekteRechteck
      (FeldeffektedExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Feldeffektebereich'Result.left >= 0
+                  FeldeffekteRechteck'Result.left >= 0
                 and
-                  Feldeffektebereich'Result.top >= 0
+                  FeldeffekteRechteck'Result.top >= 0
                 and
-                  Feldeffektebereich'Result.width >= 0
+                  FeldeffekteRechteck'Result.width >= 0
                 and
-                  Feldeffektebereich'Result.height >= 0
+                  FeldeffekteRechteck'Result.height >= 0
                );
    
-   function Feldeffekteabmessung
+   function FeldeffekteVektor
      (FeldeffektedExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Feldeffekteabmessung'Result.x >= 0.00
+                  FeldeffekteVektor'Result.x >= 0.00
                 and
-                  Feldeffekteabmessung'Result.y >= 0.00
+                  FeldeffekteVektor'Result.y >= 0.00
                );
    
-   function Hintergrundbereich
+   function HintergrundRechteck
      (HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Hintergrundbereich'Result.left >= 0
+                  HintergrundRechteck'Result.left >= 0
                 and
-                  Hintergrundbereich'Result.top >= 0
+                  HintergrundRechteck'Result.top >= 0
                 and
-                  Hintergrundbereich'Result.width >= 0
+                  HintergrundRechteck'Result.width >= 0
                 and
-                  Hintergrundbereich'Result.height >= 0
+                  HintergrundRechteck'Result.height >= 0
                );
    
-   function Hintergrundabmessung
+   function HintergrundVektor
      (HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Hintergrundabmessung'Result.x >= 0.00
+                  HintergrundVektor'Result.x >= 0.00
                 and
-                  Hintergrundabmessung'Result.y >= 0.00
+                  HintergrundVektor'Result.y >= 0.00
                );
    
-   function Einheitenbereich
+   function EinheitenRechteck
      (EinheitExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Einheitenbereich'Result.left >= 0
+                  EinheitenRechteck'Result.left >= 0
                 and
-                  Einheitenbereich'Result.top >= 0
+                  EinheitenRechteck'Result.top >= 0
                 and
-                  Einheitenbereich'Result.width >= 0
+                  EinheitenRechteck'Result.width >= 0
                 and
-                  Einheitenbereich'Result.height >= 0
+                  EinheitenRechteck'Result.height >= 0
                );
    
-   function Einheitenabmessung
+   function EinheitenVektor
      (EinheitExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Einheitenabmessung'Result.x >= 0.00
+                  EinheitenVektor'Result.x >= 0.00
                 and
-                  Einheitenabmessung'Result.y >= 0.00
+                  EinheitenVektor'Result.y >= 0.00
                );
    
-   function Gebäudebereich
+   function GebäudeRechteck
      (GebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  Gebäudebereich'Result.left >= 0
+                  GebäudeRechteck'Result.left >= 0
                 and
-                  Gebäudebereich'Result.top >= 0
+                  GebäudeRechteck'Result.top >= 0
                 and
-                  Gebäudebereich'Result.width >= 0
+                  GebäudeRechteck'Result.width >= 0
                 and
-                  Gebäudebereich'Result.height >= 0
+                  GebäudeRechteck'Result.height >= 0
                );
    
-   function Gebäudeabmessung
+   function GebäudeVektor
      (GebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Gebäudeabmessung'Result.x >= 0.00
+                  GebäudeVektor'Result.x >= 0.00
                 and
-                  Gebäudeabmessung'Result.y >= 0.00
+                  GebäudeVektor'Result.y >= 0.00
+               );
+   
+   function HintergrundRechteck
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum)
+      return Sf.Graphics.Rect.sfIntRect
+     with
+       Post => (
+                  HintergrundRechteck'Result.left >= 0
+                and
+                  HintergrundRechteck'Result.top >= 0
+                and
+                  HintergrundRechteck'Result.width >= 0
+                and
+                  HintergrundRechteck'Result.height >= 0
+               );
+   
+   function HintergrundVektor
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  HintergrundVektor'Result.x >= 0.00
+                and
+                  HintergrundVektor'Result.y >= 0.00
+               );
+   
+   function KartenbefehleRechteck
+     (BefehlExtern : in TastenbelegungDatentypen.Kartenbefehle_Enum)
+      return Sf.Graphics.Rect.sfIntRect
+     with
+       Post => (
+                  KartenbefehleRechteck'Result.left >= 0
+                and
+                  KartenbefehleRechteck'Result.top >= 0
+                and
+                  KartenbefehleRechteck'Result.width >= 0
+                and
+                  KartenbefehleRechteck'Result.height >= 0
+               );
+   
+   function KartenbefehleVektor
+     (BefehlExtern : in TastenbelegungDatentypen.Kartenbefehle_Enum)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  KartenbefehleVektor'Result.x >= 0.00
+                and
+                  KartenbefehleVektor'Result.y >= 0.00
+               );
+   
+   function EinheitenbefehleRechteck
+     (BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Enum)
+      return Sf.Graphics.Rect.sfIntRect
+     with
+       Post => (
+                  EinheitenbefehleRechteck'Result.left >= 0
+                and
+                  EinheitenbefehleRechteck'Result.top >= 0
+                and
+                  EinheitenbefehleRechteck'Result.width >= 0
+                and
+                  EinheitenbefehleRechteck'Result.height >= 0
                );
          
-   function Introbereich
-     (IntroExtern : in GrafikDatentypen.Hintergrund_Intro_Enum)
-      return Sf.Graphics.Rect.sfIntRect;
+   function EinheitenbefehleVektor
+     (BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Enum)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  EinheitenbefehleVektor'Result.x >= 0.00
+                and
+                  EinheitenbefehleVektor'Result.y >= 0.00
+               );
    
-   function Introabmessung
-     (IntroExtern : in GrafikDatentypen.Hintergrund_Intro_Enum)
-      return Sf.System.Vector2.sfVector2f;
+private
+   
+   Zwischenspeicher : Sf.System.Vector2.sfVector2f;
 
 end TexturenfelderVariablenGrafik;

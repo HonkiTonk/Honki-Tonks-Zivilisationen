@@ -60,7 +60,7 @@ package body WeltkarteEinheitZeichnenGrafik is
          FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
          
          KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies),
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.Einheitenbereich (EinheitExtern => FeldeinheitID,
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.EinheitenRechteck (EinheitExtern => FeldeinheitID,
                                                                                                                                       SpeziesExtern => EinheitSpeziesNummer.Spezies),
                                                             PositionExtern         => PositionExtern,
                                                             DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
@@ -82,7 +82,7 @@ package body WeltkarteEinheitZeichnenGrafik is
             
             when others =>
                KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies),
-                                                                  TexturbereichExtern    => TexturenfelderVariablenGrafik.Einheitenbereich (EinheitExtern => FeldeinheitID,
+                                                                  TexturbereichExtern    => TexturenfelderVariablenGrafik.EinheitenRechteck (EinheitExtern => FeldeinheitID,
                                                                                                                                             SpeziesExtern => EinheitSpeziesNummer.Spezies),
                                                                   PositionExtern         => PositionExtern,
                                                                   DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
@@ -114,7 +114,7 @@ package body WeltkarteEinheitZeichnenGrafik is
          
       else
          KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitenauswahlExtern.SpeziesNummer.Spezies),
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.Einheitenbereich (EinheitExtern => EinheitenauswahlExtern.ID,
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.EinheitenRechteck (EinheitExtern => EinheitenauswahlExtern.ID,
                                                                                                                                       SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies),
                                                             PositionExtern         => PositionExtern,
                                                             DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);

@@ -11,16 +11,31 @@ with TexturenfelderVariablenGrafik;
 
 package body HintergrundGrafik is
    
-   procedure Intro
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Intro_Enum;
+   procedure Aufteilung
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.IntroAccess,
-                      TexturbereichExtern => TexturenfelderVariablenGrafik.Introbereich (IntroExtern => HintergrundExtern),
-                      AbmessungenExtern   => AbmessungenExtern);
+      case
+        HintergrundExtern
+      is
+         when GrafikDatentypen.Hintergrund_Intro_Enum'Range =>
+            HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.IntroAccess,
+                            TexturbereichExtern => TexturenfelderVariablenGrafik.HintergrundRechteck (HintergrundExtern => HintergrundExtern),
+                            AbmessungenExtern   => AbmessungenExtern);
+            
+         when GrafikDatentypen.Hintergrund_Kartenformen_Enum'Range =>
+            HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.KartenformenAccess,
+                            TexturbereichExtern => TexturenfelderVariablenGrafik.HintergrundRechteck (HintergrundExtern => HintergrundExtern),
+                            AbmessungenExtern   => AbmessungenExtern);
+            
+         when GrafikDatentypen.Hintergrund_Allgemein_Enum =>
+            HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.AllgemeinesAccess,
+                            TexturbereichExtern => TexturenfelderVariablenGrafik.HintergrundRechteck (HintergrundExtern => HintergrundExtern),
+                            AbmessungenExtern   => AbmessungenExtern);
+      end case;
       
-   end Intro;
+   end Aufteilung;
    
    
    

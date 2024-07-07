@@ -53,7 +53,7 @@ package body SeitenleisteGrafik is
             ViewsEinstellenGrafik.ViewSetzen (ViewExtern => Views.WeltkarteAccesse (ViewKonstanten.WeltSeitenleiste));
       end case;
       
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                      AbmessungenExtern => Viewbereich.Viewbereich);
       
       AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
