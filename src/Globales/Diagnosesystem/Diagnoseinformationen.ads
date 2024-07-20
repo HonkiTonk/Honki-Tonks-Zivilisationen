@@ -32,6 +32,9 @@ package Diagnoseinformationen is
    procedure Zeichen
      (ZeichenExtern : in Wide_Wide_Character);
    
+   procedure KurzesZeichen
+     (ZeichenExtern : in Character);
+   
    procedure Text
      (TextExtern : in Wide_Wide_String)
      with

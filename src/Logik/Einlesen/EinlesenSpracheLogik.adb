@@ -33,9 +33,9 @@ package body EinlesenSpracheLogik is
             
          elsif
            False = VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
-                                                                        WindowsTextExtern => To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SprachenStrich
-                                                                                                                                              & Simple_Name (Directory_Entry => Verzeichnis)
-                                                                                                                                              & VerzeichnisKonstanten.NullDatei)))
+                                                                     WindowsTextExtern => To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SprachenStrich
+                                                                                                                                           & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                                           & VerzeichnisKonstanten.NullDatei)))
          then
             null;
             

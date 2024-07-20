@@ -103,6 +103,16 @@ package body Diagnoseinformationen is
    
    
    
+   procedure KurzesZeichen
+     (ZeichenExtern : in Character)
+   is begin
+      
+      Ada.Text_IO.Put_Line (Item => ZeichenExtern'Image);
+      
+   end KurzesZeichen;
+   
+   
+   
    procedure Text
      (TextExtern : in Wide_Wide_String)
    is begin

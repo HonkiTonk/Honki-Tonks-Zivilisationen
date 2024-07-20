@@ -30,10 +30,20 @@ package body EinlesenLogik is
    
    procedure EinlesenMitAnzeige
    is begin
-      
+            
       if
-        LeseOptionen.Sprache = TextKonstanten.LeerUnboundedString
+        LeseOptionen.Sprache /= TextKonstanten.LeerUnboundedString
       then
+         null;
+         
+      elsif
+        Systemsprache = True
+      then
+         SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
+         SchreibeGrafiktask.SchriftartSetzen (JaNeinExtern => True);
+         SchreibenEinstellungenLogik.Nutzereinstellungen;
+         
+      else
          case
            EinlesenSpracheLogik.EinlesenSprache
          is
@@ -60,14 +70,50 @@ package body EinlesenLogik is
                   
             when False =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenLogik.EinlesenMitAnzeige: Sprachen nicht gefunden");
+               return;
          end case;
-               
-      else
-         null;
       end if;
       
       EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => True);
       
    end EinlesenMitAnzeige;
+   
+   
+   
+   -- Hier noch eine prüfung einbauen ob der Sprachordner überhaupt vorhanden ist? äöü
+   -- Oder sollte das bei den Standardsprachen selbstverständlich sein? äöü
+   function Systemsprache
+     return Boolean
+   is begin
+      
+      LokaleSprache := Ada.Locales.Language;
+      
+      if
+        LokaleSprache = Ada.Locales.Language_Unknown
+      then
+         return False;
+         
+      else
+         null;
+      end if;
+      
+      SprachenSchleife:
+      for SprachenSchleifenwert in StandardsprachenArray'Range loop
+         
+         if
+           LokaleSprache = Standardsprachen (SprachenSchleifenwert).ISONummer
+         then
+            GewählteSprache := Standardsprachen (SprachenSchleifenwert).Sprache;
+            return True;
+            
+         else
+            null;
+         end if;
+         
+      end loop SprachenSchleife;
+            
+      return False;
+      
+   end Systemsprache;
 
 end EinlesenLogik;
