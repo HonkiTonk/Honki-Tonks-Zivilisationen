@@ -133,17 +133,17 @@ package ChangelogJuli2024 is
    
    
 
-   -- Version 0.05. => 0.05. (12.07.2024):
+   -- Version 0.05.8040 => 0.05. (12.07.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.8010 => 0.05. (11.07.2024):
+   -- Version 0.05.8010 => 0.05.8040 (11.07.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die korrekten ISO Codes für die Standardsprachen eingefügt.
+   -- Wenn die Systemsprache einer der Standardsprachen entspricht, dann sollte jetzt automatisch die Systemsprache beim ersten Start ausgewählt werden.
    
    
 

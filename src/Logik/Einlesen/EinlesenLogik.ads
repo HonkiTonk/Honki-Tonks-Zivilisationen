@@ -27,19 +27,19 @@ private
    Standardsprachen : constant StandardsprachenArray := (
                                                          SystemDatentypen.Arabisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "aao",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Arabic")
                                                            ),
 
                                                          SystemDatentypen.Chinesisch_Vereinfacht_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "cmn",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Chinese_Simplified")
                                                            ),
 
                                                          SystemDatentypen.Dänisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "dan",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Dansk")
                                                            ),
 
@@ -51,79 +51,79 @@ private
 
                                                          SystemDatentypen.Englisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "eng",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "English")
                                                            ),
 
                                                          SystemDatentypen.Spanisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "spa",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Espanol")
                                                            ),
 
                                                          SystemDatentypen.Französisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "fra",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Francais")
                                                            ),
 
                                                          SystemDatentypen.Griechisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "gmy",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Greek")
                                                            ),
 
                                                          SystemDatentypen.Indonesisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "ind",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Indonesia")
                                                            ),
 
                                                          SystemDatentypen.Italienisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "ita",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Italiano")
                                                            ),
 
                                                          SystemDatentypen.Japanisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "jpn",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Japanese")
                                                            ),
 
                                                          SystemDatentypen.Koreanisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "kor",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Korean")
                                                            ),
 
                                                          SystemDatentypen.Niederländisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "nld",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Nederlands")
                                                            ),
 
                                                          SystemDatentypen.Norwegisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "nor",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Norsk")
                                                            ),
 
                                                          SystemDatentypen.Polnisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "pol",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Polska")
                                                            ),
 
                                                          SystemDatentypen.Portugisisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "por",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Portugues")
                                                            ),
 
                                                          SystemDatentypen.Ukrainisch_Enum =>
                                                            (
-                                                            ISONummer => "deu",
+                                                            ISONummer => "ukr",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Ukrainian")
                                                            ));
 
