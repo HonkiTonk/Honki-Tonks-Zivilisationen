@@ -90,7 +90,7 @@ private
    ZeilenumwandlungsabzugForschungen : Natural;
    ZeilenumwandlungsabzugEinheiten : Natural;
    ZeilenumwandlungsabzugGebäude : Natural;
-      
+   
    DateiVerzeichnisse : File_Type;
    DateiText : File_Type;
    
