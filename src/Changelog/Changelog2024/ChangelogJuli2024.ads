@@ -130,7 +130,7 @@ package ChangelogJuli2024 is
    
    -- GNAT Studio wieder auf Version 2021 zurückgesetzt.
    -- Windowsversion von GNAT Studio aktualisiert.
-   -- Windows Gnat aktualisiert.
+   -- Windows GNAT aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
