@@ -126,16 +126,17 @@ package ChangelogJuli2024 is
    
    
 
-   -- Version 0.05. => 0.05. (13.07.2024):
+   -- Version 0.05.8075 => 0.05. (13.07.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.8040 => 0.05. (12.07.2024):
+   -- Version 0.05.8040 => 0.05.8075 (12.07.2024):
    
-   -- 
+   -- GNAT Studio aktualisiert.
+   -- Ada 2022 als neuen Standard festgelegt.
    -- Kleinigkeiten korrigiert.
    
    
@@ -143,7 +144,7 @@ package ChangelogJuli2024 is
    -- Version 0.05.8010 => 0.05.8040 (11.07.2024):
    
    -- Die korrekten ISO Codes für die Standardsprachen eingefügt.
-   -- Wenn die Systemsprache einer der Standardsprachen entspricht, dann sollte jetzt automatisch die Systemsprache beim ersten Start ausgewählt werden.
+   -- Wenn die Systemsprache einer der Standardsprachen entspricht, dann sollte jetzt automatisch die Systemsprache beim ersten Start als Sprache ausgewählt werden.
    
    
 
