@@ -1,5 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-
 with Sf.Audio.Music;
 
 with VerzeichnisKonstanten;
@@ -9,6 +7,7 @@ with EingeleseneMusik;
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
+with UmwandlungenAdaEigenes;
 
 -- Die Prüfungen ob die Zeichenlänge der Musik passt, passen so eventuell nicht richtig. Beim richtigen Einbauen korrigieren. äöü
 package body EinlesenMusikLogik is
@@ -26,10 +25,11 @@ package body EinlesenMusikLogik is
       end if;
       
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei))
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Es fehlt: "
+                                        & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
@@ -51,7 +51,7 @@ package body EinlesenMusikLogik is
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Fehlende Zeilen: "
-                                           & Decode (Item => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
+                                           & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                exit VerzeichnisseSchleife;
                
             when False =>
@@ -95,7 +95,7 @@ package body EinlesenMusikLogik is
          when True =>
             Open (File => DateiMusik,
                   Mode => In_File,
-                  Name => Encode (Item => DateipfadExtern),
+                  Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => DateipfadExtern),
                   Form => "WCEM=8");
       end case;
                
@@ -124,7 +124,7 @@ package body EinlesenMusikLogik is
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenLieder: Es fehlt: " & To_Wide_Wide_String (Source => Lied));
             
             when True =>
-               EingeleseneMusik.Musik (SpeziesExtern, MusikSchleifenwert) := Sf.Audio.Music.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Lied)));
+               EingeleseneMusik.Musik (SpeziesExtern, MusikSchleifenwert) := Sf.Audio.Music.createFromFile (filename => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => Lied));
          end case;
             
       end loop MusikSchleife;

@@ -1,4 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
 with KartenKonstanten;
@@ -13,6 +12,7 @@ with LeseWeltkarte;
 
 with SpielstandAllgemeinesLogik;
 with Fehlermeldungssystem;
+with UmwandlungenAdaEigenes;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
@@ -97,7 +97,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.Karte: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.Karte: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end Karte;
@@ -144,7 +145,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.SichtbarkeitSchreiben: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.SichtbarkeitSchreiben: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end SichtbarkeitSchreiben;
@@ -172,7 +174,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end BasisgrundSchreiben;
@@ -281,7 +284,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelementeSchreiben: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelementeSchreiben: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end VorhandeneFeldelementeSchreiben;
@@ -394,7 +398,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.FeldelementeSchreiben: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.FeldelementeSchreiben: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end FeldelementeSchreiben;

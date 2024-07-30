@@ -1,8 +1,9 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with VerzeichnisKonstanten;
 with SystemDatentypen;
+
+private with UmwandlungenAdaEigenes;
 
 package UmwandlungenVerzeichnisse is
    pragma Elaborate_Body;
@@ -32,18 +33,18 @@ private
    
    type VerzeichnisseArray is array (SystemDatentypen.Spielstand_Enum'Range) of Unbounded_Wide_Wide_String;
    Verzeichnispfade : constant VerzeichnisseArray := (
-                                                      SystemDatentypen.Manueller_Spielstand_Enum     => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
-                                                      & To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SpielstandSpieler)),
+                                                      SystemDatentypen.Manueller_Spielstand_Enum     => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.SpielstandStrich)
+                                                      & UmwandlungenAdaEigenes.EigenesDecodeUnbounded (TextExtern => VerzeichnisKonstanten.SpielstandSpieler),
                                                    
-                                                      SystemDatentypen.Automatischer_Spielstand_Enum => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
-                                                      & To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SpielstandAuto))
+                                                      SystemDatentypen.Automatischer_Spielstand_Enum => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.SpielstandStrich)
+                                                      & UmwandlungenAdaEigenes.EigenesDecodeUnbounded (TextExtern => VerzeichnisKonstanten.SpielstandAuto)
                                                      );
    
    Spielstandpfade : constant VerzeichnisseArray := (
-                                                     SystemDatentypen.Manueller_Spielstand_Enum     => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
+                                                     SystemDatentypen.Manueller_Spielstand_Enum     => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.SpielstandStrich)
                                                      & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandSpielerStrich),
                                                    
-                                                     SystemDatentypen.Automatischer_Spielstand_Enum => Decode (Item => VerzeichnisKonstanten.SpielstandStrich)
+                                                     SystemDatentypen.Automatischer_Spielstand_Enum => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.SpielstandStrich)
                                                      & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandAutoStrich)
                                                     );
 

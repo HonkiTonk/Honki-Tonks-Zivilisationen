@@ -1,5 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-
 with VerzeichnisKonstanten;
 with TextKonstanten;
 with EingeleseneTexturenGrafik;
@@ -8,6 +6,7 @@ with EinlesenAllgemeinesLogik;
 with Fehlermeldungssystem;
 with VerzeichnisDateinamenTests;
 with TexturenfelderBerechnenGrafik;
+with UmwandlungenAdaEigenes;
 
 package body EinlesenTexturenLogik is
    
@@ -16,7 +15,7 @@ package body EinlesenTexturenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                               WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei))
+                                                               WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
             return;
@@ -47,7 +46,7 @@ package body EinlesenTexturenLogik is
                Dateiname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiTexturen,
                                                                              AktuelleZeileExtern => EinzulesendeZeile,
                                                                              DateinameExtern     => "EinlesenTexturenLogik.EinlesenTexturen");
-               GesamterPfad := Decode (Item => VerzeichnisKonstanten.Grafik) & "/" & Dateiname;
+               GesamterPfad := UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Grafik) & "/" & Dateiname;
                EinzulesendeZeile := EinzulesendeZeile + 1;
          end case;
          
@@ -67,105 +66,105 @@ package body EinlesenTexturenLogik is
                elsif
                  AktuelleZeile = Basisgrund
                then
-                  EingeleseneTexturenGrafik.BasisgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.BasisgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Zusatzgrund
                then
-                  EingeleseneTexturenGrafik.ZusatzgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.ZusatzgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Flüsse
                then
-                  EingeleseneTexturenGrafik.FlussAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.FlussAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Ressourcen
                then
-                  EingeleseneTexturenGrafik.RessourcenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.RessourcenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Verbesserungen
                then
-                  EingeleseneTexturenGrafik.VerbesserungenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.VerbesserungenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Wege
                then
-                  EingeleseneTexturenGrafik.WegeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.WegeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Feldeffekte
                then
-                  EingeleseneTexturenGrafik.FeldeffekteAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.FeldeffekteAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Einheitenbefehle
                then
-                  EingeleseneTexturenGrafik.EinheitenbefehleAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.EinheitenbefehleAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Kartenbefehle
                then
-                  EingeleseneTexturenGrafik.KartenbefehleAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.KartenbefehleAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = RoterKnopf
                then
-                  EingeleseneTexturenGrafik.RoterKnopfAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.RoterKnopfAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Intro
                then
-                  EingeleseneTexturenGrafik.IntroAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.IntroAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Kartenformen
                then
-                  EingeleseneTexturenGrafik.KartenformenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.KartenformenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Seitenleiste
                then
-                  EingeleseneTexturenGrafik.SeitenleisteAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.SeitenleisteAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Allgemeines
                then
-                  EingeleseneTexturenGrafik.AllgemeinesAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.AllgemeinesAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = PZBEnde
                then
-                  EingeleseneTexturenGrafik.PZBEndeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.PZBEndeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Auswahl
                then
-                  EingeleseneTexturenGrafik.AuswahlAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.AuswahlAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Meldung
                then
-                  EingeleseneTexturenGrafik.MeldungAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                  EingeleseneTexturenGrafik.MeldungAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile in HintergründeAnfang .. HintergründeEnde
                then
                   EingeleseneTexturenGrafik.HintergrundAccessGesamt (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - HintergründeAnfang + 1))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile in EinheitenAnfang .. EinheitenEnde
                then
                   EingeleseneTexturenGrafik.EinheitenAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - EinheitenAnfang + 1))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile in GebäudeAnfang .. GebäudeEnde
                then
                   EingeleseneTexturenGrafik.GebäudeAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - GebäudeAnfang + 1))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => Encode (Item => To_Wide_Wide_String (Source => GesamterPfad)));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                else
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Außerhalb des Einlesebereichs");

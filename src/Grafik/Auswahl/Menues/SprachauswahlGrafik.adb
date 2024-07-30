@@ -1,5 +1,4 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Directories; use Ada.Directories;
 
 with Sf.Graphics.Text;
@@ -24,6 +23,7 @@ with TextaccessverwaltungssystemEinfachGrafik;
 with KonvexverwaltungssystemGrafik;
 with TextfarbeGrafik;
 with SprachauswahlLogik;
+with UmwandlungenAdaEigenes;
 
 package body SprachauswahlGrafik is
    
@@ -64,7 +64,7 @@ package body SprachauswahlGrafik is
                 ZeileSchleifenwert < Ende)
          then
             if
-              Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))) & VerzeichnisKonstanten.FontDatei) = False
+              Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => AktuelleSprachen (ZeileSchleifenwert)) & VerzeichnisKonstanten.FontDatei) = False
             then
                NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.StandardSchriftartVerwenden);
             

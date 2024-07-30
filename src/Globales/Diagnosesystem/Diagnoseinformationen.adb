@@ -1,12 +1,13 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Directories; use Ada.Directories;
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Text_IO;
 with Ada.Float_Text_IO;
 with Ada.Integer_Text_IO;
 
 with BetriebssystemKonstanten;
 with TextKonstanten;
+
+with UmwandlungenAdaEigenes;
 
 package body Diagnoseinformationen is
 
@@ -294,12 +295,12 @@ package body Diagnoseinformationen is
       
          Create (File => DateiSpeichern,
                  Mode => Out_File,
-                 Name => "Test/" & Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)),
+                 Name => "Test/" & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => Zwischenspeicher),
                  Form => "WCEM=8");
             
          Close (File => DateiSpeichern);
          
-         Delete_File (Name => "Test/" & Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
+         Delete_File (Name => "Test/" & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => Zwischenspeicher));
          
       end loop DateilängeSchleife;
       

@@ -1,5 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-
 with Projekteinstellungen;
 with BetriebssystemKonstanten;
 
@@ -7,6 +5,7 @@ with SchreibeLogiktask;
 with LeseLogiktask;
 
 with Fehlermeldungssystem;
+with UmwandlungenAdaEigenes;
 
 package body VerzeichnisDateinamenTests is
 
@@ -59,7 +58,7 @@ package body VerzeichnisDateinamenTests is
     --     return False;
             
    --   elsif
-        Exists (Name => Encode (Item => VerzeichnisDateinameExtern)) = False
+        Exists (Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisDateinameExtern)) = False
       then
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
          return False;
@@ -85,7 +84,7 @@ package body VerzeichnisDateinamenTests is
          return False;
          
       elsif
-        Exists (Name => Encode (Item => WindowsTextExtern)) = False
+        Exists (Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => WindowsTextExtern)) = False
       then
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
          return False;
@@ -111,7 +110,7 @@ package body VerzeichnisDateinamenTests is
          return False;
             
       elsif
-        Exists (Name => Encode (Item => WindowsTextExtern)) = False
+        Exists (Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => WindowsTextExtern)) = False
       then
          return False;
             

@@ -1,4 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
 with KartenRecords;
@@ -30,6 +29,8 @@ with SpeichernKarteLogik;
 with Fehlermeldungssystem;
 with MeldungFestlegenLogik;
 with UmwandlungenVerzeichnisse;
+with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -80,11 +81,16 @@ package body SpeichernLogik is
                Spielstandart := SystemDatentypen.Manueller_Spielstand_Enum;
          end case;
          
-         Create (File => DateiSpeichern,
-                 Mode => Out_File,
-                 Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
-                                                                   SpielstandnameExtern => Spielstandname),
-                 Form => "WCEM=8");
+         DateiLogik.Erstellen (DateiartExtern => DateiSpeichern,
+                               NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
+                                                                                           SpielstandnameExtern => Spielstandname));
+         
+         -- Das hier erst löschen wenn das neue System fertig ist und auch funktioniert! äöü
+         -- Create (File => DateiSpeichern,
+         --         Mode => Out_File,
+         --         Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
+         --                                                           SpielstandnameExtern => Spielstandname),
+         --         Form => "WCEM=8");
          
          if
            False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
@@ -125,7 +131,8 @@ package body SpeichernLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Speichern: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Speichern: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiSpeichern)
@@ -166,7 +173,8 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Allgemeines;
@@ -281,7 +289,8 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end StädteEinheitenSpeichern;
@@ -332,7 +341,8 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;

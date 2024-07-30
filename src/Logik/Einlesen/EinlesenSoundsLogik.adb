@@ -1,5 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-
 with Sf.Audio.SoundBuffer;
 
 with VerzeichnisKonstanten;
@@ -8,6 +6,7 @@ with EingeleseneSounds;
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
+with UmwandlungenAdaEigenes;
 
 package body EinlesenSoundsLogik is
 
@@ -15,11 +14,11 @@ package body EinlesenSoundsLogik is
    is begin
             
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => Decode (Item => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei))
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: "
-                                        & Decode (Item => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
+                                        & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
@@ -41,7 +40,7 @@ package body EinlesenSoundsLogik is
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: "
-                                           & Decode (Item => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
+                                           & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                exit SoundsSchleife;
                
             when False =>
@@ -57,7 +56,7 @@ package body EinlesenSoundsLogik is
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: " & To_Wide_Wide_String (Source => Sound));
             
             when True =>
-               EingeleseneSounds.Sound (SoundSchleifenwert) := Sf.Audio.SoundBuffer.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Sound)));
+               EingeleseneSounds.Sound (SoundSchleifenwert) := Sf.Audio.SoundBuffer.createFromFile (filename => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => Sound));
          end case;
          
          AktuelleZeile := AktuelleZeile + 1;

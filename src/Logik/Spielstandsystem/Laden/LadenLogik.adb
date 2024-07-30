@@ -1,4 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
 with GrafikDatentypen;
@@ -24,8 +23,9 @@ with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
 with UmwandlungenVerzeichnisse;
-
+with UmwandlungenAdaEigenes;
 with Fehlermeldungssystem;
+with DateiLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 -- Änderungen an den zu ladenden Datentypen kann jederzeit Probleme bei Laden verursachen.
@@ -49,11 +49,16 @@ package body LadenLogik is
             LadezeitenLogik.SpeichernLadenNullsetzen;
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
             
-            Open (File => DateiLaden,
-                  Mode => In_File,
-                  Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
-                                                                    SpielstandnameExtern => Spielstandname),
-                  Form => "WCEM=8");
+            DateiLogik.Öffnen (DateiartExtern => DateiLaden,
+                                NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
+                                                                                            SpielstandnameExtern => Spielstandname));
+            
+            -- Das hier erst löschen wenn das neue System fertig ist und auch funktioniert! äöü
+            -- Open (File => DateiLaden,
+            --       Mode => In_File,
+            --       Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
+            --                                                         SpielstandnameExtern => Spielstandname),
+            --       Form => "WCEM=8");
             
          end if;
          
@@ -82,7 +87,7 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Laden: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Laden: Konnte nicht geladen werden: " & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiLaden)
@@ -193,7 +198,8 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.AllgemeinesLaden: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.AllgemeinesLaden: Konnte nicht geladen werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end AllgemeinesLaden;
@@ -313,7 +319,8 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.StädteEinheitenLaden: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.StädteEinheitenLaden: Konnte nicht geladen werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
    
    end StädteEinheitenLaden;
@@ -398,7 +405,7 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Spezieswerte: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Spezieswerte: Konnte nicht geladen werden: " & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;

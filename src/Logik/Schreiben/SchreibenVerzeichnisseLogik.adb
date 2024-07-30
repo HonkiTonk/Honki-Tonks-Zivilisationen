@@ -1,9 +1,9 @@
 with Ada.Directories; use Ada.Directories;
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
 
 with VerzeichnisKonstanten;
 
+with UmwandlungenAdaEigenes;
 with Fehlermeldungssystem;
 
 package body SchreibenVerzeichnisseLogik is
@@ -31,7 +31,8 @@ package body SchreibenVerzeichnisseLogik is
             Create_Directory (New_Directory => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandSpieler);
       end case;
       
-      case Exists (Name => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandAuto)
+      case
+        Exists (Name => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandAuto)
       is
          when True =>
             null;
@@ -62,7 +63,8 @@ package body SchreibenVerzeichnisseLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenVerzeichnisseLogik.Verzeichnisse: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenVerzeichnisseLogik.Verzeichnisse: Konnte nicht gespeichert werden: "
+                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
       
    end Verzeichnisse;
 

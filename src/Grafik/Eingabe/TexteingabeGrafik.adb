@@ -1,5 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-
 with Sf;
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
@@ -16,6 +14,7 @@ with LeseGrafiktask;
 
 with FensterGrafik;
 with VerzeichnisDateinamenTests;
+with UmwandlungenAdaEigenes;
 
 package body TexteingabeGrafik is
 
@@ -147,7 +146,8 @@ package body TexteingabeGrafik is
       
       case
         VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => LeseLogiktask.Texteingabe & EingegebenesZeichenExtern,
-                                                             WindowsTextExtern => Decode (Item => VerzeichnisKonstanten.VerzeichnisSpielstand) & LeseLogiktask.Texteingabe & EingegebenesZeichenExtern)
+                                                          WindowsTextExtern =>
+                                                             UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.VerzeichnisSpielstand) & LeseLogiktask.Texteingabe & EingegebenesZeichenExtern)
       is
          when False =>
             return False;

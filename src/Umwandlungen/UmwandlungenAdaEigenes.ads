@@ -1,3 +1,5 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 package UmwandlungenAdaEigenes is
    pragma Elaborate_Body;
    
@@ -21,6 +23,22 @@ package UmwandlungenAdaEigenes is
        Post => (
                   KommazahlAlsString'Result'Length > 0
                );
+   
+   function EigenesDecode
+     (TextExtern : in String)
+      return Wide_Wide_String;
+            
+   function EigenesDecodeUnbounded
+     (TextExtern : in String)
+      return Unbounded_Wide_Wide_String;
+   
+   function EigenesEncode
+     (TextExtern : in Wide_Wide_String)
+      return String;
+   
+   function EigenesEncodeUnbounded
+     (TextExtern : in Unbounded_Wide_Wide_String)
+      return String;
    
 private
    

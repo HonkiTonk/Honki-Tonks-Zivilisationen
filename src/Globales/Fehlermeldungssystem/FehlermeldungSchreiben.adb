@@ -2,7 +2,8 @@ with Ada.Directories; use Ada.Directories;
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Calendar; use Ada.Calendar;
 with Ada.Calendar.Formatting; use Ada.Calendar.Formatting;
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+
+with UmwandlungenAdaEigenes;
 
 package body FehlermeldungSchreiben is
 
@@ -27,8 +28,8 @@ package body FehlermeldungSchreiben is
       end case;
       
       Put (File => DateiMeldung,
-           Item => Decode (Item => Local_Image (Date                  => Clock,
-                                                Include_Time_Fraction => False))
+           Item => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Local_Image (Date                  => Clock,
+                                                                                    Include_Time_Fraction => False))
            & ": " & MeldungExtern);
       
       Close (File => DateiMeldung);

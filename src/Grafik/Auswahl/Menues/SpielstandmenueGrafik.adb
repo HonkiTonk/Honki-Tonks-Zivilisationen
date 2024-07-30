@@ -1,5 +1,4 @@
 with Ada.Directories; use Ada.Directories;
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Calendar.Formatting; use Ada.Calendar.Formatting;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
@@ -28,6 +27,7 @@ with TextskalierungGrafik;
 with TexteinstellungenGrafik;
 with UmwandlungenVerzeichnisse;
 with AllgemeineViewsGrafik;
+with UmwandlungenAdaEigenes;
 
 package body SpielstandmenueGrafik is
 
@@ -263,10 +263,10 @@ package body SpielstandmenueGrafik is
          null;
       end if;
       
-      return (TextExtern & TextKonstanten.StandardAbstand & Decode (Item => Local_Image (Date                  => Modification_Time
-                                                                                         (Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandartExtern,
-                                                                                                                                            SpielstandnameExtern => To_Unbounded_Wide_Wide_String (Source => TextExtern))),
-                                                                                         Include_Time_Fraction => False)));
+      return (TextExtern & TextKonstanten.StandardAbstand & UmwandlungenAdaEigenes.EigenesDecode
+              (TextExtern => Local_Image (Date                  => Modification_Time (Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandartExtern,
+                                                                                                                                        SpielstandnameExtern => To_Unbounded_Wide_Wide_String (Source => TextExtern))),
+                                          Include_Time_Fraction => False)));
       
    end TextSetzen;
 

@@ -1,5 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-
 with VerzeichnisKonstanten;
 with SpeziesKonstanten;
 with StadtDatentypen;
@@ -10,7 +8,6 @@ with LeseOptionen;
 
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
-
 with VerzeichnisDateinamenTests;
 
 package body EinlesenTextLogik is
@@ -40,17 +37,17 @@ package body EinlesenTextLogik is
       
                Get_Next_Entry (Search          => Suche,
                                Directory_Entry => Verzeichnis);
-         
+               
                if
-                 VerzeichnisDateinamenTests.GültigerNamen (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
+                 VerzeichnisDateinamenTests.GültigerNamen (NameExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis))) = False
                then
                   null;
                   
                elsif
                  False = VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
-                                                                           WindowsTextExtern => To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SprachenStrich
-                                                                                                                                                 & Simple_Name (Directory_Entry => Verzeichnis)
-                                                                                                                                                 & VerzeichnisKonstanten.NullDatei)))
+                                                                           WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
+                                                                                                                                               & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                                               & VerzeichnisKonstanten.NullDatei))
                then
                   null;
              
@@ -60,7 +57,7 @@ package body EinlesenTextLogik is
                   null;
             
                else
-                  Einlesen (VerzeichnisExtern => (VerzeichnisKonstanten.Sprachenordner & Decode (Item => Simple_Name (Directory_Entry => Verzeichnis)) & "/"),
+                  Einlesen (VerzeichnisExtern => (VerzeichnisKonstanten.Sprachenordner & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)) & "/"),
                             EinsprachigExtern => EinsprachigExtern);
                end if;
                
@@ -107,7 +104,7 @@ package body EinlesenTextLogik is
          when True =>
             Open (File => DateiVerzeichnisse,
                   Mode => In_File,
-                  Name => Encode (Item => VerzeichnisExtern & "0"),
+                  Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & "0"),
                   Form => "WCEM=8");
       end case;
       
@@ -157,7 +154,7 @@ package body EinlesenTextLogik is
          when True =>
             Open (File => DateiText,
                   Mode => In_File,
-                  Name => Encode (Item => VerzeichnisExtern & DateinameExtern),
+                  Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & DateinameExtern),
                   Form => "WCEM=8");
       end case;
       

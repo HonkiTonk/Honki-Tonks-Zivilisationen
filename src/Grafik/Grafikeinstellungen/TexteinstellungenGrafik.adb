@@ -1,5 +1,4 @@
 with Ada.Directories; use Ada.Directories;
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with Sf.Graphics.Font;
 
@@ -12,6 +11,7 @@ with LeseOptionen;
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with TextaccesseSchriftartGrafik;
+with UmwandlungenAdaEigenes;
 
 -- Das hier auch mal in Lesen und Schreiben aufteilen? äöü
 package body TexteinstellungenGrafik is
@@ -27,7 +27,7 @@ package body TexteinstellungenGrafik is
          SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
          
       elsif
-        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => AktuelleSprache)) & VerzeichnisKonstanten.FontDatei) = False
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => AktuelleSprache) & VerzeichnisKonstanten.FontDatei) = False
       then
          SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
          
@@ -67,7 +67,7 @@ package body TexteinstellungenGrafik is
             
       Open (File => DateiSchriftart,
             Mode => In_File,
-            Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => SpracheExtern) & VerzeichnisKonstanten.FontDatei,
+            Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei,
             Form => "WCEM=8");
       
       case
@@ -84,13 +84,13 @@ package body TexteinstellungenGrafik is
                                                                                  DateinameExtern     => "TexteinstellungenGrafik.EigeneSchriftartVerwenden");
             
             if
-              Exists (Name => VerzeichnisKonstanten.FontOrdner & Encode (Item => To_Wide_Wide_String (Source => EigeneSchriftart))) = False
+              Exists (Name => VerzeichnisKonstanten.FontOrdner & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => EigeneSchriftart)) = False
             then
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlende Fontdatei");
                
             else
                Close (File => DateiSchriftart);
-               return VerzeichnisKonstanten.FontOrdner & Encode (Item => To_Wide_Wide_String (Source => EigeneSchriftart));
+               return VerzeichnisKonstanten.FontOrdner & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => EigeneSchriftart);
             end if;
       end case;
       

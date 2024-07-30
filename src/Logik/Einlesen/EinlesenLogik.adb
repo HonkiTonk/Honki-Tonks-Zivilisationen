@@ -80,7 +80,7 @@ package body EinlesenLogik is
    
    
    
-   -- Hier noch eine prüfung einbauen ob der Sprachordner überhaupt vorhanden ist? äöü
+   -- Hier noch eine Prüfung einbauen ob der Sprachordner überhaupt vorhanden ist? äöü
    -- Oder sollte das bei den Standardsprachen selbstverständlich sein? äöü
    function Systemsprache
      return Boolean

@@ -1,10 +1,9 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-
 with TextArrays;
 with TextKonstanten;
 with VerzeichnisKonstanten;
 
 with VerzeichnisDateinamenTests;
+with UmwandlungenAdaEigenes;
 
 package body EinlesenSpracheLogik is
 
@@ -33,16 +32,16 @@ package body EinlesenSpracheLogik is
             
          elsif
            False = VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
-                                                                     WindowsTextExtern => To_Unbounded_Wide_Wide_String (Source => Decode (Item => VerzeichnisKonstanten.SprachenStrich
-                                                                                                                                           & Simple_Name (Directory_Entry => Verzeichnis)
-                                                                                                                                           & VerzeichnisKonstanten.NullDatei)))
+                                                                     WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
+                                                                                                                                         & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                                         & VerzeichnisKonstanten.NullDatei))
          then
             null;
             
          elsif
            -- Kann das nicht einfach raus wenn irgendwann einmal Wide_Wide_Directories da ist? äöü
            -- Das ist je nur vorhandene Ordner durchgehen und man kann ja keine Dateien/Ordner anlegen die das Dateisystem nicht unterstützen. äöü
-           VerzeichnisDateinamenTests.GültigerNamen (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
+           VerzeichnisDateinamenTests.GültigerNamen (NameExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis))) = False
          then
             null;
              
@@ -54,7 +53,7 @@ package body EinlesenSpracheLogik is
             null;
             
          else
-            Test := To_Unbounded_Wide_Wide_String (Source => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+            Test := To_Unbounded_Wide_Wide_String (Source => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)));
             
             VerzeichnisInnenSchleife:
             for SpracheSchleifenwert in TextArrays.SprachenEinlesen'Range loop

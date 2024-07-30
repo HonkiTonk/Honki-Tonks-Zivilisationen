@@ -1,5 +1,3 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-
 with TastenbelegungDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
@@ -21,6 +19,7 @@ with JaNeinLogik;
 with SpielstandEntfernenLogik;
 with UmwandlungenVerzeichnisse;
 with VerzeichnisDateinamenTests;
+with UmwandlungenAdaEigenes;
 
 package body SpielstandlisteLogik is
 
@@ -76,8 +75,7 @@ package body SpielstandlisteLogik is
                                      Directory_Entry => Spielstanddatei);
                end case;
                
-               SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => To_Unbounded_Wide_Wide_String (Source => Decode (Item => Simple_Name (Directory_Entry => Spielstanddatei),
-                                                                                                                            Input_Scheme => Ada.Strings.UTF_Encoding.UTF_16LE)),
+               SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => UmwandlungenAdaEigenes.EigenesDecodeUnbounded (TextExtern => Simple_Name (Directory_Entry => Spielstanddatei)),
                                                             NummerExtern => AktuellerSpielstand);
                
                if
