@@ -4,6 +4,7 @@ with Ada.Calendar; use Ada.Calendar;
 with Ada.Calendar.Formatting; use Ada.Calendar.Formatting;
 
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 package body FehlermeldungSchreiben is
 
@@ -15,16 +16,12 @@ package body FehlermeldungSchreiben is
         Exists (Name => "Meldungen")
       is
          when True =>
-            Open (File => DateiMeldung,
-                  Mode => Append_File,
-                  Name => "Meldungen",
-                  Form => "WCEM=8");
+            DateiLogik.ErweiternText (DateiartExtern => DateiMeldung,
+                                      NameExtern     => "Meldungen");
             
          when False =>
-            Create (File => DateiMeldung,
-                    Mode => Out_File,
-                    Name => "Meldungen",
-                    Form => "WCEM=8");
+            DateiLogik.ErstellenText (DateiartExtern => DateiMeldung,
+                                      NameExtern     => "Meldungen");
       end case;
       
       Put (File => DateiMeldung,
@@ -32,22 +29,22 @@ package body FehlermeldungSchreiben is
                                                                                     Include_Time_Fraction => False))
            & ": " & MeldungExtern);
       
-      Close (File => DateiMeldung);
+      DateiLogik.SchließenText (DateiartExtern => DateiMeldung);
       
    exception
       when StandardAdaFehler : others =>
-         Ada.Text_IO.Put (Item => "FehlermeldungSchreiben.MeldungSchreiben - Konnte nicht geschrieben werden" & Exception_Information (X => StandardAdaFehler));
+         Put (Item => "FehlermeldungSchreiben.MeldungSchreiben - Konnte nicht geschrieben werden" & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiMeldung)
          is
             when True =>
-               Close (File => DateiMeldung);
+               DateiLogik.SchließenText (DateiartExtern => DateiMeldung);
                
             when False =>
                null;
          end case;
-      
+         
    end MeldungSchreiben;
    
    
@@ -56,42 +53,7 @@ package body FehlermeldungSchreiben is
      (MeldungExtern : in String)
    is begin
       
-      case
-        Exists (Name => "Meldungen")
-      is
-         when True =>
-            Ada.Text_IO.Open (File => DateiMeldungASCII,
-                              Mode => Ada.Text_IO.Append_File,
-                              Name => "Meldungen",
-                              Form => "WCEM=8");
-            
-         when False =>
-            Ada.Text_IO.Create (File => DateiMeldungASCII,
-                                Mode => Ada.Text_IO.Out_File,
-                                Name => "Meldungen",
-                                Form => "WCEM=8");
-      end case;
-      
-      Ada.Text_IO.Put (File => DateiMeldungASCII,
-                       Item => Local_Image (Date                  => Clock,
-                                            Include_Time_Fraction => False)
-                       & ": " & MeldungExtern);
-      
-      Ada.Text_IO.Close (File => DateiMeldungASCII);
-      
-   exception
-      when StandardAdaFehler : others =>
-         Ada.Text_IO.Put (Item => "FehlermeldungSchreiben.MeldungSchreibenASCII - Konnte nicht geschrieben werden" & Exception_Information (X => StandardAdaFehler));
-         
-         case
-           Ada.Text_IO.Is_Open (File => DateiMeldungASCII)
-         is
-            when True =>
-               Ada.Text_IO.Close (File => DateiMeldungASCII);
-               
-            when False =>
-               null;
-         end case;
+      MeldungSchreiben (MeldungExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => MeldungExtern));
       
    end MeldungSchreibenASCII;
 

@@ -11,6 +11,7 @@ package SchreibenEinstellungenLogik is
 
 private
 
+   -- Hier habe ich verschiedene Variablen für die verschiedenen Dateien, beim Schreiben der Datenbanken aber nicht. Mal vereinheitlichen. äöü
    DateiNutzereinstellungen : File_Type;
    DateiGrafikeinstellungen : File_Type;
    DateiToneinstellungen : File_Type;

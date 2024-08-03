@@ -49,17 +49,9 @@ package body LadenLogik is
             LadezeitenLogik.SpeichernLadenNullsetzen;
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
             
-            DateiLogik.Öffnen (DateiartExtern => DateiLaden,
+            DateiLogik.ÖffnenStream (DateiartExtern => DateiLaden,
                                 NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
                                                                                             SpielstandnameExtern => Spielstandname));
-            
-            -- Das hier erst löschen wenn das neue System fertig ist und auch funktioniert! äöü
-            -- Open (File => DateiLaden,
-            --       Mode => In_File,
-            --       Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
-            --                                                         SpielstandnameExtern => Spielstandname),
-            --       Form => "WCEM=8");
-            
          end if;
          
          case

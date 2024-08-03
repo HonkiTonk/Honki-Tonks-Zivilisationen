@@ -81,16 +81,9 @@ package body SpeichernLogik is
                Spielstandart := SystemDatentypen.Manueller_Spielstand_Enum;
          end case;
          
-         DateiLogik.Erstellen (DateiartExtern => DateiSpeichern,
+         DateiLogik.ErstellenStream (DateiartExtern => DateiSpeichern,
                                NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
                                                                                            SpielstandnameExtern => Spielstandname));
-         
-         -- Das hier erst löschen wenn das neue System fertig ist und auch funktioniert! äöü
-         -- Create (File => DateiSpeichern,
-         --         Mode => Out_File,
-         --         Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
-         --                                                           SpielstandnameExtern => Spielstandname),
-         --         Form => "WCEM=8");
          
          if
            False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,

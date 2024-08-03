@@ -22,6 +22,7 @@ with LeseTastenbelegungDatenbank;
 with UmwandlungenAdaEigenes;
 with Fehlermeldungssystem;
 with TexteinstellungenGrafik;
+with DateiLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 -- Keine Schleifen einbauen, sonst wird das automatisch irgendwo dazwischen eingebaut und nicht am Ende wenn der Schleifenbereich erweitert wird!
@@ -30,10 +31,8 @@ package body SchreibenEinstellungenLogik is
    procedure Nutzereinstellungen
    is begin
       
-      Create (File => DateiNutzereinstellungen,
-              Mode => Out_File,
-              Name => VerzeichnisKonstanten.Spieleinstellungen,
-              Form => "WCEM=8");
+      DateiLogik.ErstellenStream (DateiartExtern => DateiNutzereinstellungen,
+                                  NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       
       -- SystemRecords.NutzerEinstellungenRecord
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiNutzereinstellungen),
@@ -76,10 +75,8 @@ package body SchreibenEinstellungenLogik is
    procedure Grafikeinstellungen
    is begin
       
-      Create (File => DateiGrafikeinstellungen,
-              Mode => Out_File,
-              Name => VerzeichnisKonstanten.Grafikeinstellungen,
-              Form => "WCEM=8");
+      DateiLogik.ErstellenStream (DateiartExtern => DateiGrafikeinstellungen,
+                                  NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       
       -- GrafikRecords.GrafikeinstellungenRecord
       Sf.Window.Window.sfWindowStyle'Write (Stream (File => DateiGrafikeinstellungen),
@@ -179,10 +176,8 @@ package body SchreibenEinstellungenLogik is
    procedure Toneinstellungen
    is begin
       
-      Create (File => DateiToneinstellungen,
-              Mode => Out_File,
-              Name => VerzeichnisKonstanten.Toneinstellungen,
-              Form => "WCEM=8");
+      DateiLogik.ErstellenStream (DateiartExtern => DateiToneinstellungen,
+                                  NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       
       -- TonRecords.ToneinstellungenRecord
       Float'Write (Stream (File => DateiToneinstellungen),
@@ -216,10 +211,8 @@ package body SchreibenEinstellungenLogik is
    procedure Tastatureinstellungen
    is begin
       
-      Create (File => DateiTastatureinstellungen,
-              Mode => Out_File,
-              Name => VerzeichnisKonstanten.Tastatureinstellungen,
-              Form => "WCEM=8");
+      DateiLogik.ErstellenStream (DateiartExtern => DateiTastatureinstellungen,
+                                  NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       
       -- TastenbelegungDatenbank.AllgemeineBelegungArray
       -- TastenbelegungDatenbank.EinheitenbelegungArray
@@ -426,10 +419,8 @@ package body SchreibenEinstellungenLogik is
    procedure SpielendeEinstellungen
    is begin
       
-      Create (File => DateiSpielendeEinstellungen,
-              Mode => Out_File,
-              Name => VerzeichnisKonstanten.SpielendeEinstellungen,
-              Form => "WCEM=8");
+      DateiLogik.ErstellenStream (DateiartExtern => DateiSpielendeEinstellungen,
+                                  NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
       
       -- SystemRecords.SpielendeEinstellungenRecord
       ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiSpielendeEinstellungen),

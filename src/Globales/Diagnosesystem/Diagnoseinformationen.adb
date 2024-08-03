@@ -8,6 +8,7 @@ with BetriebssystemKonstanten;
 with TextKonstanten;
 
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 package body Diagnoseinformationen is
 
@@ -49,10 +50,8 @@ package body Diagnoseinformationen is
       
       ZuSpeichern := 0;
       
-      Create (File => DateiSpeichern,
-              Mode => Out_File,
-              Name => ("Test/" & "Test"),
-              Form => "WCEM=8");
+      DateiLogik.ErstellenStream (DateiartExtern => DateiSpeichern,
+                                  NameExtern     => ("Test/" & "Test"));
       
       StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichern),
                                             ZuSpeichern);
@@ -293,10 +292,8 @@ package body Diagnoseinformationen is
          
          Zwischenspeicher := Zwischenspeicher & "a";
       
-         Create (File => DateiSpeichern,
-                 Mode => Out_File,
-                 Name => "Test/" & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => Zwischenspeicher),
-                 Form => "WCEM=8");
+         DateiLogik.ErstellenStream (DateiartExtern => DateiSpeichern,
+                                     NameExtern     => "Test/" & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => Zwischenspeicher));
             
          Close (File => DateiSpeichern);
          
