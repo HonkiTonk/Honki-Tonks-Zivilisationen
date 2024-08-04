@@ -6,7 +6,8 @@ Honki Tonks Zivilisationen/Einstellungen/
 Honki Tonks Zivilisationen/Test/
 Honki Tonks Zivilisationen/Meldungen
 Honki Tonks Zivilisationen/HonkiTonksZivilisationen
-Honki Tonks Zivilisationen/Start
+Honki Tonks Zivilisationen/*.exe
+Honki Tonks Zivilisationen/*.dll
 GNAT*
 ASFML/lib/libasfml.a
 ASFML/lib/*.ali
