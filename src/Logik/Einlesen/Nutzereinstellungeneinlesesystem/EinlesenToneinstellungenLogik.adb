@@ -9,6 +9,7 @@ with Fehlermeldungssystem;
 with EinstellungenTon;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenToneinstellungenLogik is
@@ -25,10 +26,8 @@ package body EinlesenToneinstellungenLogik is
             return;
             
          when True =>
-            Open (File => DateiToneinstellungen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Toneinstellungen,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DateiToneinstellungen,
+                                      NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       end case;
       
       case

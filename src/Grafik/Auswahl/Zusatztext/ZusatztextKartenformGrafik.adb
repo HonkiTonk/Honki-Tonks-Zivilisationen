@@ -128,6 +128,7 @@ package body ZusatztextKartenformGrafik is
       end case;
       
       -- Für solche Skalierungen auch mal ein eigenes System bauen. äöü
+      -- Ergibt der obere Kommentar nach all den Änderungen noch Sinn? äöü
       SpritesverwaltungssystemGrafik.SetzenBereichSkalierenZeichnen (SpriteAccessExtern => SpriteAccess,
                                                                      TexturExtern       => EingeleseneTexturenGrafik.KartenformenAccess,
                                                                      BereichExtern      => TexturenfelderVariablenGrafik.HintergrundRechteck (HintergrundExtern => Kartenform),

@@ -23,11 +23,12 @@ package EingeleseneTexturenGrafik is
    KartenformenAccess : Sf.Graphics.sfTexture_Ptr := null;
 
 
+   AuswahlAccess : Sf.Graphics.sfTexture_Ptr := null;
+
 
    RoterKnopfAccess : Sf.Graphics.sfTexture_Ptr := null;
    SeitenleisteAccess : Sf.Graphics.sfTexture_Ptr := null;
    PZBEndeAccess : Sf.Graphics.sfTexture_Ptr := null;
-   AuswahlAccess : Sf.Graphics.sfTexture_Ptr := null;
    MeldungAccess : Sf.Graphics.sfTexture_Ptr := null;
 
    type SpeziesAccessArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;

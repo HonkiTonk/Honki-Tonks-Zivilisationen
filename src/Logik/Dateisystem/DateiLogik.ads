@@ -20,9 +20,6 @@ package DateiLogik is
                  NameExtern'Length > 0
               );
    
-   procedure SchließenStream
-     (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type);
-   
    procedure ErstellenText
      (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type;
       NameExtern : in String)
@@ -46,12 +43,5 @@ package DateiLogik is
        Pre => (
                  NameExtern'Length > 0
               );
-   
-   procedure SchließenText
-     (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type);
-   
-private
-   
-   
 
 end DateiLogik;

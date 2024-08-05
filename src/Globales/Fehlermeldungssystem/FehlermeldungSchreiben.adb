@@ -13,15 +13,15 @@ package body FehlermeldungSchreiben is
    is begin
       
       case
-        Exists (Name => "Meldungen")
+        Exists (Name => Meldungen)
       is
          when True =>
             DateiLogik.ErweiternText (DateiartExtern => DateiMeldung,
-                                      NameExtern     => "Meldungen");
+                                      NameExtern     => Meldungen);
             
          when False =>
             DateiLogik.ErstellenText (DateiartExtern => DateiMeldung,
-                                      NameExtern     => "Meldungen");
+                                      NameExtern     => Meldungen);
       end case;
       
       Put (File => DateiMeldung,
@@ -29,7 +29,7 @@ package body FehlermeldungSchreiben is
                                                                                     Include_Time_Fraction => False))
            & ": " & MeldungExtern);
       
-      DateiLogik.SchließenText (DateiartExtern => DateiMeldung);
+      Close (File => DateiMeldung);
       
    exception
       when StandardAdaFehler : others =>
@@ -39,7 +39,7 @@ package body FehlermeldungSchreiben is
            Is_Open (File => DateiMeldung)
          is
             when True =>
-               DateiLogik.SchließenText (DateiartExtern => DateiMeldung);
+               Close (File => DateiMeldung);
                
             when False =>
                null;

@@ -570,5 +570,40 @@ package body TexturenfelderBerechnenGrafik is
       end loop KartenformenSchleife;
       
    end Kartenformen;
+   
+   
+   
+   procedure Auswahl
+   is
+      use type Sf.sfUint32;
+   begin
+      
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.AuswahlAccess);
+      
+      Feldgröße := (Texturengröße.x / FelderanzahlAuswahl.x, Texturengröße.y / FelderanzahlAuswahl.y);
+      
+      AktuelleFeldposition := (1, 1);
+      
+      AuswahlSchleife:
+      for AuswahlSchleifenwert in TexturenfelderVariablenGrafik.KartenformenArray'Range loop
+         
+         TexturenfelderVariablenGrafik.Kartenformen (AuswahlSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
+                                                                               Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
+                                                                               Integer (Feldgröße.x),
+                                                                               Integer (Feldgröße.y));
+         
+         if
+           AktuelleFeldposition.x < FelderanzahlAuswahl.x
+         then
+            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
+            
+         else
+            AktuelleFeldposition.x := 1;
+            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
+         end if;
+         
+      end loop AuswahlSchleife;
+      
+   end Auswahl;
      
 end TexturenfelderBerechnenGrafik;

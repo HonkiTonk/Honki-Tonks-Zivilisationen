@@ -12,6 +12,7 @@ with SchreibeTastenbelegungDatenbank;
 with VerzeichnisDateinamenTests;
 with Fehlermeldungssystem;
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenTastatureinstellungenLogik is
@@ -28,10 +29,8 @@ package body EinlesenTastatureinstellungenLogik is
             return;
             
          when True =>
-            Open (File => DateiTastatureinstellungen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Tastatureinstellungen,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DateiTastatureinstellungen,
+                                      NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       end case;
       
       case

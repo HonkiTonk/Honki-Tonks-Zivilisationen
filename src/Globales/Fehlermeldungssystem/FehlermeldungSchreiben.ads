@@ -19,6 +19,8 @@ package FehlermeldungSchreiben is
    
 private
    use Ada.Wide_Wide_Text_IO;
+   
+   Meldungen : constant String (1 .. 9) := "Meldungen";
       
    DateiMeldung : File_Type;
 

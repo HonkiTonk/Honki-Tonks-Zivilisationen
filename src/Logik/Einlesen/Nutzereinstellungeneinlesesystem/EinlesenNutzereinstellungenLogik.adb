@@ -10,6 +10,7 @@ with SchreibeOptionen;
 with Fehlermeldungssystem;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenNutzereinstellungenLogik is
@@ -26,10 +27,8 @@ package body EinlesenNutzereinstellungenLogik is
             return;
             
          when True =>
-            Open (File => DateiNutzereinstellungen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Spieleinstellungen,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DateiNutzereinstellungen,
+                                      NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       end case;
       
       case

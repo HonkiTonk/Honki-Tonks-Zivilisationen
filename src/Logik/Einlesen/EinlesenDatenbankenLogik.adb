@@ -14,6 +14,7 @@ with StandardEffekteDatenbank;
 with Fehlermeldungssystem;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 package body EinlesenDatenbankenLogik is
    
@@ -44,10 +45,8 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.EinheitenDatenbank,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+                                      NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       end case;
       
       case
@@ -127,10 +126,8 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.ForschungenDatenbank,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+                                      NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       end case;
       
       case
@@ -222,10 +219,8 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.GebaeudeDatenbank,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+                                      NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       end case;
       
       case
@@ -308,10 +303,8 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.KartenDatenbank,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+                                      NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
       end case;
       
       case
@@ -410,10 +403,8 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.VerbesserungenDatenbank,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+                                      NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       end case;
       
       case
@@ -499,10 +490,8 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.SpeziesDatenbank,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+                                      NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       end case;
       
       case
@@ -582,10 +571,8 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.EffekteDatenbank,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+                                      NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       end case;
       
       case

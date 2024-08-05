@@ -8,6 +8,7 @@ with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 -- Die Prüfungen ob die Zeichenlänge der Musik passt, passen so eventuell nicht richtig. Beim richtigen Einbauen korrigieren. äöü
 package body EinlesenMusikLogik is
@@ -35,10 +36,8 @@ package body EinlesenMusikLogik is
          when True =>
             AktuelleZeile := 1;
             
-            Open (File => DateiVerzeichnisse,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenText (DateiartExtern => DateiVerzeichnisse,
+                                    NameExtern     => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei);
       end case;
       
       VerzeichnisseSchleife:
@@ -93,10 +92,8 @@ package body EinlesenMusikLogik is
             return;
                
          when True =>
-            Open (File => DateiMusik,
-                  Mode => In_File,
-                  Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => DateipfadExtern),
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenText (DateiartExtern => DateiMusik,
+                                    NameExtern     => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => DateipfadExtern));
       end case;
                
       MusikSchleife:

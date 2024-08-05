@@ -36,7 +36,7 @@ package body SchreibenDatenbankenLogik is
    is begin
       
       DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
-                            NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
+                                  NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
       EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                     EinheitenDatenbank.Einheitenliste);
@@ -67,7 +67,7 @@ package body SchreibenDatenbankenLogik is
    is begin
       
       DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
-                            NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
+                                  NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       
       ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DatenbankSpeichern),
                                                        ForschungenDatenbank.Forschungsliste);
@@ -106,7 +106,7 @@ package body SchreibenDatenbankenLogik is
    is begin
       
       DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
-                            NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
+                                  NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
       GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DatenbankSpeichern),
                                                   GebaeudeDatenbank.Gebäudeliste);
@@ -136,7 +136,7 @@ package body SchreibenDatenbankenLogik is
    is begin
       
       DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
-                            NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
+                                  NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
             
       KartenDatenbank.BasisgrundlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                   KartenDatenbank.Basisgrundliste);
@@ -175,7 +175,7 @@ package body SchreibenDatenbankenLogik is
    is begin
       
       DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
-                            NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
+                                  NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
       VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                               VerbesserungenDatenbank.Verbesserungenliste);
@@ -208,7 +208,7 @@ package body SchreibenDatenbankenLogik is
    is begin
       
       DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
-                            NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
+                                  NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
       SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DatenbankSpeichern),
                                                 SpeziesDatenbank.Speziesliste);
@@ -238,7 +238,7 @@ package body SchreibenDatenbankenLogik is
    is begin
       
       DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
-                            NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
+                                  NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
       EffekteDatenbank.EffektelisteArray'Write (Stream (File => DatenbankSpeichern),
                                                 EffekteDatenbank.Effekteliste);

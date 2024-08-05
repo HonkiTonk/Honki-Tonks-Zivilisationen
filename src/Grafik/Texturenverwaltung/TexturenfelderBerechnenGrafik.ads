@@ -29,11 +29,14 @@ private
    
    
    
+   FelderanzahlAuswahl : constant Sf.System.Vector2.sfVector2u := (1, 1);
+   
+   
+   
    FelderanzahlRoterKnopf : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlSeitenleiste : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlMenüs : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlPZBEnde : constant Sf.System.Vector2.sfVector2u := (1, 1);
-   FelderanzahlAuswahl : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlMeldung : constant Sf.System.Vector2.sfVector2u := (1, 1);
    
    Feldgröße : Sf.System.Vector2.sfVector2u;
@@ -63,5 +66,8 @@ private
    procedure Kartenbefehle;
    procedure Einheitenbefehle;
    procedure Kartenformen;
+   
+   
+   procedure Auswahl;
    
 end TexturenfelderBerechnenGrafik;

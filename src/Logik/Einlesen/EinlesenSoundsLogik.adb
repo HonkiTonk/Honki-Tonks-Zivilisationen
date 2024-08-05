@@ -7,6 +7,7 @@ with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 package body EinlesenSoundsLogik is
 
@@ -24,10 +25,8 @@ package body EinlesenSoundsLogik is
          when True =>
             AktuelleZeile := 1;
             
-            Open (File => DateiSounds,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenText (DateiartExtern => DateiSounds,
+                                    NameExtern     => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei);
       end case;
       
       SoundsSchleife:

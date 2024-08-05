@@ -2,8 +2,8 @@ with Ada.Float_Text_IO; use Ada.Float_Text_IO;
 with Ada.Strings.Wide_Wide_Fixed; use Ada.Strings.Wide_Wide_Fixed;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-with SystemDatentypen;
 with Projekteinstellungen;
+with SystemDatentypen;
 
 with LeseOptionen;
 

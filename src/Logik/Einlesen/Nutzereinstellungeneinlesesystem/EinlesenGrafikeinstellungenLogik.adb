@@ -12,6 +12,7 @@ with Fehlermeldungssystem;
 with EinstellungenGrafik;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenGrafikeinstellungenLogik is
@@ -28,10 +29,8 @@ package body EinlesenGrafikeinstellungenLogik is
             return;
             
          when True =>
-            Open (File => DateiGrafikeinstellungen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafikeinstellungen,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenStream (DateiartExtern => DateiGrafikeinstellungen,
+                                      NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       end case;
       
       case

@@ -7,6 +7,7 @@ with Fehlermeldungssystem;
 with VerzeichnisDateinamenTests;
 with TexturenfelderBerechnenGrafik;
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 package body EinlesenTexturenLogik is
    
@@ -24,10 +25,8 @@ package body EinlesenTexturenLogik is
             EinzulesendeZeile := 1;
             AktuelleZeile := 1;
             
-            Open (File => DateiTexturen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei,
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenText (DateiartExtern => DateiTexturen,
+                                    NameExtern     => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.NullDatei);
       end case;
       
       TexturenSchleife:

@@ -12,6 +12,7 @@ with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with TextaccesseSchriftartGrafik;
 with UmwandlungenAdaEigenes;
+with DateiLogik;
 
 -- Das hier auch mal in Lesen und Schreiben aufteilen? äöü
 package body TexteinstellungenGrafik is
@@ -64,11 +65,9 @@ package body TexteinstellungenGrafik is
      (SpracheExtern : in Wide_Wide_String)
       return String
    is begin
-            
-      Open (File => DateiSchriftart,
-            Mode => In_File,
-            Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei,
-            Form => "WCEM=8");
+           
+      DateiLogik.ÖffnenText (DateiartExtern => DateiSchriftart,
+                              NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
       
       case
         EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSchriftart,

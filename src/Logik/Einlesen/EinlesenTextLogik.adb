@@ -9,6 +9,7 @@ with LeseOptionen;
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
+with DateiLogik;
 
 package body EinlesenTextLogik is
 
@@ -102,10 +103,8 @@ package body EinlesenTextLogik is
             return;
             
          when True =>
-            Open (File => DateiVerzeichnisse,
-                  Mode => In_File,
-                  Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & "0"),
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenText (DateiartExtern => DateiVerzeichnisse,
+                                    NameExtern     => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & "0"));
       end case;
       
       EinlesenSchleife:
@@ -152,10 +151,8 @@ package body EinlesenTextLogik is
             return;
             
          when True =>
-            Open (File => DateiText,
-                  Mode => In_File,
-                  Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & DateinameExtern),
-                  Form => "WCEM=8");
+            DateiLogik.ÖffnenText (DateiartExtern => DateiText,
+                                    NameExtern     => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & DateinameExtern));
       end case;
       
       case
