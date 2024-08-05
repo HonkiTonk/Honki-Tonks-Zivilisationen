@@ -82,8 +82,8 @@ package body SpeichernLogik is
          end case;
          
          DateiLogik.ErstellenStream (DateiartExtern => DateiSpeichern,
-                               NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
-                                                                                           SpielstandnameExtern => Spielstandname));
+                                     NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
+                                                                                                 SpielstandnameExtern => Spielstandname));
          
          if
            False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,

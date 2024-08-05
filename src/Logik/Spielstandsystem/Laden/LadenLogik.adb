@@ -50,8 +50,8 @@ package body LadenLogik is
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
             
             DateiLogik.ÖffnenStream (DateiartExtern => DateiLaden,
-                                NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
-                                                                                            SpielstandnameExtern => Spielstandname));
+                                      NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
+                                                                                                  SpielstandnameExtern => Spielstandname));
          end if;
          
          case

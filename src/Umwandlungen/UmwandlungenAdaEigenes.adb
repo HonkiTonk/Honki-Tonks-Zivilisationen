@@ -85,7 +85,7 @@ package body UmwandlungenAdaEigenes is
       is
          when SystemDatentypen.Windows_Enum =>
             return Decode (Item         => TextExtern,
-                           Input_Scheme => Ada.Strings.UTF_Encoding.UTF_16LE);
+                           Input_Scheme => Ada.Strings.UTF_Encoding.UTF_8);
             
          when others =>
             return Decode (Item         => TextExtern,
@@ -117,7 +117,7 @@ package body UmwandlungenAdaEigenes is
       is
          when SystemDatentypen.Windows_Enum =>
             return Encode (Item          => TextExtern,
-                           Output_Scheme => Ada.Strings.UTF_Encoding.UTF_16LE,
+                           Output_Scheme => Ada.Strings.UTF_Encoding.UTF_8,
                            Output_BOM    => False);
             
          when others =>
