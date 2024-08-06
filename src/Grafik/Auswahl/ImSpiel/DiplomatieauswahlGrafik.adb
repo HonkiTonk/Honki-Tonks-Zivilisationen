@@ -33,7 +33,7 @@ package body DiplomatieauswahlGrafik is
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageSpeziesDiplomatie)),
-                                          HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+                                          HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                           SpielenamenExtern => False);
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
@@ -43,7 +43,7 @@ package body DiplomatieauswahlGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                      AbmessungenExtern => Viewfläche);
                   
       Viewfläche := Textdarstellung (ViewflächeExtern => Viewfläche,

@@ -29,10 +29,20 @@ package body HintergrundGrafik is
                             TexturbereichExtern => TexturenfelderVariablenGrafik.HintergrundRechteck (HintergrundExtern => HintergrundExtern),
                             AbmessungenExtern   => AbmessungenExtern);
             
-         when GrafikDatentypen.Hintergrund_Allgemein_Enum =>
+         when GrafikDatentypen.Hintergrund_Einheitenbefehle_Enum'Range =>
+            null;
+            
+         when GrafikDatentypen.Hintergrund_Anzeige_Enum'Range =>
             HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.AllgemeinesAccess,
                             TexturbereichExtern => TexturenfelderVariablenGrafik.HintergrundRechteck (HintergrundExtern => HintergrundExtern),
                             AbmessungenExtern   => AbmessungenExtern);
+            null;
+            
+         when GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum'Range =>
+            null;
+            
+         when GrafikDatentypen.Hintergrund_Outro_Enum'Range =>
+            null;
       end case;
       
    end Aufteilung;

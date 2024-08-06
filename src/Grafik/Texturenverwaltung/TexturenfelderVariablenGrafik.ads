@@ -50,7 +50,7 @@ package TexturenfelderVariablenGrafik is
    type IntroArray is array (GrafikDatentypen.Hintergrund_Intro_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
    Intro : IntroArray;
    
-   type AllgemeinesArray is array (GrafikDatentypen.Hintergrund_Allgemein_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   type AllgemeinesArray is array (GrafikDatentypen.Hintergrund_Anzeige_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
    Allgemeines : AllgemeinesArray;
    
    type KartenbefehleArray is array (TastenbelegungDatentypen.Kartenbefehle_Enum'Range) of Sf.Graphics.Rect.sfIntRect;

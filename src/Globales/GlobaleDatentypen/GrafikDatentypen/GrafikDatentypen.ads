@@ -61,20 +61,26 @@ package GrafikDatentypen is
                                     Kartenformen_Dreizehn_Enum, Kartenformen_Vierzehn_Enum, Kartenformen_Fünfzehn_Enum, Kartenformen_Sechzehn_Enum,
                                     Kartenformen_Siebzehn_Enum, Kartenformen_Achtzehn_Enum, Kartenformen_Neunzehn_Enum, Kartenformen_Zwanzig_Enum,
                                     
-                                    -- Einheitenbefehle_Enum, Roter_Knopf_Befehle,
+                                    Einheitenbefehle_Enum, Roter_Knopf_Enum,
                                     
-                                    Menü_Hintergrund_Enum, Bauen_Hintergrund_Enum, Forschung_Hintergrund_Enum,
+                                    Menü_Enum,
+                                    Auswahl_Enum, Hinweis_Enum,
                                     
-                                    Auswahl_Hintergrund,
+                                    Bauen_Enum, Forschung_Enum, Forschungserfolg_Enum, Seitenleiste_Enum,
                                     
-                                    Seitenleiste_Hintergrund_Enum
+                                    Gewonnen_Enum, Verloren_Enum, Planetenvernichtung_Enum
                                    );
    
    subtype Hintergrund_Intro_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'First .. Intro_Eins_Enum;
    subtype Hintergrund_Kartenformen_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Intro_Enum'Last) .. Kartenformen_Zwanzig_Enum;
-   -- subtype Hintergrund_Einheitenbefehle_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Intro_Enum'Succ (Hintergrund_Kartenformen_Enum'Last).. Roter_Knopf_Befehle;
-   subtype Hintergrund_Allgemein_Enum is Hintergrund_Gesamt_Enum range Menü_Hintergrund_Enum .. Seitenleiste_Hintergrund_Enum;
-  -- subtype Hintergrund_Spezienspezifisch_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Allgemein_Enum'Last) .. Hintergrund_Intro_Enum'Last;
+   subtype Hintergrund_Einheitenbefehle_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Kartenformen_Enum'Last).. Roter_Knopf_Enum;
+   
+   subtype Hintergrund_Gesamtanzeige_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Einheitenbefehle_Enum'Last) .. Seitenleiste_Enum;
+   subtype Hintergrund_Anzeige_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamtanzeige_Enum'First .. Hinweis_Enum;
+   subtype Hintergrund_Anzeige_Durchsichtig_Enum is Hintergrund_Anzeige_Enum range Auswahl_Enum .. Hintergrund_Anzeige_Enum'Last;
+   subtype Hintergrund_Spezienspezifisch_Anzeige_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Anzeige_Enum'Last) .. Hintergrund_Gesamtanzeige_Enum'Last;
+   
+   subtype Hintergrund_Outro_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Spezienspezifisch_Anzeige_Enum'Last) .. Hintergrund_Gesamt_Enum'Last;
    
    type Spezieshintergrund_Enum is (
                                     Leer_Hintergrund_Enum,

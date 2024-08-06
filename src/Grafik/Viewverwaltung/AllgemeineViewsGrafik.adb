@@ -16,7 +16,7 @@ package body AllgemeineViewsGrafik is
       
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String;
-      HintergrundExtern : in GrafikDatentypen.Hintergrund_Allgemein_Enum;
+      HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamtanzeige_Enum;
       SpielenamenExtern : in Boolean)
    is begin
       
@@ -70,13 +70,13 @@ package body AllgemeineViewsGrafik is
       is
          when MenueDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
             Überschrift (ÜberschriftExtern => SonstigesKonstanten.Spielname,
-                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+                          HintergrundExtern => GrafikDatentypen.Menü_Enum,
                           SpielenamenExtern => True);
             
          when others =>
             Überschrift (ÜberschriftExtern => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => ZeileExtern,
                                                                                              WelchesMenüExtern => WelchesMenüExtern),
-                          HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+                          HintergrundExtern => GrafikDatentypen.Menü_Enum,
                           SpielenamenExtern => False);
       end case;
             
@@ -85,7 +85,7 @@ package body AllgemeineViewsGrafik is
    
    
    procedure Versionsnummer
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Allgemein_Enum)
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Anzeige_Enum)
    is begin
       
       Viewfläche (Versionsnummer_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Versionsnummer_Enum),

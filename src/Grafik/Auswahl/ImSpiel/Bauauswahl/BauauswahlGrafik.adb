@@ -37,7 +37,7 @@ package body BauauswahlGrafik is
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageBauprojekt)),
-                                          HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+                                          HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                           SpielenamenExtern => False);
       
       Bauaufteilung (BauprojektartExtern      => AktuelleAuswahlExtern.Bauprojektart,
@@ -81,7 +81,7 @@ package body BauauswahlGrafik is
                                             GrößeExtern          => ViewflächeAufteilung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüKategorie));
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                     AbmessungenExtern => ViewflächeAufteilung);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
@@ -138,7 +138,7 @@ package body BauauswahlGrafik is
                                             GrößeExtern          => ViewflächeBauliste,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBauliste));
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                      AbmessungenExtern => ViewflächeBauliste);
       
       case
@@ -300,6 +300,7 @@ package body BauauswahlGrafik is
                                                                                                     FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => EinheitenSchleifenwert,
                                                                                                                                                                        AuswahlExtern    => Natural (AuswahlExtern)));
                
+               -- Ist das hier noch aus einem Grund hier oder kann das weg? äöü
                -- Diagnoseinformationen.Zahl (ZahlExtern => BaulisteExtern (EinheitenSchleifenwert));
                -- Diagnoseinformationen.Zahl (ZahlExtern => Integer (EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert))));
                -- Diagnoseinformationen.Boxinformationen
@@ -394,7 +395,7 @@ package body BauauswahlGrafik is
                                             GrößeExtern          => ViewflächeAktuell,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüAktuell));
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                      AbmessungenExtern => ViewflächeAktuell);
       
       if

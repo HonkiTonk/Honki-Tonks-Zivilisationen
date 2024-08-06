@@ -17,7 +17,7 @@ package body DateiLogik is
             Ada.Streams.Stream_IO.Create (File => DateiartExtern,
                                           Mode => Ada.Streams.Stream_IO.Out_File,
                                           Name => NameExtern,
-                                          Form => "WCEM=b");
+                                          Form => "WCEM=8");
             
          when SystemDatentypen.Linux_Enum =>
             Ada.Streams.Stream_IO.Create (File => DateiartExtern,
@@ -42,7 +42,7 @@ package body DateiLogik is
             Ada.Streams.Stream_IO.Open (File => DateiartExtern,
                                         Mode => Ada.Streams.Stream_IO.In_File,
                                         Name => NameExtern,
-                                        Form => "WCEM=b");
+                                        Form => "WCEM=8");
             
          when SystemDatentypen.Linux_Enum =>
             Ada.Streams.Stream_IO.Open (File => DateiartExtern,
@@ -67,7 +67,7 @@ package body DateiLogik is
             Ada.Wide_Wide_Text_IO.Create (File => DateiartExtern,
                                           Mode => Ada.Wide_Wide_Text_IO.Out_File,
                                           Name => NameExtern,
-                                          Form => "WCEM=b");
+                                          Form => "WCEM=8");
             
          when SystemDatentypen.Linux_Enum =>
             Ada.Wide_Wide_Text_IO.Create (File => DateiartExtern,
@@ -92,7 +92,7 @@ package body DateiLogik is
             Ada.Wide_Wide_Text_IO.Open (File => DateiartExtern,
                                         Mode => Ada.Wide_Wide_Text_IO.In_File,
                                         Name => NameExtern,
-                                        Form => "WCEM=b");
+                                        Form => "WCEM=8");
             
          when SystemDatentypen.Linux_Enum =>
             Ada.Wide_Wide_Text_IO.Open (File => DateiartExtern,
@@ -117,7 +117,7 @@ package body DateiLogik is
             Ada.Wide_Wide_Text_IO.Open (File => DateiartExtern,
                                         Mode => Ada.Wide_Wide_Text_IO.Append_File,
                                         Name => NameExtern,
-                                        Form => "WCEM=b");
+                                        Form => "WCEM=8");
             
          when SystemDatentypen.Linux_Enum =>
             Ada.Wide_Wide_Text_IO.Open (File => DateiartExtern,

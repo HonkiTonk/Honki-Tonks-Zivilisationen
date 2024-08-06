@@ -172,7 +172,7 @@ package body StadtkarteGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => LeseGrafikVariablen.InformationsfeldBereiche (WelcherBereichExtern => ViewKonstanten.InformationsfeldStadtkarte));
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                      AbmessungenExtern => Viewfläche);
       
       Gebäudetexte (1) := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudeIDExtern,

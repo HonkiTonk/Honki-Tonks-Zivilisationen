@@ -57,7 +57,7 @@ package body SpielstandmenueGrafik is
                                             GrößeExtern          => ViewflächeAufteilung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandKategorie));
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                      AbmessungenExtern => ViewflächeAufteilung);
                   
       ViewflächeAufteilung := Spielstandaufteilung (AuswahlExtern       => AuswahlExtern.Zweitauswahl,
@@ -73,7 +73,7 @@ package body SpielstandmenueGrafik is
                                             GrößeExtern          => ViewflächeBelegung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl));
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                      AbmessungenExtern => ViewflächeBelegung);
       
       ViewflächeBelegung := Textanzeige (ViewflächeExtern     => ViewflächeBelegung,

@@ -240,9 +240,20 @@ package body TexturenfelderVariablenGrafik is
          when GrafikDatentypen.Hintergrund_Kartenformen_Enum'Range =>
             return Kartenformen (HintergrundExtern);
             
-         when GrafikDatentypen.Hintergrund_Allgemein_Enum'Range =>
+         when GrafikDatentypen.Hintergrund_Einheitenbefehle_Enum'Range =>
+            null;
+            
+         when GrafikDatentypen.Hintergrund_Anzeige_Enum'Range =>
             return Allgemeines (HintergrundExtern);
+            
+         when GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum'Range =>
+            null;
+            
+         when GrafikDatentypen.Hintergrund_Outro_Enum'Range =>
+            null;
       end case;
+      
+      return (1, 1, 1, 1);
       
    end HintergrundRechteck;
    
@@ -262,8 +273,17 @@ package body TexturenfelderVariablenGrafik is
          when GrafikDatentypen.Hintergrund_Kartenformen_Enum'Range =>
             Zwischenspeicher := (Float (Kartenformen (HintergrundExtern).width), Float (Kartenformen (HintergrundExtern).height));
             
-         when GrafikDatentypen.Hintergrund_Allgemein_Enum'Range =>
+         when GrafikDatentypen.Hintergrund_Einheitenbefehle_Enum'Range =>
+            null;
+            
+         when GrafikDatentypen.Hintergrund_Anzeige_Enum'Range =>
             Zwischenspeicher := (Float (Allgemeines (HintergrundExtern).width), Float (Allgemeines (HintergrundExtern).height));
+            
+         when GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum'Range =>
+            null;
+                        
+         when GrafikDatentypen.Hintergrund_Outro_Enum'Range =>
+            null;
       end case;
       
       return Zwischenspeicher;

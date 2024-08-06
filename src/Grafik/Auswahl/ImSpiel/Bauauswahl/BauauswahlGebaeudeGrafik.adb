@@ -52,7 +52,7 @@ package body BauauswahlGebaeudeGrafik is
                                                   AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeinformationenVerkaufen));
       end case;
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                      AbmessungenExtern => ViewflächeInformationen);
       
       case
@@ -185,7 +185,7 @@ package body BauauswahlGebaeudeGrafik is
                                                   AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudebeschreibungVerkaufen));
       end case;
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                      AbmessungenExtern => ViewbereichBeschreibung.Viewbereich);
       
       case

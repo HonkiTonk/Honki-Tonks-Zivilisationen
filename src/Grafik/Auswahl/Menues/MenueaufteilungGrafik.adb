@@ -51,7 +51,7 @@ package body MenueaufteilungGrafik is
         WelchesMenüExtern
       is
          when MenueDatentypen.Haupt_Menü_Enum =>
-            AllgemeineViewsGrafik.Versionsnummer (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum);
+            AllgemeineViewsGrafik.Versionsnummer (HintergrundExtern => GrafikDatentypen.Menü_Enum);
             
          when others =>
             null;

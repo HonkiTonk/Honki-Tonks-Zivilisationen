@@ -10,7 +10,7 @@ package AllgemeineViewsGrafik is
    
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String;
-      HintergrundExtern : in GrafikDatentypen.Hintergrund_Allgemein_Enum;
+      HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamtanzeige_Enum;
       SpielenamenExtern : in Boolean);
    
    procedure ÜberschriftErmitteln
@@ -18,7 +18,7 @@ package AllgemeineViewsGrafik is
       ZeileExtern : in Positive);
    
    procedure Versionsnummer
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Allgemein_Enum);
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Anzeige_Enum);
    
 private
    

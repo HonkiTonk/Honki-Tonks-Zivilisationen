@@ -20,7 +20,7 @@ package body VerkaufsauswahlGrafik is
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageGebäudeverkauf)),
-                                          HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+                                          HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                           SpielenamenExtern => False);
       
       Gebäude (AuswahlExtern => AktuelleAuswahlExtern,
@@ -43,7 +43,7 @@ package body VerkaufsauswahlGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudelisteVerkaufen));
       
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
                                      AbmessungenExtern => Viewfläche);
                   
       Viewfläche.y := BauauswahlGrafik.Gebäude (AuswahlExtern        => AuswahlExtern,
