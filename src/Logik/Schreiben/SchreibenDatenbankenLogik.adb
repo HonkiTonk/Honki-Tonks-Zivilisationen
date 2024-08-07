@@ -35,13 +35,13 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenEinheitenDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
+      DateiLogik.ErstellenStream (DateiartExtern => DateiEinheitendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
-      EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DatenbankSpeichern),
+      EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DateiEinheitendatenbank),
                                                     EinheitenDatenbank.Einheitenliste);
       
-      Close (File => DatenbankSpeichern);
+      Close (File => DateiEinheitendatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -49,10 +49,10 @@ package body SchreibenDatenbankenLogik is
                                      & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
-           Is_Open (File => DatenbankSpeichern)
+           Is_Open (File => DateiEinheitendatenbank)
          is
             when True =>
-               Close (File => DatenbankSpeichern);
+               Close (File => DateiEinheitendatenbank);
                
             when False =>
                null;
@@ -66,22 +66,22 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenForschungenDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
+      DateiLogik.ErstellenStream (DateiartExtern => DateiForschungendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       
-      ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DatenbankSpeichern),
+      ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DateiForschungendatenbank),
                                                        ForschungenDatenbank.Forschungsliste);
       
-      ForschungRecordKonstanten.TechnologieVerbesserungenArray'Write (Stream (File => DatenbankSpeichern),
+      ForschungRecordKonstanten.TechnologieVerbesserungenArray'Write (Stream (File => DateiForschungendatenbank),
                                                                       ForschungenDatenbank.TechnologieVerbesserungen);
       
-      ForschungRecordKonstanten.TechnologieWegeArray'Write (Stream (File => DatenbankSpeichern),
+      ForschungRecordKonstanten.TechnologieWegeArray'Write (Stream (File => DateiForschungendatenbank),
                                                             ForschungenDatenbank.TechnologieWege);
       
-      ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray'Write (Stream (File => DatenbankSpeichern),
+      ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray'Write (Stream (File => DateiForschungendatenbank),
                                                                         ForschungenDatenbank.TechnologieUmgebungsgröße);
       
-      Close (File => DatenbankSpeichern);
+      Close (File => DateiForschungendatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -89,10 +89,10 @@ package body SchreibenDatenbankenLogik is
                                      & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
-           Is_Open (File => DatenbankSpeichern)
+           Is_Open (File => DateiForschungendatenbank)
          is
             when True =>
-               Close (File => DatenbankSpeichern);
+               Close (File => DateiForschungendatenbank);
                
             when False =>
                null;
@@ -105,13 +105,13 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenGebäudeDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
+      DateiLogik.ErstellenStream (DateiartExtern => DateiGebäudedatenbank,
                                   NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
-      GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DatenbankSpeichern),
+      GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DateiGebäudedatenbank),
                                                   GebaeudeDatenbank.Gebäudeliste);
       
-      Close (File => DatenbankSpeichern);
+      Close (File => DateiGebäudedatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -119,10 +119,10 @@ package body SchreibenDatenbankenLogik is
                                      & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
-           Is_Open (File => DatenbankSpeichern)
+           Is_Open (File => DateiGebäudedatenbank)
          is
             when True =>
-               Close (File => DatenbankSpeichern);
+               Close (File => DateiGebäudedatenbank);
                
             when False =>
                null;
@@ -135,22 +135,22 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenKartenDatenbanken
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
+      DateiLogik.ErstellenStream (DateiartExtern => DateiKartendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
             
-      KartenDatenbank.BasisgrundlisteArray'Write (Stream (File => DatenbankSpeichern),
+      KartenDatenbank.BasisgrundlisteArray'Write (Stream (File => DateiKartendatenbank),
                                                   KartenDatenbank.Basisgrundliste);
       
-      KartenDatenbank.ZusatzgrundlisteArray'Write (Stream (File => DatenbankSpeichern),
+      KartenDatenbank.ZusatzgrundlisteArray'Write (Stream (File => DateiKartendatenbank),
                                                    KartenDatenbank.Zusatzgrundliste);
       
-      KartenDatenbank.KartenflusslisteArray'Write (Stream (File => DatenbankSpeichern),
+      KartenDatenbank.KartenflusslisteArray'Write (Stream (File => DateiKartendatenbank),
                                                    KartenDatenbank.Kartenflussliste);
       
-      KartenDatenbank.KartenressourcenlisteArray'Write (Stream (File => DatenbankSpeichern),
+      KartenDatenbank.KartenressourcenlisteArray'Write (Stream (File => DateiKartendatenbank),
                                                         KartenDatenbank.Kartenressourcenliste);
       
-      Close (File => DatenbankSpeichern);
+      Close (File => DateiKartendatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -158,10 +158,10 @@ package body SchreibenDatenbankenLogik is
                                        UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
-           Is_Open (File => DatenbankSpeichern)
+           Is_Open (File => DateiKartendatenbank)
          is
             when True =>
-               Close (File => DatenbankSpeichern);
+               Close (File => DateiKartendatenbank);
                
             when False =>
                null;
@@ -174,16 +174,16 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenVerbesserungenDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
+      DateiLogik.ErstellenStream (DateiartExtern => DateiVerbesserungendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
-      VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DatenbankSpeichern),
+      VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DateiVerbesserungendatenbank),
                                                               VerbesserungenDatenbank.Verbesserungenliste);
       
-      VerbesserungenDatenbank.WegelisteArray'Write (Stream (File => DatenbankSpeichern),
+      VerbesserungenDatenbank.WegelisteArray'Write (Stream (File => DateiVerbesserungendatenbank),
                                                     VerbesserungenDatenbank.Wegeliste);
       
-      Close (File => DatenbankSpeichern);
+      Close (File => DateiVerbesserungendatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -191,10 +191,10 @@ package body SchreibenDatenbankenLogik is
                                      & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
-           Is_Open (File => DatenbankSpeichern)
+           Is_Open (File => DateiVerbesserungendatenbank)
          is
             when True =>
-               Close (File => DatenbankSpeichern);
+               Close (File => DateiVerbesserungendatenbank);
                
             when False =>
                null;
@@ -207,13 +207,13 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenSpeziesDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
+      DateiLogik.ErstellenStream (DateiartExtern => DateiSpeziesdatenbank,
                                   NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
-      SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DatenbankSpeichern),
+      SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DateiSpeziesdatenbank),
                                                 SpeziesDatenbank.Speziesliste);
       
-      Close (File => DatenbankSpeichern);
+      Close (File => DateiSpeziesdatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -221,10 +221,10 @@ package body SchreibenDatenbankenLogik is
                                        UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
-           Is_Open (File => DatenbankSpeichern)
+           Is_Open (File => DateiSpeziesdatenbank)
          is
             when True =>
-               Close (File => DatenbankSpeichern);
+               Close (File => DateiSpeziesdatenbank);
                
             when False =>
                null;
@@ -237,13 +237,13 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenEffekteDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DatenbankSpeichern,
+      DateiLogik.ErstellenStream (DateiartExtern => DateiEffektedatenbank,
                                   NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
-      EffekteDatenbank.EffektelisteArray'Write (Stream (File => DatenbankSpeichern),
+      EffekteDatenbank.EffektelisteArray'Write (Stream (File => DateiEffektedatenbank),
                                                 EffekteDatenbank.Effekteliste);
       
-      Close (File => DatenbankSpeichern);
+      Close (File => DateiEffektedatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -251,10 +251,10 @@ package body SchreibenDatenbankenLogik is
                                      & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
-           Is_Open (File => DatenbankSpeichern)
+           Is_Open (File => DateiEffektedatenbank)
          is
             when True =>
-               Close (File => DatenbankSpeichern);
+               Close (File => DateiEffektedatenbank);
                
             when False =>
                null;

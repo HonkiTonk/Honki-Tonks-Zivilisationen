@@ -14,7 +14,12 @@ package SchreibenDatenbankenLogik is
 
 private
 
-   -- Hier habe ich nur eine Variablen für die verschiedenen Datenbanken, beim Schreiben der Einstellungen aber nicht. Mal vereinheitlichen. äöü
-   DatenbankSpeichern : File_Type;
+   DateiEinheitendatenbank : File_Type;
+   DateiForschungendatenbank : File_Type;
+   DateiGebäudedatenbank : File_Type;
+   DateiKartendatenbank : File_Type;
+   DateiVerbesserungendatenbank : File_Type;
+   DateiSpeziesdatenbank : File_Type;
+   DateiEffektedatenbank : File_Type;
 
 end SchreibenDatenbankenLogik;
