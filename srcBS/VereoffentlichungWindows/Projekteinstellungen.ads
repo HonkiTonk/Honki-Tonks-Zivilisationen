@@ -7,7 +7,7 @@ package Projekteinstellungen is
    Einstellungen : constant SystemRecords.ProjekteinstellungenRecord := (
                                                                          VolleInformation => False,
                                                                          FehlerWarnung    => False,
-                                                                         Betriebssystem   => SystemDatentypen.Windows_Enum,
+                                                                         Betriebssystem   => BetriebssystemDatentypen.Windows_Enum,
                                                                          Stringkodierung  => BetriebssystemDatentypen.UTF8_Enum,
 
                                                                          -- Gültige Werte:
