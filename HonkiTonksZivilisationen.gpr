@@ -2,11 +2,12 @@ with "asfml.gpr";
 
 project HonkiTonksZivilisationen is
 
-   type Betriebssystem_Type is ("Linux", "Windows");
+   type Betriebssystem_Type is
+      ("Linux", "Windows");
    Betriebssystem : Betriebssystem_Type := external ("Betriebssystem", "Linux");
-   type Status_Type is ("Entwicklung", "Veroeffentlichung");
+   type Status_Type is
+      ("Entwicklung", "Veroeffentlichung");
    Status : Status_Type := external ("Status", "Entwicklung");
-
    for Exec_Dir use "Honki Tonks Zivilisationen";
    for Create_Missing_Dirs use "True";
    for Main use ("HonkiTonksZivilisationen.adb");

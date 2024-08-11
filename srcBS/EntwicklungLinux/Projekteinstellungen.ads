@@ -9,6 +9,14 @@ package Projekteinstellungen is
                                                                          FehlerWarnung    => True,
                                                                          Betriebssystem   => BetriebssystemDatentypen.Linux_Enum,
                                                                          Stringkodierung  => BetriebssystemDatentypen.UTF8_Enum,
+
+                                                                         -- Gültige Werte:
+                                                                         -- h => Hex ESC encoding
+                                                                         -- u => Upper half encoding
+                                                                         -- s => Shift-JIS encoding
+                                                                         -- e => EUC Encoding
+                                                                         -- 8 => UTF8 encoding
+                                                                         -- b => Brackets encoding
                                                                          Dateiform        => "WCEM=8"
                                                                         );
 
