@@ -39,7 +39,7 @@ package body BauauswahlEinheitenGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüInformationen));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
-                                     AbmessungenExtern => ViewflächeInformationen);
+                                    AbmessungenExtern => ViewflächeInformationen);
       
       case
         AuswahlExtern
@@ -142,7 +142,7 @@ package body BauauswahlEinheitenGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBeschreibung));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
-                                     AbmessungenExtern => ViewflächeBeschreibung);
+                                    AbmessungenExtern => ViewflächeBeschreibung);
       
       case
         AuswahlExtern

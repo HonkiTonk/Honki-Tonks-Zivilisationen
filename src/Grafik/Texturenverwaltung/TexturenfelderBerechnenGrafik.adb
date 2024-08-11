@@ -280,7 +280,7 @@ package body TexturenfelderBerechnenGrafik is
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
       
-         HintergründeBerechnen (SpeziesExtern => SpeziesSchleifenwert);
+         AllgenmeinesSpezienBerechnen (SpeziesExtern => SpeziesSchleifenwert);
          EinheitenBerechnen (SpeziesExtern => SpeziesSchleifenwert);
          GebäudeBerechnen (SpeziesExtern => SpeziesSchleifenwert);
          
@@ -290,28 +290,28 @@ package body TexturenfelderBerechnenGrafik is
    
    
    
-   procedure HintergründeBerechnen
+   procedure AllgenmeinesSpezienBerechnen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.HintergrundAccessGesamt (SpeziesExtern));
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.AllgemeinesSpezienAccess (SpeziesExtern));
       
-      Feldgröße := (Texturengröße.x / FelderanzahlHintergründe.x, Texturengröße.y / FelderanzahlHintergründe.y);
+      Feldgröße := (Texturengröße.x / FelderanzahlAllgemeinesSpezien.x, Texturengröße.y / FelderanzahlAllgemeinesSpezien.y);
       
       AktuelleFeldposition := (1, 1);
       
-      HintergründeSchleife:
-      for HintergründeSchleifenwert in TexturenfelderVariablenGrafik.HintergründeArray'Range (2) loop
+      AllgemeinesSchleife:
+      for AllgemeinesSchleifenwert in TexturenfelderVariablenGrafik.AllgemeinesSpezienArray'Range (2) loop
          
-         TexturenfelderVariablenGrafik.Hintergründe (SpeziesExtern, HintergründeSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
-                                                                                                     Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
-                                                                                                     Integer (Feldgröße.x),
-                                                                                                     Integer (Feldgröße.y));
+         TexturenfelderVariablenGrafik.AllgemeinesSpezien (SpeziesExtern, AllgemeinesSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
+                                                                                                        Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
+                                                                                                        Integer (Feldgröße.x),
+                                                                                                        Integer (Feldgröße.y));
          
          if
-           AktuelleFeldposition.x < FelderanzahlHintergründe.x
+           AktuelleFeldposition.x < FelderanzahlAllgemeinesSpezien.x
          then
             AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
             
@@ -320,9 +320,9 @@ package body TexturenfelderBerechnenGrafik is
             AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
          end if;
             
-      end loop HintergründeSchleife;
+      end loop AllgemeinesSchleife;
       
-   end HintergründeBerechnen;
+   end AllgenmeinesSpezienBerechnen;
    
    
    
@@ -570,40 +570,5 @@ package body TexturenfelderBerechnenGrafik is
       end loop KartenformenSchleife;
       
    end Kartenformen;
-   
-   
-   
-   procedure Auswahl
-   is
-      use type Sf.sfUint32;
-   begin
-      
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.AuswahlAccess);
-      
-      Feldgröße := (Texturengröße.x / FelderanzahlAuswahl.x, Texturengröße.y / FelderanzahlAuswahl.y);
-      
-      AktuelleFeldposition := (1, 1);
-      
-      AuswahlSchleife:
-      for AuswahlSchleifenwert in TexturenfelderVariablenGrafik.KartenformenArray'Range loop
-         
-         TexturenfelderVariablenGrafik.Kartenformen (AuswahlSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
-                                                                               Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
-                                                                               Integer (Feldgröße.x),
-                                                                               Integer (Feldgröße.y));
-         
-         if
-           AktuelleFeldposition.x < FelderanzahlAuswahl.x
-         then
-            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
-            
-         else
-            AktuelleFeldposition.x := 1;
-            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
-         end if;
-         
-      end loop AuswahlSchleife;
-      
-   end Auswahl;
      
 end TexturenfelderBerechnenGrafik;

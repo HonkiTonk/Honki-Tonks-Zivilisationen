@@ -42,15 +42,6 @@ package GrafikDatentypen is
       
    
    
-   type Hintergrund_Enum is (
-                             PZB_Ende_Hintergrund_Enum,
-                             
-                             Auswahl_Hintergrund_Enum, Meldung_Hintergrund_Enum
-                            );
-   
-   subtype Hintergrund_Undurchsichtig_Enum is Hintergrund_Enum range Hintergrund_Enum'First .. PZB_Ende_Hintergrund_Enum;
-   subtype Hintergrund_Durchsichtig_Enum is Hintergrund_Enum range Auswahl_Hintergrund_Enum .. Meldung_Hintergrund_Enum;
-   
    -- Die Hintergründe alle mal neu aufteilen und so mehr spezienspezifische Hintergründe erlauben oder geht das auch über gut ausgewählte Arrays? äöü
    type Hintergrund_Gesamt_Enum is (
                                     Intro_Eins_Enum,
@@ -63,7 +54,7 @@ package GrafikDatentypen is
                                     
                                     Einheitenbefehle_Enum, Roter_Knopf_Enum,
                                     
-                                    Menü_Enum,
+                                    Menü_Enum, Berechnen_Enum,
                                     Auswahl_Enum, Hinweis_Enum,
                                     
                                     Bauen_Enum, Forschung_Enum, Forschungserfolg_Enum, Seitenleiste_Enum,
@@ -76,17 +67,17 @@ package GrafikDatentypen is
    subtype Hintergrund_Einheitenbefehle_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Kartenformen_Enum'Last).. Roter_Knopf_Enum;
    
    subtype Hintergrund_Gesamtanzeige_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Einheitenbefehle_Enum'Last) .. Seitenleiste_Enum;
-   subtype Hintergrund_Anzeige_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamtanzeige_Enum'First .. Hinweis_Enum;
+   subtype Hintergrund_Anzeige_Enum is Hintergrund_Gesamtanzeige_Enum range Hintergrund_Gesamtanzeige_Enum'First .. Hinweis_Enum;
    subtype Hintergrund_Anzeige_Durchsichtig_Enum is Hintergrund_Anzeige_Enum range Auswahl_Enum .. Hintergrund_Anzeige_Enum'Last;
-   subtype Hintergrund_Spezienspezifisch_Anzeige_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Anzeige_Enum'Last) .. Hintergrund_Gesamtanzeige_Enum'Last;
+   
+   subtype Hintergrund_Spezienspezifisch_Anzeige_Enum is Hintergrund_Gesamtanzeige_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Anzeige_Enum'Last) .. Hintergrund_Gesamtanzeige_Enum'Last;
    
    subtype Hintergrund_Outro_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Spezienspezifisch_Anzeige_Enum'Last) .. Hintergrund_Gesamt_Enum'Last;
-   
+         
    type Spezieshintergrund_Enum is (
                                     Leer_Hintergrund_Enum,
                                    
-                                    Forschungserfolg_Enum,
-                                   
+                                                                       
                                     -- Abspann
                                     Gewonnen_Enum,
                                     Verloren_Enum,

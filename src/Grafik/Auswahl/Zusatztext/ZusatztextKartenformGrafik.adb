@@ -1,11 +1,12 @@
 with Sf.Graphics.Texture;
 
 with KartenartDatentypen;
-with TexturenfelderVariablenGrafik;
+with SpeziesDatentypen;
 
 with KartengeneratorVariablenLogik;
 with EingeleseneTexturenGrafik;
 with SpritesverwaltungssystemGrafik;
+with TexturenfelderVariablenGrafik;
 
 package body ZusatztextKartenformGrafik is
 
@@ -127,13 +128,28 @@ package body ZusatztextKartenformGrafik is
             return;
       end case;
       
-      -- Für solche Skalierungen auch mal ein eigenes System bauen. äöü
-      -- Ergibt der obere Kommentar nach all den Änderungen noch Sinn? äöü
       SpritesverwaltungssystemGrafik.SetzenBereichSkalierenZeichnen (SpriteAccessExtern => SpriteAccess,
                                                                      TexturExtern       => EingeleseneTexturenGrafik.KartenformenAccess,
-                                                                     BereichExtern      => TexturenfelderVariablenGrafik.HintergrundRechteck (HintergrundExtern => Kartenform),
-                                                                     SkalierungExtern   => (ViewflächeExtern.x / (Texturfläche.x / 4.00), ViewflächeExtern.y / (Texturfläche.y / 5.00)));
+                                                                     BereichExtern      => TexturenfelderVariablenGrafik.AllgemeinesRechteck (HintergrundExtern => Kartenform,
+                                                                                                                                              SpeziesExtern     => SpeziesDatentypen.Leer_Spezies_Enum),
+                                                                     SkalierungExtern   => Skalierungsberechnung (ViewflächeExtern   => ViewflächeExtern,
+                                                                                                                  TexturflächeExtern => Texturfläche,
+                                                                                                                  FelderanzahlExtern  => (4.00, 5.00)));
       
    end ZusatztextKartenform;
+   
+   
+   
+   -- Ist das hier sinnvoll oder unnötig/doppelt? äöü
+   function Skalierungsberechnung
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      TexturflächeExtern : in Sf.System.Vector2.sfVector2f;
+      FelderanzahlExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      return (ViewflächeExtern.x / (TexturflächeExtern.x / FelderanzahlExtern.x), ViewflächeExtern.y / (TexturflächeExtern.y / FelderanzahlExtern.y));
+      
+   end Skalierungsberechnung;
 
 end ZusatztextKartenformGrafik;

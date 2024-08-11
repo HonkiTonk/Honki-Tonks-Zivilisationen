@@ -27,7 +27,7 @@ package body StadtbefehleGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtBefehle));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Seitenleiste_Enum,
-                                     AbmessungenExtern => Viewfläche);
+                                    AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textbreite := GrafikKonstanten.Nullwert;

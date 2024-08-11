@@ -19,7 +19,7 @@ package body VerzeichnisDateinamenTests is
       case
         Projekteinstellungen.Einstellungen.Betriebssystem
       is
-         when SystemDatentypen.Linux_Enum =>
+         when BetriebssystemDatentypen.Linux_Enum =>
             if
               To_Wide_Wide_String (Source => LinuxTextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem
             then
@@ -30,7 +30,7 @@ package body VerzeichnisDateinamenTests is
                return False;
             end if;
             
-         when SystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypen.Windows_Enum =>
             if
               To_Wide_Wide_String (Source => WindowsTextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem - LängeAktuellesVerzeichnis
             then
@@ -130,7 +130,7 @@ package body VerzeichnisDateinamenTests is
       case
         Projekteinstellungen.Einstellungen.Betriebssystem
       is
-         when SystemDatentypen.Linux_Enum =>
+         when BetriebssystemDatentypen.Linux_Enum =>
             case
               ZeichenExtern
             is
@@ -141,7 +141,7 @@ package body VerzeichnisDateinamenTests is
                   return True;
             end case;
             
-         when SystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypen.Windows_Enum =>
             case
               ZeichenExtern
             is
@@ -183,7 +183,7 @@ package body VerzeichnisDateinamenTests is
       case
         Projekteinstellungen.Einstellungen.Betriebssystem
       is
-         when SystemDatentypen.Linux_Enum =>
+         when BetriebssystemDatentypen.Linux_Enum =>
             LinuxprüfungSchleife:
             for LinuxprüfungSchleifenwert in NameExtern'Range loop
          
@@ -199,7 +199,7 @@ package body VerzeichnisDateinamenTests is
          
             end loop LinuxprüfungSchleife;
             
-         when SystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypen.Windows_Enum =>
             WindowsprüfungSchleife:
             for WindowsprüfungSchleifenwert in NameExtern'Range loop
          
@@ -244,10 +244,10 @@ package body VerzeichnisDateinamenTests is
       case
         Projekteinstellungen.Einstellungen.Betriebssystem
       is
-         when SystemDatentypen.Linux_Enum =>
+         when BetriebssystemDatentypen.Linux_Enum =>
             return True;
             
-         when SystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypen.Windows_Enum =>
             return NamenprüfungenWindows (TextExtern => TextExtern);
       end case;
       

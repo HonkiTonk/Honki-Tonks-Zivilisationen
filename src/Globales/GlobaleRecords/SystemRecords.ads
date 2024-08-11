@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with ZahlenDatentypen;
-with SystemDatentypen;
+with BetriebssystemDatentypen;
 
 package SystemRecords is
    pragma Preelaborate;
@@ -49,11 +49,13 @@ package SystemRecords is
    
    
    
-   type DebugRecord is record
+   type ProjekteinstellungenRecord is record
       
       VolleInformation : Boolean;
       FehlerWarnung : Boolean;
-      Betriebssystem : SystemDatentypen.Betriebssystem_Enum;
+      Betriebssystem : BetriebssystemDatentypen.Betriebssystem_Enum;
+      Stringkodierung : BetriebssystemDatentypen.Kodierung_Enum;
+      Dateiform : String (1 .. 6);
       
    end record;
    

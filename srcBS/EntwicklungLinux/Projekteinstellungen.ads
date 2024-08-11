@@ -1,13 +1,15 @@
 with SystemRecords;
-with SystemDatentypen;
+with BetriebssystemDatentypen;
 
 package Projekteinstellungen is
    pragma Preelaborate;
 
-   Einstellungen : constant SystemRecords.DebugRecord := (
-                                                          VolleInformation => True,
-                                                          FehlerWarnung    => True,
-                                                          Betriebssystem   => SystemDatentypen.Linux_Enum
-                                                         );
+   Einstellungen : constant SystemRecords.ProjekteinstellungenRecord := (
+                                                                         VolleInformation => True,
+                                                                         FehlerWarnung    => True,
+                                                                         Betriebssystem   => BetriebssystemDatentypen.Linux_Enum,
+                                                                         Stringkodierung  => BetriebssystemDatentypen.UTF8_Enum,
+                                                                         Dateiform        => "WCEM=8"
+                                                                        );
 
 end Projekteinstellungen;

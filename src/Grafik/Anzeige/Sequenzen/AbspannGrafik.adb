@@ -27,8 +27,8 @@ package body AbspannGrafik is
         AbspannExtern
       is
          when GrafikDatentypen.Planet_Vernichtet_Enum =>
-            HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.PZB_Ende_Hintergrund_Enum,
-                                           AbmessungenExtern => Viewfläche);
+            -- HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.PZB_Ende_Hintergrund_Enum,
+            --                                AbmessungenExtern => Viewfläche);
             
             Viewfläche.y := PlanetVernichtet (MaximaleTextbreiteExtern => Viewfläche.x);
             

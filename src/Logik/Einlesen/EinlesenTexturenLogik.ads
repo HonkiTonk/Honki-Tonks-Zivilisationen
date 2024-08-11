@@ -22,14 +22,11 @@ private
    RoterKnopf : constant Positive := Kartenbefehle + 1;
    Intro : constant Positive := RoterKnopf + 1;
    Kartenformen : constant Positive := Intro + 1;
-   Seitenleiste : constant Positive := Kartenformen + 1;
-   Allgemeines : constant Positive := Seitenleiste + 1;
+   Allgemeines : constant Positive := Kartenformen + 1;
    PZBEnde : constant Positive := Allgemeines + 1;
-   Auswahl : constant Positive := PZBEnde + 1;
-   Meldung : constant Positive := Auswahl + 1;
 
-   HintergründeAnfang : constant Positive := Meldung + 1;
-   HintergründeEnde : constant Positive := Meldung + SpeziesDatentypen.SpeziesnummernVorhanden'Last;
+   HintergründeAnfang : constant Positive := PZBEnde + 1;
+   HintergründeEnde : constant Positive := PZBEnde + SpeziesDatentypen.SpeziesnummernVorhanden'Last;
 
    EinheitenAnfang : constant Positive := HintergründeEnde + 1;
    EinheitenEnde : constant Positive := HintergründeEnde + SpeziesDatentypen.SpeziesnummernVorhanden'Last;

@@ -79,7 +79,12 @@ private
 
    procedure Bauaufteilung
      (BauprojektartExtern : in StadtDatentypen.Bauprojektart_Enum;
-      AktuelleAufteilungExtern : in StadtDatentypen.Bauprojektart_Enum);
+      AktuelleAufteilungExtern : in StadtDatentypen.Bauprojektart_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
 
    procedure Aktuell
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord)

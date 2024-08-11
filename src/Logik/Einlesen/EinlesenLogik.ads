@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Locales; use Ada.Locales;
 
-with SystemDatentypen;
+private with BetriebssystemDatentypen;
 
 package EinlesenLogik is
    pragma Elaborate_Body;
@@ -23,105 +23,105 @@ private
 
    end record;
 
-   type StandardsprachenArray is array (SystemDatentypen.Standardsprachen_Enum'Range) of SprachenRecord;
+   type StandardsprachenArray is array (BetriebssystemDatentypen.Standardsprachen_Enum'Range) of SprachenRecord;
    Standardsprachen : constant StandardsprachenArray := (
-                                                         SystemDatentypen.Arabisch_Enum =>
+                                                         BetriebssystemDatentypen.Arabisch_Enum =>
                                                            (
                                                             ISONummer => "aao",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Arabic")
                                                            ),
 
-                                                         SystemDatentypen.Chinesisch_Vereinfacht_Enum =>
+                                                         BetriebssystemDatentypen.Chinesisch_Vereinfacht_Enum =>
                                                            (
                                                             ISONummer => "cmn",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Chinese_Simplified")
                                                            ),
 
-                                                         SystemDatentypen.Dänisch_Enum =>
+                                                         BetriebssystemDatentypen.Dänisch_Enum =>
                                                            (
                                                             ISONummer => "dan",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Dansk")
                                                            ),
 
-                                                         SystemDatentypen.Deutsch_Enum =>
+                                                         BetriebssystemDatentypen.Deutsch_Enum =>
                                                            (
                                                             ISONummer => "deu",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Deutsch")
                                                            ),
 
-                                                         SystemDatentypen.Englisch_Enum =>
+                                                         BetriebssystemDatentypen.Englisch_Enum =>
                                                            (
                                                             ISONummer => "eng",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "English")
                                                            ),
 
-                                                         SystemDatentypen.Spanisch_Enum =>
+                                                         BetriebssystemDatentypen.Spanisch_Enum =>
                                                            (
                                                             ISONummer => "spa",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Espanol")
                                                            ),
 
-                                                         SystemDatentypen.Französisch_Enum =>
+                                                         BetriebssystemDatentypen.Französisch_Enum =>
                                                            (
                                                             ISONummer => "fra",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Francais")
                                                            ),
 
-                                                         SystemDatentypen.Griechisch_Enum =>
+                                                         BetriebssystemDatentypen.Griechisch_Enum =>
                                                            (
                                                             ISONummer => "gmy",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Greek")
                                                            ),
 
-                                                         SystemDatentypen.Indonesisch_Enum =>
+                                                         BetriebssystemDatentypen.Indonesisch_Enum =>
                                                            (
                                                             ISONummer => "ind",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Indonesia")
                                                            ),
 
-                                                         SystemDatentypen.Italienisch_Enum =>
+                                                         BetriebssystemDatentypen.Italienisch_Enum =>
                                                            (
                                                             ISONummer => "ita",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Italiano")
                                                            ),
 
-                                                         SystemDatentypen.Japanisch_Enum =>
+                                                         BetriebssystemDatentypen.Japanisch_Enum =>
                                                            (
                                                             ISONummer => "jpn",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Japanese")
                                                            ),
 
-                                                         SystemDatentypen.Koreanisch_Enum =>
+                                                         BetriebssystemDatentypen.Koreanisch_Enum =>
                                                            (
                                                             ISONummer => "kor",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Korean")
                                                            ),
 
-                                                         SystemDatentypen.Niederländisch_Enum =>
+                                                         BetriebssystemDatentypen.Niederländisch_Enum =>
                                                            (
                                                             ISONummer => "nld",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Nederlands")
                                                            ),
 
-                                                         SystemDatentypen.Norwegisch_Enum =>
+                                                         BetriebssystemDatentypen.Norwegisch_Enum =>
                                                            (
                                                             ISONummer => "nor",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Norsk")
                                                            ),
 
-                                                         SystemDatentypen.Polnisch_Enum =>
+                                                         BetriebssystemDatentypen.Polnisch_Enum =>
                                                            (
                                                             ISONummer => "pol",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Polska")
                                                            ),
 
-                                                         SystemDatentypen.Portugisisch_Enum =>
+                                                         BetriebssystemDatentypen.Portugisisch_Enum =>
                                                            (
                                                             ISONummer => "por",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Portugues")
                                                            ),
 
-                                                         SystemDatentypen.Ukrainisch_Enum =>
+                                                         BetriebssystemDatentypen.Ukrainisch_Enum =>
                                                            (
                                                             ISONummer => "ukr",
                                                             Sprache   => To_Unbounded_Wide_Wide_String (Source => "Ukrainian")

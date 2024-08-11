@@ -38,8 +38,8 @@ package TexturenfelderVariablenGrafik is
    
    
    
-   type HintergründeArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
-   Hintergründe : HintergründeArray;
+   type AllgemeinesSpezienArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   AllgemeinesSpezien : AllgemeinesSpezienArray;
    
    type EinheitenArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, EinheitenDatentypen.EinheitenIDVorhanden'Range) of Sf.Graphics.Rect.sfIntRect;
    Einheiten : EinheitenArray;
@@ -61,8 +61,6 @@ package TexturenfelderVariablenGrafik is
    
    type KartenformenArray is array (GrafikDatentypen.Hintergrund_Kartenformen_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
    Kartenformen : KartenformenArray;
-   
-   Auswahl : Sf.Graphics.Rect.sfIntRect;
    
    
    
@@ -234,30 +232,30 @@ package TexturenfelderVariablenGrafik is
                   FeldeffekteVektor'Result.y >= 0.00
                );
    
-   function HintergrundRechteck
-     (HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
+   function AllgemeinesSpezienRechteck
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  HintergrundRechteck'Result.left >= 0
+                  AllgemeinesSpezienRechteck'Result.left >= 0
                 and
-                  HintergrundRechteck'Result.top >= 0
+                  AllgemeinesSpezienRechteck'Result.top >= 0
                 and
-                  HintergrundRechteck'Result.width >= 0
+                  AllgemeinesSpezienRechteck'Result.width >= 0
                 and
-                  HintergrundRechteck'Result.height >= 0
+                  AllgemeinesSpezienRechteck'Result.height >= 0
                );
    
-   function HintergrundVektor
-     (HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
+   function AllgemeinesSpezienVektor
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  HintergrundVektor'Result.x >= 0.00
+                  AllgemeinesSpezienVektor'Result.x >= 0.00
                 and
-                  HintergrundVektor'Result.y >= 0.00
+                  AllgemeinesSpezienVektor'Result.y >= 0.00
                );
    
    function EinheitenRechteck
@@ -312,28 +310,30 @@ package TexturenfelderVariablenGrafik is
                   GebäudeVektor'Result.y >= 0.00
                );
    
-   function HintergrundRechteck
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum)
+   function AllgemeinesRechteck
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  HintergrundRechteck'Result.left >= 0
+                  AllgemeinesRechteck'Result.left >= 0
                 and
-                  HintergrundRechteck'Result.top >= 0
+                  AllgemeinesRechteck'Result.top >= 0
                 and
-                  HintergrundRechteck'Result.width >= 0
+                  AllgemeinesRechteck'Result.width >= 0
                 and
-                  HintergrundRechteck'Result.height >= 0
+                  AllgemeinesRechteck'Result.height >= 0
                );
    
-   function HintergrundVektor
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum)
+   function AllgemeinesVektor
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  HintergrundVektor'Result.x >= 0.00
+                  AllgemeinesVektor'Result.x >= 0.00
                 and
-                  HintergrundVektor'Result.y >= 0.00
+                  AllgemeinesVektor'Result.y >= 0.00
                );
    
    function KartenbefehleRechteck
@@ -384,8 +384,4 @@ package TexturenfelderVariablenGrafik is
                   EinheitenbefehleVektor'Result.y >= 0.00
                );
    
-private
-   
-   Zwischenspeicher : Sf.System.Vector2.sfVector2f;
-
 end TexturenfelderVariablenGrafik;

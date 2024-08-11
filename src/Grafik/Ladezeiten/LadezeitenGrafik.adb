@@ -49,7 +49,7 @@ package body LadezeitenGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Ladebereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
-                                     AbmessungenExtern => Viewfläche);
+                                    AbmessungenExtern => Viewfläche);
       
       case
         WelcheLadeanzeigeExtern

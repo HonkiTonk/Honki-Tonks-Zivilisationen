@@ -53,7 +53,7 @@ package body BauauswahlGebaeudeGrafik is
       end case;
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
-                                     AbmessungenExtern => ViewflächeInformationen);
+                                    AbmessungenExtern => ViewflächeInformationen);
       
       case
         AuswahlExtern
@@ -186,7 +186,7 @@ package body BauauswahlGebaeudeGrafik is
       end case;
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
-                                     AbmessungenExtern => ViewbereichBeschreibung.Viewbereich);
+                                    AbmessungenExtern => ViewbereichBeschreibung.Viewbereich);
       
       case
         AuswahlExtern

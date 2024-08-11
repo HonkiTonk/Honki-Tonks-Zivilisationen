@@ -34,7 +34,7 @@ package body DoppelmenueGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
-                                     AbmessungenExtern => Viewfläche (Auswahlbereich));
+                                    AbmessungenExtern => Viewfläche (Auswahlbereich));
       
       case
         WelchesMenüExtern
@@ -63,7 +63,7 @@ package body DoppelmenueGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
-                                     AbmessungenExtern => Viewfläche (Zusatzbereich));
+                                    AbmessungenExtern => Viewfläche (Zusatzbereich));
 
       Viewfläche (Zusatzbereich) := ZusatztextaufteilungGrafik.ZusatztextDoppelmenü (WelchesMenüExtern     => WelchesMenüExtern,
                                                                                        AktuelleAuswahlExtern => AktuelleAuswahlExtern,

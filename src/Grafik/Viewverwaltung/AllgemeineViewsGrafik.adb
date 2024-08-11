@@ -36,7 +36,7 @@ package body AllgemeineViewsGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Überschriftbereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => HintergrundExtern,
-                                     AbmessungenExtern => Viewfläche (Überschrift_Enum));
+                                    AbmessungenExtern => Viewfläche (Überschrift_Enum));
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
                                          str  => ÜberschriftExtern);
@@ -96,7 +96,7 @@ package body AllgemeineViewsGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Versionsbereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => HintergrundExtern,
-                                     AbmessungenExtern => Viewfläche (Versionsnummer_Enum));
+                                    AbmessungenExtern => Viewfläche (Versionsnummer_Enum));
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
                                                                               ViewbreiteExtern => Viewfläche (Versionsnummer_Enum).x);

@@ -3,11 +3,10 @@ with Ada.Strings.Wide_Wide_Fixed; use Ada.Strings.Wide_Wide_Fixed;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with Projekteinstellungen;
-with SystemDatentypen;
+with BetriebssystemDatentypen;
 
 with LeseOptionen;
 
--- Eventuell noch ein Zeichen für tausender Stellen hinzufügen? äöü
 package body UmwandlungenAdaEigenes is
    
    function ZahlAlsString
@@ -81,20 +80,25 @@ package body UmwandlungenAdaEigenes is
    is begin
       
       case
-        Projekteinstellungen.Einstellungen.Betriebssystem
+        Projekteinstellungen.Einstellungen.Stringkodierung
       is
-         when SystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypen.UTF8_Enum =>
             return Decode (Item         => TextExtern,
                            Input_Scheme => Ada.Strings.UTF_Encoding.UTF_8);
             
-         when others =>
+         when BetriebssystemDatentypen.UTF16BE_Enum =>
             return Decode (Item         => TextExtern,
-                           Input_Scheme => Ada.Strings.UTF_Encoding.UTF_8);
+                           Input_Scheme => Ada.Strings.UTF_Encoding.UTF_16BE);
+            
+            
+         when BetriebssystemDatentypen.UTF16LE_Enum =>
+            return Decode (Item         => TextExtern,
+                           Input_Scheme => Ada.Strings.UTF_Encoding.UTF_16LE);
       end case;
       
    end EigenesDecode;
    
-      
+   
    
    function EigenesDecodeUnbounded
      (TextExtern : in String)
@@ -113,16 +117,21 @@ package body UmwandlungenAdaEigenes is
    is begin
       
       case
-        Projekteinstellungen.Einstellungen.Betriebssystem
+        Projekteinstellungen.Einstellungen.Stringkodierung
       is
-         when SystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypen.UTF8_Enum =>
             return Encode (Item          => TextExtern,
                            Output_Scheme => Ada.Strings.UTF_Encoding.UTF_8,
                            Output_BOM    => False);
             
-         when others =>
+         when BetriebssystemDatentypen.UTF16BE_Enum =>
             return Encode (Item          => TextExtern,
-                           Output_Scheme => Ada.Strings.UTF_Encoding.UTF_8,
+                           Output_Scheme => Ada.Strings.UTF_Encoding.UTF_16BE,
+                           Output_BOM    => False);
+            
+         when BetriebssystemDatentypen.UTF16LE_Enum =>
+            return Encode (Item          => TextExtern,
+                           Output_Scheme => Ada.Strings.UTF_Encoding.UTF_16LE,
                            Output_BOM    => False);
       end case;
       

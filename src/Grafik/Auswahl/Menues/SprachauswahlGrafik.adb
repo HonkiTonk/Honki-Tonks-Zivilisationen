@@ -37,7 +37,7 @@ package body SprachauswahlGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Sprachenbereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
-                                     AbmessungenExtern => Viewfläche);
+                                    AbmessungenExtern => Viewfläche);
       
       -- Diese Werte später in die Prozedur übergeben, außer die Sprachen? äöü
       -- Gilt auch für die Spielstandauswahl. äöü

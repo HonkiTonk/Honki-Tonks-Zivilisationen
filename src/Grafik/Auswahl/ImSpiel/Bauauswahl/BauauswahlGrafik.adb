@@ -25,8 +25,6 @@ with TextaccessverwaltungssystemErweitertGrafik;
 with TexteinstellungenGrafik;
 with StandardtexteGrafik;
 
--- with Diagnoseinformationen;
-
 -- Kann man das so anpassen dass eine teilweise Verschmelzung mit VerkaufsauswahlGrafik möglich wäre? äöü
 package body BauauswahlGrafik is
 
@@ -41,7 +39,8 @@ package body BauauswahlGrafik is
                                           SpielenamenExtern => False);
       
       Bauaufteilung (BauprojektartExtern      => AktuelleAuswahlExtern.Bauprojektart,
-                     AktuelleAufteilungExtern => AktuelleAufteilungExtern);
+                     AktuelleAufteilungExtern => AktuelleAufteilungExtern,
+                     SpeziesExtern            => BauauswahlExtern.Spezies);
       
       case
         AktuelleAufteilungExtern
@@ -68,7 +67,8 @@ package body BauauswahlGrafik is
    
    procedure Bauaufteilung
      (BauprojektartExtern : in StadtDatentypen.Bauprojektart_Enum;
-      AktuelleAufteilungExtern : in StadtDatentypen.Bauprojektart_Enum)
+      AktuelleAufteilungExtern : in StadtDatentypen.Bauprojektart_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type StadtDatentypen.Bauprojektart_Enum;
    begin
@@ -139,7 +139,7 @@ package body BauauswahlGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBauliste));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
-                                     AbmessungenExtern => ViewflächeBauliste);
+                                    AbmessungenExtern => ViewflächeBauliste);
       
       case
         GebäudeEinheitExtern
@@ -396,7 +396,7 @@ package body BauauswahlGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüAktuell));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
-                                     AbmessungenExtern => ViewflächeAktuell);
+                                    AbmessungenExtern => ViewflächeAktuell);
       
       if
         BauauswahlExtern.Bauprojekt.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl

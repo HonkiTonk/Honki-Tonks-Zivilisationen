@@ -49,17 +49,23 @@ package ChangelogJuli2024 is
    
    
 
-   -- Version 0.05. => 0.05. (24.07.2024):
+   -- Version 0.05.8520 => 0.05. (24.07.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.8425 => 0.05. (23.07.2024):
+   -- Version 0.05.8425 => 0.05.8520 (23.07.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Projekteinstellungen erweitert.
+   -- Neue Grafiken für den Hintergrund erstellt.
+   -- Alte Grafiken überarbeitet.
+   -- Weiter am neuen Texturenanzeigesystem gearbeitet.
+   -- Code zusammengeführt.
+   -- Unnötigen Code gelöscht.
+   -- Fehler korrigiert der dafür sorgte das in einer Stadt die Umgebung keine Flüsse anzeigte.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 

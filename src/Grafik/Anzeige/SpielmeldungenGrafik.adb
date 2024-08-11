@@ -27,9 +27,9 @@ package body SpielmeldungenGrafik is
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MeldungsviewAccess,
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Meldungsbereich);
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Meldung_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche);
+            
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Hinweis_Enum,
+                                    AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       

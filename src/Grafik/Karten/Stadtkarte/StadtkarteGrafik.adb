@@ -37,11 +37,12 @@ package body StadtkarteGrafik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtKarte),
+            ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtKarte),
                                             GrößeExtern          => FensterGrafik.AktuelleAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtKarte));
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => StadtauswahlExtern.Koordinaten);
+      -- Der Fehler scheint in dieser Prozedur zu liegen! äöü
       GrafischeDarstellung (GrundExtern => Gesamtgrund);
       GebäudeZusatzinformationen := StadtKonstanten.LeerGebäudeID;
       
@@ -173,7 +174,7 @@ package body StadtkarteGrafik is
                                             AnzeigebereichExtern => LeseGrafikVariablen.InformationsfeldBereiche (WelcherBereichExtern => ViewKonstanten.InformationsfeldStadtkarte));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
-                                     AbmessungenExtern => Viewfläche);
+                                    AbmessungenExtern => Viewfläche);
       
       Gebäudetexte (1) := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudeIDExtern,
                                                                                                                    SpeziesExtern => SpeziesExtern));

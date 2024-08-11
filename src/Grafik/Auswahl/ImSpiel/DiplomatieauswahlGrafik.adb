@@ -44,7 +44,7 @@ package body DiplomatieauswahlGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
-                                     AbmessungenExtern => Viewfläche);
+                                    AbmessungenExtern => Viewfläche);
                   
       Viewfläche := Textdarstellung (ViewflächeExtern => Viewfläche,
                                       AuswahlExtern    => AuswahlExtern);

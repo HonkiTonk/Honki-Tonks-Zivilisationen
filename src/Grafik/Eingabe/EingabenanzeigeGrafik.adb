@@ -8,7 +8,6 @@ with ViewKonstanten;
 with TextnummernKonstanten;
 with EinheitenKonstanten;
 with GrafikKonstanten;
-with EingeleseneTexturenGrafik;
 
 with LeseEinheitenGebaut;
 with LeseLogiktask;
@@ -32,7 +31,7 @@ package body EingabenanzeigeGrafik is
       EingabeExtern : in GrafikDatentypen.Eingabe_Fragen_Enum)
    is begin
       
-      Frage (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
+      Frage (HintergrundExtern => GrafikDatentypen.Auswahl_Enum,
              FrageExtern       => To_Wide_Wide_String (Source => Spieltexte.Fragen (FrageExtern)));
       
       case
@@ -58,7 +57,7 @@ package body EingabenanzeigeGrafik is
    
    
    procedure Frage
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Anzeige_Durchsichtig_Enum;
       FrageExtern : in Wide_Wide_String)
    is begin
       
@@ -68,19 +67,9 @@ package body EingabenanzeigeGrafik is
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (ViewKonstanten.Frage),
                                             GrößeExtern          => FrageViewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Fragenbereich);
-      
-      HintergrundGrafik.HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.AuswahlAccess,
-                                        TexturbereichExtern => (0, 0, 10, 10),
-                                        AbmessungenExtern   => (1.00, 1.00));
-      
-      case
-        HintergrundExtern
-      is
-         when others =>
-            null;
-      end case;
-      -- HintergrundGrafik.Hintergrund (HintergrundExtern => HintergrundExtern,
-      --                               AbmessungenExtern => FrageViewfläche);
+            
+      HintergrundGrafik.Aufteilung (HintergrundExtern => HintergrundExtern,
+                                    AbmessungenExtern => FrageViewfläche);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
                                          str  => FrageExtern);
@@ -113,13 +102,9 @@ package body EingabenanzeigeGrafik is
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (ViewKonstanten.Antwort),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Eingabebereich);
-      
-      HintergrundGrafik.HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.AuswahlAccess,
-                                        TexturbereichExtern => (0, 0, 10, 10),
-                                        AbmessungenExtern   => (1.00, 1.00));
-      
-     -- HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
-     --                                AbmessungenExtern => Viewfläche);
+            
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Auswahl_Enum,
+                                    AbmessungenExtern => Viewfläche);
       
       case
         LeseGrafiktask.Vorzeicheneingabe
@@ -162,13 +147,9 @@ package body EingabenanzeigeGrafik is
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (ViewKonstanten.Antwort),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Eingabebereich);
-      
-      HintergrundGrafik.HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.AuswahlAccess,
-                                        TexturbereichExtern => (0, 0, 10, 10),
-                                        AbmessungenExtern   => (1.00, 1.00));
-      
-     -- HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
-     --                                AbmessungenExtern => Viewfläche);
+            
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Auswahl_Enum,
+                                    AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
@@ -203,13 +184,9 @@ package body EingabenanzeigeGrafik is
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (ViewKonstanten.Antwort),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.JaNeinBereich);
-      
-      HintergrundGrafik.HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.AuswahlAccess,
-                                        TexturbereichExtern => (0, 0, 10, 10),
-                                        AbmessungenExtern   => (1.00, 1.00));
-      
-     -- HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
-     --                                AbmessungenExtern => Viewfläche);
+            
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Auswahl_Enum,
+                                    AbmessungenExtern => Viewfläche);
             
       Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
@@ -273,12 +250,8 @@ package body EingabenanzeigeGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => Anzeigebereich);
       
-      HintergrundGrafik.HintergrundNeu (TexturAccessExtern  => EingeleseneTexturenGrafik.AuswahlAccess,
-                                        TexturbereichExtern => (0, 0, 10, 10),
-                                        AbmessungenExtern   => (1.00, 1.00));
-            
-     -- HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
-     --                                AbmessungenExtern => Viewfläche);
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Auswahl_Enum,
+                                    AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textbreite := GrafikKonstanten.Nullwert;

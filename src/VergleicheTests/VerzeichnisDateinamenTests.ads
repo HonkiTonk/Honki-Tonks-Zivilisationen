@@ -1,9 +1,9 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Directories; use Ada.Directories;
 
-with SystemDatentypen;
-
+private with SystemDatentypen;
 private with VerzeichnisKonstanten;
+private with BetriebssystemDatentypen;
 
 package VerzeichnisDateinamenTests is
    pragma Elaborate_Body;
@@ -73,8 +73,8 @@ private
 
    Text : Unbounded_Wide_Wide_String;
 
-   type ZeichenabzugArray is array (SystemDatentypen.Betriebsystem_Zeichenabzug_Enum'Range, SystemDatentypen.Zeichenabzug_Enum'Range) of Natural;
-   Zeichenabzug : constant ZeichenabzugArray := (SystemDatentypen.Windows_Enum =>
+   type ZeichenabzugArray is array (BetriebssystemDatentypen.Betriebsystem_Zeichenabzug_Enum'Range, SystemDatentypen.Zeichenabzug_Enum'Range) of Natural;
+   Zeichenabzug : constant ZeichenabzugArray := (BetriebssystemDatentypen.Windows_Enum =>
                                                    (
                                                     SystemDatentypen.Speichern_Enum => VerzeichnisKonstanten.ExtrazeichenSpielstand,
                                                     SystemDatentypen.Text_Enum      => 0,

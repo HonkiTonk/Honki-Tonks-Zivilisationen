@@ -27,4 +27,12 @@ private
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
+
+
+   function Skalierungsberechnung
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      TexturflächeExtern : in Sf.System.Vector2.sfVector2f;
+      FelderanzahlExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f;
+
 end ZusatztextKartenformGrafik;

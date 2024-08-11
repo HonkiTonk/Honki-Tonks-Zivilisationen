@@ -23,8 +23,10 @@ package HintergrundGrafik is
               );
 
    procedure Hintergrund
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
-      AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      AbmessungenExtern : in Sf.System.Vector2.sfVector2f;
+      HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum)
      with
        Pre => (
                  AbmessungenExtern.x >= 0.00
@@ -33,29 +35,6 @@ package HintergrundGrafik is
               );
 
    procedure HintergrundPositionierbar
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
-      AbmessungenExtern : in Sf.System.Vector2.sfVector2f;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigkeitExtern : in Sf.sfUint8)
-     with
-       Pre => (
-                 AbmessungenExtern.x >= 0.00
-               and
-                 AbmessungenExtern.y >= 0.00
-              );
-
-   procedure HintergrundNeu
-     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
-      AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 AbmessungenExtern.x >= 0.00
-               and
-                 AbmessungenExtern.y >= 0.00
-              );
-
-   procedure HintergrundPositionierbarNeu
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f;
@@ -66,6 +45,10 @@ package HintergrundGrafik is
                  AbmessungenExtern.x >= 0.00
                and
                  AbmessungenExtern.y >= 0.00
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
 
    -- Spezies kann hier nicht geprrüft werden da der Abspann eventuell ohne belegte Spezies ankommt!
@@ -82,11 +65,12 @@ package HintergrundGrafik is
 
 private
 
+   AktuelleSpezies : SpeziesDatentypen.Spezies_Enum;
+
    Skalierung : Sf.System.Vector2.sfVector2f;
 
    Farbe : Sf.Graphics.Color.sfColor;
 
-   HintergrundSpritePositionierbarAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
    SpezieshintergrundSpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
 end HintergrundGrafik;

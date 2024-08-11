@@ -62,7 +62,7 @@ private
    procedure AnzeigeJaNein;
    
    procedure Frage
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Anzeige_Durchsichtig_Enum;
       FrageExtern : in Wide_Wide_String);
    
    

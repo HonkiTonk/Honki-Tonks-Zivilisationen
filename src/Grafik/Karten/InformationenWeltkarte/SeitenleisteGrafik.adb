@@ -54,7 +54,7 @@ package body SeitenleisteGrafik is
       end case;
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Seitenleiste_Enum,
-                                     AbmessungenExtern => Viewbereich.Viewbereich);
+                                    AbmessungenExtern => Viewbereich.Viewbereich);
       
       AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
       Textposition := (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, TextberechnungenHoeheGrafik.KleinerZeilenabstand);

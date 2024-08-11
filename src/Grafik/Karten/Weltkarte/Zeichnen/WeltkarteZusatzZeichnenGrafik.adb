@@ -43,9 +43,9 @@ package body WeltkarteZusatzZeichnenGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccess,
-                                                               TexturbereichExtern    => TexturenfelderVariablenGrafik.WegeRechteck (WegExtern => Wegfeld),
-                                                               PositionExtern         => PositionExtern,
-                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.WegeRechteck (WegExtern => Wegfeld),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;
       
    end WegZeichnen;
@@ -85,9 +85,9 @@ package body WeltkarteZusatzZeichnenGrafik is
       end case;
       
       KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccess,
-                                                         TexturbereichExtern    => TexturenfelderVariablenGrafik.VerbesserungRechteck (VerbesserungExtern => Verbesserungsfeld),
-                                                         PositionExtern         => PositionExtern,
-                                                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+                                                      TexturbereichExtern    => TexturenfelderVariablenGrafik.VerbesserungRechteck (VerbesserungExtern => Verbesserungsfeld),
+                                                      PositionExtern         => PositionExtern,
+                                                      DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       
    end VerbesserungZeichnen;
    
@@ -220,12 +220,12 @@ package body WeltkarteZusatzZeichnenGrafik is
       
          Textgröße := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtnameKarteAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtnameKarteAccess).height);
          Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textgröße.x,
-                                                                 -- Die erlaubte Breite unabhängig/unabhängiger von der Kartfenfeldgröße gestalten. äöü
-                                                                 ErlaubteBreiteExtern => 5.00 * SichtweitenGrafik.Kartenfeldfläche.x);
+                                                             -- Die erlaubte Breite unabhängig/unabhängiger von der Kartfenfeldgröße gestalten. äöü
+                                                             ErlaubteBreiteExtern => 5.00 * SichtweitenGrafik.Kartenfeldfläche.x);
          Skalierung.y := 0.70;
       
          TextaccessverwaltungssystemEinfachGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.StadtnameKarteAccess,
-                                                      SkalierungExtern => Skalierung);
+                                                             SkalierungExtern => Skalierung);
       
          Textposition.x := PositionExtern.x
            - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.StadtnameKarteAccess) + SichtweitenGrafik.Kartenfeldfläche.x / GrafikKonstanten.Halbierung;
@@ -255,13 +255,15 @@ package body WeltkarteZusatzZeichnenGrafik is
             Textposition.y := PositionExtern.y;
       end case;
       
-      HintergrundGrafik.HintergrundPositionierbar (HintergrundExtern      => GrafikDatentypen.Auswahl_Hintergrund_Enum,
-                                                   AbmessungenExtern      => (Textgröße.x * Skalierung.x * 1.02, Textgröße.y),
-                                                   PositionExtern         => Textposition,
-                                                   DurchsichtigkeitExtern => GrafikKonstanten.Bewegungsfeldtransparents);
+      HintergrundGrafik.HintergrundPositionierbar (TexturAccessExtern     => EingeleseneTexturenGrafik.AllgemeinesAccess,
+                                                      TexturbereichExtern    => TexturenfelderVariablenGrafik.AllgemeinesRechteck (HintergrundExtern => GrafikDatentypen.Auswahl_Enum,
+                                                                                                                                   SpeziesExtern     => SpeziesDatentypen.Leer_Spezies_Enum),
+                                                      AbmessungenExtern      => (Textgröße.x * Skalierung.x * 1.02, Textgröße.y),
+                                                      PositionExtern         => Textposition,
+                                                      DurchsichtigkeitExtern => GrafikKonstanten.Bewegungsfeldtransparents);
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtnameKarteAccess,
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
    end StadtnameAnzeigen;
    
@@ -282,9 +284,9 @@ package body WeltkarteZusatzZeichnenGrafik is
          is
             when True =>
                KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.FeldeffekteAccess,
-                                                                  TexturbereichExtern    => TexturenfelderVariablenGrafik.FeldeffekteRechteck (FeldeffektedExtern => EffektSchleifenwert),
-                                                                  PositionExtern         => PositionExtern,
-                                                                  DurchsichtigkeitExtern => GrafikKonstanten.Feldeffekttransparents);
+                                                               TexturbereichExtern    => TexturenfelderVariablenGrafik.FeldeffekteRechteck (FeldeffektedExtern => EffektSchleifenwert),
+                                                               PositionExtern         => PositionExtern,
+                                                               DurchsichtigkeitExtern => GrafikKonstanten.Feldeffekttransparents);
                
             when False =>
                null;

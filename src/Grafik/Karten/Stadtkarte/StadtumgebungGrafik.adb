@@ -219,6 +219,7 @@ package body StadtumgebungGrafik is
    
    
    
+   -- Hier auch noch Einheiten zeichnen lassen? äöü
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
@@ -229,13 +230,13 @@ package body StadtumgebungGrafik is
                           FeldgrößeExtern   => FeldgrößeExtern,
                           PositionExtern    => PositionExtern);
       
-      RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
-                         FeldgrößeExtern   => FeldgrößeExtern,
-                         PositionExtern    => PositionExtern);
-      
       FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
                      FeldgrößeExtern   => FeldgrößeExtern,
                      PositionExtern    => PositionExtern);
+      
+      RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+                         FeldgrößeExtern   => FeldgrößeExtern,
+                         PositionExtern    => PositionExtern);
       
       WegZeichnen (KoordinatenExtern => KoordinatenExtern,
                    FeldgrößeExtern   => FeldgrößeExtern,
@@ -298,7 +299,7 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.FeldeffekteAccess,
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.FlussAccess,
                                                                       TexturbereichExtern => TexturenfelderVariablenGrafik.FlussRechteck (FlussExtern => KartenfeldFluss),
                                                                       FeldgrößeExtern     => FeldgrößeExtern,
                                                                       PositionExtern      => PositionExtern);

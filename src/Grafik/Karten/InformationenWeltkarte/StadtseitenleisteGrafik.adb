@@ -37,7 +37,7 @@ package body StadtseitenleisteGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Seitenleiste_Enum,
-                                     AbmessungenExtern => Viewfläche);
+                                    AbmessungenExtern => Viewfläche);
       
       Viewfläche.y := Stadtanzeige (SpeziesExtern            => StadtauswahlExtern.SpeziesNummer.Spezies,
                                      StadtauswahlExtern       => StadtauswahlExtern,

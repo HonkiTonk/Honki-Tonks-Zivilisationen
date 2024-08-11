@@ -44,7 +44,7 @@ package body VerkaufsauswahlGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudelisteVerkaufen));
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Bauen_Enum,
-                                     AbmessungenExtern => Viewfläche);
+                                    AbmessungenExtern => Viewfläche);
                   
       Viewfläche.y := BauauswahlGrafik.Gebäude (AuswahlExtern        => AuswahlExtern,
                                                   SpeziesExtern        => SpeziesExtern,

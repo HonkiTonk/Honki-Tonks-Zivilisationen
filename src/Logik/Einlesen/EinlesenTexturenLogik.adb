@@ -121,12 +121,7 @@ package body EinlesenTexturenLogik is
                  AktuelleZeile = Kartenformen
                then
                   EingeleseneTexturenGrafik.KartenformenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
-                  
-               elsif
-                 AktuelleZeile = Seitenleiste
-               then
-                  EingeleseneTexturenGrafik.SeitenleisteAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
-                  
+                                    
                elsif
                  AktuelleZeile = Allgemeines
                then
@@ -136,21 +131,11 @@ package body EinlesenTexturenLogik is
                  AktuelleZeile = PZBEnde
                then
                   EingeleseneTexturenGrafik.PZBEndeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
-                  
-               elsif
-                 AktuelleZeile = Auswahl
-               then
-                  EingeleseneTexturenGrafik.AuswahlAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
-                  
-               elsif
-                 AktuelleZeile = Meldung
-               then
-                  EingeleseneTexturenGrafik.MeldungAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
-                  
+                                    
                elsif
                  AktuelleZeile in HintergründeAnfang .. HintergründeEnde
                then
-                  EingeleseneTexturenGrafik.HintergrundAccessGesamt (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - HintergründeAnfang + 1))
+                  EingeleseneTexturenGrafik.AllgemeinesSpezienAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - HintergründeAnfang + 1))
                     := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif

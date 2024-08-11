@@ -154,27 +154,28 @@ package body TexturenfelderVariablenGrafik is
    
    
    
-   function HintergrundRechteck
-     (HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
+   function AllgemeinesSpezienRechteck
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return Hintergründe (SpeziesExtern, HintergrundExtern);
+      return AllgemeinesSpezien (SpeziesExtern, HintergrundExtern);
       
-   end HintergrundRechteck;
+   end AllgemeinesSpezienRechteck;
    
    
    
-   function HintergrundVektor
-     (HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
+   function AllgemeinesSpezienVektor
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Hintergründe (SpeziesExtern, HintergrundExtern).width), Float (Hintergründe (SpeziesExtern, HintergrundExtern).height));
+      return (Float (AllgemeinesSpezien (SpeziesExtern, HintergrundExtern).width), Float (AllgemeinesSpezien (SpeziesExtern, HintergrundExtern).height));
       
-   end HintergrundVektor;
+   end AllgemeinesSpezienVektor;
+   
    
    
    -- Einheiten/Gebäude und Spezies in den gemeinsamen Record umwandeln. äöü
@@ -226,8 +227,9 @@ package body TexturenfelderVariablenGrafik is
    
    
    
-   function HintergrundRechteck
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum)
+   function AllgemeinesRechteck
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
@@ -247,7 +249,7 @@ package body TexturenfelderVariablenGrafik is
             return Allgemeines (HintergrundExtern);
             
          when GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum'Range =>
-            null;
+            return AllgemeinesSpezien (SpeziesExtern, HintergrundExtern);
             
          when GrafikDatentypen.Hintergrund_Outro_Enum'Range =>
             null;
@@ -255,12 +257,13 @@ package body TexturenfelderVariablenGrafik is
       
       return (1, 1, 1, 1);
       
-   end HintergrundRechteck;
+   end AllgemeinesRechteck;
    
    
    
-   function HintergrundVektor
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum)
+   function AllgemeinesVektor
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Gesamt_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -268,27 +271,27 @@ package body TexturenfelderVariablenGrafik is
         HintergrundExtern
       is
          when GrafikDatentypen.Hintergrund_Intro_Enum'Range =>
-            Zwischenspeicher := (Float (Intro (HintergrundExtern).width), Float (Intro (HintergrundExtern).height));
+            return (Float (Intro (HintergrundExtern).width), Float (Intro (HintergrundExtern).height));
             
          when GrafikDatentypen.Hintergrund_Kartenformen_Enum'Range =>
-            Zwischenspeicher := (Float (Kartenformen (HintergrundExtern).width), Float (Kartenformen (HintergrundExtern).height));
+            return (Float (Kartenformen (HintergrundExtern).width), Float (Kartenformen (HintergrundExtern).height));
             
          when GrafikDatentypen.Hintergrund_Einheitenbefehle_Enum'Range =>
             null;
             
          when GrafikDatentypen.Hintergrund_Anzeige_Enum'Range =>
-            Zwischenspeicher := (Float (Allgemeines (HintergrundExtern).width), Float (Allgemeines (HintergrundExtern).height));
+            return (Float (Allgemeines (HintergrundExtern).width), Float (Allgemeines (HintergrundExtern).height));
             
          when GrafikDatentypen.Hintergrund_Spezienspezifisch_Anzeige_Enum'Range =>
-            null;
+            return (Float (AllgemeinesSpezien (SpeziesExtern, HintergrundExtern).width), Float (AllgemeinesSpezien (SpeziesExtern, HintergrundExtern).height));
                         
          when GrafikDatentypen.Hintergrund_Outro_Enum'Range =>
             null;
       end case;
       
-      return Zwischenspeicher;
+      return (1.00, 1.00);
       
-   end HintergrundVektor;
+   end AllgemeinesVektor;
    
    
    
