@@ -1,5 +1,6 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Directories; use Ada.Directories;
 
 private with SpeziesDatentypen;
 
@@ -7,6 +8,11 @@ package EinlesenTexturenLogik is
    pragma Elaborate_Body;
 
    procedure EinlesenTexturen;
+
+
+
+   function Texturenauswahl
+     return Boolean;
 
 private
 
@@ -37,9 +43,19 @@ private
    AktuelleZeile : Positive;
    EinzulesendeZeile : Positive;
 
+   SchleifenAbzug : Natural;
+
    Dateiname : Unbounded_Wide_Wide_String;
    GesamterPfad : Unbounded_Wide_Wide_String;
+   Verzeichnisname : Unbounded_Wide_Wide_String;
+   Zwischenspeicher : Unbounded_Wide_Wide_String;
 
    DateiTexturen : File_Type;
+
+   Suche : Search_Type;
+
+   Verzeichnis : Directory_Entry_Type;
+
+   procedure TexturenSortieren;
 
 end EinlesenTexturenLogik;

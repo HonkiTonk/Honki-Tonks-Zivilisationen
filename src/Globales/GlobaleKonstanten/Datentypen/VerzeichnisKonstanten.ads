@@ -39,11 +39,14 @@ package VerzeichnisKonstanten is
    
    
    NullDatei : constant String (1 .. 2) := "/0";
+   NullDateiWideWide : constant Wide_Wide_String (NullDatei'Range) := "/0";
    FontDatei : constant String (1 .. 2) := "/1";
    
    
    
-   Grafik : constant String (1 .. 15) := "Grafik/Standard";
+   GrafikOhneStrich : constant String (1 .. 6) := "Grafik";
+   GrafikEinfach : constant String (1 .. 7) := "Grafik/";
+   Grafik : constant Wide_Wide_String (1 .. 7) := "Grafik/";
    Musik : constant String (1 .. 14) := "Musik/Standard";
    Sound : constant String (1 .. 14) := "Sound/Standard";
    

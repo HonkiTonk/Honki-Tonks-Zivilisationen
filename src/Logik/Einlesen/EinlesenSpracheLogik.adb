@@ -11,7 +11,7 @@ package body EinlesenSpracheLogik is
      return Boolean
    is begin
       
-      TextArrays.SprachenEinlesen := (others => TextKonstanten.LeerUnboundedString);
+      TextArrays.SprachenTexturenEinlesen := (others => TextKonstanten.LeerUnboundedString);
             
       Start_Search (Search    => Suche,
                     Directory => VerzeichnisKonstanten.Sprachen,
@@ -53,17 +53,17 @@ package body EinlesenSpracheLogik is
             null;
             
          else
-            Test := To_Unbounded_Wide_Wide_String (Source => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)));
+            Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)));
             
             VerzeichnisInnenSchleife:
-            for SpracheSchleifenwert in TextArrays.SprachenEinlesen'Range loop
+            for SpracheSchleifenwert in TextArrays.SprachenTexturenEinlesen'Range loop
                if
-                 TextArrays.SprachenEinlesen (SpracheSchleifenwert) /= TextKonstanten.LeerUnboundedString
+                 TextArrays.SprachenTexturenEinlesen (SpracheSchleifenwert) /= TextKonstanten.LeerUnboundedString
                then
                   null;
             
                else
-                  TextArrays.SprachenEinlesen (SpracheSchleifenwert) := Test;
+                  TextArrays.SprachenTexturenEinlesen (SpracheSchleifenwert) := Verzeichnisname;
                   exit VerzeichnisInnenSchleife;
                end if;
          
@@ -75,7 +75,7 @@ package body EinlesenSpracheLogik is
       End_Search (Search => Suche);
       
       if
-        TextArrays.SprachenEinlesen (1) = TextKonstanten.LeerUnboundedString
+        TextArrays.SprachenTexturenEinlesen (1) = TextKonstanten.LeerUnboundedString
       then
          return False;
          
@@ -92,10 +92,10 @@ package body EinlesenSpracheLogik is
    is begin
             
       SortierSchleife:
-      for PositionSchleifenwert in TextArrays.SprachenEinlesen'First + 1 .. TextArrays.SprachenEinlesen'Last loop
+      for PositionSchleifenwert in TextArrays.SprachenTexturenEinlesen'First + 1 .. TextArrays.SprachenTexturenEinlesen'Last loop
          
          if
-           TextArrays.SprachenEinlesen (PositionSchleifenwert) = TextKonstanten.LeerUnboundedString
+           TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             exit SortierSchleife;
             
@@ -105,9 +105,9 @@ package body EinlesenSpracheLogik is
             loop
                
                if
-                 PositionSchleifenwert - SchleifenAbzug > TextArrays.SprachenEinlesen'First
+                 PositionSchleifenwert - SchleifenAbzug > TextArrays.SprachenTexturenEinlesen'First
                  and then
-                   TextArrays.SprachenEinlesen (PositionSchleifenwert) < TextArrays.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
+                   TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert) < TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
                then
                   SchleifenAbzug := SchleifenAbzug + 1;
                   
@@ -124,9 +124,9 @@ package body EinlesenSpracheLogik is
                   VerschiebungSchleife:
                   while SchleifenAbzug > 0 loop
                      
-                     ZwischenSpeicher := TextArrays.SprachenEinlesen (PositionSchleifenwert);
-                     TextArrays.SprachenEinlesen (PositionSchleifenwert) := TextArrays.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug);
-                     TextArrays.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug) := ZwischenSpeicher;
+                     Zwischenspeicher := TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert);
+                     TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert) := TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert - SchleifenAbzug);
+                     TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert - SchleifenAbzug) := Zwischenspeicher;
                      SchleifenAbzug := SchleifenAbzug - 1;
                      
                   end loop VerschiebungSchleife;

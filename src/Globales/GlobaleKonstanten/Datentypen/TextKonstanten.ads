@@ -24,4 +24,6 @@ package TextKonstanten is
    LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
    LeerzeichenUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => Leerzeichen);
    
+   Standardtexturen : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "Standard");
+   
 end TextKonstanten;

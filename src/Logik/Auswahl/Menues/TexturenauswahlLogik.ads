@@ -2,30 +2,30 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with TextArrays;
 
-package SprachauswahlLogik is
+package TexturenauswahlLogik is
    pragma Elaborate_Body;
-      
-   AktuelleSprachen : TextArrays.SprachenArray;
+   
+   AktuelleTexturen : TextArrays.SprachenArray;
    
    
-   
-   function AuswahlSprache
+
+   function AuswahlTexturen
      return Unbounded_Wide_Wide_String;
-   
+
 private
-
+   
    MehrereSeiten : Boolean;
-
+   
    Ende : Positive;
-      
+   
    ZehnerReihe : Natural;
    AktuelleAuswahl : Natural;
    
-   procedure SprachenListeFestlegen;
+   procedure TexturenlisteFestlegen;
    
    
    
-   function AuswahlSpracheSFML
+   function AuswahlTexturenSFML
      return Unbounded_Wide_Wide_String;
-
-end SprachauswahlLogik;
+   
+end TexturenauswahlLogik;

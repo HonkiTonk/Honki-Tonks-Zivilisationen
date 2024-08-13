@@ -4,6 +4,7 @@ with MenueDatentypen;
 with ZeitKonstanten;
 with GrafikKonstanten;
 with ZahlenDatentypen;
+with TextKonstanten;
 
 with SchreibeEinstellungenGrafik;
 with LeseEinstellungenGrafik;
@@ -11,11 +12,14 @@ with SchreibeLogiktask;
 with LeseLogiktask;
 with SchreibeGrafiktask;
 with LeseGrafiktask;
+with SchreibeOptionen;
 
 with AuswahlaufteilungLogik;
 with ZahleneingabeLogik;
 with Fehlermeldungssystem;
 with SchreibenEinstellungenLogik;
+with EinlesenTexturenLogik;
+with TexturenauswahlLogik;
 
 package body OptionenGrafikLogik is
 
@@ -53,6 +57,9 @@ package body OptionenGrafikLogik is
                SchreibeEinstellungenGrafik.BildrateAnzeigen;
                
             when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+               TexturenWechseln;
+               
+            when RueckgabeDatentypen.Auswahl_Acht_Enum =>
                SchreibenEinstellungenLogik.Grafikeinstellungen;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
@@ -177,5 +184,32 @@ package body OptionenGrafikLogik is
       end loop ErzeugungNeuesFensterAbwartenSchleife;
       
    end VollbildFenster;
+   
+   
+   
+   procedure TexturenWechseln
+   is begin
+      
+      case
+        EinlesenTexturenLogik.Texturenauswahl
+      is
+         when True =>
+            GewählteTexturen := TexturenauswahlLogik.AuswahlTexturen;
+            
+            if
+              GewählteTexturen = TextKonstanten.LeerUnboundedString
+            then
+               null;
+               
+            else
+               SchreibeOptionen.Texturen (TexturenExtern => GewählteTexturen);
+               EinlesenTexturenLogik.EinlesenTexturen;
+            end if;
+            
+         when False =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenGrafikLogik.TexturenWechseln: Texturen nicht gefunden.");
+      end case;
+        
+   end TexturenWechseln;
 
 end OptionenGrafikLogik;

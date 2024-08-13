@@ -1,18 +1,17 @@
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
-private with Sf.Graphics;
+private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
 private with Sf.Graphics.ConvexShape;
-private with Sf.System.Vector2;
 
-private with GrafikRecordKonstanten;
 private with TextArrays;
+private with GrafikRecordKonstanten;
 
-package SprachauswahlGrafik is
+package TexturenauswahlGrafik is
    pragma Elaborate_Body;
+
+   procedure Texturenauswahl;
    
-   procedure Sprachauswahl;
-    
 private
    
    MehrereSeitenVorhanden : Boolean;
@@ -28,13 +27,11 @@ private
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
-            
+   
    AktuelleTextFarbe : Sf.Graphics.Color.sfColor;
    
-   SchriftartAccess : Sf.Graphics.sfFont_Ptr := null;
-      
    PfeilAccess : constant Sf.Graphics.sfConvexShape_Ptr := Sf.Graphics.ConvexShape.create;
    
-   AktuelleSprachen : TextArrays.SprachenArray;
+   AktuelleTexturen : TextArrays.SprachenArray;
 
-end SprachauswahlGrafik;
+end TexturenauswahlGrafik;

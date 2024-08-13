@@ -9,6 +9,7 @@ package SystemRecords is
    type NutzerEinstellungenRecord is record
       
       Sprache : Unbounded_Wide_Wide_String;
+      Texturen : Unbounded_Wide_Wide_String;
       
       AnzahlAutospeichern : ZahlenDatentypen.EigenesNatural;
       RundenAutospeichern : ZahlenDatentypen.EigenesPositive;

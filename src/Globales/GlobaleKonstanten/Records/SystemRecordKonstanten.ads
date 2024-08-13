@@ -16,6 +16,7 @@ package SystemRecordKonstanten is
 
    StandardNutzereinstellungen : constant SystemRecords.NutzerEinstellungenRecord := (
                                                                                       Sprache                   => TextKonstanten.LeerUnboundedString,
+                                                                                      Texturen                  => TextKonstanten.Standardtexturen,
                                                                                       AnzahlAutospeichern       => 10,
                                                                                       RundenAutospeichern       => 10,
                                                                                       Dezimaltrennzeichen       => ',',

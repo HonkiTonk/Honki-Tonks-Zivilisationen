@@ -12,6 +12,16 @@ package body LeseOptionen is
    
    
    
+   function Texturen
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      return OptionenVariablen.NutzerEinstellungen.Texturen;
+      
+   end Texturen;
+   
+   
+   
    function AnzahlAutospeichern
      return ZahlenDatentypen.EigenesNatural
    is begin

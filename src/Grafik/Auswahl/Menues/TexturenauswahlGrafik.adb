@@ -1,33 +1,28 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Directories; use Ada.Directories;
 
 with Sf.Graphics.Text;
-with Sf.Graphics.Font;
 
 with GrafikDatentypen;
+with Views;
+with ViewKonstanten;
+with GrafikKonstanten;
 with InteraktionAuswahl;
 with TextaccessVariablen;
-with Views;
-with GrafikKonstanten;
-with VerzeichnisKonstanten;
-with ViewKonstanten;
 
 with LeseGrafiktask;
 
-with TextberechnungenBreiteGrafik;
-with TextberechnungenHoeheGrafik;
-with TexteinstellungenGrafik;
-with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with TextaccessverwaltungssystemEinfachGrafik;
-with KonvexverwaltungssystemGrafik;
+with ViewsEinstellenGrafik;
+with TexturenauswahlLogik;
+with TextberechnungenHoeheGrafik;
 with TextfarbeGrafik;
-with SprachauswahlLogik;
-with UmwandlungenAdaEigenes;
+with TextaccessverwaltungssystemEinfachGrafik;
+with TextberechnungenBreiteGrafik;
+with KonvexverwaltungssystemGrafik;
 
-package body SprachauswahlGrafik is
-   
-   procedure Sprachauswahl
+package body TexturenauswahlGrafik is
+
+   procedure Texturenauswahl
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
@@ -44,14 +39,14 @@ package body SprachauswahlGrafik is
       MehrereSeitenVorhanden := LeseGrafiktask.Seitenauswahl;
       AktuelleAuswahl := LeseGrafiktask.Erstauswahl;
       Ende := LeseGrafiktask.Endauswahl;
-      AktuelleSprachen := SprachauswahlLogik.AktuelleSprachen;
+      AktuelleTexturen := TexturenauswahlLogik.AktuelleTexturen;
       
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       
       AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       AnzeigeSchleife:
-      for ZeileSchleifenwert in AktuelleSprachen'Range loop
+      for ZeileSchleifenwert in AktuelleTexturen'Range loop
          
          AktuelleTextFarbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => ZeileSchleifenwert,
                                                                      AuswahlExtern    => AktuelleAuswahl);
@@ -63,31 +58,8 @@ package body SprachauswahlGrafik is
               and
                 ZeileSchleifenwert < Ende)
          then
-            if
-              Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => AktuelleSprachen (ZeileSchleifenwert)) & VerzeichnisKonstanten.FontDatei) = False
-            then
-               NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.StandardSchriftartVerwenden);
-            
-            else
-               NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))));
-            end if;
-            
-            if
-              NeuerPfad /= AktuellerPfad
-            then
-               AktuellerPfad := NeuerPfad;
-               -- Muss imemr erst destroyed werden da es sonst bei der Verwendung mehrerer Fonts zu einem Speicherleck kommt.
-               Sf.Graphics.Font.destroy (font => SchriftartAccess);
-               SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => To_String (Source => AktuellerPfad));
-               Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
-                                         font => SchriftartAccess);
-               
-            else
-               null;
-            end if;
-            
             TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                                TextExtern       => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)),
+                                                                TextExtern       => To_Wide_Wide_String (Source => AktuelleTexturen (ZeileSchleifenwert)),
                                                                 FarbeExtern      => AktuelleTextFarbe);
             
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
@@ -104,7 +76,7 @@ package body SprachauswahlGrafik is
          elsif
            MehrereSeitenVorhanden
            and
-             ZeileSchleifenwert = AktuelleSprachen'Last
+             ZeileSchleifenwert = AktuelleTexturen'Last
          then
             Textposition.y := Textposition.y + 3.00 * TextberechnungenHoeheGrafik.Zeilenabstand;
             
@@ -143,6 +115,6 @@ package body SprachauswahlGrafik is
             
       Viewfläche := (AktuelleTextbreite, Textposition.y);
       
-   end Sprachauswahl;
+   end Texturenauswahl;
 
-end SprachauswahlGrafik;
+end TexturenauswahlGrafik;

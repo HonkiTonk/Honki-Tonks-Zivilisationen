@@ -1,3 +1,5 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 private with Sf.System.Vector2;
 
 with RueckgabeDatentypen;
@@ -14,6 +16,8 @@ private
 
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
+   GewählteTexturen : Unbounded_Wide_Wide_String;
+
    EingabeAuflösung : SystemRecords.ZahlenEingabeRecord;
    EingabeBildrate : SystemRecords.ZahlenEingabeRecord;
 
@@ -22,5 +26,6 @@ private
    procedure AuflösungÄndern;
    procedure BildrateÄndern;
    procedure VollbildFenster;
+   procedure TexturenWechseln;
 
 end OptionenGrafikLogik;

@@ -5,7 +5,7 @@ package GrafikDatentypen is
                                   Start_Enum, Intro_Enum, Abspann_Enum,
                                   Pause_Enum,
                                   Generierungszeit_Enum, KI_Rechenzeit_Enum, Rundenende_Enum, Speichern_Laden_Enum,
-                                  Menüs_Enum, Sprache_Enum,
+                                  Menüs_Enum, Sprache_Enum, Texturen_Enum,
                                   Editoren_Enum,
                                   Weltkarte_Enum, Stadtumgebung_Enum, Stadtkarte_Enum,
                                   Forschung_Enum, Forschungserfolg_Enum,

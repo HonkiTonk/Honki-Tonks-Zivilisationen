@@ -49,6 +49,9 @@ package body SchreibenEinstellungenLogik is
       
       Boolean'Write (Stream (File => DateiNutzereinstellungen),
                      LeseOptionen.SicherheitsfragenAnzeigen);
+      
+      Unbounded_Wide_Wide_String'Write (Stream (File => DateiNutzereinstellungen),
+                                        LeseOptionen.Texturen);
       -- SystemRecords.NutzerEinstellungenRecord
       
       Close (File => DateiNutzereinstellungen);

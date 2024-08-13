@@ -9,6 +9,10 @@ package LeseOptionen is
      return Unbounded_Wide_Wide_String;
    pragma Inline (Sprache);
    
+   function Texturen
+     return Unbounded_Wide_Wide_String;
+   pragma Inline (Texturen);
+   
    function AnzahlAutospeichern
      return ZahlenDatentypen.EigenesNatural;
    pragma Inline (AnzahlAutospeichern);

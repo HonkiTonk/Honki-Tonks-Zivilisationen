@@ -12,6 +12,16 @@ package body SchreibeOptionen is
    
    
    
+   procedure Texturen
+     (TexturenExtern : in Unbounded_Wide_Wide_String)
+   is begin
+      
+      OptionenVariablen.NutzerEinstellungen.Texturen := TexturenExtern;
+      
+   end Texturen;
+   
+   
+   
    procedure AnzahlAutospeichern
      (AutospeicheranzahlExtern : in ZahlenDatentypen.EigenesNatural)
    is begin

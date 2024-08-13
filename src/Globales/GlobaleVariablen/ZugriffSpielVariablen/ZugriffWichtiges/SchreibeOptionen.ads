@@ -14,6 +14,14 @@ package SchreibeOptionen is
               );
    pragma Inline (Sprache);
    
+   procedure Texturen
+     (TexturenExtern : in Unbounded_Wide_Wide_String)
+     with
+       Pre => (
+                 To_Wide_Wide_String (Source => TexturenExtern)'Length >= 1
+              );
+   pragma Inline (Texturen);
+   
    procedure AnzahlAutospeichern
      (AutospeicheranzahlExtern : in ZahlenDatentypen.EigenesNatural);
    pragma Inline (AnzahlAutospeichern);

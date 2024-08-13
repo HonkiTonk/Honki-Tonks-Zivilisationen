@@ -552,7 +552,7 @@ package body MausauswahlLogik is
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       RechteckExtern     => InteraktionAuswahl.PositionenSprachauswahl (PositionSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenSprachenTexturenauswahl (PositionSchleifenwert))
          is
             when True =>
                return PositionSchleifenwert;

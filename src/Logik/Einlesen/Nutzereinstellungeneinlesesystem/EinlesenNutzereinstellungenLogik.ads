@@ -10,19 +10,20 @@ package EinlesenNutzereinstellungenLogik is
    
 private
    
-   DateiNutzereinstellungen : File_Type;
-   
    Nullwert : Boolean;
    
    SicherheitsfragenAnzeigen : Boolean;
    
-   Sprache : Unbounded_Wide_Wide_String;
+   Dezimaltrennzeichen : Wide_Wide_Character;
    
    AnzahlAutospeichern : ZahlenDatentypen.EigenesNatural;
    
    RundenAutospeichern : ZahlenDatentypen.EigenesPositive;
    
-   Dezimaltrennzeichen : Wide_Wide_Character;
+   Sprache : Unbounded_Wide_Wide_String;
+   Texturen : Unbounded_Wide_Wide_String;
+   
+   DateiNutzereinstellungen : File_Type;
    
    
    

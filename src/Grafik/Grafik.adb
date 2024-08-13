@@ -29,6 +29,7 @@ with VerkaufsauswahlGrafik;
 with UebergabeRecordErmittelnGrafik;
 with TexteinstellungenGrafik;
 with BildrateAnzeigenGrafik;
+with TexturenauswahlGrafik;
 
 -- with Diagnoseinformationen;
 
@@ -56,7 +57,7 @@ package body Grafik is
       
       GrafikSchleife:
       loop
-                  
+         
          case
            LeseGrafiktask.FensterEntfernen
          is
@@ -222,6 +223,9 @@ package body Grafik is
          when GrafikDatentypen.Sprache_Enum =>
             SprachauswahlGrafik.Sprachauswahl;
             Startzeit := Clock;
+            
+         when GrafikDatentypen.Texturen_Enum =>
+            TexturenauswahlGrafik.Texturenauswahl;
                
          when GrafikDatentypen.Intro_Enum =>
             IntroGrafik.Intro;
