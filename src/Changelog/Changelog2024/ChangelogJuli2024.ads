@@ -28,16 +28,16 @@ package ChangelogJuli2024 is
    
    
 
-   -- Version 0.05. => 0.05. (27.07.2024):
+   -- Version 0.05.6830 => 0.05. (27.07.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.8605 => 0.05. (26.07.2024):
+   -- Version 0.05.8605 => 0.05.6830 (26.07.2024):
    
-   -- 
+   -- Die Übersetzungen an die letzten Änderungen angepasst.
    -- Kleinigkeiten korrigiert.
    
    
@@ -47,7 +47,7 @@ package ChangelogJuli2024 is
    -- Texturnamen geändert, da Windows Probleme mit Sonderzeichen hat.
    -- Angefangen die Auswahl für verschiedene Texturenpacks einzubauen.
    -- Es ist jetzt möglich zwischen verschiedenen Texturen zu wechseln.
-   -- Memoryleak bei der Texturauswahl entfernt.
+   -- Memoryleak bei der Texturenauswahl entfernt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
