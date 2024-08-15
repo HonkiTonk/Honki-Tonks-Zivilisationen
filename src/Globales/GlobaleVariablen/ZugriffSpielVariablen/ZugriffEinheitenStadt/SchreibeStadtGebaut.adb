@@ -509,8 +509,8 @@ package body SchreibeStadtGebaut is
    
    procedure UmgebungBewirtschaftung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
-      XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
+      YKoordinateExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
+      XKoordinateExtern : in KartenDatentypen.WaagerechteUmgebungDrei;
       BelegenEntfernenExtern : in Boolean)
    is begin
       
@@ -522,7 +522,7 @@ package body SchreibeStadtGebaut is
    
    procedure UmgebungGröße
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      UmgebungGrößeExtern : in KartenDatentypen.UmgebungsbereichDrei;
+      UmgebungGrößeExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
       ÄndernSetzenExtern : in Boolean)
    is begin
       
@@ -531,9 +531,9 @@ package body SchreibeStadtGebaut is
       is
          when True =>
             if
-              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße + UmgebungGrößeExtern >= KartenDatentypen.UmgebungsbereichDrei'Last
+              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße + UmgebungGrößeExtern >= KartenDatentypen.SenkrechteUmgebungDrei'Last
             then
-               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße := KartenDatentypen.UmgebungsbereichDrei'Last;
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße := KartenDatentypen.SenkrechteUmgebungDrei'Last;
                
             elsif
               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße + UmgebungGrößeExtern <= StadtKonstanten.LeerUmgebungGröße

@@ -8,7 +8,8 @@ with LeseSpeziesbelegung;
 package LeseCursor is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    function KoordinatenAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
@@ -51,7 +52,7 @@ package LeseCursor is
    
    function YAchseAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.SenkrechtePositiv
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -64,7 +65,7 @@ package LeseCursor is
    
    function XAchseAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.WaagerechtePositiv
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

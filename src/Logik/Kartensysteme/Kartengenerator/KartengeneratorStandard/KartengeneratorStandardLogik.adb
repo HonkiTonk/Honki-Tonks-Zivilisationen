@@ -45,8 +45,8 @@ package body KartengeneratorStandardLogik is
    
    
    procedure LandVorhanden
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      XAchseExtern : in KartenDatentypen.WaagerechtePositiv)
    is
       use type SystemDatentypen.NullBisHundert;
    begin
@@ -95,8 +95,8 @@ package body KartengeneratorStandardLogik is
    
    -- Alle Größen- und Abstandsangaben sind Radien.
    procedure LandmasseAbstandGenerieren
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      XAchseExtern : in KartenDatentypen.WaagerechtePositiv)
    is
       use type SystemDatentypen.NullBisHundert;
    begin
@@ -117,9 +117,9 @@ package body KartengeneratorStandardLogik is
          Landmassen (LandmassenSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorLandgrößen (YAchseXAchseExtern => LandHöheBreite);
          
          if
-           Landmassen (LandmassenSchleifenwert) >= KartenDatentypen.KartenfeldPositiv'Last / 3
+           Landmassen (LandmassenSchleifenwert) >= KartenDatentypen.SenkrechtePositiv'Last / 3
          then
-            Landabstand (LandmassenSchleifenwert) := KartenDatentypen.KartenfeldPositiv'Last;
+            Landabstand (LandmassenSchleifenwert) := KartenDatentypen.SenkrechtePositiv'Last;
             
          else
             Landabstand (LandmassenSchleifenwert) := 3 * Landmassen (LandmassenSchleifenwert);
@@ -242,10 +242,10 @@ package body KartengeneratorStandardLogik is
    
    -- Später erweitern und verbessern. äöü
    function StartYAchse
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      AnfangExtern : in KartenDatentypen.KartenfeldPositiv;
-      EndeExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldPositiv
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      AnfangExtern : in KartenDatentypen.SenkrechtePositiv;
+      EndeExtern : in KartenDatentypen.SenkrechtePositiv)
+      return KartenDatentypen.SenkrechtePositiv
    is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
@@ -307,10 +307,10 @@ package body KartengeneratorStandardLogik is
    
    
    function StartXAchse
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      AnfangExtern : in KartenDatentypen.KartenfeldPositiv;
-      EndeExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldPositiv
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      AnfangExtern : in KartenDatentypen.WaagerechtePositiv;
+      EndeExtern : in KartenDatentypen.WaagerechtePositiv)
+      return KartenDatentypen.WaagerechtePositiv
    is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
@@ -372,8 +372,8 @@ package body KartengeneratorStandardLogik is
    
    
    procedure Landgrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldNatural;
-      XAchseExtern : in KartenDatentypen.KartenfeldNatural)
+     (YAchseExtern : in KartenDatentypen.SenkrechteNatural;
+      XAchseExtern : in KartenDatentypen.WaagerechteNatural)
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
    begin
@@ -407,8 +407,8 @@ package body KartengeneratorStandardLogik is
    
    
    procedure Wassergrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldNatural;
-      XAchseExtern : in KartenDatentypen.KartenfeldNatural)
+     (YAchseExtern : in KartenDatentypen.SenkrechteNatural;
+      XAchseExtern : in KartenDatentypen.WaagerechteNatural)
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
    begin

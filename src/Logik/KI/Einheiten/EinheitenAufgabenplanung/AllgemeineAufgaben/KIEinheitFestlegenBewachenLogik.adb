@@ -16,7 +16,7 @@ package body KIEinheitFestlegenBewachenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Waagerechte;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
             

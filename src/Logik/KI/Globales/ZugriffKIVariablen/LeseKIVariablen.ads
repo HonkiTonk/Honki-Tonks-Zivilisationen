@@ -9,7 +9,8 @@ with LeseWeltkarteneinstellungen;
 package LeseKIVariablen is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    function Kriegszustand
      return Boolean;

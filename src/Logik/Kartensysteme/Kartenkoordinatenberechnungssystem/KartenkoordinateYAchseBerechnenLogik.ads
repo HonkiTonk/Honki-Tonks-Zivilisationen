@@ -9,13 +9,13 @@ with LeseWeltkarteneinstellungen;
 
 package KartenkoordinateYAchseBerechnenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
 
    function KartenkoordinateYAchseBerechnen
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Senkrechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -26,8 +26,8 @@ package KartenkoordinateYAchseBerechnenLogik is
                );
    
    function YAchseVerschieben
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldPositiv
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv)
+      return KartenDatentypen.SenkrechtePositiv
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -47,10 +47,10 @@ private
    
    
    function ÜbergangNorden
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Senkrechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -61,10 +61,10 @@ private
                );
    
    function ÜbergangNordenNormal
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Senkrechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.SenkrechtePositiv
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -75,9 +75,9 @@ private
                );
    
    function ÜbergangNordenRückwärts
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
-      return KartenDatentypen.KartenfeldNatural
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Senkrechte)
+      return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -88,10 +88,10 @@ private
                );
    
    function ÜbergangSüden
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Senkrechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -102,10 +102,10 @@ private
                );
    
    function ÜbergangSüdenNormal
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Senkrechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.SenkrechtePositiv
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -116,9 +116,9 @@ private
                );
    
    function ÜbergangSüdenRückwärts
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
-      return KartenDatentypen.KartenfeldNatural
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Senkrechte)
+      return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse

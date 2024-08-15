@@ -163,7 +163,7 @@ package body KIStadtLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
       use type EinheitenDatentypen.Einheitenbereich;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin

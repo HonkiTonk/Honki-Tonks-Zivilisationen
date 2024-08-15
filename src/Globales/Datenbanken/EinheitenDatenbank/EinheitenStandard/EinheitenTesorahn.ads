@@ -11,7 +11,8 @@ with DebugobjekteLogik;
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenTesorahn is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    -- Unterwasser
    EinheitenlisteTesorahn : constant EinheitendatenbankRecord.EinheitenlisteArray := (
@@ -537,10 +538,10 @@ package EinheitenTesorahn is
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => True,
                                                                                                                      others                                => False),
-                                                                                         Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => (YAchseAnfang => KartenDatentypen.Kartenfeld'First / 10,
-                                                                                                                                                               YAchseEnde   => KartenDatentypen.Kartenfeld'Last / 10,
-                                                                                                                                                               XAchseAnfang => KartenDatentypen.Kartenfeld'First / 10,
-                                                                                                                                                               XAchseEnde   => KartenDatentypen.Kartenfeld'Last / 10),
+                                                                                         Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => (YAchseAnfang => KartenDatentypen.Senkrechte'First / 10,
+                                                                                                                                                               YAchseEnde   => KartenDatentypen.Senkrechte'Last / 10,
+                                                                                                                                                               XAchseAnfang => KartenDatentypen.Waagerechte'First / 10,
+                                                                                                                                                               XAchseEnde   => KartenDatentypen.Waagerechte'Last / 10),
                                                                                                                      others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                         ),
                                                
@@ -572,10 +573,10 @@ package EinheitenTesorahn is
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => True,
                                                                                                                      others                                => False),
-                                                                                         Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => (YAchseAnfang => KartenDatentypen.Kartenfeld'First / 5,
-                                                                                                                                                               YAchseEnde   => KartenDatentypen.Kartenfeld'Last / 5,
-                                                                                                                                                               XAchseAnfang => KartenDatentypen.Kartenfeld'First / 5,
-                                                                                                                                                               XAchseEnde   => KartenDatentypen.Kartenfeld'Last / 5),
+                                                                                         Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => (YAchseAnfang => KartenDatentypen.Senkrechte'First / 5,
+                                                                                                                                                               YAchseEnde   => KartenDatentypen.Senkrechte'Last / 5,
+                                                                                                                                                               XAchseAnfang => KartenDatentypen.Waagerechte'First / 5,
+                                                                                                                                                               XAchseEnde   => KartenDatentypen.Waagerechte'Last / 5),
                                                                                                                      others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                         ),
                                                
@@ -607,10 +608,10 @@ package EinheitenTesorahn is
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => True,
                                                                                                                      others                                => False),
-                                                                                         Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => (YAchseAnfang => KartenDatentypen.Kartenfeld'First,
-                                                                                                                                                               YAchseEnde   => KartenDatentypen.Kartenfeld'Last,
-                                                                                                                                                               XAchseAnfang => KartenDatentypen.Kartenfeld'First,
-                                                                                                                                                               XAchseEnde   => KartenDatentypen.Kartenfeld'Last),
+                                                                                         Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => (YAchseAnfang => KartenDatentypen.Senkrechte'First,
+                                                                                                                                                               YAchseEnde   => KartenDatentypen.Senkrechte'Last,
+                                                                                                                                                               XAchseAnfang => KartenDatentypen.Waagerechte'First,
+                                                                                                                                                               XAchseEnde   => KartenDatentypen.Waagerechte'Last),
                                                                                                                      others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                         ),
                                                

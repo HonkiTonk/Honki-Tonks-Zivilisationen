@@ -49,12 +49,18 @@ package KIKonstanten is
                                                                      SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 50
                                                                     );
 
-   type FelderreichweiteArray is array (SpielDatentypen.Schwierigkeitsgrad_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
-   Felderreichweite : constant FelderreichweiteArray := (
-                                                         SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 15,
-                                                         SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 20,
-                                                         SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 25
-                                                        );
+   type YFelderreichweiteArray is array (SpielDatentypen.Schwierigkeitsgrad_Enum'Range) of KartenDatentypen.SenkrechtePositiv;
+   YFelderreichweite : constant YFelderreichweiteArray := (
+                                                           SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 15,
+                                                           SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 20,
+                                                           SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 25
+                                                          );
 
+   type XFelderreichweiteArray is array (YFelderreichweiteArray'Range) of KartenDatentypen.WaagerechtePositiv;
+   XFelderreichweite : constant XFelderreichweiteArray := (
+                                                           SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 15,
+                                                           SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 20,
+                                                           SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 25
+                                                          );
 
 end KIKonstanten;

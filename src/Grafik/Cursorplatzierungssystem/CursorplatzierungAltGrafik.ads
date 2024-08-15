@@ -16,7 +16,8 @@ package CursorplatzierungAltGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.Einheitenbereich;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    procedure CursorplatzierungAlt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -36,14 +37,17 @@ private
    
    EinheitFolgen : Boolean;
    
-   KeineÄnderung : constant KartenDatentypen.UmgebungsbereichEins := 0;
-   RichtungNull : constant KartenDatentypen.UmgebungsbereichEins := -1;
-   RichtungMaximum : constant KartenDatentypen.UmgebungsbereichEins := 1;
+   KeineYÄnderung : constant KartenDatentypen.SenkrechteUmgebungEins := 0;
+   RichtungYNull : constant KartenDatentypen.SenkrechteUmgebungEins := -1;
+   RichtungYMaximum : constant KartenDatentypen.SenkrechteUmgebungEins := 1;
+   KeineXÄnderung : constant KartenDatentypen.WaagerechteUmgebungEins := 0;
+   RichtungXNull : constant KartenDatentypen.WaagerechteUmgebungEins := -1;
+   RichtungXMaximum : constant KartenDatentypen.WaagerechteUmgebungEins := 1;
    
-   Scrollgeschwindigkeitsänderung : constant KartenDatentypen.KartenfeldPositiv := 4;
-   AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
-   Sichthöhe : KartenDatentypen.KartenfeldPositiv;
-   Sichtbreite : KartenDatentypen.KartenfeldPositiv;
+   Scrollgeschwindigkeitsänderung : constant KartenDatentypen.SenkrechtePositiv := 4;
+   AktuelleSichtweite : KartenDatentypen.SenkrechtePositiv;
+   Sichthöhe : KartenDatentypen.SenkrechtePositiv;
+   AktuelleSichtbreite : KartenDatentypen.WaagerechtePositiv;
       
    -- Dafür vielleicht zwei Werte einbauen, einen für niedrige und einen für hohe Auflösungen? äöü
    -- Oder einen Wert für große Kartenfelder und einen für Kleine? äöü
@@ -109,8 +113,8 @@ private
          
    function AlteYAchseFestlegen
      (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
-      YAchseAltExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.UmgebungsbereichEins
+      YAchseAltExtern : in KartenDatentypen.SenkrechtePositiv)
+      return KartenDatentypen.SenkrechteUmgebungEins
      with
        Pre => (
                  YAchseAltExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -118,8 +122,8 @@ private
    
    function AlteXAchseFestlegen
      (MausachseExtern : in Float;
-      XAchseAltExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.UmgebungsbereichEins
+      XAchseAltExtern : in KartenDatentypen.WaagerechtePositiv)
+      return KartenDatentypen.WaagerechteUmgebungEins
      with
        Pre => (
                  XAchseAltExtern <= LeseWeltkarteneinstellungen.XAchse

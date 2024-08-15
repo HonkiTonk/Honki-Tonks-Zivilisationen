@@ -46,9 +46,9 @@ package body StadtumgebungGrafik is
       AktuellePosition := GrafikRecordKonstanten.Nullposition;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

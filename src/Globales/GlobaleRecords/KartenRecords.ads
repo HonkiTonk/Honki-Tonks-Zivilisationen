@@ -11,8 +11,8 @@ package KartenRecords is
    
    type YXAchsenKartenfeldPositivRecord is record
       
-      YAchse : KartenDatentypen.KartenfeldPositiv;
-      XAchse : KartenDatentypen.KartenfeldPositiv;
+      YAchse : KartenDatentypen.SenkrechtePositiv;
+      XAchse : KartenDatentypen.WaagerechtePositiv;
       
    end record;
    
@@ -20,8 +20,8 @@ package KartenRecords is
    
    type YXAchsenKartenfeldNaturalRecord is record
             
-      YAchse : KartenDatentypen.KartenfeldNatural;
-      XAchse : KartenDatentypen.KartenfeldNatural;
+      YAchse : KartenDatentypen.SenkrechteNatural;
+      XAchse : KartenDatentypen.WaagerechteNatural;
             
    end record;
    
@@ -29,8 +29,8 @@ package KartenRecords is
    
    type YXAchsenKartenfeldRecord is record
       
-      YAchse : KartenDatentypen.Kartenfeld;
-      XAchse : KartenDatentypen.Kartenfeld;
+      YAchse : KartenDatentypen.Senkrechte;
+      XAchse : KartenDatentypen.Waagerechte;
       
    end record;
    
@@ -38,17 +38,26 @@ package KartenRecords is
    
    type SichtweiteRecord is record
       
-      YAchse : KartenDatentypen.SichtweiteNatural;
-      XAchse : KartenDatentypen.SichtweiteNatural;
+      YAchse : KartenDatentypen.SenkrechteSichtweiteNatural;
+      XAchse : KartenDatentypen.WaagerechteSichtweiteNatural;
       
    end record;
    
    
    
-   type AchseAnfangEndeRecord is record
+   type YAchseAnfangEndeRecord is record
       
-      Anfang : KartenDatentypen.Kartenfeld;
-      Ende : KartenDatentypen.Kartenfeld;
+      Anfang : KartenDatentypen.Senkrechte;
+      Ende : KartenDatentypen.Senkrechte;
+      
+   end record;
+   
+   
+   
+   type XAchseAnfangEndeRecord is record
+      
+      Anfang : KartenDatentypen.Waagerechte;
+      Ende : KartenDatentypen.Waagerechte;
       
    end record;
    
@@ -58,8 +67,8 @@ package KartenRecords is
    type AchsenKartenfeldVorhandenRecord is record
       
       EAchse : KartenDatentypen.EbeneVorhanden;
-      YAchse : KartenDatentypen.KartenfeldPositiv;
-      XAchse : KartenDatentypen.KartenfeldPositiv;
+      YAchse : KartenDatentypen.SenkrechtePositiv;
+      XAchse : KartenDatentypen.WaagerechtePositiv;
       
    end record;
    
@@ -68,8 +77,8 @@ package KartenRecords is
    type AchsenKartenfeldNaturalRecord is record
       
       EAchse : KartenDatentypen.Ebene;
-      YAchse : KartenDatentypen.KartenfeldNatural;
-      XAchse : KartenDatentypen.KartenfeldNatural;
+      YAchse : KartenDatentypen.SenkrechteNatural;
+      XAchse : KartenDatentypen.WaagerechteNatural;
       
    end record;
    
@@ -78,8 +87,8 @@ package KartenRecords is
    type AchsenKartenfeldRecord is record
       
       EAchse : KartenDatentypen.Ebene;
-      YAchse : KartenDatentypen.Kartenfeld;
-      XAchse : KartenDatentypen.Kartenfeld;
+      YAchse : KartenDatentypen.Senkrechte;
+      XAchse : KartenDatentypen.Waagerechte;
       
    end record;
    
@@ -87,10 +96,10 @@ package KartenRecords is
    
    type EffektbereichRecord is record
       
-      YAchseAnfang : KartenDatentypen.Kartenfeld;
-      YAchseEnde : KartenDatentypen.KartenfeldNatural;
-      XAchseAnfang : KartenDatentypen.Kartenfeld;
-      XAchseEnde : KartenDatentypen.KartenfeldNatural;
+      YAchseAnfang : KartenDatentypen.Senkrechte;
+      YAchseEnde : KartenDatentypen.SenkrechteNatural;
+      XAchseAnfang : KartenDatentypen.Waagerechte;
+      XAchseEnde : KartenDatentypen.WaagerechteNatural;
       
    end record;
    
@@ -189,11 +198,11 @@ package KartenRecords is
    
    type LandgrößenRecord is record
       
-      MinimaleYAchse : KartenDatentypen.KartenfeldPositiv;
-      MaximaleYAchse : KartenDatentypen.KartenfeldPositiv;
+      MinimaleYAchse : KartenDatentypen.SenkrechtePositiv;
+      MaximaleYAchse : KartenDatentypen.SenkrechtePositiv;
       
-      MinimaleXAchse : KartenDatentypen.KartenfeldPositiv;
-      MaximaleXAchse : KartenDatentypen.KartenfeldPositiv;
+      MinimaleXAchse : KartenDatentypen.WaagerechtePositiv;
+      MaximaleXAchse : KartenDatentypen.WaagerechtePositiv;
       
    end record;
    
@@ -252,7 +261,7 @@ package KartenRecords is
             
       Koordinaten : AchsenKartenfeldNaturalRecord;
       
-      Bewertung : KartenDatentypen.KartenfeldNatural;
+      Bewertung : KartenDatentypen.SenkrechteNatural;
             
    end record;
    

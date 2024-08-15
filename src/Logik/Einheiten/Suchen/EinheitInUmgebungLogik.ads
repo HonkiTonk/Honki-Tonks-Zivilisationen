@@ -21,7 +21,8 @@ package EinheitInUmgebungLogik is
    
 private
    use type SpeziesDatentypen.Spezies_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
       
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
@@ -45,7 +46,7 @@ private
    
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      UmgebungExtern : in KartenDatentypen.Sichtweite;
+      UmgebungExtern : in KartenDatentypen.SenkrechteSichtweite;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with

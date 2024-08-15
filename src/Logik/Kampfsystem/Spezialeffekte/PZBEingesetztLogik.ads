@@ -28,7 +28,8 @@ package PZBEingesetztLogik is
               );
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    Verbleibendezeit : ZahlenDatentypen.EigenesNatural;
    EingesetztePZB : ZahlenDatentypen.EigenesNatural;

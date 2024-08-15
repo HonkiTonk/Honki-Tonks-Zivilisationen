@@ -6,7 +6,8 @@ with LeseWeltkarteneinstellungen;
 
 package FeldeffektEntfernenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    procedure FeldeffektEntfernen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

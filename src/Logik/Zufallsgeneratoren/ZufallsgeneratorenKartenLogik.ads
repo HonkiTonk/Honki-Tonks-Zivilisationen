@@ -11,16 +11,16 @@ package ZufallsgeneratorenKartenLogik is
 
    function KartengeneratorLandgrößen
      (YAchseXAchseExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv;
+      return KartenDatentypen.SenkrechtePositiv;
 
 private
 
-   MinimalerWert : KartenDatentypen.KartenfeldPositiv;
-   MaximalerWert : KartenDatentypen.KartenfeldPositiv;
-   Zwischenspeicher : KartenDatentypen.KartenfeldPositiv;
+   MinimalerWert : KartenDatentypen.SenkrechtePositiv;
+   MaximalerWert : KartenDatentypen.SenkrechtePositiv;
+   Zwischenspeicher : KartenDatentypen.SenkrechtePositiv;
 
    package ZufälligeZahl is new Ada.Numerics.Discrete_Random (Result_Subtype => SystemDatentypen.NullBisHundert);
-   package ZufälligeLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
+   package ZufälligeLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);
 
    ZufälligeZahlGewählt : ZufälligeZahl.Generator;
    ZufälligeLandgrößeGewählt : ZufälligeLandgrößen.Generator;

@@ -6,7 +6,8 @@ with LeseWeltkarteneinstellungen;
 
 package Zusatzgrundplatzierungssystem is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    procedure Zusatzgrundentfernung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

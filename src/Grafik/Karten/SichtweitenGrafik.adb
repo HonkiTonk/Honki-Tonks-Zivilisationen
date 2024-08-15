@@ -12,7 +12,7 @@ package body SichtweitenGrafik is
    procedure StandardSichtweiten
    is begin
       
-      AktuelleZoomstufe := StandardZoomstufe;
+      AktuelleYZoomstufe := StandardYZoomstufe;
       KartenfelderAbmessungBerechnen;
       
    end StandardSichtweiten;
@@ -20,27 +20,27 @@ package body SichtweitenGrafik is
    
    
    procedure ZoomstufeÄndern
-     (ÄnderungExtern : in KartenDatentypen.Kartenfeld)
+     (ÄnderungExtern : in KartenDatentypen.Senkrechte)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       -- Eine Möglichkeit einbauen das abzustellen? äöü
-      -- Eine Möglichkeit einbauen um direkt zu Standardzoomstufe zu springen und nicht zur Kleinsten? äöü
+      -- Eine Möglichkeit einbauen um direkt zu StandardYZoomstufe zu springen und nicht zur Kleinsten? äöü
       if
-        AktuelleZoomstufe + ÄnderungExtern > MaximaleZoomstufe
+        AktuelleYZoomstufe + ÄnderungExtern > MaximaleYZoomstufe
       then
-         AktuelleZoomstufe := MinimaleZoomstufe;
+         AktuelleYZoomstufe := MinimaleYZoomstufe;
          WelcheZoomanpassung := TastenbelegungDatentypen.Ebene_Hoch_Enum;
          
       elsif
-        AktuelleZoomstufe + ÄnderungExtern < MinimaleZoomstufe
+        AktuelleYZoomstufe + ÄnderungExtern < MinimaleYZoomstufe
       then
-         AktuelleZoomstufe := MaximaleZoomstufe;
+         AktuelleYZoomstufe := MaximaleYZoomstufe;
          WelcheZoomanpassung := TastenbelegungDatentypen.Ebene_Runter_Enum;
          
       else
-         AktuelleZoomstufe := AktuelleZoomstufe + ÄnderungExtern;
+         AktuelleYZoomstufe := AktuelleYZoomstufe + ÄnderungExtern;
          WelcheZoomanpassung := TastenbelegungDatentypen.Auswählen_Enum;
       end if;
       
@@ -54,9 +54,9 @@ package body SichtweitenGrafik is
    
    
    function SichthöheLesen
-     return KartenDatentypen.KartenfeldPositiv
+     return KartenDatentypen.SenkrechtePositiv
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       return Sichtbereich.YAchse / 2;
@@ -66,9 +66,9 @@ package body SichtweitenGrafik is
    
    
    function SichtbreiteLesen
-     return KartenDatentypen.KartenfeldPositiv
+     return KartenDatentypen.WaagerechtePositiv
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       return Sichtbereich.XAchse / 2;
@@ -80,7 +80,8 @@ package body SichtweitenGrafik is
    function SichtbereichLesen
      return KartenRecords.YXAchsenKartenfeldPositivRecord
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       return (Sichtbereich.YAchse / 2, Sichtbereich.XAchse / 2);
@@ -90,9 +91,9 @@ package body SichtweitenGrafik is
    
    
    function BewegungshöheLesen
-     return KartenDatentypen.KartenfeldPositiv
+     return KartenDatentypen.SenkrechtePositiv
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       return Bewegungsbereich.YAchse / 2;
@@ -102,9 +103,9 @@ package body SichtweitenGrafik is
    
    
    function BewegungsbreiteLesen
-     return KartenDatentypen.KartenfeldPositiv
+     return KartenDatentypen.WaagerechtePositiv
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       return Bewegungsbereich.XAchse / 2;
@@ -116,7 +117,8 @@ package body SichtweitenGrafik is
    function BewegungsbereichLesen
      return KartenRecords.YXAchsenKartenfeldPositivRecord
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       return (Bewegungsbereich.YAchse / 2, Bewegungsbereich.XAchse / 2);
@@ -129,7 +131,8 @@ package body SichtweitenGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       Cursor := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
@@ -151,12 +154,13 @@ package body SichtweitenGrafik is
    
    procedure KartenfelderAbmessungBerechnen
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       FensterKarte := FensterGrafik.AktuelleAuflösung;
-      Sichtbereich.YAchse := AktuelleZoomstufe * 2 + 1;
-      Sichtbereich.XAchse := AktuelleZoomstufe * 2 + 1;
+      Sichtbereich.YAchse := AktuelleYZoomstufe * 2 + 1;
+      Sichtbereich.XAchse := AktuelleXZoomstufe * 2 + 1;
       
       KartenfelderAbmessung.y := FensterKarte.y / Float (Sichtbereich.YAchse);
       KartenfelderAbmessung.x := FensterGrafik.AktuelleAuflösung.x / Float (Sichtbereich.XAchse);

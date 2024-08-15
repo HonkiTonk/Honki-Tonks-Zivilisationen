@@ -28,12 +28,13 @@ package KIEinheitFestlegenVerbesserungenLogik is
               );
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    VerbesserungTesten : Boolean;
    WelcheVerbesserung : Boolean;
 
-   Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
+   Stadtumgebung : KartenDatentypen.SenkrechteUmgebungDrei;
 
    EinheitAufFeld : EinheitenRecords.SpeziesEinheitnummerRecord;
 

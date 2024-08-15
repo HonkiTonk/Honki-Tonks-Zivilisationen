@@ -45,11 +45,11 @@ package StadtKonstanten is
    LeerGebäude : constant Boolean := False;
    LeerName : constant Unbounded_Wide_Wide_String := TextKonstanten.LeerUnboundedString;
    LeerUmgebungBewirtschaftet : constant Boolean := False;
-   LeerUmgebungGröße : constant KartenDatentypen.UmgebungsbereichDrei := 0;
+   LeerUmgebungGröße : constant KartenDatentypen.SenkrechteUmgebungDrei := 0;
    LeerMeldung : constant StadtDatentypen.Stadt_Meldung_Enum := StadtDatentypen.Leer_Stadt_Meldung_Enum;
    LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe_Enum;
    
-   Stadtkartengröße : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeIDVorhanden'Last))));
+   Stadtkartengröße : constant KartenDatentypen.SenkrechtePositiv := KartenDatentypen.SenkrechtePositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeIDVorhanden'Last))));
    
    
 

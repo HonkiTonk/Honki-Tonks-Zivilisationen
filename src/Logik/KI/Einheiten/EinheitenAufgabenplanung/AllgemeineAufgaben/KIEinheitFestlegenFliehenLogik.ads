@@ -25,7 +25,8 @@ package KIEinheitFestlegenFliehenLogik is
               );
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    ZielKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
    MöglicheKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;

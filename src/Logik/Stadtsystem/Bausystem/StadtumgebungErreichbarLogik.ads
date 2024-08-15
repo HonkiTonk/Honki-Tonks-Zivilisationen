@@ -12,7 +12,8 @@ with LeseGrenzen;
 package StadtumgebungErreichbarLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
    function UmgebungErreichbar
      (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -38,9 +39,9 @@ package StadtumgebungErreichbarLogik is
    
 private
    
-   BereitsGetestet : KartenDatentypen.UmgebungsbereichZwei;
-   Umgebung : KartenDatentypen.UmgebungsbereichDrei;
-   Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
+   BereitsGetestet : KartenDatentypen.SenkrechteUmgebungZwei;
+   Umgebung : KartenDatentypen.SenkrechteUmgebungDrei;
+   Stadtumgebung : KartenDatentypen.SenkrechteUmgebungDrei;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWertZwei : KartenRecords.AchsenKartenfeldNaturalRecord;

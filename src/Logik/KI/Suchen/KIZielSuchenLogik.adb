@@ -61,26 +61,26 @@ package body KIZielSuchenLogik is
             is
                when 1 =>
                   -- Y geht hier von 0 bis -Reichweite, deswegen den Multiplikator auf -1 setzen.
-                  YQuadrantenbereich := (0, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
-                  XQuadrantenbereich := (0, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
+                  YQuadrantenbereich := (0, KIKonstanten.YFelderreichweite (Schwierigkeitsgrad));
+                  XQuadrantenbereich := (0, KIKonstanten.XFelderreichweite (Schwierigkeitsgrad));
                   -- Man könnte die Mutliplikatoren in einem konstanten Array speichern und dann einfach zuweisen. äöü
                   Multiplikator := (-1, 1);
                   
                when 2 =>
-                  YQuadrantenbereich := (1, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
-                  XQuadrantenbereich := (0, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
+                  YQuadrantenbereich := (1, KIKonstanten.YFelderreichweite (Schwierigkeitsgrad));
+                  XQuadrantenbereich := (0, KIKonstanten.XFelderreichweite (Schwierigkeitsgrad));
                   Multiplikator := (1, 1);
                
                when 3 =>
-                  YQuadrantenbereich := (0, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
+                  YQuadrantenbereich := (0, KIKonstanten.YFelderreichweite (Schwierigkeitsgrad));
                   -- X geht hier von -1 bis -Reichweite, deswegen den Multiplikator auf -1 setzen.
-                  XQuadrantenbereich := (1, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
+                  XQuadrantenbereich := (1, KIKonstanten.XFelderreichweite (Schwierigkeitsgrad));
                   Multiplikator := (1, -1);
                
                when 4 =>
                   -- Hier geht beides von -1 bis -Reichweite, deswegen den Multiplikator auf -1 setzen.
-                  YQuadrantenbereich := (1, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
-                  XQuadrantenbereich := (1, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
+                  YQuadrantenbereich := (1, KIKonstanten.YFelderreichweite (Schwierigkeitsgrad));
+                  XQuadrantenbereich := (1, KIKonstanten.XFelderreichweite (Schwierigkeitsgrad));
                   Multiplikator := (-1, -1);
             end case;
          

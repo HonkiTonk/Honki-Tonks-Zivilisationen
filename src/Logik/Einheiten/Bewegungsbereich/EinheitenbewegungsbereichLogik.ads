@@ -17,7 +17,7 @@ package EinheitenbewegungsbereichLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    -- Das hier mal woanders hinschieben. Karte oder Einheit? äöü
-   type BewegungsbereichArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.KartenfeldPositiv'Range, KartenDatentypen.KartenfeldPositiv'Range) of Boolean;
+   type BewegungsbereichArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.SenkrechtePositiv'Range, KartenDatentypen.WaagerechtePositiv'Range) of Boolean;
    Bewegungsbereich : BewegungsbereichArray := (others => (others => (others => False)));
 
    procedure BewegungsbereichBerechnen
@@ -30,7 +30,8 @@ package EinheitenbewegungsbereichLogik is
               );
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    ZusätzlicheBewegungspunkte : Positive;
    ZwischenrechnungBewegungspunkte : Positive;

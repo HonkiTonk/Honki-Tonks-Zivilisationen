@@ -81,7 +81,7 @@ package StadtRecords is
    -- Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Ressourcen gespeichert werden und beim Wechsel des Bauprojekts bleiben die angefangenen Gebäude erhalten. äöü
    -- Sollte ich das auch für die Forschung oder für Einheiten einbauen? äöü
    type StadtMeldungenArray is array (StadtDatentypen.Stadt_Meldung_Art_Enum'Range) of StadtDatentypen.Stadt_Meldung_Enum;
-   type UmgebungBewirtschaftungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of Boolean;
+   type UmgebungBewirtschaftungArray is array (KartenDatentypen.SenkrechteUmgebungDrei'Range, KartenDatentypen.WaagerechteUmgebungDrei'Range) of Boolean;
    type PermanenteKostenArray is array (ProduktionDatentypen.Permanente_Kosten_Vorhanden_Enum'Range) of ProduktionDatentypen.Stadtproduktion;
    type WegeverbindungArray is array (StadtDatentypen.StädtebereichVorhanden'Range) of Boolean;
 
@@ -112,7 +112,7 @@ package StadtRecords is
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;
-      UmgebungGröße : KartenDatentypen.UmgebungsbereichDrei;
+      UmgebungGröße : KartenDatentypen.SenkrechteUmgebungDrei;
       
       Meldungen : StadtMeldungenArray;
       

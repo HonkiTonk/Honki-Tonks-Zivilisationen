@@ -96,7 +96,7 @@ package body WeltkarteGrafik is
                null;    
                
             elsif
-              KartenWert.YAchse > KartenDatentypen.KartenfeldPositiv'First
+              KartenWert.YAchse > KartenDatentypen.SenkrechtePositiv'First
             then
                exit YAchseNamenSchleife;
                

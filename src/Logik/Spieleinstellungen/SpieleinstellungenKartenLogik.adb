@@ -66,9 +66,10 @@ package body SpieleinstellungenKartenLogik is
    
    function Polgrößen
      (YAchseXAchseExtern : in Boolean)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       case
@@ -93,7 +94,7 @@ package body SpieleinstellungenKartenLogik is
          return 0;
          
       else
-         return KartenDatentypen.KartenfeldNatural (BenutzerdefinierteGröße.EingegebeneZahl);
+         return KartenDatentypen.SenkrechteNatural (BenutzerdefinierteGröße.EingegebeneZahl);
       end if;
       
    end Polgrößen;
@@ -143,7 +144,7 @@ package body SpieleinstellungenKartenLogik is
    is begin
             
       BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.MinimaleKartengröße),
-                                                                     ZahlenMaximumExtern => Positive (KartenDatentypen.KartenfeldPositiv'Last),
+                                                                     ZahlenMaximumExtern => Positive (KartenDatentypen.SenkrechtePositiv'Last),
                                                                      WelcheFrageExtern   => TextnummernKonstanten.FrageYAchsengrößeEingeben);
       case
         BenutzerdefinierteGröße.ErfolgreichAbbruch
@@ -155,10 +156,10 @@ package body SpieleinstellungenKartenLogik is
             null;
       end case;
       
-      YAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
+      YAchse := KartenDatentypen.SenkrechtePositiv (BenutzerdefinierteGröße.EingegebeneZahl);
       
       BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.MinimaleKartengröße),
-                                                                     ZahlenMaximumExtern => Positive (KartenDatentypen.KartenfeldPositiv'Last),
+                                                                     ZahlenMaximumExtern => Positive (KartenDatentypen.SenkrechtePositiv'Last),
                                                                      WelcheFrageExtern   => TextnummernKonstanten.FrageXAchsengrößeEingeben);
       
       case
@@ -168,7 +169,7 @@ package body SpieleinstellungenKartenLogik is
             return (LeseWeltkarteneinstellungen.YAchse, LeseWeltkarteneinstellungen.XAchse);
             
          when True =>
-            XAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
+            XAchse := KartenDatentypen.WaagerechtePositiv (BenutzerdefinierteGröße.EingegebeneZahl);
       end case;
       
       return (YAchse, XAchse);
@@ -249,7 +250,7 @@ package body SpieleinstellungenKartenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse := KartenDatentypen.SenkrechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
@@ -265,7 +266,7 @@ package body SpieleinstellungenKartenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse := KartenDatentypen.SenkrechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
       end case;
       
       
@@ -282,7 +283,7 @@ package body SpieleinstellungenKartenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse := KartenDatentypen.WaagerechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
@@ -297,7 +298,7 @@ package body SpieleinstellungenKartenLogik is
             KartenartStandard;
             
          when True =>
-            KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse := KartenDatentypen.WaagerechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
       end case;
       
    end KartenartNutzerdefinition;

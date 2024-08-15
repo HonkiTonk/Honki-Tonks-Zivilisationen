@@ -88,7 +88,8 @@ package EinheitentransporterLogik is
               );
    
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
    AktuelleLadungsmenge : EinheitenDatentypen.Transportplätze;

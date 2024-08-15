@@ -9,13 +9,13 @@ with LeseWeltkarteneinstellungen;
 
 package KartenkoordinateXAchseBerechnenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Waagerechte;
 
    function KartenkoordinateXAchseBerechnen
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.WaagerechteNatural
      with
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
@@ -26,8 +26,8 @@ package KartenkoordinateXAchseBerechnenLogik is
                );
    
    function XAchseVerschieben
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldPositiv
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv)
+      return KartenDatentypen.WaagerechtePositiv
      with
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
@@ -47,10 +47,10 @@ private
    
    
    function ÜbergangWesten
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.WaagerechteNatural
      with
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
@@ -61,10 +61,10 @@ private
                );
    
    function ÜbergangWestenNormal
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.WaagerechtePositiv
      with
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
@@ -75,9 +75,9 @@ private
                );
    
    function ÜbergangWestenRückwärts
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
-      return KartenDatentypen.KartenfeldNatural
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte)
+      return KartenDatentypen.WaagerechteNatural
      with
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
@@ -88,10 +88,10 @@ private
                );
    
    function ÜbergangOsten
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.WaagerechteNatural
      with
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
@@ -102,10 +102,10 @@ private
                );
    
    function ÜbergangOstenNormal
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.WaagerechtePositiv
      with
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
@@ -116,9 +116,9 @@ private
                );
    
    function ÜbergangOstenRückwärts
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
-      return KartenDatentypen.KartenfeldNatural
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte)
+      return KartenDatentypen.WaagerechteNatural
      with
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse

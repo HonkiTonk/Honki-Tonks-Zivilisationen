@@ -3,7 +3,7 @@ with Weltkarte;
 package body LeseWeltkarteneinstellungen is
 
    function YAchse
-     return KartenDatentypen.KartenfeldPositiv
+     return KartenDatentypen.SenkrechtePositiv
    is begin
       
       return Weltkarte.Karteneinstellungen.Kartengröße.YAchse;
@@ -13,7 +13,7 @@ package body LeseWeltkarteneinstellungen is
    
    
    function XAchse
-     return KartenDatentypen.KartenfeldPositiv
+     return KartenDatentypen.WaagerechtePositiv
    is begin
       
       return Weltkarte.Karteneinstellungen.Kartengröße.XAchse;

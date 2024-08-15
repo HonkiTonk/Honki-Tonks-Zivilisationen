@@ -57,7 +57,8 @@ package body FelderbewirtschaftungLogik is
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return FeldRecord
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
       use type ProduktionDatentypen.Produktion;
    begin
       

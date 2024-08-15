@@ -97,7 +97,7 @@ package body EinheitInUmgebungLogik is
    
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      UmgebungExtern : in KartenDatentypen.Sichtweite;
+      UmgebungExtern : in KartenDatentypen.SenkrechteSichtweite;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is

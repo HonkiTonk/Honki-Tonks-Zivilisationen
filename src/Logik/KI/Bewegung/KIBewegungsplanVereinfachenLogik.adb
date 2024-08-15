@@ -41,7 +41,7 @@ package body KIBewegungsplanVereinfachenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       AktuellePlankoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -50,9 +50,9 @@ package body KIBewegungsplanVereinfachenLogik is
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
             XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
                KartenwertVereinfachung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuellePlankoordinaten,
                                                                                                                       ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),

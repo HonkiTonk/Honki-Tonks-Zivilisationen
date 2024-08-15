@@ -9,7 +9,7 @@ package KartengeneratorRessourcenLogik is
 
 private
    
-   type KartenzeitwertArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.KartenfeldPositiv;
+   type KartenzeitwertArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.SenkrechtePositiv;
    Kartenzeitwert : KartenzeitwertArray;
          
    procedure RessourcenGenerierung
@@ -17,6 +17,6 @@ private
    
    
    
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorRessourcenLogik;

@@ -35,7 +35,7 @@ package SichtbarkeitsberechnungssystemLogik is
 
 private
 
-   SichtweiteObjekt : KartenDatentypen.Sichtweite;
+   SichtweiteObjekt : KartenDatentypen.SenkrechteSichtweite;
 
    EinheitID : EinheitenDatentypen.EinheitenID;
 
@@ -45,7 +45,7 @@ private
 
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      SichtweiteExtern : in KartenDatentypen.Sichtweite)
+      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)

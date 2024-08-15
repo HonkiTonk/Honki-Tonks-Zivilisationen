@@ -4,12 +4,12 @@ with LeseWeltkarteneinstellungen;
 
 package KIYAchsenbewertung is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
 
    function YAchseBewerten
-     (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
-      NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldNatural
+     (ZielpunktExtern : in KartenDatentypen.SenkrechtePositiv;
+      NeuerPunktExtern : in KartenDatentypen.SenkrechtePositiv)
+      return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
                  ZielpunktExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -21,15 +21,15 @@ private
 
    WelcheFelderanzahl : Positive;
 
-   type FelderanzahlArray is array (1 .. 3) of KartenDatentypen.KartenfeldNatural;
+   type FelderanzahlArray is array (1 .. 3) of KartenDatentypen.SenkrechteNatural;
    Felderanzahl : FelderanzahlArray;
 
 
 
    function StandardübergangNorden
-     (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
-      NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldNatural
+     (ZielpunktExtern : in KartenDatentypen.SenkrechtePositiv;
+      NeuerPunktExtern : in KartenDatentypen.SenkrechtePositiv)
+      return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
                  ZielpunktExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -38,9 +38,9 @@ private
               );
 
    function StandardübergangSüden
-     (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
-      NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldNatural
+     (ZielpunktExtern : in KartenDatentypen.SenkrechtePositiv;
+      NeuerPunktExtern : in KartenDatentypen.SenkrechtePositiv)
+      return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
                  ZielpunktExtern <= LeseWeltkarteneinstellungen.YAchse

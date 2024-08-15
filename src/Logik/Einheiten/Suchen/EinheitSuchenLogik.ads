@@ -11,7 +11,8 @@ with LeseSpeziesbelegung;
 
 package EinheitSuchenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.Einheitenbereich;
 

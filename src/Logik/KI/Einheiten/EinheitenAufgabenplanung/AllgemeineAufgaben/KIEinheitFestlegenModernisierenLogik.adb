@@ -24,7 +24,7 @@ package body KIEinheitFestlegenModernisierenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       case
@@ -101,7 +101,8 @@ package body KIEinheitFestlegenModernisierenLogik is
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
       use type KIDatentypen.Bewegung_Enum;
    begin
       

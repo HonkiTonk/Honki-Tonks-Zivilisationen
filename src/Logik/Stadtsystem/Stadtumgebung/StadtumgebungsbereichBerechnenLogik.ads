@@ -23,7 +23,7 @@ package StadtumgebungsbereichBerechnenLogik is
    
 private
    
-   Umgebung : KartenDatentypen.UmgebungsbereichDrei;
+   Umgebung : KartenDatentypen.SenkrechteUmgebungDrei;
    
    Einwohner : StadtDatentypen.Einwohner;
    

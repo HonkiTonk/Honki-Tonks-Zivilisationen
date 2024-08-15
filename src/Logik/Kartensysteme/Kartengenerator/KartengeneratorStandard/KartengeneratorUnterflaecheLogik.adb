@@ -14,7 +14,7 @@ package body KartengeneratorUnterflaecheLogik is
 
    procedure GenerierungLandschaft
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse,

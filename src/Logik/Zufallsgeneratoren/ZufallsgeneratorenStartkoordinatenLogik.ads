@@ -10,7 +10,8 @@ with LeseSpeziesbelegung;
 package ZufallsgeneratorenStartkoordinatenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
      
    function Startkoordinaten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
@@ -32,8 +33,10 @@ private
    
    Startkoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   package KartenpunktWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.KartenfeldPositiv);
+   package YKartenpunktWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);
+   package XKartenpunktWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.WaagerechtePositiv);
 
-   KartenpunktGewählt : KartenpunktWählen.Generator;
+   YKartenpunktGewählt : YKartenpunktWählen.Generator;
+   XKartenpunktGewählt : XKartenpunktWählen.Generator;
 
 end ZufallsgeneratorenStartkoordinatenLogik;

@@ -33,8 +33,8 @@ private
    
    FeindlicheEinheit : EinheitenDatentypen.Einheitenbereich;
    
-   UmgebungPrüfen : KartenDatentypen.KartenfeldNatural;
-   BereitsGeprüft : KartenDatentypen.KartenfeldNatural;
+   UmgebungPrüfen : KartenDatentypen.SenkrechteNatural;
+   BereitsGeprüft : KartenDatentypen.SenkrechteNatural;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

@@ -21,9 +21,9 @@ package body KIEinheitFestlegenPlatzMachenLogik is
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
             XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+            for XAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
                
                Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                          ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),

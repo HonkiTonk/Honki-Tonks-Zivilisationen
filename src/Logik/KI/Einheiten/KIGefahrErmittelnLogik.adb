@@ -52,15 +52,15 @@ package body KIGefahrErmittelnLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenRecords.SpeziesEinheitnummerRecord
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       AktuelleKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

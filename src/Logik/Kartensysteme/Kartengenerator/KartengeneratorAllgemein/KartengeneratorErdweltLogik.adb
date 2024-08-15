@@ -125,7 +125,7 @@ package body KartengeneratorErdweltLogik is
    is begin
       
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          
@@ -146,7 +146,7 @@ package body KartengeneratorErdweltLogik is
    is begin
       
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          
@@ -167,7 +167,7 @@ package body KartengeneratorErdweltLogik is
    is begin
       
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          
@@ -188,7 +188,7 @@ package body KartengeneratorErdweltLogik is
    is begin
       
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          

@@ -113,10 +113,10 @@ package body KIBewegungsplanBerechnenLogik is
       case
         Bewertung (DurchlaufExtern).Bewertung
       is
-         when KartenDatentypen.KartenfeldPositiv'Last =>
+         when KartenDatentypen.SenkrechtePositiv'Last =>
             return False;
                
-         when KartenDatentypen.KartenfeldNatural'First =>
+         when KartenDatentypen.SenkrechteNatural'First =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     KoordinatenExtern          => KoordinatenzwischenspeicherWindows,
                                                     PlanplatzExtern            => AktuellePlanpositionExtern);
@@ -155,9 +155,9 @@ package body KIBewegungsplanBerechnenLogik is
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
             XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                                          ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -170,7 +170,7 @@ package body KIBewegungsplanBerechnenLogik is
                  or
                    KartenWert = AktuelleKoordinatenExtern
                then
-                  Bewertung (BewertungPosition).Bewertung := KartenDatentypen.KartenfeldPositiv'Last;
+                  Bewertung (BewertungPosition).Bewertung := KartenDatentypen.SenkrechtePositiv'Last;
             
                else
                   Bewertung (BewertungPosition).Bewertung := BewertungFeldposition (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -209,14 +209,14 @@ package body KIBewegungsplanBerechnenLogik is
    function BewertungFeldposition
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
    is begin
       
       if
         True = FeldBereitsBetreten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                     KoordinatenExtern          => NeueKoordinatenExtern)
       then
-         return KartenDatentypen.KartenfeldPositiv'Last;
+         return KartenDatentypen.SenkrechtePositiv'Last;
          
       else
          null;
@@ -237,7 +237,7 @@ package body KIBewegungsplanBerechnenLogik is
                null;
                
             else
-               return KartenDatentypen.KartenfeldPositiv'Last;
+               return KartenDatentypen.SenkrechtePositiv'Last;
             end if;
       end case;
       
@@ -250,7 +250,7 @@ package body KIBewegungsplanBerechnenLogik is
                                                                         NeueKoordinatenExtern      => NeueKoordinatenExtern);
             
          when KIKonstanten.KeineBewegung =>
-            return KartenDatentypen.KartenfeldPositiv'Last;
+            return KartenDatentypen.SenkrechtePositiv'Last;
       end case;
       
    end BewertungFeldposition;

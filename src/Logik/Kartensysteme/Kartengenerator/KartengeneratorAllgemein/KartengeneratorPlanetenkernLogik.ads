@@ -13,19 +13,20 @@ package KartengeneratorPlanetenkernLogik is
    procedure Planetenkern;
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    WelcherGrund : KartengrundDatentypen.Basisgrund_Enum;
 
    GezogeneZahl : SystemDatentypen.NullBisHundert;
    Zahlenspeicher : SystemDatentypen.NullBisHundert;
 
-   YKernanfang : KartenDatentypen.KartenfeldPositiv;
-   XKernanfang : KartenDatentypen.KartenfeldPositiv;
-   YKernende : KartenDatentypen.KartenfeldPositiv;
-   XKernende : KartenDatentypen.KartenfeldPositiv;
+   YKernanfang : KartenDatentypen.SenkrechtePositiv;
+   XKernanfang : KartenDatentypen.WaagerechtePositiv;
+   YKernende : KartenDatentypen.SenkrechtePositiv;
+   XKernende : KartenDatentypen.WaagerechtePositiv;
 
-   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
+   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
 
    type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
@@ -101,6 +102,6 @@ private
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorPlanetenkernLogik;

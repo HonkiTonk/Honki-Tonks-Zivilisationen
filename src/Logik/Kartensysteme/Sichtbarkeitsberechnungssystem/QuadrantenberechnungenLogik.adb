@@ -8,10 +8,10 @@ package body QuadrantenberechnungenLogik is
 
    procedure QuadrantenDurchlaufen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SichtweiteExtern : in KartenDatentypen.Sichtweite;
+      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       YQuadrantSchleife:
@@ -74,10 +74,10 @@ package body QuadrantenberechnungenLogik is
    procedure QuadrantEins
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
-      SichtweiteExtern : in KartenDatentypen.Sichtweite;
+      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
               
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
@@ -207,10 +207,10 @@ package body QuadrantenberechnungenLogik is
    procedure QuadrantZwei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
-      SichtweiteExtern : in KartenDatentypen.Sichtweite;
+      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
@@ -340,10 +340,10 @@ package body QuadrantenberechnungenLogik is
    procedure QuadrantDrei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
-      SichtweiteExtern : in KartenDatentypen.Sichtweite;
+      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
@@ -473,10 +473,10 @@ package body QuadrantenberechnungenLogik is
    procedure QuadrantVier
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
-      SichtweiteExtern : in KartenDatentypen.Sichtweite;
+      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,

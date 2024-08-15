@@ -13,7 +13,8 @@ with LeseSpeziesbelegung;
 package KIEinheitAllgemeinePruefungenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
    function KartenfeldPrüfen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -34,14 +35,14 @@ private
    
    TransporterErforscht : Boolean;
    
-   UmgebungPrüfen : KartenDatentypen.UmgebungsbereichDrei;
-   BereitsGeprüft : KartenDatentypen.UmgebungsbereichDrei;
+   UmgebungPrüfen : KartenDatentypen.SenkrechteUmgebungDrei;
+   BereitsGeprüft : KartenDatentypen.SenkrechteUmgebungDrei;
    
    TransportMöglich : EinheitenDatentypen.Transport_Enum;
    
    TransporterID : EinheitenDatentypen.EinheitenID;
    
-   BlockierteFelder : KartenDatentypen.KartenfeldNatural;
+   BlockierteFelder : KartenDatentypen.SenkrechteNatural;
    
    EinheitAufFeld : EinheitenRecords.SpeziesEinheitnummerRecord;
    
@@ -67,7 +68,7 @@ private
    function FeldUnpassierbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenDatentypen.SichtweiteNatural
+      return KartenDatentypen.SenkrechteSichtweiteNatural
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

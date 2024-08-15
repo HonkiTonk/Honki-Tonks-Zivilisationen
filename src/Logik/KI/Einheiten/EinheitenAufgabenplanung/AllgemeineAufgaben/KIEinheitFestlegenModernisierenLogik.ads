@@ -28,7 +28,7 @@ package KIEinheitFestlegenModernisierenLogik is
 private
    use type EinheitenDatentypen.Einheitenbereich;
    
-   Umgebung : KartenDatentypen.UmgebungsbereichDrei;
+   Umgebung : KartenDatentypen.SenkrechteUmgebungDrei;
    
    NeueEinheitenID : EinheitenDatentypen.EinheitenID;
    

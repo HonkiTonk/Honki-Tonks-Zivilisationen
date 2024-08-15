@@ -3,10 +3,10 @@ with KartenKonstanten;
 package body KartenkoordinateXAchseBerechnenLogik is
 
    function KartenkoordinateXAchseBerechnen
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.WaagerechteNatural
    is begin
       
       if
@@ -32,10 +32,10 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    
    function ÜbergangWesten
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.WaagerechteNatural
    is begin
       
       Kartenart (TaskExtern) := LeseWeltkarteneinstellungen.XAchseWesten;
@@ -67,10 +67,10 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    
    function ÜbergangWestenNormal
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.WaagerechtePositiv
    is begin
       
       ÜberhangXAchse (TaskExtern) := Integer (XAchseExtern + ÄnderungXAchseExtern + LeseWeltkarteneinstellungen.XAchse);
@@ -82,16 +82,16 @@ package body KartenkoordinateXAchseBerechnenLogik is
 
       end loop XAchseKleinerSchleife;
          
-      return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (TaskExtern));
+      return KartenDatentypen.WaagerechtePositiv (ÜberhangXAchse (TaskExtern));
       
    end ÜbergangWestenNormal;
    
    
    
    function ÜbergangWestenRückwärts
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
-      return KartenDatentypen.KartenfeldNatural
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte)
+      return KartenDatentypen.WaagerechteNatural
    is begin
       
       if
@@ -108,10 +108,10 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    
    function ÜbergangOsten
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.WaagerechteNatural
    is begin
       
       Kartenart (TaskExtern) := LeseWeltkarteneinstellungen.XAchseOsten;
@@ -143,10 +143,10 @@ package body KartenkoordinateXAchseBerechnenLogik is
    
    
    function ÜbergangOstenNormal
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.WaagerechtePositiv
    is begin
       
       ÜberhangXAchse (TaskExtern) := Positive (XAchseExtern + ÄnderungXAchseExtern - LeseWeltkarteneinstellungen.XAchse);
@@ -158,16 +158,16 @@ package body KartenkoordinateXAchseBerechnenLogik is
             
       end loop XAchseGrößerSchleife;
          
-      return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (TaskExtern));
+      return KartenDatentypen.WaagerechtePositiv (ÜberhangXAchse (TaskExtern));
       
    end ÜbergangOstenNormal;
    
    
    
    function ÜbergangOstenRückwärts
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
-      return KartenDatentypen.KartenfeldNatural
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Waagerechte)
+      return KartenDatentypen.WaagerechteNatural
    is begin
       
       if
@@ -184,17 +184,17 @@ package body KartenkoordinateXAchseBerechnenLogik is
       
    
    function XAchseVerschieben
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldPositiv
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv)
+      return KartenDatentypen.WaagerechtePositiv
    is begin
       
       if
-        XAchseExtern + KartenDatentypen.KartenfeldPositiv (Float (KartenkoordinatenWerteLogik.VerschiebungswertXAchse) * Float (LeseWeltkarteneinstellungen.XAchse)) > LeseWeltkarteneinstellungen.XAchse
+        XAchseExtern + KartenDatentypen.WaagerechtePositiv (Float (KartenkoordinatenWerteLogik.VerschiebungswertXAchse) * Float (LeseWeltkarteneinstellungen.XAchse)) > LeseWeltkarteneinstellungen.XAchse
       then
-         return XAchseExtern - KartenDatentypen.KartenfeldPositiv (Float (KartenkoordinatenWerteLogik.VerschiebungswertXAchse) * Float (LeseWeltkarteneinstellungen.XAchse));
+         return XAchseExtern - KartenDatentypen.WaagerechtePositiv (Float (KartenkoordinatenWerteLogik.VerschiebungswertXAchse) * Float (LeseWeltkarteneinstellungen.XAchse));
 
       else
-         return XAchseExtern + KartenDatentypen.KartenfeldPositiv (Float (KartenkoordinatenWerteLogik.VerschiebungswertXAchse) * Float (LeseWeltkarteneinstellungen.XAchse));
+         return XAchseExtern + KartenDatentypen.WaagerechtePositiv (Float (KartenkoordinatenWerteLogik.VerschiebungswertXAchse) * Float (LeseWeltkarteneinstellungen.XAchse));
       end if;
       
    end XAchseVerschieben;

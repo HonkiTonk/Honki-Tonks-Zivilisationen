@@ -91,7 +91,8 @@ package body GebaeudeanforderungenLogik is
    procedure UmgebungDurchgehen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       Umgebung := (others => (others => LeerUmgebung));

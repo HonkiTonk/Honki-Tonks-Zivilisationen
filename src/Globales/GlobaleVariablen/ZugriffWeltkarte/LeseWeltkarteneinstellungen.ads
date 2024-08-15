@@ -6,11 +6,11 @@ package LeseWeltkarteneinstellungen is
    pragma Elaborate_Body;
 
    function YAchse
-     return KartenDatentypen.KartenfeldPositiv;
+     return KartenDatentypen.SenkrechtePositiv;
    pragma Inline (YAchse);
    
    function XAchse
-     return KartenDatentypen.KartenfeldPositiv;
+     return KartenDatentypen.WaagerechtePositiv;
    pragma Inline (XAchse);
    
    function EAchseOben

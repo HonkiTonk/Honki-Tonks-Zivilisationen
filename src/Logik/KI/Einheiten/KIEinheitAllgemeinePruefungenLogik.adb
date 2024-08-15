@@ -90,7 +90,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
    function FeldUnpassierbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenDatentypen.SichtweiteNatural
+      return KartenDatentypen.SenkrechteSichtweiteNatural
    is begin
       
       case

@@ -11,7 +11,7 @@ package body SichtbereicheErmittelnLogik is
 
    function SichtweiteErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenDatentypen.Sichtweite
+      return KartenDatentypen.SenkrechteSichtweite
    is
       use type KartenDatentypen.Ebene;
       use type KartengrundDatentypen.Basisgrund_Enum;
@@ -66,12 +66,12 @@ package body SichtbereicheErmittelnLogik is
    
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      YÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
-      XÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
-      SichtweiteExtern : in KartenDatentypen.UmgebungsbereichDrei)
+      YÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
+      XÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
+      SichtweiteExtern : in KartenDatentypen.SenkrechteUmgebungDrei)
       return Boolean
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
       use type KartengrundDatentypen.Basisgrund_Enum;
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin

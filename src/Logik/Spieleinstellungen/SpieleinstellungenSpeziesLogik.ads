@@ -19,9 +19,10 @@ package SpieleinstellungenSpeziesLogik is
      return Boolean;
    
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
       
-   FreieFelder : KartenDatentypen.SichtweiteNatural;
+   FreieFelder : KartenDatentypen.SenkrechteSichtweiteNatural;
    
    SpeziesAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    SpielerartAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;

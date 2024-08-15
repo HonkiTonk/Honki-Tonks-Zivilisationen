@@ -22,9 +22,9 @@ private
    KartentemperaturAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenressourcenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
-   MaximaleEisdicke : KartenDatentypen.KartenfeldPositiv;
-   YAchse : KartenDatentypen.KartenfeldPositiv;
-   XAchse : KartenDatentypen.KartenfeldPositiv;
+   MaximaleEisdicke : KartenDatentypen.SenkrechtePositiv;
+   YAchse : KartenDatentypen.SenkrechtePositiv;
+   XAchse : KartenDatentypen.WaagerechtePositiv;
    
    ZwischenwertKartenart : Positive;
    
@@ -41,7 +41,7 @@ private
    
    function Polgrößen
      (YAchseXAchseExtern : in Boolean)
-      return KartenDatentypen.KartenfeldNatural;
+      return KartenDatentypen.SenkrechteNatural;
    
    function GrößeSelbstBestimmen
      return KartenRecords.YXAchsenKartenfeldPositivRecord;

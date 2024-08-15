@@ -20,7 +20,8 @@ private with UmwandlungenAdaEigenes;
 package WichtigesSeitenleisteGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    function WichtigesInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;

@@ -14,7 +14,7 @@ package body KIEinheitFestlegenNichtsLogik is
    procedure NichtsTun
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-     -- use type KartenDatentypen.Kartenfeld;
+     -- use type KartenDatentypen.Senkrechte;
    begin
       
     --  case

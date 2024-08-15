@@ -11,9 +11,10 @@ package KartengeneratorKuesteLogik is
    procedure GenerierungKüstenSeeGewässer;
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
-   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
+   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
@@ -28,6 +29,6 @@ private
    
    
    
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorKuesteLogik;

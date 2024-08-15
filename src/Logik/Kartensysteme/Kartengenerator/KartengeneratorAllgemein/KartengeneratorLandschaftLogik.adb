@@ -257,9 +257,9 @@ package body KartengeneratorLandschaftLogik is
    begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -297,9 +297,9 @@ package body KartengeneratorLandschaftLogik is
    begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -337,7 +337,7 @@ package body KartengeneratorLandschaftLogik is
    is begin
       
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          
@@ -358,7 +358,7 @@ package body KartengeneratorLandschaftLogik is
    is begin
       
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          
@@ -379,7 +379,7 @@ package body KartengeneratorLandschaftLogik is
    is begin
          
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          

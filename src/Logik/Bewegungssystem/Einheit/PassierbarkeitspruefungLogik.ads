@@ -17,7 +17,8 @@ with LeseSpeziesbelegung;
 package PassierbarkeitspruefungLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
    function PassierbarkeitPrüfenNummer
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -71,7 +72,7 @@ private
    StadtNummer : StadtDatentypen.Städtebereich;
    StadtVorhanden : StadtDatentypen.Städtebereich;
    
-   Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
+   Stadtumgebung : KartenDatentypen.SenkrechteUmgebungDrei;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Ekropaumgebung : KartenRecords.AchsenKartenfeldNaturalRecord;

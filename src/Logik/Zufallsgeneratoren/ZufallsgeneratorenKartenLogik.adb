@@ -17,9 +17,10 @@ package body ZufallsgeneratorenKartenLogik is
    
    function KartengeneratorLandgrößen
      (YAchseXAchseExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.SenkrechtePositiv
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       case

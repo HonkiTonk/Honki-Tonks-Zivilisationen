@@ -40,7 +40,7 @@ package body PZBEingesetztLogik is
       is
          when -1 =>
             if
-              LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
+              LeseWeltkarteneinstellungen.YAchse <= KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.XAchse)
             then
                Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse + 2 * Vernichtungsbereich.YAchseAnfang) / 10);
                   
@@ -52,14 +52,14 @@ package body PZBEingesetztLogik is
             EingesetztePZB := LeseAllgemeines.AnzahlEingesetzterPZB;
             
             if
-              LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
+              LeseWeltkarteneinstellungen.YAchse <= KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.XAchse)
               and
                 Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse + 2 * Vernichtungsbereich.YAchseAnfang) / 10) / EingesetztePZB
             then
                Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse + 2 * Vernichtungsbereich.YAchseAnfang) / 10) / EingesetztePZB;
                
             elsif
-              LeseWeltkarteneinstellungen.YAchse > LeseWeltkarteneinstellungen.XAchse
+              LeseWeltkarteneinstellungen.YAchse > KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.XAchse)
               and
                 Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse + 2 * Vernichtungsbereich.XAchseAnfang) / 10) / EingesetztePZB
             then

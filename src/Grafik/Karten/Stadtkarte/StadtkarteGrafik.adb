@@ -34,7 +34,7 @@ package body StadtkarteGrafik is
    procedure Stadtkarte
      (StadtauswahlExtern : in StadtGrafikRecords.StadtkarteGrafikRecord)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
             ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtKarte),
@@ -54,7 +54,7 @@ package body StadtkarteGrafik is
          for XAchseSchleifenwert in 1 .. StadtKonstanten.Stadtkartengröße loop
             
             if
-              (YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert > KartenDatentypen.KartenfeldPositiv (StadtDatentypen.GebäudeIDVorhanden'Last)
+              (YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert > KartenDatentypen.SenkrechtePositiv (StadtDatentypen.GebäudeIDVorhanden'Last)
             then
                exit YAchseSchleife;
                

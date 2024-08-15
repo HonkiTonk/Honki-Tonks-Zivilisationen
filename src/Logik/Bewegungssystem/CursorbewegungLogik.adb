@@ -93,7 +93,7 @@ package body CursorbewegungLogik is
             return;
          
          when True =>
-            NeueKoordinate.YAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
+            NeueKoordinate.YAchse := KartenDatentypen.SenkrechtePositiv (KoordinatenPunkt.EingegebeneZahl);
             KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.AnfangXAchse),
                                                                   ZahlenMaximumExtern => Positive (LeseWeltkarteneinstellungen.XAchse),
                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheXPosition);
@@ -106,7 +106,7 @@ package body CursorbewegungLogik is
             null;
          
          when True =>
-            NeueKoordinate.XAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
+            NeueKoordinate.XAchse := KartenDatentypen.WaagerechtePositiv (KoordinatenPunkt.EingegebeneZahl);
             SchreibeGrafiktask.GeheZu (KoordinatenExtern => NeueKoordinate);
       end case;
       

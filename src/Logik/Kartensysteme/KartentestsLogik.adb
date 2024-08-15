@@ -82,7 +82,7 @@ package body KartentestsLogik is
    
 
    function KartenpolePrüfen
-     (PolgrößeExtern : in KartenDatentypen.KartenfeldNatural)
+     (PolgrößeExtern : in KartenDatentypen.SenkrechteNatural)
       return KartenartDatentypen.Kartenpole_Enum
    is begin
      

@@ -17,7 +17,8 @@ with LeseSpeziesbelegung;
 package LeseWeltkarte is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    use type SpeziesDatentypen.Spezies_Enum;
    use type StadtDatentypen.Städtebereich;
    

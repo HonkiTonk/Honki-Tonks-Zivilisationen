@@ -9,7 +9,7 @@ package body PolbereicheBerechnenLogik is
 
    procedure PolbereicheBerechnen
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse := KartenKonstanten.AnfangYAchse + KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Norden_Enum);

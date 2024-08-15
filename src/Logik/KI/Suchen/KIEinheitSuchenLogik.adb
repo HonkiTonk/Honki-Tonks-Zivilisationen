@@ -18,7 +18,8 @@ package body KIEinheitSuchenLogik is
       FeindExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -27,7 +28,7 @@ package body KIEinheitSuchenLogik is
       BereitsGeprüft := UmgebungPrüfen - 1;
       
       FeindSuchenSchleife:
-      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
+      while UmgebungPrüfen <= KIKonstanten.YFelderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
          YAchseSchleife:
          for YAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
             XAchseSchleife:

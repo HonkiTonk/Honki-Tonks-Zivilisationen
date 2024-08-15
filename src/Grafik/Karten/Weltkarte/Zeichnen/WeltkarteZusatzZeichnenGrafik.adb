@@ -202,7 +202,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.KartenfeldPositiv'First
+        KoordinatenExtern.YAchse = KartenDatentypen.SenkrechtePositiv'First
         and
           ObenUntenExtern
           and

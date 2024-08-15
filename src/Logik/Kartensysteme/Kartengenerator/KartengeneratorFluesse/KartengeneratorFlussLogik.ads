@@ -11,7 +11,7 @@ package KartengeneratorFlussLogik is
 
 private
          
-   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
+   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
    
    -- Später vom Nutzer einstellbar machen. äöü
    type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of SystemDatentypen.NullBisHundert;
@@ -23,6 +23,6 @@ private
    
    
    
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorFlussLogik;

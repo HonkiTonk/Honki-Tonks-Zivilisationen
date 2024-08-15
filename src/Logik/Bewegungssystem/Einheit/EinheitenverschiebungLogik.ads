@@ -39,7 +39,7 @@ package EinheitenverschiebungLogik is
    
 private
    
-   Umgebungsgröße : KartenDatentypen.UmgebungsbereichDrei;
+   Umgebungsgröße : KartenDatentypen.SenkrechteUmgebungDrei;
    
    UmgebungPrüfen : KartenRecords.YXAchsenKartenfeldPositivRecord;
    BereitsGeprüft : KartenRecords.YXAchsenKartenfeldNaturalRecord;

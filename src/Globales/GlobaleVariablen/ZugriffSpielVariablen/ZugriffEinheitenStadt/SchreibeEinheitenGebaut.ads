@@ -19,7 +19,8 @@ with KIDatentypen;
 package SchreibeEinheitenGebaut is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    use type KartenDatentypen.Ebene;
 
    procedure ID

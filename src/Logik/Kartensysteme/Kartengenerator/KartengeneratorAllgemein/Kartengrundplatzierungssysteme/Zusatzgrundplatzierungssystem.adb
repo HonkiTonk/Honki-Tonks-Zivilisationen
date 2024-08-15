@@ -28,12 +28,12 @@ package body Zusatzgrundplatzierungssystem is
       end case;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             if
-            abs (YAchseSchleifenwert) = abs (XAchseSchleifenwert)
+            abs (YAchseSchleifenwert) = KartenDatentypen.Senkrechte (abs (XAchseSchleifenwert))
             then
                null;
                
@@ -84,9 +84,9 @@ package body Zusatzgrundplatzierungssystem is
       Grundnummer := GrundZuNummer (ZusatzgrundExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

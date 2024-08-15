@@ -206,10 +206,10 @@ package body KIStaedteverbindungssystemLogik is
       case
         Bewertung (DurchlaufExtern).Bewertung
       is
-         when KartenDatentypen.KartenfeldPositiv'Last =>
+         when KartenDatentypen.SenkrechtePositiv'Last =>
             return False;
                
-         when KartenDatentypen.KartenfeldNatural'First =>
+         when KartenDatentypen.SenkrechteNatural'First =>
             SchreibeKIVariablen.Stadtverbindung (SpeziesExtern     => SpeziesExtern,
                                                  AbschnittExtern   => KIKonstanten.VerbindungsplanVorhanden,
                                                  KoordinatenExtern => ZielkoordinatenExtern);
@@ -248,9 +248,9 @@ package body KIStaedteverbindungssystemLogik is
       BewertungPosition := BewertungArray'First;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -263,13 +263,13 @@ package body KIStaedteverbindungssystemLogik is
               or
                 KartenWert = AktuelleKoordinatenExtern
             then
-               Bewertung (BewertungPosition).Bewertung := KartenDatentypen.KartenfeldPositiv'Last;
+               Bewertung (BewertungPosition).Bewertung := KartenDatentypen.SenkrechtePositiv'Last;
                
             elsif
               True = FeldUngeeignet (SpeziesExtern     => SpeziesExtern,
                                           KoordinatenExtern => KartenWert)
             then
-               Bewertung (BewertungPosition).Bewertung := KartenDatentypen.KartenfeldPositiv'Last;
+               Bewertung (BewertungPosition).Bewertung := KartenDatentypen.SenkrechtePositiv'Last;
             
             else
                Bewertung (BewertungPosition).Bewertung := KIBewegungsbewertungLogik.PositionsbewertungKoordinaten (ZielkoordinatenExtern => ZielkoordinatenExtern,

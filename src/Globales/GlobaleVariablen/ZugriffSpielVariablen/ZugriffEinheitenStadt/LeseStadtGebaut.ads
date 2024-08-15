@@ -21,7 +21,8 @@ with KIDatentypen;
 package LeseStadtGebaut is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    use type KartenDatentypen.Ebene;
    use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
@@ -244,8 +245,8 @@ package LeseStadtGebaut is
 
    function UmgebungBewirtschaftung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
-      XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei)
+      YKoordinateExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
+      XKoordinateExtern : in KartenDatentypen.WaagerechteUmgebungDrei)
       return Boolean
      with
        Pre => (
@@ -268,7 +269,7 @@ package LeseStadtGebaut is
    
    function UmgebungGröße
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KartenDatentypen.UmgebungsbereichDrei
+      return KartenDatentypen.SenkrechteUmgebungDrei
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

@@ -7,9 +7,9 @@ package PolbereicheBerechnenLogik is
    
 private
    
-   PolbereichNorden : KartenDatentypen.KartenfeldNatural;
-   PolbereichSüden : KartenDatentypen.KartenfeldNatural;
-   PolbereichWesten : KartenDatentypen.KartenfeldNatural;
-   PolbereichOsten : KartenDatentypen.KartenfeldNatural;
+   PolbereichNorden : KartenDatentypen.SenkrechteNatural;
+   PolbereichSüden : KartenDatentypen.SenkrechteNatural;
+   PolbereichWesten : KartenDatentypen.SenkrechteNatural;
+   PolbereichOsten : KartenDatentypen.SenkrechteNatural;
 
 end PolbereicheBerechnenLogik;

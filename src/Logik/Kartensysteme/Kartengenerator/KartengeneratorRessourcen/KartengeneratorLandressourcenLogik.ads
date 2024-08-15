@@ -8,7 +8,8 @@ with LeseWeltkarteneinstellungen;
 
 package KartengeneratorLandressourcenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    procedure KartengeneratorLandressourcen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)

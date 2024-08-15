@@ -13,9 +13,10 @@ package KartengeneratorLandschaftLogik is
    procedure GenerierungLandschaft;
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
-   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
+   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
       
    Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
@@ -189,6 +190,6 @@ private
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorLandschaftLogik;

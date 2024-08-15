@@ -7,7 +7,8 @@ with LeseWeltkarteneinstellungen;
 
 package KartenkoordinatenberechnungssystemLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    use type KartenDatentypen.Ebene;
 
    function Kartenkoordinatenberechnungssystem

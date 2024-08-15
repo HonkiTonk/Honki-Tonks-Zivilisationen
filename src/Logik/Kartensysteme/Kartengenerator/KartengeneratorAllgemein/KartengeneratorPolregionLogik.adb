@@ -91,7 +91,7 @@ package body KartengeneratorPolregionLogik is
    
    procedure PolregionSüden
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       case
@@ -156,7 +156,7 @@ package body KartengeneratorPolregionLogik is
    
    procedure PolregionOsten
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       case

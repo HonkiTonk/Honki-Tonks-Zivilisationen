@@ -14,7 +14,8 @@ with KIDatentypen;
 
 package KIZielSuchenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    use type SpeziesDatentypen.Spieler_Enum;
 
    function ZielSuchen
@@ -42,8 +43,8 @@ private
    
    Schwierigkeitsgrad : SpielDatentypen.Schwierigkeitsgrad_Enum;
 
-   YQuadrantenbereich : KartenRecords.AchseAnfangEndeRecord;
-   XQuadrantenbereich : KartenRecords.AchseAnfangEndeRecord;
+   YQuadrantenbereich : KartenRecords.YAchseAnfangEndeRecord;
+   XQuadrantenbereich : KartenRecords.XAchseAnfangEndeRecord;
    
    EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;

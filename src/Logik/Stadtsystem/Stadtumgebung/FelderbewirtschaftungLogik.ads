@@ -25,7 +25,7 @@ package FelderbewirtschaftungLogik is
    
 private
    
-   NutzbarerBereich : KartenDatentypen.Kartenfeld;
+   NutzbarerBereich : KartenDatentypen.Senkrechte;
    
    Bewertung : ProduktionDatentypen.Produktion;
       
@@ -35,8 +35,8 @@ private
    type FeldRecord is record
       
       Bewertung : ProduktionDatentypen.Produktion;
-      YKoordinate : KartenDatentypen.UmgebungsbereichDrei;
-      XKoordinate : KartenDatentypen.UmgebungsbereichDrei;
+      YKoordinate : KartenDatentypen.SenkrechteUmgebungDrei;
+      XKoordinate : KartenDatentypen.WaagerechteUmgebungDrei;
       
    end record;
    

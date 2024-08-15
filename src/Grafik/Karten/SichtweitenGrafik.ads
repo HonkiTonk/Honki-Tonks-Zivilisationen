@@ -14,24 +14,24 @@ package SichtweitenGrafik is
    procedure StandardSichtweiten;
    
    procedure ZoomstufeÄndern
-     (ÄnderungExtern : in KartenDatentypen.Kartenfeld);
+     (ÄnderungExtern : in KartenDatentypen.Senkrechte);
    
    
    
    function SichthöheLesen
-     return KartenDatentypen.KartenfeldPositiv;
+     return KartenDatentypen.SenkrechtePositiv;
    
    function SichtbreiteLesen
-     return KartenDatentypen.KartenfeldPositiv;
+     return KartenDatentypen.WaagerechtePositiv;
    
    function SichtbereichLesen
      return KartenRecords.YXAchsenKartenfeldPositivRecord;
    
    function BewegungshöheLesen
-     return KartenDatentypen.KartenfeldPositiv;
+     return KartenDatentypen.SenkrechtePositiv;
    
    function BewegungsbreiteLesen
-     return KartenDatentypen.KartenfeldPositiv;
+     return KartenDatentypen.WaagerechtePositiv;
    
    function BewegungsbereichLesen
      return KartenRecords.YXAchsenKartenfeldPositivRecord;
@@ -73,10 +73,15 @@ private
    WelcheZoomanpassung : TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
    
    -- Maximale und Minimale Zoomstufe später anpassbar machen. äöü
-   MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 15;
-   MinimaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;
-   StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 5;
-   AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;
+   MaximaleYZoomstufe : constant KartenDatentypen.SenkrechtePositiv := 15;
+   MinimaleYZoomstufe : constant KartenDatentypen.SenkrechtePositiv := KartenDatentypen.SenkrechtePositiv'First;
+   StandardYZoomstufe : constant KartenDatentypen.SenkrechtePositiv := 5;
+   AktuelleYZoomstufe : KartenDatentypen.SenkrechtePositiv := StandardYZoomstufe;
+   
+   MaximaleXZoomstufe : constant KartenDatentypen.WaagerechtePositiv := 15;
+   MinimaleXZoomstufe : constant KartenDatentypen.WaagerechtePositiv := KartenDatentypen.WaagerechtePositiv'First;
+   StandardXZoomstufe : constant KartenDatentypen.WaagerechtePositiv := 5;
+   AktuelleXZoomstufe : KartenDatentypen.WaagerechtePositiv := StandardXZoomstufe;
    
    Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
    Bewegungsbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;

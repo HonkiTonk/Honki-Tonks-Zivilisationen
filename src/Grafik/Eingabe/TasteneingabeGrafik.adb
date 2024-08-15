@@ -21,7 +21,7 @@ package body TasteneingabeGrafik is
    procedure Tasteneingabe
    is
       use type Sf.sfBool;
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
       use type GrafikDatentypen.Aktuelle_Anzeige_Enum;
    begin
       

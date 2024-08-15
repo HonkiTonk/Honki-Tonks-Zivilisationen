@@ -3,7 +3,6 @@ with EinheitenRecords;
 with EinheitenKonstanten;
 
 private with KartenRecords;
-private with KartenDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -23,7 +22,6 @@ package KIEinheitFestlegenErkundenLogik is
               );
    
 private
-   use type KartenDatentypen.Kartenfeld;
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
 

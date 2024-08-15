@@ -26,9 +26,9 @@ package body EinheitenbewegungsbereichLogik is
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
             XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
                if
                  YAchseSchleifenwert /= 0
@@ -88,9 +88,9 @@ package body EinheitenbewegungsbereichLogik is
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
             XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
 
                if
                  YAchseSchleifenwert = 0

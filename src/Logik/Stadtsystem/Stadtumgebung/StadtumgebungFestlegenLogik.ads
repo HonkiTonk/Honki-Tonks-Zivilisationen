@@ -33,12 +33,13 @@ package StadtumgebungFestlegenLogik is
               );
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
    GrundBelegbar : Boolean;
    
-   GrößeAlt : KartenDatentypen.UmgebungsbereichDrei;
-   GrößeNeu : KartenDatentypen.UmgebungsbereichDrei;
+   GrößeAlt : KartenDatentypen.SenkrechteUmgebungDrei;
+   GrößeNeu : KartenDatentypen.SenkrechteUmgebungDrei;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    UmgebendesKartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -61,7 +62,7 @@ private
    
    procedure UmgebendeStädteAnpassen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrößeAltExtern : in KartenDatentypen.UmgebungsbereichDrei)
+      GrößeAltExtern : in KartenDatentypen.SenkrechteUmgebungDrei)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

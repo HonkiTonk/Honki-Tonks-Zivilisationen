@@ -4,9 +4,10 @@ with KartenartDatentypen;
 
 package KartengeneratorRecordKonstanten is
    pragma Pure;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
-   type PolregionenArray is array (KartenartDatentypen.Himmelsrichtungen_Enum'Range) of KartenDatentypen.KartenfeldNatural;
+   type PolregionenArray is array (KartenartDatentypen.Himmelsrichtungen_Enum'Range) of KartenDatentypen.SenkrechteNatural;
    Eisrand : constant PolregionenArray := (
                                            KartenartDatentypen.Norden_Enum => 1,
                                            KartenartDatentypen.Süden_Enum  => 1,
@@ -34,10 +35,10 @@ package KartengeneratorRecordKonstanten is
                                                            
                                                            KartenartDatentypen.Kartenart_Pangäa_Enum =>
                                                              (
-                                                              MinimaleYAchse => KartenDatentypen.KartenfeldPositiv'Last / 3,
-                                                              MaximaleYAchse => KartenDatentypen.KartenfeldPositiv'Last / 3,
-                                                              MinimaleXAchse => KartenDatentypen.KartenfeldPositiv'Last / 3,
-                                                              MaximaleXAchse => KartenDatentypen.KartenfeldPositiv'Last / 3
+                                                              MinimaleYAchse => KartenDatentypen.SenkrechtePositiv'Last / 3,
+                                                              MaximaleYAchse => KartenDatentypen.SenkrechtePositiv'Last / 3,
+                                                              MinimaleXAchse => KartenDatentypen.WaagerechtePositiv'Last / 3,
+                                                              MaximaleXAchse => KartenDatentypen.WaagerechtePositiv'Last / 3
                                                              )
                                                           );
 

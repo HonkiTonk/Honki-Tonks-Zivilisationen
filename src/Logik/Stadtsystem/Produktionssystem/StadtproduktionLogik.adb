@@ -79,7 +79,8 @@ package body StadtproduktionLogik is
    procedure FelderProduktionBerechnen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
       use type ProduktionDatentypen.Produktion;
    begin
             

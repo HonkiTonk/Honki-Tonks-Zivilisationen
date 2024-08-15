@@ -23,7 +23,7 @@ package body SichtbarkeitsberechnungssystemLogik is
       case
         SichtweiteObjekt
       is
-         when KartenDatentypen.Sichtweite'First =>
+         when KartenDatentypen.SenkrechteSichtweite'First =>
             SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                SichtweiteExtern           => SichtweiteObjekt);
             return;
@@ -67,9 +67,9 @@ package body SichtbarkeitsberechnungssystemLogik is
    
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      SichtweiteExtern : in KartenDatentypen.Sichtweite)
+      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -104,7 +104,7 @@ package body SichtbarkeitsberechnungssystemLogik is
    procedure SichtbarkeitsprüfungFürStadt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) + 1;

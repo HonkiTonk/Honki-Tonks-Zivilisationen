@@ -35,7 +35,8 @@ package KIEinheitenbewegungLogik is
               );
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
    FremdeStadt : StadtRecords.SpeziesStadtnummerRecord;
    

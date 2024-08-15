@@ -39,7 +39,7 @@ private
    
    VorhandeneEinwohner : StadtDatentypen.Einwohner;
    
-   NutzbarerBereich : KartenDatentypen.Kartenfeld;
+   NutzbarerBereich : KartenDatentypen.Senkrechte;
 
    NahrungsverbrauchEinwohnerMultiplikator : ProduktionDatentypen.Stadtproduktion;
    RessourcenverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;

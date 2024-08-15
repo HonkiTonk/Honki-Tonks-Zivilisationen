@@ -28,7 +28,8 @@ package EinwohnersystemLogik is
    
 private
    
-   Koordinatenausgleich : constant KartenDatentypen.KartenfeldPositiv := 3;
+   YKoordinatenausgleich : constant KartenDatentypen.SenkrechtePositiv := 3;
+   XKoordinatenausgleich : constant KartenDatentypen.WaagerechtePositiv := 3;
       
    Stadtfeld : KartenRecords.YXAchsenKartenfeldRecord;
    
@@ -39,8 +40,8 @@ private
    
    procedure EinwohnerBelegungÄndern
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YAchseExtern : in KartenDatentypen.Kartenfeld;
-      XAchseExtern : in KartenDatentypen.Kartenfeld)
+      YAchseExtern : in KartenDatentypen.Senkrechte;
+      XAchseExtern : in KartenDatentypen.Waagerechte)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -50,8 +51,8 @@ private
    
    procedure EinwohnerEntfernen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YAchseExtern : in KartenDatentypen.Kartenfeld;
-      XAchseExtern : in KartenDatentypen.Kartenfeld)
+      YAchseExtern : in KartenDatentypen.Senkrechte;
+      XAchseExtern : in KartenDatentypen.Waagerechte)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -61,8 +62,8 @@ private
    
    procedure EinwohnerZuweisen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YAchseExtern : in KartenDatentypen.Kartenfeld;
-      XAchseExtern : in KartenDatentypen.Kartenfeld)
+      YAchseExtern : in KartenDatentypen.Senkrechte;
+      XAchseExtern : in KartenDatentypen.Waagerechte)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -72,6 +73,7 @@ private
    
    
    
-   function MausfeldPrüfen is new Vergleiche.Achsenauswahlposition (GanzeZahl => KartenDatentypen.Kartenfeld);
+   function YMausfeldPrüfen is new Vergleiche.Achsenauswahlposition (GanzeZahl => KartenDatentypen.Senkrechte);
+   function XMausfeldPrüfen is new Vergleiche.Achsenauswahlposition (GanzeZahl => KartenDatentypen.Waagerechte);
 
 end EinwohnersystemLogik;

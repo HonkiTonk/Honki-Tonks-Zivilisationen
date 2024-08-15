@@ -50,9 +50,9 @@ package body StadtumgebungFestlegenLogik is
 
       -- StadtUmgebungGröße darf hier nicht genutzt werden, damit bei einer Verkleinerung auch alle Felder zurückgenommen werden können.
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -159,9 +159,9 @@ package body StadtumgebungFestlegenLogik is
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
             XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
                BelegungKartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                                  ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -206,15 +206,15 @@ package body StadtumgebungFestlegenLogik is
    
    procedure UmgebendeStädteAnpassen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrößeAltExtern : in KartenDatentypen.UmgebungsbereichDrei)
+      GrößeAltExtern : in KartenDatentypen.SenkrechteUmgebungDrei)
    is
       use type StadtDatentypen.Städtebereich;
    begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -GrößeAltExtern -1 .. GrößeAltExtern + 1 loop
+      for YAchseSchleifenwert in -GrößeAltExtern - 1 .. GrößeAltExtern + 1 loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -GrößeAltExtern -1 .. GrößeAltExtern + 1 loop
+         for XAchseSchleifenwert in -GrößeAltExtern - 1 .. GrößeAltExtern + 1 loop
 
             if
             abs (YAchseSchleifenwert) < GrößeAltExtern + 1

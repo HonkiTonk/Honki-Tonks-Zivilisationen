@@ -8,16 +8,16 @@ package KIEAchsenbewertung is
    function EAchseBewerten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return KartenDatentypen.KartenfeldNatural;
+      return KartenDatentypen.SenkrechteNatural;
 
 private
    
    WelcheFelderanzahl : Positive;
 
-   type FelderanzahlArray is array (1 .. 3) of KartenDatentypen.KartenfeldNatural;
+   type FelderanzahlArray is array (1 .. 3) of KartenDatentypen.SenkrechteNatural;
    Felderanzahl : FelderanzahlArray;
    
-   type EbenenumrechnungArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.KartenfeldPositiv;
+   type EbenenumrechnungArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.SenkrechtePositiv;
    Ebenenumrechnung : constant EbenenumrechnungArray := (
                                                          KartenKonstanten.PlaneteninneresKonstante => 1,
                                                          KartenKonstanten.UnterflächeKonstante     => 2,
@@ -31,11 +31,11 @@ private
    function StandardübergangOben
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return KartenDatentypen.KartenfeldNatural;
+      return KartenDatentypen.SenkrechteNatural;
    
    function StandardübergangUnten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return KartenDatentypen.KartenfeldNatural;
+      return KartenDatentypen.SenkrechteNatural;
 
 end KIEAchsenbewertung;

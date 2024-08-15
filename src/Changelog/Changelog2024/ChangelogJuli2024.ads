@@ -21,21 +21,23 @@ package ChangelogJuli2024 is
    
    
 
-   -- Version 0.05. => 0.05. (28.07.2024):
+   -- Version 0.05.8680 => 0.05. (28.07.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.6830 => 0.05. (27.07.2024):
+   -- Version 0.05.8630 => 0.05.8680 (27.07.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Angefangen YAchse und XAchse in zwei verschiedene Datentypen aufzuteilen.
+   -- Interne Benennung überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.8605 => 0.05.6830 (26.07.2024):
+   -- Version 0.05.8605 => 0.05.8630 (26.07.2024):
    
    -- Die Übersetzungen an die letzten Änderungen angepasst.
    -- Kleinigkeiten korrigiert.

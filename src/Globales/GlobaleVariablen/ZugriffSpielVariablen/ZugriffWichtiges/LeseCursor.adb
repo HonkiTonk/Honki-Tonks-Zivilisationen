@@ -37,7 +37,7 @@ package body LeseCursor is
    
    function YAchseAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.SenkrechtePositiv
    is begin
       
       return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.YAchse;
@@ -48,7 +48,7 @@ package body LeseCursor is
    
    function XAchseAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenDatentypen.KartenfeldPositiv
+      return KartenDatentypen.WaagerechtePositiv
    is begin
       
       return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.XAchse;

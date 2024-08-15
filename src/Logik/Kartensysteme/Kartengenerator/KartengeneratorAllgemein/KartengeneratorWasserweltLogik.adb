@@ -158,7 +158,7 @@ package body KartengeneratorWasserweltLogik is
    is begin
       
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          
@@ -179,7 +179,7 @@ package body KartengeneratorWasserweltLogik is
    is begin
       
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          
@@ -200,7 +200,7 @@ package body KartengeneratorWasserweltLogik is
    is begin
       
       if
-        KoordinatenExtern.YAchse = KoordinatenExtern.XAchse
+        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
       then
          null;
          

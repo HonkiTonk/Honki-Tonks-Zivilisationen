@@ -13,7 +13,8 @@ with KIDatentypen;
 package KIBewegungAllgemeinLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
    function FeldBetreten
      (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

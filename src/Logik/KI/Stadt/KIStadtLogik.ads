@@ -27,7 +27,7 @@ package KIStadtLogik is
 
 private
 
-   Umgebungsgröße : KartenDatentypen.UmgebungsbereichDrei;
+   Umgebungsgröße : KartenDatentypen.SenkrechteUmgebungDrei;
 
    NotfallEinheit : EinheitenDatentypen.EinheitenID;
    AktuelleEinheit : EinheitenDatentypen.EinheitenID;

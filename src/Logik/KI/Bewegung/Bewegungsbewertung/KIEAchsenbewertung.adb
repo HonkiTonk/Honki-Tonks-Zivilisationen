@@ -7,9 +7,9 @@ package body KIEAchsenbewertung is
    function EAchseBewerten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
       use type KartenDatentypen.Ebene;
    begin
       
@@ -26,7 +26,7 @@ package body KIEAchsenbewertung is
         LeseWeltkarteneinstellungen.EAchseOben
       is
          when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
-            Felderanzahl (2) := KartenDatentypen.KartenfeldPositiv'Last;
+            Felderanzahl (2) := KartenDatentypen.SenkrechtePositiv'Last;
             
          when KartenartDatentypen.Karte_E_Übergang_Enum =>
             Felderanzahl (2) := StandardübergangOben (ZielebeneExtern => ZielebeneExtern,
@@ -37,7 +37,7 @@ package body KIEAchsenbewertung is
         LeseWeltkarteneinstellungen.EAchseUnten
       is
          when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
-            Felderanzahl (3) := KartenDatentypen.KartenfeldPositiv'Last;
+            Felderanzahl (3) := KartenDatentypen.SenkrechtePositiv'Last;
             
          when KartenartDatentypen.Karte_E_Übergang_Enum =>
             Felderanzahl (3) := StandardübergangUnten (ZielebeneExtern => ZielebeneExtern,
@@ -69,9 +69,9 @@ package body KIEAchsenbewertung is
    function StandardübergangOben
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       if
@@ -80,7 +80,7 @@ package body KIEAchsenbewertung is
          return Ebenenumrechnung (ZielebeneExtern) - Ebenenumrechnung (NeueEbeneExtern) + Ebenenumrechnung (KartenDatentypen.EbeneVorhanden'Last);
                   
       else
-         return KartenDatentypen.KartenfeldPositiv'Last;
+         return KartenDatentypen.SenkrechtePositiv'Last;
       end if;
       
    end StandardübergangOben;
@@ -90,9 +90,9 @@ package body KIEAchsenbewertung is
    function StandardübergangUnten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
    is
-      use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Senkrechte;
    begin
       
       if
@@ -101,7 +101,7 @@ package body KIEAchsenbewertung is
          return Ebenenumrechnung (NeueEbeneExtern) - Ebenenumrechnung (ZielebeneExtern) + Ebenenumrechnung (KartenDatentypen.EbeneVorhanden'Last);
          
       else
-         return KartenDatentypen.KartenfeldPositiv'Last;
+         return KartenDatentypen.SenkrechtePositiv'Last;
       end if;
       
    end StandardübergangUnten;

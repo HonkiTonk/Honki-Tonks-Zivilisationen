@@ -9,10 +9,10 @@ package KartengeneratorUnterflaecheLogik is
 
 private
 
-   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
+   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
 
 
 
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorUnterflaecheLogik;

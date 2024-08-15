@@ -13,7 +13,8 @@ package KartengeneratorStandardLogik is
    procedure OberflächeGenerieren;
 
 private
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    
    LandHöheBreite : Boolean;
    
@@ -23,16 +24,16 @@ private
    ÜbergangWesten : KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
    ÜbergangOsten : KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
    
-   YAchseZwischenwert : KartenDatentypen.KartenfeldPositiv;
-   XAchseZwischenwert : KartenDatentypen.KartenfeldPositiv;
-   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
+   YAchseZwischenwert : KartenDatentypen.SenkrechtePositiv;
+   XAchseZwischenwert : KartenDatentypen.SenkrechtePositiv;
+   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
    
-   YAchseAnfang : KartenDatentypen.Kartenfeld;
-   YAchseEnde : KartenDatentypen.Kartenfeld;
-   XAchseAnfang : KartenDatentypen.Kartenfeld;
-   XAchseEnde : KartenDatentypen.Kartenfeld;
+   YAchseAnfang : KartenDatentypen.Senkrechte;
+   YAchseEnde : KartenDatentypen.Senkrechte;
+   XAchseAnfang : KartenDatentypen.Waagerechte;
+   XAchseEnde : KartenDatentypen.Waagerechte;
       
-   type LandmassenArray is array (1 .. 4) of KartenDatentypen.KartenfeldPositiv;
+   type LandmassenArray is array (1 .. 4) of KartenDatentypen.SenkrechtePositiv;
    Landmassen : LandmassenArray;
    Landabstand : LandmassenArray;
    
@@ -71,8 +72,8 @@ private
                                              others => RandWahrscheinlichkeit);
 
    procedure LandVorhanden
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      XAchseExtern : in KartenDatentypen.WaagerechtePositiv)
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -81,8 +82,8 @@ private
               );
    
    procedure LandmasseAbstandGenerieren
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      XAchseExtern : in KartenDatentypen.WaagerechtePositiv)
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -91,8 +92,8 @@ private
               );
 
    procedure Wassergrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldNatural;
-      XAchseExtern : in KartenDatentypen.KartenfeldNatural)
+     (YAchseExtern : in KartenDatentypen.SenkrechteNatural;
+      XAchseExtern : in KartenDatentypen.WaagerechteNatural)
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -101,8 +102,8 @@ private
               );
    
    procedure Landgrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldNatural;
-      XAchseExtern : in KartenDatentypen.KartenfeldNatural)
+     (YAchseExtern : in KartenDatentypen.SenkrechteNatural;
+      XAchseExtern : in KartenDatentypen.WaagerechteNatural)
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -113,25 +114,25 @@ private
    
    
    function StartYAchse
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      AnfangExtern : in KartenDatentypen.KartenfeldPositiv;
-      EndeExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldPositiv
+     (YAchseExtern : in KartenDatentypen.SenkrechtePositiv;
+      AnfangExtern : in KartenDatentypen.SenkrechtePositiv;
+      EndeExtern : in KartenDatentypen.SenkrechtePositiv)
+      return KartenDatentypen.SenkrechtePositiv
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               );
      
    function StartXAchse
-     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      AnfangExtern : in KartenDatentypen.KartenfeldPositiv;
-      EndeExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldPositiv
+     (XAchseExtern : in KartenDatentypen.WaagerechtePositiv;
+      AnfangExtern : in KartenDatentypen.WaagerechtePositiv;
+      EndeExtern : in KartenDatentypen.WaagerechtePositiv)
+      return KartenDatentypen.WaagerechtePositiv
      with
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
    
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorStandardLogik;

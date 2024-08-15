@@ -3,18 +3,18 @@ with KartenartDatentypen;
 
 package KartentestsLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
 
    procedure Größenanpassung;
 
 
 
    function KartenpolePrüfen
-     (PolgrößeExtern : in KartenDatentypen.KartenfeldNatural)
+     (PolgrößeExtern : in KartenDatentypen.SenkrechteNatural)
       return KartenartDatentypen.Kartenpole_Enum
      with
        Pre => (
-                 PolgrößeExtern <= KartenDatentypen.KartenfeldNatural'Last / 2
+                 PolgrößeExtern <= KartenDatentypen.SenkrechteNatural'Last / 2
               );
 
 end KartentestsLogik;

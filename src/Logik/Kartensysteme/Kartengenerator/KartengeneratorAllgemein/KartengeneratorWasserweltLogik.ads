@@ -8,7 +8,8 @@ with LeseWeltkarteneinstellungen;
 
 package KartengeneratorWasserweltLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
 
    procedure KartengeneratorWasserwelt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)

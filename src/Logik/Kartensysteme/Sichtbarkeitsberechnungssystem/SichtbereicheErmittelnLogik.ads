@@ -17,7 +17,7 @@ package SichtbereicheErmittelnLogik is
 
    function SichtweiteErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenDatentypen.Sichtweite
+      return KartenDatentypen.SenkrechteSichtweite
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -27,9 +27,9 @@ package SichtbereicheErmittelnLogik is
    
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      YÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
-      XÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
-      SichtweiteExtern : in KartenDatentypen.UmgebungsbereichDrei)
+      YÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
+      XÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
+      SichtweiteExtern : in KartenDatentypen.SenkrechteUmgebungDrei)
       return Boolean
      with
        Pre => (

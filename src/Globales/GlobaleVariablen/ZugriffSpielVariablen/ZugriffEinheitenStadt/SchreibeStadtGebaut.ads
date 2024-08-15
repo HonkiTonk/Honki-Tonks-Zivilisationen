@@ -20,7 +20,8 @@ with KIDatentypen;
 package SchreibeStadtGebaut is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.Waagerechte;
    use type KartenDatentypen.Ebene;
    use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
@@ -215,8 +216,8 @@ package SchreibeStadtGebaut is
    
    procedure UmgebungBewirtschaftung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
-      XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
+      YKoordinateExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
+      XKoordinateExtern : in KartenDatentypen.WaagerechteUmgebungDrei;
       BelegenEntfernenExtern : in Boolean)
      with
        Pre => (
@@ -228,7 +229,7 @@ package SchreibeStadtGebaut is
    
    procedure UmgebungGröße
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      UmgebungGrößeExtern : in KartenDatentypen.UmgebungsbereichDrei;
+      UmgebungGrößeExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre => (

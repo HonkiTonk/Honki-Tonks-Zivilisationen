@@ -35,7 +35,7 @@ private
    
    StadtVorhanden : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
    
-   StadtUmgebung : KartenDatentypen.UmgebungsbereichDrei;
+   StadtUmgebung : KartenDatentypen.SenkrechteUmgebungDrei;
    
    AlterPlatz : StadtDatentypen.StädtebereichVorhanden;
    

@@ -11,7 +11,7 @@ package body KIBewegungsbewertungLogik is
    function PositionsbewertungEinheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
    is begin
       
       Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -20,7 +20,7 @@ package body KIBewegungsbewertungLogik is
         Zielkoordinaten.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenDatentypen.KartenfeldNatural'Last;
+            return KartenDatentypen.SenkrechteNatural'Last;
             
          when others =>
             return PositionsbewertungKoordinaten (ZielkoordinatenExtern => Zielkoordinaten,
@@ -34,7 +34,7 @@ package body KIBewegungsbewertungLogik is
    function PositionsbewertungKoordinaten
      (ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenDatentypen.KartenfeldNatural
+      return KartenDatentypen.SenkrechteNatural
    is begin
       
       BewertungEAchse := KIEAchsenbewertung.EAchseBewerten (ZielebeneExtern => ZielkoordinatenExtern.EAchse,
@@ -47,12 +47,12 @@ package body KIBewegungsbewertungLogik is
                                                             NeuerPunktExtern => NeueKoordinatenExtern.XAchse);
       
       if
-        Natural (BewertungEAchse) + Natural (BewertungYAchse) + Natural (BewertungXAchse) >= Natural (KartenDatentypen.KartenfeldPositiv'Last)
+        Natural (BewertungEAchse) + Natural (BewertungYAchse) + Natural (BewertungXAchse) >= Natural (KartenDatentypen.SenkrechtePositiv'Last)
       then
-         return KartenDatentypen.KartenfeldPositiv'Last;
+         return KartenDatentypen.SenkrechtePositiv'Last;
          
       else
-         return BewertungEAchse + BewertungYAchse + BewertungXAchse;
+         return BewertungEAchse + BewertungYAchse + KartenDatentypen.Senkrechte (BewertungXAchse);
       end if;
       
    end PositionsbewertungKoordinaten;
