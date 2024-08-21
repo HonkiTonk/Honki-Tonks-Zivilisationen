@@ -188,8 +188,8 @@ package body SpeichernLogik is
             null;
                
          elsif
-           False =StädteEinheitenSpeichern (SpeziesExtern        => SpeziesSchleifenwert,
-                                             DateiSpeichernExtern => DateiSpeichernExtern)
+           False = StädteEinheitenSpeichern (SpeziesExtern        => SpeziesSchleifenwert,
+                                              DateiSpeichernExtern => DateiSpeichernExtern)
          then
             return False;
                   

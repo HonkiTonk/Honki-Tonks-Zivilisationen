@@ -210,7 +210,7 @@ package ChangelogAugust2024 is
    
    
 
-   -- Version 0.0. => 0.0. (01.08.2024):
+   -- Version 0.05. => 0.0. (01.08.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
