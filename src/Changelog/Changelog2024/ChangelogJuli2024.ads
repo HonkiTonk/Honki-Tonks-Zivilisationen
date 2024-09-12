@@ -1,15 +1,15 @@
 package ChangelogJuli2024 is
    
-   -- Version 0.05. => 0.05. (31.07.2024):
+   -- Version 0.05.8745 => 0.05. (31.07.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.8720 => 0.05. (30.07.2024):
+   -- Version 0.05.8720 => 0.05.8745 (30.07.2024):
    
-   -- 
+   -- Angefangen Programmteile in eigene Bibliotheken auszulagern.
    -- Kleinigkeiten korrigiert.
    
    
