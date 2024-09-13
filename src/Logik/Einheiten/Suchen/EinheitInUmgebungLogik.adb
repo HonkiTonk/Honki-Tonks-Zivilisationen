@@ -78,7 +78,8 @@ package body EinheitInUmgebungLogik is
             when others =>
                if
                  True = EinheitFinden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)),
-                                       UmgebungExtern    => 3,
+                                       UmgebungExtern    => (Senkrechte  => 3,
+                                                             Waagerechte => 3),
                                        SpeziesExtern     => SpeziesExtern)
                then
                   MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert),
@@ -97,7 +98,7 @@ package body EinheitInUmgebungLogik is
    
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      UmgebungExtern : in KartenDatentypen.SenkrechteSichtweite;
+      UmgebungExtern : in KartenRecords.SichtweitePositiveRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
@@ -106,9 +107,9 @@ package body EinheitInUmgebungLogik is
    begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
+      for YAchseSchleifenwert in -UmgebungExtern.Senkrechte .. UmgebungExtern.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
+         for XAchseSchleifenwert in -UmgebungExtern.Waagerechte .. UmgebungExtern.Waagerechte loop
       
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

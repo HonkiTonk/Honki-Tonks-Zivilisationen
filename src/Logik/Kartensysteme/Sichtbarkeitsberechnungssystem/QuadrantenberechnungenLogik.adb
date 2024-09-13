@@ -73,7 +73,7 @@ package body QuadrantenberechnungenLogik is
    
    procedure QuadrantEins
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteNaturalRecord;
       SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -206,7 +206,7 @@ package body QuadrantenberechnungenLogik is
    
    procedure QuadrantZwei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteNaturalRecord;
       SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -339,7 +339,7 @@ package body QuadrantenberechnungenLogik is
    
    procedure QuadrantDrei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteNaturalRecord;
       SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -472,7 +472,7 @@ package body QuadrantenberechnungenLogik is
    
    procedure QuadrantVier
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteNaturalRecord;
       SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is

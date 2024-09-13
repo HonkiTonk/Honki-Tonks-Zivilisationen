@@ -36,10 +36,28 @@ package KartenRecords is
    
    
    
-   type SichtweiteRecord is record
+   type SichtweitePositiveRecord is record
+      
+      Senkrechte : KartenDatentypen.SenkrechteSichtweite;
+      Waagerechte : KartenDatentypen.WaagerechteSichtweite;
+      
+   end record;
+   
+   
+   
+   type SichtweiteNaturalRecord is record
       
       YAchse : KartenDatentypen.SenkrechteSichtweiteNatural;
       XAchse : KartenDatentypen.WaagerechteSichtweiteNatural;
+      
+   end record;
+   
+   
+   
+   type UmgebungDreiRecord is record
+      
+      Senkrechte : KartenDatentypen.SenkrechteUmgebungDrei;
+      Waagerechte : KartenDatentypen.WaagerechteUmgebungDrei;
       
    end record;
    

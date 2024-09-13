@@ -24,15 +24,18 @@ package body KIEinheitSuchenLogik is
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      UmgebungPrüfen := 1;
-      BereitsGeprüft := UmgebungPrüfen - 1;
+      SenkrechtePrüfen := 1;
+      SenkrechteGeprüft := SenkrechtePrüfen - 1;
+      
+      WaagerechtePrüfen := 1;
+      WaagerechteGeprüft := WaagerechtePrüfen - 1;
       
       FeindSuchenSchleife:
-      while UmgebungPrüfen <= KIKonstanten.YFelderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
+      while SenkrechtePrüfen <= KIKonstanten.YFelderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
          YAchseSchleife:
-         for YAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
+         for YAchseSchleifenwert in -SenkrechtePrüfen .. SenkrechtePrüfen loop
             XAchseSchleife:
-            for XAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
+            for XAchseSchleifenwert in -WaagerechtePrüfen .. WaagerechtePrüfen loop
             
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -67,8 +70,11 @@ package body KIEinheitSuchenLogik is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
          
-         UmgebungPrüfen := UmgebungPrüfen + 1;
-         BereitsGeprüft := UmgebungPrüfen - 1;
+         SenkrechteGeprüft := SenkrechtePrüfen;
+         SenkrechtePrüfen := SenkrechtePrüfen + 1;
+         
+         WaagerechteGeprüft := WaagerechtePrüfen;
+         WaagerechtePrüfen := WaagerechtePrüfen + 1;
          
       end loop FeindSuchenSchleife;
       

@@ -22,7 +22,6 @@ private
    KartentemperaturAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenressourcenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
-   MaximaleEisdicke : KartenDatentypen.SenkrechtePositiv;
    YAchse : KartenDatentypen.SenkrechtePositiv;
    XAchse : KartenDatentypen.WaagerechtePositiv;
    

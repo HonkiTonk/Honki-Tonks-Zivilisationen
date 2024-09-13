@@ -39,7 +39,10 @@ package KartenKonstanten is
       
    LeerSichtbar : constant Boolean := False;
    
-   MinimaleKartengröße : constant KartenDatentypen.SenkrechtePositiv := KartenDatentypen.SenkrechtePositiv'Last / 50;
+   MinimaleKartengröße : constant KartenRecords.YXAchsenKartenfeldPositivRecord := (
+                                                                                      YAchse => KartenDatentypen.SenkrechtePositiv'Last / 50,
+                                                                                      XAchse => KartenDatentypen.WaagerechtePositiv'Last / 50
+                                                                                     );
    
    type StandardKartengrößenArray is array (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
    StandardKartengrößen : constant StandardKartengrößenArray := (

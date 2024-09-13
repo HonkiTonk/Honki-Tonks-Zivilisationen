@@ -1,16 +1,15 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with StadtDatentypen;
 with SpeziesDatentypen;
-with ProduktionDatentypen;
 with EinheitenDatentypen;
+with StadtDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with KartenverbesserungDatentypen;
+with ProduktionDatentypen;
 with StadtRecords;
 with KartenKonstanten;
 with StadtKonstanten;
-with StadtArrays;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -18,7 +17,7 @@ with LeseSpeziesbelegung;
 
 with KIDatentypen;
 
-package LeseStadtGebaut is
+package SchreibeStadtGebaut is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Senkrechte;
@@ -26,10 +25,10 @@ package LeseStadtGebaut is
    use type KartenDatentypen.Ebene;
    use type StadtDatentypen.GebäudeID;
    use type EinheitenDatentypen.EinheitenID;
-   
-   function ID
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum
+
+   procedure ID
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      IDExtern : in KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -38,43 +37,30 @@ package LeseStadtGebaut is
               );
    pragma Inline (ID);
    
-   function Koordinaten
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              ),
-   
-       Post => (
-                  Koordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                and
-                  Koordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
-                and
-                  (if Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse then Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
-                and
-                  (if Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
-                and
-                  (if Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse)
-               );
-   pragma Inline (Koordinaten);
-   
-   function EinwohnerArbeiter
+   procedure Koordinaten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinwohnerArbeiterExtern : in Boolean)
-      return StadtDatentypen.Einwohner
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+               and
+                 (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+               and
+                 (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
               );
    
-   function Arbeitslose
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtDatentypen.Einwohner
+   procedure EinwohnerArbeiter
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      EinwohnerArbeiterExtern : in Boolean;
+      WachsenSchrumpfenExtern : in Boolean)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -82,138 +68,133 @@ package LeseStadtGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
       
-   function Nahrungsmittel
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   pragma Inline (Nahrungsmittel);
-   
-   function Nahrungsproduktion
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   pragma Inline (Nahrungsproduktion);
-   
-   function Material
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.StadtLagermenge
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   pragma Inline (Material);
-   
-   function Produktionrate
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   pragma Inline (Produktionrate);
-   
-   function Geldgewinnung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   pragma Inline (Geldgewinnung);
-   
-   function PermanenteKostenPosten
+   procedure Nahrungsmittel
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Vorhanden_Enum)
-      return ProduktionDatentypen.Stadtproduktion
+      NahrungsmittelExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-   pragma Inline (PermanenteKostenPosten);
+   
+   procedure Nahrungsproduktion
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      NahrungsproduktionExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Material
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      MaterialExtern : in ProduktionDatentypen.Produktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Produktionrate
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      ProduktionrateExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Geldgewinnung
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      GeldgewinnungExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure PermanenteKostenPosten
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Vorhanden_Enum;
+      KostenExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
       
-   function Forschungsrate
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.StadtLagermenge
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   pragma Inline (Forschungsrate);
-   
-   function Bauprojekt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.BauprojektRecord
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              ),
-           
-       Post => (
-                (if Bauprojekt'Result.Gebäude /= 0 then Bauprojekt'Result.Einheit = 0)
-                and
-                  (if Bauprojekt'Result.Einheit /= 0 then Bauprojekt'Result.Gebäude = 0)
-               );
-   pragma Inline (Bauprojekt);
-   
-   function Bauzeit
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.Produktion
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   pragma Inline (Bauzeit);
-
-   function Korruption
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.StadtLagermenge
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   pragma Inline (Korruption);
-   
-   function Zufriedenheit
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.ZufriedenheitVorhanden
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   pragma Inline (Zufriedenheit);
-   
-   function GebäudeVorhanden
+   procedure Forschungsrate
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden)
-      return Boolean
+      ForschungsrateExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Bauprojekt
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      BauprojektExtern : in StadtRecords.BauprojektRecord)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 (if BauprojektExtern.Gebäude /= 0 then BauprojektExtern.Einheit = 0)
+               and
+                 (if BauprojektExtern.Einheit /= 0 then BauprojektExtern.Gebäude = 0)
+              );
+   
+   procedure Bauzeit
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Korruption
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      KorruptionExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Zufriedenheit
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      ZufriedenheitExtern : in ProduktionDatentypen.Zufriedenheit;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure GebäudeVorhanden
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden;
+      HinzufügenEntfernenExtern : in Boolean)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -222,32 +203,22 @@ package LeseStadtGebaut is
               );
    pragma Inline (GebäudeVorhanden);
    
-   function AlleGebäude
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtArrays.GebäudeArray
+   procedure Name
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      NameExtern : in Unbounded_Wide_Wide_String)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-   pragma Inline (AlleGebäude);
+   pragma Inline (Name);
    
-   function Name
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return Unbounded_Wide_Wide_String
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-
-   function UmgebungBewirtschaftung
+   procedure UmgebungBewirtschaftung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       YKoordinateExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
-      XKoordinateExtern : in KartenDatentypen.WaagerechteUmgebungDrei)
-      return Boolean
+      XKoordinateExtern : in KartenDatentypen.WaagerechteUmgebungDrei;
+      BelegenEntfernenExtern : in Boolean)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -256,68 +227,21 @@ package LeseStadtGebaut is
               );
    pragma Inline (UmgebungBewirtschaftung);
    
-   function GesamteBewirtschaftung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.UmgebungBewirtschaftungArray
+   procedure UmgebungGröße
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      UmgebungGrößeExtern : in KartenRecords.UmgebungDreiRecord;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-   pragma Inline (GesamteBewirtschaftung);
-   
-   function UmgebungGröße
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KartenRecords.UmgebungDreiRecord
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              ),
-         
-       Post => (
-                  UmgebungGröße'Result.Senkrechte >= 0
-                and
-                  UmgebungGröße'Result.Waagerechte >= 0
-               );
-   pragma Inline (UmgebungGröße);
-   
-   function SenkrechteUmgebung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KartenDatentypen.SenkrechteUmgebungDrei
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              ),
-         
-       Post => (
-                  SenkrechteUmgebung'Result >= 0
-               );
-   pragma Inline (SenkrechteUmgebung);
-   
-   function WaagerechteUmgebung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KartenDatentypen.WaagerechteUmgebungDrei
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              ),
-         
-       Post => (
-                  WaagerechteUmgebung'Result >= 0
-               );
-   pragma Inline (WaagerechteUmgebung);
       
-   function Meldungen
+   procedure Meldungen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      WelcheMeldungExtern : in StadtDatentypen.Stadt_Meldung_Art_Enum)
-      return StadtDatentypen.Stadt_Meldung_Enum
+      WelcheMeldungExtern : in StadtDatentypen.Stadt_Meldung_Art_Enum;
+      MeldungExtern : in StadtDatentypen.Stadt_Meldung_Enum)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -325,10 +249,20 @@ package LeseStadtGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    pragma Inline (Meldungen);
-      
-   function KIBeschäftigung
+   
+   procedure LeerMeldungen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KIDatentypen.Stadt_Aufgabe_Enum
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (LeerMeldungen);
+      
+   procedure KIBeschäftigung
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      BeschäftigungExtern : in KIDatentypen.Stadt_Aufgabe_Enum)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -337,9 +271,28 @@ package LeseStadtGebaut is
               );
    pragma Inline (KIBeschäftigung);
    
-   function GanzerEintrag
+   procedure Bewohnerentfernung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.StadtGebautRecord
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (Bewohnerentfernung);
+   
+   procedure Nullsetzung
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+      
+   procedure GanzerEintrag
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      EintragExtern : in StadtRecords.StadtGebautRecord)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -347,5 +300,15 @@ package LeseStadtGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    pragma Inline (GanzerEintrag);
+   
+   procedure Standardeinstellungen;
+   pragma Inline (Standardeinstellungen);
+   
+private
+   
+   AktuelleEinwohner : StadtDatentypen.Einwohner;
+   AktuelleArbeiter : StadtDatentypen.Einwohner;
+   
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-end LeseStadtGebaut;
+end SchreibeStadtGebaut;

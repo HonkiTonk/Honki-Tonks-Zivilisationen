@@ -112,7 +112,7 @@ package StadtRecords is
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;
-      UmgebungGröße : KartenDatentypen.SenkrechteUmgebungDrei;
+      UmgebungGröße : KartenRecords.UmgebungDreiRecord;
       
       Meldungen : StadtMeldungenArray;
       

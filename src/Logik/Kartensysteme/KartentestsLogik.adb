@@ -3,7 +3,9 @@ with KartengeneratorVariablenLogik;
 package body KartentestsLogik is
    
    procedure Größenanpassung
-   is begin
+   is
+      use type KartenDatentypen.Waagerechte;
+   begin
 
       if
         KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Norden_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2

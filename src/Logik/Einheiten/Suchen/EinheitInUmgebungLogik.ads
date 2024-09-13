@@ -46,7 +46,7 @@ private
    
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      UmgebungExtern : in KartenDatentypen.SenkrechteSichtweite;
+      UmgebungExtern : in KartenRecords.SichtweitePositiveRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with

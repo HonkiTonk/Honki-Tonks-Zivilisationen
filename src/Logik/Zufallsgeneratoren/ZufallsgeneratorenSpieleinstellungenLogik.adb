@@ -24,15 +24,16 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
      return KartenRecords.YXAchsenKartenfeldPositivRecord
    is begin
       
-      ZufälligeKartengrößeWählen.Reset (Gen => ZufälligeKartengrößeGewählt);
+      ZufälligeKartensenkrechteWählen.Reset (Gen => ZufälligeKartensenkrechteGewählt);
+      ZufälligeKartenwaagerechteWählen.Reset (Gen => ZufälligeKartenwaagerechteGewählt);
       
-      return (ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
-                                                     First => KartenKonstanten.MinimaleKartengröße,
-                                                     Last  => KartenDatentypen.SenkrechtePositiv'Last),
+      return (ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
+                                                        First => KartenKonstanten.MinimaleKartengröße.YAchse,
+                                                        Last  => KartenDatentypen.SenkrechtePositiv'Last),
               
-              ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
-                                                     First => KartenKonstanten.MinimaleKartengröße,
-                                                     Last  => KartenDatentypen.WaagerechtePositiv'Last));
+              ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
+                                                         First => KartenKonstanten.MinimaleKartengröße.XAchse,
+                                                         Last  => KartenDatentypen.WaagerechtePositiv'Last));
       
    end ZufälligeKartengröße;
    
@@ -55,23 +56,24 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       use type KartenDatentypen.Waagerechte;
    begin
       
-      ZufälligeKartengrößeWählen.Reset (Gen => ZufälligeKartengrößeGewählt);
+      ZufälligeKartensenkrechteWählen.Reset (Gen => ZufälligeKartensenkrechteGewählt);
+      ZufälligeKartenwaagerechteWählen.Reset (Gen => ZufälligeKartenwaagerechteGewählt);
       
-      KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
-                                                                                                          First => KartenDatentypen.SenkrechtePositiv'First,
-                                                                                                          Last  => LeseWeltkarteneinstellungen.YAchse / 2);
+      KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
+                                                                                                             First => KartenDatentypen.SenkrechtePositiv'First,
+                                                                                                             Last  => LeseWeltkarteneinstellungen.YAchse / 2);
       
-      KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
-                                                                                                          First => KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse,
-                                                                                                          Last  => LeseWeltkarteneinstellungen.YAchse / 2);
+      KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
+                                                                                                             First => KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse,
+                                                                                                             Last  => LeseWeltkarteneinstellungen.YAchse / 2);
       
-      KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
-                                                                                                          First => KartenDatentypen.WaagerechtePositiv'First,
-                                                                                                          Last  => LeseWeltkarteneinstellungen.XAchse / 2);
+      KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
+                                                                                                              First => KartenDatentypen.WaagerechtePositiv'First,
+                                                                                                              Last  => LeseWeltkarteneinstellungen.XAchse / 2);
       
-      KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse := ZufälligeKartengrößeWählen.Random (Gen   => ZufälligeKartengrößeGewählt,
-                                                                                                          First => KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse,
-                                                                                                          Last  => LeseWeltkarteneinstellungen.XAchse / 2);
+      KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
+                                                                                                              First => KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse,
+                                                                                                              Last  => LeseWeltkarteneinstellungen.XAchse / 2);
       
    end ZufälligeKartenart;
    
