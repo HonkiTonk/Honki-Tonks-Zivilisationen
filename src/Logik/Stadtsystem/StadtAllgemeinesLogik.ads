@@ -5,7 +5,6 @@ with StadtKonstanten;
 private with SystemRecords;
 private with StadtDatentypen;
 private with KartenverbesserungDatentypen;
-private with KartenDatentypen;
 private with KartenRecords;
 
 with LeseGrenzen;
@@ -35,7 +34,7 @@ private
    
    StadtVorhanden : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
    
-   StadtUmgebung : KartenDatentypen.SenkrechteUmgebungDrei;
+   Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    
    AlterPlatz : StadtDatentypen.StädtebereichVorhanden;
    

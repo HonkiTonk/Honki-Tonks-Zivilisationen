@@ -107,7 +107,7 @@ package body SichtbarkeitsberechnungssystemLogik is
       use type KartenDatentypen.Senkrechte;
    begin
       
-      SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) + 1;
+      SichtweiteObjekt := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) + 1;
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:

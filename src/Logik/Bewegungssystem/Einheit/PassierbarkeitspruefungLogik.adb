@@ -221,12 +221,12 @@ package body PassierbarkeitspruefungLogik is
    is begin
             
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      Stadtumgebung := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
+      for YAchseSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
+         for XAchseSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

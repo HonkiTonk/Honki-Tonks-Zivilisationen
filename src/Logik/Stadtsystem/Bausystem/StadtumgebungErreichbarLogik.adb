@@ -19,16 +19,16 @@ package body StadtumgebungErreichbarLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin  
       
-      Umgebung := 1;
-      BereitsGetestet := Umgebung - 1;
-      Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      Umgebung := (1, 1);
+      BereitsGetestet := (Umgebung.Senkrechte - 1, Umgebung.Waagerechte - 1);
+      Stadtumgebung := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       BereichSchleife:
       loop
          YAchseSchleife:
-         for YAchseSchleifenwert in -Umgebung .. Umgebung loop
+         for YAchseSchleifenwert in -Umgebung.Senkrechte .. Umgebung.Senkrechte loop
             XAchseSchleife:
-            for XAchseSchleifenwert in -Umgebung .. Umgebung loop
+            for XAchseSchleifenwert in -Umgebung.Waagerechte .. Umgebung.Waagerechte loop
                
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinatenExtern,
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -40,9 +40,9 @@ package body StadtumgebungErreichbarLogik is
                   null;
                  
                elsif
-                 BereitsGetestet > abs (YAchseSchleifenwert)
+                 BereitsGetestet.Senkrechte > abs (YAchseSchleifenwert)
                  and
-                   BereitsGetestet > abs (XAchseSchleifenwert)
+                   BereitsGetestet.Waagerechte > abs (XAchseSchleifenwert)
                then
                   null;
                   
@@ -62,13 +62,16 @@ package body StadtumgebungErreichbarLogik is
          end loop YAchseSchleife;
             
          if
-           Umgebung = Stadtumgebung
+           Umgebung.Senkrechte = Stadtumgebung.Senkrechte
+           and
+             Umgebung.Waagerechte = Stadtumgebung.Waagerechte
          then
             return KartenRecordKonstanten.LeerKoordinate;
          
          else
-            Umgebung := Umgebung + 1;
-            BereitsGetestet := Umgebung - 1;
+            BereitsGetestet.Senkrechte := Umgebung.Senkrechte;
+            BereitsGetestet.Waagerechte := Umgebung.Waagerechte;
+            Umgebung := (Umgebung.Senkrechte + 1, Umgebung.Waagerechte + 1);
          end if;
                      
       end loop BereichSchleife;

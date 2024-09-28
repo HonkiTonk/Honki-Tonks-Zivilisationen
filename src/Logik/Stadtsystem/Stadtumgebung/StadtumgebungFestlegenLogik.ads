@@ -38,8 +38,8 @@ private
    
    GrundBelegbar : Boolean;
    
-   GrößeAlt : KartenDatentypen.SenkrechteUmgebungDrei;
-   GrößeNeu : KartenDatentypen.SenkrechteUmgebungDrei;
+   GrößeAlt : KartenRecords.UmgebungDreiRecord;
+   GrößeNeu : KartenRecords.UmgebungDreiRecord;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    UmgebendesKartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -62,7 +62,7 @@ private
    
    procedure UmgebendeStädteAnpassen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrößeAltExtern : in KartenDatentypen.SenkrechteUmgebungDrei)
+      GrößeAltExtern : in KartenRecords.UmgebungDreiRecord)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

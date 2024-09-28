@@ -45,7 +45,7 @@ package body EinheitInUmgebungLogik is
             when others =>
                if
                  True = EinheitFinden (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)),
-                                       UmgebungExtern    => LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) + 1,
+                                       UmgebungExtern    => LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) + 1,
                                        SpeziesExtern     => SpeziesExtern)
                then
                   MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),

@@ -42,9 +42,9 @@ package body StadtumgebungFestlegenLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      GrößeAlt := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      GrößeAlt := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       StadtumgebungsbereichBerechnenLogik.StadtumgebungsbereichFestlegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      GrößeNeu := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      GrößeNeu := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
@@ -67,11 +67,13 @@ package body StadtumgebungFestlegenLogik is
               True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                               KoordinatenExtern        => KartenWert)
               and
-                ((abs (YAchseSchleifenwert) > GrößeNeu
+                ((abs (YAchseSchleifenwert) > GrößeNeu.Senkrechte
                   or
-                  abs (XAchseSchleifenwert) > GrößeNeu)
+                  abs (XAchseSchleifenwert) > GrößeNeu.Waagerechte)
                  or
-                   (GrößeNeu = 0
+                   (GrößeNeu.Senkrechte = 0
+                    and
+                      GrößeNeu.Waagerechte = 0
                     and
                       (YAchseSchleifenwert = 0
                        or
@@ -99,9 +101,9 @@ package body StadtumgebungFestlegenLogik is
                end case;
 
             elsif
-            abs (YAchseSchleifenwert) > GrößeNeu
+            abs (YAchseSchleifenwert) > GrößeNeu.Senkrechte
               or
-            abs (XAchseSchleifenwert) > GrößeNeu
+            abs (XAchseSchleifenwert) > GrößeNeu.Waagerechte
             then
                null;
                      
@@ -119,7 +121,9 @@ package body StadtumgebungFestlegenLogik is
       end loop YAchseSchleife;
       
       if
-        GrößeNeu > GrößeAlt
+        GrößeNeu.Senkrechte > GrößeAlt.Senkrechte
+        and
+          GrößeNeu.Waagerechte > GrößeAlt.Waagerechte
       then
          ArbeiterSchleife:
          for ArbeiterSchleifenwert in 1 .. LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
@@ -132,7 +136,9 @@ package body StadtumgebungFestlegenLogik is
          end loop ArbeiterSchleife;
       
       elsif
-        GrößeNeu < GrößeAlt
+        GrößeNeu.Senkrechte < GrößeAlt.Senkrechte
+        and
+          GrößeNeu.Waagerechte < GrößeAlt.Waagerechte
       then
          GebaeudeAllgemeinLogik.UmgebungsreduktionGebäudeEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
          UmgebendeStädteAnpassen (KoordinatenExtern => Stadtkoordinaten,
@@ -206,20 +212,20 @@ package body StadtumgebungFestlegenLogik is
    
    procedure UmgebendeStädteAnpassen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      GrößeAltExtern : in KartenDatentypen.SenkrechteUmgebungDrei)
+      GrößeAltExtern : in KartenRecords.UmgebungDreiRecord)
    is
       use type StadtDatentypen.Städtebereich;
    begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -GrößeAltExtern - 1 .. GrößeAltExtern + 1 loop
+      for YAchseSchleifenwert in -GrößeAltExtern.Senkrechte - 1 .. GrößeAltExtern.Senkrechte + 1 loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -GrößeAltExtern - 1 .. GrößeAltExtern + 1 loop
+         for XAchseSchleifenwert in -GrößeAltExtern.Waagerechte - 1 .. GrößeAltExtern.Waagerechte + 1 loop
 
             if
-            abs (YAchseSchleifenwert) < GrößeAltExtern + 1
+            abs (YAchseSchleifenwert) < GrößeAltExtern.Senkrechte + 1
               and
-            abs (XAchseSchleifenwert) < GrößeAltExtern + 1
+            abs (XAchseSchleifenwert) < GrößeAltExtern.Waagerechte + 1
             then
                null;
 

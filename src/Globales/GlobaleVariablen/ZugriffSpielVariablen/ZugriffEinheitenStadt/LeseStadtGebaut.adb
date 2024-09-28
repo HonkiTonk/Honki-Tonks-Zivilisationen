@@ -254,36 +254,36 @@ package body LeseStadtGebaut is
    
    
    
-   function UmgebungGröße
+   function Gesamtumgebung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KartenRecords.UmgebungDreiRecord
    is begin
       
       return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße;
       
-   end UmgebungGröße;
+   end Gesamtumgebung;
    
    
    
-   function SenkrechteUmgebung
+   function Umgebungssenkrechte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KartenDatentypen.SenkrechteUmgebungDrei
    is begin
       
       return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Senkrechte;
       
-   end SenkrechteUmgebung;
+   end Umgebungssenkrechte;
      
    
    
-   function WaagerechteUmgebung
+   function Umgebungswaagerechte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KartenDatentypen.WaagerechteUmgebungDrei
    is begin
       
       return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Waagerechte;
       
-   end WaagerechteUmgebung;
+   end Umgebungswaagerechte;
       
    
       

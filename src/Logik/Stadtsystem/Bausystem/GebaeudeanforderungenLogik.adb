@@ -98,12 +98,12 @@ package body GebaeudeanforderungenLogik is
       Umgebung := (others => (others => LeerUmgebung));
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      Umgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      Stadtumgebung := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
+      for YAchseSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
+         for XAchseSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

@@ -65,7 +65,7 @@ package body StadtumgebungsbereichBerechnenLogik is
          Umgebung := 1;
       end if;
       
-      SchreibeStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+      SchreibeStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                            UmgebungGrößeExtern    => Umgebung,
                                            ÄndernSetzenExtern     => False);
       

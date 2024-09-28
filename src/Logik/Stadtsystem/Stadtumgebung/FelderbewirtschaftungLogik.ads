@@ -25,10 +25,10 @@ package FelderbewirtschaftungLogik is
    
 private
    
-   NutzbarerBereich : KartenDatentypen.Senkrechte;
-   
    Bewertung : ProduktionDatentypen.Produktion;
-      
+         
+   NutzbarerBereich : KartenRecords.UmgebungDreiRecord;
+   
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    

@@ -39,9 +39,10 @@ package StadtumgebungErreichbarLogik is
    
 private
    
-   BereitsGetestet : KartenDatentypen.SenkrechteUmgebungZwei;
-   Umgebung : KartenDatentypen.SenkrechteUmgebungDrei;
-   Stadtumgebung : KartenDatentypen.SenkrechteUmgebungDrei;
+   BereitsGetestet : KartenRecords.UmgebungZweiRecord;
+   
+   Umgebung : KartenRecords.UmgebungDreiRecord;
+   Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWertZwei : KartenRecords.AchsenKartenfeldNaturalRecord;

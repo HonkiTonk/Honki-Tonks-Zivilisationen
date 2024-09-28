@@ -84,7 +84,7 @@ package body StadtproduktionLogik is
       use type ProduktionDatentypen.Produktion;
    begin
             
-      NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      NutzbarerBereich := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
       Nahrungsgewinnung := ProduktionKonstanten.LeerProduktion;

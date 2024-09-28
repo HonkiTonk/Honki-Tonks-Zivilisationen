@@ -62,15 +62,15 @@ package body FelderbewirtschaftungLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      NutzbarerBereich := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Feld.Bewertung := ProduktionDatentypen.Stadtproduktion'First;
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
       YAchseSchleife:
-      for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+      for YAchseSchleifenwert in -NutzbarerBereich.Senkrechte .. NutzbarerBereich.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+         for XAchseSchleifenwert in -NutzbarerBereich.Waagerechte .. NutzbarerBereich.Waagerechte loop
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

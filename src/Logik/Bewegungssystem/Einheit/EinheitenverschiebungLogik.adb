@@ -61,7 +61,7 @@ package body EinheitenverschiebungLogik is
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       EinheitNummer := EinheitenKonstanten.LeerNummer;
-      Umgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      Umgebungsgröße := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
       for YAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop

@@ -3,6 +3,7 @@ with EinheitenKonstanten;
 with EinheitenDatentypen;
 with StadtRecordKonstanten;
 with SystemDatentypen;
+with KartenDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -94,13 +95,13 @@ package body StadtAllgemeinesLogik is
                SchreibeStadtGebaut.GanzerEintrag (StadtSpeziesNummerExtern => (SpeziesExtern, FreierPlatzSchleifenwert),
                                                   EintragExtern            => LeseStadtGebaut.GanzerEintrag (StadtSpeziesNummerExtern => (SpeziesExtern, AlterPlatz)));
             
-               StadtUmgebung := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => (SpeziesExtern, FreierPlatzSchleifenwert));
+               Stadtumgebung := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => (SpeziesExtern, FreierPlatzSchleifenwert));
                Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, FreierPlatzSchleifenwert));
             
                YAchseSchleife:
-               for YAchseSchleifenwert in -StadtUmgebung .. StadtUmgebung loop
+               for YAchseSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
                   XAchseSchleife:
-                  for XAchseSchleifenwert in -StadtUmgebung .. StadtUmgebung loop
+                  for XAchseSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
                   
                      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

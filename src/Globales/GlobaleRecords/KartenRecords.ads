@@ -54,6 +54,15 @@ package KartenRecords is
    
    
    
+   type UmgebungZweiRecord is record
+      
+      Senkrechte : KartenDatentypen.SenkrechteUmgebungZwei;
+      Waagerechte : KartenDatentypen.WaagerechteUmgebungZwei;
+      
+   end record;
+   
+   
+   
    type UmgebungDreiRecord is record
       
       Senkrechte : KartenDatentypen.SenkrechteUmgebungDrei;

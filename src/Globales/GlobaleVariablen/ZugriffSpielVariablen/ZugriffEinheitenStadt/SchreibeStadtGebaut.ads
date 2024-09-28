@@ -227,9 +227,9 @@ package SchreibeStadtGebaut is
               );
    pragma Inline (UmgebungBewirtschaftung);
    
-   procedure UmgebungGröße
+   procedure Gesamtumgebung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      UmgebungGrößeExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
+      UmgebungGrößeExtern : in KartenRecords.UmgebungDreiRecord;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre => (
@@ -237,6 +237,31 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Gesamtumgebung);
+   
+   procedure Umgebungssenkrechte
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      UmgebungExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (Umgebungssenkrechte);
+   
+   procedure Umgebungswaagerechte
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      UmgebungExtern : in KartenDatentypen.WaagerechteUmgebungDrei;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (Umgebungswaagerechte);
       
    procedure Meldungen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;

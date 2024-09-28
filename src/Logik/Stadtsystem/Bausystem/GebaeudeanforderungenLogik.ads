@@ -35,7 +35,7 @@ private
    use type KartenverbesserungDatentypen.Verbesserung_Enum;
    use type KartenverbesserungDatentypen.Weg_Enum;
    
-   Umgebungsgröße : KartenDatentypen.SenkrechteUmgebungDrei;
+   Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -61,7 +61,7 @@ private
                                               Weg          => KartenverbesserungDatentypen.Leer_Weg_Enum
                                              );
    
-   type UmgebungArray is array (KartenDatentypen.SenkrechteUmgebungDrei'Range, KartenDatentypen.SenkrechteUmgebungDrei'Range) of UmgebungRecord;
+   type UmgebungArray is array (KartenDatentypen.SenkrechteUmgebungDrei'Range, KartenDatentypen.WaagerechteUmgebungDrei'Range) of UmgebungRecord;
    Umgebung : UmgebungArray;
       
    procedure UmgebungDurchgehen

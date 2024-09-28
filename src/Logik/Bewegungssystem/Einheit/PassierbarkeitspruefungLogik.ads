@@ -72,7 +72,7 @@ private
    StadtNummer : StadtDatentypen.Städtebereich;
    StadtVorhanden : StadtDatentypen.Städtebereich;
    
-   Stadtumgebung : KartenDatentypen.SenkrechteUmgebungDrei;
+   Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Ekropaumgebung : KartenRecords.AchsenKartenfeldNaturalRecord;

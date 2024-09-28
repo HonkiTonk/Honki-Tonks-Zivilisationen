@@ -267,7 +267,7 @@ package LeseStadtGebaut is
               );
    pragma Inline (GesamteBewirtschaftung);
    
-   function UmgebungGröße
+   function Gesamtumgebung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KartenRecords.UmgebungDreiRecord
      with
@@ -278,13 +278,13 @@ package LeseStadtGebaut is
               ),
          
        Post => (
-                  UmgebungGröße'Result.Senkrechte >= 0
+                  Gesamtumgebung'Result.Senkrechte >= 0
                 and
-                  UmgebungGröße'Result.Waagerechte >= 0
+                  Gesamtumgebung'Result.Waagerechte >= 0
                );
-   pragma Inline (UmgebungGröße);
+   pragma Inline (Gesamtumgebung);
    
-   function SenkrechteUmgebung
+   function Umgebungssenkrechte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KartenDatentypen.SenkrechteUmgebungDrei
      with
@@ -295,11 +295,11 @@ package LeseStadtGebaut is
               ),
          
        Post => (
-                  SenkrechteUmgebung'Result >= 0
+                  Umgebungssenkrechte'Result >= 0
                );
-   pragma Inline (SenkrechteUmgebung);
+   pragma Inline (Umgebungssenkrechte);
    
-   function WaagerechteUmgebung
+   function Umgebungswaagerechte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KartenDatentypen.WaagerechteUmgebungDrei
      with
@@ -310,9 +310,9 @@ package LeseStadtGebaut is
               ),
          
        Post => (
-                  WaagerechteUmgebung'Result >= 0
+                  Umgebungswaagerechte'Result >= 0
                );
-   pragma Inline (WaagerechteUmgebung);
+   pragma Inline (Umgebungswaagerechte);
       
    function Meldungen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;

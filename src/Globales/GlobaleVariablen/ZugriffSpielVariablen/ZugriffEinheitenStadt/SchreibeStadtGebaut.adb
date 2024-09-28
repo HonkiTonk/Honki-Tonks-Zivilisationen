@@ -520,9 +520,27 @@ package body SchreibeStadtGebaut is
    
    
    
-   procedure UmgebungGröße
+   procedure Gesamtumgebung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      UmgebungGrößeExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
+      UmgebungGrößeExtern : in KartenRecords.UmgebungDreiRecord;
+      ÄndernSetzenExtern : in Boolean)
+   is begin
+      
+      Umgebungssenkrechte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                           UmgebungExtern           => UmgebungGrößeExtern.Senkrechte,
+                           ÄndernSetzenExtern       => ÄndernSetzenExtern);
+      
+      Umgebungswaagerechte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                            UmgebungExtern           => UmgebungGrößeExtern.Waagerechte,
+                            ÄndernSetzenExtern       => ÄndernSetzenExtern);
+      
+   end Gesamtumgebung;
+   
+   
+   
+   procedure Umgebungssenkrechte
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      UmgebungExtern : in KartenDatentypen.SenkrechteUmgebungDrei;
       ÄndernSetzenExtern : in Boolean)
    is begin
       
@@ -531,25 +549,58 @@ package body SchreibeStadtGebaut is
       is
          when True =>
             if
-              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße + UmgebungGrößeExtern >= KartenDatentypen.SenkrechteUmgebungDrei'Last
+              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Senkrechte + UmgebungExtern >= KartenDatentypen.SenkrechteUmgebungDrei'Last
             then
-               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße := KartenDatentypen.SenkrechteUmgebungDrei'Last;
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Senkrechte := KartenDatentypen.SenkrechteUmgebungDrei'Last;
                
             elsif
-              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße + UmgebungGrößeExtern <= StadtKonstanten.LeerUmgebungGröße
+              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Senkrechte + UmgebungExtern <= StadtKonstanten.LeerUmgebungGröße.Senkrechte
             then
-               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße := StadtKonstanten.LeerUmgebungGröße;
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Senkrechte := StadtKonstanten.LeerUmgebungGröße.Senkrechte;
                
             else
-               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße
-                 := GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße + UmgebungGrößeExtern;
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Senkrechte
+                 := GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Senkrechte + UmgebungExtern;
             end if;
             
          when False =>
-            GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße := UmgebungGrößeExtern;
+            GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Senkrechte := UmgebungExtern;
       end case;
       
-   end UmgebungGröße;
+   end Umgebungssenkrechte;
+     
+   
+   
+   procedure Umgebungswaagerechte
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      UmgebungExtern : in KartenDatentypen.WaagerechteUmgebungDrei;
+      ÄndernSetzenExtern : in Boolean)
+   is begin
+      
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Waagerechte + UmgebungExtern >= KartenDatentypen.WaagerechteUmgebungDrei'Last
+            then
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Waagerechte := KartenDatentypen.WaagerechteUmgebungDrei'Last;
+               
+            elsif
+              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Waagerechte + UmgebungExtern <= StadtKonstanten.LeerUmgebungGröße.Waagerechte
+            then
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Waagerechte := StadtKonstanten.LeerUmgebungGröße.Waagerechte;
+               
+            else
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Waagerechte
+                 := GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Waagerechte + UmgebungExtern;
+            end if;
+            
+         when False =>
+            GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße.Waagerechte := UmgebungExtern;
+      end case;
+      
+   end Umgebungswaagerechte;
       
    
       
