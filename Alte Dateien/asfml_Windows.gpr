@@ -1,4 +1,4 @@
-library project asfml_Windows is
+library project ASFML is
 
    type T_OS is ("Windows_NT", "Linux");
    V_OS : T_OS := external ("OS", "Linux");
@@ -7,13 +7,13 @@ library project asfml_Windows is
 
    for Create_Missing_Dirs use "True";
 
-   for Source_Dirs use ("Z:\mnt\7db030dd-f557-47fa-b854-251d5b7172b9\Ada\ASFMLWin\include");
-   for Object_Dir  use "Z:\mnt\7db030dd-f557-47fa-b854-251d5b7172b9\Ada\ASFMLWin\obj";
+   for Source_Dirs use ("ASFML/include");
+   for Object_Dir  use "obj_sfml";
 
    for Library_Name use "asfml";
 
-   for Library_Dir  use "Z:\mnt\7db030dd-f557-47fa-b854-251d5b7172b9\Ada\ASFMLWin\lib";
-   for Library_ALI_Dir use "Z:\mnt\7db030dd-f557-47fa-b854-251d5b7172b9\Ada\ASFMLWin\lib";
+   for Library_Dir  use "ASFML/lib";
+   for Library_ALI_Dir use "ASFML/lib";
    for Library_Kind use "static";
 
 
@@ -83,13 +83,22 @@ library project asfml_Windows is
 
    package Binder is
       for Switches ("Ada") use ("-Es"); --  Symbolic traceback
+	for Default_Switches ("ada") use ("-static");
    end Binder;
 
    package Linker is
       for Linker_Options use
         (
-	 "-lcsfml-audio", "-lcsfml-graphics", "-lcsfml-window", "-lcsfml-system", "-lcsfml-network",
-         "-lasfml");
+	  "-lcsfml-audio", "-lcsfml-graphics", "-lcsfml-window", "-lcsfml-system", "-lcsfml-network",
+          "-lasfml"
+         -- Wird nur benötigt wenn man es statisch kompilieren will.
+         -- "-lsfml-audio", "-lsfml-graphics", "-lsfml-window", "-lsfml-system", "-lsfml-network",
+	 -- "-lopenal",  "-logg", "-lvorbis", "-lvorbisenc", "-lvorbisfile", "-lFLAC", "-lfreetype",
+	 -- "-lOpenGL", "-lGLX", "-ludev", "-lXrandr", "-lX11", "-lstdc++", "-lm",
+
+	 -- Wird nicht benötigt, vollständigkeitshalber aber dennoch hier.
+	 -- "-lGLU", "-lpthread"
+        );
    end Linker;
 
 
@@ -103,4 +112,4 @@ library project asfml_Windows is
       for HTML_Custom_Dir use "tools/gnatdoc_html";
    end Documentation;
 
-end asfml_Windows;
+end ASFML;

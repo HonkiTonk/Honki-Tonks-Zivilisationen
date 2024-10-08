@@ -1,3 +1,4 @@
+with "Meldungssystem/HonkiTonksMeldungssystem.gpr";
 with "asfml.gpr";
 
 project HonkiTonksZivilisationen_Release is

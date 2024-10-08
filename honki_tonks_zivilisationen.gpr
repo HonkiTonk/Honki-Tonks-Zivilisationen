@@ -1,3 +1,4 @@
+with "Meldungssystem/HonkiTonksMeldungssystem.gpr";
 with "config/honki_tonks_zivilisationen_config.gpr";
 
 project Honki_Tonks_Zivilisationen is
