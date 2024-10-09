@@ -175,16 +175,16 @@ package ChangelogAugust2024 is
    
    
 
-   -- Version 0.05. => 0.05. (06.08.2024):
+   -- Version 0.05.8915 => 0.05. (06.08.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.8890 => 0.05. (05.08.2024):
+   -- Version 0.05.8890 => 0.05.8915 (05.08.2024):
    
-   -- 
+   -- Veraltete Dateien entfernt.
    -- Kleinigkeiten korrigiert.
    
    
