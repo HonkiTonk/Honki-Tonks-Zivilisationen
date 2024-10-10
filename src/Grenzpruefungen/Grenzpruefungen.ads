@@ -1,7 +1,7 @@
 with ProduktionDatentypen;
 
 package Grenzpruefungen is
-   pragma Preelaborate;
+   pragma Pure;
 
    generic type GanzeZahl is range <>;
 
