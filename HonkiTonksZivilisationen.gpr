@@ -1,3 +1,4 @@
+with "Grenztestsystem/HonkiTonksGrenztestsystem.gpr";
 with "Meldungssystem/HonkiTonksMeldungssystem.gpr";
 with "asfml.gpr";
 

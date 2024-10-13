@@ -161,16 +161,18 @@ package ChangelogAugust2024 is
    
    
 
-   -- Version 0.05. => 0.05. (08.08.2024):
+   -- Version 0.05.8985 => 0.05. (08.08.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.8940 => 0.05. (07.08.2024):
+   -- Version 0.05.8940 => 0.05.8985 (07.08.2024):
    
-   -- 
+   -- Das Grenzprüfungssystem in eine verallgemeinerte Bibliothek ausgelagert.
+   -- Diverse Fehler im Grenzprüfungssystem korrigiert.
+   -- Die Grenztestsystembibliothek eingebungen.
    -- Kleinigkeiten korrigiert.
    
    
