@@ -1,4 +1,4 @@
-package body Grenztestsystem is
+package body HTGGrenztestsystem is
          
    function Strichrechnung
      (GrundwertExtern : in GanzeZahl;
@@ -214,4 +214,4 @@ package body Grenztestsystem is
       
    end Kommamultiplikation;
 
-end Grenztestsystem;
+end HTGGrenztestsystem;

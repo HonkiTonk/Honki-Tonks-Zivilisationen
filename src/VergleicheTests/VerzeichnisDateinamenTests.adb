@@ -263,6 +263,7 @@ package body VerzeichnisDateinamenTests is
       PunktLeerzeichenSchleife:
       loop
          
+         -- Müsste das nicht außerhab der Schleife sein? äöü
          Text := TextExtern;
          
          if
@@ -302,12 +303,11 @@ package body VerzeichnisDateinamenTests is
          end if;
          
       end loop PunktLeerzeichenSchleife;
-      
-      
-      
+                  
       VerboteneNamenSchleife:
       for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenGroß'Range loop
          
+         -- Müsste das nicht außerhab der Schleife sein? äöü
          Text := LeseLogiktask.Texteingabe;
          
          if
