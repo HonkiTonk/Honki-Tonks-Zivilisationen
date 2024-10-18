@@ -2,7 +2,6 @@ with Projekteinstellungen;
 with BetriebssystemKonstanten;
 
 with SchreibeLogiktask;
-with LeseLogiktask;
 
 with Fehlermeldungssystem;
 with UmwandlungenAdaEigenes;
@@ -260,12 +259,11 @@ package body VerzeichnisDateinamenTests is
       return Boolean
    is begin
       
+      Text := TextExtern;
+      
       PunktLeerzeichenSchleife:
       loop
-         
-         -- Müsste das nicht außerhab der Schleife sein? äöü
-         Text := TextExtern;
-         
+                  
          if
            To_Wide_Wide_String (Source => Text)'Length = 0
          then
@@ -276,40 +274,41 @@ package body VerzeichnisDateinamenTests is
            BetriebssystemKonstanten.Punkt = Element (Source => Text,
                                                      Index  => To_Wide_Wide_String (Source => Text)'Last)
          then
-            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                 From    => To_Wide_Wide_String (Source => Text)'Last,
-                                                                                                 Through => To_Wide_Wide_String (Source => Text)'Last));
+            Text := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
+                                                            From    => To_Wide_Wide_String (Source => Text)'Last,
+                                                            Through => To_Wide_Wide_String (Source => Text)'Last);
             
          elsif
            -- Leerzeichen ist am Anfang unter Windows nicht erlaubt!
            BetriebssystemKonstanten.Leerzeichen = Element (Source => Text,
                                                            Index  => To_Wide_Wide_String (Source => Text)'First)
          then
-            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                 From    => To_Wide_Wide_String (Source => Text)'First,
-                                                                                                 Through => To_Wide_Wide_String (Source => Text)'First));
+            Text := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
+                                                            From    => To_Wide_Wide_String (Source => Text)'First,
+                                                            Through => To_Wide_Wide_String (Source => Text)'First);
             
          elsif
            -- Leerzeichen ist am Ende unter Windows nicht erlaubt!
            BetriebssystemKonstanten.Leerzeichen = Element (Source => Text,
                                                            Index  => To_Wide_Wide_String (Source => Text)'Last)
          then
-            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                 From    => To_Wide_Wide_String (Source => Text)'Last,
-                                                                                                 Through => To_Wide_Wide_String (Source => Text)'Last));
+            Text := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
+                                                            From    => To_Wide_Wide_String (Source => Text)'Last,
+                                                            Through => To_Wide_Wide_String (Source => Text)'Last);
             
          else
             exit PunktLeerzeichenSchleife;
          end if;
          
       end loop PunktLeerzeichenSchleife;
+      
+      SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
+                                                                                           From    => To_Wide_Wide_String (Source => Text)'Last,
+                                                                                           Through => To_Wide_Wide_String (Source => Text)'Last));
                   
       VerboteneNamenSchleife:
       for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenGroß'Range loop
-         
-         -- Müsste das nicht außerhab der Schleife sein? äöü
-         Text := LeseLogiktask.Texteingabe;
-         
+                  
          if
            To_Wide_Wide_String (Source => Text)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Length
          then

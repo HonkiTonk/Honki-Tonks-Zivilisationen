@@ -5,7 +5,6 @@ with StadtKonstanten;
 with EinheitenKonstanten;
 
 private with EinheitenDatentypen;
-private with KartenDatentypen;
 private with KartenRecords;
 
 with LeseGrenzen;
@@ -35,9 +34,10 @@ package SichtbarkeitsberechnungssystemLogik is
 
 private
 
-   SichtweiteObjekt : KartenDatentypen.SenkrechteSichtweite;
-
    EinheitID : EinheitenDatentypen.EinheitenID;
+
+   SichtweiteEinheit : KartenRecords.SichtweitePositiveRecord;
+   SichtweiteStadt : KartenRecords.SichtweitePositiveRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -45,7 +45,7 @@ private
 
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite)
+      SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)

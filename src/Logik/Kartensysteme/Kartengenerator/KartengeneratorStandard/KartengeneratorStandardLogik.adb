@@ -103,37 +103,36 @@ package body KartengeneratorStandardLogik is
       
       LandmassenSchleife:
       for LandmassenSchleifenwert in LandmassenArray'Range loop
-         
-         case
-           LandmassenSchleifenwert
-         is
-            when 1 .. 2 =>
-               LandHöheBreite := True;
-
-            when others =>
-               LandHöheBreite := False;
-         end case;
-
-         Landmassen (LandmassenSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorLandgrößen (YAchseXAchseExtern => LandHöheBreite);
+                  
+         Landmassen (LandmassenSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorLandgrößen;
          
          if
-           Landmassen (LandmassenSchleifenwert) >= KartenDatentypen.SenkrechtePositiv'Last / 3
+           Landmassen (LandmassenSchleifenwert).YAchse >= KartenDatentypen.SenkrechtePositiv'Last / 3
          then
-            Landabstand (LandmassenSchleifenwert) := KartenDatentypen.SenkrechtePositiv'Last;
+            Landabstand (LandmassenSchleifenwert).YAchse := KartenDatentypen.SenkrechtePositiv'Last;
             
          else
-            Landabstand (LandmassenSchleifenwert) := 3 * Landmassen (LandmassenSchleifenwert);
+            Landabstand (LandmassenSchleifenwert).YAchse := 3 * Landmassen (LandmassenSchleifenwert).YAchse;
+         end if;
+         
+         if
+           Landmassen (LandmassenSchleifenwert).XAchse >= KartenDatentypen.WaagerechtePositiv'Last / 3
+         then
+            Landabstand (LandmassenSchleifenwert).XAchse := KartenDatentypen.WaagerechtePositiv'Last;
+            
+         else
+            Landabstand (LandmassenSchleifenwert).XAchse := 3 * Landmassen (LandmassenSchleifenwert).XAchse;
          end if;
 
       end loop LandmassenSchleife;
       
       YAchseZwischenwert := StartYAchse (YAchseExtern => YAchseExtern,
-                                         AnfangExtern => Landmassen (1),
-                                         EndeExtern   => Landmassen (2));
+                                         AnfangExtern => Landmassen (1).YAchse,
+                                         EndeExtern   => Landmassen (2).YAchse);
       
       XAchseZwischenwert := StartXAchse (XAchseExtern => XAchseExtern,
-                                         AnfangExtern => Landmassen (3),
-                                         EndeExtern   => Landmassen (4));
+                                         AnfangExtern => Landmassen (1).XAchse,
+                                         EndeExtern   => Landmassen (2).XAchse);
       
       QuadrantenSchleife:
       for QuadrantenSchleifenwert in QuadrantenArray'Range loop
@@ -144,48 +143,48 @@ package body KartengeneratorStandardLogik is
            QuadrantenSchleifenwert
          is
             when 1 | 6 | 11 | 16 | 21 =>
-               YAchseAnfang := -Landmassen (1);
-               YAchseEnde := -Landmassen (1) * 2 / 3;
+               YAchseAnfang := -Landmassen (1).YAchse;
+               YAchseEnde := -Landmassen (1).YAchse * 2 / 3;
                
             when 2 | 7 | 12 | 17 | 22 =>
-               YAchseAnfang := -Landmassen (1) * 2 / 3;
-               YAchseEnde := -Landmassen (1) / 3;
+               YAchseAnfang := -Landmassen (1).YAchse * 2 / 3;
+               YAchseEnde := -Landmassen (1).YAchse / 3;
                
             when 3 | 8 | 13 | 18 | 23 =>
-               YAchseAnfang := -Landmassen (1) / 3;
-               YAchseEnde := Landmassen (2) / 3;
+               YAchseAnfang := -Landmassen (1).YAchse / 3;
+               YAchseEnde := Landmassen (2).YAchse / 3;
                
             when 4 | 9 | 14 | 19 | 24 =>
-               YAchseAnfang := Landmassen (2) / 3;
-               YAchseEnde := Landmassen (2) * 2 / 3;
+               YAchseAnfang := Landmassen (2).YAchse / 3;
+               YAchseEnde := Landmassen (2).YAchse * 2 / 3;
                
             when 5 | 10 | 15 | 20 | 25 =>
-               YAchseAnfang := Landmassen (2) * 2 / 3;
-               YAchseEnde := Landmassen (2);
+               YAchseAnfang := Landmassen (2).YAchse * 2 / 3;
+               YAchseEnde := Landmassen (2).YAchse;
          end case;
          
          case
            QuadrantenSchleifenwert
          is
             when 1 .. 5 =>
-               XAchseAnfang := -Landmassen (3);
-               XAchseEnde := -Landmassen (3) * 2 / 3;
+               XAchseAnfang := -Landmassen (1).XAchse;
+               XAchseEnde := -Landmassen (1).XAchse * 2 / 3;
                
             when 6 .. 10 =>
-               XAchseAnfang := -Landmassen (3) * 2 / 3;
-               XAchseEnde := -Landmassen (3) / 3;
+               XAchseAnfang := -Landmassen (1).XAchse * 2 / 3;
+               XAchseEnde := -Landmassen (1).XAchse / 3;
                
             when 11 .. 15 =>
-               XAchseAnfang := -Landmassen (3) / 3;
-               XAchseEnde := Landmassen (4) / 3;
+               XAchseAnfang := -Landmassen (1).XAchse / 3;
+               XAchseEnde := Landmassen (2).XAchse / 3;
                
             when 16 .. 20 =>
-               XAchseAnfang := Landmassen (4) / 3;
-               XAchseEnde := Landmassen (4) * 2 / 3;
+               XAchseAnfang := Landmassen (2).XAchse / 3;
+               XAchseEnde := Landmassen (2).XAchse * 2 / 3;
                
             when 21 .. 25 =>
-               XAchseAnfang := Landmassen (4) * 2 / 3;
-               XAchseEnde := Landmassen (4);
+               XAchseAnfang := Landmassen (2).XAchse * 2 / 3;
+               XAchseEnde := Landmassen (2).XAchse;
          end case;
          
          YAchseSchleife:
@@ -213,18 +212,18 @@ package body KartengeneratorStandardLogik is
       end loop QuadrantenSchleife;
       
       YAchsenabstandSchleife:
-      for YAchsenabstandSchleifenwert in -Landabstand (1) .. Landabstand (2) loop
+      for YAchsenabstandSchleifenwert in -Landabstand (1).YAchse .. Landabstand (2).YAchse loop
          XAchsenabstandSchleife:
-         for XAchsenabstandSchleifenwert in -Landabstand (3) .. Landabstand (4) loop
+         for XAchsenabstandSchleifenwert in -Landabstand (1).XAchse .. Landabstand (2).XAchse loop
                            
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseZwischenwert, XAchseZwischenwert),
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchsenabstandSchleifenwert, XAchsenabstandSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              YAchsenabstandSchleifenwert in -Landmassen (1) .. Landmassen (2)
+              YAchsenabstandSchleifenwert in -Landmassen (1).YAchse .. Landmassen (2).YAchse
               and
-                XAchsenabstandSchleifenwert in -Landmassen (3) .. Landmassen (4)
+                XAchsenabstandSchleifenwert in -Landmassen (1).XAchse .. Landmassen (2).XAchse
             then
                null;
                

@@ -3,7 +3,6 @@ with EinheitenRecords;
 with EinheitenKonstanten;
 
 private with KartenRecords;
-private with KartenDatentypen;
 private with EinheitenDatentypen;
 private with StadtRecords;
 private with StadtKonstanten;
@@ -39,7 +38,7 @@ package EinheitenverschiebungLogik is
    
 private
    
-   Umgebungsgröße : KartenDatentypen.SenkrechteUmgebungDrei;
+   Umgebungsgröße : KartenRecords.UmgebungDreiRecord;
    
    UmgebungPrüfen : KartenRecords.YXAchsenKartenfeldPositivRecord;
    BereitsGeprüft : KartenRecords.YXAchsenKartenfeldNaturalRecord;

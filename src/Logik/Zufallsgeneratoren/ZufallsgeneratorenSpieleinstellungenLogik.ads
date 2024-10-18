@@ -61,7 +61,8 @@ private
    package ZufälligerYAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_Y_Einstellbar_Enum);
    package ZufälligerXAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_X_Einstellbar_Enum);
    
-   package ZufälligePolgrößenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechteNatural);
+   package ZufälligeSenkrechtePolgrößenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechteNatural);
+   package ZufälligeWaagerechtePolgrößenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.WaagerechteNatural);
 
    ZufälligeVordefinierteKartengrößeGewählt : ZufälligeVordefinierteKartengrößeWählen.Generator;
    ZufälligeKartensenkrechteGewählt : ZufälligeKartensenkrechteWählen.Generator;
@@ -77,6 +78,7 @@ private
    ZufälligerYAchsenÜbergangGewählt : ZufälligerYAchsenÜbergangWählen.Generator;
    ZufälligerXAchsenÜbergangGewählt : ZufälligerXAchsenÜbergangWählen.Generator;
    
-   ZufälligePolgrößeGewählt : ZufälligePolgrößenWählen.Generator;
+   ZufälligeSenkrechtePolgrößeGewählt : ZufälligeSenkrechtePolgrößenWählen.Generator;
+   ZufälligeWaagerechtePolgrößeGewählt : ZufälligeWaagerechtePolgrößenWählen.Generator;
 
 end ZufallsgeneratorenSpieleinstellungenLogik;

@@ -16,83 +16,87 @@ package body ZufallsgeneratorenKartenLogik is
    
    
    function KartengeneratorLandgrößen
-     (YAchseXAchseExtern : in Boolean)
-      return KartenDatentypen.SenkrechtePositiv
+     return KartenRecords.YXAchsenKartenfeldPositivRecord
    is
       use type KartenDatentypen.Senkrechte;
       use type KartenDatentypen.Waagerechte;
    begin
       
-      case
-        YAchseXAchseExtern
-      is
-         when True =>
-            MinimalerWert := KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse;
-            MaximalerWert := KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse;
+      Minimalwert.YAchse := KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse;
+      Maximalwert.YAchse := KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse;
+      
+      Minimalwert.XAchse := KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse;
+      Maximalwert.XAchse := KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse;
             
-            if
-              MinimalerWert > LeseWeltkarteneinstellungen.YAchse
-            then
-               MinimalerWert := LeseWeltkarteneinstellungen.YAchse;
-               
-            else
-               null;
-            end if;
-            
-            if
-              MaximalerWert > LeseWeltkarteneinstellungen.YAchse
-            then
-               MaximalerWert := LeseWeltkarteneinstellungen.YAchse;
-               
-            else
-               null;
-            end if;
-
-         when False =>
-            MinimalerWert := KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse;
-            MaximalerWert := KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse;
-            
-            if
-              MinimalerWert > LeseWeltkarteneinstellungen.XAchse
-            then
-               MinimalerWert := LeseWeltkarteneinstellungen.XAchse;
-               
-            else
-               null;
-            end if;
-            
-            if
-              MaximalerWert > LeseWeltkarteneinstellungen.XAchse
-            then
-               MaximalerWert := LeseWeltkarteneinstellungen.XAchse;
-               
-            else
-               null;
-            end if;
-      end case;
-        
       if
-        MinimalerWert = MaximalerWert
+        Minimalwert.YAchse > LeseWeltkarteneinstellungen.YAchse
       then
-         return MinimalerWert;
+         Minimalwert.YAchse := LeseWeltkarteneinstellungen.YAchse;
+               
+      else
+         null;
+      end if;
+            
+      if
+        Maximalwert.YAchse > LeseWeltkarteneinstellungen.YAchse
+      then
+         Maximalwert.YAchse := LeseWeltkarteneinstellungen.YAchse;
+               
+      else
+         null;
+      end if;
 
-      elsif
-        MinimalerWert > MaximalerWert
+            
+      if
+        Minimalwert.XAchse > LeseWeltkarteneinstellungen.XAchse
       then
-         Zwischenspeicher := MinimalerWert;
-         MinimalerWert := MaximalerWert;
-         MaximalerWert := Zwischenspeicher;
+         Minimalwert.XAchse := LeseWeltkarteneinstellungen.XAchse;
+               
+      else
+         null;
+      end if;
+            
+      if
+        Maximalwert.XAchse > LeseWeltkarteneinstellungen.XAchse
+      then
+         Maximalwert.XAchse := LeseWeltkarteneinstellungen.XAchse;
+               
+      else
+         null;
+      end if;
+      
+      if
+        Minimalwert.YAchse > Maximalwert.YAchse
+      then
+         Zwischenspeicher.YAchse := Minimalwert.YAchse;
+         Minimalwert.YAchse := Maximalwert.YAchse;
+         Maximalwert.YAchse := Zwischenspeicher.YAchse;
 
       else
          null;
       end if;
       
-      ZufälligeLandgrößen.Reset (Gen => ZufälligeLandgrößeGewählt);
+      if
+        Minimalwert.XAchse > Maximalwert.XAchse
+      then
+         Zwischenspeicher.XAchse := Minimalwert.XAchse;
+         Minimalwert.XAchse := Maximalwert.XAchse;
+         Maximalwert.XAchse := Zwischenspeicher.XAchse;
+
+      else
+         null;
+      end if;
       
-      return ZufälligeLandgrößen.Random (Gen   => ZufälligeLandgrößeGewählt,
-                                         First => MinimalerWert,
-                                         Last  => MaximalerWert);
+      ZufälligeSenkrechteLandgrößen.Reset (Gen => ZufälligeSenkrechteLandgrößeGewählt);
+      ZufälligeWaagerechteLandgrößen.Reset (Gen => ZufälligeWaagerechteLandgrößeGewählt);
       
+      return (ZufälligeSenkrechteLandgrößen.Random (Gen   => ZufälligeSenkrechteLandgrößeGewählt,
+                                                       First => Minimalwert.YAchse,
+                                                       Last  => Maximalwert.YAchse),
+              ZufälligeWaagerechteLandgrößen.Random (Gen   => ZufälligeWaagerechteLandgrößeGewählt,
+                                                        First => Minimalwert.XAchse,
+                                                        Last  => Maximalwert.XAchse));
+              
    end KartengeneratorLandgrößen;
 
 end ZufallsgeneratorenKartenLogik;

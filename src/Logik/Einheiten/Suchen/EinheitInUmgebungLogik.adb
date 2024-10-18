@@ -45,7 +45,8 @@ package body EinheitInUmgebungLogik is
             when others =>
                if
                  True = EinheitFinden (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)),
-                                       UmgebungExtern    => LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) + 1,
+                                       UmgebungExtern    => (LeseStadtGebaut.Umgebungssenkrechte (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) + 1,
+                                                             LeseStadtGebaut.Umgebungswaagerechte (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) + 1),
                                        SpeziesExtern     => SpeziesExtern)
                then
                   MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
@@ -57,7 +58,7 @@ package body EinheitInUmgebungLogik is
          end case;
                   
       end loop StadtSchleife;
-      
+     
    end UmgebungStadt;
    
    

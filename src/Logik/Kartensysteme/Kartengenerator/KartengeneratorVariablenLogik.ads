@@ -14,7 +14,8 @@ package KartengeneratorVariablenLogik is
 
    Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
 
-   Polgrößen : KartengeneratorRecordKonstanten.PolregionenArray := KartengeneratorRecordKonstanten.Eisrand;
+   SenkrechtePolgrößen : KartengeneratorRecordKonstanten.SenkrechtePolregionenArray := KartengeneratorRecordKonstanten.SenkrechterEisrand;
+   WaagerechtePolgrößen : KartengeneratorRecordKonstanten.WaagerechtePolregionenArray := KartengeneratorRecordKonstanten.WaagerechterEisrand;
 
    -- Alle Angaben sind Radien.
    Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum);

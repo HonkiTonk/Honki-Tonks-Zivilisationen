@@ -7,13 +7,17 @@ package KartengeneratorRecordKonstanten is
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   type PolregionenArray is array (KartenartDatentypen.Himmelsrichtungen_Enum'Range) of KartenDatentypen.SenkrechteNatural;
-   Eisrand : constant PolregionenArray := (
-                                           KartenartDatentypen.Norden_Enum => 1,
-                                           KartenartDatentypen.Süden_Enum  => 1,
-                                           KartenartDatentypen.Westen_Enum => 0,
-                                           KartenartDatentypen.Osten_Enum  => 0
-                                          );
+   type SenkrechtePolregionenArray is array (KartenartDatentypen.Senkrechte_Himmelsrichtungen_Enum'Range) of KartenDatentypen.SenkrechteNatural;
+   SenkrechterEisrand : constant SenkrechtePolregionenArray := (
+                                                                KartenartDatentypen.Norden_Enum => 1,
+                                                                KartenartDatentypen.Süden_Enum  => 1
+                                                               );
+   
+   type WaagerechtePolregionenArray is array (KartenartDatentypen.Waagerechte_Himmelsrichtungen_Enum'Range) of KartenDatentypen.WaagerechteNatural;
+   WaagerechterEisrand : constant WaagerechtePolregionenArray := (
+                                                                  KartenartDatentypen.Westen_Enum => 0,
+                                                                  KartenartDatentypen.Osten_Enum  => 0
+                                                                 );
    
    type KartenartgrößenArray is array (KartenartDatentypen.Kartenart_Normal_Enum'Range) of KartenRecords.LandgrößenRecord;
    Kartenartgrößen : constant KartenartgrößenArray := (

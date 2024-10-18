@@ -158,9 +158,9 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
+      for YAchseSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
+         for XAchseSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
             
             -- Da die Stadt selbst als Verbesserung zählt, sollte diese Prüfung problemlos weg können, oder? äöü
             -- Um das zu testen die Prüfung mal ausgeklammert, wenn alles weiterhin funktioniert dann kann das ja weg. äöü

@@ -140,17 +140,21 @@ package ChangelogAugust2024 is
    
    
 
-   -- Version 0.05. => 0.05. (11.08.2024):
+   -- Version 0.05.9105 => 0.05. (11.08.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.9035 => 0.05. (10.08.2024):
+   -- Version 0.05.9035 => 0.05.9105 (10.08.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der zu einer fehlerhaften Prüfung des Dateinamens führte.
+   -- Kartengenerator leicht überarbeitet.
+   -- Die Achsentrennung abgeschlossen.
+   -- Zusätzliche Fehlermeldungen eingebaut, für den Fall das es zu einem fehlerhaften Start kommt.
+   -- Fehler in den gpr Dateien der Bibliotheken korrigiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

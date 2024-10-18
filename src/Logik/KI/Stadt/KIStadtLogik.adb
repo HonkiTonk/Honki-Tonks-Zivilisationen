@@ -4,6 +4,7 @@ with DiplomatieDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with SystemDatentypen;
+with KartenDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -164,6 +165,7 @@ package body KIStadtLogik is
       return Boolean
    is
       use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
       use type EinheitenDatentypen.Einheitenbereich;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
@@ -172,9 +174,9 @@ package body KIStadtLogik is
       Umgebungsgröße := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
+      for YAchseSchleifenwert in -Umgebungsgröße.Senkrechte .. Umgebungsgröße.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
+         for XAchseSchleifenwert in -Umgebungsgröße.Waagerechte .. Umgebungsgröße.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

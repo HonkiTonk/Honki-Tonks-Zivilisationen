@@ -25,15 +25,17 @@ private
    ÜbergangOsten : KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
    
    YAchseZwischenwert : KartenDatentypen.SenkrechtePositiv;
-   XAchseZwischenwert : KartenDatentypen.SenkrechtePositiv;
    Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
+   
+   XAchseZwischenwert : KartenDatentypen.WaagerechtePositiv;
    
    YAchseAnfang : KartenDatentypen.Senkrechte;
    YAchseEnde : KartenDatentypen.Senkrechte;
+   
    XAchseAnfang : KartenDatentypen.Waagerechte;
    XAchseEnde : KartenDatentypen.Waagerechte;
       
-   type LandmassenArray is array (1 .. 4) of KartenDatentypen.SenkrechtePositiv;
+   type LandmassenArray is array (1 .. 2) of KartenRecords.YXAchsenKartenfeldPositivRecord;
    Landmassen : LandmassenArray;
    Landabstand : LandmassenArray;
    

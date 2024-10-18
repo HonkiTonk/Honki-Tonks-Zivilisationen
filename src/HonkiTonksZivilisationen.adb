@@ -267,4 +267,10 @@ begin
 
    end loop SpielLäuftSchleife;
 
+exception
+   when StandardAdaFehler : others =>
+      Put_Line (Item => "Starttask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
+
+      FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Starttask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
+
 end HonkiTonksZivilisationen;

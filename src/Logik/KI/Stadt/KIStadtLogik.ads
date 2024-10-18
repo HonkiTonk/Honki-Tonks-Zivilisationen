@@ -5,7 +5,6 @@ with StadtKonstanten;
 private with EinheitenRecords;
 private with KartenRecords;
 private with EinheitenDatentypen;
-private with KartenDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -27,10 +26,10 @@ package KIStadtLogik is
 
 private
 
-   Umgebungsgröße : KartenDatentypen.SenkrechteUmgebungDrei;
-
    NotfallEinheit : EinheitenDatentypen.EinheitenID;
    AktuelleEinheit : EinheitenDatentypen.EinheitenID;
+
+   Umgebungsgröße : KartenRecords.UmgebungDreiRecord;
 
    FremdeEinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
 

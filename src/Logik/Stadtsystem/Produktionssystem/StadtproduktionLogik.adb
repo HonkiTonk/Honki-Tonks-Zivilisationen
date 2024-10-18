@@ -2,6 +2,7 @@ with EinheitenDatentypen;
 with KartenKonstanten;
 with ProduktionKonstanten;
 with SystemDatentypen;
+with KartenDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -93,9 +94,9 @@ package body StadtproduktionLogik is
       Forschungsgewinnung := ProduktionKonstanten.LeerProduktion;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+      for YAchseSchleifenwert in -NutzbarerBereich.Senkrechte .. NutzbarerBereich.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+         for XAchseSchleifenwert in -NutzbarerBereich.Waagerechte .. NutzbarerBereich.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

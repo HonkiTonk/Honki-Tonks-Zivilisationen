@@ -30,12 +30,5 @@ library project HonkiTonksMeldungssystem is
       for Default_Switches ("ada") use ("-W8");
    end Pretty_Printer;
 
-   package Prove is
-   end Prove;
-
-   package Linker is
-      for Linker_Options use ("-static");
-   end Linker;
-
 end HonkiTonksMeldungssystem;
 

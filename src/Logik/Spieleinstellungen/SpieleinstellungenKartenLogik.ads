@@ -38,9 +38,11 @@ private
    
       
    
-   function Polgrößen
-     (YAchseXAchseExtern : in Boolean)
-      return KartenDatentypen.SenkrechteNatural;
+   function SenkrechtePolgrößen
+     return KartenDatentypen.SenkrechteNatural;
+   
+   function WaagerechtePolgrößen
+     return KartenDatentypen.WaagerechteNatural;
    
    function GrößeSelbstBestimmen
      return KartenRecords.YXAchsenKartenfeldPositivRecord;

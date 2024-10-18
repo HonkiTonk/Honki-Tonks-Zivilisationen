@@ -1,7 +1,6 @@
 with SpeziesDatentypen;
 with KartenKonstanten;
 with KartenRecords;
-with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
@@ -12,7 +11,7 @@ package QuadrantenberechnungenLogik is
 
    procedure QuadrantenDurchlaufen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
+      SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -30,7 +29,7 @@ private
    procedure QuadrantEins
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteNaturalRecord;
-      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
+      SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -44,7 +43,7 @@ private
    procedure QuadrantZwei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteNaturalRecord;
-      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
+      SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -58,7 +57,7 @@ private
    procedure QuadrantDrei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteNaturalRecord;
-      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
+      SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -72,7 +71,7 @@ private
    procedure QuadrantVier
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtweiteRichtungExtern : in KartenRecords.SichtweiteNaturalRecord;
-      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite;
+      SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (

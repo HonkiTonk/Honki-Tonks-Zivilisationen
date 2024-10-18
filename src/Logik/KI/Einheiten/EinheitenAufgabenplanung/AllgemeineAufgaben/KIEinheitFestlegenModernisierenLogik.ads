@@ -4,7 +4,6 @@ with EinheitenRecords;
 
 private with StadtRecords;
 private with KartenRecords;
-private with KartenDatentypen;
 private with EinheitenDatentypen;
 private with StadtKonstanten;
 
@@ -28,7 +27,7 @@ package KIEinheitFestlegenModernisierenLogik is
 private
    use type EinheitenDatentypen.Einheitenbereich;
    
-   Umgebung : KartenDatentypen.SenkrechteUmgebungDrei;
+   Umgebung : KartenRecords.UmgebungDreiRecord;
    
    NeueEinheitenID : EinheitenDatentypen.EinheitenID;
    

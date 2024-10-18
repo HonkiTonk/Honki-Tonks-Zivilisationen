@@ -3,7 +3,7 @@ with StadtKonstanten;
 with StadtRecords;
 
 private with StadtDatentypen;
-private with KartenDatentypen;
+private with KartenRecords;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -23,7 +23,7 @@ package StadtumgebungsbereichBerechnenLogik is
    
 private
    
-   Umgebung : KartenDatentypen.SenkrechteUmgebungDrei;
+   Umgebung : KartenRecords.UmgebungDreiRecord;
    
    Einwohner : StadtDatentypen.Einwohner;
    

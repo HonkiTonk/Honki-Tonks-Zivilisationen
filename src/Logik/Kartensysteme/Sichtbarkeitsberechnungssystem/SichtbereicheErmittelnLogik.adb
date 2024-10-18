@@ -11,7 +11,7 @@ package body SichtbereicheErmittelnLogik is
 
    function SichtweiteErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenDatentypen.SenkrechteSichtweite
+      return KartenRecords.SichtweitePositiveRecord
    is
       use type KartenDatentypen.Ebene;
       use type KartengrundDatentypen.Basisgrund_Enum;
@@ -32,7 +32,7 @@ package body SichtbereicheErmittelnLogik is
                                                            IDExtern             => EinheitID,
                                                            WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
       then
-         return 3;
+         return (3, 3);
          
       else
          Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenEinheit);
@@ -45,7 +45,7 @@ package body SichtbereicheErmittelnLogik is
         or
           Gesamtgrund.Basisgrund = KartengrundDatentypen.Hügel_Enum
       then
-         return 3;
+         return (3, 3);
 
       elsif
         Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Dschungel_Enum
@@ -54,10 +54,10 @@ package body SichtbereicheErmittelnLogik is
           or
             Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Wald_Enum
       then
-         return 1;
+         return (1, 1);
                
       else
-         return 2;
+         return (2, 2);
       end if;
       
    end SichtweiteErmitteln;
@@ -68,10 +68,11 @@ package body SichtbereicheErmittelnLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       YÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
       XÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
-      SichtweiteExtern : in KartenDatentypen.SenkrechteUmgebungDrei)
+      SichtweiteExtern : in KartenRecords.UmgebungDreiRecord)
       return Boolean
    is
       use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
       use type KartengrundDatentypen.Basisgrund_Enum;
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
@@ -98,7 +99,9 @@ package body SichtbereicheErmittelnLogik is
          null;
          
       elsif
-        SichtweiteExtern /= 3
+        (SichtweiteExtern.Senkrechte /= 3
+         or
+           SichtweiteExtern.Waagerechte /= 3)
         and
           (Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Dschungel_Enum
            or

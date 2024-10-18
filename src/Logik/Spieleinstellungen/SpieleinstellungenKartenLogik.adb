@@ -29,27 +29,31 @@ package body SpieleinstellungenKartenLogik is
            KartenpoleAuswahl
          is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-               KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Norden_Enum) := Polgrößen (YAchseXAchseExtern => True);
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Norden_Enum));
+               KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum) := SenkrechtePolgrößen;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol
+                 := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum));
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Süden_Enum) := Polgrößen (YAchseXAchseExtern => True);
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Süden_Enum));
+               KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum) := SenkrechtePolgrößen;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol
+                 := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum));
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Westen_Enum) := Polgrößen (YAchseXAchseExtern => False);
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Westen_Enum));
+               KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum) := WaagerechtePolgrößen;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol
+                 := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum));
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Osten_Enum) := Polgrößen (YAchseXAchseExtern => False);
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol := KartentestsLogik.KartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.Polgrößen (KartenartDatentypen.Osten_Enum));
+               KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum) := WaagerechtePolgrößen;
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol
+                 := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum));
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligePole;
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartenpole := KartenRecordKonstanten.KartenpoleStandard;
-               KartengeneratorVariablenLogik.Polgrößen := KartengeneratorRecordKonstanten.Eisrand;
+               KartengeneratorVariablenLogik.SenkrechtePolgrößen := KartengeneratorRecordKonstanten.SenkrechterEisrand;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -64,27 +68,15 @@ package body SpieleinstellungenKartenLogik is
    
    
    
-   function Polgrößen
-     (YAchseXAchseExtern : in Boolean)
-      return KartenDatentypen.SenkrechteNatural
+   function SenkrechtePolgrößen
+     return KartenDatentypen.SenkrechteNatural
    is
       use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
    begin
       
-      case
-        YAchseXAchseExtern
-      is
-         when True =>
-            BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                                           ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2),
-                                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageEisschicht);
-
-         when False =>
-            BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                                           ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2),
-                                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageEisschicht);
-      end case;
+      BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
+                                                                     ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse / 2),
+                                                                     WelcheFrageExtern   => TextnummernKonstanten.FrageEisschicht);
 
       
       if
@@ -98,7 +90,32 @@ package body SpieleinstellungenKartenLogik is
          return KartenDatentypen.SenkrechteNatural (BenutzerdefinierteGröße.EingegebeneZahl);
       end if;
       
-   end Polgrößen;
+   end SenkrechtePolgrößen;
+   
+   
+   
+   function WaagerechtePolgrößen
+     return KartenDatentypen.WaagerechteNatural
+   is
+      use type KartenDatentypen.Waagerechte;
+   begin
+      
+      BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
+                                                                     ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse / 2),
+                                                                     WelcheFrageExtern   => TextnummernKonstanten.FrageEisschicht);
+      
+      if
+        BenutzerdefinierteGröße.ErfolgreichAbbruch = False
+        or
+          BenutzerdefinierteGröße.EingegebeneZahl = 0
+      then
+         return 0;
+         
+      else
+         return KartenDatentypen.WaagerechteNatural (BenutzerdefinierteGröße.EingegebeneZahl);
+      end if;
+      
+   end WaagerechtePolgrößen;
    
    
 

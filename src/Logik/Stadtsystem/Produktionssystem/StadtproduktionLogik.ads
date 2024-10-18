@@ -3,7 +3,6 @@ with StadtKonstanten;
 with StadtRecords;
 
 private with KartenRecords;
-private with KartenDatentypen;
 private with ProduktionDatentypen;
 private with StadtDatentypen;
 
@@ -38,8 +37,6 @@ private
    Feldeffekt : Boolean;
    
    VorhandeneEinwohner : StadtDatentypen.Einwohner;
-   
-   NutzbarerBereich : KartenDatentypen.Senkrechte;
 
    NahrungsverbrauchEinwohnerMultiplikator : ProduktionDatentypen.Stadtproduktion;
    RessourcenverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
@@ -50,6 +47,8 @@ private
    Materialgewinnung : ProduktionDatentypen.Stadtproduktion;
    Geldgewinnung : ProduktionDatentypen.Stadtproduktion;
    Forschungsgewinnung : ProduktionDatentypen.Stadtproduktion;
+   
+   NutzbarerBereich : KartenRecords.UmgebungDreiRecord;
    
    Bauprojekt : StadtRecords.BauprojektRecord;
 

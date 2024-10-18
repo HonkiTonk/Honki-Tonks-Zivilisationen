@@ -2,6 +2,7 @@ with KartenKonstanten;
 with KartenRecordKonstanten;
 with StadtDatentypen;
 with SystemDatentypen;
+with KartenDatentypen;
 
 with LeseStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -110,9 +111,9 @@ package body KIEinheitFestlegenModernisierenLogik is
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -Umgebung .. Umgebung loop
+      for YAchseSchleifenwert in -Umgebung.Senkrechte .. Umgebung.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Umgebung .. Umgebung loop
+         for XAchseSchleifenwert in -Umgebung.Waagerechte .. Umgebung.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

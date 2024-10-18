@@ -1,6 +1,8 @@
 private with Ada.Numerics.Discrete_Random;
 
-with KartenDatentypen;
+private with KartenDatentypen;
+
+with KartenRecords;
 with SystemDatentypen;
 
 package ZufallsgeneratorenKartenLogik is
@@ -10,19 +12,21 @@ package ZufallsgeneratorenKartenLogik is
      return SystemDatentypen.NullBisHundert;
 
    function KartengeneratorLandgrößen
-     (YAchseXAchseExtern : in Boolean)
-      return KartenDatentypen.SenkrechtePositiv;
+      return KartenRecords.YXAchsenKartenfeldPositivRecord;
 
 private
 
-   MinimalerWert : KartenDatentypen.SenkrechtePositiv;
-   MaximalerWert : KartenDatentypen.SenkrechtePositiv;
-   Zwischenspeicher : KartenDatentypen.SenkrechtePositiv;
+   Minimalwert : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   Maximalwert : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   Zwischenspeicher : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   Gesamtwert : KartenRecords.YXAchsenKartenfeldPositivRecord;
 
    package ZufälligeZahl is new Ada.Numerics.Discrete_Random (Result_Subtype => SystemDatentypen.NullBisHundert);
-   package ZufälligeLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);
+   package ZufälligeSenkrechteLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);
+   package ZufälligeWaagerechteLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.WaagerechtePositiv);
 
    ZufälligeZahlGewählt : ZufälligeZahl.Generator;
-   ZufälligeLandgrößeGewählt : ZufälligeLandgrößen.Generator;
+   ZufälligeSenkrechteLandgrößeGewählt : ZufälligeSenkrechteLandgrößen.Generator;
+   ZufälligeWaagerechteLandgrößeGewählt : ZufälligeWaagerechteLandgrößen.Generator;
 
 end ZufallsgeneratorenKartenLogik;

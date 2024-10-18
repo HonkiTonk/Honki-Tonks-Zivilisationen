@@ -1,6 +1,7 @@
 with KartenKonstanten;
 with DiplomatieDatentypen;
 with SystemDatentypen;
+with KartenDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -64,9 +65,9 @@ package body EinheitenverschiebungLogik is
       Umgebungsgröße := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
+      for YAchseSchleifenwert in -Umgebungsgröße.Senkrechte .. Umgebungsgröße.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
+         for XAchseSchleifenwert in -Umgebungsgröße.Waagerechte .. Umgebungsgröße.Waagerechte loop
                
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (Stadtkoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),

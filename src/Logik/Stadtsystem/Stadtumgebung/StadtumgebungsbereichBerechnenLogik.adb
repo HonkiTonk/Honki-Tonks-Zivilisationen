@@ -41,7 +41,7 @@ package body StadtumgebungsbereichBerechnenLogik is
       if
         Einwohner = StadtKonstanten.LeerEinwohner
       then
-         Umgebung := 0;
+         Umgebung := StadtKonstanten.LeerUmgebungGröße;
       
       elsif
         True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
@@ -50,7 +50,7 @@ package body StadtumgebungsbereichBerechnenLogik is
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtSpeziesNummerExtern.Spezies)
       then
-         Umgebung := 3;
+         Umgebung := (3, 3);
          
       elsif
         True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
@@ -59,10 +59,10 @@ package body StadtumgebungsbereichBerechnenLogik is
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtSpeziesNummerExtern.Spezies)
       then
-         Umgebung := 2;
+         Umgebung := (2, 2);
          
       else
-         Umgebung := 1;
+         Umgebung := (1, 1);
       end if;
       
       SchreibeStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

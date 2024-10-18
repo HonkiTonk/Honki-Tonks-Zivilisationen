@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with SystemDatentypen;
+with KartenDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -16,49 +17,57 @@ package body SichtbarkeitsberechnungssystemLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
-      SichtweiteObjekt := SichtbereicheErmittelnLogik.SichtweiteErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      SichtweiteEinheit := SichtbereicheErmittelnLogik.SichtweiteErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      case
-        SichtweiteObjekt
-      is
-         when KartenDatentypen.SenkrechteSichtweite'First =>
-            SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                               SichtweiteExtern           => SichtweiteObjekt);
-            return;
+      if
+        SichtweiteEinheit.Senkrechte = KartenDatentypen.SenkrechteSichtweite'First
+        or
+          SichtweiteEinheit.Waagerechte = KartenDatentypen.WaagerechteSichtweite'First
+      then
+         SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                            SichtweiteExtern           => SichtweiteEinheit);
+         return;
             
             -- Das hier auch noch einmal überarbeiten, eventuell will ich mehr als drei Felder aufdecken? äöü
             -- Die Sichtweite auch in die EinheitenDatenbank packen'und dann hier Einheitenabhängig berechnen? äöü
             -- Eventuell mit dem Gelände als Abzug/Teiler? äöü
-         when 3 =>
-            EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            -- Eventuell auch unter Berücksichtigung der nun aufgeteilten Achsen. äöü
+      elsif
+        SichtweiteEinheit.Senkrechte = 3
+        or
+          SichtweiteEinheit.Waagerechte = 3
+      then
+         EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
-            if
-              LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern).EAchse >= KartenKonstanten.OberflächeKonstante
-              and
-                (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
-                                                               IDExtern             => EinheitID,
-                                                               WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
-                 or
-                   True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
-                                                                 IDExtern             => EinheitID,
-                                                                 WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
-            then
-               SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  SichtweiteExtern           => SichtweiteObjekt);
-               return;
+         if
+           LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern).EAchse >= KartenKonstanten.OberflächeKonstante
+           and
+             (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+                                                            IDExtern             => EinheitID,
+                                                            WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
+              or
+                True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+                                                              IDExtern             => EinheitID,
+                                                              WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
+         then
+            SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                               SichtweiteExtern           => SichtweiteEinheit);
+            return;
                
-            else
-               null;
-            end if;
-            
-         when others =>
+         else
             null;
-      end case;
+         end if;
+         
+      else
+         null;
+      end if;
 
       QuadrantenberechnungenLogik.QuadrantenDurchlaufen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
-                                                         SichtweiteExtern  => SichtweiteObjekt,
+                                                         SichtweiteExtern  => SichtweiteEinheit,
                                                          KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
    end SichtbarkeitsprüfungFürEinheit;
@@ -67,17 +76,18 @@ package body SichtbarkeitsberechnungssystemLogik is
    
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      SichtweiteExtern : in KartenDatentypen.SenkrechteSichtweite)
+      SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord)
    is
       use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
+      for YAchseSchleifenwert in -SichtweiteExtern.Senkrechte .. SichtweiteExtern.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
+         for XAchseSchleifenwert in -SichtweiteExtern.Waagerechte .. SichtweiteExtern.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -105,15 +115,19 @@ package body SichtbarkeitsberechnungssystemLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
-      SichtweiteObjekt := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) + 1;
+      SichtweiteStadt := (LeseStadtGebaut.Umgebungssenkrechte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern), LeseStadtGebaut.Umgebungswaagerechte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
+      SichtweiteStadt.Senkrechte := SichtweiteStadt.Senkrechte + 1;
+      SichtweiteStadt.Waagerechte := SichtweiteStadt.Waagerechte + 1;
+      
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
+      for YAchseSchleifenwert in -SichtweiteStadt.Senkrechte .. SichtweiteStadt.Senkrechte loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
+         for XAchseSchleifenwert in -SichtweiteStadt.Waagerechte .. SichtweiteStadt.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

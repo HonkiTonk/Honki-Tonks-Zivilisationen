@@ -50,8 +50,8 @@ package KartenartDatentypen is
                                    Westen_Enum, Osten_Enum
                                   );
    
-   subtype YHimmelsrichtungen_Enum is Himmelsrichtungen_Enum range Norden_Enum .. Süden_Enum;
-   subtype XHimmelsrichtungen_Enum is Himmelsrichtungen_Enum range Westen_Enum .. Osten_Enum;
+   subtype Senkrechte_Himmelsrichtungen_Enum is Himmelsrichtungen_Enum range Norden_Enum .. Süden_Enum;
+   subtype Waagerechte_Himmelsrichtungen_Enum is Himmelsrichtungen_Enum range Westen_Enum .. Osten_Enum;
    
    
    

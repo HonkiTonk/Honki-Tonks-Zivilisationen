@@ -34,7 +34,7 @@ private
    VerbesserungTesten : Boolean;
    WelcheVerbesserung : Boolean;
 
-   Stadtumgebung : KartenDatentypen.SenkrechteUmgebungDrei;
+   Stadtumgebung : KartenRecords.UmgebungDreiRecord;
 
    EinheitAufFeld : EinheitenRecords.SpeziesEinheitnummerRecord;
 

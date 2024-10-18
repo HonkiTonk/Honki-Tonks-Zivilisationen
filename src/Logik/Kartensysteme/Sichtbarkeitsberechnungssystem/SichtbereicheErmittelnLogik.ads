@@ -17,7 +17,7 @@ package SichtbereicheErmittelnLogik is
 
    function SichtweiteErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenDatentypen.SenkrechteSichtweite
+      return KartenRecords.SichtweitePositiveRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -29,7 +29,7 @@ package SichtbereicheErmittelnLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       YÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
       XÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
-      SichtweiteExtern : in KartenDatentypen.SenkrechteUmgebungDrei)
+      SichtweiteExtern : in KartenRecords.UmgebungDreiRecord)
       return Boolean
      with
        Pre => (

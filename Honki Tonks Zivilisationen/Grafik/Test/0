@@ -1,4 +1,5 @@
 # Unter Windows funktionieren UTF8 Namen bei den Texturdateien nicht, das beim Benennen der Texturen berücksichtigen!
+# Liegt eventuell auch daran dass die SFML für Texturen kein UTF8 kann.
 Basisgrund.png
 Zusatzgrund.png
 Fluesse.png
