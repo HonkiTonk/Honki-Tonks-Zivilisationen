@@ -1,4 +1,5 @@
-with "Meldungssystem/HonkiTonksMeldungssystem.gpr";
+with "Bibliotheken/Grenztestsystem/HonkiTonksGrenztestsystem.gpr";
+with "Bibliotheken/Meldungssystem/HonkiTonksMeldungssystem.gpr";
 with "asfml.gpr";
 
 project HonkiTonksZivilisationen_Windows is

@@ -1,4 +1,4 @@
-package HTGGrenztestsystem is
+package HTB2_Grenztestsystem is
    pragma Pure;
 
    generic type GanzeZahl is range <>;
@@ -36,4 +36,4 @@ package HTGGrenztestsystem is
       MultiplikatorExtern : in KommaZahl)
       return KommaZahl;
    
-end HTGGrenztestsystem;
+end HTB2_Grenztestsystem;

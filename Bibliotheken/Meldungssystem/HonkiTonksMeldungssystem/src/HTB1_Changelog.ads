@@ -1,4 +1,10 @@
-package HTMChangelog is
+package HTB1_Changelog is
+   
+   -- Version 1.03.1000 => 1.03.2000 (18.10.2024):
+   
+   -- Benennung erneut überarbeitet, damit die Sourcedateien meiner Bibliotheken einen einzigartigen Namen haben.
+   
+   
    
    -- Version 1.03.0000 => 1.03.1000 (18.10.2024):
    
@@ -18,4 +24,4 @@ package HTMChangelog is
    
    -- Erste Veröffentlichung.
 
-end HTMChangelog;
+end HTB1_Changelog;

@@ -1,15 +1,15 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with HTMMeldungSchreiben;
+with HTB1_MeldungSchreiben;
 
-package body HTMMeldungssystem is
+package body HTB1_Meldungssystem is
 
    procedure Logik
      (MeldungExtern : in Wide_Wide_String;
       FehlerWarnungExtern : in Boolean)
    is begin
       
-      HTMMeldungSchreiben.Meldung (MeldungExtern => Logikfehler & MeldungExtern);
+      HTB1_MeldungSchreiben.Meldung (MeldungExtern => Logikfehler & MeldungExtern);
       
       case
         FehlerWarnungExtern
@@ -31,7 +31,7 @@ package body HTMMeldungssystem is
       FehlerWarnungExtern : in Boolean)
    is begin
          
-      HTMMeldungSchreiben.Meldung (MeldungExtern => Grafikfehler & MeldungExtern);
+      HTB1_MeldungSchreiben.Meldung (MeldungExtern => Grafikfehler & MeldungExtern);
       
       case
         FehlerWarnungExtern
@@ -53,7 +53,7 @@ package body HTMMeldungssystem is
       FehlerWarnungExtern : in Boolean)
    is begin
       
-      HTMMeldungSchreiben.Meldung (MeldungExtern => Musikfehler & MeldungExtern);
+      HTB1_MeldungSchreiben.Meldung (MeldungExtern => Musikfehler & MeldungExtern);
       
       case
         FehlerWarnungExtern
@@ -75,7 +75,7 @@ package body HTMMeldungssystem is
       FehlerWarnungExtern : in Boolean)
    is begin
       
-      HTMMeldungSchreiben.Meldung (MeldungExtern => Soundfehler & MeldungExtern);
+      HTB1_MeldungSchreiben.Meldung (MeldungExtern => Soundfehler & MeldungExtern);
       
       case
         FehlerWarnungExtern
@@ -97,7 +97,7 @@ package body HTMMeldungssystem is
       FehlerWarnungExtern : in Boolean)
    is begin
       
-      HTMMeldungSchreiben.Meldung (MeldungExtern => SonstigeFehler & MeldungExtern);
+      HTB1_MeldungSchreiben.Meldung (MeldungExtern => SonstigeFehler & MeldungExtern);
       
       case
         FehlerWarnungExtern
@@ -112,4 +112,4 @@ package body HTMMeldungssystem is
       
    end Sonstiges;
 
-end HTMMeldungssystem;
+end HTB1_Meldungssystem;

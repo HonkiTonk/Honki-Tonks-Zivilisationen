@@ -4,7 +4,7 @@ with Ada.Calendar; use Ada.Calendar;
 with Ada.Calendar.Formatting; use Ada.Calendar.Formatting;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-package body HTMMeldungSchreiben is
+package body HTB1_MeldungSchreiben is
 
    procedure Meldung
      (MeldungExtern : in Wide_Wide_String)
@@ -66,4 +66,4 @@ package body HTMMeldungSchreiben is
       
    end MeldungASCII;
 
-end HTMMeldungSchreiben;
+end HTB1_MeldungSchreiben;
