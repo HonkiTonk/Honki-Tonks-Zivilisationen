@@ -1,6 +1,8 @@
+with "asfml.gpr";
+
 with "Bibliotheken/Grenztestsystem/HonkiTonksGrenztestsystem.gpr";
 with "Bibliotheken/Meldungssystem/HonkiTonksMeldungssystem.gpr";
-with "asfml.gpr";
+with "Bibliotheken/Umwandlungssystem/HonkiTonksUmwandlungssystem.gpr";
 
 project HonkiTonksZivilisationen is
 
