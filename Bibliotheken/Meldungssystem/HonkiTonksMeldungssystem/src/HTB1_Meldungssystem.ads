@@ -2,40 +2,35 @@ package HTB1_Meldungssystem is
    pragma Elaborate_Body;
    
    procedure Logik
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
      with
        Pre => (
                  MeldungExtern'Length > 0
               );
             
    procedure Grafik
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
      with
        Pre => (
                  MeldungExtern'Length > 0
               );
    
    procedure Musik
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
      with
        Pre => (
                  MeldungExtern'Length > 0
               );
    
    procedure Sound
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
      with
        Pre => (
                  MeldungExtern'Length > 0
               );
    
    procedure Sonstiges
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
      with
        Pre => (
                  MeldungExtern'Length > 0

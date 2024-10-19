@@ -1,18 +1,18 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with HTB1_MeldungSchreiben;
+with HTB1_Meldungsvariablen;
 
 package body HTB1_Meldungssystem is
 
    procedure Logik
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
    is begin
       
       HTB1_MeldungSchreiben.Meldung (MeldungExtern => Logikfehler & MeldungExtern);
       
       case
-        FehlerWarnungExtern
+        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => Logikfehler & MeldungExtern);
@@ -27,14 +27,13 @@ package body HTB1_Meldungssystem is
    
    
    procedure Grafik
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
    is begin
          
       HTB1_MeldungSchreiben.Meldung (MeldungExtern => Grafikfehler & MeldungExtern);
       
       case
-        FehlerWarnungExtern
+        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => Grafikfehler & MeldungExtern);
@@ -49,14 +48,13 @@ package body HTB1_Meldungssystem is
    
    
    procedure Musik
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
    is begin
       
       HTB1_MeldungSchreiben.Meldung (MeldungExtern => Musikfehler & MeldungExtern);
       
       case
-        FehlerWarnungExtern
+        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => Musikfehler & MeldungExtern);
@@ -71,14 +69,13 @@ package body HTB1_Meldungssystem is
    
    
    procedure Sound
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
    is begin
       
       HTB1_MeldungSchreiben.Meldung (MeldungExtern => Soundfehler & MeldungExtern);
       
       case
-        FehlerWarnungExtern
+        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => Soundfehler & MeldungExtern);
@@ -93,14 +90,13 @@ package body HTB1_Meldungssystem is
    
    
    procedure Sonstiges
-     (MeldungExtern : in Wide_Wide_String;
-      FehlerWarnungExtern : in Boolean)
+     (MeldungExtern : in Wide_Wide_String)
    is begin
       
       HTB1_MeldungSchreiben.Meldung (MeldungExtern => SonstigeFehler & MeldungExtern);
       
       case
-        FehlerWarnungExtern
+        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => SonstigeFehler & MeldungExtern);
