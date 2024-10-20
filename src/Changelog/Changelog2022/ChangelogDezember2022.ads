@@ -1,4 +1,5 @@
 package ChangelogDezember2022 is
+   pragma Pure;
 
    -- Version 0.04.5925 => 0.04.5925 (31.12.2022):
    

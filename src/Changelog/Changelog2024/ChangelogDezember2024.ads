@@ -1,4 +1,5 @@
 package ChangelogDezember2024 is
+   pragma Pure;
    
    -- Version 0.0. => 0.0. (31.12.2024):
    

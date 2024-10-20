@@ -84,26 +84,26 @@ package body WegeplatzierungssystemLogik is
             elsif
               YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.XAchseWesten
+                XAchseSchleifenwert = KartenKonstanten.WaagerechteWesten
             then
                Wegumgebung.Links := BerechnungLinks (KoordinatenExtern => KartenWert);
                
             elsif
               YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.XAchseOsten
+                XAchseSchleifenwert = KartenKonstanten.WaagerechteOsten
             then
                Wegumgebung.Rechts := BerechnungRechts (KoordinatenExtern => KartenWert);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.YAchseNorden
+              YAchseSchleifenwert = KartenKonstanten.SenkrechteNorden
               and
                 XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
             then
                Wegumgebung.Oben := BerechnungOben (KoordinatenExtern => KartenWert);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.YAchseSüden
+              YAchseSchleifenwert = KartenKonstanten.SenkrechteSüden
               and
                 XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
             then

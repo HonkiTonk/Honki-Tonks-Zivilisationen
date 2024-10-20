@@ -1,4 +1,5 @@
 package ChangelogNovember2023 is
+   pragma Pure;
 
    -- Version 0.05.5060 => 0.05.5085 (30.11.2023):
    

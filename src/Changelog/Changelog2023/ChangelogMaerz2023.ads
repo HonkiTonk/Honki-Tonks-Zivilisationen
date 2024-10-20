@@ -1,4 +1,5 @@
 package ChangelogMaerz2023 is
+   pragma Pure;
    
    -- Version 0.04.8790 => 0.04.8790 (31.03.2023):
    

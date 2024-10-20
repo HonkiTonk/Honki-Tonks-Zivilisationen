@@ -1,4 +1,5 @@
 package ChangelogVorlage is
+   pragma Pure;
    
    -- Version 0.0. => 0.0. (31..202):
    

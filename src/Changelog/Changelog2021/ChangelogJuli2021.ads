@@ -1,4 +1,5 @@
 package ChangelogJuli2021 is
+   pragma Pure;
 
    -- Version 0.00.8020 => 0.00.8040 (31.07.2021):
    

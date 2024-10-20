@@ -1,4 +1,5 @@
 package ChangelogSeptember2021 is
+   pragma Pure;
       
    -- Version 0.00.8910 => 0.00.8920 (30.09.2021):
    

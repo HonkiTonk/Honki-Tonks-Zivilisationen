@@ -19,10 +19,10 @@ package KartenKonstanten is
    
    EbeneHoch : constant KartenDatentypen.EbeneVorhanden := 1;
    EbeneRunter : constant KartenDatentypen.EbeneVorhanden := -1;
-   YAchseNorden : constant KartenDatentypen.SenkrechteUmgebungEins := -1;
-   YAchseSüden : constant KartenDatentypen.SenkrechteUmgebungEins := 1;
-   XAchseWesten : constant KartenDatentypen.WaagerechteUmgebungEins := -1;
-   XAchseOsten : constant KartenDatentypen.WaagerechteUmgebungEins := 1;
+   SenkrechteNorden : constant KartenDatentypen.SenkrechteUmgebungEins := -1;
+   SenkrechteSüden : constant KartenDatentypen.SenkrechteUmgebungEins := 1;
+   WaagerechteWesten : constant KartenDatentypen.WaagerechteUmgebungEins := -1;
+   WaagerechteOsten : constant KartenDatentypen.WaagerechteUmgebungEins := 1;
    
    AnfangEAchse : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'First;
    EndeEAchse : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'Last;

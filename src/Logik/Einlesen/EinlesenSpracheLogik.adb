@@ -88,6 +88,7 @@ package body EinlesenSpracheLogik is
    
    
    
+   -- Sollte sowas nicht auch bei den Spielständen funktionieren, wenn ich die Zeit der Erstellung abfrage und danach sortiere? äöü
    procedure SprachenSortieren
    is begin
             

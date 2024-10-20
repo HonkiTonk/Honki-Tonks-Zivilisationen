@@ -1,4 +1,5 @@
 package ChangelogFebruar2023 is
+   pragma Pure;
   
    -- Version 0.04.8090 => 0.04.8190 (28.02.2023):
    

@@ -1,4 +1,5 @@
 package ChangelogMai2023 is
+   pragma Pure;
    
    -- Version 0.05.1530 => 0.05.1555 (31.05.2023):
    

@@ -43,7 +43,7 @@ package body Basisgrundplatzierungssystem is
             elsif
               YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.XAchseWesten
+                XAchseSchleifenwert = KartenKonstanten.WaagerechteWesten
             then
                Grundumgebung.Links := BerechnungLinks (KoordinatenExtern => Kartenwert,
                                                        GrundnummerExtern => Grundnummer);
@@ -51,13 +51,13 @@ package body Basisgrundplatzierungssystem is
             elsif
               YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.XAchseOsten
+                XAchseSchleifenwert = KartenKonstanten.WaagerechteOsten
             then
                Grundumgebung.Rechts := BerechnungRechts (KoordinatenExtern => Kartenwert,
                                                          GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.YAchseNorden
+              YAchseSchleifenwert = KartenKonstanten.SenkrechteNorden
               and
                 XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
             then
@@ -65,7 +65,7 @@ package body Basisgrundplatzierungssystem is
                                                      GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.YAchseSüden
+              YAchseSchleifenwert = KartenKonstanten.SenkrechteSüden
               and
                 XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
             then
