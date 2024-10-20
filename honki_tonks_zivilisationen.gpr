@@ -3,6 +3,7 @@ with "config/honki_tonks_zivilisationen_config.gpr";
 with "Bibliotheken/Grenztestsystem/HonkiTonksGrenztestsystem.gpr";
 with "Bibliotheken/Meldungssystem/HonkiTonksMeldungssystem.gpr";
 with "Bibliotheken/Umwandlungssystem/HonkiTonksUmwandlungssystem.gpr";
+with "Bibliotheken/Diagnosesystem/HonkiTonksDiagnosesystem.gpr";
 
 project Honki_Tonks_Zivilisationen is
 

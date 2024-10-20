@@ -1,5 +1,7 @@
 private with Ada.Wide_Wide_Text_IO;
 
+with Ada.Calendar; use Ada.Calendar;
+
 package HTB1_MeldungSchreiben is
    pragma Elaborate_Body;
 
@@ -24,6 +26,8 @@ private
    Dateiform : constant String (1 .. 6) := "WCEM=8";
    
    Wartezeit : constant Duration := 0.002;
+   
+   Test : Time;
       
    DateiMeldung : File_Type;
 

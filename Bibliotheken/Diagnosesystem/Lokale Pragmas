@@ -70,11 +70,10 @@ pragma Restrictions (No_Finalization);
 pragma Restrictions (No_Task_Hierarchy);
 pragma Restrictions (No_Multiple_Elaboration);
 pragma Restrictions (No_Implementation_Pragmas);
+pragma Restrictions (No_Relative_Delay);
 pragma Normalize_Scalars;
 
--- pragma Restrictions (No_Relative_Delay);
 -- pragma Restrictions (No_Dependence => Ada.Calendar);
-
 -- Ist das nicht identisch mit dem Oberen?
 -- pragma Restrictions (No_Calendar);
 

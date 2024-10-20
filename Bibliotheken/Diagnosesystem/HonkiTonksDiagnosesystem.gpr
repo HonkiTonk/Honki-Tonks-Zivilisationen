@@ -1,0 +1,34 @@
+library project HonkiTonksDiagnosesystem is
+
+   for Languages use ("Ada");
+   for Library_Name use "HonkiTonksDiagnosesystem";
+   for Create_Missing_Dirs use "True";
+   for Source_Dirs use ("HonkiTonksDiagnosesystem/src/**");
+   for Object_Dir use "HonkiTonksDiagnosesystem/obj";
+   for Library_Dir use "HonkiTonksDiagnosesystem/lib";
+   for Library_Kind use "static";
+
+   package Naming is
+      for Casing use "MixedCase";
+   end Naming;
+
+   package Compiler is
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2022", "-g", "-gnata", "-gnatn", "-O3", "-fstack-check", "-gnato", "-funroll-loops", "-flto", "-gnatVacdefimoprst", 
+         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcghiklopqrtuvwxyz_c_re.u_pjfmd_qa", "-gnatyACOSadefhiklnprsxM222L8");
+      for Local_Configuration_Pragmas use "Lokale Pragmas";
+   end Compiler;
+
+   package Builder is
+      for Switches ("ada") use ("-k", "-s", "-C", "-gnatW8", "-j4");
+   end Builder;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-static", "-d_C", "-W8");
+   end Binder;
+
+   package Pretty_Printer is
+      for Default_Switches ("ada") use ("-W8");
+   end Pretty_Printer;
+
+end HonkiTonksDiagnosesystem;
+

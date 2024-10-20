@@ -1,6 +1,6 @@
 with Ada.Directories; use Ada.Directories;
 with Ada.Exceptions; use Ada.Exceptions;
-with Ada.Calendar; use Ada.Calendar;
+-- with Ada.Calendar; use Ada.Calendar;
 with Ada.Calendar.Formatting; use Ada.Calendar.Formatting;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
@@ -13,7 +13,9 @@ package body HTB1_MeldungSchreiben is
       AbwartenSchleife:
       while Is_Open (File => DateiMeldung) loop
          
-         delay Wartezeit;
+         Test := Clock + Wartezeit;
+         
+         delay until Test;
          
       end loop AbwartenSchleife;
       
