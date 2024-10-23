@@ -65,7 +65,6 @@ package body FensterGrafik is
                                                                height       => Startauflösung.y,
                                                                bitsPerPixel => LeseEinstellungenGrafik.Farbtiefe
                                                               ),
-                                                     -- Die Versionsnummer mit im Titel lassen? äöü
                                                      title => SonstigesKonstanten.Spielname & " - " & SonstigesKonstanten.Versionsnummer,
                                                      style => Fenstermodus);
       

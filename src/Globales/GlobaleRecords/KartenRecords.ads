@@ -153,6 +153,8 @@ package KartenRecords is
    for SichtbarkeitArray'Size use 18;
    for SichtbarkeitArray'Alignment use 1;
    
+   
+   
    type KartengrundRecord is record
       
       Basisgrund : KartengrundDatentypen.Basisgrund_Enum;

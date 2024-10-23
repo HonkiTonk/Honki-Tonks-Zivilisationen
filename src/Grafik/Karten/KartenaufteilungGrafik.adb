@@ -7,8 +7,8 @@ with GrafikKonstanten;
 
 with LeseEinheitenDatenbank;
 
-with CursorplatzierungGrafik;
-with CursorplatzierungAltGrafik;
+with ZeigerplatzierungGrafik;
+with ZeigerplatzierungAltGrafik;
 with WeltkarteGrafik;
 with SeitenleisteGrafik;
 with StadtseitenleisteGrafik;
@@ -25,8 +25,8 @@ package body KartenaufteilungGrafik is
      (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)
    is begin
             
-      CursorplatzierungGrafik.Weltkarte (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
-      CursorplatzierungAltGrafik.CursorplatzierungAlt (EinheitSpeziesNummerExtern => EinheitenauswahlExtern.SpeziesNummer,
+      ZeigerplatzierungGrafik.Weltkarte (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
+      ZeigerplatzierungAltGrafik.ZeigerplatzierungAlt (EinheitSpeziesNummerExtern => EinheitenauswahlExtern.SpeziesNummer,
                                                        EinheitenkoordinatenExtern => EinheitenauswahlExtern.Koordinaten);
       
       WeltkarteGrafik.WeltkarteAnzeigen (EinheitenauswahlExtern => EinheitenauswahlExtern);

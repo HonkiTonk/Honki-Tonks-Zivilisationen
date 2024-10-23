@@ -7,11 +7,11 @@ private with KartenRecordKonstanten;
 
 with LeseSpeziesbelegung;
 
-package CursorbewegungLogik is
+package ZeigerbewegungLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
 
-   procedure CursorbewegungBerechnen
+   procedure ZeigerbewegungBerechnen
      (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
@@ -46,4 +46,4 @@ private
                                          TastenbelegungDatentypen.Ebene_Runter_Enum => KartenRecordKonstanten.EbeneRunter
                                         );
    
-end CursorbewegungLogik;
+end ZeigerbewegungLogik;

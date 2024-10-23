@@ -41,7 +41,7 @@ private
    Feldposition : Sf.System.Vector2.sfVector2f;
    
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
-   CursorKoordinatenAlt : KartenRecords.KartenfeldNaturalRecord;
+   ZeigerKoordinatenAlt : KartenRecords.KartenfeldNaturalRecord;
    AktuelleKoordinaten : KartenRecords.KartenfeldNaturalRecord;
          
    procedure IstSichtbar

@@ -8,7 +8,7 @@ with SchreibeWichtiges;
 with SchreibeAllgemeines;
 with SchreibeDiplomatie;
 with SchreibeSpeziesbelegung;
-with SchreibeCursor;
+with SchreibeZeiger;
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
 with SchreibeKIVariablen;
@@ -50,7 +50,7 @@ package body StandardSpielwerteSetzenLogik is
       SchreibeStadtGebaut.Standardeinstellungen;
       SchreibeWichtiges.Standardeinstellungen;
       SchreibeDiplomatie.Standardeinstellungen;
-      SchreibeCursor.Standardeinstellungen;
+      SchreibeZeiger.Standardeinstellungen;
       SchreibeSpeziesbelegung.Standardeinstellungen; 
       SchreibeAllgemeines.Standardeinstellungen;
       

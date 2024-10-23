@@ -11,8 +11,8 @@ with GrafikKonstanten;
 with SystemDatentypen;
 with InteraktionAuswahl;
 
-with LeseCursor;
-with SchreibeCursor;
+with LeseZeiger;
+with SchreibeZeiger;
 with LeseGrafiktask;
 with SchreibeGrafiktask;
 
@@ -22,9 +22,9 @@ with FensterGrafik;
 with Vergleiche;
 with GeheZuGrafik;
 
-package body CursorplatzierungAltGrafik is
+package body ZeigerplatzierungAltGrafik is
 
-   procedure CursorplatzierungAlt
+   procedure ZeigerplatzierungAlt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EinheitenkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
@@ -67,7 +67,7 @@ package body CursorplatzierungAltGrafik is
             GeheZuGrafik.GeheZuFestlegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       end case;
       
-   end CursorplatzierungAlt;
+   end ZeigerplatzierungAlt;
    
    
    
@@ -77,7 +77,7 @@ package body CursorplatzierungAltGrafik is
    is begin
       
       case
-        LeseCursor.EbeneAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+        LeseZeiger.EbeneAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       is
          when KartenKonstanten.LeerEbene =>
             return;
@@ -90,8 +90,8 @@ package body CursorplatzierungAltGrafik is
                                                                  point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                  view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
       
-      SchreibeCursor.EbeneAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                EbeneExtern  => LeseCursor.EbeneAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
+      SchreibeZeiger.EbeneAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                EbeneExtern  => LeseZeiger.EbeneAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
       
       case
         EinheitSpeziesNummerExtern.Nummer
@@ -113,15 +113,15 @@ package body CursorplatzierungAltGrafik is
             
          when True =>
             Koordinatenänderung.Senkrechte := AlteSenkrechteFestlegen (MauspositionExtern => Mausposition,
-                                                                SenkrechteAltExtern    => LeseCursor.SenkrechteAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
+                                                                SenkrechteAltExtern    => LeseZeiger.SenkrechteAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
             
             Koordinatenänderung.Waagerechte := AlteWaagerechteFestlegen (MausachseExtern => Mausposition.x,
-                                                                WaagerechteAltExtern => LeseCursor.WaagerechteAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
+                                                                WaagerechteAltExtern => LeseZeiger.WaagerechteAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
       end case;
       
       Koordinatenänderung.Ebene := KartenKonstanten.LeerEbeneÄnderung;
       
-      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies),
+      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseZeiger.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies),
                                                                                                 ÄnderungExtern    => Koordinatenänderung,
                                                                                                 TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       
@@ -132,7 +132,7 @@ package body CursorplatzierungAltGrafik is
             null;
             
          when others =>
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+            SchreibeZeiger.KoordinatenAlt (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                            KoordinatenExtern => Kartenwert);
       end case;
       
@@ -158,7 +158,7 @@ package body CursorplatzierungAltGrafik is
             SchreibeGrafiktask.EinheitBewegt (JaNeinExtern => False);
       end case;
       
-      AlteCursorkoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
+      AlteZeigerkoordinaten := LeseZeiger.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
       
       SenkrechteSchleife:
@@ -166,7 +166,7 @@ package body CursorplatzierungAltGrafik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
-            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AlteCursorkoordinaten,
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AlteZeigerkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
@@ -278,7 +278,7 @@ package body CursorplatzierungAltGrafik is
       if
         MauspositionExtern.x not in GrafikKonstanten.Nullwert .. Achsenviewfläche.x
       then
-         return KeineYÄnderung;
+         return KeineSenkrechteÄnderung;
       
       elsif
         MauspositionExtern.y in GrafikKonstanten.Nullwert .. SichtweitenGrafik.Kartenfeldfläche.y / Scrollbereichanteil
@@ -288,17 +288,17 @@ package body CursorplatzierungAltGrafik is
            and
              SenkrechteÜbergänge.SenkrechteNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
          then
-            return KeineYÄnderung;
+            return KeineSenkrechteÄnderung;
             
          elsif
            SenkrechteAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangSenkrechte - 1
            and
              SenkrechteÜbergänge.SenkrechteNorden = KartenartDatentypen.Senkrechte_Rückwärts_Verschobener_Übergang_Enum
          then
-            return KeineYÄnderung;
+            return KeineSenkrechteÄnderung;
             
          else
-            return RichtungYNull;
+            return RichtungSenkrechteNull;
          end if;
          
       elsif
@@ -309,21 +309,21 @@ package body CursorplatzierungAltGrafik is
            and
              SenkrechteÜbergänge.SenkrechteSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
          then
-            return KeineYÄnderung;
+            return KeineSenkrechteÄnderung;
             
          elsif
            SenkrechteAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.Senkrechte + 1
            and
              SenkrechteÜbergänge.SenkrechteSüden = KartenartDatentypen.Senkrechte_Rückwärts_Verschobener_Übergang_Enum
          then
-            return KeineYÄnderung;
+            return KeineSenkrechteÄnderung;
          
          else
-            return RichtungYMaximum;
+            return RichtungSenkrechteMaximum;
          end if;
       
       else
-         return KeineYÄnderung;
+         return KeineSenkrechteÄnderung;
       end if;
       
    end AlteSenkrechteFestlegen;
@@ -350,17 +350,17 @@ package body CursorplatzierungAltGrafik is
            and
              WaagerechteÜbergänge.WaagerechteWesten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
          then
-            return KeineXÄnderung;
+            return KeineWaagerechteÄnderung;
             
          elsif
            WaagerechteAltExtern - AktuelleSichtbreite <= KartenKonstanten.AnfangWaagerechte - 1
            and
              WaagerechteÜbergänge.WaagerechteWesten = KartenartDatentypen.Waagerechte_Rückwärts_Verschobener_Übergang_Enum
          then
-            return KeineXÄnderung;
+            return KeineWaagerechteÄnderung;
             
          else
-            return RichtungXNull;
+            return RichtungWaagerechteNull;
          end if;
          
       elsif
@@ -371,23 +371,23 @@ package body CursorplatzierungAltGrafik is
            and
              WaagerechteÜbergänge.WaagerechteOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
          then
-            return KeineXÄnderung;
+            return KeineWaagerechteÄnderung;
             
          elsif
            WaagerechteAltExtern + AktuelleSichtbreite >= LeseWeltkarteneinstellungen.Waagerechte + 1
            and
              WaagerechteÜbergänge.WaagerechteOsten = KartenartDatentypen.Waagerechte_Rückwärts_Verschobener_Übergang_Enum
          then
-            return KeineXÄnderung;
+            return KeineWaagerechteÄnderung;
          
          else
-            return RichtungXMaximum;
+            return RichtungWaagerechteMaximum;
          end if;
          
       else
-         return KeineXÄnderung;
+         return KeineWaagerechteÄnderung;
       end if;
       
    end AlteWaagerechteFestlegen;
 
-end CursorplatzierungAltGrafik;
+end ZeigerplatzierungAltGrafik;

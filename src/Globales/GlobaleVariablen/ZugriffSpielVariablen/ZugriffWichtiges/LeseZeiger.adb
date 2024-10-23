@@ -1,13 +1,13 @@
 with SpielVariablen;
 
-package body LeseCursor is
+package body LeseZeiger is
 
    function KoordinatenAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.KartenfeldNaturalRecord
    is begin
       
-      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell;
+      return SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAktuell;
       
    end KoordinatenAktuell;
    
@@ -18,7 +18,7 @@ package body LeseCursor is
       return KartenDatentypen.Ebene
    is begin
       
-      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell.Ebene;
+      return SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAktuell.Ebene;
       
    end EbeneAktuell;
    
@@ -29,7 +29,7 @@ package body LeseCursor is
       return KartenRecords.KartenfeldNaturalRecord
    is begin
       
-      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt;
+      return SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAlt;
       
    end KoordinatenAlt;
    
@@ -40,7 +40,7 @@ package body LeseCursor is
       return KartenDatentypen.SenkrechtePositiv
    is begin
       
-      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.Senkrechte;
+      return SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAlt.Senkrechte;
       
    end SenkrechteAlt;
    
@@ -51,7 +51,7 @@ package body LeseCursor is
       return KartenDatentypen.WaagerechtePositiv
    is begin
       
-      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.Waagerechte;
+      return SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAlt.Waagerechte;
       
    end WaagerechteAlt;
    
@@ -62,8 +62,8 @@ package body LeseCursor is
       return KartenRecords.ZeigerRecord
    is begin
       
-      return SpielVariablen.CursorImSpiel (SpeziesExtern);
+      return SpielVariablen.Spielzeiger (SpeziesExtern);
       
    end GanzerEintrag;
 
-end LeseCursor;
+end LeseZeiger;

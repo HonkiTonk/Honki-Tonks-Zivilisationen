@@ -4,7 +4,7 @@ with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
-package SchreibeCursor is
+package SchreibeZeiger is
    pragma Elaborate_Body;
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
@@ -59,4 +59,4 @@ package SchreibeCursor is
               );
    pragma Inline (GanzerEintrag);
 
-end SchreibeCursor;
+end SchreibeZeiger;

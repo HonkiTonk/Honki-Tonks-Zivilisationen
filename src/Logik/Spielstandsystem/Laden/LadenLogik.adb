@@ -10,7 +10,7 @@ with SpielstandVariablen;
 with SchreibeWichtiges;
 with SchreibeGrenzen;
 with SchreibeDiplomatie;
-with SchreibeCursor;
+with SchreibeZeiger;
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
 with SchreibeAllgemeines;
@@ -366,7 +366,7 @@ package body LadenLogik is
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
             KartenRecords.ZeigerRecord'Read (Stream (File => DateiLadenExtern),
-                                             Cursor);
+                                             Zeiger);
             
          when others =>
             null;
@@ -382,8 +382,8 @@ package body LadenLogik is
             if
               Speziesbelegung (SpeziesExtern).Belegung = SpeziesDatentypen.Mensch_Spieler_Enum
             then
-               SchreibeCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern,
-                                             EintragExtern => Cursor);
+               SchreibeZeiger.GanzerEintrag (SpeziesExtern => SpeziesExtern,
+                                             EintragExtern => Zeiger);
                
             else
                null;

@@ -66,8 +66,8 @@ package body SichtbereicheErmittelnLogik is
    
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      YÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
-      XÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
+      SenkrechteÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
+      WaagerechteÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
       SichtweiteExtern : in KartenRecords.UmgebungDreiRecord)
       return Boolean
    is
@@ -78,7 +78,7 @@ package body SichtbereicheErmittelnLogik is
    begin
       
       KartenBlockadeWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, YÄnderungExtern, XÄnderungExtern),
+                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteÄnderungExtern, WaagerechteÄnderungExtern),
                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case

@@ -10,7 +10,7 @@ with KartenverbesserungDatentypen;
 with SystemDatentypen;
 
 with LeseWeltkarte;
-with LeseCursor;
+with LeseZeiger;
 with LeseEinstellungenGrafik;
 with LeseGrafiktask;
 
@@ -34,7 +34,7 @@ package body WeltkarteGrafik is
       
       Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
       
-      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
+      ZeigerKoordinatenAlt := LeseZeiger.KoordinatenAlt (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
       Feldposition := GrafikRecordKonstanten.Nullposition;
             
       SenkrechteSchleife:
@@ -42,7 +42,7 @@ package body WeltkarteGrafik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => ZeigerKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
@@ -86,7 +86,7 @@ package body WeltkarteGrafik is
          WaagerechteamenSchleife:
          for WaagerechteamenSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => ZeigerKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteamenSchleifenwert, WaagerechteamenSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             

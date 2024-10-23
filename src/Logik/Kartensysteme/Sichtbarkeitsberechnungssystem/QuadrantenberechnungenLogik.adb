@@ -113,23 +113,23 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteRichtungExtern.Waagerechte <= 1
       then
-         YÄnderungSchleife:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife:
-            for XÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife:
+         for SenkrechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife:
+            for WaagerechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
                     
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert,
+                                                                                 SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert - 1,
+                                                                                 WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife;
+                  exit SenkrechteÄnderungSchleife;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -138,31 +138,31 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife;
-         end loop YÄnderungSchleife;
+            end loop WaagerechteÄnderungSchleife;
+         end loop SenkrechteÄnderungSchleife;
                
       elsif
         SichtweiteRichtungExtern.Senkrechte <= 1
         and
           SichtweiteRichtungExtern.Waagerechte in 2 .. 3
       then
-         YÄnderungSchleife22:
-         for YÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife22:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife22:
+         for SenkrechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife22:
+            for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                                  
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => YÄnderungSchleifenwert,
-                                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                                                                 SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert,
+                                                                                 WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert + 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife22;
+                  exit SenkrechteÄnderungSchleife22;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -171,27 +171,27 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife22;
-         end loop YÄnderungSchleife22;
+            end loop WaagerechteÄnderungSchleife22;
+         end loop SenkrechteÄnderungSchleife22;
                
       else
-         YÄnderungSchleife333:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife333:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife333:
+         for SenkrechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife333:
+            for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                      
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                                                                 SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert - 1,
+                                                                                 WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert + 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife333;
+                  exit SenkrechteÄnderungSchleife333;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -200,8 +200,8 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife333;
-         end loop YÄnderungSchleife333;
+            end loop WaagerechteÄnderungSchleife333;
+         end loop SenkrechteÄnderungSchleife333;
       end if;
       
    end QuadrantEins;
@@ -247,23 +247,23 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteRichtungExtern.Waagerechte <= 1
       then
-         YÄnderungSchleife:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife:
-            for XÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife:
+         for SenkrechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife:
+            for WaagerechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
                                          
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
-                                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert,
+                                                                                 SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert + 1,
+                                                                                 WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife;
+                  exit SenkrechteÄnderungSchleife;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -272,31 +272,31 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife;
-         end loop YÄnderungSchleife;
+            end loop WaagerechteÄnderungSchleife;
+         end loop SenkrechteÄnderungSchleife;
                
       elsif
         SichtweiteRichtungExtern.Senkrechte <= 1
         and
           SichtweiteRichtungExtern.Waagerechte in 2 .. 3
       then
-         YÄnderungSchleife22:
-         for YÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife22:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife22:
+         for SenkrechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife22:
+            for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                                  
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert,
-                                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                                                                 SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert,
+                                                                                 WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert + 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife22;
+                  exit SenkrechteÄnderungSchleife22;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -305,27 +305,27 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife22;
-         end loop YÄnderungSchleife22;
+            end loop WaagerechteÄnderungSchleife22;
+         end loop SenkrechteÄnderungSchleife22;
                
       else
-         YÄnderungSchleife333:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife333:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife333:
+         for SenkrechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife333:
+            for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                      
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
-                                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                                                                 SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert + 1,
+                                                                                 WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert + 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife333;
+                  exit SenkrechteÄnderungSchleife333;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -334,8 +334,8 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife333;
-         end loop YÄnderungSchleife333;
+            end loop WaagerechteÄnderungSchleife333;
+         end loop SenkrechteÄnderungSchleife333;
       end if;
                   
    end QuadrantZwei;
@@ -381,23 +381,23 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteRichtungExtern.Waagerechte <= 1
       then
-         YÄnderungSchleife:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife:
-            for XÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife:
+         for SenkrechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife:
+            for WaagerechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
                     
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
-                                                                                 XÄnderungExtern   => XÄnderungSchleifenwert,
+                                                                                 SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert + 1,
+                                                                                 WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife;
+                  exit SenkrechteÄnderungSchleife;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -406,31 +406,31 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife;
-         end loop YÄnderungSchleife;
+            end loop WaagerechteÄnderungSchleife;
+         end loop SenkrechteÄnderungSchleife;
                
       elsif
         SichtweiteRichtungExtern.Senkrechte <= 1
         and
           SichtweiteRichtungExtern.Waagerechte in 2 .. 3
       then
-         YÄnderungSchleife22:
-         for YÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife22:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife22:
+         for SenkrechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife22:
+            for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert,
-                                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                                                                 SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert,
+                                                                                 WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert - 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife22;
+                  exit SenkrechteÄnderungSchleife22;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -439,27 +439,27 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife22;
-         end loop YÄnderungSchleife22;
+            end loop WaagerechteÄnderungSchleife22;
+         end loop SenkrechteÄnderungSchleife22;
                
       else
-         YÄnderungSchleife333:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife333:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife333:
+         for SenkrechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife333:
+            for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                                        
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
-                                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                                                                 SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert + 1,
+                                                                                 WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert - 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife333;
+                  exit SenkrechteÄnderungSchleife333;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -468,8 +468,8 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife333;
-         end loop YÄnderungSchleife333;
+            end loop WaagerechteÄnderungSchleife333;
+         end loop SenkrechteÄnderungSchleife333;
       end if;
                   
    end QuadrantDrei;
@@ -515,23 +515,23 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteRichtungExtern.Waagerechte <= 1
       then
-         YÄnderungSchleife:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife:
-            for XÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife:
+         for SenkrechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife:
+            for WaagerechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
                
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                                 XÄnderungExtern   => XÄnderungSchleifenwert,
+                                                                                 SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert - 1,
+                                                                                 WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife;
+                  exit SenkrechteÄnderungSchleife;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -540,31 +540,31 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife;
-         end loop YÄnderungSchleife;
+            end loop WaagerechteÄnderungSchleife;
+         end loop SenkrechteÄnderungSchleife;
                
       elsif
         SichtweiteRichtungExtern.Senkrechte <= 1
         and
           SichtweiteRichtungExtern.Waagerechte in 2 .. 3
       then
-         YÄnderungSchleife22:
-         for YÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife22:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife22:
+         for SenkrechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife22:
+            for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => YÄnderungSchleifenwert,
-                                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                                                                 SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert,
+                                                                                 WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert - 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife22;
+                  exit SenkrechteÄnderungSchleife22;
                   
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -573,27 +573,27 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife22;
-         end loop YÄnderungSchleife22;
+            end loop WaagerechteÄnderungSchleife22;
+         end loop SenkrechteÄnderungSchleife22;
                
       else
-         YÄnderungSchleife333:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
-            XÄnderungSchleife333:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
+         SenkrechteÄnderungSchleife333:
+         for SenkrechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Senkrechte loop
+            WaagerechteÄnderungSchleife333:
+            for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                      
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                                                                 SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert - 1,
+                                                                                 WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert - 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
                then
-                  exit YÄnderungSchleife333;
+                  exit SenkrechteÄnderungSchleife333;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
+                 SenkrechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Senkrechte
                  and
-                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
+                   WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -602,8 +602,8 @@ package body QuadrantenberechnungenLogik is
                   null;
                end if;
                      
-            end loop XÄnderungSchleife333;
-         end loop YÄnderungSchleife333;
+            end loop WaagerechteÄnderungSchleife333;
+         end loop SenkrechteÄnderungSchleife333;
       end if;
                   
    end QuadrantVier;

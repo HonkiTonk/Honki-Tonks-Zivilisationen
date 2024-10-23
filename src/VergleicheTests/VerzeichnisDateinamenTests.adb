@@ -144,6 +144,7 @@ package body VerzeichnisDateinamenTests is
             case
               ZeichenExtern
             is
+               -- Die Zeichen auch mal in Konstante packen? äöü
                when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstanten.NUL .. BetriebssystemKonstanten.US =>
                   return False;
             

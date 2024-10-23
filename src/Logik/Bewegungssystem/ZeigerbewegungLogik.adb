@@ -4,16 +4,16 @@ with SystemDatentypen;
 with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
-with LeseCursor;
+with LeseZeiger;
 with LeseGrafiktask;
 with SchreibeGrafiktask;
 
 with ZahleneingabeLogik;
 with KartenkoordinatenberechnungssystemLogik;
 
-package body CursorbewegungLogik is
+package body ZeigerbewegungLogik is
    
-   procedure CursorbewegungBerechnen
+   procedure ZeigerbewegungBerechnen
      (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
@@ -26,7 +26,7 @@ package body CursorbewegungLogik is
         LeseGrafiktask.GeheZu.Waagerechte
       is
          when KartenKonstanten.LeerWaagerechte =>
-            BasisKoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
+            BasisKoordinaten := LeseZeiger.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
             
          when others =>
             BasisKoordinaten := LeseGrafiktask.GeheZu;
@@ -62,7 +62,7 @@ package body CursorbewegungLogik is
             SchreibeGrafiktask.GeheZu (KoordinatenExtern => KartenWert);
       end case;
       
-   end CursorbewegungBerechnen;
+   end ZeigerbewegungBerechnen;
 
 
 
@@ -112,4 +112,4 @@ package body CursorbewegungLogik is
       
    end GeheZu;
 
-end CursorbewegungLogik;
+end ZeigerbewegungLogik;

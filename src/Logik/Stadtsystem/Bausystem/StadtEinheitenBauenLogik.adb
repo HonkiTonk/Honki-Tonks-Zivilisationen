@@ -6,8 +6,8 @@ with KIDatentypen;
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
-with LeseCursor;
-with SchreibeCursor;
+with LeseZeiger;
+with SchreibeZeiger;
 
 with StadtumgebungErreichbarLogik;
 with MeldungenSetzenLogik;
@@ -44,10 +44,10 @@ package body StadtEinheitenBauenLogik is
         and
           LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
       then
-         SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+         SchreibeZeiger.KoordinatenAktuell (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                             KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
-         SchreibeCursor.KoordinatenAlt (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
-                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
+         SchreibeZeiger.KoordinatenAlt (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+                                        KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
          
       elsif
         EinheitNummer = EinheitenKonstanten.LeerNummer

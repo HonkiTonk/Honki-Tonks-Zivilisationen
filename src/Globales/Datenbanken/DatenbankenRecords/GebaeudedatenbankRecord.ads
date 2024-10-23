@@ -9,8 +9,8 @@ with StadtRecords;
 with KartenextraDatentypen;
 with StadtArrays;
 
--- Wenn ich die Array als Record mit zwei Booleans gestalte,
--- dann könnte ich einen Boolean verwenden um zu Prüfen ob das jeweilige Objekt zum Bau benötigt wird und den zweite Boolean ob es sich um ein UND oder ein ODER handelt. äöü
+-- Wenn ich die Array als Record mit zwei Booleans gestalte dann könnte ich einen Boolean verwenden um zu prüfen ob das jeweilige Objekt zum Bau benötigt wird
+-- und den zweite Boolean ob es sich um ein UND oder ein ODER handelt. äöü
 -- Alle Objekte mit UND müssen dann vorhanden sein und alle mit ODER müssen nur eines davon da sein. äöü
 package GebaeudedatenbankRecord is
    pragma Preelaborate;

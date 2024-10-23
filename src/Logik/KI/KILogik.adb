@@ -75,7 +75,7 @@ package body KILogik is
    begin
       
       Städtezeitwert := StadtDatentypen.StädtebereichVorhanden (BasiszeitwertStädte (ZusatzwertExtern => Positive (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)),
-                                                                                TeilerExtern     => 100));
+                                                                                        TeilerExtern     => 100));
       
       StadtSchleife:
       for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop

@@ -1,10 +1,10 @@
 with StadtKonstanten;
 
 with LeseWeltkarteneinstellungen;
-with LeseCursor;
+with LeseZeiger;
 with LeseGrafiktask;
 
-with CursorbewegungLogik;
+with ZeigerbewegungLogik;
 with FensterGrafik;
 
 package body SichtweitenGrafik is
@@ -12,7 +12,7 @@ package body SichtweitenGrafik is
    procedure StandardSichtweiten
    is begin
       
-      AktuelleYZoomstufe := StandardYZoomstufe;
+      AktuelleSenkrechteZoomstufe := StandardSenkrechteZoomstufe;
       KartenfelderAbmessungBerechnen;
       
    end StandardSichtweiten;
@@ -26,25 +26,25 @@ package body SichtweitenGrafik is
    begin
       
       -- Eine Möglichkeit einbauen das abzustellen? äöü
-      -- Eine Möglichkeit einbauen um direkt zu StandardYZoomstufe zu springen und nicht zur Kleinsten? äöü
+      -- Eine Möglichkeit einbauen um direkt zu StandardSenkrechteZoomstufe zu springen und nicht zur Kleinsten? äöü
       if
-        AktuelleYZoomstufe + ÄnderungExtern > MaximaleYZoomstufe
+        AktuelleSenkrechteZoomstufe + ÄnderungExtern > MaximaleSenkrechteZoomstufe
       then
-         AktuelleYZoomstufe := MinimaleYZoomstufe;
+         AktuelleSenkrechteZoomstufe := MinimaleSenkrechteZoomstufe;
          WelcheZoomanpassung := TastenbelegungDatentypen.Ebene_Hoch_Enum;
          
       elsif
-        AktuelleYZoomstufe + ÄnderungExtern < MinimaleYZoomstufe
+        AktuelleSenkrechteZoomstufe + ÄnderungExtern < MinimaleSenkrechteZoomstufe
       then
-         AktuelleYZoomstufe := MaximaleYZoomstufe;
+         AktuelleSenkrechteZoomstufe := MaximaleSenkrechteZoomstufe;
          WelcheZoomanpassung := TastenbelegungDatentypen.Ebene_Runter_Enum;
          
       else
-         AktuelleYZoomstufe := AktuelleYZoomstufe + ÄnderungExtern;
+         AktuelleSenkrechteZoomstufe := AktuelleSenkrechteZoomstufe + ÄnderungExtern;
          WelcheZoomanpassung := TastenbelegungDatentypen.Auswählen_Enum;
       end if;
       
-      CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => WelcheZoomanpassung,
+      ZeigerbewegungLogik.ZeigerbewegungBerechnen (RichtungExtern => WelcheZoomanpassung,
                                                    SpeziesExtern    => LeseGrafiktask.AktiveSpezies);
       
       KartenfelderAbmessungBerechnen;
@@ -135,12 +135,12 @@ package body SichtweitenGrafik is
       use type KartenDatentypen.Waagerechte;
    begin
       
-      Cursor := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
+      Zeiger := LeseZeiger.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
       
       if
-        Cursor.Senkrechte >= LeseWeltkarteneinstellungen.Senkrechte - SichthöheLesen
+        Zeiger.Senkrechte >= LeseWeltkarteneinstellungen.Senkrechte - SichthöheLesen
         and
-          Cursor.Waagerechte >= LeseWeltkarteneinstellungen.Waagerechte - SichtbreiteLesen
+          Zeiger.Waagerechte >= LeseWeltkarteneinstellungen.Waagerechte - SichtbreiteLesen
       then
          return False;
                
@@ -159,8 +159,8 @@ package body SichtweitenGrafik is
    begin
       
       FensterKarte := FensterGrafik.AktuelleAuflösung;
-      Sichtbereich.Senkrechte := AktuelleYZoomstufe * 2 + 1;
-      Sichtbereich.Waagerechte := AktuelleXZoomstufe * 2 + 1;
+      Sichtbereich.Senkrechte := AktuelleSenkrechteZoomstufe * 2 + 1;
+      Sichtbereich.Waagerechte := AktuelleWaagerechteZoomstufe * 2 + 1;
       
       KartenfelderAbmessung.y := FensterKarte.y / Float (Sichtbereich.Senkrechte);
       KartenfelderAbmessung.x := FensterGrafik.AktuelleAuflösung.x / Float (Sichtbereich.Waagerechte);

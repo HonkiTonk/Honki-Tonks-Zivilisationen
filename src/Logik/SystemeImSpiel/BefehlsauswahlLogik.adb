@@ -1,5 +1,5 @@
 with TasteneingabeLogik;
-with CursorbewegungLogik;
+with ZeigerbewegungLogik;
 with ForschungsauswahlLogik;
 with DiplomatieLogik;
 with DebugmenueLogik;
@@ -44,7 +44,7 @@ package body BefehlsauswahlLogik is
         BefehlExtern
       is
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
-            CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => BefehlExtern,
+            ZeigerbewegungLogik.ZeigerbewegungBerechnen (RichtungExtern => BefehlExtern,
                                                          SpeziesExtern  => SpeziesExtern);
             
          when TastenbelegungDatentypen.Auswählen_Enum =>
@@ -75,7 +75,7 @@ package body BefehlsauswahlLogik is
             DiplomatieLogik.DiplomatieMöglich (SpeziesExtern => SpeziesExtern);
 
          when TastenbelegungDatentypen.Gehe_Zu_Enum =>
-            CursorbewegungLogik.GeheZu;
+            ZeigerbewegungLogik.GeheZu;
             
          when TastenbelegungDatentypen.Stadt_Suchen_Enum =>
             StadtSuchenLogik.StadtNachNamenSuchen;

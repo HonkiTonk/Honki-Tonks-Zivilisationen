@@ -5,7 +5,7 @@ with KartenDatentypen;
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
 
-package LeseCursor is
+package LeseZeiger is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Senkrechte;
@@ -95,4 +95,4 @@ package LeseCursor is
                );
    pragma Inline (GanzerEintrag);
 
-end LeseCursor;
+end LeseZeiger;

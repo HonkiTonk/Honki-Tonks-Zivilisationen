@@ -1,7 +1,7 @@
 with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
-with SchreibeCursor;
+with SchreibeZeiger;
 
 with SichtbarkeitsberechnungssystemLogik;
 with KennenlernenLogik;
@@ -43,7 +43,7 @@ package body BewegungsberechnungEinheitenLogik is
         LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            SchreibeCursor.EbeneAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+            SchreibeZeiger.EbeneAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                           EbeneExtern  => NeueKoordinatenExtern.Ebene);
             
          when others =>

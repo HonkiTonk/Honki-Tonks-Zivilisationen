@@ -2,7 +2,7 @@ with KartenKonstanten;
 with GrafikRecordKonstanten;
 with SystemDatentypen;
 
-with LeseCursor;
+with LeseZeiger;
 
 with SichtweitenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
@@ -18,7 +18,7 @@ package body UmwandlungenGrafik is
    begin
       
       Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
-      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
+      ZeigerKoordinatenAlt := LeseZeiger.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
       Feldposition := GrafikRecordKonstanten.Nullposition;
       Kartenfeldfläche := SichtweitenGrafik.Kartenfeldfläche;
             
@@ -27,7 +27,7 @@ package body UmwandlungenGrafik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => ZeigerKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             

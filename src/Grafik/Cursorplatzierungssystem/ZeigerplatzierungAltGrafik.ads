@@ -12,14 +12,14 @@ with LeseGrenzen;
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
 
-package CursorplatzierungAltGrafik is
+package ZeigerplatzierungAltGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.Einheitenbereich;
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
 
-   procedure CursorplatzierungAlt
+   procedure ZeigerplatzierungAlt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EinheitenkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
@@ -37,12 +37,12 @@ private
    
    EinheitFolgen : Boolean;
    
-   KeineYÄnderung : constant KartenDatentypen.SenkrechteUmgebungEins := 0;
-   RichtungYNull : constant KartenDatentypen.SenkrechteUmgebungEins := -1;
-   RichtungYMaximum : constant KartenDatentypen.SenkrechteUmgebungEins := 1;
-   KeineXÄnderung : constant KartenDatentypen.WaagerechteUmgebungEins := 0;
-   RichtungXNull : constant KartenDatentypen.WaagerechteUmgebungEins := -1;
-   RichtungXMaximum : constant KartenDatentypen.WaagerechteUmgebungEins := 1;
+   KeineSenkrechteÄnderung : constant KartenDatentypen.SenkrechteUmgebungEins := 0;
+   RichtungSenkrechteNull : constant KartenDatentypen.SenkrechteUmgebungEins := -1;
+   RichtungSenkrechteMaximum : constant KartenDatentypen.SenkrechteUmgebungEins := 1;
+   KeineWaagerechteÄnderung : constant KartenDatentypen.WaagerechteUmgebungEins := 0;
+   RichtungWaagerechteNull : constant KartenDatentypen.WaagerechteUmgebungEins := -1;
+   RichtungWaagerechteMaximum : constant KartenDatentypen.WaagerechteUmgebungEins := 1;
    
    Scrollgeschwindigkeitsänderung : constant KartenDatentypen.SenkrechtePositiv := 4;
    AktuelleSichtweite : KartenDatentypen.SenkrechtePositiv;
@@ -66,7 +66,7 @@ private
    Achsenviewfläche : Sf.System.Vector2.sfVector2f;
    
    Kartenwert : KartenRecords.KartenfeldNaturalRecord;
-   AlteCursorkoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   AlteZeigerkoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
    Koordinatenänderung : KartenRecords.KartenfeldRecord;
    
@@ -129,4 +129,4 @@ private
                  WaagerechteAltExtern <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-end CursorplatzierungAltGrafik;
+end ZeigerplatzierungAltGrafik;

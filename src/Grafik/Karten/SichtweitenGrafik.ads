@@ -73,15 +73,15 @@ private
    WelcheZoomanpassung : TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
    
    -- Maximale und Minimale Zoomstufe später anpassbar machen. äöü
-   MaximaleYZoomstufe : constant KartenDatentypen.SenkrechtePositiv := 15;
-   MinimaleYZoomstufe : constant KartenDatentypen.SenkrechtePositiv := KartenDatentypen.SenkrechtePositiv'First;
-   StandardYZoomstufe : constant KartenDatentypen.SenkrechtePositiv := 5;
-   AktuelleYZoomstufe : KartenDatentypen.SenkrechtePositiv := StandardYZoomstufe;
+   MaximaleSenkrechteZoomstufe : constant KartenDatentypen.SenkrechtePositiv := 15;
+   MinimaleSenkrechteZoomstufe : constant KartenDatentypen.SenkrechtePositiv := KartenDatentypen.SenkrechtePositiv'First;
+   StandardSenkrechteZoomstufe : constant KartenDatentypen.SenkrechtePositiv := 5;
+   AktuelleSenkrechteZoomstufe : KartenDatentypen.SenkrechtePositiv := StandardSenkrechteZoomstufe;
    
-   MaximaleXZoomstufe : constant KartenDatentypen.WaagerechtePositiv := 15;
-   MinimaleXZoomstufe : constant KartenDatentypen.WaagerechtePositiv := KartenDatentypen.WaagerechtePositiv'First;
-   StandardXZoomstufe : constant KartenDatentypen.WaagerechtePositiv := 5;
-   AktuelleXZoomstufe : KartenDatentypen.WaagerechtePositiv := StandardXZoomstufe;
+   MaximaleWaagerechteZoomstufe : constant KartenDatentypen.WaagerechtePositiv := 15;
+   MinimaleWaagerechteZoomstufe : constant KartenDatentypen.WaagerechtePositiv := KartenDatentypen.WaagerechtePositiv'First;
+   StandardWaagerechteZoomstufe : constant KartenDatentypen.WaagerechtePositiv := 5;
+   AktuelleWaagerechteZoomstufe : KartenDatentypen.WaagerechtePositiv := StandardWaagerechteZoomstufe;
    
    Sichtbereich : KartenRecords.KartenfeldumgebungPositivRecord;
    Bewegungsbereich : KartenRecords.KartenfeldumgebungPositivRecord;
@@ -89,7 +89,7 @@ private
    StadtumgebungAbmessung : Sf.System.Vector2.sfVector2f;
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    
-   Cursor : KartenRecords.KartenfeldNaturalRecord;
+   Zeiger : KartenRecords.KartenfeldNaturalRecord;
    
    FensterKarte : Sf.System.Vector2.sfVector2f;
 

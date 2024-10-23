@@ -27,8 +27,8 @@ package SichtbereicheErmittelnLogik is
    
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      YÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
-      XÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
+      SenkrechteÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
+      WaagerechteÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
       SichtweiteExtern : in KartenRecords.UmgebungDreiRecord)
       return Boolean
      with

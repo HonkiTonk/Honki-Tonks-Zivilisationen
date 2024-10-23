@@ -1,14 +1,14 @@
 with WichtigesRecordKonstanten;
 with SpielVariablen;
 
-package body SchreibeCursor is
+package body SchreibeZeiger is
 
    procedure KoordinatenAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
-      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell := KoordinatenExtern;
+      SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAktuell := KoordinatenExtern;
       
    end KoordinatenAktuell;
    
@@ -19,7 +19,7 @@ package body SchreibeCursor is
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
-      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell.Ebene := EbeneExtern;
+      SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAktuell.Ebene := EbeneExtern;
       
    end EbeneAktuell;
    
@@ -30,7 +30,7 @@ package body SchreibeCursor is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
-      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt := KoordinatenExtern;
+      SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAlt := KoordinatenExtern;
       
    end KoordinatenAlt;
    
@@ -41,7 +41,7 @@ package body SchreibeCursor is
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
-      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.Ebene := EbeneExtern;
+      SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAlt.Ebene := EbeneExtern;
       
    end EbeneAlt;
    
@@ -50,7 +50,7 @@ package body SchreibeCursor is
    procedure Standardeinstellungen
    is begin
       
-      SpielVariablen.CursorImSpiel := (others => WichtigesRecordKonstanten.LeerCursor);
+      SpielVariablen.Spielzeiger := (others => WichtigesRecordKonstanten.LeerZeiger);
       
    end Standardeinstellungen;
    
@@ -61,8 +61,8 @@ package body SchreibeCursor is
       EintragExtern : in KartenRecords.ZeigerRecord)
    is begin
       
-      SpielVariablen.CursorImSpiel (SpeziesExtern) := EintragExtern;
+      SpielVariablen.Spielzeiger (SpeziesExtern) := EintragExtern;
       
    end GanzerEintrag;
 
-end SchreibeCursor;
+end SchreibeZeiger;

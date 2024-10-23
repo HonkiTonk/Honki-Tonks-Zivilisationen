@@ -5,7 +5,7 @@ with SystemDatentypen;
 with SystemKonstanten;
 
 with LeseEinheitenGebaut;
-with LeseCursor;
+with LeseZeiger;
 with SchreibeGrafiktask;
 
 with StadtmenueLogik;
@@ -34,10 +34,10 @@ package body BefehlspruefungenLogik is
    begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
-                                                                              KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+                                                                              KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
                                                                               TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
-                                                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
+                                                                        KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
       
       if
         EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
@@ -90,11 +90,11 @@ package body BefehlspruefungenLogik is
    begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
-                                                                              KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+                                                                              KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
                                                                               TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
-                                                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
+                                                                        KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
 
       if
         EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
@@ -246,7 +246,7 @@ package body BefehlspruefungenLogik is
    is begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
-                                                                              KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+                                                                              KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
                                                                               TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       case
         EinheitNummer
@@ -278,7 +278,7 @@ package body BefehlspruefungenLogik is
    is begin
                      
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
-                                                                              KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+                                                                              KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
                                                                               TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
@@ -313,7 +313,7 @@ package body BefehlspruefungenLogik is
    is begin
       
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
-                                                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
+                                                                        KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
       
       case
         StadtNummer

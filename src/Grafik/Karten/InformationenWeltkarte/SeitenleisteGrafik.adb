@@ -10,7 +10,7 @@ with Views;
 with GrafikDatentypen;
 
 with LeseWeltkarte;
-with LeseCursor;
+with LeseZeiger;
 
 with StadtSuchenLogik;
 with EinheitSuchenLogik;
@@ -56,7 +56,7 @@ package body SeitenleisteGrafik is
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Seitenleiste_Enum,
                                     AbmessungenExtern => Viewbereich.Viewbereich);
       
-      AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
+      AktuelleKoordinaten := LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
       Textposition := (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
       Textposition.y := WichtigesSeitenleisteGrafik.WichtigesInformationen (SpeziesExtern            => SpeziesExtern,

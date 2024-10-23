@@ -4,7 +4,7 @@ package TastenbelegungDatentypen is
    type Allgemeine_Belegung_Enum is (
                                      Leer_Allgemeine_Belegung_Enum,
                                      
-                                     -- Informationen_Enum kann nicht direkt nach Auswählen kommen, da ich einen Leerwert braucht für die Berechnunge der Cursorposition nach Änderunge des Zooms!
+                                     -- Informationen_Enum kann nicht direkt nach Auswählen kommen, da ich einen Leerwert braucht für die Berechnunge der Zeigerposition nach Änderunge des Zooms!
                                      -- Informationen_Enum, eventuell nach Äbwählen? Oder doch hier vor Auswählen? Oder wo anders? äöü
                                      -- Oder das vielleicht doch über eine Tastaturtaste regeln oder Tastatur- und Maustaste? äöü
                                      Auswählen_Enum,

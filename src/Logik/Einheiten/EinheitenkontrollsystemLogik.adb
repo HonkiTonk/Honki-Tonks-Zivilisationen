@@ -1,5 +1,5 @@
 with LeseEinheitenGebaut;
-with LeseCursor;
+with LeseZeiger;
 with LeseEinheitenDatenbank;
 with SchreibeGrafiktask;
 
@@ -141,7 +141,7 @@ package body EinheitenkontrollsystemLogik is
             
          when BefehleDatentypen.Auswählen_Enum =>
             return BewegungsplanLogik.BewegungPlanen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                      ZielkoordinatenExtern      => LeseCursor.KoordinatenAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
+                                                      ZielkoordinatenExtern      => LeseZeiger.KoordinatenAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
             
          when others =>
             return False;

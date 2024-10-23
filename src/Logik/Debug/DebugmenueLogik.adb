@@ -6,10 +6,10 @@ with EinheitenKonstanten;
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
 with SchreibeSpeziesbelegung;
-with SchreibeCursor;
+with SchreibeZeiger;
 with SchreibeDiplomatie;
 with SchreibeWichtiges;
-with LeseCursor;
+with LeseZeiger;
 with LeseEinheitenGebaut;
 
 with AuswahlaufteilungLogik;
@@ -105,9 +105,9 @@ package body DebugmenueLogik is
             SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => AusgewählteSpezies,
                                               BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
             
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => AusgewählteSpezies,
+            SchreibeZeiger.KoordinatenAktuell (SpeziesExtern     => AusgewählteSpezies,
                                                KoordinatenExtern => (0, 1, 1));
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => AusgewählteSpezies,
+            SchreibeZeiger.KoordinatenAlt (SpeziesExtern     => AusgewählteSpezies,
                                            KoordinatenExtern => (0, 1, 1));
                                              
          when others =>
@@ -219,7 +219,7 @@ package body DebugmenueLogik is
             Einheitennummer := 1;
             
          when others =>
-            EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+            EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
                                                              EinheitNummerExtern      => Einheitennummer,
                                                              IDExtern                 => EinheitenDatentypen.EinheitenIDVorhanden (Einheitenauswahl.EingegebeneZahl),
                                                              StadtSpeziesNummerExtern => (SpeziesExtern, 0));

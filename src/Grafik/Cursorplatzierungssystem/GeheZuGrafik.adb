@@ -3,7 +3,7 @@ with KartenRecordKonstanten;
 with KartenKonstanten;
 with SystemDatentypen;
 
-with SchreibeCursor;
+with SchreibeZeiger;
 with LeseGrafiktask;
 with SchreibeGrafiktask;
 
@@ -22,11 +22,11 @@ package body GeheZuGrafik is
         Kartenwert.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
+            SchreibeZeiger.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
                                            KoordinatenExtern => LeseGrafiktask.GeheZu);
             
          when others =>
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
+            SchreibeZeiger.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
                                            KoordinatenExtern => Kartenwert);
       end case;
       

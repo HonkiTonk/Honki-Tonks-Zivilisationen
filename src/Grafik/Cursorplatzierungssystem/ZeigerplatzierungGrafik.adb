@@ -10,8 +10,8 @@ with SystemDatentypen;
 with InteraktionAuswahl;
 with KartenRecordKonstanten;
 
-with LeseCursor;
-with SchreibeCursor;
+with LeseZeiger;
+with SchreibeZeiger;
 with LeseGrafiktask;
 
 with KartenkoordinatenberechnungssystemLogik;
@@ -19,7 +19,7 @@ with FensterGrafik;
 with SichtweitenGrafik;
 with Vergleiche;
 
-package body CursorplatzierungGrafik is
+package body ZeigerplatzierungGrafik is
    
    procedure Weltkarte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
@@ -38,7 +38,7 @@ package body CursorplatzierungGrafik is
             Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
             
          when others =>
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
+            SchreibeZeiger.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
                                                KoordinatenExtern => LeseGrafiktask.GeheZu);
             return;
       end case;
@@ -48,7 +48,7 @@ package body CursorplatzierungGrafik is
                                                VektorExtern       => Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte)))
       is
          when False =>
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
+            SchreibeZeiger.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
                                                KoordinatenExtern => KartenRecordKonstanten.LeerKoordinate);
             return;
             
@@ -82,7 +82,7 @@ package body CursorplatzierungGrafik is
          Kartenänderung.Waagerechte := -Sichtbereich.Waagerechte + KartenDatentypen.Waagerechte (Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x));
       end if;
       
-      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern),
+      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseZeiger.KoordinatenAlt (SpeziesExtern => SpeziesExtern),
                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, Kartenänderung.Senkrechte, Kartenänderung.Waagerechte),
                                                                                                 TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       
@@ -93,10 +93,10 @@ package body CursorplatzierungGrafik is
             null;
                      
          when others =>
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
+            SchreibeZeiger.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
                                                KoordinatenExtern => KartenWert);
       end case;
                            
    end Weltkarte;
    
-end CursorplatzierungGrafik;
+end ZeigerplatzierungGrafik;

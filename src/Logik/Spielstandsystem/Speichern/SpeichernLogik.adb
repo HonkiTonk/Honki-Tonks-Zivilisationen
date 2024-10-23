@@ -16,7 +16,7 @@ with LeseWichtiges;
 with LeseGrenzen;
 with LeseAllgemeines;
 with LeseDiplomatie;
-with LeseCursor;
+with LeseZeiger;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with LeseOptionen;
@@ -324,7 +324,7 @@ package body SpeichernLogik is
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
             KartenRecords.ZeigerRecord'Write (Stream (File => DateiSpeichernExtern),
-                                              LeseCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern));
+                                              LeseZeiger.GanzerEintrag (SpeziesExtern => SpeziesExtern));
             
          when others =>
             null;

@@ -6,7 +6,7 @@ private with KartenRecords;
 
 with LeseSpeziesbelegung;
 
-package CursorplatzierungGrafik is
+package ZeigerplatzierungGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    
@@ -27,4 +27,4 @@ private
    
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
 
-end CursorplatzierungGrafik;
+end ZeigerplatzierungGrafik;

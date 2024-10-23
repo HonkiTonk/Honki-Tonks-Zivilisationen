@@ -1,7 +1,7 @@
 with TextKonstanten;
 
 with LeseWeltkarte;
-with LeseCursor;
+with LeseZeiger;
 
 with TextberechnungenHoeheGrafik;
 with AufgabenbeschreibungenGrafik;
@@ -27,7 +27,7 @@ package body AllgemeinesSeitenleisteGrafik is
             
          when others =>
             Leerzeilen := 0;
-            AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
+            AktuelleKoordinaten := LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
             
             AnzuzeigenderText (1) := Gesamtgrund (GesamtgrundExtern => LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (2) := Ressource (RessourceExtern => LeseWeltkarte.Ressource (KoordinatenExtern => AktuelleKoordinaten));

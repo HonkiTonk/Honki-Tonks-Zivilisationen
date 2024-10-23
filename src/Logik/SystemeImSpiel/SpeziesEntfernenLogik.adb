@@ -11,7 +11,7 @@ with SchreibeWichtiges;
 with LeseGrenzen;
 with SchreibeDiplomatie;
 with SchreibeSpeziesbelegung;
-with SchreibeCursor;
+with SchreibeZeiger;
 with SchreibeGrafiktask;
 with LeseGrafiktask;
 
@@ -83,8 +83,8 @@ package body SpeziesEntfernenLogik is
          null;
       end if;
       
-      SchreibeCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern,
-                                    EintragExtern => WichtigesRecordKonstanten.LeerCursor);
+      SchreibeZeiger.GanzerEintrag (SpeziesExtern => SpeziesExtern,
+                                    EintragExtern => WichtigesRecordKonstanten.LeerZeiger);
       SchreibeWichtiges.LeerEintrag (SpeziesExtern => SpeziesExtern);
       
       SchreibeSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesExtern);

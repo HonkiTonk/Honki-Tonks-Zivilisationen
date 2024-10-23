@@ -10,7 +10,7 @@ with SpeziesKonstanten;
 package WichtigesRecordKonstanten is
    pragma Elaborate_Body;
 
-   LeerCursor : constant KartenRecords.ZeigerRecord := (
+   LeerZeiger : constant KartenRecords.ZeigerRecord := (
                                                         KoordinatenAktuell => KartenRecordKonstanten.LeerKoordinate,
                                                         KoordinatenAlt     => KartenRecordKonstanten.LeerKoordinate
                                                        );
@@ -32,7 +32,7 @@ package WichtigesRecordKonstanten is
    LeerAllgemeines : constant SpielRecords.AllgemeinesRecord := (
                                                                  Gewonnen              => False,
                                                                  Weiterspielen         => False,
-                                                                 SpeziesAmZugNachLaden   => SpeziesKonstanten.LeerSpezies,
+                                                                 SpeziesAmZugNachLaden => SpeziesKonstanten.LeerSpezies,
                                                                  Schwierigkeitsgrad    => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
                                                                  Rundenanzahl          => Positive'First,
                                                                  Rundengrenze          => Natural'First,
@@ -49,7 +49,7 @@ package WichtigesRecordKonstanten is
                                                          Forschungsgrenze      => WichtigesKonstanten.LeerForschungsgrenze,
                                                          Geldgewinngrenze      => WichtigesKonstanten.LeerGeldgewinngrenze,
                                                          ForschungGewinngrenze => WichtigesKonstanten.LeerForschungGewinngrenze,
-                                                         SpeziesRundengrenze    => WichtigesKonstanten.LeerSpeziesRundengrenze
+                                                         SpeziesRundengrenze   => WichtigesKonstanten.LeerSpeziesRundengrenze
                                                         );
    
    LeerDiplomatie : constant SpielRecords.DiplomatieRecord := (

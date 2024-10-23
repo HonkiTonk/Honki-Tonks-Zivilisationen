@@ -9,7 +9,7 @@ with MenueDatentypen;
 with LeseWeltkarte;
 with LeseSpeziesbelegung;
 with SchreibeSpeziesbelegung;
-with SchreibeCursor;
+with SchreibeZeiger;
 
 with ZufallsgeneratorenSpieleinstellungenLogik;
 with ZufallsgeneratorenStartkoordinatenLogik;
@@ -367,9 +367,9 @@ package body SpieleinstellungenSpeziesLogik is
         LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
+            SchreibeZeiger.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
                                                KoordinatenExtern => StartkoordinateEinsExtern);
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
+            SchreibeZeiger.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
                                            KoordinatenExtern => StartkoordinateEinsExtern);
             
          when others =>
