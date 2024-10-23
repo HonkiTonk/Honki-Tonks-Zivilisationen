@@ -1,5 +1,5 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Locales; use Ada.Locales;
+private with Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Locales;
 
 private with BetriebssystemDatentypen;
 
@@ -10,6 +10,8 @@ package EinlesenLogik is
    procedure EinlesenMitAnzeige;
 
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
+   use Ada.Locales;
 
    GewählteSprache : Unbounded_Wide_Wide_String;
 

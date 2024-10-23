@@ -1,4 +1,4 @@
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+private with Ada.Streams.Stream_IO;
 
 private with Sf.Window.Window;
 private with Sf.System.Vector2;
@@ -12,6 +12,7 @@ package EinlesenGrafikeinstellungenLogik is
    procedure Grafikeinstellungen;
    
 private
+   use Ada.Streams.Stream_IO;
    
    Nullwert : Boolean;
    

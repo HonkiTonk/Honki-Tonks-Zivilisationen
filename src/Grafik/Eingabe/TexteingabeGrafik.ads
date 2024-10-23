@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.Window.Event;
 
@@ -8,6 +8,7 @@ package TexteingabeGrafik is
    procedure Texteingabe;
 
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
    
    EingegebenesZeichen : Wide_Wide_Character;
    

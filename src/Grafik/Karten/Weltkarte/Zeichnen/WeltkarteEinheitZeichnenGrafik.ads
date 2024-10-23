@@ -1,4 +1,4 @@
-with Ada.Calendar; use Ada.Calendar;
+private with Ada.Calendar;
 
 with Sf.System.Vector2;
 
@@ -58,6 +58,7 @@ package WeltkarteEinheitZeichnenGrafik is
               );
   
 private
+   use Ada.Calendar;
    
    AusgewählteEinheitAnzeigen : Boolean := True;
    

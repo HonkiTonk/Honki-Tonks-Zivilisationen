@@ -41,7 +41,7 @@ package body LadezeitenGrafik is
                                           HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                           SpielenamenExtern => False);
      
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => Viewfläche,
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => Viewfläche,
                                                                       VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.LadeviewAccess,

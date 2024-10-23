@@ -1,4 +1,4 @@
-with Sf.Window.Event;
+private with Sf.Window.Event;
 
 package TasteneingabeGrafik is
    pragma Elaborate_Body;

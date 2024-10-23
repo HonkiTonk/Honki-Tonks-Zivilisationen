@@ -1,5 +1,5 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+private with Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Wide_Wide_Text_IO;
 
 with Sf.Graphics;
 with Sf.Graphics.Color;
@@ -78,6 +78,8 @@ package TexteinstellungenGrafik is
                );
    
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
+   use Ada.Wide_Wide_Text_IO;
    
    DateiSchriftart : File_Type;
    

@@ -38,6 +38,7 @@ package body ViewsEinstellenGrafik is
    
    
    
+   -- Sf.System.Vector2.sfVector2f ist ein Float Record, könnte man das auslagern ohne die SFML einbindun zu müssen? äöü
    function ViewflächeAuflösungAnpassen
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
@@ -121,7 +122,7 @@ package body ViewsEinstellenGrafik is
    
    
    -- Das hier zum allgemeinen Fall machen. äöü
-   function ViewflächeXFestYVariabel
+   function ViewflächeWaagerechteFestSenkrechteVariabel
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
@@ -140,6 +141,6 @@ package body ViewsEinstellenGrafik is
       
       return ViewflächeVariabel;
       
-   end ViewflächeXFestYVariabel;
+   end ViewflächeWaagerechteFestSenkrechteVariabel;
 
 end ViewsEinstellenGrafik;

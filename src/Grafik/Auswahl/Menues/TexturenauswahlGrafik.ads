@@ -1,4 +1,4 @@
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+private with Ada.Strings.Unbounded;
 
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
@@ -13,6 +13,7 @@ package TexturenauswahlGrafik is
    procedure Texturenauswahl;
    
 private
+   use Ada.Strings.Unbounded;
    
    MehrereSeitenVorhanden : Boolean;
 

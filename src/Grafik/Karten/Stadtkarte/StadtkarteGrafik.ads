@@ -1,4 +1,4 @@
-with Ada.Calendar; use Ada.Calendar;
+private with Ada.Calendar;
 
 private with Sf.System.Vector2;
 private with Sf.Graphics.Rect;
@@ -29,6 +29,7 @@ package StadtkarteGrafik is
               );
 
 private
+   use Ada.Calendar;
 
    GebäudeID : StadtDatentypen.GebäudeIDVorhanden;
 

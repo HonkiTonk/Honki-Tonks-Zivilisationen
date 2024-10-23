@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
@@ -13,6 +13,7 @@ package OptionenGrafikLogik is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
 
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 

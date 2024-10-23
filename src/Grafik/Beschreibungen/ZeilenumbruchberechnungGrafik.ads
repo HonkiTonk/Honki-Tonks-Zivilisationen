@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 package ZeilenumbruchberechnungGrafik is
    pragma Elaborate_Body;
@@ -16,6 +16,7 @@ package ZeilenumbruchberechnungGrafik is
               );
    
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
    
    SchleifenAnfang : Positive;
    SchleifenEnde : Positive;

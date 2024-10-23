@@ -28,7 +28,7 @@ package body StadtseitenleisteGrafik is
      (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
    is begin
       
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => Viewfläche,
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => Viewfläche,
                                                                       VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen).width,
                                                                                             GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen).height));
       

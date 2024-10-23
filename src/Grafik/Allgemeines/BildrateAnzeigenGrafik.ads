@@ -1,4 +1,4 @@
-with Ada.Calendar; use Ada.Calendar;
+private with Ada.Calendar;
 
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
@@ -13,6 +13,7 @@ package BildrateAnzeigenGrafik is
    procedure Bildrate;
    
 private
+   use Ada.Calendar;
    
    AktuelleBildrate : Float;
    ZielBildrate : Float;

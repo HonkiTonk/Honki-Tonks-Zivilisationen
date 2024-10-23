@@ -1,4 +1,4 @@
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+private with Ada.Streams.Stream_IO;
 
 package SchreibenDatenbankenLogik is
    pragma Elaborate_Body;
@@ -13,6 +13,7 @@ package SchreibenDatenbankenLogik is
    procedure SchreibenEffekteDatenbank;
 
 private
+   use Ada.Streams.Stream_IO;
 
    DateiEinheitendatenbank : File_Type;
    DateiForschungendatenbank : File_Type;

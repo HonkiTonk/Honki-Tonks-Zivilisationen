@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
 
@@ -55,7 +55,8 @@ package StadtseitenleisteGrafik is
                );
    
 private
-      
+   use Ada.Strings.Wide_Wide_Unbounded;
+   
    Leerzeilen : Natural;
          
    Zwischenspeicher : Unbounded_Wide_Wide_String;

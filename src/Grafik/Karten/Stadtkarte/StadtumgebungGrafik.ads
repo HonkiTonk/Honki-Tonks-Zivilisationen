@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
@@ -33,6 +33,7 @@ package StadtumgebungGrafik is
               );
    
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
    
    FeldBewirtschaftet : Boolean;
    

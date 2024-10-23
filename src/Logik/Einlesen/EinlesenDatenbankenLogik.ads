@@ -1,4 +1,4 @@
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+private with Ada.Streams.Stream_IO;
 
 private with EinheitenDatenbank;
 private with ForschungenDatenbank;
@@ -22,6 +22,7 @@ package EinlesenDatenbankenLogik is
    procedure Effekte;
    
 private
+   use Ada.Streams.Stream_IO;
    
    Nullwert : Boolean;
    

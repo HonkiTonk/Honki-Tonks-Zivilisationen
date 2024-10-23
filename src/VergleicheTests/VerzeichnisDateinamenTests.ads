@@ -1,5 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Directories; use Ada.Directories;
+
+private with Ada.Directories;
 
 private with SystemDatentypen;
 private with VerzeichnisKonstanten;
@@ -66,6 +67,7 @@ package VerzeichnisDateinamenTests is
               );
 
 private
+   use Ada.Directories;
 
    Erlaubt : Boolean;
 

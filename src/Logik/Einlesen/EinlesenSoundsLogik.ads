@@ -1,5 +1,5 @@
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Wide_Wide_Text_IO;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 package EinlesenSoundsLogik is
    pragma Elaborate_Body;
@@ -7,6 +7,8 @@ package EinlesenSoundsLogik is
    procedure EinlesenSounds;
 
 private
+   use Ada.Wide_Wide_Text_IO;
+   use Ada.Strings.Wide_Wide_Unbounded;
 
    AktuelleZeile : Positive;
 

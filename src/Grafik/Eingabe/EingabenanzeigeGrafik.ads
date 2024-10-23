@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 private with Sf.Graphics.Rect;
@@ -36,6 +36,7 @@ package EingabenanzeigeGrafik is
               );
    
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
    
    AktuelleAuswahl : Integer;
    

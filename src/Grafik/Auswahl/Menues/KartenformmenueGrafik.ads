@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
 
@@ -20,6 +20,7 @@ package KartenformmenueGrafik is
                );
 
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
 
    -- Ist um eins verschoben, da die Textdateien ja noch eine Überschrift enthalten.
    -- Später mit ZusatztextaufteilungGrafik zusammenführen? äöü

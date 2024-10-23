@@ -130,7 +130,7 @@ package body BauauswahlGrafik is
       GebäudeEinheitExtern : in Boolean)
    is begin
       
-      ViewflächeBauliste := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeBauliste,
+      ViewflächeBauliste := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeBauliste,
                                                                               VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBauliste).width,
                                                                                                     GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBauliste).height));
       

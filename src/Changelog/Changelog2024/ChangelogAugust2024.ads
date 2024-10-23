@@ -92,24 +92,24 @@ package ChangelogAugust2024 is
    
    
 
-   -- Version 0.05. => 0.05. (18.08.2024):
+   -- Version 0.05.9300 => 0.05. (18.08.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.9275 => 0.05. (17.08.2024):
+   -- Version 0.05.9275 => 0.05.9300 (17.08.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diverse Dinge in den privaten Bereich verschoben.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.05.9250 => 0.05.9275 (16.08.2024):
    
    -- Interne Benennung überarbeitet.
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

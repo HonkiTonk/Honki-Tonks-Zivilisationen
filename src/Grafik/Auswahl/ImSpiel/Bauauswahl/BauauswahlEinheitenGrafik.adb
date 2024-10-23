@@ -30,7 +30,7 @@ package body BauauswahlEinheitenGrafik is
       use type EinheitenDatentypen.Transportplätze;
    begin
       
-      ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeInformationen,
+      ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeInformationen,
                                                                                    VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüInformationen).width,
                                                                                                          GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüInformationen).height));
       
@@ -133,7 +133,7 @@ package body BauauswahlEinheitenGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
-      ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeBeschreibung,
+      ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeBeschreibung,
                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBeschreibung).width,
                                                                                                         GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBeschreibung).height));
       

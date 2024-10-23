@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
 
@@ -47,6 +47,7 @@ package EinheitenseitenleisteGrafik is
    
                    
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
    
    MaximaleLadung : EinheitenDatentypen.Transportplätze;
    VorhandeneLadung : EinheitenDatentypen.Transportplätze;

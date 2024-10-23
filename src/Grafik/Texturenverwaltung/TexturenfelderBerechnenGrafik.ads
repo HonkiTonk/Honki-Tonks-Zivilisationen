@@ -1,4 +1,4 @@
-with Sf.System.Vector2;
+private with Sf.System.Vector2;
 
 private with SpeziesDatentypen;
 

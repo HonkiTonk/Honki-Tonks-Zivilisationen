@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 with RueckgabeDatentypen;
 
@@ -11,6 +11,7 @@ package OptionenSonstigesLogik is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
    
    Erfolgreich : Boolean;
    

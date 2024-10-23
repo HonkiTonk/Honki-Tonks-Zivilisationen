@@ -1,6 +1,7 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Directories; use Ada.Directories;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
+private with Ada.Directories;
 
 with Sf.Graphics;
 
@@ -49,6 +50,7 @@ package EinlesenAllgemeinesLogik is
               );
 
 private
+   use Ada.Directories;
 
    Prüfungssuche : Search_Type;
 

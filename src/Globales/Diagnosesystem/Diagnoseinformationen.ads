@@ -59,7 +59,7 @@ package Diagnoseinformationen is
    procedure Verzeichnisnamen;
 
    procedure Koordinateninformationen
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord);
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord);
    
    procedure Einheiteninformationen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord);

@@ -1,4 +1,4 @@
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+private with Ada.Streams.Stream_IO;
 
 package EinlesenToneinstellungenLogik is
    pragma Elaborate_Body;
@@ -6,6 +6,7 @@ package EinlesenToneinstellungenLogik is
    procedure Toneinstelllungen;
    
 private
+   use Ada.Streams.Stream_IO;
    
    Nullwert : Boolean;
    

@@ -1,6 +1,6 @@
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Directories; use Ada.Directories;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Wide_Wide_Text_IO;
+private with Ada.Directories;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Menuetexte;
 private with TextKonstanten;
@@ -19,6 +19,9 @@ package EinlesenTextLogik is
      (EinsprachigExtern : in Boolean);
    
 private
+   use Ada.Wide_Wide_Text_IO;
+   use Ada.Directories;
+   use Ada.Strings.Wide_Wide_Unbounded;
    
    AnzahlTextdateien : constant Positive := 23;
    

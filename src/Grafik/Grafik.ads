@@ -1,4 +1,4 @@
-with Ada.Calendar; use Ada.Calendar;
+private with Ada.Calendar;
 
 private with GrafikDatentypen;
 private with TextnummernKonstanten;
@@ -10,6 +10,7 @@ package Grafik is
    procedure Grafik;
 
 private
+   use Ada.Calendar;
 
    Startzeit : Time;
 

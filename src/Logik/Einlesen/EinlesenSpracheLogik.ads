@@ -1,5 +1,5 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Directories; use Ada.Directories;
+private with Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Directories;
 
 package EinlesenSpracheLogik is
    pragma Elaborate_Body;
@@ -8,7 +8,9 @@ package EinlesenSpracheLogik is
      return Boolean;
    
 private
-      
+   use Ada.Strings.Wide_Wide_Unbounded;
+   use Ada.Directories;
+   
    SchleifenAbzug : Natural;
       
    Zwischenspeicher : Unbounded_Wide_Wide_String;

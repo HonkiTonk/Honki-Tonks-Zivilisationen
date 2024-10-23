@@ -1,5 +1,5 @@
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Wide_Wide_Text_IO;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
 
@@ -9,6 +9,8 @@ package EinlesenMusikLogik is
    procedure EinlesenMusik;
    
 private
+   use Ada.Wide_Wide_Text_IO;
+   use Ada.Strings.Wide_Wide_Unbounded;
    
    Platzhalter : Boolean := True;
       

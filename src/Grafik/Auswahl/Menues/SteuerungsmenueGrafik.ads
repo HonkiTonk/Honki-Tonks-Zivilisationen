@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.Window.Keyboard;
 private with Sf.System.Vector2;
@@ -16,6 +16,7 @@ package SteuerungsmenueGrafik is
      (AuswahlExtern : in Integer);
    
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
    
    UnbekannteTaste : constant Positive := 191;
    ArrayAnfang : Positive;

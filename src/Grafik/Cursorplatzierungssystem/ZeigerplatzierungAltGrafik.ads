@@ -1,4 +1,4 @@
-with Ada.Calendar; use Ada.Calendar;
+private with Ada.Calendar;
 
 private with Sf.System.Vector2;
 
@@ -34,6 +34,7 @@ package ZeigerplatzierungAltGrafik is
               );
    
 private
+   use Ada.Calendar;
    
    EinheitFolgen : Boolean;
    

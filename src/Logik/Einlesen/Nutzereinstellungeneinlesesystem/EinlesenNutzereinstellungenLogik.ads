@@ -1,5 +1,5 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+private with Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Streams.Stream_IO;
 
 private with ZahlenDatentypen;
 
@@ -9,6 +9,8 @@ package EinlesenNutzereinstellungenLogik is
    procedure Nutzereinstellungen;
    
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
+   use Ada.Streams.Stream_IO;
    
    Nullwert : Boolean;
    

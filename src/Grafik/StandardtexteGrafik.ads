@@ -1,6 +1,6 @@
 with ProduktionDatentypen;
 
-with UmwandlungenAdaEigenes;
+private with UmwandlungenAdaEigenes;
 
 package StandardtexteGrafik is
 

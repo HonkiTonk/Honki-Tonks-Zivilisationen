@@ -1,4 +1,4 @@
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+private with Ada.Strings.Unbounded;
 
 private with Sf.Graphics;
 private with Sf.Graphics.Color;
@@ -14,6 +14,7 @@ package SprachauswahlGrafik is
    procedure Sprachauswahl;
     
 private
+   use Ada.Strings.Unbounded;
    
    MehrereSeitenVorhanden : Boolean;
 

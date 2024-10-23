@@ -1,4 +1,4 @@
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+private with Ada.Streams.Stream_IO;
 
 package SchreibenEinstellungenLogik is
    pragma Elaborate_Body;
@@ -10,6 +10,7 @@ package SchreibenEinstellungenLogik is
    procedure SpielendeEinstellungen;
 
 private
+   use Ada.Streams.Stream_IO;
 
    DateiNutzereinstellungen : File_Type;
    DateiGrafikeinstellungen : File_Type;

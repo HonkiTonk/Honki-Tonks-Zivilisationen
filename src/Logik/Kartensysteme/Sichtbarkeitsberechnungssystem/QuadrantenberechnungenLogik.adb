@@ -84,14 +84,14 @@ package body QuadrantenberechnungenLogik is
       use type KartenDatentypen.Waagerechte;
    begin
               
-      KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
-                                                                                                                               -SichtweiteRichtungExtern.Senkrechte,
-                                                                                                                               SichtweiteRichtungExtern.Waagerechte),
-                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
+                                                                                                                                 -SichtweiteRichtungExtern.Senkrechte,
+                                                                                                                                 SichtweiteRichtungExtern.Waagerechte),
+                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
-        KartenQuadrantWert.Waagerechte
+        KartenQuadrantenwert.Waagerechte
       is
          when KartenKonstanten.LeerWaagerechte =>
             return;
@@ -106,7 +106,7 @@ package body QuadrantenberechnungenLogik is
           SichtweiteRichtungExtern.Waagerechte <= 1
       then
          SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                     KoordinatenExtern => KartenQuadrantWert);
+                                                     KoordinatenExtern => KartenQuadrantenwert);
                
       elsif
         SichtweiteRichtungExtern.Senkrechte in 2 .. 3
@@ -119,7 +119,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
                     
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert - 1,
                                                                                  WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -132,7 +132,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -152,7 +152,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                                  
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert,
                                                                                  WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert + 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -165,7 +165,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -181,7 +181,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                      
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert - 1,
                                                                                  WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert + 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -194,7 +194,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -218,14 +218,14 @@ package body QuadrantenberechnungenLogik is
       use type KartenDatentypen.Waagerechte;
    begin
                     
-      KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
-                                                                                                                               SichtweiteRichtungExtern.Senkrechte,
-                                                                                                                               SichtweiteRichtungExtern.Waagerechte),
-                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
+                                                                                                                                 SichtweiteRichtungExtern.Senkrechte,
+                                                                                                                                 SichtweiteRichtungExtern.Waagerechte),
+                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
-        KartenQuadrantWert.Waagerechte
+        KartenQuadrantenwert.Waagerechte
       is
          when KartenKonstanten.LeerWaagerechte =>
             return;
@@ -240,7 +240,7 @@ package body QuadrantenberechnungenLogik is
           SichtweiteRichtungExtern.Waagerechte <= 1
       then
          SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                     KoordinatenExtern => KartenQuadrantWert);
+                                                     KoordinatenExtern => KartenQuadrantenwert);
                
       elsif
         SichtweiteRichtungExtern.Senkrechte in 2 .. 3
@@ -253,7 +253,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
                                          
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert + 1,
                                                                                  WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -266,7 +266,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -286,7 +286,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                                  
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert,
                                                                                  WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert + 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -299,7 +299,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -315,7 +315,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                      
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert + 1,
                                                                                  WaagerechteÄnderungExtern   => -WaagerechteÄnderungSchleifenwert + 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -328,7 +328,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -352,14 +352,14 @@ package body QuadrantenberechnungenLogik is
       use type KartenDatentypen.Waagerechte;
    begin
                     
-      KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
-                                                                                                                               SichtweiteRichtungExtern.Senkrechte,
-                                                                                                                               -SichtweiteRichtungExtern.Waagerechte),
-                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
+                                                                                                                                 SichtweiteRichtungExtern.Senkrechte,
+                                                                                                                                 -SichtweiteRichtungExtern.Waagerechte),
+                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
-        KartenQuadrantWert.Waagerechte
+        KartenQuadrantenwert.Waagerechte
       is
          when KartenKonstanten.LeerWaagerechte =>
             return;
@@ -374,7 +374,7 @@ package body QuadrantenberechnungenLogik is
           SichtweiteRichtungExtern.Waagerechte <= 1
       then
          SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                     KoordinatenExtern => KartenQuadrantWert);
+                                                     KoordinatenExtern => KartenQuadrantenwert);
          
       elsif
         SichtweiteRichtungExtern.Senkrechte in 2 .. 3
@@ -387,7 +387,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
                     
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert + 1,
                                                                                  WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -400,7 +400,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -420,7 +420,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert,
                                                                                  WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert - 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -433,7 +433,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -449,7 +449,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                                        
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => -SenkrechteÄnderungSchleifenwert + 1,
                                                                                  WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert - 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -462,7 +462,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -486,14 +486,14 @@ package body QuadrantenberechnungenLogik is
       use type KartenDatentypen.Waagerechte;
    begin
                     
-      KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
-                                                                                                                               -SichtweiteRichtungExtern.Senkrechte,
-                                                                                                                               -SichtweiteRichtungExtern.Waagerechte),
-                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
+                                                                                                                                 -SichtweiteRichtungExtern.Senkrechte,
+                                                                                                                                 -SichtweiteRichtungExtern.Waagerechte),
+                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
-        KartenQuadrantWert.Waagerechte
+        KartenQuadrantenwert.Waagerechte
       is
          when KartenKonstanten.LeerWaagerechte =>
             return;
@@ -508,7 +508,7 @@ package body QuadrantenberechnungenLogik is
           SichtweiteRichtungExtern.Waagerechte <= 1
       then
          SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                     KoordinatenExtern => KartenQuadrantWert);
+                                                     KoordinatenExtern => KartenQuadrantenwert);
                
       elsif
         SichtweiteRichtungExtern.Senkrechte in 2 .. 3
@@ -521,7 +521,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.Waagerechte loop
                
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert - 1,
                                                                                  WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -534,7 +534,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -554,7 +554,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert,
                                                                                  WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert - 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -567,7 +567,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;
@@ -583,7 +583,7 @@ package body QuadrantenberechnungenLogik is
             for WaagerechteÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.Waagerechte loop
                      
                if
-                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                 False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantenwert,
                                                                                  SenkrechteÄnderungExtern   => SenkrechteÄnderungSchleifenwert - 1,
                                                                                  WaagerechteÄnderungExtern   => WaagerechteÄnderungSchleifenwert - 1,
                                                                                  SichtweiteExtern  => (SichtweiteExtern.Senkrechte, SichtweiteExtern.Waagerechte))
@@ -596,7 +596,7 @@ package body QuadrantenberechnungenLogik is
                    WaagerechteÄnderungSchleifenwert = SichtweiteRichtungExtern.Waagerechte
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
-                                                              KoordinatenExtern => KartenQuadrantWert);
+                                                              KoordinatenExtern => KartenQuadrantenwert);
                         
                else
                   null;

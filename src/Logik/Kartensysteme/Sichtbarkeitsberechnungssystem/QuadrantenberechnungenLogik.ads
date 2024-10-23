@@ -24,7 +24,7 @@ package QuadrantenberechnungenLogik is
    
 private
    
-   KartenQuadrantWert : KartenRecords.KartenfeldNaturalRecord;
+   KartenQuadrantenwert : KartenRecords.KartenfeldNaturalRecord;
    
    procedure QuadrantEins
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;

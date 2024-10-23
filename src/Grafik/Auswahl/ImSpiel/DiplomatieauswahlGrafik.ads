@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
@@ -11,6 +11,7 @@ package DiplomatieauswahlGrafik is
      (AuswahlExtern : in Natural);
 
 private
+   use Ada.Strings.Wide_Wide_Unbounded;
 
    Textbreite : Float;
 

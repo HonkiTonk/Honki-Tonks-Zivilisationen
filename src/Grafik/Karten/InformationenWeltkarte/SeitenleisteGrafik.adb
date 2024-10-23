@@ -35,7 +35,7 @@ package body SeitenleisteGrafik is
       use type EinheitenDatentypen.Einheitenbereich;
    begin
       
-      Viewbereich.Viewbereich := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => Viewbereich.Viewbereich,
+      Viewbereich.Viewbereich := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => Viewbereich.Viewbereich,
                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltSeitenleiste).width,
                                                                                                         GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltSeitenleiste).height));
             

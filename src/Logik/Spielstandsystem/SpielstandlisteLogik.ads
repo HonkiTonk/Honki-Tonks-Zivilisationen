@@ -1,5 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Directories; use Ada.Directories;
+
+private with Ada.Directories;
 
 package SpielstandlisteLogik is
    pragma Elaborate_Body;
@@ -9,6 +10,7 @@ package SpielstandlisteLogik is
       return Unbounded_Wide_Wide_String;
 
 private
+   use Ada.Directories;
 
    LöschenAktiv : Boolean;
 

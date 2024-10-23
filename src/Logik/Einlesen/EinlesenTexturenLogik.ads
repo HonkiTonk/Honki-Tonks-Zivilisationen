@@ -1,6 +1,6 @@
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Directories; use Ada.Directories;
+private with Ada.Wide_Wide_Text_IO;
+private with Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Directories;
 
 private with SpeziesDatentypen;
 
@@ -15,6 +15,9 @@ package EinlesenTexturenLogik is
      return Boolean;
 
 private
+   use Ada.Wide_Wide_Text_IO;
+   use Ada.Strings.Wide_Wide_Unbounded;
+   use Ada.Directories;
 
    Basisgrund : constant Positive := 1;
    Zusatzgrund : constant Positive := Basisgrund + 1;

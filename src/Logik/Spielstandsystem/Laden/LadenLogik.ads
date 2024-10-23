@@ -1,5 +1,5 @@
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+private with Ada.Streams.Stream_IO;
+private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
 private with KartenRecords;
@@ -16,6 +16,8 @@ package LadenLogik is
      return Boolean;
 
 private
+   use Ada.Streams.Stream_IO;
+   use Ada.Strings.Wide_Wide_Unbounded;
    use type SpeziesDatentypen.Spieler_Enum;
 
    Leerwert : Boolean;

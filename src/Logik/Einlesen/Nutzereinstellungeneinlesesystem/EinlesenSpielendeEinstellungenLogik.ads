@@ -1,4 +1,4 @@
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+private with Ada.Streams.Stream_IO;
 
 private with ZahlenDatentypen;
 
@@ -8,6 +8,7 @@ package EinlesenSpielendeEinstellungenLogik is
    procedure SpielendeEinstellungen;
    
 private
+   use Ada.Streams.Stream_IO;
    
    Nullwert : Boolean;
       
