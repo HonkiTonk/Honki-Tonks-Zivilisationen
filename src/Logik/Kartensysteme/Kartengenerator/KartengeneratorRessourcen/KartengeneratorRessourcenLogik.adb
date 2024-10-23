@@ -50,48 +50,48 @@ package body KartengeneratorRessourcenLogik is
       use type KartenDatentypen.Senkrechte;
    begin
       
-      Kartenzeitwert (EbeneExtern) := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse,
+      Kartenzeitwert (EbeneExtern) := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte,
                                                      TeilerExtern     => 33);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte loop
             
             -- Ist aktuell nur vorhanden, da noch keine Ressourcen für den Kern vorhanden sind aber Werte für die Ladezeiten benötigt werden.
             case
               EbeneExtern
             is
                when KartenKonstanten.PlaneteninneresKonstante =>
-                  exit XAchseSchleife;
+                  exit WaagerechteSchleife;
                   
                when others =>
                   null;
             end case;
             
             case
-              LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
                when KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
-                  KartengeneratorWasserressourcenLogik.KartengeneratorWasserressourcen (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+                  KartengeneratorWasserressourcenLogik.KartengeneratorWasserressourcen (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
-                  KartengeneratorLandressourcenLogik.KartengeneratorLandressourcen (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+                  KartengeneratorLandressourcenLogik.KartengeneratorLandressourcen (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
-                  KartengeneratorUnterwasserressourcenLogik.KartengeneratorUnterwasserressourcen (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+                  KartengeneratorUnterwasserressourcenLogik.KartengeneratorUnterwasserressourcen (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
-                  KartengeneratorUnterlandressourcenLogik.KartengeneratorUnterlandressourcen (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+                  KartengeneratorUnterlandressourcenLogik.KartengeneratorUnterlandressourcen (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when others =>
                   null;
             end case;
             
-         end loop XAchseSchleife;
+         end loop WaagerechteSchleife;
             
          case
-           YAchseSchleifenwert mod Kartenzeitwert (EbeneExtern)
+           SenkrechteSchleifenwert mod Kartenzeitwert (EbeneExtern)
          is
             when 0 =>
                LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
@@ -100,7 +100,7 @@ package body KartengeneratorRessourcenLogik is
                null;
          end case;
          
-      end loop YAchseSchleife;
+      end loop SenkrechteSchleife;
       
    end RessourcenGenerierung;
 

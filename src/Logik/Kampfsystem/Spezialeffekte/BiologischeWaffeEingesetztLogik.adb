@@ -29,32 +29,32 @@ package body BiologischeWaffeEingesetztLogik is
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
-        Koordinaten.EAchse
+        Koordinaten.Ebene
       is
          when KartenKonstanten.HimmelKonstante =>
-            Krankheitshöhe.EAchseAnfang := KartenKonstanten.OberflächeKonstante;
-            Krankheitshöhe.EAchseEnde := KartenKonstanten.HimmelKonstante;
+            Krankheitshöhe.EbeneAnfang := KartenKonstanten.OberflächeKonstante;
+            Krankheitshöhe.EbeneEnde := KartenKonstanten.HimmelKonstante;
 
          when others =>
-            Krankheitshöhe.EAchseAnfang := Koordinaten.EAchse;
-            Krankheitshöhe.EAchseEnde := Koordinaten.EAchse;
+            Krankheitshöhe.EbeneAnfang := Koordinaten.Ebene;
+            Krankheitshöhe.EbeneEnde := Koordinaten.Ebene;
       end case;
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in Krankheitshöhe.EAchseAnfang .. Krankheitshöhe.EAchseEnde loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in Krankheitsbereich.YAchseAnfang .. Krankheitsbereich.YAchseEnde loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in Krankheitsbereich.XAchseAnfang .. Krankheitsbereich.XAchseEnde loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in Krankheitshöhe.EbeneAnfang .. Krankheitshöhe.EbeneEnde loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in Krankheitsbereich.SenkrechteAnfang .. Krankheitsbereich.SenkrechteEnde loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in Krankheitsbereich.WaagerechteAnfang .. Krankheitsbereich.WaagerechteEnde loop
 
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, Koordinaten.YAchse, Koordinaten.XAchse),
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EbeneSchleifenwert, Koordinaten.Senkrechte, Koordinaten.Waagerechte),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
-                 Kartenwert.EAchse
+                 Kartenwert.Ebene
                is
-                  when KartenKonstanten.LeerEAchse =>
+                  when KartenKonstanten.LeerEbene =>
                      null;
                      
                   when others =>
@@ -94,9 +94,9 @@ package body BiologischeWaffeEingesetztLogik is
                      end if;
                end case;
 
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop

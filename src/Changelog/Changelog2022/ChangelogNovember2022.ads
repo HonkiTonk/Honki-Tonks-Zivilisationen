@@ -261,7 +261,7 @@ package ChangelogNovember2022 is
    -- Unnötigen Code gelöscht.
    -- KI überarbeitet.
    -- Bewegungsplanberechnung der KI überarbeitet.
-   -- Die KI ist jetzt besser in der Lage einen Weg zu Berechnen, wenn normale Übergänge für die XAchse oder YAchse eingestellt sind.
+   -- Die KI ist jetzt besser in der Lage einen Weg zu Berechnen, wenn normale Übergänge für die Waagerechte oder Senkrechte eingestellt sind.
    -- Fehler korrigiert der dazu führte dass die KI unnötig viele Einheiten verwendete um eine einzelne Aufgabe durchzuführen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    

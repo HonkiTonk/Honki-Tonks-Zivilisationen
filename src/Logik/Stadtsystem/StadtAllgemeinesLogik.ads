@@ -42,7 +42,7 @@ private
    
    NeuerName : SystemRecords.TextEingabeRecord;
    
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;
       
 end StadtAllgemeinesLogik;

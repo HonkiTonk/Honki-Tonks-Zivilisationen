@@ -17,7 +17,7 @@ package body PassierbarkeitspruefungLogik is
    
    function PassierbarkeitPrüfenNummer
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -46,7 +46,7 @@ package body PassierbarkeitspruefungLogik is
    function PassierbarkeitPrüfenID
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
       return Boolean
    is begin
@@ -91,7 +91,7 @@ package body PassierbarkeitspruefungLogik is
    function IstPassierbar
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
       return Boolean
    is begin
@@ -138,7 +138,7 @@ package body PassierbarkeitspruefungLogik is
    function IstNichtPassierbar
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
       use type SpeziesDatentypen.Spezies_Enum;
@@ -177,19 +177,19 @@ package body PassierbarkeitspruefungLogik is
       end case;
       
       -- Diese Prüfung für die Ekropa später noch einmal überarbeiten und auch die vorhandene Forschung berücksichtigen. äöü
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             Ekropaumgebung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => NeueKoordinatenExtern,
-                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                           TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             case
-              Ekropaumgebung.XAchse
+              Ekropaumgebung.Waagerechte
             is
-               when KartenKonstanten.LeerXAchse =>
+               when KartenKonstanten.LeerWaagerechte =>
                   null;
                   
                when others =>
@@ -203,8 +203,8 @@ package body PassierbarkeitspruefungLogik is
                   end if;
             end case;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return False;
       
@@ -223,17 +223,17 @@ package body PassierbarkeitspruefungLogik is
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Stadtumgebung := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -255,8 +255,8 @@ package body PassierbarkeitspruefungLogik is
                return True;
             end if;
                
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return False;
       

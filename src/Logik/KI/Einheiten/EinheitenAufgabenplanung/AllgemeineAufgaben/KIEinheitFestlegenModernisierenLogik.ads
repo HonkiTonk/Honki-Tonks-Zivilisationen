@@ -31,14 +31,14 @@ private
    
    NeueEinheitenID : EinheitenDatentypen.EinheitenID;
    
-   StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   PlatzGefunden : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   StadtKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   PlatzGefunden : KartenRecords.KartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
    function EinheitVerbessernPlatz
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  EinheitNummerExtern <= LeseGrenzen.Einheitengrenze (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

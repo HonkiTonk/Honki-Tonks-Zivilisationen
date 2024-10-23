@@ -13,10 +13,10 @@ with EinheitSuchenLogik;
 package body StadtumgebungErreichbarLogik is
    
    function UmgebungErreichbar
-     (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (StadtKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is begin  
       
       Umgebung := (1, 1);
@@ -25,24 +25,24 @@ package body StadtumgebungErreichbarLogik is
       
       BereichSchleife:
       loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in -Umgebung.Senkrechte .. Umgebung.Senkrechte loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in -Umgebung.Waagerechte .. Umgebung.Waagerechte loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in -Umgebung.Senkrechte .. Umgebung.Senkrechte loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in -Umgebung.Waagerechte .. Umgebung.Waagerechte loop
                
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinatenExtern,
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                if
-                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
+                 KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
                then
                   null;
                  
                elsif
-                 BereitsGetestet.Senkrechte > abs (YAchseSchleifenwert)
+                 BereitsGetestet.Senkrechte > abs (SenkrechteSchleifenwert)
                  and
-                   BereitsGetestet.Waagerechte > abs (XAchseSchleifenwert)
+                   BereitsGetestet.Waagerechte > abs (WaagerechteSchleifenwert)
                then
                   null;
                   
@@ -58,8 +58,8 @@ package body StadtumgebungErreichbarLogik is
                   null;
                end if;
             
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
             
          if
            Umgebung.Senkrechte = Stadtumgebung.Senkrechte
@@ -81,14 +81,14 @@ package body StadtumgebungErreichbarLogik is
    
    
    function Prüfungen
-     (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (StadtKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      AktuelleKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
       use type EinheitenDatentypen.Einheitenbereich;
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin  
       
       if
@@ -108,24 +108,24 @@ package body StadtumgebungErreichbarLogik is
       elsif
         StadtKoordinatenExtern = AktuelleKoordinatenExtern
       then
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
                KartenWertZwei := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinatenExtern,
-                                                                                                             ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                             ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                              TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                if
-                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
+                 KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
                then
                   null;
                   
                elsif
-                 YAchseSchleifenwert = 0
+                 SenkrechteSchleifenwert = 0
                  and
-                   XAchseSchleifenwert = 0
+                   WaagerechteSchleifenwert = 0
                then
                   null;
                   
@@ -141,8 +141,8 @@ package body StadtumgebungErreichbarLogik is
                   return True;
                end if;
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
          
          return False;
          

@@ -44,7 +44,7 @@ package body SichtbarkeitsberechnungssystemLogik is
          EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          if
-           LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern).EAchse >= KartenKonstanten.OberflächeKonstante
+           LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern).Ebene >= KartenKonstanten.OberflächeKonstante
            and
              (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                             IDExtern             => EinheitID,
@@ -84,19 +84,19 @@ package body SichtbarkeitsberechnungssystemLogik is
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -SichtweiteExtern.Senkrechte .. SichtweiteExtern.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -SichtweiteExtern.Waagerechte .. SichtweiteExtern.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -SichtweiteExtern.Senkrechte .. SichtweiteExtern.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -SichtweiteExtern.Waagerechte .. SichtweiteExtern.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             case
-              KartenWert.XAchse
+              KartenWert.Waagerechte
             is
-               when KartenKonstanten.LeerXAchse =>
+               when KartenKonstanten.LeerWaagerechte =>
                   null;
                   
                when others =>
@@ -104,8 +104,8 @@ package body SichtbarkeitsberechnungssystemLogik is
                                                               KoordinatenExtern => KartenWert);
             end case;
                
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
    end SichtbarkeitsprüfungOhneBlockade;
    
@@ -124,19 +124,19 @@ package body SichtbarkeitsberechnungssystemLogik is
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -SichtweiteStadt.Senkrechte .. SichtweiteStadt.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -SichtweiteStadt.Waagerechte .. SichtweiteStadt.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -SichtweiteStadt.Senkrechte .. SichtweiteStadt.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -SichtweiteStadt.Waagerechte .. SichtweiteStadt.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             case
-              KartenWert.XAchse
+              KartenWert.Waagerechte
             is
-               when KartenKonstanten.LeerXAchse =>
+               when KartenKonstanten.LeerWaagerechte =>
                   null;
                   
                when others =>
@@ -144,8 +144,8 @@ package body SichtbarkeitsberechnungssystemLogik is
                                                               KoordinatenExtern => KartenWert);
             end case;
                         
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
    end SichtbarkeitsprüfungFürStadt;
    

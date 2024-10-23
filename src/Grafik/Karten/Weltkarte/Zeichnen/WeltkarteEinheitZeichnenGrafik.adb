@@ -19,7 +19,7 @@ with TexturenfelderVariablenGrafik;
 package body WeltkarteEinheitZeichnenGrafik is
 
    procedure AnzeigeEinheit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
@@ -126,7 +126,7 @@ package body WeltkarteEinheitZeichnenGrafik is
    
    -- Anstelle des Rahmens später vielleicht eine bessere Markierung ausdenken? äöü
    procedure Einheitenmarkierung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
@@ -134,11 +134,11 @@ package body WeltkarteEinheitZeichnenGrafik is
    begin
       
       if
-        KoordinatenExtern.EAchse /= EinheitenauswahlExtern.Koordinaten.EAchse
+        KoordinatenExtern.Ebene /= EinheitenauswahlExtern.Koordinaten.Ebene
         and
-          KoordinatenExtern.YAchse = EinheitenauswahlExtern.Koordinaten.YAchse
+          KoordinatenExtern.Senkrechte = EinheitenauswahlExtern.Koordinaten.Senkrechte
           and
-            KoordinatenExtern.XAchse = EinheitenauswahlExtern.Koordinaten.XAchse
+            KoordinatenExtern.Waagerechte = EinheitenauswahlExtern.Koordinaten.Waagerechte
       then
          RahmenSchleife:
          for RahmenSchleifenwert in KartenartDatentypen.Himmelsrichtungen_Enum'Range loop
@@ -178,12 +178,12 @@ package body WeltkarteEinheitZeichnenGrafik is
    
    
    procedure AnzeigeBewegungsfeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
       case
-        EinheitenbewegungsbereichLogik.Bewegungsbereich (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse)
+        EinheitenbewegungsbereichLogik.Bewegungsbereich (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)
       is
          when False =>
             null;

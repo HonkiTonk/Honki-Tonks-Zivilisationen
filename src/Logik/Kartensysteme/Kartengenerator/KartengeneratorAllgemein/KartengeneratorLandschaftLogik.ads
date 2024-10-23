@@ -25,7 +25,7 @@ private
    Zahlenspeicher : SystemDatentypen.NullBisHundert;
    WelcherGrund : SystemDatentypen.NullBisHundert;
          
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
    type BasisWahrscheinlichkeitenArray is array (SystemDatentypen.EinsBisHundert'First .. 5) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
@@ -61,133 +61,133 @@ private
                                                                   );
    
    procedure BasisgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    procedure ZusatzgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    
    
    function BasisExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
       return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
       
    function ZusatzExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function ZusatzberechnungTundra
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Tundra_Enum)
       return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function ZusatzberechnungWüste
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Wüste_Enum)
       return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function ZusatzberechnungHügel
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Hügel_Enum)
       return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function ZusatzberechnungGebirge
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Gebirge_Enum)
       return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+         (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
           and
-            KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+            KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
          );
    
    function ZusatzberechnungFlachland
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Flachland_Enum)
       return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function ZusatzberechnungWald
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Wald_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function ZusatzberechnungDschungel
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Dschungel_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function ZusatzberechnungSumpf
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Sumpf_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);

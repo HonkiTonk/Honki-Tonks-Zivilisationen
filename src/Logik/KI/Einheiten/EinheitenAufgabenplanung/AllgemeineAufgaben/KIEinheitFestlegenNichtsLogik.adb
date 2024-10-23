@@ -35,7 +35,7 @@ package body KIEinheitFestlegenNichtsLogik is
         --                                                     ZielartExtern              => KIDatentypen.Platz_Machen_Enum);
             
         --    if
-        --      Zielkoordinaten.XAchse = KartenKonstanten.LeerXAchse
+        --      Zielkoordinaten.Waagerechte = KartenKonstanten.LeerWaagerechte
         --    then
         --       null;
                

@@ -27,7 +27,7 @@ private
    Krankheitsbereich : KartenRecords.EffektbereichRecord;
    Krankheitshöhe : KartenRecords.EffekthöheRecord;
 
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
+   Koordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end BiologischeWaffeEingesetztLogik;

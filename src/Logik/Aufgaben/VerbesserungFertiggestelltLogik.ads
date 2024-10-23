@@ -26,7 +26,7 @@ private
    
    WelcheAufgabe : AufgabenDatentypen.Einheitenbefehle_Verbesserungen_Enum;
    
-   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Koordinaten : KartenRecords.KartenfeldNaturalRecord;
    
    type VerbesserungArray is array (AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range) of KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum;
    Verbesserung : constant VerbesserungArray := (

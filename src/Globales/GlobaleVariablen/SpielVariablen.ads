@@ -10,7 +10,7 @@ package SpielVariablen is
    
    Allgemeines : SpielRecords.AllgemeinesRecord := WichtigesRecordKonstanten.LeerAllgemeines;
       
-   type CursorImSpielArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of KartenRecords.CursorRecord;
+   type CursorImSpielArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of KartenRecords.ZeigerRecord;
    CursorImSpiel : CursorImSpielArray := (others => WichtigesRecordKonstanten.LeerCursor);
    
    -- Später über Nutzereingaben einstellbar machen. äöü

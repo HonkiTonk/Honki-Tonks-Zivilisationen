@@ -22,8 +22,8 @@ private
    KartentemperaturAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenressourcenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
-   YAchse : KartenDatentypen.SenkrechtePositiv;
-   XAchse : KartenDatentypen.WaagerechtePositiv;
+   Senkrechte : KartenDatentypen.SenkrechtePositiv;
+   Waagerechte : KartenDatentypen.WaagerechtePositiv;
    
    ZwischenwertKartenart : Positive;
    
@@ -31,7 +31,7 @@ private
    BenutzerdefinierteKartenart : SystemRecords.ZahlenEingabeRecord;
    
    procedure KartenformZuweisen
-     (WelcheAchseExtern : in RueckgabeDatentypen.Kartenform_Enum);
+     (WelchEbeneExtern : in RueckgabeDatentypen.Kartenform_Enum);
    
    procedure KartenartStandard;
    procedure KartenartNutzerdefinition;
@@ -45,6 +45,6 @@ private
      return KartenDatentypen.WaagerechteNatural;
    
    function GrößeSelbstBestimmen
-     return KartenRecords.YXAchsenKartenfeldPositivRecord;
+     return KartenRecords.KartenfeldumgebungPositivRecord;
 
 end SpieleinstellungenKartenLogik;

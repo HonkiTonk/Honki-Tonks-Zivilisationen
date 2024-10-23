@@ -72,9 +72,9 @@ package body StadtEinheitenBauenLogik is
                                                             IDExtern                 => EinheitenDatentypen.EinheitenIDVorhanden (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit));
       
       case
-        KartenWert.XAchse
+        KartenWert.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      EreignisExtern           => StadtDatentypen.Einheit_Unplatzierbar_Enum);
             
@@ -89,7 +89,7 @@ package body StadtEinheitenBauenLogik is
    
    procedure EinheitPlatzieren
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => KoordinatenExtern,

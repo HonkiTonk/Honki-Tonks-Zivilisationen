@@ -69,7 +69,7 @@ package SchreibeGrafiktask is
      (EinheitnummerExtern : in EinheitenDatentypen.Einheitenbereich);
    
    procedure GeheZu
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord);
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord);
    
    procedure Seitenauswahl
      (JaNeinExtern : in Boolean);

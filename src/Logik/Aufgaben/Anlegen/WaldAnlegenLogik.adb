@@ -10,11 +10,11 @@ with Zusatzgrundplatzierungssystem;
 package body WaldAnlegenLogik is
 
    procedure WaldAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
          when KartenKonstanten.OberflächeKonstante =>
             NeuerGrund := KartengrundDatentypen.Wald_Enum;
@@ -23,7 +23,7 @@ package body WaldAnlegenLogik is
             NeuerGrund := KartengrundDatentypen.Unterwald_Enum;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WaldAnlegenLogik.WaldAnlegen: Falsche Ebene" & KoordinatenExtern.EAchse'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WaldAnlegenLogik.WaldAnlegen: Falsche Ebene" & KoordinatenExtern.Ebene'Wide_Wide_Image);
             return;
       end case;
       

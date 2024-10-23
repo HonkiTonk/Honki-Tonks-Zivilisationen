@@ -26,7 +26,7 @@ private
    WenAngreifen : SpeziesDatentypen.Spezies_Enum;
    Ziel : SpeziesDatentypen.Spezies_Enum;
    
-   KoordinatenFeind : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KoordinatenFeind : KartenRecords.KartenfeldNaturalRecord;
    
    
    

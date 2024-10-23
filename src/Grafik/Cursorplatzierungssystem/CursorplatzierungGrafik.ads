@@ -19,12 +19,12 @@ package CursorplatzierungGrafik is
    
 private
    
-   Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   Sichtbereich : KartenRecords.KartenfeldumgebungPositivRecord;
       
-   Kartenänderung : KartenRecords.YXAchsenKartenfeldRecord;
+   Kartenänderung : KartenRecords.KartenfeldumgebungRecord;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
 
 end CursorplatzierungGrafik;

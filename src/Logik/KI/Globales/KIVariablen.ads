@@ -8,7 +8,7 @@ package KIVariablen is
 
    Kriegszustand : Boolean;
 
-   type StadtverbindungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, EinheitenDatentypen.Bewegungsplan'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
+   type StadtverbindungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, EinheitenDatentypen.Bewegungsplan'Range) of KartenRecords.KartenfeldNaturalRecord;
    Stadtverbindung : StadtverbindungArray := (others => (others => KartenRecordKonstanten.LeerKoordinate));
 
 end KIVariablen;

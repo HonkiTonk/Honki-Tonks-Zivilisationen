@@ -23,6 +23,6 @@ package KIEinheitUmsetzenErkundenLogik is
 
 private
 
-   ZielKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   ZielKoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end KIEinheitUmsetzenErkundenLogik;

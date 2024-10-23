@@ -21,7 +21,7 @@ package WeltkarteEinheitZeichnenGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure AnzeigeEinheit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
@@ -30,13 +30,13 @@ package WeltkarteEinheitZeichnenGrafik is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 EinheitenauswahlExtern.Koordinaten.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 EinheitenauswahlExtern.Koordinaten.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 EinheitenauswahlExtern.Koordinaten.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 EinheitenauswahlExtern.Koordinaten.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  PositionExtern.x >= 0.00
                and
@@ -44,13 +44,13 @@ package WeltkarteEinheitZeichnenGrafik is
               );
    
    procedure AnzeigeBewegungsfeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  PositionExtern.x >= 0.00
                and
@@ -68,7 +68,7 @@ private
    StartzeitBlinkintervall : Time := Clock;
             
    procedure Einheitenmarkierung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
@@ -77,13 +77,13 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 EinheitenauswahlExtern.Koordinaten.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 EinheitenauswahlExtern.Koordinaten.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 EinheitenauswahlExtern.Koordinaten.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 EinheitenauswahlExtern.Koordinaten.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  PositionExtern.x >= 0.00
                and

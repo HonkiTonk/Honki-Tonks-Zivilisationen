@@ -14,21 +14,21 @@ package body KartengeneratorWeltraumLogik is
       use type KartenDatentypen.Senkrechte;
    begin
       
-      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.YAchse,
+      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.Senkrechte,
                                        TeilerExtern     => 25);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
 
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.WeltraumKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.WeltraumKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                           GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
             
-         end loop XAchseSchleife;
+         end loop WaagerechteSchleife;
             
          case
-           YAchseSchleifenwert mod Kartenzeitwert
+           SenkrechteSchleifenwert mod Kartenzeitwert
          is
             when 0 =>
                LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
@@ -37,7 +37,7 @@ package body KartengeneratorWeltraumLogik is
                null;
          end case;
          
-      end loop YAchseSchleife;
+      end loop SenkrechteSchleife;
       
    end Weltraum;
 

@@ -1,8 +1,8 @@
 with KartenartDatentypen;
 
-package body KIYAchsenbewertung is
+package body KISenkrechtebewertung is
 
-   function YAchseBewerten
+   function SenkrechteBewerten
      (ZielpunktExtern : in KartenDatentypen.SenkrechtePositiv;
       NeuerPunktExtern : in KartenDatentypen.SenkrechtePositiv)
       return KartenDatentypen.SenkrechteNatural
@@ -18,30 +18,30 @@ package body KIYAchsenbewertung is
       end if;
       
       case
-        LeseWeltkarteneinstellungen.YAchseNorden
+        LeseWeltkarteneinstellungen.SenkrechteNorden
       is
-         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Senkrechte_Übergangslos_Enum =>
             Felderanzahl (2) := KartenDatentypen.SenkrechtePositiv'Last;
             
-         when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Senkrechte_Übergang_Enum | KartenartDatentypen.Senkrechte_Verschobener_Übergang_Enum =>
             Felderanzahl (2) := StandardübergangNorden (ZielpunktExtern  => ZielpunktExtern,
                                                          NeuerPunktExtern => NeuerPunktExtern);
             
-         when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Senkrechte_Rückwärts_Verschobener_Übergang_Enum =>
             Felderanzahl (2) := KartenDatentypen.SenkrechtePositiv'Last;
       end case;
       
       case
-        LeseWeltkarteneinstellungen.YAchseSüden
+        LeseWeltkarteneinstellungen.SenkrechteSüden
       is
-         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Senkrechte_Übergangslos_Enum =>
             Felderanzahl (3) := KartenDatentypen.SenkrechtePositiv'Last;
             
-         when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Senkrechte_Übergang_Enum | KartenartDatentypen.Senkrechte_Verschobener_Übergang_Enum =>
             Felderanzahl (3) := StandardübergangSüden (ZielpunktExtern  => ZielpunktExtern,
                                                          NeuerPunktExtern => NeuerPunktExtern);
             
-         when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Senkrechte_Rückwärts_Verschobener_Übergang_Enum =>
             Felderanzahl (3) := KartenDatentypen.SenkrechtePositiv'Last;
       end case;
       
@@ -63,7 +63,7 @@ package body KIYAchsenbewertung is
       
       return Felderanzahl (WelcheFelderanzahl);
       
-   end YAchseBewerten;
+   end SenkrechteBewerten;
    
    
    
@@ -76,7 +76,7 @@ package body KIYAchsenbewertung is
       if
         NeuerPunktExtern < ZielpunktExtern
       then
-         return NeuerPunktExtern - ZielpunktExtern + LeseWeltkarteneinstellungen.YAchse;
+         return NeuerPunktExtern - ZielpunktExtern + LeseWeltkarteneinstellungen.Senkrechte;
                   
       else
          return KartenDatentypen.SenkrechtePositiv'Last;
@@ -95,7 +95,7 @@ package body KIYAchsenbewertung is
       if
         ZielpunktExtern < NeuerPunktExtern
       then
-         return ZielpunktExtern - NeuerPunktExtern + LeseWeltkarteneinstellungen.YAchse;
+         return ZielpunktExtern - NeuerPunktExtern + LeseWeltkarteneinstellungen.Senkrechte;
          
       else
          return KartenDatentypen.SenkrechtePositiv'Last;
@@ -103,4 +103,4 @@ package body KIYAchsenbewertung is
       
    end StandardübergangSüden;
 
-end KIYAchsenbewertung;
+end KISenkrechtebewertung;

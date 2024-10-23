@@ -3,7 +3,7 @@ with SchreibeWeltkarte;
 package body FeldeffektEntfernenLogik is
 
    procedure FeldeffektEntfernen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldeffektExtern : in AufgabenDatentypen.Einheitenbefehle_Gelände_Enum)
    is begin
       

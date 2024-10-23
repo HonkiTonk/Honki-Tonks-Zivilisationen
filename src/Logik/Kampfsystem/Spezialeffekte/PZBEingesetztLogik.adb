@@ -40,30 +40,30 @@ package body PZBEingesetztLogik is
       is
          when -1 =>
             if
-              LeseWeltkarteneinstellungen.YAchse <= KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.XAchse)
+              LeseWeltkarteneinstellungen.Senkrechte <= KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.Waagerechte)
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse + 2 * Vernichtungsbereich.YAchseAnfang) / 10);
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.Senkrechte + 2 * Vernichtungsbereich.SenkrechteAnfang) / 10);
                   
             else
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse + 2 * Vernichtungsbereich.XAchseAnfang) / 10 );
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.Waagerechte + 2 * Vernichtungsbereich.WaagerechteAnfang) / 10 );
             end if;
                
          when others =>
             EingesetztePZB := LeseAllgemeines.AnzahlEingesetzterPZB;
             
             if
-              LeseWeltkarteneinstellungen.YAchse <= KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.XAchse)
+              LeseWeltkarteneinstellungen.Senkrechte <= KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.Waagerechte)
               and
-                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse + 2 * Vernichtungsbereich.YAchseAnfang) / 10) / EingesetztePZB
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.Senkrechte + 2 * Vernichtungsbereich.SenkrechteAnfang) / 10) / EingesetztePZB
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse + 2 * Vernichtungsbereich.YAchseAnfang) / 10) / EingesetztePZB;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.Senkrechte + 2 * Vernichtungsbereich.SenkrechteAnfang) / 10) / EingesetztePZB;
                
             elsif
-              LeseWeltkarteneinstellungen.YAchse > KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.XAchse)
+              LeseWeltkarteneinstellungen.Senkrechte > KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.Waagerechte)
               and
-                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse + 2 * Vernichtungsbereich.XAchseAnfang) / 10) / EingesetztePZB
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.Waagerechte + 2 * Vernichtungsbereich.WaagerechteAnfang) / 10) / EingesetztePZB
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse + 2 * Vernichtungsbereich.XAchseAnfang) / 10) / EingesetztePZB;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.Waagerechte + 2 * Vernichtungsbereich.WaagerechteAnfang) / 10) / EingesetztePZB;
                   
             else
                null;
@@ -116,36 +116,36 @@ package body PZBEingesetztLogik is
    
    
    procedure PlanetenVernichten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VernichtungsbereichExtern : in KartenRecords.EffektbereichRecord)
    is
       use type KartenDatentypen.Ebene;
    begin
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in VernichtungsbereichExtern.YAchseAnfang .. VernichtungsbereichExtern.YAchseEnde loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in VernichtungsbereichExtern.XAchseAnfang .. VernichtungsbereichExtern.XAchseEnde loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in VernichtungsbereichExtern.SenkrechteAnfang .. VernichtungsbereichExtern.SenkrechteEnde loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in VernichtungsbereichExtern.WaagerechteAnfang .. VernichtungsbereichExtern.WaagerechteEnde loop
 
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EbeneSchleifenwert, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
-                 Kartenwert.EAchse
+                 Kartenwert.Ebene
                is
-                  when KartenKonstanten.LeerEAchse =>
+                  when KartenKonstanten.LeerEbene =>
                      null;
                      
                   when others =>
                      FeldVernichten (KoordinatenExtern => Kartenwert);
                end case;
 
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
    end PlanetenVernichten;
    
@@ -153,7 +153,7 @@ package body PZBEingesetztLogik is
    
    -- Hier die Entfernung von Grund/Verbesserungen nicht durch die Platzierungssysteme vornehmen, da ja alles zerstört wird wäre das hier unsinnig.
    procedure FeldVernichten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,

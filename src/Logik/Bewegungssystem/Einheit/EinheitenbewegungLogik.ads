@@ -48,7 +48,7 @@ package EinheitenbewegungLogik is
    
    function BewegungPrüfen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
@@ -56,9 +56,9 @@ package EinheitenbewegungLogik is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function FremderAufFeld
@@ -114,8 +114,8 @@ private
       
    EinheitAufFeld : EinheitenRecords.SpeziesEinheitnummerRecord;
 
-   BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   BewegendeKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   StehendeKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   Zielkoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end EinheitenbewegungLogik;

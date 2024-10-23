@@ -26,6 +26,6 @@ private
 
    AnzahlStädte : StadtDatentypen.Städtebereich;
 
-   NeueStadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   NeueStadtKoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end KIEinheitFestlegenSiedelnLogik;

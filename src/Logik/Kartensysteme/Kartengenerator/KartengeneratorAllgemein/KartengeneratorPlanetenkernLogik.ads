@@ -37,69 +37,69 @@ private
                                                                  );
 
    procedure BasisgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
 
 
    function BasisExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
    function ZusatzberechnungRingwoodit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
    function ZusatzberechnungMajorit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
    function ZusatzberechnungPerowskit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
    function ZusatzberechnungMagnesiowüstit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
    function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);

@@ -37,23 +37,23 @@ package body LadenKarteLogik is
                                                                 Karteneinstellungen);
       end case;
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. Karteneinstellungen.Kartengröße.YAchse loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. Karteneinstellungen.Kartengröße.XAchse loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
                
                if
                  False = ZahlNachSichtbarkeit (DateiLadenExtern  => DateiLadenExtern,
-                                               KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                               KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                LadenPrüfenExtern => LadenPrüfenExtern)
                then
                   return False;
                   
                elsif
                  False = BasisgrundEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                                             KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                             KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                              LadenPrüfenExtern => LadenPrüfenExtern)
                then
                   return False;
@@ -74,7 +74,7 @@ package body LadenKarteLogik is
                     LadenPrüfenExtern
                   is
                      when True =>
-                        SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                        SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                          BelegterGrundExtern => (Stadt.Spezies, Stadt.Nummer));
                         
                      when False =>
@@ -96,7 +96,7 @@ package body LadenKarteLogik is
                     LadenPrüfenExtern
                   is
                      when True =>
-                        SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern          => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                        SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern          => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                             EinheitSpeziesNummerExtern => (Einheit.Spezies, Einheit.Nummer),
                                                             EinheitentauschExtern      => False);
                         
@@ -119,7 +119,7 @@ package body LadenKarteLogik is
                     LadenPrüfenExtern
                   is
                      when True =>
-                        SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                        SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                         VerbesserungExtern => Verbesserung);
                         
                      when False =>
@@ -141,7 +141,7 @@ package body LadenKarteLogik is
                     LadenPrüfenExtern
                   is
                      when True =>
-                        SchreibeWeltkarte.Weg (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                        SchreibeWeltkarte.Weg (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                WegExtern         => Weg);
                         
                      when False =>
@@ -163,7 +163,7 @@ package body LadenKarteLogik is
                     LadenPrüfenExtern
                   is
                      when True =>
-                        SchreibeWeltkarte.Ressource (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                        SchreibeWeltkarte.Ressource (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                      RessourceExtern   => Ressource);
                         
                      when False =>
@@ -185,7 +185,7 @@ package body LadenKarteLogik is
                     LadenPrüfenExtern
                   is
                      when True =>
-                        SchreibeWeltkarte.Fluss (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                        SchreibeWeltkarte.Fluss (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                  FlussExtern       => Fluss);
                         
                      when False =>
@@ -207,7 +207,7 @@ package body LadenKarteLogik is
                     LadenPrüfenExtern
                   is
                      when True =>
-                        SchreibeWeltkarte.AlleFeldeffekte (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                        SchreibeWeltkarte.AlleFeldeffekte (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                            FeldeffekteExtern => Feldeffekte);
                         
                      when False =>
@@ -228,7 +228,7 @@ package body LadenKarteLogik is
                     LadenPrüfenExtern
                   is
                      when True =>
-                        SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                        SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                        GrundExtern       => Zusatzgrund);
                         
                      when False =>
@@ -239,12 +239,12 @@ package body LadenKarteLogik is
                   null;
                end if;
                                              
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
          
          LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
          
-      end loop EAchseSchleife;
+      end loop EbeneSchleife;
             
       return True;
       
@@ -260,7 +260,7 @@ package body LadenKarteLogik is
    
    function ZahlNachSichtbarkeit
      (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
       return Boolean
    is
@@ -325,13 +325,13 @@ package body LadenKarteLogik is
    
    function BasisgrundEinlesen
      (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       LadenPrüfenExtern : in Boolean)
       return Boolean
    is begin
             
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
          when KartenKonstanten.HimmelKonstante =>
             Basisgrund := KartengrundDatentypen.Wolken_Enum;
@@ -348,7 +348,7 @@ package body LadenKarteLogik is
         LadenPrüfenExtern
       is
          when True =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                           GrundExtern       => Basisgrund);
             
          when False =>

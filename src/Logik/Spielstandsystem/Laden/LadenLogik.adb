@@ -365,7 +365,7 @@ package body LadenLogik is
         Speziesbelegung (SpeziesExtern).Belegung
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            KartenRecords.CursorRecord'Read (Stream (File => DateiLadenExtern),
+            KartenRecords.ZeigerRecord'Read (Stream (File => DateiLadenExtern),
                                              Cursor);
             
          when others =>

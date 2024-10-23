@@ -21,16 +21,16 @@ package CursorplatzierungAltGrafik is
 
    procedure CursorplatzierungAlt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      EinheitenkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 EinheitenkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 EinheitenkoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 EinheitenkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 EinheitenkoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
 private
@@ -52,36 +52,36 @@ private
    -- Dafür vielleicht zwei Werte einbauen, einen für niedrige und einen für hohe Auflösungen? äöü
    -- Oder einen Wert für große Kartenfelder und einen für Kleine? äöü
    Scrollbereichanteil : constant Float := 2.00;
-   XAchsenbereich : Float;
+   Waagerechtebereich : Float;
          
    Scrollzeit : Time := Clock;
    
-   YAchseÜbergänge : KartenRecords.KartenformYAchseRecord;
-   XAchseÜbergänge : KartenRecords.KartenformXAchseRecord;
-   Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   SenkrechteÜbergänge : KartenRecords.KartenformSenkrechteRecord;
+   WaagerechteÜbergänge : KartenRecords.KartenformWaagerechteRecord;
+   Sichtbereich : KartenRecords.KartenfeldumgebungPositivRecord;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
    Viewfläche : Sf.System.Vector2.sfVector2f;
    Viewzentrum : Sf.System.Vector2.sfVector2f;
    Achsenviewfläche : Sf.System.Vector2.sfVector2f;
    
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   AlteCursorkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
+   AlteCursorkoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
-   Koordinatenänderung : KartenRecords.AchsenKartenfeldRecord;
+   Koordinatenänderung : KartenRecords.KartenfeldRecord;
    
    procedure Platzierung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      EinheitenkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 EinheitenkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 EinheitenkoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 EinheitenkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 EinheitenkoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    
@@ -98,7 +98,7 @@ private
    
    function Einheitenbereich
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      EinheitenkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
@@ -106,27 +106,27 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 EinheitenkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 EinheitenkoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 EinheitenkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 EinheitenkoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
          
-   function AlteYAchseFestlegen
+   function AlteSenkrechteFestlegen
      (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
-      YAchseAltExtern : in KartenDatentypen.SenkrechtePositiv)
+      SenkrechteAltExtern : in KartenDatentypen.SenkrechtePositiv)
       return KartenDatentypen.SenkrechteUmgebungEins
      with
        Pre => (
-                 YAchseAltExtern <= LeseWeltkarteneinstellungen.YAchse
+                 SenkrechteAltExtern <= LeseWeltkarteneinstellungen.Senkrechte
               );
    
-   function AlteXAchseFestlegen
+   function AlteWaagerechteFestlegen
      (MausachseExtern : in Float;
-      XAchseAltExtern : in KartenDatentypen.WaagerechtePositiv)
+      WaagerechteAltExtern : in KartenDatentypen.WaagerechtePositiv)
       return KartenDatentypen.WaagerechteUmgebungEins
      with
        Pre => (
-                 XAchseAltExtern <= LeseWeltkarteneinstellungen.XAchse
+                 WaagerechteAltExtern <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
 end CursorplatzierungAltGrafik;

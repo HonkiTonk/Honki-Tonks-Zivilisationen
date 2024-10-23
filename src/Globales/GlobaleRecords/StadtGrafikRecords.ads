@@ -13,7 +13,7 @@ package StadtGrafikRecords is
       SpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
       
       ID : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
-      Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+      Koordinaten : KartenRecords.KartenfeldNaturalRecord;
       EinwohnerArbeiter : StadtRecords.EinwohnerArbeiterArray;
       
       Nahrungsmittel : ProduktionDatentypen.Stadtproduktion;
@@ -39,7 +39,7 @@ package StadtGrafikRecords is
       
       Spezies : SpeziesDatentypen.Spezies_Enum;
       
-      Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+      Koordinaten : KartenRecords.KartenfeldNaturalRecord;
       
       GebäudeVorhanden : StadtArrays.GebäudeArray;
       
@@ -51,7 +51,7 @@ package StadtGrafikRecords is
       
       SpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
                   
-      Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+      Koordinaten : KartenRecords.KartenfeldNaturalRecord;
       
       UmgebungBewirtschaftung : StadtRecords.UmgebungBewirtschaftungArray;
       

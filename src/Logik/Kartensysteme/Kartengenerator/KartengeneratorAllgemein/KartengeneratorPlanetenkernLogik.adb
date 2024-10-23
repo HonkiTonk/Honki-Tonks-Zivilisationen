@@ -14,43 +14,43 @@ package body KartengeneratorPlanetenkernLogik is
    procedure Planetenkern
    is begin
       
-      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.YAchse,
+      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.Senkrechte,
                                        TeilerExtern     => 25);
       
-      YKernanfang := LeseWeltkarteneinstellungen.YAchse / 2 - LeseWeltkarteneinstellungen.YAchse / 10;
-      XKernanfang := LeseWeltkarteneinstellungen.XAchse / 2 - LeseWeltkarteneinstellungen.XAchse / 10;
-      YKernende := LeseWeltkarteneinstellungen.YAchse / 2 + LeseWeltkarteneinstellungen.YAchse / 10;
-      XKernende := LeseWeltkarteneinstellungen.XAchse / 2 + LeseWeltkarteneinstellungen.XAchse / 10;
+      YKernanfang := LeseWeltkarteneinstellungen.Senkrechte / 2 - LeseWeltkarteneinstellungen.Senkrechte / 10;
+      XKernanfang := LeseWeltkarteneinstellungen.Waagerechte / 2 - LeseWeltkarteneinstellungen.Waagerechte / 10;
+      YKernende := LeseWeltkarteneinstellungen.Senkrechte / 2 + LeseWeltkarteneinstellungen.Senkrechte / 10;
+      XKernende := LeseWeltkarteneinstellungen.Waagerechte / 2 + LeseWeltkarteneinstellungen.Waagerechte / 10;
                
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
             
             if
-              YAchseSchleifenwert in YKernanfang .. YKernende
+              SenkrechteSchleifenwert in YKernanfang .. YKernende
               and
-                XAchseSchleifenwert in XKernanfang .. XKernende
+                WaagerechteSchleifenwert in XKernanfang .. XKernende
             then
-               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                              GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
                
             elsif
-              YAchseSchleifenwert in YKernanfang - 1 .. YKernende + 1
+              SenkrechteSchleifenwert in YKernanfang - 1 .. YKernende + 1
               and
-                XAchseSchleifenwert in XKernanfang - 1 .. XKernende + 1
+                WaagerechteSchleifenwert in XKernanfang - 1 .. XKernende + 1
             then
-               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                              GrundExtern       => KartengrundDatentypen.Lava_Enum);
                
             else
-               BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
+               BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
             end if;
                
-         end loop XAchseSchleife;
+         end loop WaagerechteSchleife;
             
          case
-           YAchseSchleifenwert mod Kartenzeitwert
+           SenkrechteSchleifenwert mod Kartenzeitwert
          is
             when 0 =>
                LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
@@ -59,14 +59,14 @@ package body KartengeneratorPlanetenkernLogik is
                null;
          end case;
          
-      end loop YAchseSchleife;
+      end loop SenkrechteSchleife;
                
    end Planetenkern;
    
    
    
    procedure BasisgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
       use type SystemDatentypen.NullBisHundert;
    begin
@@ -106,7 +106,7 @@ package body KartengeneratorPlanetenkernLogik is
         WelcherGrund
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                           GrundExtern       => KartengrundDatentypen.Lava_Enum);
             return;
             
@@ -119,11 +119,11 @@ package body KartengeneratorPlanetenkernLogik is
         WelcherGrund
       is
          when KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                           GrundExtern       => WelcherGrund);
             
          when others =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                           GrundExtern       => KartengrundDatentypen.Lava_Enum);
       end case;
       
@@ -132,7 +132,7 @@ package body KartengeneratorPlanetenkernLogik is
    
    
    function BasisExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
@@ -162,13 +162,13 @@ package body KartengeneratorPlanetenkernLogik is
    
    
    function ZusatzberechnungRingwoodit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -183,13 +183,13 @@ package body KartengeneratorPlanetenkernLogik is
    
    
    function ZusatzberechnungMajorit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -204,13 +204,13 @@ package body KartengeneratorPlanetenkernLogik is
    
    
    function ZusatzberechnungPerowskit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -225,13 +225,13 @@ package body KartengeneratorPlanetenkernLogik is
    
    
    function ZusatzberechnungMagnesiowüstit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
       return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          

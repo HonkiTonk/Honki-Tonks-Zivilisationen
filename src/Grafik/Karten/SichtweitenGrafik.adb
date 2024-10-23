@@ -59,7 +59,7 @@ package body SichtweitenGrafik is
       use type KartenDatentypen.Senkrechte;
    begin
       
-      return Sichtbereich.YAchse / 2;
+      return Sichtbereich.Senkrechte / 2;
       
    end SichthöheLesen;
    
@@ -71,20 +71,20 @@ package body SichtweitenGrafik is
       use type KartenDatentypen.Waagerechte;
    begin
       
-      return Sichtbereich.XAchse / 2;
+      return Sichtbereich.Waagerechte / 2;
       
    end SichtbreiteLesen;
    
    
    
    function SichtbereichLesen
-     return KartenRecords.YXAchsenKartenfeldPositivRecord
+     return KartenRecords.KartenfeldumgebungPositivRecord
    is
       use type KartenDatentypen.Senkrechte;
       use type KartenDatentypen.Waagerechte;
    begin
       
-      return (Sichtbereich.YAchse / 2, Sichtbereich.XAchse / 2);
+      return (Sichtbereich.Senkrechte / 2, Sichtbereich.Waagerechte / 2);
       
    end SichtbereichLesen;
    
@@ -96,7 +96,7 @@ package body SichtweitenGrafik is
       use type KartenDatentypen.Senkrechte;
    begin
       
-      return Bewegungsbereich.YAchse / 2;
+      return Bewegungsbereich.Senkrechte / 2;
       
    end BewegungshöheLesen;
    
@@ -108,20 +108,20 @@ package body SichtweitenGrafik is
       use type KartenDatentypen.Waagerechte;
    begin
       
-      return Bewegungsbereich.XAchse / 2;
+      return Bewegungsbereich.Waagerechte / 2;
       
    end BewegungsbreiteLesen;
    
    
    
    function BewegungsbereichLesen
-     return KartenRecords.YXAchsenKartenfeldPositivRecord
+     return KartenRecords.KartenfeldumgebungPositivRecord
    is
       use type KartenDatentypen.Senkrechte;
       use type KartenDatentypen.Waagerechte;
    begin
       
-      return (Bewegungsbereich.YAchse / 2, Bewegungsbereich.XAchse / 2);
+      return (Bewegungsbereich.Senkrechte / 2, Bewegungsbereich.Waagerechte / 2);
       
    end BewegungsbereichLesen;
    
@@ -138,9 +138,9 @@ package body SichtweitenGrafik is
       Cursor := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
       
       if
-        Cursor.YAchse >= LeseWeltkarteneinstellungen.YAchse - SichthöheLesen
+        Cursor.Senkrechte >= LeseWeltkarteneinstellungen.Senkrechte - SichthöheLesen
         and
-          Cursor.XAchse >= LeseWeltkarteneinstellungen.XAchse - SichtbreiteLesen
+          Cursor.Waagerechte >= LeseWeltkarteneinstellungen.Waagerechte - SichtbreiteLesen
       then
          return False;
                
@@ -159,14 +159,14 @@ package body SichtweitenGrafik is
    begin
       
       FensterKarte := FensterGrafik.AktuelleAuflösung;
-      Sichtbereich.YAchse := AktuelleYZoomstufe * 2 + 1;
-      Sichtbereich.XAchse := AktuelleXZoomstufe * 2 + 1;
+      Sichtbereich.Senkrechte := AktuelleYZoomstufe * 2 + 1;
+      Sichtbereich.Waagerechte := AktuelleXZoomstufe * 2 + 1;
       
-      KartenfelderAbmessung.y := FensterKarte.y / Float (Sichtbereich.YAchse);
-      KartenfelderAbmessung.x := FensterGrafik.AktuelleAuflösung.x / Float (Sichtbereich.XAchse);
+      KartenfelderAbmessung.y := FensterKarte.y / Float (Sichtbereich.Senkrechte);
+      KartenfelderAbmessung.x := FensterGrafik.AktuelleAuflösung.x / Float (Sichtbereich.Waagerechte);
       
-      Bewegungsbereich.YAchse := Sichtbereich.YAchse - 1;
-      Bewegungsbereich.XAchse := Sichtbereich.XAchse - 1;
+      Bewegungsbereich.Senkrechte := Sichtbereich.Senkrechte - 1;
+      Bewegungsbereich.Waagerechte := Sichtbereich.Waagerechte - 1;
       
    end KartenfelderAbmessungBerechnen;
    

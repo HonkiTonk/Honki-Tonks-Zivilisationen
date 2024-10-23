@@ -22,6 +22,6 @@ package KIEinheitFestlegenNichtsLogik is
 
 private
 
-   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Zielkoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end KIEinheitFestlegenNichtsLogik;

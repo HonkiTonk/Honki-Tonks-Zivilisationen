@@ -3,7 +3,7 @@ package ChangelogJuli2024 is
    
    -- Version 0.05.8745 => 0.05.8770. (31.07.2024):
    
-   -- Weiter die YAchse und XAchse in zwei verschiedene Datentypen aufgeteilt.
+   -- Weiter die Senkrechte und Waagerechte in zwei verschiedene Datentypen aufgeteilt.
    -- Contracts und Kleinigkeiten korrigiert.
    
    
@@ -31,7 +31,7 @@ package ChangelogJuli2024 is
    -- Version 0.05.8630 => 0.05.8680 (27.07.2024):
    
    -- Unnötigen Code gelöscht.
-   -- Angefangen YAchse und XAchse in zwei verschiedene Datentypen aufzuteilen.
+   -- Angefangen Senkrechte und Waagerechte in zwei verschiedene Datentypen aufzuteilen.
    -- Interne Benennung überarbeitet.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    

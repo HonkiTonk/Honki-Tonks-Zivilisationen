@@ -14,7 +14,7 @@ package body FarmErmittelnLogik is
    function FarmErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -97,7 +97,7 @@ package body FarmErmittelnLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       GrundExtern : in KartenRecords.KartengrundRecord;
       AnlegenTestenExtern : in Boolean;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
    is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
@@ -170,7 +170,7 @@ package body FarmErmittelnLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       GrundExtern : in KartenRecords.KartengrundRecord;
       AnlegenTestenExtern : in Boolean;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
    is
       use type KartengrundDatentypen.Zusatzgrund_Enum;

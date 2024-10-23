@@ -33,7 +33,7 @@ package body GebaeudeanforderungenLogik is
       elsif
         True = LeseGebaeudeDatenbank.FalscheEbene (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                    IDExtern      => IDExtern,
-                                                   EbeneExtern   => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).EAchse)
+                                                   EbeneExtern   => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Ebene)
       then
          return False;
          
@@ -100,17 +100,17 @@ package body GebaeudeanforderungenLogik is
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Stadtumgebung := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                         
@@ -121,16 +121,16 @@ package body GebaeudeanforderungenLogik is
                null;
                
             else
-               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert);
-               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KartenWert);
-               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => KartenWert);
-               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => KartenWert);
-               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert);
-               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Weg := LeseWeltkarte.Weg (KoordinatenExtern => KartenWert);
+               Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert);
+               Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KartenWert);
+               Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => KartenWert);
+               Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => KartenWert);
+               Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert);
+               Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Weg := LeseWeltkarte.Weg (KoordinatenExtern => KartenWert);
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
    end UmgebungDurchgehen;
    
@@ -315,50 +315,50 @@ package body GebaeudeanforderungenLogik is
       return Boolean
    is begin
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in UmgebungArray'Range (1) loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in UmgebungArray'Range (2) loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in UmgebungArray'Range (1) loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in UmgebungArray'Range (2) loop
             
             if
               BasisgrundExtern /= KartengrundDatentypen.Leer_Basisgrund_Enum
               and then
-                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Basisgrund = BasisgrundExtern
+                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Basisgrund = BasisgrundExtern
             then
                return True;
                
             elsif
               ZusatzgrundExtern /= KartengrundDatentypen.Leer_Zusatzgrund_Enum
               and then
-                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Zusatzgrund = ZusatzgrundExtern
+                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Zusatzgrund = ZusatzgrundExtern
             then
                return True;
                
             elsif
               FlussExtern /= KartenextraDatentypen.Leer_Fluss_Enum
               and then
-                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Fluss = FlussExtern
+                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Fluss = FlussExtern
             then
                return True;
                
             elsif
               RessourceExtern /= KartenextraDatentypen.Leer_Ressource_Enum
               and then
-                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Ressource = RessourceExtern
+                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Ressource = RessourceExtern
             then
                return True;
                
             elsif
               VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
               and then
-                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Verbesserung = VerbesserungExtern
+                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Verbesserung = VerbesserungExtern
             then
                return True;
                
             elsif
               WegExtern /= KartenverbesserungDatentypen.Leer_Weg_Enum
               and then
-                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Weg = WegExtern
+                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Weg = WegExtern
             then
                return True;
                
@@ -366,8 +366,8 @@ package body GebaeudeanforderungenLogik is
                null;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return False;
       

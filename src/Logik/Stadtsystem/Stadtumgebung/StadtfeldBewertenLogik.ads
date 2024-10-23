@@ -17,7 +17,7 @@ package StadtfeldBewertenLogik is
 
    function FeldBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
      with
@@ -26,9 +26,9 @@ package StadtfeldBewertenLogik is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
 private
@@ -40,7 +40,7 @@ private
    
    function WissenBewertung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
      with
@@ -49,14 +49,14 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function GeldBewertung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
      with
@@ -65,14 +65,14 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function ProduktionBewertung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
      with
@@ -81,14 +81,14 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function NahrungBewertung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
      with
@@ -97,9 +97,9 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
 end StadtfeldBewertenLogik;

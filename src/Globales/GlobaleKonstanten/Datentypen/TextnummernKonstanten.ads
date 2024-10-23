@@ -82,11 +82,11 @@ package TextnummernKonstanten is
    FrageBauprojekt : constant Positive := FrageLandverbesserungPlündern + 1;
    FrageForschungsprojekt : constant Positive := FrageBauprojekt + 1;
    FrageSpielstandÜberschreiben : constant Positive := FrageForschungsprojekt + 1;
-   FrageYAchsengrößeEingeben : constant Positive := FrageSpielstandÜberschreiben + 1;
-   FrageSpielstandname : constant Positive := FrageYAchsengrößeEingeben + 1;
+   FrageSenkrechtegrößeEingeben : constant Positive := FrageSpielstandÜberschreiben + 1;
+   FrageSpielstandname : constant Positive := FrageSenkrechtegrößeEingeben + 1;
    FrageRundenAutomatischSpeichern : constant Positive := FrageSpielstandname + 1;
-   FrageXAchsengrößeEingeben : constant Positive := FrageRundenAutomatischSpeichern + 1;
-   FrageNeueTaste : constant Positive := FrageXAchsengrößeEingeben + 1;
+   FrageWaagerechtegrößeEingeben : constant Positive := FrageRundenAutomatischSpeichern + 1;
+   FrageNeueTaste : constant Positive := FrageWaagerechtegrößeEingeben + 1;
    FrageStadtAbreißen : constant Positive := FrageNeueTaste + 1;
    FrageSpeziesDiplomatie : constant Positive := FrageStadtAbreißen + 1;
    FrageGewonnenWeiterspielen : constant Positive := FrageSpeziesDiplomatie + 1;

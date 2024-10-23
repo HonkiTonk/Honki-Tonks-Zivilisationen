@@ -25,7 +25,7 @@ package WichtigesSeitenleisteGrafik is
 
    function WichtigesInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
       MaximaleTextbreiteExtern : in Float)
       return Float
@@ -33,9 +33,9 @@ package WichtigesSeitenleisteGrafik is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  TextpositionExtern.x > 0.00
                and
@@ -67,13 +67,13 @@ private
    
          
    function Koordinaten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function Rundenanzahl

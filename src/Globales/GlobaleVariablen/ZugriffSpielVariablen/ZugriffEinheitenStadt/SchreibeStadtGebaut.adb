@@ -24,13 +24,13 @@ package body SchreibeStadtGebaut is
    
    procedure Koordinaten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeStadtGebaut.Koordinaten: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
@@ -655,9 +655,9 @@ package body SchreibeStadtGebaut is
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       case
-        Stadtkoordinaten.EAchse
+        Stadtkoordinaten.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             null;
             
          when others =>

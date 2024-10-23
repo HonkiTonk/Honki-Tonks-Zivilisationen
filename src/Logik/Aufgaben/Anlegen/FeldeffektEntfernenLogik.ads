@@ -10,13 +10,13 @@ package FeldeffektEntfernenLogik is
    use type KartenDatentypen.Waagerechte;
 
    procedure FeldeffektEntfernen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldeffektExtern : in AufgabenDatentypen.Einheitenbefehle_Gelände_Enum)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
 end FeldeffektEntfernenLogik;

@@ -30,26 +30,26 @@ package KIAufgabenVerteiltLogik is
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      ZielKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
-                 ZielKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 ZielKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 ZielKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 ZielKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
    
    function EinheitZiel
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      ZielKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
-                 ZielKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 ZielKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 ZielKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 ZielKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
@@ -58,6 +58,6 @@ private
      
    GleicheAufgabe : Natural;
    
-   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Zielkoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end KIAufgabenVerteiltLogik;

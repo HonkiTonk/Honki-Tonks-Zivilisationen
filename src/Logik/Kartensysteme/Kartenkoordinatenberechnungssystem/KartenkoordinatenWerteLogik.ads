@@ -6,36 +6,36 @@ package KartenkoordinatenWerteLogik is
    pragma Preelaborate;
 
    -- Achsenverschiebung einstellbar machen. äöü
-   VerschiebungswertYAchse : constant KartenDatentypen.Achsenverschiebung := 0.50;
-   VerschiebungswertXAchse : constant KartenDatentypen.Achsenverschiebung := 0.50;
+   VerschiebungswertSenkrechte : constant KartenDatentypen.Achsenverschiebung := 0.50;
+   VerschiebungswertWaagerechte : constant KartenDatentypen.Achsenverschiebung := 0.50;
    
    type ÜberhangArray is array (SystemDatentypen.Task_Enum'Range) of Integer;
 
-   procedure YAchseVerschiebungSchreiben
+   procedure SenkrechteVerschiebungSchreiben
      (TaskExtern : in SystemDatentypen.Task_Enum;
-      ÜbergangExtern : in KartenartDatentypen.Kartenform_Y_Einstellbar_Enum);
+      ÜbergangExtern : in KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum);
 
-   procedure XAchseVerschiebungSchreiben
+   procedure WaagerechteVerschiebungSchreiben
      (TaskExtern : in SystemDatentypen.Task_Enum;
-      ÜbergangExtern : in KartenartDatentypen.Kartenform_X_Einstellbar_Enum);
+      ÜbergangExtern : in KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum);
    
    
 
-   function YAchseVerschiebungLesen
+   function SenkrechteVerschiebungLesen
      (TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
+      return KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum;
 
-   function XAchseVerschiebungLesen
+   function WaagerechteVerschiebungLesen
      (TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
+      return KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum;
    
    
 private
    
-   type VerschiebungYAchseArray is array (ÜberhangArray'Range) of KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
-   VerschiebungYAchse : VerschiebungYAchseArray;
+   type VerschiebungSenkrechteArray is array (ÜberhangArray'Range) of KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum;
+   VerschiebungSenkrechte : VerschiebungSenkrechteArray;
    
-   type VerschiebungXAchseArray is array (ÜberhangArray'Range) of KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
-   VerschiebungXAchse : VerschiebungXAchseArray;
+   type VerschiebungWaagerechteArray is array (ÜberhangArray'Range) of KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum;
+   VerschiebungWaagerechte : VerschiebungWaagerechteArray;
       
 end KartenkoordinatenWerteLogik;

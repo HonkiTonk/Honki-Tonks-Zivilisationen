@@ -31,7 +31,7 @@ package body KIEinheitenbewegungLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
@@ -141,7 +141,7 @@ package body KIEinheitenbewegungLogik is
    
    procedure EinheitTauschen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type EinheitenDatentypen.Einheitenbereich;
    begin

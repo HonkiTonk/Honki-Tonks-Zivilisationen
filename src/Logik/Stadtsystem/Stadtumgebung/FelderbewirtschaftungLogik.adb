@@ -67,19 +67,19 @@ package body FelderbewirtschaftungLogik is
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
-      YAchseSchleife:
-      for YAchseSchleifenwert in -NutzbarerBereich.Senkrechte .. NutzbarerBereich.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -NutzbarerBereich.Waagerechte .. NutzbarerBereich.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -NutzbarerBereich.Senkrechte .. NutzbarerBereich.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -NutzbarerBereich.Waagerechte .. NutzbarerBereich.Waagerechte loop
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             Bewertung := ProduktionDatentypen.Stadtproduktion'First;
             
             if
-              Kartenwert.XAchse = KartenKonstanten.LeerXAchse
+              Kartenwert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -91,8 +91,8 @@ package body FelderbewirtschaftungLogik is
               
             elsif
               ZuwachsSchwundExtern = LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                              YKoordinateExtern        => YAchseSchleifenwert,
-                                                                              XKoordinateExtern        => XAchseSchleifenwert)
+                                                                              YKoordinateExtern        => SenkrechteSchleifenwert,
+                                                                              XKoordinateExtern        => WaagerechteSchleifenwert)
             then
                null;
                
@@ -105,14 +105,14 @@ package body FelderbewirtschaftungLogik is
             if
               Feld.Bewertung < Bewertung
             then
-               Feld := (Bewertung, YAchseSchleifenwert, XAchseSchleifenwert);
+               Feld := (Bewertung, SenkrechteSchleifenwert, WaagerechteSchleifenwert);
                
             else
                null;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return Feld;
       

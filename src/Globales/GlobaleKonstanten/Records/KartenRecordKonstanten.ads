@@ -8,32 +8,31 @@ with SpeziesKonstanten;
 package KartenRecordKonstanten is
    pragma Elaborate_Body;
 
-   LeerKoordinate : constant KartenRecords.AchsenKartenfeldNaturalRecord := (
-                                                                             EAchse => KartenKonstanten.LeerEAchse,
-                                                                             YAchse => KartenKonstanten.LeerYAchse,
-                                                                             XAchse => KartenKonstanten.LeerXAchse
-                                                                            );
+   LeerKoordinate : constant KartenRecords.KartenfeldNaturalRecord := (
+                                                                       Ebene => KartenKonstanten.LeerEbene,
+                                                                       Senkrechte => KartenKonstanten.LeerSenkrechte,
+                                                                       Waagerechte => KartenKonstanten.LeerWaagerechte
+                                                                      );
    
-   LeerKoordinatenänderung : constant KartenRecords.AchsenKartenfeldRecord
-     := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung);
+   LeerKoordinatenänderung : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.LeerEbeneÄnderung, KartenKonstanten.LeerSenkrechteÄnderung, KartenKonstanten.LeerWaagerechteÄnderung);
    
-   EbeneHoch : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.EbeneHoch, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung);
-   EbeneRunter : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.EbeneRunter, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung);
+   EbeneHoch : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.EbeneHoch, KartenKonstanten.LeerSenkrechteÄnderung, KartenKonstanten.LeerWaagerechteÄnderung);
+   EbeneRunter : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.EbeneRunter, KartenKonstanten.LeerSenkrechteÄnderung, KartenKonstanten.LeerWaagerechteÄnderung);
    
-   Nordbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.SenkrechteNorden, KartenKonstanten.LeerXAchseÄnderung);
-   Südbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.SenkrechteSüden, KartenKonstanten.LeerXAchseÄnderung);
-   Westbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.WaagerechteWesten);
-   OstBewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.WaagerechteOsten);
-   Nordwestbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.SenkrechteNorden, KartenKonstanten.WaagerechteWesten);
-   Nordostbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.SenkrechteNorden, KartenKonstanten.WaagerechteOsten);
-   Südwestbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.SenkrechteSüden, KartenKonstanten.WaagerechteWesten);
-   Südostbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.SenkrechteSüden, KartenKonstanten.WaagerechteOsten);
+   Nordbewegung : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.LeerEbeneÄnderung, KartenKonstanten.SenkrechteNorden, KartenKonstanten.LeerWaagerechteÄnderung);
+   Südbewegung : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.LeerEbeneÄnderung, KartenKonstanten.SenkrechteSüden, KartenKonstanten.LeerWaagerechteÄnderung);
+   Westbewegung : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.LeerEbeneÄnderung, KartenKonstanten.LeerSenkrechteÄnderung, KartenKonstanten.WaagerechteWesten);
+   OstBewegung : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.LeerEbeneÄnderung, KartenKonstanten.LeerSenkrechteÄnderung, KartenKonstanten.WaagerechteOsten);
+   Nordwestbewegung : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.LeerEbeneÄnderung, KartenKonstanten.SenkrechteNorden, KartenKonstanten.WaagerechteWesten);
+   Nordostbewegung : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.LeerEbeneÄnderung, KartenKonstanten.SenkrechteNorden, KartenKonstanten.WaagerechteOsten);
+   Südwestbewegung : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.LeerEbeneÄnderung, KartenKonstanten.SenkrechteSüden, KartenKonstanten.WaagerechteWesten);
+   Südostbewegung : constant KartenRecords.KartenfeldRecord := (KartenKonstanten.LeerEbeneÄnderung, KartenKonstanten.SenkrechteSüden, KartenKonstanten.WaagerechteOsten);
    
    LeerEffektbereich : constant KartenRecords.EffektbereichRecord := (
-                                                                      YAchseAnfang => KartenKonstanten.LeerYAchse,
-                                                                      YAchseEnde   => KartenKonstanten.LeerYAchse,
-                                                                      XAchseAnfang => KartenKonstanten.LeerXAchse,
-                                                                      XAchseEnde   => KartenKonstanten.LeerXAchse
+                                                                      SenkrechteAnfang => KartenKonstanten.LeerSenkrechte,
+                                                                      SenkrechteEnde   => KartenKonstanten.LeerSenkrechte,
+                                                                      WaagerechteAnfang => KartenKonstanten.LeerWaagerechte,
+                                                                      WaagerechteEnde   => KartenKonstanten.LeerWaagerechte
                                                                      );
    
    LeerEffekte : constant KartenRecords.FeldeffektArray := (others => False);
@@ -47,12 +46,12 @@ package KartenRecordKonstanten is
                                                                                    );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
-                                                                    EAchseOben   => KartenartDatentypen.Karte_E_Kein_Übergang_Enum,
-                                                                    EAchseUnten  => KartenartDatentypen.Karte_E_Kein_Übergang_Enum,
-                                                                    YAchseNorden => KartenartDatentypen.Karte_Y_Kein_Übergang_Enum,
-                                                                    YAchseSüden  => KartenartDatentypen.Karte_Y_Kein_Übergang_Enum,
-                                                                    XAchseWesten => KartenartDatentypen.Karte_X_Übergang_Enum,
-                                                                    XAchseOsten  => KartenartDatentypen.Karte_X_Übergang_Enum
+                                                                    EbeneOben         => KartenartDatentypen.Ebene_Übergangslos_Enum,
+                                                                    EbeneUnten        => KartenartDatentypen.Ebene_Übergangslos_Enum,
+                                                                    SenkrechteNorden  => KartenartDatentypen.Senkrechte_Übergangslos_Enum,
+                                                                    SenkrechteSüden   => KartenartDatentypen.Senkrechte_Übergangslos_Enum,
+                                                                    WaagerechteWesten => KartenartDatentypen.Waagerechte_Übergang_Enum,
+                                                                    WaagerechteOsten  => KartenartDatentypen.Waagerechte_Übergang_Enum
                                                                    );
    
    KartenpoleStandard : constant KartenRecords.KartenpoleRecord := (
@@ -65,14 +64,14 @@ package KartenRecordKonstanten is
    Standardkartenparameter : constant KartenRecords.PermanenteKartenparameterRecord := (
                                                                                         Kartengröße => (40, 40),
 
-                                                                                        -- EAchsenübergang, YAchsenübergang, XAchsenübergang
+                                                                                        -- Ebeneübergang, Senkrechteübergang, Waagerechteübergang
                                                                                         Kartenform  => KartenformStandard
                                                                                        );
    
    Standardkartengeneratorparameter : constant KartenRecords.TemporäreKartenparameterRecord := (
                                                                                                  Kartengröße      => Standardkartenparameter.Kartengröße,
 
-                                                                                                 -- EAchsenübergang, YAchsenübergang, XAchsenübergang
+                                                                                                 -- Ebeneübergang, Senkrechteübergang, Waagerechteübergang
                                                                                                  Kartenform       => Standardkartenparameter.Kartenform,
 
                                                                                                  -- Inseln, Kontinente, Pangäa

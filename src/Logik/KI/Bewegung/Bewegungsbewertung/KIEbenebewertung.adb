@@ -2,9 +2,9 @@ with KartenartDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
-package body KIEAchsenbewertung is
+package body KIEbenebewertung is
 
-   function EAchseBewerten
+   function EbeneBewerten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.SenkrechteNatural
@@ -23,23 +23,23 @@ package body KIEAchsenbewertung is
       end if;
       
       case
-        LeseWeltkarteneinstellungen.EAchseOben
+        LeseWeltkarteneinstellungen.EbeneOben
       is
-         when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Ebene_Übergangslos_Enum =>
             Felderanzahl (2) := KartenDatentypen.SenkrechtePositiv'Last;
             
-         when KartenartDatentypen.Karte_E_Übergang_Enum =>
+         when KartenartDatentypen.Ebene_Übergang_Enum =>
             Felderanzahl (2) := StandardübergangOben (ZielebeneExtern => ZielebeneExtern,
                                                        NeueEbeneExtern => NeueEbeneExtern);
       end case;
       
       case
-        LeseWeltkarteneinstellungen.EAchseUnten
+        LeseWeltkarteneinstellungen.EbeneUnten
       is
-         when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Ebene_Übergangslos_Enum =>
             Felderanzahl (3) := KartenDatentypen.SenkrechtePositiv'Last;
             
-         when KartenartDatentypen.Karte_E_Übergang_Enum =>
+         when KartenartDatentypen.Ebene_Übergang_Enum =>
             Felderanzahl (3) := StandardübergangUnten (ZielebeneExtern => ZielebeneExtern,
                                                         NeueEbeneExtern => NeueEbeneExtern);
       end case;
@@ -62,7 +62,7 @@ package body KIEAchsenbewertung is
       
       return Felderanzahl (WelcheFelderanzahl);
    
-   end EAchseBewerten;
+   end EbeneBewerten;
    
    
    
@@ -106,4 +106,4 @@ package body KIEAchsenbewertung is
       
    end StandardübergangUnten;
 
-end KIEAchsenbewertung;
+end KIEbenebewertung;

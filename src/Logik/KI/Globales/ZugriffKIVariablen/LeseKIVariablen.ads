@@ -18,16 +18,16 @@ package LeseKIVariablen is
    function Stadtverbindung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AbschnittExtern : in EinheitenDatentypen.Bewegungsplan)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               ),
 
        Post => (
-                  Stadtverbindung'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  Stadtverbindung'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  Stadtverbindung'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  Stadtverbindung'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
 end LeseKIVariablen;

@@ -18,15 +18,15 @@ package BewegungsberechnungEinheitenLogik is
 
    procedure Bewegungsberechnung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitentauschExtern : in Boolean)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
-                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 NeueKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 NeueKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
@@ -38,15 +38,15 @@ private
    BewegungspunkteAbzug : EinheitenDatentypen.Bewegungspunkte;
    
    procedure NachBewegung
-     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
-                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 NeueKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 NeueKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );

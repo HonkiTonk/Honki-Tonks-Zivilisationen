@@ -13,7 +13,7 @@ package body KIBewegungsplanVereinfachenLogik is
    procedure Planvereinfachung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type EinheitenDatentypen.Bewegungsplan;
    begin
             
@@ -47,19 +47,19 @@ package body KIBewegungsplanVereinfachenLogik is
       AktuellePlankoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                      PlanschrittExtern          => PlanschrittExtern);
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
                KartenwertVereinfachung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuellePlankoordinaten,
-                                                                                                                      ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                      ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                if
-                 KartenwertVereinfachung.XAchse = KartenKonstanten.LeerXAchse
+                 KartenwertVereinfachung.Waagerechte = KartenKonstanten.LeerWaagerechte
                then
                   null;
                      
@@ -74,9 +74,9 @@ package body KIBewegungsplanVereinfachenLogik is
                   null;
                end if;
                   
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
    end PlanvereinfachungPrüfen;
    
@@ -85,10 +85,10 @@ package body KIBewegungsplanVereinfachenLogik is
    function Verschieben
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type EinheitenDatentypen.BewegungsplanVorhanden;
    begin
       

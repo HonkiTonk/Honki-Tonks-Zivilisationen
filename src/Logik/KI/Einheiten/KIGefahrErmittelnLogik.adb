@@ -57,17 +57,17 @@ package body KIGefahrErmittelnLogik is
       
       AktuelleKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -93,8 +93,8 @@ package body KIGefahrErmittelnLogik is
                end case;
             end if;
                
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return EinheitenKonstanten.LeerEinheit;
       

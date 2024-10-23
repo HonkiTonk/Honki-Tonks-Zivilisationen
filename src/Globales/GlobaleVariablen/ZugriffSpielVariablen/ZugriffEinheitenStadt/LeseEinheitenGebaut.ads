@@ -36,7 +36,7 @@ package LeseEinheitenGebaut is
 
    function Koordinaten
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -45,15 +45,15 @@ package LeseEinheitenGebaut is
               ),
          
        Post => (
-                  Koordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  Koordinaten'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  Koordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  Koordinaten'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                 and
-                  (if Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse then Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if Koordinaten'Result.Senkrechte = KartenKonstanten.LeerSenkrechte then Koordinaten'Result.Waagerechte = KartenKonstanten.LeerWaagerechte and Koordinaten'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if Koordinaten'Result.Waagerechte = KartenKonstanten.LeerWaagerechte then Koordinaten'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and Koordinaten'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse)
+                  (if Koordinaten'Result.Ebene = KartenKonstanten.LeerEbene then Koordinaten'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and Koordinaten'Result.Waagerechte = KartenKonstanten.LeerWaagerechte)
                );
    pragma Inline (Koordinaten);
    
@@ -156,7 +156,7 @@ package LeseEinheitenGebaut is
    -- Die KIZugriffe müssen auch für menschliche Spieler lesbar sein wegen dem Debugsystem.
    function KIZielKoordinaten
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -165,15 +165,18 @@ package LeseEinheitenGebaut is
               ),
          
        Post => (
-                  KIZielKoordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  KIZielKoordinaten'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  KIZielKoordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  KIZielKoordinaten'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                 and
-                  (if KIZielKoordinaten'Result.YAchse = KartenKonstanten.LeerYAchse then KIZielKoordinaten'Result.XAchse = KartenKonstanten.LeerXAchse and KIZielKoordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if KIZielKoordinaten'Result.Senkrechte = KartenKonstanten.LeerSenkrechte then
+                         KIZielKoordinaten'Result.Waagerechte = KartenKonstanten.LeerWaagerechte and KIZielKoordinaten'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if KIZielKoordinaten'Result.XAchse = KartenKonstanten.LeerXAchse then KIZielKoordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and KIZielKoordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if KIZielKoordinaten'Result.Waagerechte = KartenKonstanten.LeerWaagerechte then
+                         KIZielKoordinaten'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and KIZielKoordinaten'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if KIZielKoordinaten'Result.EAchse = KartenKonstanten.LeerEAchse then KIZielKoordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and KIZielKoordinaten'Result.XAchse = KartenKonstanten.LeerXAchse)
+                  (if KIZielKoordinaten'Result.Ebene = KartenKonstanten.LeerEbene then
+                         KIZielKoordinaten'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and KIZielKoordinaten'Result.Waagerechte = KartenKonstanten.LeerWaagerechte)
                );
    pragma Inline (KIZielKoordinaten);
    
@@ -190,7 +193,7 @@ package LeseEinheitenGebaut is
    
    function KIZielKoordinatenNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -199,18 +202,18 @@ package LeseEinheitenGebaut is
               ),
          
        Post => (
-                  KIZielKoordinatenNachfolger'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  KIZielKoordinatenNachfolger'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  KIZielKoordinatenNachfolger'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  KIZielKoordinatenNachfolger'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                 and
-                  (if KIZielKoordinatenNachfolger'Result.YAchse = KartenKonstanten.LeerYAchse
-                         then KIZielKoordinatenNachfolger'Result.XAchse = KartenKonstanten.LeerXAchse and KIZielKoordinatenNachfolger'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if KIZielKoordinatenNachfolger'Result.Senkrechte = KartenKonstanten.LeerSenkrechte then
+                         KIZielKoordinatenNachfolger'Result.Waagerechte = KartenKonstanten.LeerWaagerechte and KIZielKoordinatenNachfolger'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if KIZielKoordinatenNachfolger'Result.XAchse = KartenKonstanten.LeerXAchse
-                         then KIZielKoordinatenNachfolger'Result.YAchse = KartenKonstanten.LeerYAchse and KIZielKoordinatenNachfolger'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if KIZielKoordinatenNachfolger'Result.Waagerechte = KartenKonstanten.LeerWaagerechte then
+                         KIZielKoordinatenNachfolger'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and KIZielKoordinatenNachfolger'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if KIZielKoordinatenNachfolger'Result.EAchse = KartenKonstanten.LeerEAchse
-                         then KIZielKoordinatenNachfolger'Result.YAchse = KartenKonstanten.LeerYAchse and KIZielKoordinatenNachfolger'Result.XAchse = KartenKonstanten.LeerXAchse)
+                  (if KIZielKoordinatenNachfolger'Result.Ebene = KartenKonstanten.LeerEbene then
+                         KIZielKoordinatenNachfolger'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and KIZielKoordinatenNachfolger'Result.Waagerechte = KartenKonstanten.LeerWaagerechte)
                );
    pragma Inline (KIZielKoordinatenNachfolger);
      
@@ -239,7 +242,7 @@ package LeseEinheitenGebaut is
    function KIBewegungPlan
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -248,15 +251,18 @@ package LeseEinheitenGebaut is
               ),
          
        Post => (
-                  KIBewegungPlan'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  KIBewegungPlan'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  KIBewegungPlan'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  KIBewegungPlan'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                 and
-                  (if KIBewegungPlan'Result.YAchse = KartenKonstanten.LeerYAchse then KIBewegungPlan'Result.XAchse = KartenKonstanten.LeerXAchse and KIBewegungPlan'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if KIBewegungPlan'Result.Senkrechte = KartenKonstanten.LeerSenkrechte then
+                         KIBewegungPlan'Result.Waagerechte = KartenKonstanten.LeerWaagerechte and KIBewegungPlan'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if KIBewegungPlan'Result.XAchse = KartenKonstanten.LeerXAchse then KIBewegungPlan'Result.YAchse = KartenKonstanten.LeerYAchse and KIBewegungPlan'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if KIBewegungPlan'Result.Waagerechte = KartenKonstanten.LeerWaagerechte then
+                         KIBewegungPlan'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and KIBewegungPlan'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if KIBewegungPlan'Result.EAchse = KartenKonstanten.LeerEAchse then KIBewegungPlan'Result.YAchse = KartenKonstanten.LeerYAchse and KIBewegungPlan'Result.XAchse = KartenKonstanten.LeerXAchse)
+                  (if KIBewegungPlan'Result.Ebene = KartenKonstanten.LeerEbene then
+                         KIBewegungPlan'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and KIBewegungPlan'Result.Waagerechte = KartenKonstanten.LeerWaagerechte)
                );
    pragma Inline (KIBewegungPlan);
       

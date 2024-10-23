@@ -13,7 +13,7 @@ package body KampfwerteStadtErmittelnLogik is
    -- Einwohner * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte
    function AktuelleVerteidigungStadt
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GebäudeExtern : in StadtArrays.GebäudeArray;
       EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;
@@ -65,7 +65,7 @@ package body KampfwerteStadtErmittelnLogik is
    -- Einwohner * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte
    function AktuellerAngriffStadt
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GebäudeExtern : in StadtArrays.GebäudeArray;
       EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;

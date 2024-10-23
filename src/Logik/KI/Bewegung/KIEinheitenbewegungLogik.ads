@@ -43,11 +43,11 @@ private
    FremdeEinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
    Tauscheinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
    
-   NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Bewegungsschritt : KartenRecords.AchsenKartenfeldNaturalRecord;
+   NeueKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   Zielkoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   BewegendeKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   StehendeKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   Bewegungsschritt : KartenRecords.KartenfeldNaturalRecord;
 
    procedure BewegungDurchführen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -69,16 +69,16 @@ private
    
    procedure EinheitTauschen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 NeueKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 NeueKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
 end KIEinheitenbewegungLogik;

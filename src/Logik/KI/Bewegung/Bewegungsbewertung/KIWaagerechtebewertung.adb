@@ -1,8 +1,8 @@
 with KartenartDatentypen;
 
-package body KIXAchsenbewertung is
+package body KIWaagerechtebewertung is
 
-   function XAchseBewerten
+   function WaagerechteBewerten
      (ZielpunktExtern : in KartenDatentypen.WaagerechtePositiv;
       NeuerPunktExtern : in KartenDatentypen.WaagerechtePositiv)
       return KartenDatentypen.WaagerechteNatural
@@ -18,30 +18,30 @@ package body KIXAchsenbewertung is
       end if;
       
       case
-        LeseWeltkarteneinstellungen.XAchseWesten
+        LeseWeltkarteneinstellungen.WaagerechteWesten
       is
-         when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Waagerechte_Übergangslos_Enum =>
             Felderanzahl (2) := KartenDatentypen.WaagerechtePositiv'Last;
             
-         when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Waagerechte_Übergang_Enum | KartenartDatentypen.Waagerechte_Verschobener_Übergang_Enum =>
             Felderanzahl (2) := StandardübergangWesten (ZielpunktExtern  => ZielpunktExtern,
                                                          NeuerPunktExtern => NeuerPunktExtern);
             
-         when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Waagerechte_Rückwärts_Verschobener_Übergang_Enum =>
             Felderanzahl (2) := KartenDatentypen.WaagerechtePositiv'Last;
       end case;
       
       case
-        LeseWeltkarteneinstellungen.XAchseOsten
+        LeseWeltkarteneinstellungen.WaagerechteOsten
       is
-         when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Waagerechte_Übergangslos_Enum =>
             Felderanzahl (3) := KartenDatentypen.WaagerechtePositiv'Last;
             
-         when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Waagerechte_Übergang_Enum | KartenartDatentypen.Waagerechte_Verschobener_Übergang_Enum =>
             Felderanzahl (3) := StandardübergangOsten (ZielpunktExtern  => ZielpunktExtern,
                                                         NeuerPunktExtern => NeuerPunktExtern);
             
-         when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
+         when KartenartDatentypen.Waagerechte_Rückwärts_Verschobener_Übergang_Enum =>
             Felderanzahl (3) := KartenDatentypen.WaagerechtePositiv'Last;
       end case;
       
@@ -63,7 +63,7 @@ package body KIXAchsenbewertung is
       
       return Felderanzahl (WelcheFelderanzahl);
       
-   end XAchseBewerten;
+   end WaagerechteBewerten;
    
    
    
@@ -76,7 +76,7 @@ package body KIXAchsenbewertung is
       if
         NeuerPunktExtern < ZielpunktExtern
       then
-         return NeuerPunktExtern - ZielpunktExtern + LeseWeltkarteneinstellungen.XAchse;
+         return NeuerPunktExtern - ZielpunktExtern + LeseWeltkarteneinstellungen.Waagerechte;
                   
       else
          return KartenDatentypen.WaagerechtePositiv'Last;
@@ -95,7 +95,7 @@ package body KIXAchsenbewertung is
       if
         ZielpunktExtern < NeuerPunktExtern
       then
-         return ZielpunktExtern - NeuerPunktExtern + LeseWeltkarteneinstellungen.XAchse;
+         return ZielpunktExtern - NeuerPunktExtern + LeseWeltkarteneinstellungen.Waagerechte;
          
       else
          return KartenDatentypen.WaagerechtePositiv'Last;
@@ -103,4 +103,4 @@ package body KIXAchsenbewertung is
       
    end StandardübergangOsten;
 
-end KIXAchsenbewertung;
+end KIWaagerechtebewertung;

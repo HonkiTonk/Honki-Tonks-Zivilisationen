@@ -19,9 +19,9 @@ package body GeheZuGrafik is
       Kartenwert := Koordinatenberechnung (KoordinatenExtern => LeseGrafiktask.GeheZu);
       
       case
-        Kartenwert.EAchse
+        Kartenwert.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             SchreibeCursor.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
                                            KoordinatenExtern => LeseGrafiktask.GeheZu);
             
@@ -37,123 +37,125 @@ package body GeheZuGrafik is
    
    
    function Koordinatenberechnung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+      return KartenRecords.KartenfeldNaturalRecord
    is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
       
-      KartenwertKoordinatenberechnung.EAchse := KoordinatenExtern.EAchse;
+      KartenwertKoordinatenberechnung.Ebene := KoordinatenExtern.Ebene;
       AktuelleSichtweite := SichtweitenGrafik.SichtbereichLesen;
-      YAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformYAchse;
-      XAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformXAchse;
+      SenkrechteÜbergänge := LeseWeltkarteneinstellungen.KartenformSenkrechte;
+      WaagerechteÜbergänge := LeseWeltkarteneinstellungen.KartenformWaagerechte;
         
       if
-        2 * AktuelleSichtweite.YAchse >= LeseWeltkarteneinstellungen.YAchse
+        2 * AktuelleSichtweite.Senkrechte >= LeseWeltkarteneinstellungen.Senkrechte
       then
-         KartenwertKoordinatenberechnung.YAchse := LeseWeltkarteneinstellungen.YAchse / 2;
+         KartenwertKoordinatenberechnung.Senkrechte := LeseWeltkarteneinstellungen.Senkrechte / 2;
          
       elsif
-        YAchseÜbergänge.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+        SenkrechteÜbergänge.SenkrechteNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
         and
-          YAchseÜbergänge.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+          SenkrechteÜbergänge.SenkrechteSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          if
-           KoordinatenExtern.YAchse <= KartenKonstanten.AnfangYAchse + AktuelleSichtweite.YAchse
+           KoordinatenExtern.Senkrechte <= KartenKonstanten.AnfangSenkrechte + AktuelleSichtweite.Senkrechte
          then
-            KartenwertKoordinatenberechnung.YAchse := KartenKonstanten.AnfangYAchse + AktuelleSichtweite.YAchse;
+            KartenwertKoordinatenberechnung.Senkrechte := KartenKonstanten.AnfangSenkrechte + AktuelleSichtweite.Senkrechte;
             
          elsif
-           KoordinatenExtern.YAchse >= LeseWeltkarteneinstellungen.YAchse - AktuelleSichtweite.YAchse
+           KoordinatenExtern.Senkrechte >= LeseWeltkarteneinstellungen.Senkrechte - AktuelleSichtweite.Senkrechte
          then
-            KartenwertKoordinatenberechnung.YAchse := LeseWeltkarteneinstellungen.YAchse - AktuelleSichtweite.YAchse;
+            KartenwertKoordinatenberechnung.Senkrechte := LeseWeltkarteneinstellungen.Senkrechte - AktuelleSichtweite.Senkrechte;
          
          else
-            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
+            KartenwertKoordinatenberechnung.Senkrechte := KoordinatenExtern.Senkrechte;
          end if;
          
       elsif
-        YAchseÜbergänge.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+        SenkrechteÜbergänge.SenkrechteNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          if
-           KoordinatenExtern.YAchse <= KartenKonstanten.AnfangYAchse + AktuelleSichtweite.YAchse
+           KoordinatenExtern.Senkrechte <= KartenKonstanten.AnfangSenkrechte + AktuelleSichtweite.Senkrechte
          then
-            KartenwertKoordinatenberechnung.YAchse := KartenKonstanten.AnfangYAchse + AktuelleSichtweite.YAchse;
+            KartenwertKoordinatenberechnung.Senkrechte := KartenKonstanten.AnfangSenkrechte + AktuelleSichtweite.Senkrechte;
          
          else
-            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
+            KartenwertKoordinatenberechnung.Senkrechte := KoordinatenExtern.Senkrechte;
          end if;
          
       elsif
-        YAchseÜbergänge.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+        SenkrechteÜbergänge.SenkrechteSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          if
-           KoordinatenExtern.YAchse >= LeseWeltkarteneinstellungen.YAchse - AktuelleSichtweite.YAchse
+           KoordinatenExtern.Senkrechte >= LeseWeltkarteneinstellungen.Senkrechte - AktuelleSichtweite.Senkrechte
          then
-            KartenwertKoordinatenberechnung.YAchse := LeseWeltkarteneinstellungen.YAchse - AktuelleSichtweite.YAchse;
+            KartenwertKoordinatenberechnung.Senkrechte := LeseWeltkarteneinstellungen.Senkrechte - AktuelleSichtweite.Senkrechte;
          
          else
-            KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
+            KartenwertKoordinatenberechnung.Senkrechte := KoordinatenExtern.Senkrechte;
          end if;
          
       else
-         KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
+         KartenwertKoordinatenberechnung.Senkrechte := KoordinatenExtern.Senkrechte;
       end if;
       
       if
-        2 * AktuelleSichtweite.XAchse >= LeseWeltkarteneinstellungen.XAchse
+        2 * AktuelleSichtweite.Waagerechte >= LeseWeltkarteneinstellungen.Waagerechte
       then
-         KartenwertKoordinatenberechnung.XAchse := LeseWeltkarteneinstellungen.XAchse / 2;
+         KartenwertKoordinatenberechnung.Waagerechte := LeseWeltkarteneinstellungen.Waagerechte / 2;
          
       elsif
-        XAchseÜbergänge.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+        WaagerechteÜbergänge.WaagerechteWesten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
         and
-          XAchseÜbergänge.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+          WaagerechteÜbergänge.WaagerechteOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
       then
          if
-           KoordinatenExtern.XAchse <= KartenKonstanten.AnfangXAchse + AktuelleSichtweite.XAchse
+           KoordinatenExtern.Waagerechte <= KartenKonstanten.AnfangWaagerechte + AktuelleSichtweite.Waagerechte
          then
-            KartenwertKoordinatenberechnung.XAchse := KartenKonstanten.AnfangXAchse + AktuelleSichtweite.XAchse;
+            KartenwertKoordinatenberechnung.Waagerechte := KartenKonstanten.AnfangWaagerechte + AktuelleSichtweite.Waagerechte;
          
          elsif
-           KoordinatenExtern.XAchse >= LeseWeltkarteneinstellungen.XAchse - AktuelleSichtweite.XAchse
+           KoordinatenExtern.Waagerechte >= LeseWeltkarteneinstellungen.Waagerechte - AktuelleSichtweite.Waagerechte
          then
-            KartenwertKoordinatenberechnung.XAchse := LeseWeltkarteneinstellungen.XAchse - AktuelleSichtweite.XAchse;
+            KartenwertKoordinatenberechnung.Waagerechte := LeseWeltkarteneinstellungen.Waagerechte - AktuelleSichtweite.Waagerechte;
          
          else
-            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;
+            KartenwertKoordinatenberechnung.Waagerechte := KoordinatenExtern.Waagerechte;
          end if;
       
       elsif
-        XAchseÜbergänge.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+        WaagerechteÜbergänge.WaagerechteWesten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
       then
          if
-           KoordinatenExtern.XAchse <= KartenKonstanten.AnfangXAchse + AktuelleSichtweite.XAchse
+           KoordinatenExtern.Waagerechte <= KartenKonstanten.AnfangWaagerechte + AktuelleSichtweite.Waagerechte
          then
-            KartenwertKoordinatenberechnung.XAchse := KartenKonstanten.AnfangXAchse + AktuelleSichtweite.XAchse;
+            KartenwertKoordinatenberechnung.Waagerechte := KartenKonstanten.AnfangWaagerechte + AktuelleSichtweite.Waagerechte;
          
          else
-            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;
+            KartenwertKoordinatenberechnung.Waagerechte := KoordinatenExtern.Waagerechte;
          end if;
       
       elsif
-        XAchseÜbergänge.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+        WaagerechteÜbergänge.WaagerechteOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
       then
          if
-           KoordinatenExtern.XAchse >= LeseWeltkarteneinstellungen.XAchse - AktuelleSichtweite.XAchse
+           KoordinatenExtern.Waagerechte >= LeseWeltkarteneinstellungen.Waagerechte - AktuelleSichtweite.Waagerechte
          then
-            KartenwertKoordinatenberechnung.XAchse := LeseWeltkarteneinstellungen.XAchse - AktuelleSichtweite.XAchse;
+            KartenwertKoordinatenberechnung.Waagerechte := LeseWeltkarteneinstellungen.Waagerechte - AktuelleSichtweite.Waagerechte;
          
          else
-            KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;
+            KartenwertKoordinatenberechnung.Waagerechte := KoordinatenExtern.Waagerechte;
          end if;
          
       else
-         KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;
+         KartenwertKoordinatenberechnung.Waagerechte := KoordinatenExtern.Waagerechte;
       end if;
       
       return KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KartenwertKoordinatenberechnung,
-                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung),
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
+                                                                                                                KartenKonstanten.LeerSenkrechteÄnderung,
+                                                                                                                KartenKonstanten.LeerWaagerechteÄnderung),
                                                                                          TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       
    end Koordinatenberechnung;

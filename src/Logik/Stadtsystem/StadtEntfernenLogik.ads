@@ -36,8 +36,8 @@ private
    
    Abriss : Boolean;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;
         
    procedure HeimatstädteEntfernen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)

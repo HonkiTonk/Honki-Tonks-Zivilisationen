@@ -20,7 +20,7 @@ package KIEinheitFestlegenPlatzMachenLogik is
 
 private
 
-   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Einheitenkoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
 
 end KIEinheitFestlegenPlatzMachenLogik;

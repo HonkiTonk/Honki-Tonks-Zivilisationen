@@ -25,7 +25,7 @@ package SichtweitenGrafik is
      return KartenDatentypen.WaagerechtePositiv;
    
    function SichtbereichLesen
-     return KartenRecords.YXAchsenKartenfeldPositivRecord;
+     return KartenRecords.KartenfeldumgebungPositivRecord;
    
    function BewegungshöheLesen
      return KartenDatentypen.SenkrechtePositiv;
@@ -34,7 +34,7 @@ package SichtweitenGrafik is
      return KartenDatentypen.WaagerechtePositiv;
    
    function BewegungsbereichLesen
-     return KartenRecords.YXAchsenKartenfeldPositivRecord;
+     return KartenRecords.KartenfeldumgebungPositivRecord;
    
    -- Hier keinen Contract einfügen, da die Grafik möglicherweise noch einmal darauf zugreift nachdem die SpielerSpezies besiegt und entfernt wurde.
    function UntenRechts
@@ -83,13 +83,13 @@ private
    StandardXZoomstufe : constant KartenDatentypen.WaagerechtePositiv := 5;
    AktuelleXZoomstufe : KartenDatentypen.WaagerechtePositiv := StandardXZoomstufe;
    
-   Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
-   Bewegungsbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   Sichtbereich : KartenRecords.KartenfeldumgebungPositivRecord;
+   Bewegungsbereich : KartenRecords.KartenfeldumgebungPositivRecord;
    
    StadtumgebungAbmessung : Sf.System.Vector2.sfVector2f;
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    
-   Cursor : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Cursor : KartenRecords.KartenfeldNaturalRecord;
    
    FensterKarte : Sf.System.Vector2.sfVector2f;
 

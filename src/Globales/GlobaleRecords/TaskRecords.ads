@@ -87,7 +87,7 @@ package TaskRecords is
    
       Einheitnummer : EinheitenDatentypen.Einheitenbereich;
    
-      GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord;
+      GeheZu : KartenRecords.KartenfeldNaturalRecord;
       
    end record;
    

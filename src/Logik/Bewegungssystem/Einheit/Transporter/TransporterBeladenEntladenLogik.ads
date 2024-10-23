@@ -50,6 +50,6 @@ private
    FreierPlatzNummer : EinheitenDatentypen.Transportplätze;
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
    
-   NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   NeueKoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end TransporterBeladenEntladenLogik;

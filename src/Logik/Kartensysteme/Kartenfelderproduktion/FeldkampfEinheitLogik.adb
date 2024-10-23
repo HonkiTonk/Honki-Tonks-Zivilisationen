@@ -11,7 +11,7 @@ with Kampfgrenzen;
 package body FeldkampfEinheitLogik is
 
    function Feldkampf
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum;
       KampfBasiswertExtern : in KampfDatentypen.KampfwerteEinheiten;

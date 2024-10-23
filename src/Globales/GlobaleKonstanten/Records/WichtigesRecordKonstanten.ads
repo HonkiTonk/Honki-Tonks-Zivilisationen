@@ -10,7 +10,7 @@ with SpeziesKonstanten;
 package WichtigesRecordKonstanten is
    pragma Elaborate_Body;
 
-   LeerCursor : constant KartenRecords.CursorRecord := (
+   LeerCursor : constant KartenRecords.ZeigerRecord := (
                                                         KoordinatenAktuell => KartenRecordKonstanten.LeerKoordinate,
                                                         KoordinatenAlt     => KartenRecordKonstanten.LeerKoordinate
                                                        );

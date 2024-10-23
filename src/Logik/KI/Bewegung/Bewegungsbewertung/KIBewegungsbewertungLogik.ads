@@ -16,7 +16,7 @@ package KIBewegungsbewertungLogik is
 
    function PositionsbewertungEinheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
@@ -24,32 +24,32 @@ package KIBewegungsbewertungLogik is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 NeueKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 NeueKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function PositionsbewertungKoordinaten
-     (ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
-                 ZielkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 ZielkoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 ZielkoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 NeueKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 NeueKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
 private
    
-   BewertungEAchse : KartenDatentypen.SenkrechteNatural;
-   BewertungYAchse : KartenDatentypen.SenkrechteNatural;
-   BewertungXAchse : KartenDatentypen.WaagerechteNatural;
+   BewertungEbene : KartenDatentypen.SenkrechteNatural;
+   BewertungSenkrechte : KartenDatentypen.SenkrechteNatural;
+   BewertungWaagerechte : KartenDatentypen.WaagerechteNatural;
    
-   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Zielkoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
 end KIBewegungsbewertungLogik;

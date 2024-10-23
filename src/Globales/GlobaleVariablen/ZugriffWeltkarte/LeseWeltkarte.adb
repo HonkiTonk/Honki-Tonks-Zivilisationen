@@ -10,18 +10,18 @@ with FehlermeldungssystemZusatzinformationen;
 package body LeseWeltkarte is
    
    function Basisgrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartengrundDatentypen.Basisgrund_Enum
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return KartengrundDatentypen.Leer_Basisgrund_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Basisgrund;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Basisgrund;
       end case;
       
    end Basisgrund;
@@ -29,18 +29,18 @@ package body LeseWeltkarte is
    
    
    function Zusatzgrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Zusatzgrund;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Zusatzgrund;
       end case;
       
    end Zusatzgrund;
@@ -48,14 +48,14 @@ package body LeseWeltkarte is
    
    
    function Gesamtgrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenRecords.KartengrundRecord
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum);
             
          when others =>
@@ -67,19 +67,19 @@ package body LeseWeltkarte is
    
    
    function Effekt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       WelcherEffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Boolean
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return False;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte (WelcherEffektExtern);
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Effekte (WelcherEffektExtern);
       end case;
       
    end Effekt;
@@ -87,18 +87,18 @@ package body LeseWeltkarte is
    
    
    function Feldeffekte
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenRecords.FeldeffektArray
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return KartenRecordKonstanten.LeerEffekte;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Effekte;
       end case;
       
    end Feldeffekte;
@@ -106,19 +106,19 @@ package body LeseWeltkarte is
    
       
    function Sichtbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return False;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (SpeziesExtern);
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Sichtbar (SpeziesExtern);
       end case;
         
    end Sichtbar;
@@ -126,18 +126,18 @@ package body LeseWeltkarte is
    
    
    function GesamteSichtbarkeit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenRecords.SichtbarkeitArray
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return KartenRecordKonstanten.LeerSichtbarkeit;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Sichtbar;
       end case;
       
    end GesamteSichtbarkeit;
@@ -145,18 +145,18 @@ package body LeseWeltkarte is
    
    
    function Fluss
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenextraDatentypen.Fluss_Enum
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return KartenextraDatentypen.Leer_Fluss_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Fluss;
       end case;
       
    end Fluss;
@@ -164,18 +164,18 @@ package body LeseWeltkarte is
    
    
    function Weg
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenverbesserungDatentypen.Weg_Enum
    is begin
             
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return KartenverbesserungDatentypen.Leer_Weg_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Weg;
       end case;
       
    end Weg;
@@ -183,18 +183,18 @@ package body LeseWeltkarte is
    
    
    function Verbesserung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenverbesserungDatentypen.Verbesserung_Enum
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserung;
       end case;
       
    end Verbesserung;
@@ -202,18 +202,18 @@ package body LeseWeltkarte is
    
    
    function Ressource
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return KartenextraDatentypen.Leer_Ressource_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Ressource;
       end case;
       
    end Ressource;
@@ -222,14 +222,14 @@ package body LeseWeltkarte is
    
    function BelegterGrund
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern)
                                         & "Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return False;
@@ -239,9 +239,9 @@ package body LeseWeltkarte is
       end case;
             
       if
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = SpeziesExtern
+        Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Spezies = SpeziesExtern
         and
-          Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer > StadtKonstanten.LeerNummer
+          Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Nummer > StadtKonstanten.LeerNummer
       then
          return True;
          
@@ -254,14 +254,14 @@ package body LeseWeltkarte is
       
    
    function UnbelegterGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return True;
             
@@ -270,20 +270,20 @@ package body LeseWeltkarte is
       end case;
       
       if
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = SpeziesKonstanten.LeerSpezies
+        Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Spezies = SpeziesKonstanten.LeerSpezies
         and
-          Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
+          Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
       then
          return True;
          
       elsif
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = SpeziesKonstanten.LeerSpezies
+        Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Spezies = SpeziesKonstanten.LeerSpezies
         or
-          Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
+          Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
       then
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund: Werte ungültig: Spezies: "
-                                     & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies'Wide_Wide_Image & " Nummer: "
-                                     & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer'Wide_Wide_Image);
+                                     & Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Spezies'Wide_Wide_Image & " Nummer: "
+                                     & Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Nummer'Wide_Wide_Image);
          return True;
          
       else
@@ -295,14 +295,14 @@ package body LeseWeltkarte is
    
    
    function StadtbelegungGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return StadtRecords.SpeziesStadtnummerRecord
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.StadtbelegungGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return StadtKonstanten.LeerStadt;
             
@@ -310,7 +310,7 @@ package body LeseWeltkarte is
             null;
       end case;
       
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung;
+      return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung;
       
    end StadtbelegungGrund;
      
@@ -318,14 +318,14 @@ package body LeseWeltkarte is
       
    function BestimmteStadtBelegtGrund
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.BestimmteStadtBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return False;
             
@@ -334,9 +334,9 @@ package body LeseWeltkarte is
       end case;
      
       if
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = StadtSpeziesNummerExtern.Spezies
+        Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Spezies = StadtSpeziesNummerExtern.Spezies
         and
-          Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtSpeziesNummerExtern.Nummer
+          Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Nummer = StadtSpeziesNummerExtern.Nummer
       then
          return True;
          
@@ -349,14 +349,14 @@ package body LeseWeltkarte is
    
    
    function SpeziesBelegtGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return SpeziesDatentypen.Spezies_Enum
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.SpeziesBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return SpeziesDatentypen.Leer_Spezies_Enum;
             
@@ -364,26 +364,26 @@ package body LeseWeltkarte is
             null;
       end case;
       
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies;
+      return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Spezies;
       
    end SpeziesBelegtGrund;
    
    
    
    function EinheitenbelegungGrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return EinheitenRecords.SpeziesEinheitnummerRecord
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.EinheitenbelegungGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return EinheitenKonstanten.LeerEinheit;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Einheit;
       end case;
       
    end EinheitenbelegungGrund;
@@ -391,11 +391,11 @@ package body LeseWeltkarte is
    
    
    function GanzerEintrag
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
       return WeltkarteRecords.WeltkarteRecord
    is begin
       
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse);
+      return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte);
       
    end GanzerEintrag;
 

@@ -232,9 +232,9 @@ package body SpieleinstellungenSpeziesLogik is
       end case;
             
       case
-        StartKoordinaten (2).EAchse
+        StartKoordinaten (2).Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return False;
             
          when others =>
@@ -249,10 +249,10 @@ package body SpieleinstellungenSpeziesLogik is
    
    
    function ZusatzfeldBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
       use type ZahlenDatentypen.NotAus;
@@ -260,24 +260,24 @@ package body SpieleinstellungenSpeziesLogik is
             
       FreieFelder := 0;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
 
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                   
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                      
             elsif
-              YAchseSchleifenwert = 0
+              SenkrechteSchleifenwert = 0
               and
-                XAchseSchleifenwert = 0
+                WaagerechteSchleifenwert = 0
             then
                null;
                
@@ -315,8 +315,8 @@ package body SpieleinstellungenSpeziesLogik is
                FreieFelder := FreieFelder + 1;
             end if;
 
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       if
         FreieFelder >= 3
@@ -349,8 +349,8 @@ package body SpieleinstellungenSpeziesLogik is
 
    procedure StartpunktFestlegen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      StartkoordinateEinsExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      StartkoordinateZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      StartkoordinateEinsExtern : in KartenRecords.KartenfeldNaturalRecord;
+      StartkoordinateZweiExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
 
       EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => StartkoordinateEinsExtern,

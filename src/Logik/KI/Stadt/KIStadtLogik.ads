@@ -33,8 +33,8 @@ private
 
    FremdeEinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
 
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   StadtKoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
    procedure NeuesBauprojekt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;

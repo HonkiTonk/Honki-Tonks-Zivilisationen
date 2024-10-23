@@ -9,7 +9,7 @@ with KartenkoordinatenberechnungssystemLogik;
 package body Basisgrundplatzierungssystem is
 
    procedure Basisgrundplatzierung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
    is begin
             
@@ -26,48 +26,48 @@ package body Basisgrundplatzierungssystem is
             return;
       end case;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              Kartenwert.XAchse = KartenKonstanten.LeerXAchse
+              Kartenwert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                   
             elsif
-              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
+              SenkrechteSchleifenwert = KartenKonstanten.LeerSenkrechteÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.WaagerechteWesten
+                WaagerechteSchleifenwert = KartenKonstanten.WaagerechteWesten
             then
                Grundumgebung.Links := BerechnungLinks (KoordinatenExtern => Kartenwert,
                                                        GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
+              SenkrechteSchleifenwert = KartenKonstanten.LeerSenkrechteÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.WaagerechteOsten
+                WaagerechteSchleifenwert = KartenKonstanten.WaagerechteOsten
             then
                Grundumgebung.Rechts := BerechnungRechts (KoordinatenExtern => Kartenwert,
                                                          GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.SenkrechteNorden
+              SenkrechteSchleifenwert = KartenKonstanten.SenkrechteNorden
               and
-                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
+                WaagerechteSchleifenwert = KartenKonstanten.LeerWaagerechteÄnderung
             then
                Grundumgebung.Oben := BerechnungOben (KoordinatenExtern => Kartenwert,
                                                      GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.SenkrechteSüden
+              SenkrechteSchleifenwert = KartenKonstanten.SenkrechteSüden
               and
-                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
+                WaagerechteSchleifenwert = KartenKonstanten.LeerWaagerechteÄnderung
             then
                Grundumgebung.Unten := BerechnungUnten (KoordinatenExtern => Kartenwert,
                                                        GrundnummerExtern => Grundnummer);
@@ -76,8 +76,8 @@ package body Basisgrundplatzierungssystem is
                null;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
                                     GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (Basisgrundwert (Grundumgebung.Links, Grundumgebung.Rechts,
@@ -88,7 +88,7 @@ package body Basisgrundplatzierungssystem is
    
    
    function BerechnungLinks
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
    is begin
@@ -122,7 +122,7 @@ package body Basisgrundplatzierungssystem is
    
    
    function BerechnungRechts
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
    is begin
@@ -156,7 +156,7 @@ package body Basisgrundplatzierungssystem is
    
    
    function BerechnungOben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
    is begin
@@ -190,7 +190,7 @@ package body Basisgrundplatzierungssystem is
    
    
    function BerechnungUnten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
    is begin

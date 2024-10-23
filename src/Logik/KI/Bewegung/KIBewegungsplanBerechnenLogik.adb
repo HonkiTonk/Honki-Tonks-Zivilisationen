@@ -22,7 +22,7 @@ package body KIBewegungsplanBerechnenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       if
@@ -63,7 +63,7 @@ package body KIBewegungsplanBerechnenLogik is
    -- Den Teil hier mit BewegungsplanLogik verschmelzen? äöü
    function PlanenRekursiv
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      AktuelleKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
    is begin
@@ -145,28 +145,28 @@ package body KIBewegungsplanBerechnenLogik is
    
    procedure Felderbewertung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      AktuelleKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       BewertungPosition := BewertungArray'First;
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                Bewertung (BewertungPosition).Koordinaten := KartenWert;
                
                if
-                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
+                 KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
                  or
                    KartenWert = AktuelleKoordinatenExtern
                then
@@ -179,9 +179,9 @@ package body KIBewegungsplanBerechnenLogik is
                
                BewertungPosition := BewertungPosition + 1;
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
                   
       SortierenEinsSchleife:
       for SortierenEinsSchleifenwert in BewertungArray'Range loop
@@ -208,7 +208,7 @@ package body KIBewegungsplanBerechnenLogik is
    
    function BewertungFeldposition
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenDatentypen.SenkrechteNatural
    is begin
       
@@ -259,10 +259,10 @@ package body KIBewegungsplanBerechnenLogik is
    
    function FeldBereitsBetreten
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       FelderSchleife:
@@ -288,7 +288,7 @@ package body KIBewegungsplanBerechnenLogik is
    
    function TransporterNutzen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
       use type EinheitenDatentypen.Einheitenbereich;

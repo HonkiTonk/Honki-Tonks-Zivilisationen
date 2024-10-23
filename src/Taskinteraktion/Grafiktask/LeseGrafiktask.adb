@@ -183,7 +183,7 @@ package body LeseGrafiktask is
    
    
    function GeheZu
-     return KartenRecords.AchsenKartenfeldNaturalRecord
+     return KartenRecords.KartenfeldNaturalRecord
    is begin
       
       return Grafiktask.Aktuell.GeheZu;

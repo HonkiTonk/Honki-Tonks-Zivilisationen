@@ -2,19 +2,19 @@ with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
-package KIXAchsenbewertung is
+package KIWaagerechtebewertung is
    pragma Elaborate_Body;
    use type KartenDatentypen.Waagerechte;
 
-   function XAchseBewerten
+   function WaagerechteBewerten
      (ZielpunktExtern : in KartenDatentypen.WaagerechtePositiv;
       NeuerPunktExtern : in KartenDatentypen.WaagerechtePositiv)
       return KartenDatentypen.WaagerechteNatural
      with
        Pre => (
-                 ZielpunktExtern <= LeseWeltkarteneinstellungen.XAchse
+                 ZielpunktExtern <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.XAchse
+                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
 private
@@ -32,9 +32,9 @@ private
       return KartenDatentypen.WaagerechteNatural
      with
        Pre => (
-                 ZielpunktExtern <= LeseWeltkarteneinstellungen.XAchse
+                 ZielpunktExtern <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.XAchse
+                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
    function StandardübergangOsten
@@ -43,9 +43,9 @@ private
       return KartenDatentypen.WaagerechteNatural
      with
        Pre => (
-                 ZielpunktExtern <= LeseWeltkarteneinstellungen.XAchse
+                 ZielpunktExtern <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.XAchse
+                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-end KIXAchsenbewertung;
+end KIWaagerechtebewertung;

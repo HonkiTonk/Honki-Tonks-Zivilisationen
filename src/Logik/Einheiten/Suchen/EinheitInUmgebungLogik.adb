@@ -98,7 +98,7 @@ package body EinheitInUmgebungLogik is
    
    
    function EinheitFinden
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       UmgebungExtern : in KartenRecords.SichtweitePositiveRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
@@ -107,17 +107,17 @@ package body EinheitInUmgebungLogik is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -UmgebungExtern.Senkrechte .. UmgebungExtern.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -UmgebungExtern.Waagerechte .. UmgebungExtern.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -UmgebungExtern.Senkrechte .. UmgebungExtern.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -UmgebungExtern.Waagerechte .. UmgebungExtern.Waagerechte loop
       
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -148,8 +148,8 @@ package body EinheitInUmgebungLogik is
                end if;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return False;
       

@@ -48,18 +48,18 @@ package body StadtkarteGrafik is
       
       Grafikgröße := SichtweitenGrafik.Stadtumgebungsfläche;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in 1 .. StadtKonstanten.Stadtkartengröße loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in 1 .. StadtKonstanten.Stadtkartengröße loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in 1 .. StadtKonstanten.Stadtkartengröße loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in 1 .. StadtKonstanten.Stadtkartengröße loop
             
             if
-              (YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert > KartenDatentypen.SenkrechtePositiv (StadtDatentypen.GebäudeIDVorhanden'Last)
+              (SenkrechteSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + WaagerechteSchleifenwert > KartenDatentypen.SenkrechtePositiv (StadtDatentypen.GebäudeIDVorhanden'Last)
             then
-               exit YAchseSchleife;
+               exit SenkrechteSchleife;
                
             else
-               GebäudeID := StadtDatentypen.GebäudeIDVorhanden ((YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert);
+               GebäudeID := StadtDatentypen.GebäudeIDVorhanden ((SenkrechteSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + WaagerechteSchleifenwert);
             end if;
                      
             case
@@ -72,15 +72,15 @@ package body StadtkarteGrafik is
                   KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies),
                                                                   TexturbereichExtern    => TexturenfelderVariablenGrafik.GebäudeRechteck (GebäudeExtern => GebäudeID,
                                                                                                                                            SpeziesExtern  => StadtauswahlExtern.Spezies),
-                                                                  PositionExtern         => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
+                                                                  PositionExtern         => (Float (WaagerechteSchleifenwert - 1) * Grafikgröße.x, Float (SenkrechteSchleifenwert - 1) * Grafikgröße.y),
                                                                   DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
-                 -- KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
+                 -- KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (WaagerechteSchleifenwert - 1) * Grafikgröße.x, Float (SenkrechteSchleifenwert - 1) * Grafikgröße.y),
                  --                                                     GrößeExtern        => Grafikgröße,
                  --                                                     TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies, GebäudeID));
                   
                   if
                     True = Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAuswahl.LeseGesamteMausposition,
-                                                       RechteckExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y, Grafikgröße.x, Grafikgröße.y))
+                                                       RechteckExtern     => (Float (WaagerechteSchleifenwert - 1) * Grafikgröße.x, Float (SenkrechteSchleifenwert - 1) * Grafikgröße.y, Grafikgröße.x, Grafikgröße.y))
                   then
                      GebäudeZusatzinformationen := GebäudeID;
                      
@@ -89,8 +89,8 @@ package body StadtkarteGrafik is
                   end if;
             end case;
          
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       Zusatzinformationen (GebäudeIDExtern => GebäudeZusatzinformationen,
                            SpeziesExtern   => StadtauswahlExtern.Spezies);

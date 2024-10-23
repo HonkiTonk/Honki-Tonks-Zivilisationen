@@ -168,7 +168,7 @@ package ChangelogMaerz2022 is
    
    -- Unnötigen Code gelöscht.
    -- Weiter an der neuen Version der Kartenpositionsprüfung gearbeitet.
-   -- Es ist jetzt möglich einen EAchsenübergang von der höchsten Position zur Niedrigsten und umgekehrt zu haben.
+   -- Es ist jetzt möglich einen Ebeneübergang von der höchsten Position zur Niedrigsten und umgekehrt zu haben.
    -- Kommentare und Kleinigkeiten korrigiert.
    
    

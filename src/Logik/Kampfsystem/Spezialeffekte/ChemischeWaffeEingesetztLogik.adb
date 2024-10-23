@@ -30,32 +30,32 @@ package body ChemischeWaffeEingesetztLogik is
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
-        Koordinaten.EAchse
+        Koordinaten.Ebene
       is
          when KartenKonstanten.HimmelKonstante =>
-            Gefahrenhöhe.EAchseAnfang := KartenKonstanten.OberflächeKonstante;
-            Gefahrenhöhe.EAchseEnde := KartenKonstanten.HimmelKonstante;
+            Gefahrenhöhe.EbeneAnfang := KartenKonstanten.OberflächeKonstante;
+            Gefahrenhöhe.EbeneEnde := KartenKonstanten.HimmelKonstante;
 
          when others =>
-            Gefahrenhöhe.EAchseAnfang := Koordinaten.EAchse;
-            Gefahrenhöhe.EAchseEnde := Koordinaten.EAchse;
+            Gefahrenhöhe.EbeneAnfang := Koordinaten.Ebene;
+            Gefahrenhöhe.EbeneEnde := Koordinaten.Ebene;
       end case;
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in Gefahrenhöhe.EAchseAnfang .. Gefahrenhöhe.EAchseEnde loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in Gefahrenbereich.YAchseAnfang .. Gefahrenbereich.YAchseEnde loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in Gefahrenbereich.XAchseAnfang .. Gefahrenbereich.XAchseEnde loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in Gefahrenhöhe.EbeneAnfang .. Gefahrenhöhe.EbeneEnde loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in Gefahrenbereich.SenkrechteAnfang .. Gefahrenbereich.SenkrechteEnde loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in Gefahrenbereich.WaagerechteAnfang .. Gefahrenbereich.WaagerechteEnde loop
 
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, Koordinaten.YAchse, Koordinaten.XAchse),
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EbeneSchleifenwert, Koordinaten.Senkrechte, Koordinaten.Waagerechte),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
-                 Kartenwert.EAchse
+                 Kartenwert.Ebene
                is
-                  when KartenKonstanten.LeerEAchse =>
+                  when KartenKonstanten.LeerEbene =>
                      null;
                      
                   when others =>
@@ -97,9 +97,9 @@ package body ChemischeWaffeEingesetztLogik is
                      end if;
                end case;
 
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
@@ -126,7 +126,7 @@ package body ChemischeWaffeEingesetztLogik is
    
    -- Hier auch noch die Kriegserklärung/Meinungsverschlechterung einbauen. äöü
    procedure Wasserverschmutzung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type KartenDatentypen.Ebene;
       use type KartenextraDatentypen.Fluss_Enum;
@@ -143,17 +143,17 @@ package body ChemischeWaffeEingesetztLogik is
             null;
       end case;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
 
             KartenwertFluss := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                           ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                           ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                            TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
             if
-              KartenwertFluss.EAchse = KartenKonstanten.LeerEAchse
+              KartenwertFluss.Ebene = KartenKonstanten.LeerEbene
             then
                null;
                
@@ -180,8 +180,8 @@ package body ChemischeWaffeEingesetztLogik is
                Wasserverschmutzung (KoordinatenExtern => KartenwertFluss);
             end if;
 
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
    end Wasserverschmutzung;
 

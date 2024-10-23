@@ -323,7 +323,7 @@ package body SpeichernLogik is
         LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichernExtern),
+            KartenRecords.ZeigerRecord'Write (Stream (File => DateiSpeichernExtern),
                                               LeseCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern));
             
          when others =>

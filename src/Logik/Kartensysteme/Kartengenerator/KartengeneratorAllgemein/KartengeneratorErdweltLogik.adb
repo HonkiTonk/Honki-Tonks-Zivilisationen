@@ -6,7 +6,7 @@ with ZufallegeneratorenAllgemein;
 package body KartengeneratorErdweltLogik is
 
    procedure KartengeneratorErdwelt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is begin
       
       BasisgrundBestimmen (KoordinatenExtern => KoordinatenExtern);
@@ -18,7 +18,7 @@ package body KartengeneratorErdweltLogik is
    
    
    procedure BasisgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
       use type SystemDatentypen.NullBisHundert;
    begin
@@ -71,7 +71,7 @@ package body KartengeneratorErdweltLogik is
       Basisgrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
                                             GrundExtern       => Basisgrund);
       
-      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                     GrundExtern       => Basisgrund);
       
    end BasisgrundBestimmen;
@@ -79,7 +79,7 @@ package body KartengeneratorErdweltLogik is
    
    
    procedure ZusatzgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is begin
       
       null;
@@ -89,7 +89,7 @@ package body KartengeneratorErdweltLogik is
    
    
    function BasisExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
@@ -119,13 +119,13 @@ package body KartengeneratorErdweltLogik is
    
    
    function ZusatzberechnungErde
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -140,13 +140,13 @@ package body KartengeneratorErdweltLogik is
    
    
    function ZusatzberechnungErdgestein
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -161,13 +161,13 @@ package body KartengeneratorErdweltLogik is
    
    
    function ZusatzberechnungSand
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -182,13 +182,13 @@ package body KartengeneratorErdweltLogik is
    
    
    function ZusatzberechnungGestein
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          

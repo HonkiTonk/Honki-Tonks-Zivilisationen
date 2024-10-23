@@ -31,7 +31,7 @@ private
 
    Grenzen : SpielRecords.GrenzenRecord;
 
-   Cursor : KartenRecords.CursorRecord;
+   Cursor : KartenRecords.ZeigerRecord;
 
    Stadt : StadtRecords.StadtGebautRecord;
 

@@ -69,7 +69,7 @@ package LeseGrafiktask is
      return EinheitenDatentypen.Einheitenbereich;
    
    function GeheZu
-     return KartenRecords.AchsenKartenfeldNaturalRecord;
+     return KartenRecords.KartenfeldNaturalRecord;
    
    function Seitenauswahl
      return Boolean;

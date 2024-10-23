@@ -9,7 +9,7 @@ with ZufallegeneratorenAllgemein;
 package body KartengeneratorUnterwasserressourcenLogik is
 
    procedure KartengeneratorUnterwasserressourcen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
       use type SystemDatentypen.NullBisHundert;
    begin
@@ -60,7 +60,7 @@ package body KartengeneratorUnterwasserressourcenLogik is
         WelcheRessource
       is
          when KartenextraDatentypen.Ressourcen_Unterfläche_Wasser_Enum'Range =>
-            SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+            SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                          RessourceExtern   => WelcheRessource);
             
          when others =>
@@ -72,7 +72,7 @@ package body KartengeneratorUnterwasserressourcenLogik is
    
    
    function RessourceZusatzberechnungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Wasser_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
@@ -98,13 +98,13 @@ package body KartengeneratorUnterwasserressourcenLogik is
    
    
    function ZusatzberechnungFisch
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -119,13 +119,13 @@ package body KartengeneratorUnterwasserressourcenLogik is
    
    
    function ZusatzberechnungWal
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -140,13 +140,13 @@ package body KartengeneratorUnterwasserressourcenLogik is
    
    
    function ZusatzberechnungHochwertigesHolz
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       case
-        LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse))
+        LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte))
       is
          when KartengrundDatentypen.Unterwald_Enum =>
             return RessourceExtern;

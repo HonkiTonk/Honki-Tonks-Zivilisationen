@@ -7,7 +7,7 @@ with ZufallegeneratorenAllgemein;
 package body KartengeneratorUnterlandressourcenLogik is
 
    procedure KartengeneratorUnterlandressourcen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
       use type SystemDatentypen.NullBisHundert;
    begin
@@ -58,7 +58,7 @@ package body KartengeneratorUnterlandressourcenLogik is
         WelcheRessource
       is
          when KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum'Range =>
-            SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+            SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                          RessourceExtern   => WelcheRessource);
             
          when others =>
@@ -70,7 +70,7 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    
    function RessourceZusatzberechnungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
@@ -104,13 +104,13 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    
    function ZusatzberechnungKohle
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -125,13 +125,13 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    
    function ZusatzberechnungEisen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -146,13 +146,13 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    
    function ZusatzberechnungÖl
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -167,13 +167,13 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    
    function ZusatzberechnungHochwertigerBoden
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -188,13 +188,13 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    
    function ZusatzberechnungGold
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
       return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.Senkrechte (KoordinatenExtern.XAchse)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
       then
          null;
          

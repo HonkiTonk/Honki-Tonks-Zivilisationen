@@ -36,9 +36,9 @@ package body KIEinheitFestlegenAngreifenLogik is
       end case;
             
       case
-        KoordinatenFeind.XAchse
+        KoordinatenFeind.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             null;
             
          when others =>
@@ -53,7 +53,7 @@ package body KIEinheitFestlegenAngreifenLogik is
                                                                             AnfangKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       if
-        KoordinatenFeind.XAchse = KartenKonstanten.LeerXAchse
+        KoordinatenFeind.Waagerechte = KartenKonstanten.LeerWaagerechte
       then
          return False;
          

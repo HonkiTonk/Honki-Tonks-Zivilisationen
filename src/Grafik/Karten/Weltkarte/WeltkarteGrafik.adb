@@ -37,17 +37,17 @@ package body WeltkarteGrafik is
       CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
       Feldposition := GrafikRecordKonstanten.Nullposition;
             
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Sichtbereich.YAchse .. Sichtbereich.YAchse loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Sichtbereich.XAchse .. Sichtbereich.XAchse loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -Sichtbereich.Senkrechte .. Sichtbereich.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -65,40 +65,40 @@ package body WeltkarteGrafik is
             
             Feldposition.x := Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x;
                           
-         end loop XAchseSchleife;
+         end loop WaagerechteSchleife;
          
          Feldposition := (GrafikKonstanten.Nullwert, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
          
-      end loop YAchseSchleife;
+      end loop SenkrechteSchleife;
             
       case
-        LeseWeltkarteneinstellungen.YAchseNorden
+        LeseWeltkarteneinstellungen.SenkrechteNorden
       is
-         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
+         when KartenartDatentypen.Senkrechte_Übergangslos_Enum =>
             Feldposition := GrafikRecordKonstanten.Nullposition;
             
          when others =>
             return;
       end case;
       
-      YAchseNamenSchleife:
-      for YAchseNamenSchleifenwert in -Sichtbereich.YAchse .. Sichtbereich.YAchse loop
-         XAchseNamenSchleife:
-         for XAchseNamenSchleifenwert in -Sichtbereich.XAchse .. Sichtbereich.XAchse loop
+      SenkrechteamenSchleife:
+      for SenkrechteamenSchleifenwert in -Sichtbereich.Senkrechte .. Sichtbereich.Senkrechte loop
+         WaagerechteamenSchleife:
+         for WaagerechteamenSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseNamenSchleifenwert, XAchseNamenSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteamenSchleifenwert, WaagerechteamenSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;    
                
             elsif
-              KartenWert.YAchse > KartenDatentypen.SenkrechtePositiv'First
+              KartenWert.Senkrechte > KartenDatentypen.SenkrechtePositiv'First
             then
-               exit YAchseNamenSchleife;
+               exit SenkrechteamenSchleife;
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
@@ -119,18 +119,18 @@ package body WeltkarteGrafik is
             
             Feldposition.x := Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x;
             
-         end loop XAchseNamenSchleife;
+         end loop WaagerechteamenSchleife;
          
          Feldposition := (GrafikKonstanten.Nullwert, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
          
-      end loop YAchseNamenSchleife;
+      end loop SenkrechteamenSchleife;
             
    end WeltkarteAnzeigen;
    
    
    
    procedure IstSichtbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
@@ -141,22 +141,22 @@ package body WeltkarteGrafik is
         LeseEinstellungenGrafik.EbenenUnterhalbSichtbar = True
       then
          case
-           KoordinatenExtern.EAchse
+           KoordinatenExtern.Ebene
          is
             when KartenKonstanten.HimmelKonstante =>
-               AktuelleKoordinaten := (KoordinatenExtern.EAchse - 1, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse);
+               AktuelleKoordinaten := (KoordinatenExtern.Ebene - 1, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte);
                Transparents := GrafikKonstanten.Wolkentransparents;
             
                -- Dafür was besseres einbauen. äöü
             when KartenKonstanten.WeltraumKonstante =>
-               AktuelleKoordinaten := (KoordinatenExtern.EAchse - 1, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse);
+               AktuelleKoordinaten := (KoordinatenExtern.Ebene - 1, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte);
                Transparents := GrafikKonstanten.Weltraumtransparents;
             
             when KartenKonstanten.OberflächeKonstante =>
                if
                  LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
                then
-                  AktuelleKoordinaten := (KoordinatenExtern.EAchse - 1, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse);
+                  AktuelleKoordinaten := (KoordinatenExtern.Ebene - 1, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte);
                   Transparents := GrafikKonstanten.Wassertransparents;
                
                else
@@ -177,10 +177,10 @@ package body WeltkarteGrafik is
                      EinheitenauswahlExtern => EinheitenauswahlExtern,
                      PositionExtern         => PositionExtern,
                      TransparentsExtern     => GrafikKonstanten.Undurchsichtig,
-                     EbeneExtern            => KoordinatenExtern.EAchse);
+                     EbeneExtern            => KoordinatenExtern.Ebene);
       
       if
-        KoordinatenExtern.EAchse = AktuelleKoordinaten.EAchse
+        KoordinatenExtern.Ebene = AktuelleKoordinaten.Ebene
       then
          null;
             
@@ -189,7 +189,7 @@ package body WeltkarteGrafik is
                         EinheitenauswahlExtern => EinheitenauswahlExtern,
                         PositionExtern         => PositionExtern,
                         TransparentsExtern     => Transparents,
-                        EbeneExtern            => KoordinatenExtern.EAchse);
+                        EbeneExtern            => KoordinatenExtern.Ebene);
       end if;
       
    end IstSichtbar;
@@ -197,7 +197,7 @@ package body WeltkarteGrafik is
    
    
    procedure EbeneZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       TransparentsExtern : in Sf.sfUint8;

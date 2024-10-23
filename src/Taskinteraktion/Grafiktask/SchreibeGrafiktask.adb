@@ -183,7 +183,7 @@ package body SchreibeGrafiktask is
    
    
    procedure GeheZu
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       Grafiktask.Aktuell.GeheZu := KoordinatenExtern;

@@ -26,7 +26,7 @@ package ChangelogSeptember2022 is
    
    -- Die Feldersichtbarkeitsprüfungen überarbeiten, so dass eine Ebene halbwegs logisch von einer anderen Ebene aus aufgedeckt wird.
    -- Stadtnamen von Unterwasserstädten werden jetzt nicht mehr an der Oberfläche angezeigt.
-   -- Angefangen die EAchsenkonstanten einzubauen.
+   -- Angefangen die Ebenekonstanten einzubauen.
    -- Baumenüanzeige überarbeitet.
    -- Sichtweiten und Bewegungsfeld überarbeitet, es past sich jetzt ein wenig an die aktuelle Auflösung an.
    -- Die Produktionswerte einer Stadt werden bei einer Änderung der bearbeiteten Felder sofort korrekt angezeigt und nicht erst in der nächsten Runde.
@@ -119,7 +119,7 @@ package ChangelogSeptember2022 is
    -- Angefangen eine KIPrüfung für vorhandene Transporter einzubauen.
    -- Es ist jetzt möglich eigene Einheiten die Plätze tauschen zu lassen.
    -- Fehler korrigiert der es einem erlaubten nicht vorhandene Einheit in einem Transporter anzuwählen.
-   -- Die Sichtbarkeitsprüfung berücksichtigt jetzt auch die EAchse und deckt entsprechend auf.
+   -- Die Sichtbarkeitsprüfung berücksichtigt jetzt auch die Ebene und deckt entsprechend auf.
    -- Einige Optimierungen durchgeführt.
    -- Prüfung ob die Vorraussetzungen für ein Gebäude erfüllt sind überarbeitet.
    -- Gebäude können jetzt auch Verbesserungen oder andere Gebäude vorraussetzen.

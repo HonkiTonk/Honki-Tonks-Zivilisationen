@@ -1,21 +1,21 @@
 with KartenRecordKonstanten;
 with KartenartDatentypen;
 
-with KartenkoordinateEAchseBerechnenLogik;
-with KartenkoordinateYAchseBerechnenLogik;
-with KartenkoordinateXAchseBerechnenLogik;
+with KartenkoordinateEbeneBerechnenLogik;
+with KartenkoordinateSenkrechteBerechnenLogik;
+with KartenkoordinateWaagerechteBerechnenLogik;
 with KartenkoordinatenWerteLogik;
 
 package body KartenkoordinatenberechnungssystemLogik is
 
    -- Zufallsübergänge einbauen? äöü
    function Kartenkoordinatenberechnungssystem
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ÄnderungExtern : in KartenRecords.KartenfeldRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       if
@@ -28,18 +28,18 @@ package body KartenkoordinatenberechnungssystemLogik is
       end if;
       
       case
-        ÄnderungExtern.EAchse
+        ÄnderungExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchseÄnderung =>
-            NeueKoordinate (TaskExtern).EAchse := KoordinatenExtern.EAchse;
+         when KartenKonstanten.LeerEbeneÄnderung =>
+            NeueKoordinate (TaskExtern).Ebene := KoordinatenExtern.Ebene;
             
          when others =>
-            NeueKoordinate (TaskExtern).EAchse := KartenkoordinateEAchseBerechnenLogik.KartenkoordinateEAchseBerechnen (EAchseExtern         => KoordinatenExtern.EAchse,
-                                                                                                                        ÄnderungEAchseExtern => ÄnderungExtern.EAchse,
+            NeueKoordinate (TaskExtern).Ebene := KartenkoordinateEbeneBerechnenLogik.KartenkoordinateEbeneBerechnen (EbeneExtern         => KoordinatenExtern.Ebene,
+                                                                                                                        ÄnderungEbeneExtern => ÄnderungExtern.Ebene,
                                                                                                                         TaskExtern    => TaskExtern);
             
             if
-              NeueKoordinate (TaskExtern).EAchse = KartenKonstanten.LeerEAchse
+              NeueKoordinate (TaskExtern).Ebene = KartenKonstanten.LeerEbene
             then
                return KartenRecordKonstanten.LeerKoordinate;
             else
@@ -47,22 +47,22 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
-                                                               ÜbergangExtern => KartenartDatentypen.Karte_Y_Kein_Übergang_Enum);
+      KartenkoordinatenWerteLogik.SenkrechteVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                               ÜbergangExtern => KartenartDatentypen.Senkrechte_Übergangslos_Enum);
       
       case
-        ÄnderungExtern.YAchse
+        ÄnderungExtern.Senkrechte
       is
-         when KartenKonstanten.LeerYAchseÄnderung =>
-            NeueKoordinate (TaskExtern).YAchse := KoordinatenExtern.YAchse;
+         when KartenKonstanten.LeerSenkrechteÄnderung =>
+            NeueKoordinate (TaskExtern).Senkrechte := KoordinatenExtern.Senkrechte;
             
          when others =>
-            NeueKoordinate (TaskExtern).YAchse := KartenkoordinateYAchseBerechnenLogik.KartenkoordinateYAchseBerechnen (YAchseExtern         => KoordinatenExtern.YAchse,
-                                                                                                                        ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+            NeueKoordinate (TaskExtern).Senkrechte := KartenkoordinateSenkrechteBerechnenLogik.KartenkoordinateSenkrechteBerechnen (SenkrechteExtern         => KoordinatenExtern.Senkrechte,
+                                                                                                                        ÄnderungSenkrechteExtern => ÄnderungExtern.Senkrechte,
                                                                                                                         TaskExtern    => TaskExtern);
       
             if
-              NeueKoordinate (TaskExtern).YAchse = KartenKonstanten.LeerYAchse
+              NeueKoordinate (TaskExtern).Senkrechte = KartenKonstanten.LeerSenkrechte
             then
                return KartenRecordKonstanten.LeerKoordinate;
             
@@ -71,22 +71,22 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
-                                                               ÜbergangExtern => KartenartDatentypen.Karte_X_Kein_Übergang_Enum);
+      KartenkoordinatenWerteLogik.WaagerechteVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                               ÜbergangExtern => KartenartDatentypen.Waagerechte_Übergangslos_Enum);
             
       case
-        ÄnderungExtern.XAchse
+        ÄnderungExtern.Waagerechte
       is
-         when KartenKonstanten.LeerXAchseÄnderung =>
-            NeueKoordinate (TaskExtern).XAchse := KoordinatenExtern.XAchse;
+         when KartenKonstanten.LeerWaagerechteÄnderung =>
+            NeueKoordinate (TaskExtern).Waagerechte := KoordinatenExtern.Waagerechte;
             
          when others =>
-            NeueKoordinate (TaskExtern).XAchse := KartenkoordinateXAchseBerechnenLogik.KartenkoordinateXAchseBerechnen (XAchseExtern         => KoordinatenExtern.XAchse,
-                                                                                                                        ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+            NeueKoordinate (TaskExtern).Waagerechte := KartenkoordinateWaagerechteBerechnenLogik.KartenkoordinateWaagerechteBerechnen (WaagerechteExtern         => KoordinatenExtern.Waagerechte,
+                                                                                                                        ÄnderungWaagerechteExtern => ÄnderungExtern.Waagerechte,
                                                                                                                         TaskExtern    => TaskExtern);
             
             if
-              NeueKoordinate (TaskExtern).XAchse = KartenKonstanten.LeerXAchse
+              NeueKoordinate (TaskExtern).Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                return KartenRecordKonstanten.LeerKoordinate;
                   
@@ -96,23 +96,23 @@ package body KartenkoordinatenberechnungssystemLogik is
       end case;
       
       case
-        KartenkoordinatenWerteLogik.YAchseVerschiebungLesen (TaskExtern => TaskExtern)
+        KartenkoordinatenWerteLogik.SenkrechteVerschiebungLesen (TaskExtern => TaskExtern)
       is
-         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum | KartenartDatentypen.Karte_Y_Übergang_Enum =>
+         when KartenartDatentypen.Senkrechte_Übergangslos_Enum | KartenartDatentypen.Senkrechte_Übergang_Enum =>
             null;
             
-         when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            NeueKoordinate (TaskExtern).XAchse := KartenkoordinateXAchseBerechnenLogik.XAchseVerschieben (XAchseExtern => NeueKoordinate (TaskExtern).XAchse);
+         when KartenartDatentypen.Senkrechte_Rückwärts_Verschobener_Übergang_Enum | KartenartDatentypen.Senkrechte_Verschobener_Übergang_Enum =>
+            NeueKoordinate (TaskExtern).Waagerechte := KartenkoordinateWaagerechteBerechnenLogik.WaagerechteVerschieben (WaagerechteExtern => NeueKoordinate (TaskExtern).Waagerechte);
       end case;
       
       case
-        KartenkoordinatenWerteLogik.XAchseVerschiebungLesen (TaskExtern => TaskExtern)
+        KartenkoordinatenWerteLogik.WaagerechteVerschiebungLesen (TaskExtern => TaskExtern)
       is
-         when KartenartDatentypen.Karte_X_Kein_Übergang_Enum | KartenartDatentypen.Karte_X_Übergang_Enum =>
+         when KartenartDatentypen.Waagerechte_Übergangslos_Enum | KartenartDatentypen.Waagerechte_Übergang_Enum =>
             null;
             
-         when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            NeueKoordinate (TaskExtern).YAchse := KartenkoordinateYAchseBerechnenLogik.YAchseVerschieben (YAchseExtern => NeueKoordinate (TaskExtern).YAchse);
+         when KartenartDatentypen.Waagerechte_Rückwärts_Verschobener_Übergang_Enum | KartenartDatentypen.Waagerechte_Verschobener_Übergang_Enum =>
+            NeueKoordinate (TaskExtern).Senkrechte := KartenkoordinateSenkrechteBerechnenLogik.SenkrechteVerschieben (SenkrechteExtern => NeueKoordinate (TaskExtern).Senkrechte);
       end case;
       
       return NeueKoordinate (TaskExtern);

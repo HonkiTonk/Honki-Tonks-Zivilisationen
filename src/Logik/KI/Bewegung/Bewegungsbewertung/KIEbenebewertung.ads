@@ -2,10 +2,10 @@ with KartenDatentypen;
 
 private with KartenKonstanten;
 
-package KIEAchsenbewertung is
+package KIEbenebewertung is
    pragma Elaborate_Body;
 
-   function EAchseBewerten
+   function EbeneBewerten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.SenkrechteNatural;
@@ -38,4 +38,4 @@ private
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.SenkrechteNatural;
 
-end KIEAchsenbewertung;
+end KIEbenebewertung;

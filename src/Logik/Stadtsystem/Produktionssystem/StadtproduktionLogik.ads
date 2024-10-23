@@ -52,8 +52,8 @@ private
    
    Bauprojekt : StadtRecords.BauprojektRecord;
 
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;
       
    procedure FelderProduktionBerechnen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)

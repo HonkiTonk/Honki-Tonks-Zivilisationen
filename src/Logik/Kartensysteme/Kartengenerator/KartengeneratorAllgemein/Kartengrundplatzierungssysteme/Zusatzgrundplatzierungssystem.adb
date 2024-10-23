@@ -9,7 +9,7 @@ with KartenkoordinatenberechnungssystemLogik;
 package body Zusatzgrundplatzierungssystem is
    
    procedure Zusatzgrundentfernung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
@@ -27,25 +27,26 @@ package body Zusatzgrundplatzierungssystem is
                                            GrundExtern       => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
       end case;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             if
-            abs (YAchseSchleifenwert) = KartenDatentypen.Senkrechte (abs (XAchseSchleifenwert))
+            abs (SenkrechteSchleifenwert) = KartenDatentypen.Senkrechte (abs (WaagerechteSchleifenwert))
             then
                null;
                
             else
-               Entfernungskartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                    ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                    TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+               Entfernungskartenwert
+                 := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
-                 Entfernungskartenwert.XAchse
+                 Entfernungskartenwert.Waagerechte
                is
-                  when KartenKonstanten.LeerXAchse =>
+                  when KartenKonstanten.LeerWaagerechte =>
                      null;
                      
                   when others =>
@@ -68,63 +69,63 @@ package body Zusatzgrundplatzierungssystem is
                end case;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
    end Zusatzgrundentfernung;
    
    
 
    procedure Zusatzgrundplatzierung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
    is begin
       
       Grundumgebung := (others => False);
       Grundnummer := GrundZuNummer (ZusatzgrundExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              Kartenwert.XAchse = KartenKonstanten.LeerXAchse
+              Kartenwert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                   
             elsif
-              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
+              SenkrechteSchleifenwert = KartenKonstanten.LeerSenkrechteÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.WaagerechteWesten
+                WaagerechteSchleifenwert = KartenKonstanten.WaagerechteWesten
             then
                Grundumgebung.Links := BerechnungLinks (KoordinatenExtern => Kartenwert,
                                                        GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
+              SenkrechteSchleifenwert = KartenKonstanten.LeerSenkrechteÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.WaagerechteOsten
+                WaagerechteSchleifenwert = KartenKonstanten.WaagerechteOsten
             then
                Grundumgebung.Rechts := BerechnungRechts (KoordinatenExtern => Kartenwert,
                                                          GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.SenkrechteNorden
+              SenkrechteSchleifenwert = KartenKonstanten.SenkrechteNorden
               and
-                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
+                WaagerechteSchleifenwert = KartenKonstanten.LeerWaagerechteÄnderung
             then
                Grundumgebung.Oben := BerechnungOben (KoordinatenExtern => Kartenwert,
                                                      GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.SenkrechteSüden
+              SenkrechteSchleifenwert = KartenKonstanten.SenkrechteSüden
               and
-                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
+                WaagerechteSchleifenwert = KartenKonstanten.LeerWaagerechteÄnderung
             then
                Grundumgebung.Unten := BerechnungUnten (KoordinatenExtern => Kartenwert,
                                                        GrundnummerExtern => Grundnummer);
@@ -133,8 +134,8 @@ package body Zusatzgrundplatzierungssystem is
                null;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
                                      GrundExtern       => KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (Zusatzgrundwert (Grundumgebung.Links, Grundumgebung.Rechts,
@@ -145,7 +146,7 @@ package body Zusatzgrundplatzierungssystem is
    
    
    function BerechnungLinks
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
    is begin
@@ -179,7 +180,7 @@ package body Zusatzgrundplatzierungssystem is
    
    
    function BerechnungRechts
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
    is begin
@@ -213,7 +214,7 @@ package body Zusatzgrundplatzierungssystem is
    
    
    function BerechnungOben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
    is begin
@@ -247,7 +248,7 @@ package body Zusatzgrundplatzierungssystem is
    
    
    function BerechnungUnten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
    is begin

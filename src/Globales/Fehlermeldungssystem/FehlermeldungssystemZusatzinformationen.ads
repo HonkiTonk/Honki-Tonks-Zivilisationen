@@ -8,7 +8,7 @@ package FehlermeldungssystemZusatzinformationen is
    pragma Elaborate_Body;
 
    function Koordinaten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Wide_Wide_String
      with
        Post => (

@@ -26,16 +26,16 @@ package SichtbereicheErmittelnLogik is
               );
    
    function SichtbarkeitBlockadeTesten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       YÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
       XÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
       SichtweiteExtern : in KartenRecords.UmgebungDreiRecord)
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte
               );
 
 private
@@ -44,7 +44,7 @@ private
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
    
-   KoordinatenEinheit : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenBlockadeWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KoordinatenEinheit : KartenRecords.KartenfeldNaturalRecord;
+   KartenBlockadeWert : KartenRecords.KartenfeldNaturalRecord;
    
 end SichtbereicheErmittelnLogik;

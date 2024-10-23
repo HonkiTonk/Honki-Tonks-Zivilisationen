@@ -2,103 +2,103 @@ with Weltkarte;
 
 package body LeseWeltkarteneinstellungen is
 
-   function YAchse
+   function Senkrechte
      return KartenDatentypen.SenkrechtePositiv
    is begin
       
-      return Weltkarte.Karteneinstellungen.Kartengröße.YAchse;
+      return Weltkarte.Karteneinstellungen.Kartengröße.Senkrechte;
       
-   end YAchse;
+   end Senkrechte;
    
    
    
-   function XAchse
+   function Waagerechte
      return KartenDatentypen.WaagerechtePositiv
    is begin
       
-      return Weltkarte.Karteneinstellungen.Kartengröße.XAchse;
+      return Weltkarte.Karteneinstellungen.Kartengröße.Waagerechte;
       
-   end XAchse;
+   end Waagerechte;
    
    
    
-   function EAchseOben
-     return KartenartDatentypen.Kartenform_E_Einstellbar_Enum
+   function EbeneOben
+     return KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum
    is begin
       
-      return Weltkarte.Karteneinstellungen.Kartenform.EAchseOben;
+      return Weltkarte.Karteneinstellungen.Kartenform.EbeneOben;
       
-   end EAchseOben;
+   end EbeneOben;
    
    
    
-   function EAchseUnten
-     return KartenartDatentypen.Kartenform_E_Einstellbar_Enum
+   function EbeneUnten
+     return KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum
    is begin
       
-      return Weltkarte.Karteneinstellungen.Kartenform.EAchseUnten;
+      return Weltkarte.Karteneinstellungen.Kartenform.EbeneUnten;
       
-   end EAchseUnten;
+   end EbeneUnten;
    
    
    
-   function YAchseNorden
-     return KartenartDatentypen.Kartenform_Y_Einstellbar_Enum
+   function SenkrechteNorden
+     return KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum
    is begin
       
-      return Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden;
+      return Weltkarte.Karteneinstellungen.Kartenform.SenkrechteNorden;
       
-   end YAchseNorden;
+   end SenkrechteNorden;
    
    
    
-   function YAchseSüden
-     return KartenartDatentypen.Kartenform_Y_Einstellbar_Enum
+   function SenkrechteSüden
+     return KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum
    is begin
       
-      return Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden;
+      return Weltkarte.Karteneinstellungen.Kartenform.SenkrechteSüden;
       
-   end YAchseSüden;
+   end SenkrechteSüden;
    
    
    
-   function XAchseWesten
-     return KartenartDatentypen.Kartenform_X_Einstellbar_Enum
+   function WaagerechteWesten
+     return KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum
    is begin
       
-      return Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten;
+      return Weltkarte.Karteneinstellungen.Kartenform.WaagerechteWesten;
       
-   end XAchseWesten;
+   end WaagerechteWesten;
    
    
    
-   function XAchseOsten
-     return KartenartDatentypen.Kartenform_X_Einstellbar_Enum
+   function WaagerechteOsten
+     return KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum
    is begin
       
-      return Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
+      return Weltkarte.Karteneinstellungen.Kartenform.WaagerechteOsten;
       
-   end XAchseOsten;
+   end WaagerechteOsten;
    
    
    
-   function KartenformYAchse
-     return KartenRecords.KartenformYAchseRecord
+   function KartenformSenkrechte
+     return KartenRecords.KartenformSenkrechteRecord
    is begin
       
-      return (YAchseNorden, YAchseSüden);
+      return (SenkrechteNorden, SenkrechteSüden);
       
-   end KartenformYAchse;
+   end KartenformSenkrechte;
    
    
    
-   function KartenformXAchse
-     return KartenRecords.KartenformXAchseRecord
+   function KartenformWaagerechte
+     return KartenRecords.KartenformWaagerechteRecord
    is begin
       
-      return (XAchseWesten, XAchseOsten);
+      return (WaagerechteWesten, WaagerechteOsten);
       
-   end KartenformXAchse;
+   end KartenformWaagerechte;
    
    
    

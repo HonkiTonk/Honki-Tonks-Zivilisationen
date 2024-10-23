@@ -17,14 +17,14 @@ package KIBewegungAllgemeinLogik is
    use type KartenDatentypen.Waagerechte;
    
    function FeldBetreten
-     (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (FeldKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
      with
        Pre => (
-                 FeldKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 FeldKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 FeldKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 FeldKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );

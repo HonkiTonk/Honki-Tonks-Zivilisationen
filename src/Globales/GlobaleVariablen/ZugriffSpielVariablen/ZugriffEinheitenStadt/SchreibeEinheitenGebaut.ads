@@ -36,7 +36,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Koordinaten
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitentauschExtern : in Boolean)
      with
        Pre => (
@@ -44,15 +44,15 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte then KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+                 (if KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte)
               );
    
    procedure Heimatstadt
@@ -154,22 +154,22 @@ package SchreibeEinheitenGebaut is
    
    procedure KIZielKoordinaten
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte then KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+                 (if KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte)
               );
    pragma Inline (KIZielKoordinaten);
    
@@ -187,22 +187,22 @@ package SchreibeEinheitenGebaut is
    
    procedure KIZielKoordinatenNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte then KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+                 (if KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte)
               );
    pragma Inline (KIZielKoordinatenNachfolger);
      
@@ -230,7 +230,7 @@ package SchreibeEinheitenGebaut is
    
    procedure KIBewegungPlan
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PlanplatzExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
      with
        Pre => (
@@ -238,15 +238,15 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte then KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+                 (if KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte)
               );
    pragma Inline (KIBewegungPlan);
    
@@ -317,7 +317,7 @@ package SchreibeEinheitenGebaut is
    procedure Standardwerte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtNummerExtern : in StadtDatentypen.Städtebereich)
      with
        Pre => (
@@ -325,15 +325,15 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte then KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+                 (if KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
                and
-                 (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+                 (if KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte)
               );
    
    procedure GanzerEintrag

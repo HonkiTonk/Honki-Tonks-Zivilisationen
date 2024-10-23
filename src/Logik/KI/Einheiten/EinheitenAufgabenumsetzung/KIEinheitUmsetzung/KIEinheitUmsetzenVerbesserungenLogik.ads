@@ -32,6 +32,6 @@ private
    
    Befehl : BefehleDatentypen.Einheitenbelegung_Enum;
    
-   EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   EinheitKoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end KIEinheitUmsetzenVerbesserungenLogik;

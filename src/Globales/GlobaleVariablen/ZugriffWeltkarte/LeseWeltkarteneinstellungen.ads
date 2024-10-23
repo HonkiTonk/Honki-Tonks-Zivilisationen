@@ -5,45 +5,45 @@ with KartenRecords;
 package LeseWeltkarteneinstellungen is
    pragma Elaborate_Body;
 
-   function YAchse
+   function Senkrechte
      return KartenDatentypen.SenkrechtePositiv;
-   pragma Inline (YAchse);
+   pragma Inline (Senkrechte);
    
-   function XAchse
+   function Waagerechte
      return KartenDatentypen.WaagerechtePositiv;
-   pragma Inline (XAchse);
+   pragma Inline (Waagerechte);
    
-   function EAchseOben
-     return KartenartDatentypen.Kartenform_E_Einstellbar_Enum;
-   pragma Inline (EAchseOben);
+   function EbeneOben
+     return KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum;
+   pragma Inline (EbeneOben);
    
-   function EAchseUnten
-     return KartenartDatentypen.Kartenform_E_Einstellbar_Enum;
-   pragma Inline (EAchseUnten);
+   function EbeneUnten
+     return KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum;
+   pragma Inline (EbeneUnten);
    
-   function YAchseNorden
-     return KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
-   pragma Inline (YAchseNorden);
+   function SenkrechteNorden
+     return KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum;
+   pragma Inline (SenkrechteNorden);
    
-   function YAchseSüden
-     return KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
-   pragma Inline (YAchseSüden);
+   function SenkrechteSüden
+     return KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum;
+   pragma Inline (SenkrechteSüden);
    
-   function XAchseWesten
-     return KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
-   pragma Inline (XAchseWesten);
+   function WaagerechteWesten
+     return KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum;
+   pragma Inline (WaagerechteWesten);
    
-   function XAchseOsten
-     return KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
-   pragma Inline (XAchseOsten);
+   function WaagerechteOsten
+     return KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum;
+   pragma Inline (WaagerechteOsten);
    
-   function KartenformYAchse
-     return KartenRecords.KartenformYAchseRecord;
-   pragma Inline (KartenformYAchse);
+   function KartenformSenkrechte
+     return KartenRecords.KartenformSenkrechteRecord;
+   pragma Inline (KartenformSenkrechte);
    
-   function KartenformXAchse
-     return KartenRecords.KartenformXAchseRecord;
-   pragma Inline (KartenformXAchse);
+   function KartenformWaagerechte
+     return KartenRecords.KartenformWaagerechteRecord;
+   pragma Inline (KartenformWaagerechte);
    
    function GesamteEinstellungen
      return KartenRecords.PermanenteKartenparameterRecord;

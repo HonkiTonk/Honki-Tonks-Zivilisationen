@@ -11,51 +11,51 @@ package SchreibeCursor is
 
    procedure KoordinatenAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    pragma Inline (KoordinatenAktuell);
    
-   procedure EAchseAktuell
+   procedure EbeneAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      EAchseExtern : in KartenDatentypen.EbeneVorhanden);
-   pragma Inline (EAchseAktuell);
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden);
+   pragma Inline (EbeneAktuell);
 
    procedure KoordinatenAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    pragma Inline (KoordinatenAlt);
    
-   procedure EAchseAlt
+   procedure EbeneAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      EAchseExtern : in KartenDatentypen.EbeneVorhanden);
-   pragma Inline (EAchseAlt);
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden);
+   pragma Inline (EbeneAlt);
    
    procedure Standardeinstellungen;
    pragma Inline (Standardeinstellungen);
    
    procedure GanzerEintrag
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      EintragExtern : in KartenRecords.CursorRecord)
+      EintragExtern : in KartenRecords.ZeigerRecord)
      with
        Pre => (
-                 EintragExtern.KoordinatenAktuell.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 EintragExtern.KoordinatenAktuell.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 EintragExtern.KoordinatenAktuell.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 EintragExtern.KoordinatenAktuell.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 EintragExtern.KoordinatenAlt.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 EintragExtern.KoordinatenAlt.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 EintragExtern.KoordinatenAlt.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 EintragExtern.KoordinatenAlt.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    pragma Inline (GanzerEintrag);
 

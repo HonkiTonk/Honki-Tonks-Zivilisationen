@@ -31,7 +31,7 @@ package body KIEinheitFestlegenBewachenLogik is
             exit StadtSchleife;
             
          elsif
-           Stadtkoordinaten.XAchse = KartenKonstanten.LeerXAchse
+           Stadtkoordinaten.Waagerechte = KartenKonstanten.LeerWaagerechte
          then
             null;
                

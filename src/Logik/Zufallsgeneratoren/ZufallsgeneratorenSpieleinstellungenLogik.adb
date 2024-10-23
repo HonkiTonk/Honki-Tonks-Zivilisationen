@@ -21,18 +21,18 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    function ZufälligeKartengröße
-     return KartenRecords.YXAchsenKartenfeldPositivRecord
+     return KartenRecords.KartenfeldumgebungPositivRecord
    is begin
       
       ZufälligeKartensenkrechteWählen.Reset (Gen => ZufälligeKartensenkrechteGewählt);
       ZufälligeKartenwaagerechteWählen.Reset (Gen => ZufälligeKartenwaagerechteGewählt);
       
       return (ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
-                                                        First => KartenKonstanten.MinimaleKartengröße.YAchse,
+                                                        First => KartenKonstanten.MinimaleKartengröße.Senkrechte,
                                                         Last  => KartenDatentypen.SenkrechtePositiv'Last),
               
               ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
-                                                         First => KartenKonstanten.MinimaleKartengröße.XAchse,
+                                                         First => KartenKonstanten.MinimaleKartengröße.Waagerechte,
                                                          Last  => KartenDatentypen.WaagerechtePositiv'Last));
       
    end ZufälligeKartengröße;
@@ -59,21 +59,21 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       ZufälligeKartensenkrechteWählen.Reset (Gen => ZufälligeKartensenkrechteGewählt);
       ZufälligeKartenwaagerechteWählen.Reset (Gen => ZufälligeKartenwaagerechteGewählt);
       
-      KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
+      KartengeneratorVariablenLogik.Landgrößen.MinimaleSenkrechte := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
                                                                                                              First => KartenDatentypen.SenkrechtePositiv'First,
-                                                                                                             Last  => LeseWeltkarteneinstellungen.YAchse / 2);
+                                                                                                             Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
       
-      KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
-                                                                                                             First => KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse,
-                                                                                                             Last  => LeseWeltkarteneinstellungen.YAchse / 2);
+      KartengeneratorVariablenLogik.Landgrößen.MaximaleSenkrechte := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
+                                                                                                             First => KartengeneratorVariablenLogik.Landgrößen.MinimaleSenkrechte,
+                                                                                                             Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
       
-      KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
+      KartengeneratorVariablenLogik.Landgrößen.MinimaleWaagerechte := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
                                                                                                               First => KartenDatentypen.WaagerechtePositiv'First,
-                                                                                                              Last  => LeseWeltkarteneinstellungen.XAchse / 2);
+                                                                                                              Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
       
-      KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
-                                                                                                              First => KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse,
-                                                                                                              Last  => LeseWeltkarteneinstellungen.XAchse / 2);
+      KartengeneratorVariablenLogik.Landgrößen.MaximaleWaagerechte := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
+                                                                                                              First => KartengeneratorVariablenLogik.Landgrößen.MinimaleWaagerechte,
+                                                                                                              Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
       
    end ZufälligeKartenart;
    
@@ -82,16 +82,16 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    procedure ZufälligeKartenform
    is begin
       
-      ZufälligerEAchsenÜbergangWählen.Reset (Gen => ZufälligerEAchsenÜbergangGewählt);
-      ZufälligerYAchsenÜbergangWählen.Reset (Gen => ZufälligerYAchsenÜbergangGewählt);
-      ZufälligerXAchsenÜbergangWählen.Reset (Gen => ZufälligerXAchsenÜbergangGewählt);
+      ZufälligerEbeneÜbergangWählen.Reset (Gen => ZufälligerEbeneÜbergangGewählt);
+      ZufälligerSenkrechteÜbergangWählen.Reset (Gen => ZufälligerSenkrechteÜbergangGewählt);
+      ZufälligerWaagerechteÜbergangWählen.Reset (Gen => ZufälligerWaagerechteÜbergangGewählt);
             
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben := ZufälligerEAchsenÜbergangWählen.Random (Gen => ZufälligerEAchsenÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten := ZufälligerEAchsenÜbergangWählen.Random (Gen => ZufälligerEAchsenÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden := ZufälligerYAchsenÜbergangWählen.Random (Gen => ZufälligerYAchsenÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden := ZufälligerYAchsenÜbergangWählen.Random (Gen => ZufälligerYAchsenÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten := ZufälligerXAchsenÜbergangWählen.Random (Gen => ZufälligerXAchsenÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten := ZufälligerXAchsenÜbergangWählen.Random (Gen => ZufälligerXAchsenÜbergangGewählt);
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneOben := ZufälligerEbeneÜbergangWählen.Random (Gen => ZufälligerEbeneÜbergangGewählt);
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneUnten := ZufälligerEbeneÜbergangWählen.Random (Gen => ZufälligerEbeneÜbergangGewählt);
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteNorden := ZufälligerSenkrechteÜbergangWählen.Random (Gen => ZufälligerSenkrechteÜbergangGewählt);
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteSüden := ZufälligerSenkrechteÜbergangWählen.Random (Gen => ZufälligerSenkrechteÜbergangGewählt);
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteWesten := ZufälligerWaagerechteÜbergangWählen.Random (Gen => ZufälligerWaagerechteÜbergangGewählt);
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteOsten := ZufälligerWaagerechteÜbergangWählen.Random (Gen => ZufälligerWaagerechteÜbergangGewählt);
       
    end ZufälligeKartenform;
 
@@ -219,7 +219,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       
       KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum) := ZufälligeSenkrechtePolgrößenWählen.Random (Gen   => ZufälligeSenkrechtePolgrößeGewählt,
                                                                                                                                               First => KartenDatentypen.SenkrechteNatural'First,
-                                                                                                                                              Last  => LeseWeltkarteneinstellungen.YAchse / 2);
+                                                                                                                                              Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
       
       KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum));
       
@@ -227,7 +227,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       
       KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum) := ZufälligeSenkrechtePolgrößenWählen.Random (Gen   => ZufälligeSenkrechtePolgrößeGewählt,
                                                                                                                                               First => KartenDatentypen.SenkrechteNatural'First,
-                                                                                                                                              Last  => LeseWeltkarteneinstellungen.YAchse / 2);
+                                                                                                                                              Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
       
       KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum));
       
@@ -235,7 +235,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       
       KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum) := ZufälligeWaagerechtePolgrößenWählen.Random (Gen   => ZufälligeWaagerechtePolgrößeGewählt,
                                                                                                                                                 First => KartenDatentypen.WaagerechteNatural'First,
-                                                                                                                                                Last  => LeseWeltkarteneinstellungen.XAchse / 2);
+                                                                                                                                                Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
       
       KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol
         := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum));
@@ -244,7 +244,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       
       KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum) := ZufälligeWaagerechtePolgrößenWählen.Random (Gen   => ZufälligeWaagerechtePolgrößeGewählt,
                                                                                                                                                First => KartenDatentypen.WaagerechteNatural'First,
-                                                                                                                                               Last  => LeseWeltkarteneinstellungen.XAchse / 2);
+                                                                                                                                               Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
       
       KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol
         := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum));

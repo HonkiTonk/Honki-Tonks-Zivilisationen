@@ -22,15 +22,15 @@ package PassierbarkeitspruefungLogik is
    
    function PassierbarkeitPrüfenNummer
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
-                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 NeueKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 NeueKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
@@ -38,14 +38,14 @@ package PassierbarkeitspruefungLogik is
    function PassierbarkeitPrüfenID
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
       return Boolean
      with
        Pre => (
-                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 NeueKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 NeueKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
@@ -74,22 +74,22 @@ private
    
    Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Ekropaumgebung : KartenRecords.AchsenKartenfeldNaturalRecord;
-   StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   Ekropaumgebung : KartenRecords.KartenfeldNaturalRecord;
+   StadtKoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
    
    
    function IstNichtPassierbar
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
-                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 NeueKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 NeueKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
@@ -97,14 +97,14 @@ private
    function IstPassierbar
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
       return Boolean
      with
        Pre => (
-                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 NeueKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 NeueKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );

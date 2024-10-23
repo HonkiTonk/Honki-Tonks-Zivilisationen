@@ -6,7 +6,7 @@ package body StadtfeldBewertenLogik is
 
    function FeldBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
    is
@@ -32,7 +32,7 @@ package body StadtfeldBewertenLogik is
    
    function NahrungBewertung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
    is
@@ -76,7 +76,7 @@ package body StadtfeldBewertenLogik is
    
    function ProduktionBewertung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
    is
@@ -120,7 +120,7 @@ package body StadtfeldBewertenLogik is
 
    function GeldBewertung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
    is
@@ -172,7 +172,7 @@ package body StadtfeldBewertenLogik is
    
    function WissenBewertung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
    is

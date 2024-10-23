@@ -29,32 +29,32 @@ package body StrahlungswaffeEingesetztLogik is
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
-        Koordinaten.EAchse
+        Koordinaten.Ebene
       is
          when KartenKonstanten.HimmelKonstante =>
-            Strahlungshöhe.EAchseAnfang := KartenKonstanten.OberflächeKonstante;
-            Strahlungshöhe.EAchseEnde := KartenKonstanten.HimmelKonstante;
+            Strahlungshöhe.EbeneAnfang := KartenKonstanten.OberflächeKonstante;
+            Strahlungshöhe.EbeneEnde := KartenKonstanten.HimmelKonstante;
 
          when others =>
-            Strahlungshöhe.EAchseAnfang := Koordinaten.EAchse;
-            Strahlungshöhe.EAchseEnde := Koordinaten.EAchse;
+            Strahlungshöhe.EbeneAnfang := Koordinaten.Ebene;
+            Strahlungshöhe.EbeneEnde := Koordinaten.Ebene;
       end case;
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in Strahlungshöhe.EAchseAnfang .. Strahlungshöhe.EAchseEnde loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in Strahlungsbereich.YAchseAnfang .. Strahlungsbereich.YAchseEnde loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in Strahlungsbereich.XAchseAnfang .. Strahlungsbereich.XAchseEnde loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in Strahlungshöhe.EbeneAnfang .. Strahlungshöhe.EbeneEnde loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in Strahlungsbereich.SenkrechteAnfang .. Strahlungsbereich.SenkrechteEnde loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in Strahlungsbereich.WaagerechteAnfang .. Strahlungsbereich.WaagerechteEnde loop
 
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, Koordinaten.YAchse, Koordinaten.XAchse),
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EbeneSchleifenwert, Koordinaten.Senkrechte, Koordinaten.Waagerechte),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
-                 Kartenwert.EAchse
+                 Kartenwert.Ebene
                is
-                  when KartenKonstanten.LeerEAchse =>
+                  when KartenKonstanten.LeerEbene =>
                      null;
                      
                   when others =>
@@ -94,9 +94,9 @@ package body StrahlungswaffeEingesetztLogik is
                      end if;
                end case;
 
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop

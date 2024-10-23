@@ -3,7 +3,7 @@ with SchreibeWeltkarte;
 package body VerbesserungAnlegenLogik is
 
    procedure VerbesserungAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VerbesserungExtern : in AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum)
    is begin
       

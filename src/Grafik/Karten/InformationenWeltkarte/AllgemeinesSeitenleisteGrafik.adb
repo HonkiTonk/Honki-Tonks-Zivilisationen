@@ -163,7 +163,7 @@ package body AllgemeinesSeitenleisteGrafik is
    
    
    function Feldeffekte
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Unbounded_Wide_Wide_String
    is begin
       

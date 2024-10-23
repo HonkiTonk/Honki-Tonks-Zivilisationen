@@ -40,7 +40,7 @@ package LeseStadtGebaut is
    
    function Koordinaten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -49,15 +49,15 @@ package LeseStadtGebaut is
               ),
    
        Post => (
-                  Koordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  Koordinaten'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  Koordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  Koordinaten'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                 and
-                  (if Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse then Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if Koordinaten'Result.Senkrechte = KartenKonstanten.LeerSenkrechte then Koordinaten'Result.Waagerechte = KartenKonstanten.LeerWaagerechte and Koordinaten'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
+                  (if Koordinaten'Result.Waagerechte = KartenKonstanten.LeerWaagerechte then Koordinaten'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and Koordinaten'Result.Ebene = KartenKonstanten.LeerEbene)
                 and
-                  (if Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse)
+                  (if Koordinaten'Result.Ebene = KartenKonstanten.LeerEbene then Koordinaten'Result.Senkrechte = KartenKonstanten.LeerSenkrechte and Koordinaten'Result.Waagerechte = KartenKonstanten.LeerWaagerechte)
                );
    pragma Inline (Koordinaten);
    

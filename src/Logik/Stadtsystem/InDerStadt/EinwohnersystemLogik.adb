@@ -36,49 +36,49 @@ package body EinwohnersystemLogik is
          Feldfläche := Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung));
          Feldfläche.x := Feldfläche.x / GrafikKonstanten.AnzahlStadtumgebungsfelder;
          Feldfläche.y := Feldfläche.y / GrafikKonstanten.AnzahlStadtumgebungsfelder;
-         Stadtfeld.YAchse := YMausfeldPrüfen (MausachseExtern   => Mausposition.y,
+         Stadtfeld.Senkrechte := YMausfeldPrüfen (MausachseExtern   => Mausposition.y,
                                                BasiswertExtern   => Feldfläche.y,
                                                AnfangswertExtern => 0,
                                                EndwertExtern     => KartenDatentypen.Senkrechte (Positive (GrafikKonstanten.AnzahlStadtumgebungsfelder) - 1));
       end if;
       
       case
-        Stadtfeld.YAchse
+        Stadtfeld.Senkrechte
       is
          when KartenDatentypen.Senkrechte'First =>
             return False;
             
          when others =>
-            Stadtfeld.YAchse := Stadtfeld.YAchse - YKoordinatenausgleich;
-            Stadtfeld.XAchse := XMausfeldPrüfen (MausachseExtern   => Mausposition.x,
+            Stadtfeld.Senkrechte := Stadtfeld.Senkrechte - YKoordinatenausgleich;
+            Stadtfeld.Waagerechte := XMausfeldPrüfen (MausachseExtern   => Mausposition.x,
                                                   BasiswertExtern   => Feldfläche.x,
                                                   AnfangswertExtern => 0,
                                                   EndwertExtern     => KartenDatentypen.Waagerechte (Positive (GrafikKonstanten.AnzahlStadtumgebungsfelder) - 1));
       end case;
       
       case
-        Stadtfeld.XAchse
+        Stadtfeld.Waagerechte
       is
          when KartenDatentypen.Waagerechte'First =>
             return False;
             
          when others =>
-            Stadtfeld.XAchse := Stadtfeld.XAchse - XKoordinatenausgleich;
+            Stadtfeld.Waagerechte := Stadtfeld.Waagerechte - XKoordinatenausgleich;
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Stadtfeld.YAchse, Stadtfeld.XAchse),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, Stadtfeld.Senkrechte, Stadtfeld.Waagerechte),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       end case;
       
       case
-        Kartenwert.EAchse
+        Kartenwert.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return False;
             
          when others =>
             EinwohnerBelegungÄndern (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                      YAchseExtern             => Stadtfeld.YAchse,
-                                      XAchseExtern             => Stadtfeld.XAchse);
+                                      SenkrechteExtern             => Stadtfeld.Senkrechte,
+                                      WaagerechteExtern             => Stadtfeld.Waagerechte);
             return True;
       end case;
       
@@ -88,24 +88,24 @@ package body EinwohnersystemLogik is
 
    procedure EinwohnerBelegungÄndern
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YAchseExtern : in KartenDatentypen.Senkrechte;
-      XAchseExtern : in KartenDatentypen.Waagerechte)
+      SenkrechteExtern : in KartenDatentypen.Senkrechte;
+      WaagerechteExtern : in KartenDatentypen.Waagerechte)
    is begin
       
       case
         LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                 YKoordinateExtern        => YAchseExtern,
-                                                 XKoordinateExtern        => XAchseExtern)
+                                                 YKoordinateExtern        => SenkrechteExtern,
+                                                 XKoordinateExtern        => WaagerechteExtern)
       is
          when True =>
             EinwohnerEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                YAchseExtern             => YAchseExtern,
-                                XAchseExtern             => XAchseExtern);
+                                SenkrechteExtern             => SenkrechteExtern,
+                                WaagerechteExtern             => WaagerechteExtern);
                         
          when False =>
             EinwohnerZuweisen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                               YAchseExtern             => YAchseExtern,
-                               XAchseExtern             => XAchseExtern);
+                               SenkrechteExtern             => SenkrechteExtern,
+                               WaagerechteExtern             => WaagerechteExtern);
       end case;
       
    end EinwohnerBelegungÄndern;
@@ -114,13 +114,13 @@ package body EinwohnersystemLogik is
    
    procedure EinwohnerEntfernen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YAchseExtern : in KartenDatentypen.Senkrechte;
-      XAchseExtern : in KartenDatentypen.Waagerechte)
+      SenkrechteExtern : in KartenDatentypen.Senkrechte;
+      WaagerechteExtern : in KartenDatentypen.Waagerechte)
    is begin
       
       SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                   YKoordinateExtern        => YAchseExtern,
-                                                   XKoordinateExtern        => XAchseExtern,
+                                                   YKoordinateExtern        => SenkrechteExtern,
+                                                   XKoordinateExtern        => WaagerechteExtern,
                                                    BelegenEntfernenExtern   => False);
       
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
@@ -135,8 +135,8 @@ package body EinwohnersystemLogik is
    
    procedure EinwohnerZuweisen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YAchseExtern : in KartenDatentypen.Senkrechte;
-      XAchseExtern : in KartenDatentypen.Waagerechte)
+      SenkrechteExtern : in KartenDatentypen.Senkrechte;
+      WaagerechteExtern : in KartenDatentypen.Waagerechte)
    is
       use type StadtDatentypen.Einwohner;
    begin
@@ -151,8 +151,8 @@ package body EinwohnersystemLogik is
                                                           KoordinatenExtern        => Kartenwert)
       then
          SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                      YKoordinateExtern        => YAchseExtern,
-                                                      XKoordinateExtern        => XAchseExtern,
+                                                      YKoordinateExtern        => SenkrechteExtern,
+                                                      XKoordinateExtern        => WaagerechteExtern,
                                                       BelegenEntfernenExtern   => True);
          
          SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

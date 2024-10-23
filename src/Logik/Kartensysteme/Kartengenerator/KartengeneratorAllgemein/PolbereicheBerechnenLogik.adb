@@ -13,11 +13,11 @@ package body PolbereicheBerechnenLogik is
       use type KartenDatentypen.Waagerechte;
    begin
       
-      KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse := KartenKonstanten.AnfangYAchse + KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum);
-      KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse := LeseWeltkarteneinstellungen.YAchse - KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum);
+      KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte := KartenKonstanten.AnfangSenkrechte + KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum);
+      KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte := LeseWeltkarteneinstellungen.Senkrechte - KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum);
       
-      KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse := KartenKonstanten.AnfangXAchse + KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum);
-      KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse := LeseWeltkarteneinstellungen.XAchse - KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum);
+      KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte := KartenKonstanten.AnfangWaagerechte + KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum);
+      KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte := LeseWeltkarteneinstellungen.Waagerechte - KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum);
 
    end PolbereicheBerechnen;
 

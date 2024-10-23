@@ -5,7 +5,7 @@ package body SchreibeCursor is
 
    procedure KoordinatenAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell := KoordinatenExtern;
@@ -14,20 +14,20 @@ package body SchreibeCursor is
    
    
    
-   procedure EAchseAktuell
+   procedure EbeneAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      EAchseExtern : in KartenDatentypen.EbeneVorhanden)
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
-      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell.EAchse := EAchseExtern;
+      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell.Ebene := EbeneExtern;
       
-   end EAchseAktuell;
+   end EbeneAktuell;
    
    
 
    procedure KoordinatenAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt := KoordinatenExtern;
@@ -36,14 +36,14 @@ package body SchreibeCursor is
    
    
    
-   procedure EAchseAlt
+   procedure EbeneAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      EAchseExtern : in KartenDatentypen.EbeneVorhanden)
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
-      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.EAchse := EAchseExtern;
+      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.Ebene := EbeneExtern;
       
-   end EAchseAlt;
+   end EbeneAlt;
    
    
    
@@ -58,7 +58,7 @@ package body SchreibeCursor is
    
    procedure GanzerEintrag
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      EintragExtern : in KartenRecords.CursorRecord)
+      EintragExtern : in KartenRecords.ZeigerRecord)
    is begin
       
       SpielVariablen.CursorImSpiel (SpeziesExtern) := EintragExtern;

@@ -17,7 +17,7 @@ package body KIEinheitFestlegenSiedelnLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type StadtDatentypen.Städtebereich;
    begin
       

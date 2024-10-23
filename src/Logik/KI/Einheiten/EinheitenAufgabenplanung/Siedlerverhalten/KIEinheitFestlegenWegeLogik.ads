@@ -15,14 +15,14 @@ package KIEinheitFestlegenWegeLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    function WegAnlegbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
@@ -31,7 +31,7 @@ package KIEinheitFestlegenWegeLogik is
    
    function StädteVerbinden
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -40,13 +40,13 @@ package KIEinheitFestlegenWegeLogik is
               ),
          
        Post => (
-                  StädteVerbinden'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  StädteVerbinden'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  StädteVerbinden'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  StädteVerbinden'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
    
 private
    
-   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Koordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end KIEinheitFestlegenWegeLogik;

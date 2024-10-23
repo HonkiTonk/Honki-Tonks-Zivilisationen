@@ -6,11 +6,11 @@ package body TransporterSuchenLogik is
 
    function KoordinatenTransporterMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return EinheitenDatentypen.Einheitenbereich
    is
       use type EinheitenDatentypen.Transport_Enum;
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type EinheitenDatentypen.EinheitenID;
    begin
       

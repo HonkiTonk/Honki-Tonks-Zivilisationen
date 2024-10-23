@@ -29,8 +29,8 @@ private
          
    NutzbarerBereich : KartenRecords.UmgebungDreiRecord;
    
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
    type FeldRecord is record
       

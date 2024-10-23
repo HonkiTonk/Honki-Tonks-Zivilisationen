@@ -71,7 +71,7 @@ package body KartenformmenueGrafik is
       is
          when EbeneOben =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneOben = KartenartDatentypen.Ebene_Übergangslos_Enum
             then
                WelcherZusatztext := KeinÜbergang;
                
@@ -81,7 +81,7 @@ package body KartenformmenueGrafik is
             
          when EbeneUnten =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneUnten = KartenartDatentypen.Ebene_Übergangslos_Enum
             then
                WelcherZusatztext := KeinÜbergang;
                
@@ -93,17 +93,17 @@ package body KartenformmenueGrafik is
 
          when Norden =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
             then
                WelcherZusatztext := KeinÜbergang;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteNorden = KartenartDatentypen.Senkrechte_Übergang_Enum
             then
                WelcherZusatztext := Übergang;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteNorden = KartenartDatentypen.Senkrechte_Rückwärts_Verschobener_Übergang_Enum
             then
                WelcherZusatztext := RückwärtsVerschobenerÜbergang;
 
@@ -113,17 +113,17 @@ package body KartenformmenueGrafik is
 
          when Süden =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
             then
                WelcherZusatztext := KeinÜbergang;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteSüden = KartenartDatentypen.Senkrechte_Übergang_Enum
             then
                WelcherZusatztext := Übergang;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteSüden = KartenartDatentypen.Senkrechte_Rückwärts_Verschobener_Übergang_Enum
             then
                WelcherZusatztext := RückwärtsVerschobenerÜbergang;
 
@@ -133,17 +133,17 @@ package body KartenformmenueGrafik is
 
          when Westen =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteWesten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
             then
                WelcherZusatztext := KeinÜbergang;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteWesten = KartenartDatentypen.Waagerechte_Übergang_Enum
             then
                WelcherZusatztext := Übergang;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteWesten = KartenartDatentypen.Waagerechte_Rückwärts_Verschobener_Übergang_Enum
             then
                WelcherZusatztext := RückwärtsVerschobenerÜbergang;
 
@@ -153,17 +153,17 @@ package body KartenformmenueGrafik is
 
          when Osten =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
             then
                WelcherZusatztext := KeinÜbergang;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteOsten = KartenartDatentypen.Waagerechte_Übergang_Enum
             then
                WelcherZusatztext := Übergang;
 
             elsif
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
+              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteOsten = KartenartDatentypen.Waagerechte_Rückwärts_Verschobener_Übergang_Enum
             then
                WelcherZusatztext := RückwärtsVerschobenerÜbergang;
 

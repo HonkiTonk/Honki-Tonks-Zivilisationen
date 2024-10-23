@@ -29,9 +29,9 @@ package body CursorplatzierungGrafik is
    begin
       
       case
-        LeseGrafiktask.GeheZu.EAchse
+        LeseGrafiktask.GeheZu.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                        point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                        view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
@@ -63,10 +63,10 @@ package body CursorplatzierungGrafik is
            or
              Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y) < Float (KartenDatentypen.Senkrechte'First))
       then
-         Kartenänderung.YAchse := -Sichtbereich.YAchse;
+         Kartenänderung.Senkrechte := -Sichtbereich.Senkrechte;
          
       else
-         Kartenänderung.YAchse := -Sichtbereich.YAchse + KartenDatentypen.Senkrechte (Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y));
+         Kartenänderung.Senkrechte := -Sichtbereich.Senkrechte + KartenDatentypen.Senkrechte (Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y));
       end if;
       
       if
@@ -76,20 +76,20 @@ package body CursorplatzierungGrafik is
            or
              Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x) < Float (KartenDatentypen.Senkrechte'First))
       then
-         Kartenänderung.XAchse := -Sichtbereich.XAchse;
+         Kartenänderung.Waagerechte := -Sichtbereich.Waagerechte;
          
       else
-         Kartenänderung.XAchse := -Sichtbereich.XAchse + KartenDatentypen.Waagerechte (Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x));
+         Kartenänderung.Waagerechte := -Sichtbereich.Waagerechte + KartenDatentypen.Waagerechte (Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x));
       end if;
       
       KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern),
-                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Kartenänderung.YAchse, Kartenänderung.XAchse),
+                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, Kartenänderung.Senkrechte, Kartenänderung.Waagerechte),
                                                                                                 TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       
       case
-        KartenWert.EAchse
+        KartenWert.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             null;
                      
          when others =>

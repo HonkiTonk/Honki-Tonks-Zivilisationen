@@ -13,7 +13,7 @@ package body StadtSuchenLogik is
 
    function KoordinatenStadtMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return StadtDatentypen.Städtebereich
    is
       use type SpeziesDatentypen.Spezies_Enum;
@@ -43,7 +43,7 @@ package body StadtSuchenLogik is
 
 
    function KoordinatenStadtOhneSpeziesSuchen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return StadtRecords.SpeziesStadtnummerRecord
    is begin
       
@@ -63,7 +63,7 @@ package body StadtSuchenLogik is
    
    function KoordinatenStadtOhneSpezielleSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return StadtRecords.SpeziesStadtnummerRecord
    is
       use type SpeziesDatentypen.Spezies_Enum;

@@ -23,9 +23,9 @@ package body CursorbewegungLogik is
       
       -- Ist nötig, da sonst bei schnellem Scrollen die Ebene nicht korrekt gewechselt wird.
       case
-        LeseGrafiktask.GeheZu.XAchse
+        LeseGrafiktask.GeheZu.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             BasisKoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
             
          when others =>
@@ -33,18 +33,18 @@ package body CursorbewegungLogik is
       end case;
       
       if
-        BasisKoordinaten.EAchse = KartenKonstanten.WeltraumKonstante
+        BasisKoordinaten.Ebene = KartenKonstanten.WeltraumKonstante
         and
           RichtungExtern = TastenbelegungDatentypen.Ebene_Hoch_Enum
       then
-         KartenWert := (KartenKonstanten.PlaneteninneresKonstante, BasisKoordinaten.YAchse, BasisKoordinaten.XAchse);
+         KartenWert := (KartenKonstanten.PlaneteninneresKonstante, BasisKoordinaten.Senkrechte, BasisKoordinaten.Waagerechte);
            
       elsif
-        BasisKoordinaten.EAchse = KartenKonstanten.PlaneteninneresKonstante
+        BasisKoordinaten.Ebene = KartenKonstanten.PlaneteninneresKonstante
         and
           RichtungExtern = TastenbelegungDatentypen.Ebene_Runter_Enum
       then
-         KartenWert := (KartenKonstanten.WeltraumKonstante, BasisKoordinaten.YAchse, BasisKoordinaten.XAchse);
+         KartenWert := (KartenKonstanten.WeltraumKonstante, BasisKoordinaten.Senkrechte, BasisKoordinaten.Waagerechte);
          
       else
          KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => BasisKoordinaten,
@@ -53,9 +53,9 @@ package body CursorbewegungLogik is
       end if;
       
       case
-        KartenWert.XAchse
+        KartenWert.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             null;
                
          when others =>
@@ -69,8 +69,8 @@ package body CursorbewegungLogik is
    procedure GeheZu
    is begin
       
-      KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Integer (KartenKonstanten.AnfangEAchse),
-                                                            ZahlenMaximumExtern => Integer (KartenKonstanten.EndeEAchse),
+      KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Integer (KartenKonstanten.AnfangEbene),
+                                                            ZahlenMaximumExtern => Integer (KartenKonstanten.EndeEbene),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheEbene);
       
       case
@@ -80,9 +80,9 @@ package body CursorbewegungLogik is
             return;
          
          when True =>
-            NeueKoordinate.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.AnfangYAchse),
-                                                                  ZahlenMaximumExtern => Positive (LeseWeltkarteneinstellungen.YAchse),
+            NeueKoordinate.Ebene := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
+            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.AnfangSenkrechte),
+                                                                  ZahlenMaximumExtern => Positive (LeseWeltkarteneinstellungen.Senkrechte),
                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheYPosition);
       end case;
       
@@ -93,9 +93,9 @@ package body CursorbewegungLogik is
             return;
          
          when True =>
-            NeueKoordinate.YAchse := KartenDatentypen.SenkrechtePositiv (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.AnfangXAchse),
-                                                                  ZahlenMaximumExtern => Positive (LeseWeltkarteneinstellungen.XAchse),
+            NeueKoordinate.Senkrechte := KartenDatentypen.SenkrechtePositiv (KoordinatenPunkt.EingegebeneZahl);
+            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.AnfangWaagerechte),
+                                                                  ZahlenMaximumExtern => Positive (LeseWeltkarteneinstellungen.Waagerechte),
                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheXPosition);
       end case;
 
@@ -106,7 +106,7 @@ package body CursorbewegungLogik is
             null;
          
          when True =>
-            NeueKoordinate.XAchse := KartenDatentypen.WaagerechtePositiv (KoordinatenPunkt.EingegebeneZahl);
+            NeueKoordinate.Waagerechte := KartenDatentypen.WaagerechtePositiv (KoordinatenPunkt.EingegebeneZahl);
             SchreibeGrafiktask.GeheZu (KoordinatenExtern => NeueKoordinate);
       end case;
       

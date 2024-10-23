@@ -15,15 +15,15 @@ package KartenartDatentypen is
    
    
    type Kartenform_Enum is (
-                            Karte_E_Kein_Übergang_Enum, Karte_E_Übergang_Enum,
-                            Karte_Y_Kein_Übergang_Enum, Karte_Y_Übergang_Enum, Karte_Y_Rückwärts_Verschobener_Übergang_Enum, Karte_Y_Verschobener_Übergang_Enum,
-                            Karte_X_Kein_Übergang_Enum, Karte_X_Übergang_Enum, Karte_X_Rückwärts_Verschobener_Übergang_Enum, Karte_X_Verschobener_Übergang_Enum
+                            Ebene_Übergangslos_Enum, Ebene_Übergang_Enum,
+                            Senkrechte_Übergangslos_Enum, Senkrechte_Übergang_Enum, Senkrechte_Rückwärts_Verschobener_Übergang_Enum, Senkrechte_Verschobener_Übergang_Enum,
+                            Waagerechte_Übergangslos_Enum, Waagerechte_Übergang_Enum, Waagerechte_Rückwärts_Verschobener_Übergang_Enum, Waagerechte_Verschobener_Übergang_Enum
                            ); 
    pragma Ordered (Kartenform_Enum);
    
-   subtype Kartenform_E_Einstellbar_Enum is Kartenform_Enum range Karte_E_Kein_Übergang_Enum .. Karte_E_Übergang_Enum;
-   subtype Kartenform_Y_Einstellbar_Enum is Kartenform_Enum range Karte_Y_Kein_Übergang_Enum .. Karte_Y_Verschobener_Übergang_Enum;
-   subtype Kartenform_X_Einstellbar_Enum is Kartenform_Enum range Karte_X_Kein_Übergang_Enum .. Karte_X_Verschobener_Übergang_Enum;
+   subtype Kartenform_Ebene_Einstellbar_Enum is Kartenform_Enum range Ebene_Übergangslos_Enum .. Ebene_Übergang_Enum;
+   subtype Kartenform_Senkrechte_Einstellbar_Enum is Kartenform_Enum range Senkrechte_Übergangslos_Enum .. Senkrechte_Verschobener_Übergang_Enum;
+   subtype Kartenform_Waagerechte_Einstellbar_Enum is Kartenform_Enum range Waagerechte_Übergangslos_Enum .. Waagerechte_Verschobener_Übergang_Enum;
    
    
    

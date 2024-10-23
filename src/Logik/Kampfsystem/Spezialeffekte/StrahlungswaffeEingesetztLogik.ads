@@ -27,7 +27,7 @@ private
    Strahlungsbereich : KartenRecords.EffektbereichRecord;
    Strahlungshöhe : KartenRecords.EffekthöheRecord;
 
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
+   Koordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end StrahlungswaffeEingesetztLogik;

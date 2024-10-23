@@ -39,9 +39,9 @@ private
    SichtweiteEinheit : KartenRecords.SichtweitePositiveRecord;
    SichtweiteStadt : KartenRecords.SichtweitePositiveRecord;
 
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   Einheitenkoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;

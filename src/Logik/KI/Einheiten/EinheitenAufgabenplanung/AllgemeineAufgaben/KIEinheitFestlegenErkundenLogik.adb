@@ -17,9 +17,9 @@ package body KIEinheitFestlegenErkundenLogik is
                                                   ZielartExtern              => KIDatentypen.Erkunden_Enum);
       
       case
-        Kartenwert.XAchse
+        Kartenwert.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             return False;
             
          when others =>

@@ -10,7 +10,7 @@ with TexturenfelderVariablenGrafik;
 package body WeltkarteFeldZeichnenGrafik is
 
    procedure KartenfeldZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
    is begin
@@ -40,7 +40,7 @@ package body WeltkarteFeldZeichnenGrafik is
    
    
    procedure FlussZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -64,7 +64,7 @@ package body WeltkarteFeldZeichnenGrafik is
    
    
    procedure RessourceZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       

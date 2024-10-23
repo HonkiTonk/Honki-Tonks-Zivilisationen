@@ -23,7 +23,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       ZielVerbesserungKoordinaten := StädteDurchgehen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -48,15 +48,15 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    function StädteDurchgehen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is begin
             
       VerbesserungAnlegen := DirekteUmgebung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
-        VerbesserungAnlegen.XAchse
+        VerbesserungAnlegen.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             VerbesserungAnlegen := KIEinheitFestlegenWegeLogik.StädteVerbinden (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
          when others =>
@@ -64,9 +64,9 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       end case;
       
       case
-        VerbesserungAnlegen.XAchse
+        VerbesserungAnlegen.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             VerbesserungAnlegen := KartenRecordKonstanten.LeerKoordinate;
             
          when others =>
@@ -88,9 +88,9 @@ package body KIEinheitFestlegenVerbesserungenLogik is
          end case;
          
          case
-           VerbesserungAnlegen.XAchse
+           VerbesserungAnlegen.Waagerechte
          is
-            when KartenKonstanten.LeerXAchse =>
+            when KartenKonstanten.LeerWaagerechte =>
                null;
                
             when others =>
@@ -107,24 +107,24 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    function DirekteUmgebung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is begin
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
                VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitKoordinaten,
-                                                                                                                      ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                      ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                if
-                 VerbesserungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
+                 VerbesserungKoordinaten.Waagerechte = KartenKonstanten.LeerWaagerechte
                then
                   null;
                      
@@ -138,9 +138,9 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                   null;
                end if;
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
       return KartenRecordKonstanten.LeerKoordinate;
       
@@ -151,33 +151,34 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    function StadtumgebungErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is begin
       
       Stadtumgebung := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
             
             -- Da die Stadt selbst als Verbesserung zählt, sollte diese Prüfung problemlos weg können, oder? äöü
             -- Um das zu testen die Prüfung mal ausgeklammert, wenn alles weiterhin funktioniert dann kann das ja weg. äöü
             -- if
-            --   YAchseSchleifenwert = 0
+            --   SenkrechteSchleifenwert = 0
             --   and
-            --    XAchseSchleifenwert = 0
+            --    WaagerechteSchleifenwert = 0
             -- then
             --   null;
                
             -- else
-            VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
-                                                                                                                   ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                   TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+            VerbesserungKoordinaten
+              := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
+                                                                                             ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                             TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              VerbesserungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
+              VerbesserungKoordinaten.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                   
@@ -192,8 +193,8 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             end if;
             -- end if;
                      
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return KartenRecordKonstanten.LeerKoordinate;
       
@@ -202,7 +203,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    
    function AllgemeineVerbesserungenPrüfungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
@@ -254,7 +255,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
 
 
    function VerbesserungErsetzen
-   -- (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+   -- (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      return Boolean
    is begin
    

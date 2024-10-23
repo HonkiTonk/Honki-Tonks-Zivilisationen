@@ -17,7 +17,7 @@ package EinheitenErzeugenEntfernenLogik is
    use type KartenDatentypen.Waagerechte;
 
    procedure EinheitErzeugen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -25,9 +25,9 @@ package EinheitenErzeugenEntfernenLogik is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
    procedure EinheitEntfernen

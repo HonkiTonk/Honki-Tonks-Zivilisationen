@@ -12,18 +12,18 @@ with FehlermeldungssystemZusatzinformationen;
 package body SchreibeWeltkarte is
    
    procedure Basisgrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Basisgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Basisgrund := GrundExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Basisgrund := GrundExtern;
       end case;
       
    end Basisgrund;
@@ -31,18 +31,18 @@ package body SchreibeWeltkarte is
    
 
    procedure Zusatzgrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Zusatzgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Zusatzgrund := GrundExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Zusatzgrund := GrundExtern;
       end case;
       
    end Zusatzgrund;
@@ -50,19 +50,19 @@ package body SchreibeWeltkarte is
    
    
    procedure Gesamtgrund
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrundExtern : in KartenRecords.KartengrundRecord)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Gesamtgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Basisgrund := GrundExtern.Basisgrund;
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Zusatzgrund := GrundExtern.Zusatzgrund;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Basisgrund := GrundExtern.Basisgrund;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Zusatzgrund := GrundExtern.Zusatzgrund;
       end case;
       
    end Gesamtgrund;
@@ -70,18 +70,18 @@ package body SchreibeWeltkarte is
    
    
    procedure Feldeffekt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldeffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Feldeffekt: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte (FeldeffektExtern) := True;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Effekte (FeldeffektExtern) := True;
       end case;
       
    end Feldeffekt;
@@ -89,18 +89,18 @@ package body SchreibeWeltkarte is
    
    
    procedure AlleFeldeffekte
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldeffekteExtern : in KartenRecords.FeldeffektArray)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.AlleFeldeffekte: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte := FeldeffekteExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Effekte := FeldeffekteExtern;
       end case;
       
    end AlleFeldeffekte;
@@ -108,19 +108,19 @@ package body SchreibeWeltkarte is
    
    
    procedure Sichtbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SichtbarExtern : in Boolean)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Sichtbar: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (SpeziesExtern) := SichtbarExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Sichtbar (SpeziesExtern) := SichtbarExtern;
       end case;
         
    end Sichtbar;
@@ -128,18 +128,18 @@ package body SchreibeWeltkarte is
    
    
    procedure GesamteSichtbarkeit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SichtbarkeitExtern : in KartenRecords.SichtbarkeitArray)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.GesamteSichtbarkeit: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar := SichtbarkeitExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Sichtbar := SichtbarkeitExtern;
       end case;
       
    end GesamteSichtbarkeit;
@@ -147,18 +147,18 @@ package body SchreibeWeltkarte is
    
    
    procedure Fluss
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Fluss: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := FlussExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Fluss := FlussExtern;
       end case;
       
    end Fluss;
@@ -166,18 +166,18 @@ package body SchreibeWeltkarte is
    
    
    procedure Ressource
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Ressource: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Ressource := RessourceExtern;
       end case;
       
    end Ressource;
@@ -185,18 +185,18 @@ package body SchreibeWeltkarte is
    
    
    procedure Weg
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Weg: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg := WegExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Weg := WegExtern;
       end case;
       
    end Weg;
@@ -204,18 +204,18 @@ package body SchreibeWeltkarte is
    
    
    procedure Verbesserung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Verbesserung: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung := VerbesserungExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserung := VerbesserungExtern;
       end case;
       
    end Verbesserung;
@@ -223,18 +223,18 @@ package body SchreibeWeltkarte is
    
    
    procedure BelegterGrund
-     (KoordinatenExtern : KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : KartenRecords.KartenfeldNaturalRecord;
       BelegterGrundExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung := BelegterGrundExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung := BelegterGrundExtern;
       end case;
       
    end BelegterGrund;
@@ -242,7 +242,7 @@ package body SchreibeWeltkarte is
    
    
    procedure EinheitSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EinheitentauschExtern : in Boolean)
    is
@@ -251,7 +251,7 @@ package body SchreibeWeltkarte is
    begin
             
       if
-        KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse
+        KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene
       then
          null;
          
@@ -263,7 +263,7 @@ package body SchreibeWeltkarte is
          null;
          
       else
-         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitSpeziesNummerExtern;
+         Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Einheit := EinheitSpeziesNummerExtern;
       end if;
       
    end EinheitSchreiben;
@@ -271,7 +271,7 @@ package body SchreibeWeltkarte is
    
    
    procedure EinheitEntfernen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;
@@ -285,7 +285,7 @@ package body SchreibeWeltkarte is
         or
           EinheitSpeziesNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
           or
-            KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse
+            KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene
       then
          null;
          
@@ -295,7 +295,7 @@ package body SchreibeWeltkarte is
          null;
          
       else
-         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitenKonstanten.LeerEinheit;
+         Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Einheit := EinheitenKonstanten.LeerEinheit;
       end if;
       
    end EinheitEntfernen;
@@ -313,10 +313,10 @@ package body SchreibeWeltkarte is
    
    procedure GanzerEintrag
      (EintragExtern : in WeltkarteRecords.WeltkarteRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) := EintragExtern;
+      Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte) := EintragExtern;
       
    end GanzerEintrag;
    

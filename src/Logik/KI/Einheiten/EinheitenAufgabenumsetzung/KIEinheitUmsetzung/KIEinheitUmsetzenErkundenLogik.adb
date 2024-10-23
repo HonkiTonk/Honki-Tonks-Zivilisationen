@@ -13,7 +13,7 @@ package body KIEinheitUmsetzenErkundenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type EinheitenDatentypen.EinheitenID;
    begin
       

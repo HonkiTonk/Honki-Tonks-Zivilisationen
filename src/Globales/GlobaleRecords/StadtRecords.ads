@@ -90,7 +90,7 @@ package StadtRecords is
    type StadtGebautRecord is record
       
       ID : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
-      KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenAktuell : KartenRecords.KartenfeldNaturalRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
       Nahrungsmittel : ProduktionDatentypen.Stadtproduktion;

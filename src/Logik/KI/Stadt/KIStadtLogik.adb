@@ -173,19 +173,19 @@ package body KIStadtLogik is
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Umgebungsgröße := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Umgebungsgröße.Senkrechte .. Umgebungsgröße.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Umgebungsgröße.Waagerechte .. Umgebungsgröße.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -Umgebungsgröße.Senkrechte .. Umgebungsgröße.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -Umgebungsgröße.Waagerechte .. Umgebungsgröße.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             case
-              KartenWert.XAchse
+              KartenWert.Waagerechte
             is
-               when KartenKonstanten.LeerXAchse =>
+               when KartenKonstanten.LeerWaagerechte =>
                   null;
                   
                when others =>
@@ -218,8 +218,8 @@ package body KIStadtLogik is
                   end if;
             end case;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return False;
       

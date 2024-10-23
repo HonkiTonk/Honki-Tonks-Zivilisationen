@@ -31,10 +31,10 @@ private
    NeueBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
    AktuelleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Bewegungsschritt : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   Bewegungsschritt : KartenRecords.KartenfeldNaturalRecord;
    
-   type RichtungArray is array (BefehleDatentypen.Einheiten_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
+   type RichtungArray is array (BefehleDatentypen.Einheiten_Bewegung_Enum'Range) of KartenRecords.KartenfeldRecord;
    Richtung : constant RichtungArray := (
                                          BefehleDatentypen.Oben_Enum         => KartenRecordKonstanten.Nordbewegung,
                                          BefehleDatentypen.Links_Enum        => KartenRecordKonstanten.Westbewegung,

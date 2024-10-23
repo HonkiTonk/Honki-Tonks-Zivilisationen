@@ -29,7 +29,7 @@ with TexturenfelderVariablenGrafik;
 package body WeltkarteZusatzZeichnenGrafik is
 
    procedure WegZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -53,7 +53,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    
    
    procedure VerbesserungZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
@@ -70,7 +70,7 @@ package body WeltkarteZusatzZeichnenGrafik is
             
          when KartenverbesserungDatentypen.Verbesserung_Städte_Enum =>
             if
-              KoordinatenExtern.EAchse = EbeneExtern
+              KoordinatenExtern.Ebene = EbeneExtern
             then
                StadtnameAnzeigen (KoordinatenExtern => KoordinatenExtern,
                                   PositionExtern    => PositionExtern,
@@ -94,7 +94,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    
    
    procedure AnzeigeFeldbesitzer
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -117,7 +117,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    
    
    procedure RahmenBesetztesFeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
@@ -136,7 +136,7 @@ package body WeltkarteZusatzZeichnenGrafik is
                                                                                                          TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
                
          if
-           KartenWertRahmen.XAchse = KartenKonstanten.LeerXAchse
+           KartenWertRahmen.Waagerechte = KartenKonstanten.LeerWaagerechte
          then
             RahmenZeichnen (WelcheRichtungExtern => UmgebungSchleifenwert,
                             PositionExtern       => PositionExtern,
@@ -194,7 +194,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    
    
    procedure StadtnameAnzeigen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       ObenUntenExtern : in Boolean)
    is
@@ -202,11 +202,11 @@ package body WeltkarteZusatzZeichnenGrafik is
    begin
       
       if
-        KoordinatenExtern.YAchse = KartenDatentypen.SenkrechtePositiv'First
+        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechtePositiv'First
         and
           ObenUntenExtern
           and
-            LeseWeltkarteneinstellungen.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+            LeseWeltkarteneinstellungen.SenkrechteNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          return;
          
@@ -271,7 +271,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    
    -- Das später auch noch über die Ebenen hinweg sichtbar machen? äöü
    procedure AnzeigeFeldeffekt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       

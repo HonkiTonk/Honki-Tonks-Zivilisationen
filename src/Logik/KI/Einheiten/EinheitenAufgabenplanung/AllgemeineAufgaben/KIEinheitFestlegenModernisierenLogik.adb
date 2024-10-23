@@ -40,9 +40,9 @@ package body KIEinheitFestlegenModernisierenLogik is
       end case;
             
       case
-        PlatzGefunden.XAchse
+        PlatzGefunden.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             null;
             
          when others =>
@@ -67,7 +67,7 @@ package body KIEinheitFestlegenModernisierenLogik is
                                                         EinheitNummerExtern      => EinheitSpeziesNummerExtern.Nummer);
                
                if
-                 PlatzGefunden.XAchse = KartenKonstanten.LeerXAchse
+                 PlatzGefunden.Waagerechte = KartenKonstanten.LeerWaagerechte
                then
                   null;
                   
@@ -79,9 +79,9 @@ package body KIEinheitFestlegenModernisierenLogik is
       end loop StadtSchleife;
       
       case
-        PlatzGefunden.XAchse
+        PlatzGefunden.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             return False;
             
          when others =>
@@ -100,7 +100,7 @@ package body KIEinheitFestlegenModernisierenLogik is
    function EinheitVerbessernPlatz
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is
       use type KartenDatentypen.Senkrechte;
       use type KartenDatentypen.Waagerechte;
@@ -110,17 +110,17 @@ package body KIEinheitFestlegenModernisierenLogik is
       Umgebung := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Umgebung.Senkrechte .. Umgebung.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Umgebung.Waagerechte .. Umgebung.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -Umgebung.Senkrechte .. Umgebung.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -Umgebung.Waagerechte .. Umgebung.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -140,8 +140,8 @@ package body KIEinheitFestlegenModernisierenLogik is
                return KartenWert;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return KartenRecordKonstanten.LeerKoordinate;
       

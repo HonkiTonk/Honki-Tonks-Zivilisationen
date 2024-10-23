@@ -15,23 +15,23 @@ package ZufallsgeneratorenStartkoordinatenLogik is
      
    function Startkoordinaten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               ),
            
        Post => (
-                  Startkoordinaten'Result.EAchse in KartenDatentypen.EbeneUnterflächeOberfläche'Range
+                  Startkoordinaten'Result.Ebene in KartenDatentypen.EbeneUnterflächeOberfläche'Range
                 and
-                  Startkoordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  Startkoordinaten'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  Startkoordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  Startkoordinaten'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
 private
    
-   Startkoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Startkoordinate : KartenRecords.KartenfeldNaturalRecord;
 
    package YKartenpunktWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);
    package XKartenpunktWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.WaagerechtePositiv);

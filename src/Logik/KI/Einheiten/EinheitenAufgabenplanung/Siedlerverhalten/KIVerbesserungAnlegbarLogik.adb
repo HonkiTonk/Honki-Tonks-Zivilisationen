@@ -12,7 +12,7 @@ with AufgabenLogik;
 package body KIVerbesserungAnlegbarLogik is
 
    function VerbesserungAnlegbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
@@ -75,7 +75,7 @@ package body KIVerbesserungAnlegbarLogik is
    
    
    function MineAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
@@ -122,7 +122,7 @@ package body KIVerbesserungAnlegbarLogik is
    
    
    function FestungAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Boolean
@@ -159,7 +159,7 @@ package body KIVerbesserungAnlegbarLogik is
    
    
    function FarmAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin

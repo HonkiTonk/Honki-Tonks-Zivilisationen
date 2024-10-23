@@ -124,18 +124,18 @@ package body DebugmenueLogik is
    is begin
       
       EbeneSchleife:
-      for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
+      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
             
-               SchreibeWeltkarte.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+               SchreibeWeltkarte.Sichtbar (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                            SpeziesExtern     => SpeziesExtern,
                                            SichtbarExtern    => True);
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
       end loop EbeneSchleife;
       
       DiplomatischenStatusÄndern (NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum,

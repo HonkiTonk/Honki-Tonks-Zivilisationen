@@ -13,8 +13,8 @@ package body KIStadtSuchenLogik is
    
    function NähesteFeindlicheStadtSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      AnfangKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+      return KartenRecords.KartenfeldNaturalRecord
    is begin
    
       GefundeneStadt := StadtSuchen (SpeziesExtern           => SpeziesExtern,
@@ -36,7 +36,7 @@ package body KIStadtSuchenLogik is
    
    function StadtSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      AnfangKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return StadtDatentypen.Städtebereich
    is
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
@@ -59,14 +59,14 @@ package body KIStadtSuchenLogik is
             AktuelleStadt := StadtSchleifenwert;
             Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadt));
             
-            Entfernung := Natural (abs (AnfangKoordinatenExtern.EAchse - Stadtkoordinaten.EAchse)) + Natural (abs (AnfangKoordinatenExtern.YAchse - Stadtkoordinaten.YAchse))
-              + Natural (abs (AnfangKoordinatenExtern.XAchse - Stadtkoordinaten.XAchse));
+            Entfernung := Natural (abs (AnfangKoordinatenExtern.Ebene - Stadtkoordinaten.Ebene)) + Natural (abs (AnfangKoordinatenExtern.Senkrechte - Stadtkoordinaten.Senkrechte))
+              + Natural (abs (AnfangKoordinatenExtern.Waagerechte - Stadtkoordinaten.Waagerechte));
             
          else
             Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
             
-            EntfernungNeu := Natural (abs (AnfangKoordinatenExtern.EAchse - Stadtkoordinaten.EAchse)) + Natural (abs (AnfangKoordinatenExtern.YAchse - Stadtkoordinaten.YAchse))
-              + Natural (abs (AnfangKoordinatenExtern.XAchse - Stadtkoordinaten.XAchse));
+            EntfernungNeu := Natural (abs (AnfangKoordinatenExtern.Ebene - Stadtkoordinaten.Ebene)) + Natural (abs (AnfangKoordinatenExtern.Senkrechte - Stadtkoordinaten.Senkrechte))
+              + Natural (abs (AnfangKoordinatenExtern.Waagerechte - Stadtkoordinaten.Waagerechte));
             
             if
               Entfernung > EntfernungNeu
@@ -88,7 +88,7 @@ package body KIStadtSuchenLogik is
    
    function UnbewachteStadtSuchen
      (FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin

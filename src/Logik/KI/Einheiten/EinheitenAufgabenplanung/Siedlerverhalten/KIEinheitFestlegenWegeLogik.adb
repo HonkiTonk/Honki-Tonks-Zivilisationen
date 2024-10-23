@@ -18,7 +18,7 @@ with KIStaedteverbindungssystemLogik;
 package body KIEinheitFestlegenWegeLogik is
 
    function WegAnlegbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
@@ -44,15 +44,15 @@ package body KIEinheitFestlegenWegeLogik is
    
    function StädteVerbinden
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       case
-        KIVariablen.Stadtverbindung (EinheitSpeziesNummerExtern.Spezies, KIKonstanten.VerbindungsplanVorhanden).XAchse
+        KIVariablen.Stadtverbindung (EinheitSpeziesNummerExtern.Spezies, KIKonstanten.VerbindungsplanVorhanden).Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             return KartenRecordKonstanten.LeerKoordinate;
             
          when others =>

@@ -45,17 +45,17 @@ package body StadtumgebungGrafik is
       
       AktuellePosition := GrafikRecordKonstanten.Nullposition;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtauswahlExtern.Koordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
-              KartenWert.EAchse = KartenKonstanten.LeerEAchse
+              KartenWert.Ebene = KartenKonstanten.LeerEbene
             then
                null;
                
@@ -67,7 +67,7 @@ package body StadtumgebungGrafik is
                
             else
                case
-                 StadtauswahlExtern.UmgebungBewirtschaftung (YAchseSchleifenwert, XAchseSchleifenwert)
+                 StadtauswahlExtern.UmgebungBewirtschaftung (SenkrechteSchleifenwert, WaagerechteSchleifenwert)
                is
                   when True =>
                      FeldBewirtschaftet := True;
@@ -85,18 +85,18 @@ package body StadtumgebungGrafik is
             
             AktuellePosition.x := AktuellePosition.x + Feldgröße.x;
             
-         end loop XAchseSchleife;
+         end loop WaagerechteSchleife;
          
          AktuellePosition := (GrafikRecordKonstanten.Nullposition.x, AktuellePosition.y + Feldgröße.y);
          
-      end loop YAchseSchleife;
+      end loop SenkrechteSchleife;
       
    end Stadtumgebung;
    
    
    
    procedure DarstellungUmgebung
-     (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KarteKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -154,7 +154,7 @@ package body StadtumgebungGrafik is
    
    
    procedure Wirtschaftsinformationen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
@@ -221,7 +221,7 @@ package body StadtumgebungGrafik is
    
    -- Hier auch noch Einheiten zeichnen lassen? äöü
    procedure AnzeigeLandschaft
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
@@ -255,7 +255,7 @@ package body StadtumgebungGrafik is
    
    
    procedure KartenfeldZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
@@ -285,7 +285,7 @@ package body StadtumgebungGrafik is
    
    
    procedure FlussZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
@@ -310,7 +310,7 @@ package body StadtumgebungGrafik is
    
       
    procedure RessourceZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
@@ -335,7 +335,7 @@ package body StadtumgebungGrafik is
    
       
    procedure WegZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
@@ -360,7 +360,7 @@ package body StadtumgebungGrafik is
    
    
    procedure VerbesserungZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
@@ -385,7 +385,7 @@ package body StadtumgebungGrafik is
    
    
    procedure FeldeffektZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin

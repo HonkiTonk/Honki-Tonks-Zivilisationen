@@ -25,11 +25,11 @@ private
    
    KoordinatenPunkt : SystemRecords.ZahlenEingabeRecord;
 
-   NeueKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   BasisKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   NeueKoordinate : KartenRecords.KartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   BasisKoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
-   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
+   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum'Range) of KartenRecords.KartenfeldRecord;
    Richtung : constant RichtungArray := (
                                          TastenbelegungDatentypen.Auswählen_Enum    => KartenRecordKonstanten.LeerKoordinatenänderung,
                                          

@@ -31,11 +31,11 @@ private
    SpeziesMenschSchnellstart : SpeziesDatentypen.Spezies_Vorhanden_Enum;
    SpeziesKISchnellstart : SpeziesDatentypen.Spezies_Vorhanden_Enum;
    
-   GezogeneKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Zusatzkoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
+   GezogeneKoordinate : KartenRecords.KartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   Zusatzkoordinate : KartenRecords.KartenfeldNaturalRecord;
       
-   type KoordinatenArray is array (1 .. 2) of KartenRecords.AchsenKartenfeldNaturalRecord;
+   type KoordinatenArray is array (1 .. 2) of KartenRecords.KartenfeldNaturalRecord;
    StartKoordinaten : KoordinatenArray;
    
    procedure BelegungÄndern
@@ -43,17 +43,17 @@ private
 
    procedure StartpunktFestlegen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      StartkoordinateEinsExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      StartkoordinateZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      StartkoordinateEinsExtern : in KartenRecords.KartenfeldNaturalRecord;
+      StartkoordinateZweiExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 StartkoordinateEinsExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 StartkoordinateEinsExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 StartkoordinateEinsExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 StartkoordinateEinsExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 StartkoordinateZweiExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 StartkoordinateZweiExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 StartkoordinateZweiExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 StartkoordinateZweiExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    
@@ -64,21 +64,21 @@ private
       return Boolean;
    
    function ZusatzfeldBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       NotAusExtern : in ZahlenDatentypen.NotAus)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               ),
    
        Post => (
-                  ZusatzfeldBestimmen'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  ZusatzfeldBestimmen'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  ZusatzfeldBestimmen'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  ZusatzfeldBestimmen'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
 end SpieleinstellungenSpeziesLogik;

@@ -46,10 +46,10 @@ private
    
    BewertungPosition : Positive;
    
-   KoordinatenAnfangsstadt : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KoordinatenEndstadt : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KoordinatenzwischenspeicherWindows : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KoordinatenAnfangsstadt : KartenRecords.KartenfeldNaturalRecord;
+   KoordinatenEndstadt : KartenRecords.KartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   KoordinatenzwischenspeicherWindows : KartenRecords.KartenfeldNaturalRecord;
    
    Sortieren : KartenRecords.BewegungsbewertungRecord;
    
@@ -58,63 +58,63 @@ private
    
    procedure Felderbewertung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      AktuelleKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 AktuelleKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 AktuelleKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 ZielkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 ZielkoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 ZielkoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    
    
    function VerbindungPrüfen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      StartkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      StartkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 StartkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 StartkoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 StartkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 StartkoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 ZielkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 ZielkoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 ZielkoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function PlanenRekursiv
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AktuelleKoordinateExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      AktuelleKoordinateExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 AktuelleKoordinateExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 AktuelleKoordinateExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 AktuelleKoordinateExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 AktuelleKoordinateExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
-                 ZielkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 ZielkoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 ZielkoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function PlanschrittFestlegen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       DurchlaufExtern : in Positive;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
@@ -122,22 +122,22 @@ private
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 ZielkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 ZielkoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 ZielkoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function FeldUngeeignet
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    function FelderMitWegEntfernen

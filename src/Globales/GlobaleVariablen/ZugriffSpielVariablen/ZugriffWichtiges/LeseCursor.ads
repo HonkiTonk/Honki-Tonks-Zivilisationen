@@ -13,44 +13,44 @@ package LeseCursor is
 
    function KoordinatenAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               ),
          
        Post => (
-                  KoordinatenAktuell'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  KoordinatenAktuell'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  KoordinatenAktuell'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  KoordinatenAktuell'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
    pragma Inline (KoordinatenAktuell);
    
-   function EAchseAktuell
+   function EbeneAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.Ebene
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-   pragma Inline (EAchseAktuell);
+   pragma Inline (EbeneAktuell);
 
    function KoordinatenAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               ),
          
        Post => (
-                  KoordinatenAlt'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  KoordinatenAlt'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  KoordinatenAlt'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  KoordinatenAlt'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
    pragma Inline (KoordinatenAlt);
    
-   function YAchseAlt
+   function SenkrechteAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.SenkrechtePositiv
      with
@@ -59,11 +59,11 @@ package LeseCursor is
               ),
          
        Post => (
-                  YAchseAlt'Result <= LeseWeltkarteneinstellungen.YAchse
+                  SenkrechteAlt'Result <= LeseWeltkarteneinstellungen.Senkrechte
                );
-   pragma Inline (YAchseAlt);
+   pragma Inline (SenkrechteAlt);
    
-   function XAchseAlt
+   function WaagerechteAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.WaagerechtePositiv
      with
@@ -72,26 +72,26 @@ package LeseCursor is
               ),
          
        Post => (
-                  XAchseAlt'Result <= LeseWeltkarteneinstellungen.XAchse
+                  WaagerechteAlt'Result <= LeseWeltkarteneinstellungen.Waagerechte
                );
-   pragma Inline (XAchseAlt);
+   pragma Inline (WaagerechteAlt);
    
    function GanzerEintrag
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.CursorRecord
+      return KartenRecords.ZeigerRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               ),
          
        Post => (
-                  GanzerEintrag'Result.KoordinatenAktuell.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  GanzerEintrag'Result.KoordinatenAktuell.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  GanzerEintrag'Result.KoordinatenAktuell.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  GanzerEintrag'Result.KoordinatenAktuell.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                 and
-                  GanzerEintrag'Result.KoordinatenAlt.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  GanzerEintrag'Result.KoordinatenAlt.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  GanzerEintrag'Result.KoordinatenAlt.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  GanzerEintrag'Result.KoordinatenAlt.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
    pragma Inline (GanzerEintrag);
 

@@ -37,6 +37,6 @@ private
    
    Zwischenspeicher : Unbounded_Wide_Wide_String;
    
-   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Koordinaten : KartenRecords.KartenfeldNaturalRecord;
    
 end DebuginformationenGrafik;

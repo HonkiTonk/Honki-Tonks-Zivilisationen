@@ -13,7 +13,7 @@ package body BewegungsberechnungEinheitenLogik is
 
    procedure Bewegungsberechnung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitentauschExtern : in Boolean)
    is
       use type EinheitenDatentypen.Bewegungspunkte;
@@ -43,8 +43,8 @@ package body BewegungsberechnungEinheitenLogik is
         LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            SchreibeCursor.EAchseAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                          EAchseExtern  => NeueKoordinatenExtern.EAchse);
+            SchreibeCursor.EbeneAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                          EbeneExtern  => NeueKoordinatenExtern.Ebene);
             
          when others =>
             null;
@@ -76,7 +76,7 @@ package body BewegungsberechnungEinheitenLogik is
    
    
    procedure NachBewegung
-     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;

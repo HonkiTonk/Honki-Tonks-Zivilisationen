@@ -18,19 +18,19 @@ package body KIEinheitFestlegenPlatzMachenLogik is
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
                
                Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
-                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                if
-                 Kartenwert.XAchse = KartenKonstanten.LeerXAchse
+                 Kartenwert.Waagerechte = KartenKonstanten.LeerWaagerechte
                then
                   null;
                   
@@ -49,9 +49,9 @@ package body KIEinheitFestlegenPlatzMachenLogik is
                   null;
                end if;
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
       return False;
       

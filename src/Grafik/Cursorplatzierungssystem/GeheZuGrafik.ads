@@ -22,30 +22,30 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   AktuelleSichtweite : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   AktuelleSichtweite : KartenRecords.KartenfeldumgebungPositivRecord;
    
-   YAchseÜbergänge : KartenRecords.KartenformYAchseRecord;
-   XAchseÜbergänge : KartenRecords.KartenformXAchseRecord;
+   SenkrechteÜbergänge : KartenRecords.KartenformSenkrechteRecord;
+   WaagerechteÜbergänge : KartenRecords.KartenformWaagerechteRecord;
    
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenwertKoordinatenberechnung : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
+   KartenwertKoordinatenberechnung : KartenRecords.KartenfeldNaturalRecord;
    
    
    
    function Koordinatenberechnung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               ),
          
        Post => (
-                  Koordinatenberechnung'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  Koordinatenberechnung'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  Koordinatenberechnung'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  Koordinatenberechnung'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
 end GeheZuGrafik;

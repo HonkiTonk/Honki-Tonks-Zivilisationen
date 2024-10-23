@@ -4,7 +4,7 @@ package SchreibeWeltkarteneinstellungen is
    pragma Elaborate_Body;
 
    procedure Fläche
-     (AchsenExtern : in KartenRecords.YXAchsenKartenfeldPositivRecord);
+     (AchsenExtern : in KartenRecords.KartenfeldumgebungPositivRecord);
    pragma Inline (Fläche);
    
    procedure Kartenform

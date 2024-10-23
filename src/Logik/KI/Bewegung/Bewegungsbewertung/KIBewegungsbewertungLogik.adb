@@ -2,24 +2,24 @@ with KartenKonstanten;
 
 with LeseEinheitenGebaut;
 
-with KIEAchsenbewertung;
-with KIYAchsenbewertung;
-with KIXAchsenbewertung;
+with KIEbenebewertung;
+with KISenkrechtebewertung;
+with KIWaagerechtebewertung;
 
 package body KIBewegungsbewertungLogik is
 
    function PositionsbewertungEinheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenDatentypen.SenkrechteNatural
    is begin
       
       Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
-        Zielkoordinaten.EAchse
+        Zielkoordinaten.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return KartenDatentypen.SenkrechteNatural'Last;
             
          when others =>
@@ -32,27 +32,27 @@ package body KIBewegungsbewertungLogik is
    
    
    function PositionsbewertungKoordinaten
-     (ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenDatentypen.SenkrechteNatural
    is begin
       
-      BewertungEAchse := KIEAchsenbewertung.EAchseBewerten (ZielebeneExtern => ZielkoordinatenExtern.EAchse,
-                                                            NeueEbeneExtern => NeueKoordinatenExtern.EAchse);
+      BewertungEbene := KIEbenebewertung.EbeneBewerten (ZielebeneExtern => ZielkoordinatenExtern.Ebene,
+                                                            NeueEbeneExtern => NeueKoordinatenExtern.Ebene);
             
-      BewertungYAchse := KIYAchsenbewertung.YAchseBewerten (ZielpunktExtern  => ZielkoordinatenExtern.YAchse,
-                                                            NeuerPunktExtern => NeueKoordinatenExtern.YAchse);
+      BewertungSenkrechte := KISenkrechtebewertung.SenkrechteBewerten (ZielpunktExtern  => ZielkoordinatenExtern.Senkrechte,
+                                                            NeuerPunktExtern => NeueKoordinatenExtern.Senkrechte);
             
-      BewertungXAchse := KIXAchsenbewertung.XAchseBewerten (ZielpunktExtern  => ZielkoordinatenExtern.XAchse,
-                                                            NeuerPunktExtern => NeueKoordinatenExtern.XAchse);
+      BewertungWaagerechte := KIWaagerechtebewertung.WaagerechteBewerten (ZielpunktExtern  => ZielkoordinatenExtern.Waagerechte,
+                                                            NeuerPunktExtern => NeueKoordinatenExtern.Waagerechte);
       
       if
-        Natural (BewertungEAchse) + Natural (BewertungYAchse) + Natural (BewertungXAchse) >= Natural (KartenDatentypen.SenkrechtePositiv'Last)
+        Natural (BewertungEbene) + Natural (BewertungSenkrechte) + Natural (BewertungWaagerechte) >= Natural (KartenDatentypen.SenkrechtePositiv'Last)
       then
          return KartenDatentypen.SenkrechtePositiv'Last;
          
       else
-         return BewertungEAchse + BewertungYAchse + KartenDatentypen.Senkrechte (BewertungXAchse);
+         return BewertungEbene + BewertungSenkrechte + KartenDatentypen.Senkrechte (BewertungWaagerechte);
       end if;
       
    end PositionsbewertungKoordinaten;

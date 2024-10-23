@@ -10,12 +10,12 @@ package body EinheitSuchenLogik is
    -- Sucht für die hineingegebene Spezies.
    function KoordinatenEinheitMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenDatentypen.Einheitenbereich
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       Einheit (TaskExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
@@ -45,12 +45,12 @@ package body EinheitSuchenLogik is
 
    -- Sucht beliebige Einheit.
    function KoordinatenEinheitOhneSpeziesSuchen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       Einheit (TaskExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
@@ -79,12 +79,12 @@ package body EinheitSuchenLogik is
    -- Sucht ohne die hineingegebene Spezies.
    function KoordinatenEinheitOhneSpezielleSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       Einheit (TaskExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
@@ -143,7 +143,7 @@ package body EinheitSuchenLogik is
       return Boolean
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
             
       if

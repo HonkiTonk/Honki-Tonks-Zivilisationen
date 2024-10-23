@@ -32,7 +32,7 @@ package body KIEinheitenAufgabenumsetzungLogik is
    is
       use type KIDatentypen.Einheit_Aufgabe_Enum;
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       AktuelleBeschäftigung := LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

@@ -19,7 +19,7 @@ package body KIEinheitHandlungstestsLogik is
    is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       use type KIDatentypen.Einheit_Aufgabe_Enum;
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       if

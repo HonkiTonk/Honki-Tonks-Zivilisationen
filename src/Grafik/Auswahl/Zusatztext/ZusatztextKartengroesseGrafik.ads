@@ -75,7 +75,7 @@ private
                   PositionFestlegen'Result.y >= 0.00
                );
    
-   function YAchseAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
-   function XAchseAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KartenDatentypen.WaagerechtePositiv);
+   function SenkrechteAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   function WaagerechteAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KartenDatentypen.WaagerechtePositiv);
 
 end ZusatztextKartengroesseGrafik;

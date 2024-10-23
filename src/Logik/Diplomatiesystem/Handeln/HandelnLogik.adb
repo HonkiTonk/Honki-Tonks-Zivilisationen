@@ -279,30 +279,30 @@ package body HandelnLogik is
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
      
-      EAchseEinsSchleife:
-      for EAchseEinsSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
-         YAchseEinsSchleife:
-         for YAchseEinsSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
-            XAchseEinsSchleife:
-            for XAchseEinsSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
+      EbeneEinsSchleife:
+      for EbeneEinsSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+         SenkrechteEinsSchleife:
+         for SenkrechteEinsSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
+            WaagerechteEinsSchleife:
+            for WaagerechteEinsSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
 
                if
-                 False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                 False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EbeneEinsSchleifenwert, SenkrechteEinsSchleifenwert, WaagerechteEinsSchleifenwert),
                                                  SpeziesExtern     => SpeziesEinsExtern)
                  and
-                   True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                   True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EbeneEinsSchleifenwert, SenkrechteEinsSchleifenwert, WaagerechteEinsSchleifenwert),
                                                   SpeziesExtern     => SpeziesZweiExtern)
                then
                   SichtbarkeitSetzenLogik.SichtbarkeitSetzen (SpeziesExtern     => SpeziesEinsExtern,
-                                                              KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert));
+                                                              KoordinatenExtern => (EbeneEinsSchleifenwert, SenkrechteEinsSchleifenwert, WaagerechteEinsSchleifenwert));
                         
                else
                   null;
                end if;
 
-            end loop XAchseEinsSchleife;
-         end loop YAchseEinsSchleife;
-      end loop EAchseEinsSchleife;
+            end loop WaagerechteEinsSchleife;
+         end loop SenkrechteEinsSchleife;
+      end loop EbeneEinsSchleife;
      
    end SichtbarkeitKaufen;
 
@@ -313,30 +313,30 @@ package body HandelnLogik is
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
   
-      EAchseZweiSchleife:
-      for EAchseZweiSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
-         YAchseZweiSchleife:
-         for YAchseZweiSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
-            XAchseZweiSchleife:
-            for XAchseZweiSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
+      EbeneZweiSchleife:
+      for EbeneZweiSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+         SenkrechteZweiSchleife:
+         for SenkrechteZweiSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
+            WaagerechteZweiSchleife:
+            for WaagerechteZweiSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
 
                if
-                 False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                 False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EbeneZweiSchleifenwert, SenkrechteZweiSchleifenwert, WaagerechteZweiSchleifenwert),
                                                  SpeziesExtern     => SpeziesZweiExtern)
                  and
-                   True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                   True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EbeneZweiSchleifenwert, SenkrechteZweiSchleifenwert, WaagerechteZweiSchleifenwert),
                                                   SpeziesExtern     => SpeziesEinsExtern)
                then
                   SichtbarkeitSetzenLogik.SichtbarkeitSetzen (SpeziesExtern     => SpeziesZweiExtern,
-                                                              KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert));
+                                                              KoordinatenExtern => (EbeneZweiSchleifenwert, SenkrechteZweiSchleifenwert, WaagerechteZweiSchleifenwert));
                         
                else
                   null;
                end if;
 
-            end loop XAchseZweiSchleife;
-         end loop YAchseZweiSchleife;
-      end loop EAchseZweiSchleife;
+            end loop WaagerechteZweiSchleife;
+         end loop SenkrechteZweiSchleife;
+      end loop EbeneZweiSchleife;
   
    end SichtbarkeitVerkaufen;
    

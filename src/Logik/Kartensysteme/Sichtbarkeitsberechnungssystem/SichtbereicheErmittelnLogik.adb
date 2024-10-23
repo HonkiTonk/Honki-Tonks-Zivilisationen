@@ -22,7 +22,7 @@ package body SichtbereicheErmittelnLogik is
       EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
       if
-        KoordinatenEinheit.EAchse >= KartenKonstanten.OberflächeKonstante
+        KoordinatenEinheit.Ebene >= KartenKonstanten.OberflächeKonstante
         and
           (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                          IDExtern             => EinheitID,
@@ -65,7 +65,7 @@ package body SichtbereicheErmittelnLogik is
    
    
    function SichtbarkeitBlockadeTesten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       YÄnderungExtern : in KartenDatentypen.SenkrechteUmgebungZwei;
       XÄnderungExtern : in KartenDatentypen.WaagerechteUmgebungZwei;
       SichtweiteExtern : in KartenRecords.UmgebungDreiRecord)
@@ -78,13 +78,13 @@ package body SichtbereicheErmittelnLogik is
    begin
       
       KartenBlockadeWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YÄnderungExtern, XÄnderungExtern),
+                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, YÄnderungExtern, XÄnderungExtern),
                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
-        KartenBlockadeWert.XAchse
+        KartenBlockadeWert.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             return True;
          
          when others =>

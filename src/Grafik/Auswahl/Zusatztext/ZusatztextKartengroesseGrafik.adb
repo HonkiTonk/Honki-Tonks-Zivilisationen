@@ -52,8 +52,8 @@ package body ZusatztextKartengroesseGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                          str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
                                                                                               WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & Ebenenanzahl
-                                         & YAchseAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse) & KleinesX
-                                         & XAchseAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse));
+                                         & SenkrechteAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte) & KleinesX
+                                         & WaagerechteAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte));
       
       case
         AktuelleAuswahlExtern
@@ -65,8 +65,8 @@ package body ZusatztextKartengroesseGrafik is
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                                str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
                                                                                                     WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & Ebenenanzahl
-                                               & YAchseAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).YAchse) & KleinesX
-                                               & XAchseAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).XAchse));
+                                               & SenkrechteAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).Senkrechte) & KleinesX
+                                               & WaagerechteAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).Waagerechte));
       end case;
       
    end TextFestlegen;

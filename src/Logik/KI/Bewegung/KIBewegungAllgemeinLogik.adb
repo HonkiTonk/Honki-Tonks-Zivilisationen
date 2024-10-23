@@ -16,7 +16,7 @@ with KIKonstanten;
 package body KIBewegungAllgemeinLogik is
 
    function FeldBetreten
-     (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (FeldKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
    is

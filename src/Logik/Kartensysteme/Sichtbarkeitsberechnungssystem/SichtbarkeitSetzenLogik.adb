@@ -15,62 +15,62 @@ package body SichtbarkeitSetzenLogik is
    -- Sollte man von der Unterfläche auch den Himmel sehen können? äöü
    procedure EbenenBerechnungen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
          when KartenKonstanten.OberflächeKonstante =>
             if
               Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
             then
-               EAchseAnfang := KartenKonstanten.UnterflächeKonstante;
+               EbeneAnfang := KartenKonstanten.UnterflächeKonstante;
                
             else
-               EAchseAnfang := KartenKonstanten.OberflächeKonstante;
+               EbeneAnfang := KartenKonstanten.OberflächeKonstante;
             end if;
             
-            EAchseEnde := KartenKonstanten.HimmelKonstante;
+            EbeneEnde := KartenKonstanten.HimmelKonstante;
             
          when KartenKonstanten.HimmelKonstante =>
-            EAchseAnfang := KartenKonstanten.OberflächeKonstante;
-            EAchseEnde := KartenKonstanten.WeltraumKonstante;
+            EbeneAnfang := KartenKonstanten.OberflächeKonstante;
+            EbeneEnde := KartenKonstanten.WeltraumKonstante;
             
          when KartenKonstanten.WeltraumKonstante =>
-            EAchseAnfang := KartenKonstanten.HimmelKonstante;
-            EAchseEnde := KartenKonstanten.WeltraumKonstante;
+            EbeneAnfang := KartenKonstanten.HimmelKonstante;
+            EbeneEnde := KartenKonstanten.WeltraumKonstante;
             
          when KartenKonstanten.UnterflächeKonstante =>
-            EAchseAnfang := KartenKonstanten.UnterflächeKonstante;
+            EbeneAnfang := KartenKonstanten.UnterflächeKonstante;
             
             if
               Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
             then
-               EAchseEnde := KartenKonstanten.OberflächeKonstante;
+               EbeneEnde := KartenKonstanten.OberflächeKonstante;
                
             else
-               EAchseEnde := KartenKonstanten.UnterflächeKonstante;
+               EbeneEnde := KartenKonstanten.UnterflächeKonstante;
             end if;
             
          when KartenKonstanten.PlaneteninneresKonstante =>
-            EAchseAnfang := KartenKonstanten.PlaneteninneresKonstante;
-            EAchseEnde := KartenKonstanten.PlaneteninneresKonstante;
+            EbeneAnfang := KartenKonstanten.PlaneteninneresKonstante;
+            EbeneEnde := KartenKonstanten.PlaneteninneresKonstante;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SichtbarkeitSetzenLogik.EbenenBerechnungen: Ungültige Ebene: " & KoordinatenExtern.EAchse'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SichtbarkeitSetzenLogik.EbenenBerechnungen: Ungültige Ebene: " & KoordinatenExtern.Ebene'Wide_Wide_Image);
             return;
       end case;
       
-      EAchse:
-      for EAchseSchleifenwert in EAchseAnfang .. EAchseEnde loop
+      Ebene:
+      for EbeneSchleifenwert in EbeneAnfang .. EbeneEnde loop
          
          SichtbarkeitSetzen (SpeziesExtern     => SpeziesExtern,
-                             KoordinatenExtern => (EAchseSchleifenwert, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
+                             KoordinatenExtern => (EbeneSchleifenwert, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
          
-      end loop EAchse;
+      end loop Ebene;
       
    end EbenenBerechnungen;
    
@@ -80,7 +80,7 @@ package body SichtbarkeitSetzenLogik is
    -- Anders als die Berechnung in BewegungsberechnungLogik, wo geprüft wird ob die Einheit jetzt auf einem Feld steht welches von einer fremden Spezies bereits aufgedeckt wurde.
    procedure SichtbarkeitSetzen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin

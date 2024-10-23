@@ -17,35 +17,35 @@ package KIStadtSuchenLogik is
 
    function NähesteFeindlicheStadtSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      AnfangKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 AnfangKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 AnfangKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 AnfangKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 AnfangKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               ),
 
        Post => (
-                  NähesteFeindlicheStadtSuchen'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  NähesteFeindlicheStadtSuchen'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  NähesteFeindlicheStadtSuchen'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  NähesteFeindlicheStadtSuchen'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
    function UnbewachteStadtSuchen
      (FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => FeindlicheSpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               ),
 
        Post => (
-                  UnbewachteStadtSuchen'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  UnbewachteStadtSuchen'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  UnbewachteStadtSuchen'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  UnbewachteStadtSuchen'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
 private
@@ -57,21 +57,21 @@ private
    Entfernung : Natural;
    EntfernungNeu : Natural;
 
-   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 
 
    function StadtSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      AnfangKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return StadtDatentypen.Städtebereich
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 AnfangKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 AnfangKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 AnfangKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 AnfangKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               ),
 
        Post => (

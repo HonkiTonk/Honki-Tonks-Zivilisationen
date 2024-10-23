@@ -14,7 +14,7 @@ with Produktionsgrenzen;
 package body FeldproduktionLogik is
    
    function Feldproduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
      -- Datentypen in ProduktionDatentypen mal an das nweue System anpassen. äöü

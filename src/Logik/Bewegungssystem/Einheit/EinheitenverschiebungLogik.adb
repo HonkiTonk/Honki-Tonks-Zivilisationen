@@ -64,17 +64,17 @@ package body EinheitenverschiebungLogik is
       EinheitNummer := EinheitenKonstanten.LeerNummer;
       Umgebungsgröße := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Umgebungsgröße.Senkrechte .. Umgebungsgröße.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Umgebungsgröße.Waagerechte .. Umgebungsgröße.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -Umgebungsgröße.Senkrechte .. Umgebungsgröße.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -Umgebungsgröße.Waagerechte .. Umgebungsgröße.Waagerechte loop
                
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                      ÄnderungExtern    => (Stadtkoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (Stadtkoordinaten.Ebene, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                      
             if
-              Kartenwert.XAchse = KartenKonstanten.LeerXAchse
+              Kartenwert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -101,8 +101,8 @@ package body EinheitenverschiebungLogik is
                                       EinheitSpeziesNummerExtern => (KontaktierteSpeziesExtern, EinheitNummer));
             end case;
          
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
    end EinheitenErmitteln;
    
@@ -123,24 +123,25 @@ package body EinheitenverschiebungLogik is
       
       BereichSchleife:
       loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in -UmgebungPrüfen.YAchse .. UmgebungPrüfen.YAchse loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in -UmgebungPrüfen.XAchse .. UmgebungPrüfen.XAchse loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in -UmgebungPrüfen.Senkrechte .. UmgebungPrüfen.Senkrechte loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in -UmgebungPrüfen.Waagerechte .. UmgebungPrüfen.Waagerechte loop
                      
-               KartenwertVerschieben := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
-                                                                                                                    ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                    TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+               KartenwertVerschieben
+                 := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
+                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
                if
-                 KartenwertVerschieben.XAchse = KartenKonstanten.LeerXAchse
+                 KartenwertVerschieben.Waagerechte = KartenKonstanten.LeerWaagerechte
                then
                   null;
                
                elsif
-                 BereitsGeprüft.YAchse >= abs (YAchseSchleifenwert)
+                 BereitsGeprüft.Senkrechte >= abs (SenkrechteSchleifenwert)
                  and
-                   BereitsGeprüft.XAchse >= abs (XAchseSchleifenwert)
+                   BereitsGeprüft.Waagerechte >= abs (WaagerechteSchleifenwert)
                then
                   null;
             
@@ -163,13 +164,13 @@ package body EinheitenverschiebungLogik is
                   null;
                end if;
          
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
          
          if
-           UmgebungPrüfen.YAchse = LeseWeltkarteneinstellungen.YAchse
+           UmgebungPrüfen.Senkrechte = LeseWeltkarteneinstellungen.Senkrechte
            and
-             UmgebungPrüfen.XAchse = LeseWeltkarteneinstellungen.XAchse
+             UmgebungPrüfen.Waagerechte = LeseWeltkarteneinstellungen.Waagerechte
          then
             return;
             
@@ -178,20 +179,20 @@ package body EinheitenverschiebungLogik is
          end if;
          
          if
-           UmgebungPrüfen.YAchse < LeseWeltkarteneinstellungen.YAchse
+           UmgebungPrüfen.Senkrechte < LeseWeltkarteneinstellungen.Senkrechte
          then
-            UmgebungPrüfen.YAchse := UmgebungPrüfen.YAchse + 1;
-            BereitsGeprüft.YAchse := BereitsGeprüft.YAchse + 1;
+            UmgebungPrüfen.Senkrechte := UmgebungPrüfen.Senkrechte + 1;
+            BereitsGeprüft.Senkrechte := BereitsGeprüft.Senkrechte + 1;
             
          else
             null;
          end if;
          
          if
-           UmgebungPrüfen.XAchse < LeseWeltkarteneinstellungen.XAchse
+           UmgebungPrüfen.Waagerechte < LeseWeltkarteneinstellungen.Waagerechte
          then
-            UmgebungPrüfen.XAchse := UmgebungPrüfen.XAchse + 1;
-            BereitsGeprüft.XAchse := BereitsGeprüft.XAchse + 1;
+            UmgebungPrüfen.Waagerechte := UmgebungPrüfen.Waagerechte + 1;
+            BereitsGeprüft.Waagerechte := BereitsGeprüft.Waagerechte + 1;
             
          else
             null;

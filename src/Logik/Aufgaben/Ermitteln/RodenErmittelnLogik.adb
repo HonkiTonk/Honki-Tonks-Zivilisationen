@@ -14,7 +14,7 @@ package body RodenErmittelnLogik is
    function RodenErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
       use type KartengrundDatentypen.Zusatzgrund_Enum;

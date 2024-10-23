@@ -120,28 +120,28 @@ package body EinheitentransporterLogik is
    
    
    procedure TransporterUmgebung
-     (TranspoterKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (TranspoterKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => TranspoterKoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
             elsif
-              YAchseSchleifenwert = 0
+              SenkrechteSchleifenwert = 0
               and
-                XAchseSchleifenwert = 0
+                WaagerechteSchleifenwert = 0
             then
                null;
                
@@ -158,15 +158,15 @@ package body EinheitentransporterLogik is
                return;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
    end TransporterUmgebung;
    
    
    
    function Entladung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is

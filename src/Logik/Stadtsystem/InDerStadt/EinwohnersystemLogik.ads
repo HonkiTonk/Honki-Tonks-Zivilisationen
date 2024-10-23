@@ -31,17 +31,17 @@ private
    YKoordinatenausgleich : constant KartenDatentypen.SenkrechtePositiv := 3;
    XKoordinatenausgleich : constant KartenDatentypen.WaagerechtePositiv := 3;
       
-   Stadtfeld : KartenRecords.YXAchsenKartenfeldRecord;
+   Stadtfeld : KartenRecords.KartenfeldumgebungRecord;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
    Feldfläche : Sf.System.Vector2.sfVector2f;
    
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
    
    procedure EinwohnerBelegungÄndern
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YAchseExtern : in KartenDatentypen.Senkrechte;
-      XAchseExtern : in KartenDatentypen.Waagerechte)
+      SenkrechteExtern : in KartenDatentypen.Senkrechte;
+      WaagerechteExtern : in KartenDatentypen.Waagerechte)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -51,8 +51,8 @@ private
    
    procedure EinwohnerEntfernen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YAchseExtern : in KartenDatentypen.Senkrechte;
-      XAchseExtern : in KartenDatentypen.Waagerechte)
+      SenkrechteExtern : in KartenDatentypen.Senkrechte;
+      WaagerechteExtern : in KartenDatentypen.Waagerechte)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -62,8 +62,8 @@ private
    
    procedure EinwohnerZuweisen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      YAchseExtern : in KartenDatentypen.Senkrechte;
-      XAchseExtern : in KartenDatentypen.Waagerechte)
+      SenkrechteExtern : in KartenDatentypen.Senkrechte;
+      WaagerechteExtern : in KartenDatentypen.Waagerechte)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

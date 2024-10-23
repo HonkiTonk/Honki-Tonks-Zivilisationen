@@ -16,18 +16,18 @@ package body KartengeneratorFlussLogik is
       use type SystemDatentypen.NullBisHundert;
    begin
       
-      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse,
+      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte,
                                        TeilerExtern     => 33);
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbenePlanet'Range loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenDatentypen.EbenePlanet'Range loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte loop
             
                case
-                 LeseWeltkarte.Basisgrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert))
+                 LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
                is
                   when KartengrundDatentypen.Basisgrund_Oberfläche_Eiswasser_Enum'Range | KartengrundDatentypen.Basisgrund_Unterfläche_Eiswasser_Enum'Range
                      | KartengrundDatentypen.Basisgrund_Kernfläche_Flüssig_Enum'Range =>
@@ -35,19 +35,19 @@ package body KartengeneratorFlussLogik is
                   
                   when others =>
                      if
-                       ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte <= WahrscheinlichkeitFluss (EAchseSchleifenwert)
+                       ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte <= WahrscheinlichkeitFluss (EbeneSchleifenwert)
                      then
-                        FlussplatzierungssystemLogik.Flussplatzierung (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                        FlussplatzierungssystemLogik.Flussplatzierung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                      
                      else
                         null;
                      end if;
                end case;
          
-            end loop XAchseSchleife;
+            end loop WaagerechteSchleife;
          
             case
-              YAchseSchleifenwert mod Kartenzeitwert
+              SenkrechteSchleifenwert mod Kartenzeitwert
             is
                when 0 =>
                   LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
@@ -56,8 +56,8 @@ package body KartengeneratorFlussLogik is
                   null;
             end case;
          
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
    end GenerierungFlüsse;
 

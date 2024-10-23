@@ -49,17 +49,17 @@ package body StadtumgebungFestlegenLogik is
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
       -- StadtUmgebungGröße darf hier nicht genutzt werden, damit bei einer Verkleinerung auch alle Felder zurückgenommen werden können.
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -67,33 +67,33 @@ package body StadtumgebungFestlegenLogik is
               True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                               KoordinatenExtern        => KartenWert)
               and
-                ((abs (YAchseSchleifenwert) > GrößeNeu.Senkrechte
+                ((abs (SenkrechteSchleifenwert) > GrößeNeu.Senkrechte
                   or
-                  abs (XAchseSchleifenwert) > GrößeNeu.Waagerechte)
+                  abs (WaagerechteSchleifenwert) > GrößeNeu.Waagerechte)
                  or
                    (GrößeNeu.Senkrechte = 0
                     and
                       GrößeNeu.Waagerechte = 0
                     and
-                      (YAchseSchleifenwert = 0
+                      (SenkrechteSchleifenwert = 0
                        or
-                         XAchseSchleifenwert = 0)))
+                         WaagerechteSchleifenwert = 0)))
             then
                SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KartenWert,
                                                 BelegterGrundExtern => KartenRecordKonstanten.LeerDurchStadtBelegterGrund);
                
                case
                  LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                          YKoordinateExtern        => YAchseSchleifenwert,
-                                                          XKoordinateExtern        => XAchseSchleifenwert)
+                                                          YKoordinateExtern        => SenkrechteSchleifenwert,
+                                                          XKoordinateExtern        => WaagerechteSchleifenwert)
                is
                   when True =>
                      SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                             EinwohnerArbeiterExtern  => False,
                                                             WachsenSchrumpfenExtern  => False);
                      SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                  YKoordinateExtern        => YAchseSchleifenwert,
-                                                                  XKoordinateExtern        => XAchseSchleifenwert,
+                                                                  YKoordinateExtern        => SenkrechteSchleifenwert,
+                                                                  XKoordinateExtern        => WaagerechteSchleifenwert,
                                                                   BelegenEntfernenExtern   => False);
                      
                   when False =>
@@ -101,9 +101,9 @@ package body StadtumgebungFestlegenLogik is
                end case;
 
             elsif
-            abs (YAchseSchleifenwert) > GrößeNeu.Senkrechte
+            abs (SenkrechteSchleifenwert) > GrößeNeu.Senkrechte
               or
-            abs (XAchseSchleifenwert) > GrößeNeu.Waagerechte
+            abs (WaagerechteSchleifenwert) > GrößeNeu.Waagerechte
             then
                null;
                      
@@ -117,8 +117,8 @@ package body StadtumgebungFestlegenLogik is
                null;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       if
         GrößeNeu.Senkrechte > GrößeAlt.Senkrechte
@@ -154,7 +154,7 @@ package body StadtumgebungFestlegenLogik is
    
    procedure GrundBelegen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type StadtDatentypen.Städtebereich;
@@ -162,19 +162,19 @@ package body StadtumgebungFestlegenLogik is
       
       GrundBelegbar := False;
             
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
                BelegungKartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                 ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                 ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                                  TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                if
-                 BelegungKartenwert.XAchse = KartenKonstanten.LeerXAchse
+                 BelegungKartenwert.Waagerechte = KartenKonstanten.LeerWaagerechte
                then
                   null;
                   
@@ -185,15 +185,15 @@ package body StadtumgebungFestlegenLogik is
                                                                                                     KoordinatenExtern => BelegungKartenwert)
                then
                   GrundBelegbar := True;
-                  exit EAchseSchleife;
+                  exit EbeneSchleife;
                   
                else
                   null;
                end if;
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
       case
         GrundBelegbar
@@ -211,33 +211,34 @@ package body StadtumgebungFestlegenLogik is
    
    
    procedure UmgebendeStädteAnpassen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrößeAltExtern : in KartenRecords.UmgebungDreiRecord)
    is
       use type StadtDatentypen.Städtebereich;
    begin
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -GrößeAltExtern.Senkrechte - 1 .. GrößeAltExtern.Senkrechte + 1 loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -GrößeAltExtern.Waagerechte - 1 .. GrößeAltExtern.Waagerechte + 1 loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -GrößeAltExtern.Senkrechte - 1 .. GrößeAltExtern.Senkrechte + 1 loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -GrößeAltExtern.Waagerechte - 1 .. GrößeAltExtern.Waagerechte + 1 loop
 
             if
-            abs (YAchseSchleifenwert) < GrößeAltExtern.Senkrechte + 1
+            abs (SenkrechteSchleifenwert) < GrößeAltExtern.Senkrechte + 1
               and
-            abs (XAchseSchleifenwert) < GrößeAltExtern.Waagerechte + 1
+            abs (WaagerechteSchleifenwert) < GrößeAltExtern.Waagerechte + 1
             then
                null;
 
             else
-               UmgebendesKartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                   ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                   TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+               UmgebendesKartenwert
+                 := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum);
 
                case
-                 UmgebendesKartenwert.XAchse
+                 UmgebendesKartenwert.Waagerechte
                is
-                  when KartenKonstanten.LeerXAchse =>
+                  when KartenKonstanten.LeerWaagerechte =>
                      null;
 
                   when others =>
@@ -252,8 +253,8 @@ package body StadtumgebungFestlegenLogik is
                end case;
             end if;
 
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
    end UmgebendeStädteAnpassen;
    

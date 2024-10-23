@@ -37,8 +37,8 @@ private
    
    Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
    -- Den Record und die LeerUmgebung mal in Globales verschieben? äöü
    type UmgebungRecord is record

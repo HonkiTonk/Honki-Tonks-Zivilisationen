@@ -16,31 +16,31 @@ package body ZufallsgeneratorenKartenLogik is
    
    
    function KartengeneratorLandgrößen
-     return KartenRecords.YXAchsenKartenfeldPositivRecord
+     return KartenRecords.KartenfeldumgebungPositivRecord
    is
       use type KartenDatentypen.Senkrechte;
       use type KartenDatentypen.Waagerechte;
    begin
       
-      Minimalwert.YAchse := KartengeneratorVariablenLogik.Landgrößen.MinimaleYAchse;
-      Maximalwert.YAchse := KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse;
+      Minimalwert.Senkrechte := KartengeneratorVariablenLogik.Landgrößen.MinimaleSenkrechte;
+      Maximalwert.Senkrechte := KartengeneratorVariablenLogik.Landgrößen.MaximaleSenkrechte;
       
-      Minimalwert.XAchse := KartengeneratorVariablenLogik.Landgrößen.MinimaleXAchse;
-      Maximalwert.XAchse := KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse;
+      Minimalwert.Waagerechte := KartengeneratorVariablenLogik.Landgrößen.MinimaleWaagerechte;
+      Maximalwert.Waagerechte := KartengeneratorVariablenLogik.Landgrößen.MaximaleWaagerechte;
             
       if
-        Minimalwert.YAchse > LeseWeltkarteneinstellungen.YAchse
+        Minimalwert.Senkrechte > LeseWeltkarteneinstellungen.Senkrechte
       then
-         Minimalwert.YAchse := LeseWeltkarteneinstellungen.YAchse;
+         Minimalwert.Senkrechte := LeseWeltkarteneinstellungen.Senkrechte;
                
       else
          null;
       end if;
             
       if
-        Maximalwert.YAchse > LeseWeltkarteneinstellungen.YAchse
+        Maximalwert.Senkrechte > LeseWeltkarteneinstellungen.Senkrechte
       then
-         Maximalwert.YAchse := LeseWeltkarteneinstellungen.YAchse;
+         Maximalwert.Senkrechte := LeseWeltkarteneinstellungen.Senkrechte;
                
       else
          null;
@@ -48,40 +48,40 @@ package body ZufallsgeneratorenKartenLogik is
 
             
       if
-        Minimalwert.XAchse > LeseWeltkarteneinstellungen.XAchse
+        Minimalwert.Waagerechte > LeseWeltkarteneinstellungen.Waagerechte
       then
-         Minimalwert.XAchse := LeseWeltkarteneinstellungen.XAchse;
+         Minimalwert.Waagerechte := LeseWeltkarteneinstellungen.Waagerechte;
                
       else
          null;
       end if;
             
       if
-        Maximalwert.XAchse > LeseWeltkarteneinstellungen.XAchse
+        Maximalwert.Waagerechte > LeseWeltkarteneinstellungen.Waagerechte
       then
-         Maximalwert.XAchse := LeseWeltkarteneinstellungen.XAchse;
+         Maximalwert.Waagerechte := LeseWeltkarteneinstellungen.Waagerechte;
                
       else
          null;
       end if;
       
       if
-        Minimalwert.YAchse > Maximalwert.YAchse
+        Minimalwert.Senkrechte > Maximalwert.Senkrechte
       then
-         Zwischenspeicher.YAchse := Minimalwert.YAchse;
-         Minimalwert.YAchse := Maximalwert.YAchse;
-         Maximalwert.YAchse := Zwischenspeicher.YAchse;
+         Zwischenspeicher.Senkrechte := Minimalwert.Senkrechte;
+         Minimalwert.Senkrechte := Maximalwert.Senkrechte;
+         Maximalwert.Senkrechte := Zwischenspeicher.Senkrechte;
 
       else
          null;
       end if;
       
       if
-        Minimalwert.XAchse > Maximalwert.XAchse
+        Minimalwert.Waagerechte > Maximalwert.Waagerechte
       then
-         Zwischenspeicher.XAchse := Minimalwert.XAchse;
-         Minimalwert.XAchse := Maximalwert.XAchse;
-         Maximalwert.XAchse := Zwischenspeicher.XAchse;
+         Zwischenspeicher.Waagerechte := Minimalwert.Waagerechte;
+         Minimalwert.Waagerechte := Maximalwert.Waagerechte;
+         Maximalwert.Waagerechte := Zwischenspeicher.Waagerechte;
 
       else
          null;
@@ -91,11 +91,11 @@ package body ZufallsgeneratorenKartenLogik is
       ZufälligeWaagerechteLandgrößen.Reset (Gen => ZufälligeWaagerechteLandgrößeGewählt);
       
       return (ZufälligeSenkrechteLandgrößen.Random (Gen   => ZufälligeSenkrechteLandgrößeGewählt,
-                                                       First => Minimalwert.YAchse,
-                                                       Last  => Maximalwert.YAchse),
+                                                       First => Minimalwert.Senkrechte,
+                                                       Last  => Maximalwert.Senkrechte),
               ZufälligeWaagerechteLandgrößen.Random (Gen   => ZufälligeWaagerechteLandgrößeGewählt,
-                                                        First => Minimalwert.XAchse,
-                                                        Last  => Maximalwert.XAchse));
+                                                        First => Minimalwert.Waagerechte,
+                                                        Last  => Maximalwert.Waagerechte));
               
    end KartengeneratorLandgrößen;
 

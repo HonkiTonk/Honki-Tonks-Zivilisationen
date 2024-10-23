@@ -38,17 +38,17 @@ private
 
    EinheitAufFeld : EinheitenRecords.SpeziesEinheitnummerRecord;
 
-   ZielVerbesserungKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   VerbesserungAnlegen : KartenRecords.AchsenKartenfeldNaturalRecord;
-   VerbesserungKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   ZielVerbesserungKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   VerbesserungAnlegen : KartenRecords.KartenfeldNaturalRecord;
+   VerbesserungKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   StadtKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   EinheitKoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 
 
    function StädteDurchgehen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -57,14 +57,14 @@ private
               ),
 
        Post => (
-                  StädteDurchgehen'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  StädteDurchgehen'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  StädteDurchgehen'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  StädteDurchgehen'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
    function DirekteUmgebung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -73,15 +73,15 @@ private
               ),
 
        Post => (
-                  DirekteUmgebung'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  DirekteUmgebung'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  DirekteUmgebung'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  DirekteUmgebung'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
    function StadtumgebungErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
@@ -90,20 +90,20 @@ private
               ),
 
        Post => (
-                  StadtumgebungErmitteln'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  StadtumgebungErmitteln'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  StadtumgebungErmitteln'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  StadtumgebungErmitteln'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
    function AllgemeineVerbesserungenPrüfungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and

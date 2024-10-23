@@ -150,7 +150,7 @@ package ChangelogFebruar2022 is
 
    -- Version 0.00.9925 => 0.00.9940 (09.02.2022):
    
-   -- Berechnungen der Kartenpositionen zu modifiziert dass eine ungültige EAchsenPosition nicht mehr zu einem gültigen Rückgabewert führt und umgekehrt.
+   -- Berechnungen der Kartenpositionen zu modifiziert dass eine ungültige EbenePosition nicht mehr zu einem gültigen Rückgabewert führt und umgekehrt.
    -- Kartenformen- und berechnungen in Normal und Abstrakt eingeteilt.
    -- Neue Kartenformen- und berechnungen eingebaut.
    -- Tugel, Tugel gedreht und Tugel extrem sollten jetzt 'korrekt' funktionieren.
@@ -202,7 +202,7 @@ package ChangelogFebruar2022 is
    -- Talbidahr/Tesorahn starten jetzt wieder korrekt Unterirdisch/Unterwasser.
    -- Es ist jetzt möglich in der SFML Version durch die Maussteuerung die Einheiten auf eine andere Ebene zu bewegen, wenn diese Ebene für die Einheit pasierbar ist.
    -- Hüllen für die Berechnung von Korruption und Zufriedenheit eingebaut.
-   -- Angefangen die Bewegungs- und Positionsberechnungen alle um die EAchse zu erweitern.
+   -- Angefangen die Bewegungs- und Positionsberechnungen alle um die Ebene zu erweitern.
    -- Bescheuerten Spielenamen eingebaut.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    

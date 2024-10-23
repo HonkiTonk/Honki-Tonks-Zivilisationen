@@ -41,7 +41,7 @@ package body DebuginformationenGrafik is
                                                                                                       MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                       TextAccessExtern         => TextaccessVariablen.EinheitenseitenleisteAccess);
             
-            Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Ziel: ") & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & "," & Koordinaten.XAchse'Wide_Wide_Image;
+            Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Ziel: ") & Koordinaten.Ebene'Wide_Wide_Image & "," & Koordinaten.Senkrechte'Wide_Wide_Image & "," & Koordinaten.Waagerechte'Wide_Wide_Image;
             
             YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
                                                                                                       TextpositionExtern       => (TextpositionExtern.x, YTextpositionDebug),
@@ -65,8 +65,8 @@ package body DebuginformationenGrafik is
          Koordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                             PlanschrittExtern          => PlanSchleifenwert);
          
-         Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Wegpunkt: ") & PlanSchleifenwert'Wide_Wide_Image & ":" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
-           & Koordinaten.XAchse'Wide_Wide_Image;
+         Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Wegpunkt: ") & PlanSchleifenwert'Wide_Wide_Image & ":" & Koordinaten.Ebene'Wide_Wide_Image & "," & Koordinaten.Senkrechte'Wide_Wide_Image & ","
+           & Koordinaten.Waagerechte'Wide_Wide_Image;
             
          YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
                                                                                                    TextpositionExtern       => (TextpositionExtern.x, YTextpositionDebug),

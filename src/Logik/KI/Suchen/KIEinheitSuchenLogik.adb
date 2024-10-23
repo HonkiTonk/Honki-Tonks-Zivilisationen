@@ -16,7 +16,7 @@ package body KIEinheitSuchenLogik is
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       FeindExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is
       use type KartenDatentypen.Senkrechte;
       use type KartenDatentypen.Waagerechte;
@@ -32,17 +32,17 @@ package body KIEinheitSuchenLogik is
       
       FeindSuchenSchleife:
       while SenkrechtePrüfen <= KIKonstanten.YFelderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in -SenkrechtePrüfen .. SenkrechtePrüfen loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in -WaagerechtePrüfen .. WaagerechtePrüfen loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in -SenkrechtePrüfen .. SenkrechtePrüfen loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in -WaagerechtePrüfen .. WaagerechtePrüfen loop
             
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
                if
-                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
+                 KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
                then
                   null;
                
@@ -67,8 +67,8 @@ package body KIEinheitSuchenLogik is
                   end case;
                end if;
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
          
          SenkrechteGeprüft := SenkrechtePrüfen;
          SenkrechtePrüfen := SenkrechtePrüfen + 1;

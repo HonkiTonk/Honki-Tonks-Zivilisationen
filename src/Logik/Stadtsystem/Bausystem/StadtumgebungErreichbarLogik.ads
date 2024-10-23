@@ -16,15 +16,15 @@ package StadtumgebungErreichbarLogik is
    use type KartenDatentypen.Waagerechte;
    
    function UmgebungErreichbar
-     (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (StadtKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
-                 StadtKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 StadtKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 StadtKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 StadtKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
@@ -32,9 +32,9 @@ package StadtumgebungErreichbarLogik is
               ),
            
        Post => (
-                  UmgebungErreichbar'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  UmgebungErreichbar'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  UmgebungErreichbar'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  UmgebungErreichbar'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
    
 private
@@ -44,30 +44,30 @@ private
    Umgebung : KartenRecords.UmgebungDreiRecord;
    Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWertZwei : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   KartenWertZwei : KartenRecords.KartenfeldNaturalRecord;
    
    
    
    function Prüfungen
-     (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (StadtKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      AktuelleKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
-                 StadtKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 StadtKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 StadtKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 StadtKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
-                 AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 AktuelleKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 AktuelleKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
 end StadtumgebungErreichbarLogik;

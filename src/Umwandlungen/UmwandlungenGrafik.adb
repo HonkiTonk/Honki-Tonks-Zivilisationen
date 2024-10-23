@@ -10,11 +10,11 @@ with KartenkoordinatenberechnungssystemLogik;
 package body UmwandlungenGrafik is
 
    function KoordinatenKartenposition
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
@@ -22,17 +22,17 @@ package body UmwandlungenGrafik is
       Feldposition := GrafikRecordKonstanten.Nullposition;
       Kartenfeldfläche := SichtweitenGrafik.Kartenfeldfläche;
             
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Sichtbereich.YAchse .. Sichtbereich.YAchse loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Sichtbereich.XAchse .. Sichtbereich.XAchse loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -Sichtbereich.Senkrechte .. Sichtbereich.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -47,11 +47,11 @@ package body UmwandlungenGrafik is
             
             Feldposition.x := Feldposition.x + Kartenfeldfläche.x;
                           
-         end loop XAchseSchleife;
+         end loop WaagerechteSchleife;
          
          Feldposition := (GrafikRecordKonstanten.Nullposition.x, Feldposition.y + Kartenfeldfläche.y);
          
-      end loop YAchseSchleife;
+      end loop SenkrechteSchleife;
       
       return GrafikRecordKonstanten.FalschePosition;
       

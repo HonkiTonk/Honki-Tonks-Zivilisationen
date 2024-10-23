@@ -12,50 +12,50 @@ package KartenkoordinatenberechnungssystemLogik is
    use type KartenDatentypen.Ebene;
 
    function Kartenkoordinatenberechnungssystem
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ÄnderungExtern : in KartenRecords.KartenfeldRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               ),
            
        Post => (
                 (if
-                      Kartenkoordinatenberechnungssystem'Result.YAchse = KartenKonstanten.LeerYAchse
+                      Kartenkoordinatenberechnungssystem'Result.Senkrechte = KartenKonstanten.LeerSenkrechte
                         then
-                  (Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse
+                  (Kartenkoordinatenberechnungssystem'Result.Waagerechte = KartenKonstanten.LeerWaagerechte
                    and
-                     Kartenkoordinatenberechnungssystem'Result.EAchse = KartenKonstanten.LeerEAchse)
+                     Kartenkoordinatenberechnungssystem'Result.Ebene = KartenKonstanten.LeerEbene)
                )
                 and
                   (if
-                         Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse
+                         Kartenkoordinatenberechnungssystem'Result.Waagerechte = KartenKonstanten.LeerWaagerechte
                            then
-                     (Kartenkoordinatenberechnungssystem'Result.YAchse = KartenKonstanten.LeerYAchse
+                     (Kartenkoordinatenberechnungssystem'Result.Senkrechte = KartenKonstanten.LeerSenkrechte
                       and
-                        Kartenkoordinatenberechnungssystem'Result.EAchse = KartenKonstanten.LeerEAchse)
+                        Kartenkoordinatenberechnungssystem'Result.Ebene = KartenKonstanten.LeerEbene)
                   )
                 and
                   (if
-                         Kartenkoordinatenberechnungssystem'Result.EAchse = KartenKonstanten.LeerEAchse
+                         Kartenkoordinatenberechnungssystem'Result.Ebene = KartenKonstanten.LeerEbene
                            then
-                     (Kartenkoordinatenberechnungssystem'Result.YAchse = KartenKonstanten.LeerYAchse
+                     (Kartenkoordinatenberechnungssystem'Result.Senkrechte = KartenKonstanten.LeerSenkrechte
                       and
-                        Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse)
+                        Kartenkoordinatenberechnungssystem'Result.Waagerechte = KartenKonstanten.LeerWaagerechte)
                   )
                 and
-                  Kartenkoordinatenberechnungssystem'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  Kartenkoordinatenberechnungssystem'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  Kartenkoordinatenberechnungssystem'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  Kartenkoordinatenberechnungssystem'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
    
 private
    
-   type NeueKoordinateArray is array (SystemDatentypen.Task_Enum'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
+   type NeueKoordinateArray is array (SystemDatentypen.Task_Enum'Range) of KartenRecords.KartenfeldNaturalRecord;
    NeueKoordinate : NeueKoordinateArray;
    
 end KartenkoordinatenberechnungssystemLogik;

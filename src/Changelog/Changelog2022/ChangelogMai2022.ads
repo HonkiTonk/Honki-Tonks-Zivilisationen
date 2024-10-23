@@ -17,7 +17,7 @@ package ChangelogMai2022 is
    -- Version 0.01.0800 => 0.01.0820 (30.05.2022):
    
    -- Besseres Textanzeigensystem für Spezieszusatztext gebaut und angefangen eine allgemeinere Version für alle Zusatztexte zu konstruieren.
-   -- EAchse in eigenen Datentyp umgewandelt.
+   -- Ebene in eigenen Datentyp umgewandelt.
    -- Interne Benennungen verbessert.
    -- Angefangen nutzerdefinierbare Polregionen einzubauen.
    -- Angefangen den Kartengenerator zu überarbeiten.

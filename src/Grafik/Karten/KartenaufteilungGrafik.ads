@@ -27,9 +27,9 @@ package KartenaufteilungGrafik is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 EinheitenauswahlExtern.Koordinaten.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 EinheitenauswahlExtern.Koordinaten.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 EinheitenauswahlExtern.Koordinaten.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 EinheitenauswahlExtern.Koordinaten.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
    procedure Stadtkarte
@@ -41,9 +41,9 @@ package KartenaufteilungGrafik is
                and
                  StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
                and
-                 StadtauswahlExtern.Koordinaten.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 StadtauswahlExtern.Koordinaten.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 StadtauswahlExtern.Koordinaten.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 StadtauswahlExtern.Koordinaten.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
 private

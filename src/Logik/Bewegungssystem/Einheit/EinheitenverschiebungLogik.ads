@@ -40,15 +40,15 @@ private
    
    Umgebungsgröße : KartenRecords.UmgebungDreiRecord;
    
-   UmgebungPrüfen : KartenRecords.YXAchsenKartenfeldPositivRecord;
-   BereitsGeprüft : KartenRecords.YXAchsenKartenfeldNaturalRecord;
+   UmgebungPrüfen : KartenRecords.KartenfeldumgebungPositivRecord;
+   BereitsGeprüft : KartenRecords.KartenfeldumgebungNaturalRecord;
    
    EinheitNummer : EinheitenDatentypen.Einheitenbereich;
    
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenwertVerschieben : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
+   KartenwertVerschieben : KartenRecords.KartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   Einheitenkoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
    procedure EinheitenErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;

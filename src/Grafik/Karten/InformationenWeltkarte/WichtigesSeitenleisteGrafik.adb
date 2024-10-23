@@ -17,7 +17,7 @@ package body WichtigesSeitenleisteGrafik is
 
    function WichtigesInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
       MaximaleTextbreiteExtern : in Float)
       return Float
@@ -61,19 +61,19 @@ package body WichtigesSeitenleisteGrafik is
    
    
    function Koordinaten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Unbounded_Wide_Wide_String
    is begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.LeerEAchse =>
+         when KartenKonstanten.LeerEbene =>
             return TextKonstanten.LeerUnboundedString;
             
          when others =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & ","
-              & KoordinatenExtern.YAchse'Wide_Wide_Image & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.Ebene) & ","
+              & KoordinatenExtern.Senkrechte'Wide_Wide_Image & "," & KoordinatenExtern.Waagerechte'Wide_Wide_Image;
       end case;
       
    end Koordinaten;

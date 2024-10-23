@@ -101,11 +101,11 @@ private
    
    EinheitVorhanden : EinheitenRecords.SpeziesEinheitnummerRecord;
    
-   TransporterKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   TransporterKoordinaten : KartenRecords.KartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
    procedure TransporterUmgebung
-     (TranspoterKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (TranspoterKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
@@ -113,15 +113,15 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => LadungExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 TranspoterKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 TranspoterKoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 TranspoterKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 TranspoterKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    
    
    function Entladung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
      with
@@ -130,9 +130,9 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => LadungExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
 end EinheitentransporterLogik;

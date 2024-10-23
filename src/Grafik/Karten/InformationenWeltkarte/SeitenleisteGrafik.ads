@@ -24,6 +24,6 @@ private
 
    Viewbereich : GrafikRecords.ViewbereichRecord := GrafikRecordKonstanten.Anfangsviewbereich;
 
-   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   AktuelleKoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end SeitenleisteGrafik;

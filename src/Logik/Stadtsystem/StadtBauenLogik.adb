@@ -107,7 +107,7 @@ package body StadtBauenLogik is
       if
         EinheitSpeziesNummerExtern.Spezies = SpeziesDatentypen.Ekropa_Enum
         and
-          Einheitenkoordinaten.EAchse /= KartenKonstanten.LeerEAchseÄnderung
+          Einheitenkoordinaten.Ebene /= KartenKonstanten.LeerEbeneÄnderung
       then
          return False;
          
@@ -172,7 +172,7 @@ package body StadtBauenLogik is
    
    procedure StadtEintragen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       SchreibeStadtGebaut.Nullsetzung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
@@ -208,7 +208,7 @@ package body StadtBauenLogik is
    
    
    procedure WegAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
@@ -233,7 +233,7 @@ package body StadtBauenLogik is
       end case;
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
          when KartenDatentypen.EbeneLuft'Range =>
             return;

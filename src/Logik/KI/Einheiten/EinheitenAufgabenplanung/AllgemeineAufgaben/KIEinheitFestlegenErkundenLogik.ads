@@ -23,6 +23,6 @@ package KIEinheitFestlegenErkundenLogik is
    
 private
    
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
 
 end KIEinheitFestlegenErkundenLogik;

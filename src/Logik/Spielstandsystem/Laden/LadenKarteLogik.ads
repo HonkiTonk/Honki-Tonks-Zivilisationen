@@ -55,7 +55,7 @@ private
       
    function ZahlNachSichtbarkeit
      (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
       return Boolean
      with
@@ -63,14 +63,14 @@ private
                  if
                    LadenPrüfenExtern
                      then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                   and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
+                    KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte)
               );
    
    function BasisgrundEinlesen
      (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       LadenPrüfenExtern : in Boolean)
       return Boolean
      with
@@ -78,9 +78,9 @@ private
                  if
                    LadenPrüfenExtern
                      then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                   and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
+                    KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte)
               );
 
 end LadenKarteLogik;

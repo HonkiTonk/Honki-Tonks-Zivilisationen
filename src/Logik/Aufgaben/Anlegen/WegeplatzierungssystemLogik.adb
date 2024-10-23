@@ -9,7 +9,7 @@ with KartenkoordinatenberechnungssystemLogik;
 package body WegeplatzierungssystemLogik is
    
    procedure Wegentfernung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type KartenverbesserungDatentypen.Weg_Enum;
    begin
@@ -17,25 +17,26 @@ package body WegeplatzierungssystemLogik is
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                              WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             if
-            abs (YAchseSchleifenwert) = KartenDatentypen.Senkrechte (abs (XAchseSchleifenwert))
+            abs (SenkrechteSchleifenwert) = KartenDatentypen.Senkrechte (abs (WaagerechteSchleifenwert))
             then
                null;
                
             else
-               Entfernungskartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                    ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                    TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+               Entfernungskartenwert
+                 := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
                case
-                 Entfernungskartenwert.XAchse
+                 Entfernungskartenwert.Waagerechte
                is
-                  when KartenKonstanten.LeerXAchse =>
+                  when KartenKonstanten.LeerWaagerechte =>
                      null;
                
                   when others =>
@@ -53,59 +54,59 @@ package body WegeplatzierungssystemLogik is
                end case;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
    end Wegentfernung;
    
    
 
    procedure Wegplatzierung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       WegartExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum)
    is begin
       
       Wegumgebung := (others => False);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
+              SenkrechteSchleifenwert = KartenKonstanten.LeerSenkrechteÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.WaagerechteWesten
+                WaagerechteSchleifenwert = KartenKonstanten.WaagerechteWesten
             then
                Wegumgebung.Links := BerechnungLinks (KoordinatenExtern => KartenWert);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
+              SenkrechteSchleifenwert = KartenKonstanten.LeerSenkrechteÄnderung
               and
-                XAchseSchleifenwert = KartenKonstanten.WaagerechteOsten
+                WaagerechteSchleifenwert = KartenKonstanten.WaagerechteOsten
             then
                Wegumgebung.Rechts := BerechnungRechts (KoordinatenExtern => KartenWert);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.SenkrechteNorden
+              SenkrechteSchleifenwert = KartenKonstanten.SenkrechteNorden
               and
-                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
+                WaagerechteSchleifenwert = KartenKonstanten.LeerWaagerechteÄnderung
             then
                Wegumgebung.Oben := BerechnungOben (KoordinatenExtern => KartenWert);
                
             elsif
-              YAchseSchleifenwert = KartenKonstanten.SenkrechteSüden
+              SenkrechteSchleifenwert = KartenKonstanten.SenkrechteSüden
               and
-                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
+                WaagerechteSchleifenwert = KartenKonstanten.LeerWaagerechteÄnderung
             then
                Wegumgebung.Unten := BerechnungUnten (KoordinatenExtern => KartenWert);
                
@@ -113,8 +114,8 @@ package body WegeplatzierungssystemLogik is
                null;
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                              WegExtern         => KartenverbesserungDatentypen.Weg_Enum'Val (Wegwert (Wegumgebung.Links, Wegumgebung.Rechts, Wegumgebung.Oben, Wegumgebung.Unten) + Wegtyp (WegartExtern)));
@@ -124,7 +125,7 @@ package body WegeplatzierungssystemLogik is
    
    
    function BerechnungLinks
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -148,7 +149,7 @@ package body WegeplatzierungssystemLogik is
    
    
    function BerechnungRechts
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -172,7 +173,7 @@ package body WegeplatzierungssystemLogik is
    
                                 
    function BerechnungOben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -196,7 +197,7 @@ package body WegeplatzierungssystemLogik is
    
    
    function BerechnungUnten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       

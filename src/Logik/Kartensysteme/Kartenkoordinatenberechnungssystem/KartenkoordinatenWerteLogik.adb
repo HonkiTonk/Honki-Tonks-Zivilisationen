@@ -1,45 +1,45 @@
 package body KartenkoordinatenWerteLogik is
 
-   procedure YAchseVerschiebungSchreiben
+   procedure SenkrechteVerschiebungSchreiben
      (TaskExtern : in SystemDatentypen.Task_Enum;
-      ÜbergangExtern : in KartenartDatentypen.Kartenform_Y_Einstellbar_Enum)
+      ÜbergangExtern : in KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum)
    is begin
       
-      VerschiebungYAchse (TaskExtern) := ÜbergangExtern;
+      VerschiebungSenkrechte (TaskExtern) := ÜbergangExtern;
       
-   end YAchseVerschiebungSchreiben;
+   end SenkrechteVerschiebungSchreiben;
    
    
 
-   procedure XAchseVerschiebungSchreiben
+   procedure WaagerechteVerschiebungSchreiben
      (TaskExtern : in SystemDatentypen.Task_Enum;
-      ÜbergangExtern : in KartenartDatentypen.Kartenform_X_Einstellbar_Enum)
+      ÜbergangExtern : in KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum)
    is begin
       
-      VerschiebungXAchse (TaskExtern) := ÜbergangExtern;
+      VerschiebungWaagerechte (TaskExtern) := ÜbergangExtern;
       
-   end XAchseVerschiebungSchreiben;
+   end WaagerechteVerschiebungSchreiben;
    
    
 
-   function YAchseVerschiebungLesen
+   function SenkrechteVerschiebungLesen
      (TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenartDatentypen.Kartenform_Y_Einstellbar_Enum
+      return KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum
    is begin
       
-      return VerschiebungYAchse (TaskExtern);
+      return VerschiebungSenkrechte (TaskExtern);
       
-   end YAchseVerschiebungLesen;
+   end SenkrechteVerschiebungLesen;
    
    
 
-   function XAchseVerschiebungLesen
+   function WaagerechteVerschiebungLesen
      (TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenartDatentypen.Kartenform_X_Einstellbar_Enum
+      return KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum
    is begin
       
-      return VerschiebungXAchse (TaskExtern);
+      return VerschiebungWaagerechte (TaskExtern);
       
-   end XAchseVerschiebungLesen;
+   end WaagerechteVerschiebungLesen;
 
 end KartenkoordinatenWerteLogik;

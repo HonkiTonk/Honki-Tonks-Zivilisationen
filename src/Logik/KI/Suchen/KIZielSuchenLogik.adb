@@ -22,7 +22,7 @@ package body KIZielSuchenLogik is
    function ZielSuchen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       ZielartExtern : in KIDatentypen.Ziel_Suchen_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is begin
       
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -30,8 +30,8 @@ package body KIZielSuchenLogik is
       
       -- Hier noch eine Überprüfung einbauen ob die Ebenenänderung überhaupt möglich ist? äöü
       -- Dann müsste ich nicht immer alles durchgehen. äöü
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          
          QuadrantenDurchgegangen := (others => False);
          
@@ -84,22 +84,22 @@ package body KIZielSuchenLogik is
                   Multiplikator := (-1, -1);
             end case;
          
-            YAchseSchleife:
-            for YAchseSchleifenwert in YQuadrantenbereich.Anfang .. YQuadrantenbereich.Ende loop
-               XAchseSchleife:
-               for XAchseSchleifenwert in XQuadrantenbereich.Anfang .. XQuadrantenbereich.Ende loop
+            SenkrechteSchleife:
+            for SenkrechteSchleifenwert in YQuadrantenbereich.Anfang .. YQuadrantenbereich.Ende loop
+               WaagerechteSchleife:
+               for WaagerechteSchleifenwert in XQuadrantenbereich.Anfang .. XQuadrantenbereich.Ende loop
             
                   Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
-                                                                                                            ÄnderungExtern    => (EAchseSchleifenwert,
-                                                                                                                                   Multiplikator.YAchse * YAchseSchleifenwert,
-                                                                                                                                   Multiplikator.XAchse * XAchseSchleifenwert),
+                                                                                                            ÄnderungExtern    => (EbeneSchleifenwert,
+                                                                                                                                   Multiplikator.Senkrechte * SenkrechteSchleifenwert,
+                                                                                                                                   Multiplikator.Waagerechte * WaagerechteSchleifenwert),
                                                                                                             TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                   
                   -- Könnte man ZielGefunden nicht vor der Schleife auf False setze und sich hier das Neusetzen bei LeerAchse sparen? äöü
                   case
-                    Kartenwert.XAchse
+                    Kartenwert.Waagerechte
                   is
-                     when KartenKonstanten.LeerXAchse =>
+                     when KartenKonstanten.LeerWaagerechte =>
                         ZielGefunden := False;
                         
                      when others =>
@@ -118,10 +118,10 @@ package body KIZielSuchenLogik is
                         null;
                   end case;
                
-               end loop XAchseSchleife;
-            end loop YAchseSchleife;
+               end loop WaagerechteSchleife;
+            end loop SenkrechteSchleife;
          end loop QuadrantenSchleife;
-      end loop EAchseSchleife;
+      end loop EbeneSchleife;
       
       return KartenRecordKonstanten.LeerKoordinate;
       
@@ -131,7 +131,7 @@ package body KIZielSuchenLogik is
    
    function Aufteilung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       ZielartExtern : in KIDatentypen.Ziel_Suchen_Enum)
       return Boolean
    is begin
@@ -165,7 +165,7 @@ package body KIZielSuchenLogik is
    -- Die Prüfungen hier drin später noch erweitern. äöü
    function Fliehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -188,7 +188,7 @@ package body KIZielSuchenLogik is
    
    function Siedeln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
@@ -231,7 +231,7 @@ package body KIZielSuchenLogik is
    
    function Erkunden
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -258,7 +258,7 @@ package body KIZielSuchenLogik is
    
    function EigenesFeld
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       

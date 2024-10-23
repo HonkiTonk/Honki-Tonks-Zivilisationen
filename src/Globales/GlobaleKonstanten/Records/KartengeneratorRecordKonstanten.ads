@@ -23,26 +23,26 @@ package KartengeneratorRecordKonstanten is
    Kartenartgrößen : constant KartenartgrößenArray := (
                                                            KartenartDatentypen.Kartenart_Inseln_Enum =>
                                                              (
-                                                              MinimaleYAchse => 3,
-                                                              MaximaleYAchse => 4,
-                                                              MinimaleXAchse => 3,
-                                                              MaximaleXAchse => 4
+                                                              MinimaleSenkrechte => 3,
+                                                              MaximaleSenkrechte => 4,
+                                                              MinimaleWaagerechte => 3,
+                                                              MaximaleWaagerechte => 4
                                                              ),
                                                            
                                                            KartenartDatentypen.Kartenart_Kontinente_Enum =>
                                                              (
-                                                              MinimaleYAchse => 5,
-                                                              MaximaleYAchse => 8,
-                                                              MinimaleXAchse => 5,
-                                                              MaximaleXAchse => 8
+                                                              MinimaleSenkrechte => 5,
+                                                              MaximaleSenkrechte => 8,
+                                                              MinimaleWaagerechte => 5,
+                                                              MaximaleWaagerechte => 8
                                                              ),
                                                            
                                                            KartenartDatentypen.Kartenart_Pangäa_Enum =>
                                                              (
-                                                              MinimaleYAchse => KartenDatentypen.SenkrechtePositiv'Last / 3,
-                                                              MaximaleYAchse => KartenDatentypen.SenkrechtePositiv'Last / 3,
-                                                              MinimaleXAchse => KartenDatentypen.WaagerechtePositiv'Last / 3,
-                                                              MaximaleXAchse => KartenDatentypen.WaagerechtePositiv'Last / 3
+                                                              MinimaleSenkrechte => KartenDatentypen.SenkrechtePositiv'Last / 3,
+                                                              MaximaleSenkrechte => KartenDatentypen.SenkrechtePositiv'Last / 3,
+                                                              MinimaleWaagerechte => KartenDatentypen.WaagerechtePositiv'Last / 3,
+                                                              MaximaleWaagerechte => KartenDatentypen.WaagerechtePositiv'Last / 3
                                                              )
                                                           );
 

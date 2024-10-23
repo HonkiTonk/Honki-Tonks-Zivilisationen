@@ -46,7 +46,7 @@ private
    
    Zwischenspeicher : Unbounded_Wide_Wide_String;
 
-   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   AktuelleKoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
    AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteAllgemeinesAccess'Range);
    
@@ -82,7 +82,7 @@ private
       return Unbounded_Wide_Wide_String;
    
    function Feldeffekte
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Unbounded_Wide_Wide_String;
    
 end AllgemeinesSeitenleisteGrafik;

@@ -15,7 +15,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
    -- Werde wohl mehrere Versionen bauen müssen? äöü
    function KartenfeldPrüfen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -49,7 +49,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
    
    function EinheitBlockiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
       use type EinheitenDatentypen.Einheitenbereich;
@@ -88,7 +88,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
    
    
    function FeldUnpassierbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KartenDatentypen.SenkrechteSichtweiteNatural
    is begin

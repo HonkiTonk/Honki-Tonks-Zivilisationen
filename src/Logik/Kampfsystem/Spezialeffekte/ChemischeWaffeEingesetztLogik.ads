@@ -32,17 +32,17 @@ private
    Gefahrenbereich : KartenRecords.EffektbereichRecord;
    Gefahrenhöhe : KartenRecords.EffekthöheRecord;
 
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenwertFluss : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.KartenfeldNaturalRecord;
+   KartenwertFluss : KartenRecords.KartenfeldNaturalRecord;
+   Koordinaten : KartenRecords.KartenfeldNaturalRecord;
 
    procedure Wasserverschmutzung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
 end ChemischeWaffeEingesetztLogik;

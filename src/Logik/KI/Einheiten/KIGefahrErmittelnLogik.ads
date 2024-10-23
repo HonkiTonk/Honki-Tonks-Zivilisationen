@@ -35,8 +35,8 @@ private
 
    EinheitUnzugeordnet : EinheitenRecords.SpeziesEinheitnummerRecord;
 
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   AktuelleKoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 
 

@@ -20,8 +20,8 @@ package KartengeneratorVariablenLogik is
    -- Alle Angaben sind Radien.
    Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum);
 
-   SchleifenanfangOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;
-   SchleifenendeOhnePolbereich : KartenRecords.YXAchsenKartenfeldNaturalRecord;
+   SchleifenanfangOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
+   SchleifenendeOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
 
    type StandardKartenressourcenWahrscheinlichkeitenArray is array (KartenartDatentypen.Kartenressourcenmenge_Enum'Range, KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range) of SystemDatentypen.EinsBisHundert;
    StandardKartenressourcenWahrscheinlichkeiten : constant StandardKartenressourcenWahrscheinlichkeitenArray := (

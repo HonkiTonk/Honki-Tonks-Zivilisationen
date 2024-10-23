@@ -8,7 +8,7 @@ package body BewegungspunkteBerechnenLogik is
 
    -- Eventuell Bewegungspunkte entfernen und überall durch NotwendigeBewegungspunkte ersetzen? äöü
    function Bewegungspunkte
-     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenDatentypen.Bewegungspunkte
    is begin
@@ -34,7 +34,7 @@ package body BewegungspunkteBerechnenLogik is
    
    
    function NotwendigeBewegungspunkte
-     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenDatentypen.BewegungspunkteVorhanden
    is begin
@@ -59,12 +59,12 @@ package body BewegungspunkteBerechnenLogik is
 
    function NotwendigeBewegungspunkteErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return EinheitenDatentypen.Bewegungspunkte
    is begin
       
       case
-        NeueKoordinatenExtern.EAchse
+        NeueKoordinatenExtern.Ebene
       is
          when KartenDatentypen.EbeneOberfläche =>
             EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

@@ -14,16 +14,16 @@ package UmwandlungenGrafik is
    use type KartenDatentypen.Waagerechte;
 
    function KoordinatenKartenposition
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               ),
          
        Post => (
@@ -34,12 +34,12 @@ package UmwandlungenGrafik is
    
 private
    
-   Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   Sichtbereich : KartenRecords.KartenfeldumgebungPositivRecord;
    
    Feldposition : Sf.System.Vector2.sfVector2f;
    Kartenfeldfläche : Sf.System.Vector2.sfVector2f;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   CursorKoordinatenAlt : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   CursorKoordinatenAlt : KartenRecords.KartenfeldNaturalRecord;
 
 end UmwandlungenGrafik;

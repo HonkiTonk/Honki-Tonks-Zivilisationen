@@ -98,17 +98,17 @@ package body StadtAllgemeinesLogik is
                Stadtumgebung := LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => (SpeziesExtern, FreierPlatzSchleifenwert));
                Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, FreierPlatzSchleifenwert));
             
-               YAchseSchleife:
-               for YAchseSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
-                  XAchseSchleife:
-                  for XAchseSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
+               SenkrechteSchleife:
+               for SenkrechteSchleifenwert in -Stadtumgebung.Senkrechte .. Stadtumgebung.Senkrechte loop
+                  WaagerechteSchleife:
+                  for WaagerechteSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
                   
                      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                               ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                               ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                   
                      if
-                       Kartenwert.XAchse = KartenKonstanten.LeerXAchse
+                       Kartenwert.Waagerechte = KartenKonstanten.LeerWaagerechte
                      then
                         null;
                      
@@ -123,8 +123,8 @@ package body StadtAllgemeinesLogik is
                                                          BelegterGrundExtern => (SpeziesExtern, FreierPlatzSchleifenwert));
                      end if;
                   
-                  end loop XAchseSchleife;
-               end loop YAchseSchleife;
+                  end loop WaagerechteSchleife;
+               end loop SenkrechteSchleife;
             
                HeimatstadtSchleife:
                for HeimaststadtSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop

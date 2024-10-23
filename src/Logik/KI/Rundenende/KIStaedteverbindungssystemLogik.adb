@@ -36,9 +36,9 @@ package body KIStaedteverbindungssystemLogik is
       
       case
         LeseKIVariablen.Stadtverbindung (SpeziesExtern   => SpeziesExtern,
-                                         AbschnittExtern => KIKonstanten.VerbindungsplanVorhanden).XAchse
+                                         AbschnittExtern => KIKonstanten.VerbindungsplanVorhanden).Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             Stadtgrenze := LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern);
             
          when others =>
@@ -87,8 +87,8 @@ package body KIStaedteverbindungssystemLogik is
    
    function VerbindungPrüfen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      StartkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      StartkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
       use type KartenDatentypen.Ebene;
@@ -97,12 +97,12 @@ package body KIStaedteverbindungssystemLogik is
    begin
             
       if
-        StartkoordinatenExtern.EAchse not in KartenDatentypen.EbenePlanet'Range
+        StartkoordinatenExtern.Ebene not in KartenDatentypen.EbenePlanet'Range
         or
           -- Dafür später vielleicht auch Tunnels anlegen? äöü
-        StartkoordinatenExtern.EAchse = KartenDatentypen.EbeneVorhanden'First
+        StartkoordinatenExtern.Ebene = KartenDatentypen.EbeneVorhanden'First
         or
-          StartkoordinatenExtern.EAchse /= ZielkoordinatenExtern.EAchse
+          StartkoordinatenExtern.Ebene /= ZielkoordinatenExtern.Ebene
       then
          return False;
          
@@ -112,7 +112,7 @@ package body KIStaedteverbindungssystemLogik is
       end if;
          
       if
-        StartkoordinatenExtern.EAchse = KartenKonstanten.OberflächeKonstante
+        StartkoordinatenExtern.Ebene = KartenKonstanten.OberflächeKonstante
         and
           Startgrund not in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
           and
@@ -121,7 +121,7 @@ package body KIStaedteverbindungssystemLogik is
          null;
          
       elsif
-        StartkoordinatenExtern.EAchse = KartenKonstanten.UnterflächeKonstante
+        StartkoordinatenExtern.Ebene = KartenKonstanten.UnterflächeKonstante
         and
           Startgrund not in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
           and
@@ -152,8 +152,8 @@ package body KIStaedteverbindungssystemLogik is
    
    function PlanenRekursiv
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AktuelleKoordinateExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      AktuelleKoordinateExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
    is begin
@@ -190,7 +190,7 @@ package body KIStaedteverbindungssystemLogik is
    
    function PlanschrittFestlegen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       DurchlaufExtern : in Positive;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
@@ -239,27 +239,27 @@ package body KIStaedteverbindungssystemLogik is
    
    procedure Felderbewertung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      AktuelleKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       BewertungPosition := BewertungArray'First;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
             Bewertung (BewertungPosition).Koordinaten := KartenWert;
                
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
               or
                 KartenWert = AktuelleKoordinatenExtern
             then
@@ -278,8 +278,8 @@ package body KIStaedteverbindungssystemLogik is
                
             BewertungPosition := BewertungPosition + 1;
                
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
                   
       SortierenEinsSchleife:
       for SortierenEinsSchleifenwert in BewertungArray'Range loop
@@ -306,10 +306,10 @@ package body KIStaedteverbindungssystemLogik is
    
    function FeldUngeeignet
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       FelderSchleife:
@@ -357,8 +357,8 @@ package body KIStaedteverbindungssystemLogik is
       for VerbindungSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'Range loop
          
          if
-           KartenKonstanten.LeerXAchse = LeseKIVariablen.Stadtverbindung (SpeziesExtern   => SpeziesExtern,
-                                                                          AbschnittExtern => VerbindungSchleifenwert).XAchse
+           KartenKonstanten.LeerWaagerechte = LeseKIVariablen.Stadtverbindung (SpeziesExtern   => SpeziesExtern,
+                                                                          AbschnittExtern => VerbindungSchleifenwert).Waagerechte
          then
             null;
             
@@ -422,7 +422,7 @@ package body KIStaedteverbindungssystemLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
       
       VerbindungSchleife:

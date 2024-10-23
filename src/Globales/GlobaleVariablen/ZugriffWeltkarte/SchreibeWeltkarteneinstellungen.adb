@@ -4,7 +4,7 @@ with KartenRecordKonstanten;
 package body SchreibeWeltkarteneinstellungen is
    
    procedure Fläche
-     (AchsenExtern : in KartenRecords.YXAchsenKartenfeldPositivRecord)
+     (AchsenExtern : in KartenRecords.KartenfeldumgebungPositivRecord)
    is begin
       
       Weltkarte.Karteneinstellungen.Kartengröße := AchsenExtern;

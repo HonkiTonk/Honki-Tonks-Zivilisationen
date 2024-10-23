@@ -9,13 +9,13 @@ package KartenKonstanten is
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   LeerEAchse : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
-   LeerYAchse : constant KartenDatentypen.SenkrechteNatural := KartenDatentypen.SenkrechteNatural'First;
-   LeerXAchse : constant KartenDatentypen.WaagerechteNatural := KartenDatentypen.WaagerechteNatural'First;
+   LeerEbene : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
+   LeerSenkrechte : constant KartenDatentypen.SenkrechteNatural := KartenDatentypen.SenkrechteNatural'First;
+   LeerWaagerechte : constant KartenDatentypen.WaagerechteNatural := KartenDatentypen.WaagerechteNatural'First;
    
-   LeerEAchseÄnderung : constant KartenDatentypen.EbeneVorhanden := 0;
-   LeerYAchseÄnderung : constant KartenDatentypen.SenkrechteNatural := LeerYAchse;
-   LeerXAchseÄnderung : constant KartenDatentypen.WaagerechteNatural := LeerXAchse;
+   LeerEbeneÄnderung : constant KartenDatentypen.EbeneVorhanden := 0;
+   LeerSenkrechteÄnderung : constant KartenDatentypen.SenkrechteNatural := LeerSenkrechte;
+   LeerWaagerechteÄnderung : constant KartenDatentypen.WaagerechteNatural := LeerWaagerechte;
    
    EbeneHoch : constant KartenDatentypen.EbeneVorhanden := 1;
    EbeneRunter : constant KartenDatentypen.EbeneVorhanden := -1;
@@ -24,10 +24,10 @@ package KartenKonstanten is
    WaagerechteWesten : constant KartenDatentypen.WaagerechteUmgebungEins := -1;
    WaagerechteOsten : constant KartenDatentypen.WaagerechteUmgebungEins := 1;
    
-   AnfangEAchse : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'First;
-   EndeEAchse : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'Last;
-   AnfangYAchse : constant KartenDatentypen.SenkrechtePositiv := KartenDatentypen.SenkrechtePositiv'First;
-   AnfangXAchse : constant KartenDatentypen.WaagerechtePositiv := KartenDatentypen.WaagerechtePositiv'First;
+   AnfangEbene : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'First;
+   EndeEbene : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'Last;
+   AnfangSenkrechte : constant KartenDatentypen.SenkrechtePositiv := KartenDatentypen.SenkrechtePositiv'First;
+   AnfangWaagerechte : constant KartenDatentypen.WaagerechtePositiv := KartenDatentypen.WaagerechtePositiv'First;
    
    PlaneteninneresKonstante : constant KartenDatentypen.EbeneVorhanden := -2;
    UnterflächeKonstante : constant KartenDatentypen.EbeneVorhanden := -1;
@@ -39,12 +39,12 @@ package KartenKonstanten is
       
    LeerSichtbar : constant Boolean := False;
    
-   MinimaleKartengröße : constant KartenRecords.YXAchsenKartenfeldPositivRecord := (
-                                                                                      YAchse => KartenDatentypen.SenkrechtePositiv'Last / 50,
-                                                                                      XAchse => KartenDatentypen.WaagerechtePositiv'Last / 50
+   MinimaleKartengröße : constant KartenRecords.KartenfeldumgebungPositivRecord := (
+                                                                                      Senkrechte => KartenDatentypen.SenkrechtePositiv'Last / 50,
+                                                                                      Waagerechte => KartenDatentypen.WaagerechtePositiv'Last / 50
                                                                                      );
    
-   type StandardKartengrößenArray is array (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
+   type StandardKartengrößenArray is array (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range) of KartenRecords.KartenfeldumgebungPositivRecord;
    StandardKartengrößen : constant StandardKartengrößenArray := (
                                                                      RueckgabeDatentypen.Auswahl_Eins_Enum   => (KartenDatentypen.SenkrechtePositiv'Last / 50, KartenDatentypen.WaagerechtePositiv'Last / 50),
                                                                      RueckgabeDatentypen.Auswahl_Zwei_Enum   => (KartenDatentypen.SenkrechtePositiv'Last / 25, KartenDatentypen.WaagerechtePositiv'Last / 25),

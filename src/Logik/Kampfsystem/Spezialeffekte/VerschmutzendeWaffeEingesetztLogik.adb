@@ -25,32 +25,32 @@ package body VerschmutzendeWaffeEingesetztLogik is
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
-        Koordinaten.EAchse
+        Koordinaten.Ebene
       is
          when KartenKonstanten.HimmelKonstante =>
-            Verschmutzungshöhe.EAchseAnfang := KartenKonstanten.OberflächeKonstante;
-            Verschmutzungshöhe.EAchseEnde := KartenKonstanten.HimmelKonstante;
+            Verschmutzungshöhe.EbeneAnfang := KartenKonstanten.OberflächeKonstante;
+            Verschmutzungshöhe.EbeneEnde := KartenKonstanten.HimmelKonstante;
 
          when others =>
-            Verschmutzungshöhe.EAchseAnfang := Koordinaten.EAchse;
-            Verschmutzungshöhe.EAchseEnde := Koordinaten.EAchse;
+            Verschmutzungshöhe.EbeneAnfang := Koordinaten.Ebene;
+            Verschmutzungshöhe.EbeneEnde := Koordinaten.Ebene;
       end case;
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in Verschmutzungshöhe.EAchseAnfang .. Verschmutzungshöhe.EAchseEnde loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in Verschmutzungsbereich.YAchseAnfang .. Verschmutzungsbereich.YAchseEnde loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in Verschmutzungsbereich.XAchseAnfang .. Verschmutzungsbereich.XAchseEnde loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in Verschmutzungshöhe.EbeneAnfang .. Verschmutzungshöhe.EbeneEnde loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in Verschmutzungsbereich.SenkrechteAnfang .. Verschmutzungsbereich.SenkrechteEnde loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in Verschmutzungsbereich.WaagerechteAnfang .. Verschmutzungsbereich.WaagerechteEnde loop
 
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, Koordinaten.YAchse, Koordinaten.XAchse),
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EbeneSchleifenwert, Koordinaten.Senkrechte, Koordinaten.Waagerechte),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
-                 Kartenwert.EAchse
+                 Kartenwert.Ebene
                is
-                  when KartenKonstanten.LeerEAchse =>
+                  when KartenKonstanten.LeerEbene =>
                      null;
                      
                   when others =>
@@ -58,9 +58,9 @@ package body VerschmutzendeWaffeEingesetztLogik is
                                                    FeldeffektExtern  => KartenextraDatentypen.Verschmutzt_Enum);
                end case;
 
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
       
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop

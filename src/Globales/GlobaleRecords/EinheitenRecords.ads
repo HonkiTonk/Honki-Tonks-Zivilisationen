@@ -58,14 +58,14 @@ package EinheitenRecords is
    
    
    
-   type KIBewegungPlanArray is array (EinheitenDatentypen.BewegungsplanVorhanden'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
+   type KIBewegungPlanArray is array (EinheitenDatentypen.BewegungsplanVorhanden'Range) of KartenRecords.KartenfeldNaturalRecord;
    type TransporterArray is array (EinheitenDatentypen.TransportplätzeVorhanden'Range) of EinheitenDatentypen.Einheitenbereich;
    type EinheitMeldungenArray is array (EinheitenDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitenDatentypen.Einheit_Meldung_Enum;
 
    type EinheitenGebautRecord is record
       
       ID : EinheitenDatentypen.EinheitenID;
-      KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenAktuell : KartenRecords.KartenfeldNaturalRecord;
       Heimatstadt : StadtDatentypen.Städtebereich;
       
       Lebenspunkte : KampfDatentypen.Lebenspunkte;
@@ -76,9 +76,9 @@ package EinheitenRecords is
       Beschäftigung : ArbeitRecord;
       BeschäftigungNachfolger : ArbeitRecord;
       
-      KIZielKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+      KIZielKoordinaten : KartenRecords.KartenfeldNaturalRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
-      KIZielKoordinatenNachfolger : KartenRecords.AchsenKartenfeldNaturalRecord;
+      KIZielKoordinatenNachfolger : KartenRecords.KartenfeldNaturalRecord;
       KIBeschäftigtNachfolger : KIDatentypen.Einheit_Aufgabe_Enum;
       KIVerbesserung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       

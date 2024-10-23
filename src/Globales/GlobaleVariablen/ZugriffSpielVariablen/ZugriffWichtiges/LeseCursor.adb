@@ -4,7 +4,7 @@ package body LeseCursor is
 
    function KoordinatenAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is begin
       
       return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell;
@@ -13,20 +13,20 @@ package body LeseCursor is
    
    
    
-   function EAchseAktuell
+   function EbeneAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.Ebene
    is begin
       
-      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell.EAchse;
+      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell.Ebene;
       
-   end EAchseAktuell;
+   end EbeneAktuell;
    
    
 
    function KoordinatenAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
    is begin
       
       return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt;
@@ -35,31 +35,31 @@ package body LeseCursor is
    
    
    
-   function YAchseAlt
+   function SenkrechteAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.SenkrechtePositiv
    is begin
       
-      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.YAchse;
+      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.Senkrechte;
       
-   end YAchseAlt;
+   end SenkrechteAlt;
    
    
    
-   function XAchseAlt
+   function WaagerechteAlt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenDatentypen.WaagerechtePositiv
    is begin
       
-      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.XAchse;
+      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.Waagerechte;
       
-   end XAchseAlt;
+   end WaagerechteAlt;
    
    
       
    function GanzerEintrag
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.CursorRecord
+      return KartenRecords.ZeigerRecord
    is begin
       
       return SpielVariablen.CursorImSpiel (SpeziesExtern);

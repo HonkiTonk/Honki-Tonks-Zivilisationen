@@ -93,24 +93,24 @@ package body StadtproduktionLogik is
       Geldgewinnung := ProduktionKonstanten.LeerProduktion;
       Forschungsgewinnung := ProduktionKonstanten.LeerProduktion;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -NutzbarerBereich.Senkrechte .. NutzbarerBereich.Senkrechte loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -NutzbarerBereich.Waagerechte .. NutzbarerBereich.Waagerechte loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -NutzbarerBereich.Senkrechte .. NutzbarerBereich.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -NutzbarerBereich.Waagerechte .. NutzbarerBereich.Waagerechte loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
             elsif
               False = LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                               YKoordinateExtern        => YAchseSchleifenwert,
-                                                               XKoordinateExtern        => XAchseSchleifenwert)
+                                                               YKoordinateExtern        => SenkrechteSchleifenwert,
+                                                               XKoordinateExtern        => WaagerechteSchleifenwert)
             then
                null;
                
@@ -139,8 +139,8 @@ package body StadtproduktionLogik is
                
             end if;
                            
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
                            
       SchreibeStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                               NahrungsproduktionExtern => Nahrungsgewinnung,

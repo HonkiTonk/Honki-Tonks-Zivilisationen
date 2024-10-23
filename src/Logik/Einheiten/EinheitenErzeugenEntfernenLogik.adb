@@ -14,7 +14,7 @@ with EinheitentransporterLogik;
 package body EinheitenErzeugenEntfernenLogik is
 
    procedure EinheitErzeugen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)

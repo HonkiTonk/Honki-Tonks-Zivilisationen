@@ -12,7 +12,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
 
    -- Später Spezies/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln? äöü
    function BewertungStadtBauen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
@@ -20,7 +20,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
    begin
       
       case
-        KoordinatenExtern.EAchse
+        KoordinatenExtern.Ebene
       is
          when KartenKonstanten.OberflächeKonstante =>
             null;
@@ -53,21 +53,21 @@ package body KIKartenfeldbewertungModifizierenLogik is
    
    -- Das später Speziesspezifische anpassen? äöü
    function StadtabstandVorhanden
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
             
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
                               
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                      
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                
@@ -80,8 +80,8 @@ package body KIKartenfeldbewertungModifizierenLogik is
                null;
             end if;
                
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
       
       return True;
       
@@ -90,24 +90,24 @@ package body KIKartenfeldbewertungModifizierenLogik is
    
    
    function GutGenug
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is begin
       
       GuteFelder := GrafikKonstanten.Nullwert;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
                               
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                      
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
                      
@@ -124,16 +124,16 @@ package body KIKartenfeldbewertungModifizierenLogik is
                   null;
                   
                elsif
-               abs (YAchseSchleifenwert) = 3
+               abs (SenkrechteSchleifenwert) = 3
                  or
-               abs (YAchseSchleifenwert) = 3
+               abs (SenkrechteSchleifenwert) = 3
                then
                   GuteFelder := GuteFelder + 1.00 / 3.00;
                   
                elsif
-               abs (YAchseSchleifenwert) = 2
+               abs (SenkrechteSchleifenwert) = 2
                  or
-               abs (YAchseSchleifenwert) = 2
+               abs (SenkrechteSchleifenwert) = 2
                then
                   GuteFelder := GuteFelder + 1.00 / GrafikKonstanten.Halbierung;
                   
@@ -142,8 +142,8 @@ package body KIKartenfeldbewertungModifizierenLogik is
                end if;
             end if;
                
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
             
       if
         GuteFelder > KartenfeldBewertungStadtBauenMinimum (SpeziesExtern)

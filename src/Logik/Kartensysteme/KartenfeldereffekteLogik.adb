@@ -3,7 +3,7 @@ with LeseWeltkarte;
 package body KartenfeldereffekteLogik is
 
    function FeldeffektVorhanden
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       

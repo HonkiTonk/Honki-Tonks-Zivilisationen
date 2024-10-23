@@ -16,7 +16,7 @@ package KIEinheitSuchenLogik is
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       FeindExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => FeindExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -39,7 +39,7 @@ private
    WaagerechtePrüfen : KartenDatentypen.WaagerechtePositiv;
    WaagerechteGeprüft : KartenDatentypen.WaagerechteNatural;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   Einheitenkoordinaten : KartenRecords.KartenfeldNaturalRecord;
 
 end KIEinheitSuchenLogik;

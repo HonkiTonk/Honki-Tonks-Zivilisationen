@@ -28,10 +28,10 @@ package body BewegungsplanLogik is
    
    function Einzelschritt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.KartenfeldRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldRecord;
+      use type KartenRecords.KartenfeldRecord;
    begin
             
       if
@@ -47,9 +47,9 @@ package body BewegungsplanLogik is
       end if;
       
       case
-        EinzelbewegungKartenwert.XAchse
+        EinzelbewegungKartenwert.Waagerechte
       is
-         when KartenKonstanten.LeerXAchse =>
+         when KartenKonstanten.LeerWaagerechte =>
             return True;
             
          when others =>
@@ -63,10 +63,10 @@ package body BewegungsplanLogik is
       
    function BewegungPlanen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type EinheitenDatentypen.Bewegungspunkte;
       use type SpeziesDatentypen.Spezies_Enum;
       use type KampfDatentypen.Lebenspunkte;
@@ -172,11 +172,11 @@ package body BewegungsplanLogik is
    
    function PlanungUnnötig
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      EinheitenkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
@@ -215,7 +215,7 @@ package body BewegungsplanLogik is
    procedure NeuGleichZiel
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AndereEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;
@@ -309,7 +309,7 @@ package body BewegungsplanLogik is
    -- Den Teil hier mit KIBewegunsplanBerechnenLogik verschmelzen? äöü
    function PlanenRekursiv
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      AktuelleKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
    is begin
@@ -391,28 +391,28 @@ package body BewegungsplanLogik is
    
    procedure Felderbewertung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      AktuelleKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
    begin
             
       BewertungPosition := BewertungArray'First;
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+      EbeneSchleife:
+      for EbeneSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                Bewertung (BewertungPosition).Koordinaten := KartenWert;
                
                if
-                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
+                 KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
                  or
                    KartenWert = AktuelleKoordinatenExtern
                then
@@ -425,9 +425,9 @@ package body BewegungsplanLogik is
                
                BewertungPosition := BewertungPosition + 1;
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
                   
       SortierenEinsSchleife:
       for SortierenEinsSchleifenwert in BewertungArray'Range loop
@@ -454,7 +454,7 @@ package body BewegungsplanLogik is
    
    function BewertungFeldposition
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenDatentypen.SenkrechteNatural
    is begin
       

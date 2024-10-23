@@ -2,19 +2,19 @@ with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
-package KIYAchsenbewertung is
+package KISenkrechtebewertung is
    pragma Elaborate_Body;
    use type KartenDatentypen.Senkrechte;
 
-   function YAchseBewerten
+   function SenkrechteBewerten
      (ZielpunktExtern : in KartenDatentypen.SenkrechtePositiv;
       NeuerPunktExtern : in KartenDatentypen.SenkrechtePositiv)
       return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
-                 ZielpunktExtern <= LeseWeltkarteneinstellungen.YAchse
+                 ZielpunktExtern <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.YAchse
+                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.Senkrechte
               );
 
 private
@@ -32,9 +32,9 @@ private
       return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
-                 ZielpunktExtern <= LeseWeltkarteneinstellungen.YAchse
+                 ZielpunktExtern <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.YAchse
+                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.Senkrechte
               );
 
    function StandardübergangSüden
@@ -43,9 +43,9 @@ private
       return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
-                 ZielpunktExtern <= LeseWeltkarteneinstellungen.YAchse
+                 ZielpunktExtern <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.YAchse
+                 NeuerPunktExtern <= LeseWeltkarteneinstellungen.Senkrechte
               );
 
-end KIYAchsenbewertung;
+end KISenkrechtebewertung;

@@ -28,14 +28,14 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
 
-   ZielKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
-   MöglicheKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
+   ZielKoordinate : KartenRecords.KartenfeldNaturalRecord;
+   MöglicheKoordinate : KartenRecords.KartenfeldNaturalRecord;
 
 
 
    function Ziel
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -44,9 +44,9 @@ private
               ),
 
        Post => (
-                  Ziel'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  Ziel'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
-                  Ziel'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  Ziel'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
 
 end KIEinheitFestlegenFliehenLogik;

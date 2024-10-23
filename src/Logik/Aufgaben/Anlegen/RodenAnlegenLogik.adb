@@ -8,7 +8,7 @@ with Zusatzgrundplatzierungssystem;
 package body RodenAnlegenLogik is
 
    procedure RodenAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       Zusatzgrundplatzierungssystem.Zusatzgrundentfernung (KoordinatenExtern => KoordinatenExtern);

@@ -22,7 +22,7 @@ package ZufallsgeneratorenSpieleinstellungenLogik is
      return RueckgabeDatentypen.Kartengrößen_Standard_Enum;
    
    function ZufälligeKartengröße
-     return KartenRecords.YXAchsenKartenfeldPositivRecord;
+     return KartenRecords.KartenfeldumgebungPositivRecord;
    
    function ZufälligeVordefinierteKartenart
      return KartenartDatentypen.Kartenart_Normal_Enum;
@@ -57,9 +57,9 @@ private
    package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpielDatentypen.Schwierigkeitsgrad_Enum);
    package ZufälligeSpeziesWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpeziesDatentypen.Spezies_Vorhanden_Enum);
    
-   package ZufälligerEAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_E_Einstellbar_Enum);
-   package ZufälligerYAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_Y_Einstellbar_Enum);
-   package ZufälligerXAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_X_Einstellbar_Enum);
+   package ZufälligerEbeneÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum);
+   package ZufälligerSenkrechteÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum);
+   package ZufälligerWaagerechteÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum);
    
    package ZufälligeSenkrechtePolgrößenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechteNatural);
    package ZufälligeWaagerechtePolgrößenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.WaagerechteNatural);
@@ -74,9 +74,9 @@ private
    ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
    ZufälligeSpeziesGewählt : ZufälligeSpeziesWählen.Generator;
    
-   ZufälligerEAchsenÜbergangGewählt : ZufälligerEAchsenÜbergangWählen.Generator;
-   ZufälligerYAchsenÜbergangGewählt : ZufälligerYAchsenÜbergangWählen.Generator;
-   ZufälligerXAchsenÜbergangGewählt : ZufälligerXAchsenÜbergangWählen.Generator;
+   ZufälligerEbeneÜbergangGewählt : ZufälligerEbeneÜbergangWählen.Generator;
+   ZufälligerSenkrechteÜbergangGewählt : ZufälligerSenkrechteÜbergangWählen.Generator;
+   ZufälligerWaagerechteÜbergangGewählt : ZufälligerWaagerechteÜbergangWählen.Generator;
    
    ZufälligeSenkrechtePolgrößeGewählt : ZufälligeSenkrechtePolgrößenWählen.Generator;
    ZufälligeWaagerechtePolgrößeGewählt : ZufälligeWaagerechtePolgrößenWählen.Generator;

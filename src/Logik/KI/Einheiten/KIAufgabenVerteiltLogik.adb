@@ -51,11 +51,11 @@ package body KIAufgabenVerteiltLogik is
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      ZielKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
       use type KIDatentypen.Einheit_Aufgabe_Enum;
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type EinheitenDatentypen.EinheitenID;
    begin
       
@@ -98,10 +98,10 @@ package body KIAufgabenVerteiltLogik is
    -- Gibt es bereits eine Einheit mit diesem Ziel?
    function EinheitZiel
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      ZielKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.KartenfeldNaturalRecord;
       use type EinheitenDatentypen.EinheitenID;
    begin
       

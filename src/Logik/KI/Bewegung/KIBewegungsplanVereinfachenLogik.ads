@@ -38,8 +38,8 @@ private
    
    Planschritt : EinheitenDatentypen.Bewegungsplan;
       
-   KartenwertVereinfachung : KartenRecords.AchsenKartenfeldNaturalRecord;
-   AktuellePlankoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenwertVereinfachung : KartenRecords.KartenfeldNaturalRecord;
+   AktuellePlankoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
    procedure PlanvereinfachungPrüfen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -56,7 +56,7 @@ private
    function Verschieben
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
