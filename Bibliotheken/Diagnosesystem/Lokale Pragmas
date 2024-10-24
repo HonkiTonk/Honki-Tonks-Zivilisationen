@@ -71,10 +71,10 @@ pragma Restrictions (No_Task_Hierarchy);
 pragma Restrictions (No_Multiple_Elaboration);
 pragma Restrictions (No_Implementation_Pragmas);
 pragma Restrictions (No_Relative_Delay);
+pragma Restrictions (No_Dependence => Ada.Calendar);
 pragma Normalize_Scalars;
 
--- pragma Restrictions (No_Dependence => Ada.Calendar);
--- Ist das nicht identisch mit dem Oberen?
+-- Ist das nicht identisch mit pragma Restrictions (No_Dependence => Ada.Calendar);?
 -- pragma Restrictions (No_Calendar);
 
 
@@ -88,8 +88,7 @@ pragma Normalize_Scalars;
 
 
 -- Sonstiges:
--- Scheint bei meinem Spiel nicht wirklich einen Unterschied zu bewirken.
--- Trotzdem verwenden?
+-- Scheint nicht wirklich einen Unterschied zu bewirken, trotzdem verwenden?
 -- pragma Discard_Names;
 -- Sollte nicht mit -gnatVA verwendet werden.
 -- Pragma Assume_No_Invalid_Values (Off);

@@ -1,7 +1,5 @@
 private with Ada.Wide_Wide_Text_IO;
 
-with Ada.Calendar; use Ada.Calendar;
-
 package HTB1_MeldungSchreiben is
    pragma Elaborate_Body;
 
@@ -22,13 +20,13 @@ package HTB1_MeldungSchreiben is
 private
    use Ada.Wide_Wide_Text_IO;
    
+   -- Diese Dinge noch anpassbar machen? äöü
+   -- Dann müsste man aber auch prüfen ob das gültige Angaben sind, eventuell später einbauen. äöü
    Meldungen : constant String (1 .. 9) := "Meldungen";
    Dateiform : constant String (1 .. 6) := "WCEM=8";
    
    Wartezeit : constant Duration := 0.002;
-   
-   Test : Time;
-      
+         
    DateiMeldung : File_Type;
 
 end HTB1_MeldungSchreiben;

@@ -1,6 +1,7 @@
-with Ada.Float_Text_IO; use Ada.Float_Text_IO;
-with Ada.Strings.Wide_Wide_Fixed; use Ada.Strings.Wide_Wide_Fixed;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+
+with Ada.Float_Text_IO;
+with Ada.Strings.Wide_Wide_Fixed;
 
 with HTB3_Umwandlungsvariablen;
 
@@ -9,7 +10,9 @@ package body HTB3_Umwandlungssystem is
    function Zahlenstring
      (ZahlExtern : in GanzeZahl)
       return Wide_Wide_String
-   is begin
+   is
+      use Ada.Strings.Wide_Wide_Fixed;
+   begin
       
       if
         ZahlExtern >= 0
@@ -29,7 +32,10 @@ package body HTB3_Umwandlungssystem is
    function Kommazahlenstring
      (KommazahlExtern : in Kommazahl)
       return Wide_Wide_String
-   is begin
+   is
+      use Ada.Float_Text_IO;
+      use Ada.Strings.Wide_Wide_Fixed;
+   begin
       
       Put (To   => ZwischenspeicherKommazahlenstring,
            Item => Float (KommazahlExtern),

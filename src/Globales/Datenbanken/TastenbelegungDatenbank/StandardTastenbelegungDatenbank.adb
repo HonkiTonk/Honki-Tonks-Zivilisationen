@@ -6,8 +6,7 @@ package body StandardTastenbelegungDatenbank is
       AllgemeineBelegung;
       Einheitenbelegung;
       Stadtbelegung;
-      
-      
+            
    end StandardTastenbelegungLaden;
    
    

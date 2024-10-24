@@ -1,13 +1,15 @@
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Directories; use Ada.Directories;
-with Ada.Float_Text_IO; use Ada.Float_Text_IO;
+with Ada.Wide_Wide_Text_IO;
+with Ada.Directories;
+with Ada.Float_Text_IO;
 with Ada.Text_IO;
 
 package body HTB4_Diagnosesystem is
    
    procedure Größenprüfung
      (DatentypgrößeExtern : in Positive)
-   is begin
+   is
+      use Ada.Wide_Wide_Text_IO;
+   begin
       
       Put_Line (Item => "Bits:" & DatentypgrößeExtern'Wide_Wide_Image);
       Put_Line (Item => "Bytes:" & Integer (DatentypgrößeExtern / ByteTeiler)'Wide_Wide_Image);
@@ -19,7 +21,9 @@ package body HTB4_Diagnosesystem is
    
    
    procedure Zeilenabstand
-   is begin
+   is
+      use Ada.Wide_Wide_Text_IO;
+   begin
       
       New_Line;
       
@@ -29,7 +33,9 @@ package body HTB4_Diagnosesystem is
    
    procedure Zahl
      (ZahlExtern : in Integer)
-   is begin
+   is
+      use Ada.Wide_Wide_Text_IO;
+   begin
       
       Put_Line (ZahlExtern'Wide_Wide_Image);
       
@@ -38,7 +44,10 @@ package body HTB4_Diagnosesystem is
    
    procedure Kommazahl
      (ZahlExtern : in Float)
-   is begin
+   is
+      use Ada.Wide_Wide_Text_IO;
+      use Ada.Float_Text_IO;
+   begin
       
       Put (Item => ZahlExtern,
            Exp  => 0);
@@ -51,7 +60,9 @@ package body HTB4_Diagnosesystem is
    
    procedure Zeichen
      (ZeichenExtern : in Wide_Wide_Character)
-   is begin
+   is
+      use Ada.Wide_Wide_Text_IO;
+   begin
       
       Put_Line (Item => ZeichenExtern'Wide_Wide_Image);
       
@@ -61,9 +72,11 @@ package body HTB4_Diagnosesystem is
    
    procedure KurzesZeichen
      (ZeichenExtern : in Character)
-   is begin
+   is
+      use Ada.Text_IO;
+   begin
       
-      Ada.Text_IO.Put_Line (Item => ZeichenExtern'Image);
+      Put_Line (Item => ZeichenExtern'Image);
       
    end KurzesZeichen;
    
@@ -71,7 +84,9 @@ package body HTB4_Diagnosesystem is
    
    procedure Text
      (TextExtern : in Wide_Wide_String)
-   is begin
+   is
+      use Ada.Wide_Wide_Text_IO;
+   begin
       
       Put_Line (Item => TextExtern);
       
@@ -81,7 +96,9 @@ package body HTB4_Diagnosesystem is
    
    procedure UngebundenerText
      (TextExtern : in Unbounded_Wide_Wide_String)
-   is begin
+   is
+      use Ada.Wide_Wide_Text_IO;
+   begin
       
       Put_Line (Item => To_Wide_Wide_String (Source => TextExtern));
       
@@ -91,25 +108,33 @@ package body HTB4_Diagnosesystem is
    
    procedure KurzerText
      (TextExtern : in String)
-   is begin
+   is
+      use Ada.Text_IO;
+   begin
       
-      Ada.Text_IO.Put_Line (Item => TextExtern);
+      Put_Line (Item => TextExtern);
       
    end KurzerText;
    
    
    
    procedure Verzeichnisnamen
-   is begin
+   is
+      use Ada.Text_IO;
+      use Ada.Directories;
+   begin
       
-      Ada.Text_IO.Put_Line (Item => Current_Directory);
+      Put_Line (Item => Current_Directory);
       
    end Verzeichnisnamen;
    
    
    
    procedure MaximaleDateinamenlänge
-   is begin
+   is
+      use Ada.Wide_Wide_Text_IO;
+      use Ada.Directories;
+   begin
       
       Zwischenspeicher := To_Unbounded_String (Source => "");
       
@@ -127,7 +152,7 @@ package body HTB4_Diagnosesystem is
             
          Close (File => DateiSpeichern);
          
-        Delete_File (Name => To_String (Source => Zwischenspeicher));
+         Delete_File (Name => To_String (Source => Zwischenspeicher));
          
       end loop DateilängeSchleife;
       

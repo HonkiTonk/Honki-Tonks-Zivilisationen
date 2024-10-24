@@ -1,4 +1,11 @@
 package HTB1_Changelog is
+   pragma Pure;
+   
+   -- Version 1.03.3000 => 1.04.4000 (24.10.2024):
+   
+   -- Pragma Datei angepasst.
+   
+   
    
    -- Version 1.03.2000 => 1.04.3000 (19.10.2024):
    

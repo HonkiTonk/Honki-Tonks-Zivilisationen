@@ -64,25 +64,18 @@ pragma Restrictions (No_Dependence => Ada.Execution_Time.Timers);
 pragma Restrictions (No_Dependence => Ada.Task_Attributes);
 pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Domains);
 
+pragma Restrictions (No_Default_Stream_Attributes);
+pragma Restrictions (No_Abort_Statements);
+pragma Restrictions (No_Finalization);
+pragma Restrictions (No_Task_Hierarchy);
+pragma Restrictions (No_Multiple_Elaboration);
+pragma Restrictions (No_Implementation_Pragmas);
+pragma Restrictions (No_Relative_Delay);
+pragma Restrictions (No_Dependence => Ada.Calendar);
+pragma Normalize_Scalars;
 
-
--- Nicht benutzbar in meinem Spiel:
--- Die notwendige Verwendung von delay until verhinderte scheinbar den korrekten Abbruch von Tasks.
--- pragma Restrictions (No_Relative_Delay);
--- pragma Restrictions (No_Default_Stream_Attributes);
--- pragma Restrictions (No_Abort_Statements);
--- Verursacht Probleme, vermutlich weil pragma Restrictions (No_Abort_Statements); nicht aktiv ist.
--- pragma Restrictions (No_Finalization);
--- pragma Restrictions (No_Task_Hierarchy);
--- pragma Restrictions (No_Multiple_Elaboration);	
--- Werde ich vermutlich nicht einbauen können, da Real_Time keine Datumsfunktion hat. Gibt es dazu eine alternative Lösung?
--- pragma Restrictions (No_Dependence => Ada.Calendar);
--- Ist das nicht identisch mit dem Oberen?
+-- Ist das nicht identisch mit pragma Restrictions (No_Dependence => Ada.Calendar);?
 -- pragma Restrictions (No_Calendar);
--- Damit kann die ASFML nicht kompiliert werden.
--- pragma Normalize_Scalars;
--- Damit ist pragma Ordered nicht verwendbar.
--- pragma Restrictions (No_Implementation_Pragmas);
 
 
 
@@ -95,8 +88,7 @@ pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Dom
 
 
 -- Sonstiges:
--- Scheint bei meinem Spiel nicht wirklich einen Unterschied zu bewirken.
--- Trotzdem verwenden?
+-- Scheint nicht wirklich einen Unterschied zu bewirken, trotzdem verwenden?
 -- pragma Discard_Names;
 -- Sollte nicht mit -gnatVA verwendet werden.
 -- Pragma Assume_No_Invalid_Values (Off);
