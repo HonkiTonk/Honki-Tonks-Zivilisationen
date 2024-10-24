@@ -78,16 +78,17 @@ package ChangelogAugust2024 is
    
    
 
-   -- Version 0.05. => 0.05. (20.08.2024):
+   -- Version 0.05.9360 => 0.05. (20.08.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.9325 => 0.05. (19.08.2024):
+   -- Version 0.05.9325 => 0.05.9360 (19.08.2024):
    
-   -- 
+   -- Das Dateizugriffssystem in eine verallgemeinerte Bibliothek ausgelagert.
+   -- Die Dateizugriffssystem eingebunden.
    -- Kleinigkeiten korrigiert.
    
    
