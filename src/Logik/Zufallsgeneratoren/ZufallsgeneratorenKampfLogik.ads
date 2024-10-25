@@ -14,6 +14,7 @@ package ZufallsgeneratorenKampfLogik is
 private
 
    LeerErfolge : constant Natural := 0;
+
    AnzahlErfolge : Integer;
 
    package Würfel is new Ada.Numerics.Discrete_Random (Result_Subtype => BewertungDatentypen.Bewertung_Enum);

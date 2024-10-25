@@ -5,6 +5,7 @@ with "Bibliotheken/Meldungssystem/HonkiTonksMeldungssystem.gpr";
 with "Bibliotheken/Umwandlungssystem/HonkiTonksUmwandlungssystem.gpr";
 with "Bibliotheken/Diagnosesystem/HonkiTonksDiagnosesystem.gpr";
 with "Bibliotheken/Dateizugriffssystem/HonkiTonksDateizugriffssystem.gpr";
+with "Bibliotheken/Zufallsgeneratoren/HonkiTonksZufallsgeneratoren.gpr";
 
 project HonkiTonksZivilisationen is
 
