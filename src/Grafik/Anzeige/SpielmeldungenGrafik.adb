@@ -17,6 +17,8 @@ with TextaccessverwaltungssystemEinfachGrafik;
 package body SpielmeldungenGrafik is
 
    -- Kann ich solche Konstrukte zusammenfassen, wenn ich einfach alles was wichtig ist übergebe? äöü
+   -- Oder wenigstens Teile davon. äöü
+   -- Eventuell wenn ich alle Views zusammenfasse und Variabel mache? äöü
    procedure Spielmeldung
      (MeldungExtern : in Positive)
    is begin
@@ -43,7 +45,7 @@ package body SpielmeldungenGrafik is
                                                                               ViewbreiteExtern => Viewfläche.x);
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.Spielmeldung,
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);

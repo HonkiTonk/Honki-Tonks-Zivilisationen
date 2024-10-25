@@ -1,4 +1,4 @@
-with Ada.Directories; use Ada.Directories;
+with Ada.Directories;
 
 with Sf.Graphics.Font;
 
@@ -18,7 +18,9 @@ with DateiLogik;
 package body TexteinstellungenGrafik is
    
    procedure SchriftartFestlegen
-   is begin
+   is
+      use Ada.Directories;
+   begin
       
       AktuelleSprache := LeseOptionen.Sprache;
       
@@ -44,7 +46,9 @@ package body TexteinstellungenGrafik is
    
    function StandardSchriftartVerwenden
      return String
-   is begin
+   is
+      use Ada.Directories;
+   begin
       
       case
         Exists (Name => VerzeichnisKonstanten.FontOrdner & VerzeichnisKonstanten.SchriftartStandard)
@@ -64,7 +68,9 @@ package body TexteinstellungenGrafik is
    function EigeneSchriftartVerwenden
      (SpracheExtern : in Wide_Wide_String)
       return String
-   is begin
+   is
+      use Ada.Directories;
+   begin
            
       DateiLogik.ÖffnenText (DateiartExtern => DateiSchriftart,
                               NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);

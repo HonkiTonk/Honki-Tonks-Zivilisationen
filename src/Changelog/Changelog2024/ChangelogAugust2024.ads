@@ -50,45 +50,42 @@ package ChangelogAugust2024 is
    
    
 
-   -- Version 0.05. => 0.05. (24.08.2024):
+   -- Version 0.05.9385 => 0.05. (24.08.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (23.08.2024):
+   -- Version 0.05.9385 => 0.05.9385 (23.08.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (22.08.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (21.08.2024):
+   -- Version 0.05.9385 => 0.05.9385 (22.08.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9360 => 0.05. (20.08.2024):
+   -- Version 0.05.9385 => 0.05.9385 (21.08.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.9360 => 0.05.9385 (20.08.2024):
+   
+   -- Fehler korrigiert der zu Zoomproblemen führte.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.05.9325 => 0.05.9360 (19.08.2024):
    
    -- Das Dateizugriffssystem in eine verallgemeinerte Bibliothek ausgelagert.
-   -- Die Dateizugriffssystem eingebunden.
+   -- Die Dateizugriffssystembibliothek eingebunden.
    -- Kleinigkeiten korrigiert.
    
    

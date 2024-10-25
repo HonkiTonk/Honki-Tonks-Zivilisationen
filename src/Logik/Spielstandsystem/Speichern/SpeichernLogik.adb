@@ -1,4 +1,4 @@
-with Ada.Exceptions; use Ada.Exceptions;
+with Ada.Exceptions;
 
 with KartenRecords;
 with StadtRecords;
@@ -38,7 +38,9 @@ package body SpeichernLogik is
    procedure Speichern
      (AutospeichernExtern : in Boolean;
       NotfallspeichernExtern : in Boolean)
-   is begin
+   is
+      use Ada.Exceptions;
+   begin
       
       SpeichernSchleife:
       loop
@@ -154,7 +156,9 @@ package body SpeichernLogik is
    function Allgemeines
      (DateiSpeichernExtern : in File_Type)
       return Boolean
-   is begin
+   is
+      use Ada.Exceptions;
+   begin
             
       SpielRecords.AllgemeinesRecord'Write (Stream (File => DateiSpeichernExtern),
                                             LeseAllgemeines.GanzerEintrag);
@@ -215,7 +219,9 @@ package body SpeichernLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type)
       return Boolean
-   is begin
+   is
+      use Ada.Exceptions;
+   begin
       
       SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernExtern),
                                         LeseGrenzen.GanzerEintrag (SpeziesExtern => SpeziesExtern));
@@ -296,6 +302,7 @@ package body SpeichernLogik is
       return Boolean
    is
       use type SpeziesDatentypen.Spezies_Enum;
+      use Ada.Exceptions;
    begin
       
       DiplomatieSchleife:

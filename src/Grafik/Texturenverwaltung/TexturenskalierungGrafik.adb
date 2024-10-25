@@ -131,7 +131,7 @@ package body TexturenskalierungGrafik is
       Rechteck := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
       Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
       
-       Skalierung.x := GrößeExtern.x / Rechteck.x;
+      Skalierung.x := GrößeExtern.x / Rechteck.x;
       Skalierung.y := GrößeExtern.y / Rechteck.y;
       
       return Skalierung;

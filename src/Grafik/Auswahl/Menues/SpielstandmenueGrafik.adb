@@ -1,6 +1,6 @@
-with Ada.Directories; use Ada.Directories;
-with Ada.Calendar.Formatting; use Ada.Calendar.Formatting;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Directories;
+with Ada.Calendar.Formatting;
+with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
 
@@ -66,8 +66,8 @@ package body SpielstandmenueGrafik is
       
       
       ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeBelegung,
-                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl).width,
-                                                                                                    GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl).height));
+                                                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl).width,
+                                                                                                                       GrafikRecordKonstanten.Spielstandbereich (ViewKonstanten.SpielstandAuswahl).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SpielstandviewAccesse (ViewKonstanten.SpielstandAuswahl),
                                             GrößeExtern          => ViewflächeBelegung,
@@ -149,7 +149,9 @@ package body SpielstandmenueGrafik is
       SpielstandartExtern : in SystemDatentypen.Spielstand_Enum;
       SpeichernLadenExtern : in Boolean)
       return Sf.System.Vector2.sfVector2f
-   is begin
+   is
+      use Ada.Strings.Wide_Wide_Unbounded;
+   begin
       
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       NeueTextbreite := GrafikKonstanten.Nullwert;
@@ -246,7 +248,11 @@ package body SpielstandmenueGrafik is
      (TextExtern : in Wide_Wide_String;
       SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
       return Wide_Wide_String
-   is begin
+   is
+      use Ada.Directories;
+      use Ada.Calendar.Formatting;
+      use Ada.Strings.Wide_Wide_Unbounded;
+   begin
       
       if
         TextExtern = TextKonstanten.LeerString

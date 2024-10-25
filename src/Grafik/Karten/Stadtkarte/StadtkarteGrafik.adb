@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded;
 
 with Views;
 with KartengrundDatentypen;
@@ -156,7 +156,9 @@ package body StadtkarteGrafik is
    procedure Informationsfeld
      (GebäudeIDExtern : in StadtDatentypen.GebäudeIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-   is begin
+   is
+      use Ada.Strings.Wide_Wide_Unbounded;
+   begin
       
       Rechteck := ViewbereicheBerechnenGrafik.ViewbereichBreiteHöheBerechnen (BereichExtern => LeseGrafikVariablen.InformationsfeldBereiche (WelcherBereichExtern => ViewKonstanten.InformationsfeldStadtkarte));
       

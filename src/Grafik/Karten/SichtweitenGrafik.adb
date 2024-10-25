@@ -7,6 +7,7 @@ with LeseGrafiktask;
 with ZeigerbewegungLogik;
 with FensterGrafik;
 
+-- Hier noch alles an die getrennten Achsen anpassen und vielleicht auch mal überarbeiten? äöü
 package body SichtweitenGrafik is
    
    procedure StandardSichtweiten
@@ -23,6 +24,7 @@ package body SichtweitenGrafik is
      (ÄnderungExtern : in KartenDatentypen.Senkrechte)
    is
       use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.Waagerechte;
    begin
       
       -- Eine Möglichkeit einbauen das abzustellen? äöü
@@ -31,16 +33,19 @@ package body SichtweitenGrafik is
         AktuelleSenkrechteZoomstufe + ÄnderungExtern > MaximaleSenkrechteZoomstufe
       then
          AktuelleSenkrechteZoomstufe := MinimaleSenkrechteZoomstufe;
+         AktuelleWaagerechteZoomstufe := MinimaleWaagerechteZoomstufe;
          WelcheZoomanpassung := TastenbelegungDatentypen.Ebene_Hoch_Enum;
          
       elsif
         AktuelleSenkrechteZoomstufe + ÄnderungExtern < MinimaleSenkrechteZoomstufe
       then
          AktuelleSenkrechteZoomstufe := MaximaleSenkrechteZoomstufe;
+         AktuelleWaagerechteZoomstufe := MaximaleWaagerechteZoomstufe;
          WelcheZoomanpassung := TastenbelegungDatentypen.Ebene_Runter_Enum;
          
       else
          AktuelleSenkrechteZoomstufe := AktuelleSenkrechteZoomstufe + ÄnderungExtern;
+         AktuelleWaagerechteZoomstufe := AktuelleWaagerechteZoomstufe + KartenDatentypen.Waagerechte (ÄnderungExtern);
          WelcheZoomanpassung := TastenbelegungDatentypen.Auswählen_Enum;
       end if;
       

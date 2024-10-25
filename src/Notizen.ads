@@ -41,3 +41,6 @@ Talbidahr => Unterirdisch in gemäßigten Klimazonen
 
 
 Immer lokale Grenzen verwenden und beim Skalieren immer setScale, Ausnahme ist die Zuweißung von Positionen für den Mausabruf.
+
+
+Es scheint Probleme zu geben wenn man verliert, mal nachprüfen! äöü

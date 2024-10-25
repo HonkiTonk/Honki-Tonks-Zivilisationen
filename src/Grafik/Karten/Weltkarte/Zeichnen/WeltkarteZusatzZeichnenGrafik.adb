@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
 
@@ -198,6 +198,7 @@ package body WeltkarteZusatzZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       ObenUntenExtern : in Boolean)
    is
+      use Ada.Strings.Wide_Wide_Unbounded;
       use type KartenartDatentypen.Kartenform_Enum;
    begin
       

@@ -1,4 +1,4 @@
-with Ada.Exceptions; use Ada.Exceptions;
+with Ada.Exceptions;
 
 with GrafikDatentypen;
 with TextKonstanten;
@@ -33,7 +33,9 @@ package body LadenLogik is
    
    function Laden
      return Boolean
-   is begin
+   is
+      use Ada.Exceptions;
+   begin
       
       LadenSchleife:
       loop
@@ -167,7 +169,9 @@ package body LadenLogik is
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean
-   is begin
+   is
+      use Ada.Exceptions;
+   begin
             
       SpielRecords.AllgemeinesRecord'Read (Stream (File => DateiLadenExtern),
                                            Allgemeines);
@@ -243,7 +247,9 @@ package body LadenLogik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean
-   is begin
+   is
+      use Ada.Exceptions;
+   begin
       
       SpielRecords.GrenzenRecord'Read (Stream (File => DateiLadenExtern),
                                        Grenzen);
@@ -326,6 +332,7 @@ package body LadenLogik is
       return Boolean
    is
       use type SpeziesDatentypen.Spezies_Enum;
+      use Ada.Exceptions;
    begin
             
       DiplomatieSchleife:

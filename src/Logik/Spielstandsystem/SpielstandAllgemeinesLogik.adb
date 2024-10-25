@@ -1,4 +1,4 @@
-with Ada.Directories; use Ada.Directories;
+with Ada.Directories;
 
 with TextKonstanten;
 
@@ -37,7 +37,9 @@ package body SpielstandAllgemeinesLogik is
      (SpielstandnameExtern : in Unbounded_Wide_Wide_String;
       SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
       return Boolean
-   is begin
+   is
+      use Ada.Directories;
+   begin
       
       return Exists (Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandartExtern,
                                                                        SpielstandnameExtern => SpielstandnameExtern));
