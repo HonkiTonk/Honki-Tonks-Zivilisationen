@@ -6,6 +6,7 @@ with "Bibliotheken/Umwandlungssystem/HonkiTonksUmwandlungssystem.gpr";
 with "Bibliotheken/Diagnosesystem/HonkiTonksDiagnosesystem.gpr";
 with "Bibliotheken/Dateizugriffssystem/HonkiTonksDateizugriffssystem.gpr";
 with "Bibliotheken/Zufallsgeneratoren/HonkiTonksZufallsgeneratoren.gpr";
+with "Bibliotheken/Allgemeinberechnungen/HonkiTonksAllgemeinberechnungen.gpr";
 
 project Honki_Tonks_Zivilisationen is
 

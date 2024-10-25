@@ -1,210 +1,210 @@
 package ChangelogSeptember2024 is
    pragma Pure;
 
-   -- Version 0.0. => 0.0. (30.09.2024):
+   -- Version 0.05. => 0.05. (30.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.09.2024):
+   -- Version 0.05. => 0.05. (29.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.09.2024):
+   -- Version 0.05. => 0.05. (28.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.09.2024):
+   -- Version 0.05. => 0.05. (27.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.09.2024):
+   -- Version 0.05. => 0.05. (26.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.09.2024):
+   -- Version 0.05. => 0.05. (25.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.09.2024):
+   -- Version 0.05. => 0.05. (24.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.09.2024):
+   -- Version 0.05. => 0.05. (23.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.09.2024):
+   -- Version 0.05. => 0.05. (22.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.09.2024):
+   -- Version 0.05. => 0.05. (21.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.09.2024):
+   -- Version 0.05. => 0.05. (20.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.09.2024):
+   -- Version 0.05. => 0.05. (19.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.09.2024):
+   -- Version 0.05. => 0.05. (18.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.09.2024):
+   -- Version 0.05. => 0.05. (17.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.09.2024):
+   -- Version 0.05. => 0.05. (16.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.09.2024):
+   -- Version 0.05. => 0.05. (15.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.09.2024):
+   -- Version 0.05. => 0.05. (14.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.09.2024):
+   -- Version 0.05. => 0.05. (13.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.09.2024):
+   -- Version 0.05. => 0.05. (12.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (11.09.2024):
+   -- Version 0.05. => 0.05. (11.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (10.09.2024):
+   -- Version 0.05. => 0.05. (10.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (09.09.2024):
+   -- Version 0.05. => 0.05. (09.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (08.09.2024):
+   -- Version 0.05. => 0.05. (08.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07.09.2024):
+   -- Version 0.05. => 0.05. (07.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06.09.2024):
+   -- Version 0.05. => 0.05. (06.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (05.09.2024):
+   -- Version 0.05. => 0.05. (05.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (04.09.2024):
+   -- Version 0.05. => 0.05. (04.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (03.09.2024):
+   -- Version 0.05. => 0.05. (03.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (02.09.2024):
+   -- Version 0.05. => 0.05. (02.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01.09.2024):
+   -- Version 0.05.9455 => 0.05. (01.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.

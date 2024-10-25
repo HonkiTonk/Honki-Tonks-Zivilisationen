@@ -1,30 +1,28 @@
 package ChangelogAugust2024 is
    pragma Pure;
    
-   -- Version 0.05. => 0.05. (31.08.2024):
+   -- Version 0.05.9455 => 0.05.9455 (31.08.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (30.08.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (29.08.2024):
+   -- Version 0.05.9455 => 0.05.9455 (30.08.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9420 => 0.05. (28.08.2024):
+   -- Version 0.05.9455 => 0.05.9455 (29.08.2024):
    
-   -- 
+   -- null.
+   
+   
+
+   -- Version 0.05.9420 => 0.05.9455 (28.08.2024):
+   
+   -- Verschiedene allgemeine Berechnungen in eine eigene Bibliothek ausgelagert.
+   -- Die Allgemeinberechnungenbibliothek eingebunden.
    -- Kleinigkeiten korrigiert.
    
    
