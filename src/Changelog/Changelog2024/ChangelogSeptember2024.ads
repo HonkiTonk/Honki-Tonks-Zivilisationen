@@ -176,37 +176,33 @@ package ChangelogSeptember2024 is
    
    
 
-   -- Version 0.05. => 0.05. (05.09.2024):
+   -- Version 0.05.9470 => 0.05. (05.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (04.09.2024):
+   -- Version 0.05.9470 => 0.05.9470 (04.09.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (03.09.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (02.09.2024):
+   -- Version 0.05.9470 => 0.05.9470 (03.09.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9455 => 0.05. (01.09.2024):
+   -- Version 0.05.9470 => 0.05.9470 (02.09.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.9455 => 0.05.9470 (01.09.2024):
+   
+   -- Kommenatre und Kleinigkeiten korrigiert.
 
 end ChangelogSeptember2024;

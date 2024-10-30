@@ -1,5 +1,6 @@
 package body Kampfgrenzen is
 
+   -- Das heir auch durch die Grenzests ersetzen. äöü
    function KampfwertKampfbonus
      (KampfwertExtern : in KampfDatentypen.Kampfwerte;
       KampfbonusExtern : in KampfDatentypen.Kampfbonus)
