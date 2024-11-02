@@ -1,9 +1,9 @@
 -- Eine Prozedur für das Schließen einzubauen ist sinnfrei.
 -- Es gibt keine verschiedenen Varianten des Schließens und den Paketzugriff bekomme ich auch nicht raus, da ich ja immer noch das File_Type aus dem Standardpaket brauche.
 
-with HTB5_Dateizugriffsvariablen;
+with DateizugriffsvariablenHTB5;
 
-package body HTB5_Dateizugriffssystem is
+package body DateizugriffssystemHTB5 is
 
    procedure ErstellenStream
      (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
@@ -15,7 +15,7 @@ package body HTB5_Dateizugriffssystem is
       Create (File => DateiartExtern,
               Mode => Out_File,
               Name => NameExtern,
-              Form => HTB5_Dateizugriffsvariablen.DateiformAbfragen);
+              Form => DateizugriffsvariablenHTB5.DateiformAbfragen);
       
    end ErstellenStream;
    
@@ -31,7 +31,7 @@ package body HTB5_Dateizugriffssystem is
       Open (File => DateiartExtern,
             Mode => In_File,
             Name => NameExtern,
-            Form => HTB5_Dateizugriffsvariablen.DateiformAbfragen);
+            Form => DateizugriffsvariablenHTB5.DateiformAbfragen);
       
    end ÖffnenStream;
    
@@ -47,7 +47,7 @@ package body HTB5_Dateizugriffssystem is
       Create (File => DateiartExtern,
               Mode => Out_File,
               Name => NameExtern,
-              Form => HTB5_Dateizugriffsvariablen.DateiformAbfragen);
+              Form => DateizugriffsvariablenHTB5.DateiformAbfragen);
       
    end ErstellenText;
    
@@ -63,7 +63,7 @@ package body HTB5_Dateizugriffssystem is
       Open (File => DateiartExtern,
             Mode => In_File,
             Name => NameExtern,
-            Form => HTB5_Dateizugriffsvariablen.DateiformAbfragen);
+            Form => DateizugriffsvariablenHTB5.DateiformAbfragen);
       
    end ÖffnenText;
    
@@ -79,8 +79,8 @@ package body HTB5_Dateizugriffssystem is
       Open (File => DateiartExtern,
             Mode => Append_File,
             Name => NameExtern,
-            Form => HTB5_Dateizugriffsvariablen.DateiformAbfragen);
+            Form => DateizugriffsvariablenHTB5.DateiformAbfragen);
       
    end ErweiternText;
 
-end HTB5_Dateizugriffssystem;
+end DateizugriffssystemHTB5;

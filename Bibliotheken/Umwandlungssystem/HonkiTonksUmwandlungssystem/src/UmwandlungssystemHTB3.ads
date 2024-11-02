@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-package HTB3_Umwandlungssystem is
+package UmwandlungssystemHTB3 is
    pragma Elaborate_Body;
    
    generic type GanzeZahl is range <>;
@@ -57,4 +57,4 @@ private
                   Dezimaltrennzeichen'Result'Length > 0
                );
 
-end HTB3_Umwandlungssystem;
+end UmwandlungssystemHTB3;

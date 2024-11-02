@@ -1,18 +1,18 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with HTB1_MeldungSchreiben;
-with HTB1_Meldungsvariablen;
+with MeldungSchreibenHTB1;
+with MeldungsvariablenHTB1;
 
-package body HTB1_Meldungssystem is
+package body MeldungssystemHTB1 is
 
    procedure Logik
      (MeldungExtern : in Wide_Wide_String)
    is begin
       
-      HTB1_MeldungSchreiben.Meldung (MeldungExtern => Logikfehler & MeldungExtern);
+      MeldungSchreibenHTB1.Meldung (MeldungExtern => Logikfehler & MeldungExtern);
       
       case
-        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
+        MeldungsvariablenHTB1.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => Logikfehler & MeldungExtern);
@@ -30,10 +30,10 @@ package body HTB1_Meldungssystem is
      (MeldungExtern : in Wide_Wide_String)
    is begin
          
-      HTB1_MeldungSchreiben.Meldung (MeldungExtern => Grafikfehler & MeldungExtern);
+      MeldungSchreibenHTB1.Meldung (MeldungExtern => Grafikfehler & MeldungExtern);
       
       case
-        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
+        MeldungsvariablenHTB1.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => Grafikfehler & MeldungExtern);
@@ -51,10 +51,10 @@ package body HTB1_Meldungssystem is
      (MeldungExtern : in Wide_Wide_String)
    is begin
       
-      HTB1_MeldungSchreiben.Meldung (MeldungExtern => Musikfehler & MeldungExtern);
+      MeldungSchreibenHTB1.Meldung (MeldungExtern => Musikfehler & MeldungExtern);
       
       case
-        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
+        MeldungsvariablenHTB1.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => Musikfehler & MeldungExtern);
@@ -72,10 +72,10 @@ package body HTB1_Meldungssystem is
      (MeldungExtern : in Wide_Wide_String)
    is begin
       
-      HTB1_MeldungSchreiben.Meldung (MeldungExtern => Soundfehler & MeldungExtern);
+      MeldungSchreibenHTB1.Meldung (MeldungExtern => Soundfehler & MeldungExtern);
       
       case
-        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
+        MeldungsvariablenHTB1.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => Soundfehler & MeldungExtern);
@@ -93,10 +93,10 @@ package body HTB1_Meldungssystem is
      (MeldungExtern : in Wide_Wide_String)
    is begin
       
-      HTB1_MeldungSchreiben.Meldung (MeldungExtern => SonstigeFehler & MeldungExtern);
+      MeldungSchreibenHTB1.Meldung (MeldungExtern => SonstigeFehler & MeldungExtern);
       
       case
-        HTB1_Meldungsvariablen.FehlerMeldungAbfragen
+        MeldungsvariablenHTB1.FehlerMeldungAbfragen
       is
          when True =>
             Put_Line (Item => SonstigeFehler & MeldungExtern);
@@ -108,4 +108,4 @@ package body HTB1_Meldungssystem is
       
    end Sonstiges;
 
-end HTB1_Meldungssystem;
+end MeldungssystemHTB1;

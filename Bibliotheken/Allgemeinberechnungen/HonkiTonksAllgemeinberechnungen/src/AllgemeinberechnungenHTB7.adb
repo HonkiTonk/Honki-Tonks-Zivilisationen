@@ -1,4 +1,4 @@
-package body HTB7_Allgemeinberechnungen is
+package body AllgemeinberechnungenHTB7 is
 
    function Basiszeitwert
      (ZusatzwertExtern : in GanzeZahl;
@@ -46,4 +46,4 @@ package body HTB7_Allgemeinberechnungen is
       
    end Nullprüfung;
 
-end HTB7_Allgemeinberechnungen;
+end AllgemeinberechnungenHTB7;

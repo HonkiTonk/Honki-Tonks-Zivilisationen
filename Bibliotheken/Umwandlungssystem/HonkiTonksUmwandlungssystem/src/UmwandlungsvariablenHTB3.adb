@@ -1,4 +1,4 @@
-package body HTB3_Umwandlungsvariablen is
+package body UmwandlungsvariablenHTB3 is
 
    procedure KodierungWechseln
      (KodierungExtern : in Ada.Strings.UTF_Encoding.Encoding_Scheme)
@@ -38,4 +38,4 @@ package body HTB3_Umwandlungsvariablen is
       
    end TrennzeichenAbfragen;
 
-end HTB3_Umwandlungsvariablen;
+end UmwandlungsvariablenHTB3;

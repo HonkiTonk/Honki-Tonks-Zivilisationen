@@ -3,7 +3,7 @@ with Ada.Directories;
 with Ada.Float_Text_IO;
 with Ada.Text_IO;
 
-package body HTB4_Diagnosesystem is
+package body DiagnosesystemHTB4 is
    
    procedure Größenprüfung
      (DatentypgrößeExtern : in Positive)
@@ -158,4 +158,4 @@ package body HTB4_Diagnosesystem is
       
    end MaximaleDateinamenlänge;
 
-end HTB4_Diagnosesystem;
+end DiagnosesystemHTB4;

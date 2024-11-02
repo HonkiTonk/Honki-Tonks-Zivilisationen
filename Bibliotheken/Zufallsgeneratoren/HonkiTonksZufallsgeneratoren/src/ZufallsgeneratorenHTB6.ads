@@ -1,8 +1,8 @@
 private with Ada.Numerics.Discrete_Random;
 
-private with HTB6_Datentypen;
+private with DatentypenHTB6;
 
-package HTB6_Zufallsgeneratoren is
+package ZufallsgeneratorenHTB6 is
 
    function Münzwurf
      return Boolean;
@@ -28,7 +28,7 @@ private
    
    package Münze is new Ada.Numerics.Discrete_Random (Result_Subtype => Boolean);
    
-   package Würfel is new Ada.Numerics.Discrete_Random (Result_Subtype => HTB6_Datentypen.Bewertung_Enum);
+   package Würfel is new Ada.Numerics.Discrete_Random (Result_Subtype => DatentypenHTB6.Bewertung_Enum);
 
    package Zahlenbereich is new Ada.Numerics.Discrete_Random (Result_Subtype => Integer);
    
@@ -38,4 +38,4 @@ private
    
    GewählteZahl : Zahlenbereich.Generator;
 
-end HTB6_Zufallsgeneratoren;
+end ZufallsgeneratorenHTB6;

@@ -1,4 +1,4 @@
-package HTB1_Meldungssystem is
+package MeldungssystemHTB1 is
    pragma Elaborate_Body;
    
    procedure Logik
@@ -50,4 +50,4 @@ private
    SoundStopp : exception;
    SonstigesStopp : exception;
 
-end HTB1_Meldungssystem;
+end MeldungssystemHTB1;

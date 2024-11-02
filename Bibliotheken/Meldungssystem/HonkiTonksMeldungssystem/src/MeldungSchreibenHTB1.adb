@@ -5,7 +5,7 @@ with Ada.Exceptions;
 with Ada.Calendar;
 with Ada.Calendar.Formatting;
 
-package body HTB1_MeldungSchreiben is
+package body MeldungSchreibenHTB1 is
 
    procedure Meldung
      (MeldungExtern : in Wide_Wide_String)
@@ -72,4 +72,4 @@ package body HTB1_MeldungSchreiben is
       
    end MeldungASCII;
 
-end HTB1_MeldungSchreiben;
+end MeldungSchreibenHTB1;

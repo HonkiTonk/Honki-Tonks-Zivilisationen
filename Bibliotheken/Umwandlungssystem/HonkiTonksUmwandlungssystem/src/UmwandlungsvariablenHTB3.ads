@@ -1,6 +1,6 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-package HTB3_Umwandlungsvariablen is
+package UmwandlungsvariablenHTB3 is
    pragma Elaborate_Body;
 
    procedure KodierungWechseln
@@ -31,4 +31,4 @@ private
    Test : constant Wide_Wide_String (1 .. 1) := Decode (Item         => "1",
                                                         Input_Scheme => Ada.Strings.UTF_Encoding.UTF_8);
 
-end HTB3_Umwandlungsvariablen;
+end UmwandlungsvariablenHTB3;

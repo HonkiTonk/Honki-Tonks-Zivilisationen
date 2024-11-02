@@ -1,5 +1,11 @@
-package HTB4_Changelog is
+package ChangelogHTB4 is
    pragma Pure;
+
+   -- Version 1.00.1000 => 1.00.2000 (02.11.2024):
+   
+   -- Benennung überarbeitet.
+   
+   
    
    -- Version 1.00.0000 => 1.00.1000 (24.10.2024):
    
@@ -11,4 +17,4 @@ package HTB4_Changelog is
    
    -- Erste Veröffentlichung.
 
-end HTB4_Changelog;
+end ChangelogHTB4;

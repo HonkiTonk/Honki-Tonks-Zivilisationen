@@ -1,4 +1,4 @@
-package body HTB5_Dateizugriffsvariablen is
+package body DateizugriffsvariablenHTB5 is
 
    procedure DateiformWechseln
      (DateiformExtern : in Character)
@@ -26,4 +26,4 @@ package body HTB5_Dateizugriffsvariablen is
       
    end DateiformAbfragen;
 
-end HTB5_Dateizugriffsvariablen;
+end DateizugriffsvariablenHTB5;

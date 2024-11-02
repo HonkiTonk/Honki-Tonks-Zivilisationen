@@ -1,7 +1,7 @@
 with Ada.Streams.Stream_IO;
 with Ada.Wide_Wide_Text_IO;
 
-package HTB5_Dateizugriffssystem is
+package DateizugriffssystemHTB5 is
    pragma Elaborate_Body;
 
    procedure ErstellenStream
@@ -44,4 +44,4 @@ package HTB5_Dateizugriffssystem is
                  NameExtern'Length > 0
               );
 
-end HTB5_Dateizugriffssystem;
+end DateizugriffssystemHTB5;

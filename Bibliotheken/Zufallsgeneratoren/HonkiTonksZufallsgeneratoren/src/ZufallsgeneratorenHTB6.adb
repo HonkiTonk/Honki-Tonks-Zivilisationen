@@ -1,4 +1,4 @@
-package body HTB6_Zufallsgeneratoren is
+package body ZufallsgeneratorenHTB6 is
 
   function Münzwurf
      return Boolean
@@ -52,16 +52,16 @@ package body HTB6_Zufallsgeneratoren is
          case
            Würfel.Random (Gen => Würfelwurf)
          is
-            when HTB6_Datentypen.KritischerFehlschlag'Range =>
+            when DatentypenHTB6.KritischerFehlschlag'Range =>
                AnzahlErfolge := AnzahlErfolge - 1;
                
-            when HTB6_Datentypen.NormalerFehlschlag =>
+            when DatentypenHTB6.NormalerFehlschlag =>
                null;
                
-            when HTB6_Datentypen.NormalerErfolg =>
+            when DatentypenHTB6.NormalerErfolg =>
                AnzahlErfolge := AnzahlErfolge + 1;
                
-            when HTB6_Datentypen.KritischerErfolg =>
+            when DatentypenHTB6.KritischerErfolg =>
                AnzahlErfolge := AnzahlErfolge + 2;
          end case;
          
@@ -78,4 +78,4 @@ package body HTB6_Zufallsgeneratoren is
       
    end ErreichteErfolge;
 
-end HTB6_Zufallsgeneratoren;
+end ZufallsgeneratorenHTB6;

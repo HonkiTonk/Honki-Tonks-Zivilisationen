@@ -1,4 +1,4 @@
-package HTB6_Datentypen is
+package DatentypenHTB6 is
    pragma Pure;
 
    type Bewertung_Enum is (
@@ -16,4 +16,4 @@ package HTB6_Datentypen is
    subtype NormalerErfolg is Erfolg range Bewertung_Sechs_Enum .. Bewertung_Neun_Enum;
    subtype KritischerErfolg is Erfolg range Bewertung_Zehn_Enum .. Bewertung_Zehn_Enum;
 
-end HTB6_Datentypen;
+end DatentypenHTB6;

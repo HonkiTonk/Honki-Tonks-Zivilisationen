@@ -1,4 +1,4 @@
-package HTB5_Dateizugriffsvariablen is
+package DateizugriffsvariablenHTB5 is
    pragma Preelaborate;
 
    procedure DateiformWechseln
@@ -17,4 +17,4 @@ private
    
    Dateiform : String (1 .. 6) := "WCEM=8";
 
-end HTB5_Dateizugriffsvariablen;
+end DateizugriffsvariablenHTB5;

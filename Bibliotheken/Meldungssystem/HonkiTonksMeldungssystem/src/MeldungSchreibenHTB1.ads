@@ -1,6 +1,6 @@
 private with Ada.Wide_Wide_Text_IO;
 
-package HTB1_MeldungSchreiben is
+package MeldungSchreibenHTB1 is
    pragma Elaborate_Body;
 
    procedure Meldung
@@ -29,4 +29,4 @@ private
          
    DateiMeldung : File_Type;
 
-end HTB1_MeldungSchreiben;
+end MeldungSchreibenHTB1;

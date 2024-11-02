@@ -1,4 +1,4 @@
-package HTB7_Allgemeinberechnungen is
+package AllgemeinberechnungenHTB7 is
    pragma Pure;
 
    generic type GanzeZahl is range <>;
@@ -43,4 +43,4 @@ private
    KommazahlNullwert : constant Float := 0.00;
    KommazahlEinswert : constant Float := 1.00;
 
-end HTB7_Allgemeinberechnungen;
+end AllgemeinberechnungenHTB7;

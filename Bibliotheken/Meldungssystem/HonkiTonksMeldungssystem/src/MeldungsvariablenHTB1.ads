@@ -1,4 +1,4 @@
-package HTB1_Meldungsvariablen is
+package MeldungsvariablenHTB1 is
    pragma Preelaborate;
 
    procedure FehlerMeldungWechseln
@@ -15,4 +15,4 @@ private
    
    FehlerMeldung : Boolean := True;
 
-end HTB1_Meldungsvariablen;
+end MeldungsvariablenHTB1;

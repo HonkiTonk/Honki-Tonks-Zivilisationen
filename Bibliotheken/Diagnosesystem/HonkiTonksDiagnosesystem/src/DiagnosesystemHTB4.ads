@@ -4,7 +4,7 @@ private with Ada.Streams.Stream_IO;
 private with Ada.Strings.Unbounded;
 private with System;
 
-package HTB4_Diagnosesystem is
+package DiagnosesystemHTB4 is
    pragma Elaborate_Body;
 
    procedure Größenprüfung
@@ -65,4 +65,4 @@ private
    
    Zwischenspeicher : Unbounded_String;
 
-end HTB4_Diagnosesystem;
+end DiagnosesystemHTB4;

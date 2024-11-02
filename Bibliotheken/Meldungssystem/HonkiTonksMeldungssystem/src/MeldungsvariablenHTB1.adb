@@ -1,4 +1,4 @@
-package body HTB1_Meldungsvariablen is
+package body MeldungsvariablenHTB1 is
 
    procedure FehlerMeldungWechseln
      (FehlerMeldungExtern : in Boolean)
@@ -18,4 +18,4 @@ package body HTB1_Meldungsvariablen is
       
    end FehlerMeldungAbfragen;
 
-end HTB1_Meldungsvariablen;
+end MeldungsvariablenHTB1;

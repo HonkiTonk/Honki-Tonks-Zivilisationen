@@ -1,7 +1,13 @@
-package HTB1_Changelog is
+package ChangelogHTB1 is
    pragma Pure;
+
+   -- Version 1.04.4000 => 1.04.5000 (02.11.2024):
    
-   -- Version 1.03.3000 => 1.04.4000 (24.10.2024):
+   -- Benennung überarbeitet.
+   
+   
+   
+   -- Version 1.04.3000 => 1.04.4000 (24.10.2024):
    
    -- Pragma Datei angepasst.
    
@@ -38,4 +44,4 @@ package HTB1_Changelog is
    
    -- Erste Veröffentlichung.
 
-end HTB1_Changelog;
+end ChangelogHTB1;

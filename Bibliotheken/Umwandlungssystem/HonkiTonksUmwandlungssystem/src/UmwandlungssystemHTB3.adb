@@ -3,9 +3,9 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Float_Text_IO;
 with Ada.Strings.Wide_Wide_Fixed;
 
-with HTB3_Umwandlungsvariablen;
+with UmwandlungsvariablenHTB3;
 
-package body HTB3_Umwandlungssystem is
+package body UmwandlungssystemHTB3 is
    
    function Zahlenstring
      (ZahlExtern : in GanzeZahl)
@@ -56,7 +56,7 @@ package body HTB3_Umwandlungssystem is
    is begin
       
       case
-        HTB3_Umwandlungsvariablen.TrennzeichenAbfragen
+        UmwandlungsvariablenHTB3.TrennzeichenAbfragen
       is
          when Standardtrennzeichen =>
             return ZahlenstringExtern;
@@ -72,7 +72,7 @@ package body HTB3_Umwandlungssystem is
            Zwischenspeicher (ZahlenSchleifenwert)
          is
             when Standardtrennzeichen =>
-               Zwischenspeicher (ZahlenSchleifenwert) := HTB3_Umwandlungsvariablen.TrennzeichenAbfragen;
+               Zwischenspeicher (ZahlenSchleifenwert) := UmwandlungsvariablenHTB3.TrennzeichenAbfragen;
                exit ZahlenSchleife;
                
             when others =>
@@ -93,7 +93,7 @@ package body HTB3_Umwandlungssystem is
    is begin
       
       case
-        HTB3_Umwandlungsvariablen.KodierungAbfragen
+        UmwandlungsvariablenHTB3.KodierungAbfragen
       is
          when Ada.Strings.UTF_Encoding.UTF_8 =>
             return Decode (Item         => TextExtern,
@@ -130,7 +130,7 @@ package body HTB3_Umwandlungssystem is
    is begin
       
       case
-        HTB3_Umwandlungsvariablen.KodierungAbfragen
+        UmwandlungsvariablenHTB3.KodierungAbfragen
       is
          when Ada.Strings.UTF_Encoding.UTF_8 =>
             return Encode (Item          => TextExtern,
@@ -161,4 +161,4 @@ package body HTB3_Umwandlungssystem is
       
    end EncodeUnbounded;
 
-end HTB3_Umwandlungssystem;
+end UmwandlungssystemHTB3;
