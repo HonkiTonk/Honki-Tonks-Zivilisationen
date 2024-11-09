@@ -1,5 +1,7 @@
 with Sf.Audio.SoundBuffer;
 
+with DateizugriffssystemHTB5;
+
 with VerzeichnisKonstanten;
 
 with EingeleseneSounds;
@@ -7,7 +9,6 @@ with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 package body EinlesenSoundsLogik is
 
@@ -25,7 +26,7 @@ package body EinlesenSoundsLogik is
          when True =>
             AktuelleZeile := 1;
             
-            DateiLogik.ÖffnenText (DateiartExtern => DateiSounds,
+            DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiSounds,
                                     NameExtern     => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei);
       end case;
       

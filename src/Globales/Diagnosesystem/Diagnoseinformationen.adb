@@ -50,7 +50,7 @@ package body Diagnoseinformationen is
       
       ZuSpeichern := 0;
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiSpeichern,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpeichern,
                                   NameExtern     => ("Test/" & "Test"));
       
       StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichern),
@@ -292,7 +292,7 @@ package body Diagnoseinformationen is
          
          Zwischenspeicher := Zwischenspeicher & "a";
       
-         DateiLogik.ErstellenStream (DateiartExtern => DateiSpeichern,
+         DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpeichern,
                                      NameExtern     => "Test/" & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => Zwischenspeicher));
             
          Close (File => DateiSpeichern);

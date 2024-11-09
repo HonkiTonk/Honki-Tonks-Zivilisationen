@@ -1,3 +1,5 @@
+private with GrenztestsystemHTB2;
+
 with EinheitenRecords;
 with EinheitenKonstanten;
 with SpeziesDatentypen;
@@ -32,5 +34,7 @@ package AufgabeFestlegenLogik is
 private
    
    Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+      
+   function ArbeitszeitPrüfen is new GrenztestsystemHTB2.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
 
 end AufgabeFestlegenLogik;

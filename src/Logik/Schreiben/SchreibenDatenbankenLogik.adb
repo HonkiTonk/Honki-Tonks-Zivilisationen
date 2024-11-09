@@ -1,5 +1,7 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
+with DateizugriffssystemHTB5;
+
 with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
@@ -12,7 +14,6 @@ with EffekteDatenbank;
 
 with Fehlermeldungssystem;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 -- Das Schreiben/Einlesen der Datenbanken auch so aufteilen wie das Schreiben/Einlesen der Einstellungen. äöü
 package body SchreibenDatenbankenLogik is
@@ -35,7 +36,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenEinheitenDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiEinheitendatenbank,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiEinheitendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
       EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DateiEinheitendatenbank),
@@ -66,7 +67,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenForschungenDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiForschungendatenbank,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiForschungendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       
       ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DateiForschungendatenbank),
@@ -105,7 +106,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenGebäudeDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiGebäudedatenbank,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiGebäudedatenbank,
                                   NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
       GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DateiGebäudedatenbank),
@@ -135,7 +136,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenKartenDatenbanken
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiKartendatenbank,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiKartendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
             
       KartenDatenbank.BasisgrundlisteArray'Write (Stream (File => DateiKartendatenbank),
@@ -174,7 +175,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenVerbesserungenDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiVerbesserungendatenbank,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiVerbesserungendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
       VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DateiVerbesserungendatenbank),
@@ -207,7 +208,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenSpeziesDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiSpeziesdatenbank,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpeziesdatenbank,
                                   NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
       SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DateiSpeziesdatenbank),
@@ -237,7 +238,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenEffekteDatenbank
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiEffektedatenbank,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiEffektedatenbank,
                                   NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
       EffekteDatenbank.EffektelisteArray'Write (Stream (File => DateiEffektedatenbank),

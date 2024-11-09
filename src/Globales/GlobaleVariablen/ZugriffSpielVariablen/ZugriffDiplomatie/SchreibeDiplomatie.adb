@@ -27,8 +27,8 @@ package body SchreibeDiplomatie is
       is
          when True =>
             SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuelleSympathieBewertung :=
-              MeinungPrüfen (AktuellerWertExtern => SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuelleSympathieBewertung,
-                              ÄnderungExtern      => SympathieExtern);
+              MeinungPrüfen (GrundwertExtern  => SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuelleSympathieBewertung,
+                             ZusatzwertExtern => SympathieExtern);
             
          when False =>
             SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuelleSympathieBewertung := SympathieExtern;
@@ -50,8 +50,8 @@ package body SchreibeDiplomatie is
       is
          when True =>
             SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).ZeitSeitLetzterÄnderung
-              := EigeneZahlPrüfen (AktuellerWertExtern => SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).ZeitSeitLetzterÄnderung,
-                                    ÄnderungExtern      => ÄnderungExtern);
+              := EigeneZahlPrüfen (GrundwertExtern  => SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).ZeitSeitLetzterÄnderung,
+                                   ZusatzwertExtern => ÄnderungExtern);
             
          when False =>
             SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).ZeitSeitLetzterÄnderung := ÄnderungExtern;

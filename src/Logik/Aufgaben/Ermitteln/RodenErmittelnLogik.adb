@@ -5,7 +5,6 @@ with LeseWeltkarte;
   
 with Fehlermeldungssystem;
 with ArbeitszeitRodenLogik;
-with Grenzpruefungen;
 with MeldungFestlegenLogik;
 with AufgabeFestlegenLogik;
 
@@ -91,11 +90,11 @@ package body RodenErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitRodenLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitRodenLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       
       return (
               Aufgabe     => AufgabenDatentypen.Roden_Trockenlegen_Enum,
@@ -112,11 +111,11 @@ package body RodenErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitRodenLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitRodenLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       
       return (
               Aufgabe     => AufgabenDatentypen.Roden_Trockenlegen_Enum,

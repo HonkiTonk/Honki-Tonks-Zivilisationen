@@ -1,3 +1,5 @@
+-- private with GrenztestsystemHTB2;
+
 with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
@@ -11,8 +13,6 @@ with LeseGrenzen;
 with LeseSpeziesbelegung;
 
 private with LeseWeltkarteneinstellungen;
-
-private with Grenzpruefungen;
 
 package PZBEingesetztLogik is
    pragma Elaborate_Body;
@@ -65,6 +65,6 @@ private
 
 
 
-   function GanzeZahlPrüfen is new Grenzpruefungen.Standardprüfung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
+   -- function GanzeZahlPrüfen is new GrenztestsystemHTB2.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
 
 end PZBEingesetztLogik;

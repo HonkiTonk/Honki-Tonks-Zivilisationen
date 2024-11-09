@@ -1,5 +1,7 @@
 with Ada.Exceptions;
 
+with DateizugriffssystemHTB5;
+
 with GrafikDatentypen;
 with TextKonstanten;
 with StadtKonstanten;
@@ -25,7 +27,6 @@ with LadenKarteLogik;
 with UmwandlungenVerzeichnisse;
 with UmwandlungenAdaEigenes;
 with Fehlermeldungssystem;
-with DateiLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 -- Änderungen an den zu ladenden Datentypen kann jederzeit Probleme bei Laden verursachen.
@@ -51,7 +52,7 @@ package body LadenLogik is
             LadezeitenLogik.SpeichernLadenNullsetzen;
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
             
-            DateiLogik.ÖffnenStream (DateiartExtern => DateiLaden,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiLaden,
                                       NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
                                                                                                   SpielstandnameExtern => Spielstandname));
          end if;

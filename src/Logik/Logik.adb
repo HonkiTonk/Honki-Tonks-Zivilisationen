@@ -1,6 +1,11 @@
+with MeldungsvariablenHTB1;
+-- with UmwandlungsvariablenHTB3;
+with DateizugriffsvariablenHTB5;
+
 with GrafikDatentypen;
 with ZeitKonstanten;
 with TastenbelegungDatentypen;
+with Projekteinstellungen;
 
 with LeseLogiktask;
 with SchreibeGrafiktask;
@@ -16,6 +21,10 @@ package body Logik is
 
    procedure Logik
    is begin
+      
+      MeldungsvariablenHTB1.FehlerMeldungWechseln (FehlerMeldungExtern => Projekteinstellungen.Einstellungen.FehlerWarnung);
+      -- UmwandlungsvariablenHTB3.KodierungWechseln (KodierungExtern => Projekteinstellungen.Einstellungen.Stringkodierung);
+      DateizugriffsvariablenHTB5.DateiformWechseln (DateiformExtern => Projekteinstellungen.Einstellungen.Dateiform);
       
       SchreibenVerzeichnisseLogik.Verzeichnisse;
       EinlesenEinstellungenLogik.EinlesenEinstellungen;

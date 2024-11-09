@@ -4,7 +4,6 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with KartenfeldereffekteLogik;
-with Grenzpruefungen;
 
 package body AufgabeFestlegenLogik is
 
@@ -23,8 +22,9 @@ package body AufgabeFestlegenLogik is
          Arbeitszeit := ArbeitExtern.Arbeitszeit;
          
       else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ArbeitExtern.Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitExtern.Arbeitszeit);
+         -- Hier kommt die Arbeitszeit zweimal rein, weil der vorhandene Feldeffekt berücksichtigt wird.
+         Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ArbeitExtern.Arbeitszeit,
+                                            ZusatzwertExtern => ArbeitExtern.Arbeitszeit);
       end if;
    
       case

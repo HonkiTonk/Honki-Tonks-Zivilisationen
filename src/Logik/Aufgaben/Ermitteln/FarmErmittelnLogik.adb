@@ -6,7 +6,6 @@ with LeseWeltkarte;
 with RodenErmittelnLogik;
 with Fehlermeldungssystem;
 with ArbeitszeitFarmLogik;
-with Grenzpruefungen;
 with AufgabeFestlegenLogik;
 
 package body FarmErmittelnLogik is
@@ -103,8 +102,8 @@ package body FarmErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -116,8 +115,8 @@ package body FarmErmittelnLogik is
                                                    AnlegenTestenExtern        => AnlegenTestenExtern,
                                                    KoordinatenExtern          => KoordinatenExtern)
       then
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitFarmLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
+         Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                            ZusatzwertExtern => ArbeitszeitFarmLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else
@@ -142,8 +141,8 @@ package body FarmErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -151,8 +150,8 @@ package body FarmErmittelnLogik is
          VorarbeitNötig := False;
          
       else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitFarmLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
+         Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                            ZusatzwertExtern => ArbeitszeitFarmLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := False;
       end if;
       
@@ -176,8 +175,8 @@ package body FarmErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -189,8 +188,8 @@ package body FarmErmittelnLogik is
                                                    AnlegenTestenExtern        => AnlegenTestenExtern,
                                                    KoordinatenExtern          => KoordinatenExtern)
       then
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitFarmLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
+         Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                            ZusatzwertExtern => ArbeitszeitFarmLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else

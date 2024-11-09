@@ -1,3 +1,5 @@
+with DateizugriffssystemHTB5;
+
 with VerzeichnisKonstanten;
 with SpeziesKonstanten;
 with StadtDatentypen;
@@ -9,7 +11,6 @@ with LeseOptionen;
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
-with DateiLogik;
 
 package body EinlesenTextLogik is
 
@@ -103,7 +104,7 @@ package body EinlesenTextLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenText (DateiartExtern => DateiVerzeichnisse,
+            DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiVerzeichnisse,
                                     NameExtern     => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & "0"));
       end case;
       
@@ -151,7 +152,7 @@ package body EinlesenTextLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenText (DateiartExtern => DateiText,
+            DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiText,
                                     NameExtern     => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & DateinameExtern));
       end case;
       

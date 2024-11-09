@@ -1,5 +1,7 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
+with DateizugriffssystemHTB5;
+
 with VerzeichnisKonstanten;
 with TextKonstanten;
 
@@ -9,7 +11,6 @@ with Fehlermeldungssystem;
 with EinstellungenTon;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenToneinstellungenLogik is
@@ -26,7 +27,7 @@ package body EinlesenToneinstellungenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DateiToneinstellungen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiToneinstellungen,
                                       NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       end case;
       

@@ -1,0 +1,32 @@
+with ProduktionKonstanten;
+
+package body Grenzpruefungen is
+
+   
+   
+   -- Kann nicht einfach in ein generic umgewandelt werden, da ja nicht der kleinste Wert sondern eins zurückgegeben wird.
+   function Arbeitszeit
+     (AktuellerWertExtern : in ProduktionDatentypen.Arbeitszeit;
+      ÄnderungExtern : in ProduktionDatentypen.Arbeitszeit)
+      return ProduktionDatentypen.ArbeitszeitVorhanden
+   is
+      use type ProduktionDatentypen.Arbeitszeit;
+   begin
+      
+      if
+        AktuellerWertExtern + ÄnderungExtern >= ProduktionDatentypen.Arbeitszeit'Last
+      then
+         return ProduktionDatentypen.Arbeitszeit'Last;
+         
+      elsif
+        AktuellerWertExtern + ÄnderungExtern <= ProduktionKonstanten.MinimaleArbeitszeit
+      then
+         return ProduktionKonstanten.MinimaleArbeitszeit;
+         
+      else
+         return AktuellerWertExtern + ÄnderungExtern;
+      end if;
+      
+   end Arbeitszeit;
+
+end Grenzpruefungen;

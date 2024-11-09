@@ -1,5 +1,7 @@
 with Sf.Graphics.Texture;
 
+with DateizugriffssystemHTB5;
+
 with VerzeichnisKonstanten;
 with TextKonstanten;
 with EingeleseneTexturenGrafik;
@@ -12,7 +14,6 @@ with Fehlermeldungssystem;
 with VerzeichnisDateinamenTests;
 with TexturenfelderBerechnenGrafik;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 -- Unter Windows funktionieren UTF8 Namen bei den Texturdateien nicht, das beim Benennen der Texturen berücksichtigen!
 package body EinlesenTexturenLogik is
@@ -31,7 +32,7 @@ package body EinlesenTexturenLogik is
             EinzulesendeZeile := 1;
             AktuelleZeile := 1;
             
-            DateiLogik.ÖffnenText (DateiartExtern => DateiTexturen,
+            DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiTexturen,
                                     NameExtern     => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
                                                                                             & VerzeichnisKonstanten.NullDateiWideWide));
       end case;

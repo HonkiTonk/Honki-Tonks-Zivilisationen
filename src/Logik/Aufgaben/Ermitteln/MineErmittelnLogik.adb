@@ -6,7 +6,6 @@ with LeseWeltkarte;
 with RodenErmittelnLogik;
 with Fehlermeldungssystem;
 with ArbeitszeitMineLogik;
-with Grenzpruefungen;
 with AufgabeFestlegenLogik;
 
 package body MineErmittelnLogik is
@@ -94,8 +93,8 @@ package body MineErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -107,8 +106,8 @@ package body MineErmittelnLogik is
                                                    AnlegenTestenExtern        => AnlegenTestenExtern,
                                                    KoordinatenExtern          => KoordinatenExtern)
       then
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitMineLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
+         Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                            ZusatzwertExtern => ArbeitszeitMineLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else
@@ -133,8 +132,8 @@ package body MineErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -142,8 +141,8 @@ package body MineErmittelnLogik is
          VorarbeitNötig := False;
          
       else
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitMineLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
+         Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                            ZusatzwertExtern => ArbeitszeitMineLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := False;
       end if;
       
@@ -167,8 +166,8 @@ package body MineErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -180,8 +179,8 @@ package body MineErmittelnLogik is
                                                    AnlegenTestenExtern        => AnlegenTestenExtern,
                                                    KoordinatenExtern          => KoordinatenExtern)
       then
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitMineLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
+         Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                            ZusatzwertExtern => ArbeitszeitMineLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else

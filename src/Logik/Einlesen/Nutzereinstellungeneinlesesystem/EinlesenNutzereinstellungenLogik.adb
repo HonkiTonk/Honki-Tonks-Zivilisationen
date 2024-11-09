@@ -1,5 +1,7 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
+with DateizugriffssystemHTB5;
+
 with OptionenVariablen;
 with VerzeichnisKonstanten;
 with SystemRecordKonstanten;
@@ -10,7 +12,6 @@ with SchreibeOptionen;
 with Fehlermeldungssystem;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenNutzereinstellungenLogik is
@@ -27,7 +28,7 @@ package body EinlesenNutzereinstellungenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DateiNutzereinstellungen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiNutzereinstellungen,
                                       NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       end case;
       

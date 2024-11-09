@@ -2,6 +2,8 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with Sf.Window.Keyboard;
 
+with DateizugriffssystemHTB5;
+
 with VerzeichnisKonstanten;
 with StandardTastenbelegungDatenbank;
 with TastenbelegungDatentypen;
@@ -12,7 +14,6 @@ with SchreibeTastenbelegungDatenbank;
 with VerzeichnisDateinamenTests;
 with Fehlermeldungssystem;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenTastatureinstellungenLogik is
@@ -29,7 +30,7 @@ package body EinlesenTastatureinstellungenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DateiTastatureinstellungen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiTastatureinstellungen,
                                       NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       end case;
       

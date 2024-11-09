@@ -3,8 +3,9 @@ with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Calendar; use Ada.Calendar;
 with Ada.Calendar.Formatting; use Ada.Calendar.Formatting;
 
+with DateizugriffssystemHTB5;
+
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 package body FehlermeldungSchreiben is
 
@@ -16,11 +17,11 @@ package body FehlermeldungSchreiben is
         Exists (Name => Meldungen)
       is
          when True =>
-            DateiLogik.ErweiternText (DateiartExtern => DateiMeldung,
+            DateizugriffssystemHTB5.ErweiternText (DateiartExtern => DateiMeldung,
                                       NameExtern     => Meldungen);
             
          when False =>
-            DateiLogik.ErstellenText (DateiartExtern => DateiMeldung,
+            DateizugriffssystemHTB5.ErstellenText (DateiartExtern => DateiMeldung,
                                       NameExtern     => Meldungen);
       end case;
       

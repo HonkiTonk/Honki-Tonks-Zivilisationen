@@ -5,7 +5,6 @@ with LeseWeltkarte;
 with LeseForschungenDatenbank;
 
 with Fehlermeldungssystem;
-with Grenzpruefungen;
 with ForschungstestsLogik;
 with ArbeitszeitWegLogik;
 with AufgabeFestlegenLogik;
@@ -115,8 +114,8 @@ package body WegErmittelnLogik is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -125,8 +124,8 @@ package body WegErmittelnLogik is
             null;
 
          when others =>
-            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
+            Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                               ZusatzwertExtern => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (WelcheArbeit, Arbeitszeit);
@@ -175,8 +174,8 @@ package body WegErmittelnLogik is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -185,8 +184,8 @@ package body WegErmittelnLogik is
             null;
 
          when others =>
-            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
+            Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                               ZusatzwertExtern => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (WelcheArbeit, Arbeitszeit);
@@ -221,8 +220,8 @@ package body WegErmittelnLogik is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -231,8 +230,8 @@ package body WegErmittelnLogik is
             null;
 
          when others =>
-            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
+            Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                               ZusatzwertExtern => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (WelcheArbeit, Arbeitszeit);
@@ -269,8 +268,8 @@ package body WegErmittelnLogik is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -279,8 +278,8 @@ package body WegErmittelnLogik is
             null;
 
          when others =>
-            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
+            Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                               ZusatzwertExtern => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return EinheitenRecordKonstanten.KeineArbeit;

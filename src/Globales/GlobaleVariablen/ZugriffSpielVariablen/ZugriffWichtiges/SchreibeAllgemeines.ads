@@ -1,11 +1,11 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+private with GrenztestsystemHTB2;
+
 with ZahlenDatentypen;
 with SpeziesDatentypen;
 with SpielDatentypen;
 with SpielRecords;
-
-private with Grenzpruefungen;
 
 package SchreibeAllgemeines is
    pragma Elaborate_Body;
@@ -56,6 +56,6 @@ package SchreibeAllgemeines is
    
 private
       
-   function EigeneZahlPrüfen is new Grenzpruefungen.Standardprüfung (GanzeZahl => ZahlenDatentypen.EigenerInteger);
+   function EigeneZahlPrüfen is new GrenztestsystemHTB2.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenerInteger);
 
 end SchreibeAllgemeines;

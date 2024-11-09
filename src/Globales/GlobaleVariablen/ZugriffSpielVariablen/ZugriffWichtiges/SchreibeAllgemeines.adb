@@ -47,8 +47,8 @@ package body SchreibeAllgemeines is
    procedure Rundenanzahl
    is begin
       
-      SpielVariablen.Allgemeines.Rundenanzahl := EigeneZahlPrüfen (AktuellerWertExtern => SpielVariablen.Allgemeines.Rundenanzahl,
-                                                                    ÄnderungExtern      => 1);
+      SpielVariablen.Allgemeines.Rundenanzahl := EigeneZahlPrüfen (GrundwertExtern  => SpielVariablen.Allgemeines.Rundenanzahl,
+                                                                   ZusatzwertExtern => 1);
       
    end Rundenanzahl;
    
@@ -93,8 +93,8 @@ package body SchreibeAllgemeines is
         RechnenSetzenExtern
       is
          when True =>
-            SpielVariablen.Allgemeines.Zusammenbruchszeit := EigeneZahlPrüfen (AktuellerWertExtern => SpielVariablen.Allgemeines.Zusammenbruchszeit,
-                                                                                ÄnderungExtern      => ZeitExtern);
+            SpielVariablen.Allgemeines.Zusammenbruchszeit := EigeneZahlPrüfen (GrundwertExtern  => SpielVariablen.Allgemeines.Zusammenbruchszeit,
+                                                                               ZusatzwertExtern => ZeitExtern);
             
          when False =>
             SpielVariablen.Allgemeines.Zusammenbruchszeit := ZeitExtern;
@@ -107,8 +107,8 @@ package body SchreibeAllgemeines is
    procedure AnzahlEingesetzterPZB
    is begin
       
-      SpielVariablen.Allgemeines.AnzahlEingesetzterPZB := EigeneZahlPrüfen (AktuellerWertExtern => SpielVariablen.Allgemeines.AnzahlEingesetzterPZB,
-                                                                             ÄnderungExtern      => 1);
+      SpielVariablen.Allgemeines.AnzahlEingesetzterPZB := EigeneZahlPrüfen (GrundwertExtern  => SpielVariablen.Allgemeines.AnzahlEingesetzterPZB,
+                                                                            ZusatzwertExtern => 1);
       
    end AnzahlEingesetzterPZB;
    

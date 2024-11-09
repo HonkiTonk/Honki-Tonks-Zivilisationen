@@ -56,7 +56,7 @@ package SystemRecords is
       FehlerWarnung : Boolean;
       Betriebssystem : BetriebssystemDatentypen.Betriebssystem_Enum;
       Stringkodierung : BetriebssystemDatentypen.Kodierung_Enum;
-      Dateiform : String (1 .. 6);
+      Dateiform : Character;
       
    end record;
    

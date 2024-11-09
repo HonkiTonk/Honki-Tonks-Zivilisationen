@@ -1,6 +1,8 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Exceptions; use Ada.Exceptions;
 
+with DateizugriffssystemHTB5;
+
 with Sf.Window.Window;
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
@@ -22,7 +24,6 @@ with LeseTastenbelegungDatenbank;
 with UmwandlungenAdaEigenes;
 with Fehlermeldungssystem;
 with TexteinstellungenGrafik;
-with DateiLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 -- Keine Schleifen einbauen, sonst wird das automatisch irgendwo dazwischen eingebaut und nicht am Ende wenn der Schleifenbereich erweitert wird!
@@ -31,7 +32,7 @@ package body SchreibenEinstellungenLogik is
    procedure Nutzereinstellungen
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiNutzereinstellungen,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiNutzereinstellungen,
                                   NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       
       -- SystemRecords.NutzerEinstellungenRecord
@@ -78,7 +79,7 @@ package body SchreibenEinstellungenLogik is
    procedure Grafikeinstellungen
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiGrafikeinstellungen,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiGrafikeinstellungen,
                                   NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       
       -- GrafikRecords.GrafikeinstellungenRecord
@@ -179,7 +180,7 @@ package body SchreibenEinstellungenLogik is
    procedure Toneinstellungen
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiToneinstellungen,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiToneinstellungen,
                                   NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       
       -- TonRecords.ToneinstellungenRecord
@@ -214,7 +215,7 @@ package body SchreibenEinstellungenLogik is
    procedure Tastatureinstellungen
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiTastatureinstellungen,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiTastatureinstellungen,
                                   NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       
       -- TastenbelegungDatenbank.AllgemeineBelegungArray
@@ -422,7 +423,7 @@ package body SchreibenEinstellungenLogik is
    procedure SpielendeEinstellungen
    is begin
       
-      DateiLogik.ErstellenStream (DateiartExtern => DateiSpielendeEinstellungen,
+      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpielendeEinstellungen,
                                   NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
       
       -- SystemRecords.SpielendeEinstellungenRecord

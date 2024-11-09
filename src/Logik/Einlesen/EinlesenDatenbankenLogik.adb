@@ -1,5 +1,7 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
+with DateizugriffssystemHTB5;
+
 with VerzeichnisKonstanten;
 with TextKonstanten;
 
@@ -14,7 +16,6 @@ with StandardEffekteDatenbank;
 with Fehlermeldungssystem;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 package body EinlesenDatenbankenLogik is
    
@@ -45,7 +46,7 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
                                       NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       end case;
       
@@ -126,7 +127,7 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
                                       NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       end case;
       
@@ -219,7 +220,7 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
                                       NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       end case;
       
@@ -303,7 +304,7 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
                                       NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
       end case;
       
@@ -403,7 +404,7 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
                                       NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       end case;
       
@@ -490,7 +491,7 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
                                       NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       end case;
       
@@ -571,7 +572,7 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            DateiLogik.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
+            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
                                       NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       end case;
       

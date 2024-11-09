@@ -1,3 +1,5 @@
+private with GrenztestsystemHTB2;
+
 with SpeziesDatentypen;
 with KartenDatentypen;
 with EinheitenRecords;
@@ -89,5 +91,7 @@ private
                and
                  GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
               );
+
+   function ArbeitszeitPrüfen is new GrenztestsystemHTB2.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
 
 end WaldErmittelnLogik;

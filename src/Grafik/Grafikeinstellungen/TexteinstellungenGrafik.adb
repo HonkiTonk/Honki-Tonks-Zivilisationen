@@ -2,6 +2,8 @@ with Ada.Directories;
 
 with Sf.Graphics.Font;
 
+with DateizugriffssystemHTB5;
+
 with VerzeichnisKonstanten;
 with TextKonstanten;
 with EinstellungenGrafik;
@@ -12,7 +14,6 @@ with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with TextaccesseSchriftartGrafik;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 -- Das hier auch mal in Lesen und Schreiben aufteilen? äöü
 package body TexteinstellungenGrafik is
@@ -72,7 +73,7 @@ package body TexteinstellungenGrafik is
       use Ada.Directories;
    begin
            
-      DateiLogik.ÖffnenText (DateiartExtern => DateiSchriftart,
+      DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiSchriftart,
                               NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
       
       case

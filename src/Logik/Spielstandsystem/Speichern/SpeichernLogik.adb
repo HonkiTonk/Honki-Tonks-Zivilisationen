@@ -1,5 +1,7 @@
 with Ada.Exceptions;
 
+with DateizugriffssystemHTB5;
+
 with KartenRecords;
 with StadtRecords;
 with SpielRecords;
@@ -30,7 +32,6 @@ with Fehlermeldungssystem;
 with MeldungFestlegenLogik;
 with UmwandlungenVerzeichnisse;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -83,7 +84,7 @@ package body SpeichernLogik is
                Spielstandart := SystemDatentypen.Manueller_Spielstand_Enum;
          end case;
          
-         DateiLogik.ErstellenStream (DateiartExtern => DateiSpeichern,
+         DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpeichern,
                                      NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
                                                                                                  SpielstandnameExtern => Spielstandname));
          

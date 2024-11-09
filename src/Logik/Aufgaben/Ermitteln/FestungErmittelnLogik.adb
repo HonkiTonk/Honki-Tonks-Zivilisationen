@@ -4,7 +4,6 @@ with LeseWeltkarte;
 
 with Fehlermeldungssystem;
 with ArbeitszeitFestungLogik;
-with Grenzpruefungen;
 with AufgabeFestlegenLogik;
 
 package body FestungErmittelnLogik is
@@ -84,8 +83,8 @@ package body FestungErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -94,8 +93,8 @@ package body FestungErmittelnLogik is
             null;
 
          when others =>
-            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
+            Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                               ZusatzwertExtern => ArbeitszeitFestungLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (
@@ -113,8 +112,8 @@ package body FestungErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -123,8 +122,8 @@ package body FestungErmittelnLogik is
             null;
 
          when others =>
-            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
+            Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                               ZusatzwertExtern => ArbeitszeitFestungLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (
@@ -142,8 +141,8 @@ package body FestungErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -152,8 +151,8 @@ package body FestungErmittelnLogik is
             null;
 
          when others =>
-            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
+            Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                               ZusatzwertExtern => ArbeitszeitFestungLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (

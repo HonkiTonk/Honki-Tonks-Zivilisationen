@@ -31,6 +31,8 @@ package body SichtweitenGrafik is
       -- Eine Möglichkeit einbauen um direkt zu StandardSenkrechteZoomstufe zu springen und nicht zur Kleinsten? äöü
       if
         AktuelleSenkrechteZoomstufe + ÄnderungExtern > MaximaleSenkrechteZoomstufe
+        or
+          AktuelleWaagerechteZoomstufe + KartenDatentypen.Waagerechte (ÄnderungExtern) > MaximaleWaagerechteZoomstufe
       then
          AktuelleSenkrechteZoomstufe := MinimaleSenkrechteZoomstufe;
          AktuelleWaagerechteZoomstufe := MinimaleWaagerechteZoomstufe;
@@ -38,6 +40,8 @@ package body SichtweitenGrafik is
          
       elsif
         AktuelleSenkrechteZoomstufe + ÄnderungExtern < MinimaleSenkrechteZoomstufe
+        or
+          AktuelleWaagerechteZoomstufe + KartenDatentypen.Waagerechte (ÄnderungExtern) < MinimaleWaagerechteZoomstufe
       then
          AktuelleSenkrechteZoomstufe := MaximaleSenkrechteZoomstufe;
          AktuelleWaagerechteZoomstufe := MaximaleWaagerechteZoomstufe;

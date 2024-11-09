@@ -148,37 +148,35 @@ package ChangelogSeptember2024 is
    
    
 
-   -- Version 0.05. => 0.05. (09.09.2024):
+   -- Version 0.05.9495 => 0.05.9530 (09.09.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (08.09.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der beim Zoomen für Abstürze sorgen konnte.
+   -- Angefangen alle Codeteile die jetzt in den Bibliotheken sind auszutauschen/zu entfernen.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (07.09.2024):
+   -- Version 0.05.9495 => 0.05.9495 (08.09.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (06.09.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9470 => 0.05. (05.09.2024):
+   -- Version 0.05.9495 => 0.05.9495 (07.09.2024):
    
-   -- 
+   -- null.
+   
+   
+
+   -- Version 0.05.9495 => 0.05.9495 (06.09.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9470 => 0.05.9495 (05.09.2024):
+   
+   -- Bibliotheken aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

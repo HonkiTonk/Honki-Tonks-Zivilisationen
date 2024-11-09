@@ -1,9 +1,9 @@
+private with GrenztestsystemHTB2;
+
 with SpeziesDatentypen;
 with DiplomatieDatentypen;
 with ZahlenDatentypen;
 with SpielRecords;
-
-private with Grenzpruefungen;
 
 with LeseSpeziesbelegung;
 
@@ -69,8 +69,8 @@ package SchreibeDiplomatie is
    
 private
    
-   function EigeneZahlPrüfen is new Grenzpruefungen.Standardprüfung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
+   function EigeneZahlPrüfen is new GrenztestsystemHTB2.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
    
-   function MeinungPrüfen is new Grenzpruefungen.Standardprüfung (GanzeZahl => DiplomatieDatentypen.Meinung);
+   function MeinungPrüfen is new GrenztestsystemHTB2.Strichrechnung (GanzeZahl => DiplomatieDatentypen.Meinung);
 
 end SchreibeDiplomatie;

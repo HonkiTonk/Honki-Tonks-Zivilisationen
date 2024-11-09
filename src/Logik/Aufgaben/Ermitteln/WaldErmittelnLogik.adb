@@ -8,7 +8,6 @@ with RodenErmittelnLogik;
 with Fehlermeldungssystem;
 with JaNeinLogik;
 with ArbeitszeitWaldLogik;
-with Grenzpruefungen;
 with AufgabeFestlegenLogik;
 
 package body WaldErmittelnLogik is
@@ -115,8 +114,8 @@ package body WaldErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWaldLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitWaldLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -128,8 +127,8 @@ package body WaldErmittelnLogik is
                                                    AnlegenTestenExtern        => AnlegenTestenExtern,
                                                    KoordinatenExtern          => KoordinatenExtern)
       then
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitWaldLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
+         Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                            ZusatzwertExtern => ArbeitszeitWaldLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else
@@ -156,8 +155,8 @@ package body WaldErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWaldLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
+      Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
+                                         ZusatzwertExtern => ArbeitszeitWaldLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -169,8 +168,8 @@ package body WaldErmittelnLogik is
                                                    AnlegenTestenExtern        => AnlegenTestenExtern,
                                                    KoordinatenExtern          => KoordinatenExtern)
       then
-         Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitWaldLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
+         Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => Arbeitszeit,
+                                            ZusatzwertExtern => ArbeitszeitWaldLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else

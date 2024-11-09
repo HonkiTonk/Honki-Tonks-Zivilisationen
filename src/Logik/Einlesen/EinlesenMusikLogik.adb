@@ -1,5 +1,7 @@
 with Sf.Audio.Music;
 
+with DateizugriffssystemHTB5;
+
 with VerzeichnisKonstanten;
 with SpeziesKonstanten;
 
@@ -8,7 +10,6 @@ with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
 with UmwandlungenAdaEigenes;
-with DateiLogik;
 
 -- Die Prüfungen ob die Zeichenlänge der Musik passt, passen so eventuell nicht richtig. Beim richtigen Einbauen korrigieren. äöü
 package body EinlesenMusikLogik is
@@ -36,7 +37,7 @@ package body EinlesenMusikLogik is
          when True =>
             AktuelleZeile := 1;
             
-            DateiLogik.ÖffnenText (DateiartExtern => DateiVerzeichnisse,
+            DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiVerzeichnisse,
                                     NameExtern     => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei);
       end case;
       
@@ -92,7 +93,7 @@ package body EinlesenMusikLogik is
             return;
                
          when True =>
-            DateiLogik.ÖffnenText (DateiartExtern => DateiMusik,
+            DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiMusik,
                                     NameExtern     => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => DateipfadExtern));
       end case;
                
