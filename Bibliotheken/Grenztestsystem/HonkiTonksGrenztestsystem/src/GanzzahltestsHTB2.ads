@@ -1,4 +1,4 @@
-package GrenztestsystemHTB2 is
+package GanzzahltestsHTB2 is
    pragma Pure;
 
    generic type GanzeZahl is range <>;
@@ -28,12 +28,5 @@ package GrenztestsystemHTB2 is
      (GrundwertExtern : in GanzeZahl;
       MultiplikatorExtern : in GanzeZahl)
       return GanzeZahl;
-   
-   generic type KommaZahl is digits <>;
 
-   function Kommamultiplikation
-     (GrundwertExtern : in KommaZahl;
-      MultiplikatorExtern : in KommaZahl)
-      return KommaZahl;
-   
-end GrenztestsystemHTB2;
+end GanzzahltestsHTB2;

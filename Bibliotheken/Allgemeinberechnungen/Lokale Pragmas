@@ -67,12 +67,9 @@ pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Dom
 pragma Restrictions (No_Default_Stream_Attributes);
 pragma Restrictions (No_Abort_Statements);
 pragma Restrictions (No_Finalization);
-pragma Restrictions (No_Task_Hierarchy);
 pragma Restrictions (No_Multiple_Elaboration);
 pragma Restrictions (No_Implementation_Pragmas);
-pragma Restrictions (No_Relative_Delay);
 pragma Restrictions (No_Dependence => Ada.Calendar);
-pragma Normalize_Scalars;
 
 -- Ist das nicht identisch mit pragma Restrictions (No_Dependence => Ada.Calendar);?
 -- pragma Restrictions (No_Calendar);
@@ -103,6 +100,10 @@ pragma Normalize_Scalars;
 -- pragma Restrictions (No_Dependence => No_Specification_of_Aspect);
 -- pragma Restrictions (No_Dependence => No_Use_Of_Attribute);
 -- pragma Restrictions (No_Dependence => No_Use_Of_Pragma);
+-- Verursacht Probleme mit meinem Spiel.
+-- pragma Restrictions (No_Task_Hierarchy);
+-- pragma Restrictions (No_Relative_Delay);
+-- pragma Normalize_Scalars;
 
 
 

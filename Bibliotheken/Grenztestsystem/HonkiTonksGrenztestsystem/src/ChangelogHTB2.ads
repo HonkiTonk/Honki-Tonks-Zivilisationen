@@ -1,6 +1,17 @@
 package ChangelogHTB2 is
    pragma Pure;
 
+   -- Version 1.01.5000 => 1.03.0000 (10.11.2024):
+   
+   -- Pragma Datei angepasst.
+   -- Berechnungsfehler in StrichrechnungNatural und StrichrechnungPositive korrigiert.
+   -- Berechnungen optimiert.
+   -- Strichrechnungen für Kommazahlen eingebaut.
+   -- Benennung überarbeitet.
+   -- Die Berechnungen in einen Ganzzahl- und einen Kommazahlbereich aufgeteilt.
+   
+   
+
    -- Version 1.01.4000 => 1.01.5000 (02.11.2024):
    
    -- Benennung überarbeitet.

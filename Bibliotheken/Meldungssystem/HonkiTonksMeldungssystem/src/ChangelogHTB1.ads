@@ -1,6 +1,12 @@
 package ChangelogHTB1 is
    pragma Pure;
 
+   -- Version 1.04.5000 => 1.04.6000 (10.11.2024):
+   
+   -- Pragma Datei angepasst.
+   
+   
+
    -- Version 1.04.4000 => 1.04.5000 (02.11.2024):
    
    -- Benennung überarbeitet.
