@@ -3,7 +3,7 @@ with ProduktionKonstanten;
 
 with LeseWeltkarte;
   
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with ArbeitszeitRodenLogik;
 with MeldungFestlegenLogik;
 with AufgabeFestlegenLogik;
@@ -63,7 +63,7 @@ package body RodenErmittelnLogik is
             null;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "RodenErmittelnLogik.RodenErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            MeldungssystemHTB1.Logik (MeldungExtern => "RodenErmittelnLogik.RodenErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
             return False;
       end case;
       

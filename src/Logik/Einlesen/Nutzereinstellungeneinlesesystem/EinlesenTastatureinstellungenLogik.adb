@@ -12,8 +12,8 @@ with TextKonstanten;
 
 with SchreibeTastenbelegungDatenbank;
 with VerzeichnisDateinamenTests;
-with Fehlermeldungssystem;
-with UmwandlungenAdaEigenes;
+with MeldungssystemHTB1;
+with UmwandlungssystemHTB3;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenTastatureinstellungenLogik is
@@ -23,7 +23,7 @@ package body EinlesenTastatureinstellungenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Tastatureinstellungen))
+                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Tastatureinstellungen))
       is
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
@@ -50,8 +50,8 @@ package body EinlesenTastatureinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastatureinstellungenLogik.Tastatureinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTastatureinstellungenLogik.Tastatureinstellungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
          
          case
@@ -722,8 +722,8 @@ package body EinlesenTastatureinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastatureinstellungenLogik.TastatureinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTastatureinstellungenLogik.TastatureinstellungenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end TastatureinstellungenDurchgehen;

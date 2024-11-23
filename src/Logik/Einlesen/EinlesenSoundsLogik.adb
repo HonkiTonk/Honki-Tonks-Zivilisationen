@@ -5,10 +5,10 @@ with DateizugriffssystemHTB5;
 with VerzeichnisKonstanten;
 
 with EingeleseneSounds;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
-with UmwandlungenAdaEigenes;
+with UmwandlungssystemHTB3;
 
 package body EinlesenSoundsLogik is
 
@@ -16,11 +16,11 @@ package body EinlesenSoundsLogik is
    is begin
             
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei))
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: "
-                                        & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
+            MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: "
+                                        & UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
@@ -39,8 +39,8 @@ package body EinlesenSoundsLogik is
                                                             DateinameExtern     => "EinlesenSoundsLogik.EinlesenSounds")
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: "
-                                           & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: "
+                                           & UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                exit SoundsSchleife;
                
             when False =>
@@ -53,10 +53,10 @@ package body EinlesenSoundsLogik is
            VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => To_Wide_Wide_String (Source => Sound))
          is
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: " & To_Wide_Wide_String (Source => Sound));
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: " & To_Wide_Wide_String (Source => Sound));
             
             when True =>
-               EingeleseneSounds.Sound (SoundSchleifenwert) := Sf.Audio.SoundBuffer.createFromFile (filename => UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => Sound));
+               EingeleseneSounds.Sound (SoundSchleifenwert) := Sf.Audio.SoundBuffer.createFromFile (filename => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => Sound));
          end case;
          
          AktuelleZeile := AktuelleZeile + 1;

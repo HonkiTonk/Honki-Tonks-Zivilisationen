@@ -3,7 +3,7 @@ with KampfKonstanten;
 with EinheitenKonstanten;
 with ProduktionKonstanten;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 
 package body LeseKartenDatenbanken is
 
@@ -17,7 +17,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.PassierbarkeitBasisgrund: Leerer Grund");
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseKartenDatenbanken.PassierbarkeitBasisgrund: Leerer Grund");
             return False;
             
          when others =>
@@ -31,15 +31,15 @@ package body LeseKartenDatenbanken is
    function BewertungBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return BewertungDatentypen.Bewertung_Enum
+      return DatentypenHTB6.Bewertung_Enum
    is begin
       
       case
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewertungBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
-            return BewertungDatentypen.Bewertung_Eins_Enum;
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseKartenDatenbanken.BewertungBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            return DatentypenHTB6.Bewertung_Eins_Enum;
             
          when others =>
             return KartenDatenbank.Basisgrundliste (GrundExtern).Bewertung (SpeziesExtern);
@@ -52,14 +52,14 @@ package body LeseKartenDatenbanken is
    function BewertungZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return BewertungDatentypen.Bewertung_Enum
+      return DatentypenHTB6.Bewertung_Enum
    is begin
       
       case
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            return BewertungDatentypen.Bewertung_Eins_Enum;
+            return DatentypenHTB6.Bewertung_Eins_Enum;
               
          when others =>
             return KartenDatenbank.Zusatzgrundliste (GrundExtern).Bewertung (SpeziesExtern);
@@ -79,7 +79,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewegungBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseKartenDatenbanken.BewegungBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return EinheitenKonstanten.LeerBewegungspunkte;
             
          when others =>
@@ -161,7 +161,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.ProduktionBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseKartenDatenbanken.ProduktionBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
@@ -246,7 +246,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.KampfBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseKartenDatenbanken.KampfBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return KampfKonstanten.LeerBonus;
             
          when others =>

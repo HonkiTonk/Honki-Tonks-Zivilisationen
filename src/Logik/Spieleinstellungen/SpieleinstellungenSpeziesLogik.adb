@@ -18,7 +18,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with PassierbarkeitspruefungLogik;
 with EinheitenErzeugenEntfernenLogik;
 with AuswahlaufteilungLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with LadezeitenLogik;
 with UmwandlungenDatentypen;
 
@@ -45,7 +45,7 @@ package body SpieleinstellungenSpeziesLogik is
                return;
                
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpieleinstellungenSpeziesLogik.SpeziesWählen: Falsche Auswahl: " & SpeziesAuswahl'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "SpieleinstellungenSpeziesLogik.SpeziesWählen: Falsche Auswahl: " & SpeziesAuswahl'Wide_Wide_Image);
          end case;
          
       end loop SpeziesSchleife;

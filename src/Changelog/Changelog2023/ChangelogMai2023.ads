@@ -21,7 +21,7 @@ package ChangelogMai2023 is
 
    -- Version 0.05.1430 => 0.05.1465 (29.05.2023):
    
-   -- Fehlermeldungssystem überarbeitet und um Zeitangabe erweitert.
+   -- MeldungssystemHTB1 überarbeitet und um Zeitangabe erweitert.
    -- Exceptions überarbeitet, so dass die Grund für die Exceptions ebenfall gespeichert/angezeigt wird.
    -- Kleinigkeiten korrigiert/angepasst.
    

@@ -1,6 +1,6 @@
 with ProduktionDatentypen;
 
-private with UmwandlungenAdaEigenes;
+private with UmwandlungssystemHTB3;
 
 package StandardtexteGrafik is
 
@@ -14,6 +14,6 @@ package StandardtexteGrafik is
    
 private
    
-   function ProduktionAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Produktion);
+   function ProduktionAlsString is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => ProduktionDatentypen.Produktion);
 
 end StandardtexteGrafik;

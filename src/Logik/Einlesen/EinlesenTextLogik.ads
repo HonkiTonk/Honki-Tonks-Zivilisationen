@@ -10,7 +10,7 @@ private with Kartentexte;
 private with Speziestexte;
 private with SpeziesDatentypen;
 
-private with UmwandlungenAdaEigenes;
+private with UmwandlungssystemHTB3;
 
 package EinlesenTextLogik is
    pragma Elaborate_Body;
@@ -168,6 +168,6 @@ private
       VorhandenerTextExtern : in Unbounded_Wide_Wide_String)
       return Unbounded_Wide_Wide_String;
    
-   function ZahlAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => Positive);
+   function ZahlAlsString is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => Positive);
    
 end EinlesenTextLogik;

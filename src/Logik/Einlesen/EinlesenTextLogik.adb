@@ -8,7 +8,7 @@ with EinheitenDatentypen;
 
 with LeseOptionen;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
 
@@ -41,13 +41,13 @@ package body EinlesenTextLogik is
                                Directory_Entry => Verzeichnis);
                
                if
-                 VerzeichnisDateinamenTests.GültigerNamen (NameExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis))) = False
+                 VerzeichnisDateinamenTests.GültigerNamen (NameExtern => UmwandlungssystemHTB3.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis))) = False
                then
                   null;
                   
                elsif
                  False = VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
-                                                                           WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
+                                                                           WindowsTextExtern => UmwandlungssystemHTB3.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
                                                                                                                                                & Simple_Name (Directory_Entry => Verzeichnis)
                                                                                                                                                & VerzeichnisKonstanten.NullDatei))
                then
@@ -59,7 +59,7 @@ package body EinlesenTextLogik is
                   null;
             
                else
-                  Einlesen (VerzeichnisExtern => (VerzeichnisKonstanten.Sprachenordner & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)) & "/"),
+                  Einlesen (VerzeichnisExtern => (VerzeichnisKonstanten.Sprachenordner & UmwandlungssystemHTB3.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)) & "/"),
                             EinsprachigExtern => EinsprachigExtern);
                end if;
                
@@ -105,7 +105,7 @@ package body EinlesenTextLogik is
             
          when True =>
             DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiVerzeichnisse,
-                                    NameExtern     => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & "0"));
+                                    NameExtern     => UmwandlungssystemHTB3.Encode (TextExtern => VerzeichnisExtern & "0"));
       end case;
       
       EinlesenSchleife:
@@ -117,7 +117,7 @@ package body EinlesenTextLogik is
                                                             DateinameExtern     => "EinlesenTextLogik.Einlesen")
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Einlesen: Fehlende Zeilen, aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Fehlende Zeilen, aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
                exit EinlesenSchleife;
                
             when False =>
@@ -153,7 +153,7 @@ package body EinlesenTextLogik is
             
          when True =>
             DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiText,
-                                    NameExtern     => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisExtern & DateinameExtern));
+                                    NameExtern     => UmwandlungssystemHTB3.Encode (TextExtern => VerzeichnisExtern & DateinameExtern));
       end case;
       
       case
@@ -185,7 +185,7 @@ package body EinlesenTextLogik is
                      SpeziesExtern     => SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (WelcheDateiExtern - 5));
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenAufteilen: Mehr eingelesen als möglich, Dateinummer: " & WelcheDateiExtern'Wide_Wide_Image);
+            MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.EinlesenAufteilen: Mehr eingelesen als möglich, Dateinummer: " & WelcheDateiExtern'Wide_Wide_Image);
       end case;
             
       Close (File => DateiText);
@@ -211,7 +211,7 @@ package body EinlesenTextLogik is
                                                             DateinameExtern     => "EinlesenTextLogik.Ersetzungen")
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ersetzungen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Ersetzungen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                return;
                
             when False =>
@@ -265,7 +265,7 @@ package body EinlesenTextLogik is
                                                             DateinameExtern     => "EinlesenTextLogik.Menüs")
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Menüs: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Menüs: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                return;
                
             when False =>
@@ -423,7 +423,7 @@ package body EinlesenTextLogik is
                                                                                           VorhandenerTextExtern  => Menuetexte.Editorenmenü (AktuelleZeile - Editorenmenü));
                   
                else
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Menüs: Außerhalb des Einlesebereichs");
+                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Menüs: Außerhalb des Einlesebereichs");
                   return;
                end if;
                
@@ -460,7 +460,7 @@ package body EinlesenTextLogik is
                                                             DateinameExtern     => "EinlesenTextLogik.AllgemeineTexte")
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Meldungen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Meldungen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                return;
                
             when False =>
@@ -527,7 +527,7 @@ package body EinlesenTextLogik is
                                                                                            VorhandenerTextExtern  => Spieltexte.Beschäftigungen (AktuelleZeile - Ladezeiten));
                   
                else
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.AllgemeineTexte: Außerhalb des Einlesebereichs");
+                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.AllgemeineTexte: Außerhalb des Einlesebereichs");
                   return;
                end if;
                
@@ -564,7 +564,7 @@ package body EinlesenTextLogik is
                                                             DateinameExtern     => "EinlesenTextLogik.Sequenzen")
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Sequenzen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Sequenzen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                return;
                
             when False =>
@@ -596,7 +596,7 @@ package body EinlesenTextLogik is
                                                                                VorhandenerTextExtern  => Sequenzentexte.Outro (AktuelleZeile - Intro));
                   
                else
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Sequenzen: Außerhalb des Einlesebereichs");
+                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Sequenzen: Außerhalb des Einlesebereichs");
                   return;
                end if;
                
@@ -633,7 +633,7 @@ package body EinlesenTextLogik is
                                                             DateinameExtern     => "EinlesenTextLogik.Karte")
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Karte: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Karte: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                return;
                
             when False =>
@@ -700,7 +700,7 @@ package body EinlesenTextLogik is
                                                                                     VorhandenerTextExtern  => Kartentexte.Wege (AktuelleZeile - Verbesserungen));
                   
                else
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Karte: Außerhalb des Einlesebereichs");
+                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Karte: Außerhalb des Einlesebereichs");
                   return;
                end if;
                
@@ -741,7 +741,7 @@ package body EinlesenTextLogik is
                                                             DateinameExtern     => "EinlesenTextLogik.Spezies")
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spezies: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Spezies: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                return;
                
             when False =>
@@ -846,7 +846,7 @@ package body EinlesenTextLogik is
                   end case;
                                                                                                                                                 
                else
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spezies: Außerhalb des Einlesebereichs");
+                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTextLogik.Spezies: Außerhalb des Einlesebereichs");
                   return;
                end if;
                                                                                                                                                 

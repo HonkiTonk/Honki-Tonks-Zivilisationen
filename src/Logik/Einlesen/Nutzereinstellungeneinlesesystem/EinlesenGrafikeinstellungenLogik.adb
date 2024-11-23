@@ -10,10 +10,10 @@ with TextKonstanten;
 
 with SchreibeEinstellungenGrafik;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with EinstellungenGrafik;
 with VerzeichnisDateinamenTests;
-with UmwandlungenAdaEigenes;
+with UmwandlungssystemHTB3;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenGrafikeinstellungenLogik is
@@ -23,7 +23,7 @@ package body EinlesenGrafikeinstellungenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Grafikeinstellungen))
+                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Grafikeinstellungen))
       is
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;
@@ -50,8 +50,8 @@ package body EinlesenGrafikeinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenGrafikeinstellungenLogik.Grafikeinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenGrafikeinstellungenLogik.Grafikeinstellungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          EinstellungenGrafik.StandardeinstellungenLaden;
          
          case
@@ -340,8 +340,8 @@ package body EinlesenGrafikeinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenGrafikeinstellungenLogik.GrafikeinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenGrafikeinstellungenLogik.GrafikeinstellungenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end GrafikeinstellungenDurchgehen;

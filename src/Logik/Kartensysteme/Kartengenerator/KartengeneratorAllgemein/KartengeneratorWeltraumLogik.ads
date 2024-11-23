@@ -1,6 +1,6 @@
-private with KartenDatentypen;
+private with AllgemeinberechnungenHTB7;
 
-private with AllgemeineBerechnungen;
+private with KartenDatentypen;
 
 package KartengeneratorWeltraumLogik is
    pragma Elaborate_Body;
@@ -13,6 +13,6 @@ private
 
 
 
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   function Basiszeitwert is new AllgemeinberechnungenHTB7.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorWeltraumLogik;

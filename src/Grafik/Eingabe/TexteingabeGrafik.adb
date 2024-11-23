@@ -14,7 +14,7 @@ with LeseGrafiktask;
 
 with FensterGrafik;
 with VerzeichnisDateinamenTests;
-with UmwandlungenAdaEigenes;
+with UmwandlungssystemHTB3;
 
 package body TexteingabeGrafik is
 
@@ -147,7 +147,7 @@ package body TexteingabeGrafik is
       case
         VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => LeseLogiktask.Texteingabe & EingegebenesZeichenExtern,
                                                           WindowsTextExtern =>
-                                                             UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.VerzeichnisSpielstand) & LeseLogiktask.Texteingabe & EingegebenesZeichenExtern)
+                                                             UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.VerzeichnisSpielstand) & LeseLogiktask.Texteingabe & EingegebenesZeichenExtern)
       is
          when False =>
             return False;

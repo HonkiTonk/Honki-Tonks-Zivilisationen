@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with GrenztestsystemHTB2;
+private with GanzzahltestsHTB2;
 
 with ZahlenDatentypen;
 with SpeziesDatentypen;
@@ -56,6 +56,6 @@ package SchreibeAllgemeines is
    
 private
       
-   function EigeneZahlPrüfen is new GrenztestsystemHTB2.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenerInteger);
+   function EigeneZahlPrüfen is new GanzzahltestsHTB2.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenerInteger);
 
 end SchreibeAllgemeines;

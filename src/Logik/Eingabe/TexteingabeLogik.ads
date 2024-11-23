@@ -28,6 +28,8 @@ private
    
    Name : SystemRecords.TextEingabeRecord;
    
+   
+   
    function NameEingeben
      (WelcheFrageExtern : in Positive)
       return SystemRecords.TextEingabeRecord;

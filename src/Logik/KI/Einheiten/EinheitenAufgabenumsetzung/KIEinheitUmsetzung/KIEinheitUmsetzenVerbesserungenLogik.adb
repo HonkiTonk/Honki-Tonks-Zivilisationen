@@ -2,7 +2,7 @@ with LeseWeltkarte;
 with LeseEinheitenGebaut;
 
 with AufgabenLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 
 package body KIEinheitUmsetzenVerbesserungenLogik is
 
@@ -75,7 +75,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             Befehl := BefehleDatentypen.Straße_Bauen_Enum;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitUmsetzenVerbesserungenLogik.WelcheVerbesserungAnlegen: Falsche Verbesserung: " & WelcheVerbesserung'Wide_Wide_Image);
+            MeldungssystemHTB1.Logik (MeldungExtern => "KIEinheitUmsetzenVerbesserungenLogik.WelcheVerbesserungAnlegen: Falsche Verbesserung: " & WelcheVerbesserung'Wide_Wide_Image);
             return False;
       end case;
       

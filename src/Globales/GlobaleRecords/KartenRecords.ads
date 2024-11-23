@@ -2,7 +2,7 @@ with KartenDatentypen;
 with KartengrundDatentypen;
 with SpeziesDatentypen;
 with KartenartDatentypen;
-with BewertungDatentypen;
+with DatentypenHTB6;
 with KartenextraDatentypen;
 
 package KartenRecords is
@@ -48,6 +48,15 @@ package KartenRecords is
       
       Senkrechte : KartenDatentypen.SenkrechteSichtweiteNatural;
       Waagerechte : KartenDatentypen.WaagerechteSichtweiteNatural;
+      
+   end record;
+   
+   
+   
+   type UmgebungEinsRecord is record
+      
+      Senkrechte : KartenDatentypen.SenkrechteUmgebungEins;
+      Waagerechte : KartenDatentypen.WaagerechteUmgebungEins;
       
    end record;
    
@@ -146,7 +155,7 @@ package KartenRecords is
    
    
    
-   type FelderwertungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
+   type FelderwertungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of DatentypenHTB6.Bewertung_Enum;
    type SichtbarkeitArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Boolean;
    -- Mehr davon einbauen um den Arbeitsspeicherverbrauch zu reduzieren? äöü
    for SichtbarkeitArray'Component_Size use 1;

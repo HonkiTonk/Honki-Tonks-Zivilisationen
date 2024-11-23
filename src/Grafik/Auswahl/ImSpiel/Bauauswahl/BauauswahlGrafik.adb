@@ -301,11 +301,11 @@ package body BauauswahlGrafik is
                                                                                                                                                                        AuswahlExtern    => Natural (AuswahlExtern)));
                
                -- Ist das hier noch aus einem Grund hier oder kann das weg? äöü
-               -- Diagnoseinformationen.Zahl (ZahlExtern => BaulisteExtern (EinheitenSchleifenwert));
-               -- Diagnoseinformationen.Zahl (ZahlExtern => Integer (EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert))));
-               -- Diagnoseinformationen.Boxinformationen
+               -- DiagnosesystemZusatzinformationen.Zahl (ZahlExtern => BaulisteExtern (EinheitenSchleifenwert));
+               -- DiagnosesystemZusatzinformationen.Zahl (ZahlExtern => Integer (EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert))));
+               -- DiagnosesystemZusatzinformationen.Boxinformationen
                --   (BoxExtern => Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert)))));
-               -- Diagnoseinformationen.Zeilenabstand;
+               -- DiagnosesystemZusatzinformationen.Zeilenabstand;
                
                -- Sollte auch mit EinheitenIDVorhanden anstelle von EinheitenID funktionieren, tut es aber nicht. Später mal herausfinden warum. äöü
                -- Das Problem existiert auch bei den Gebäuden. äöü

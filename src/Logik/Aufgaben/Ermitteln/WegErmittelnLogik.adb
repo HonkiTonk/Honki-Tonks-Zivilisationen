@@ -4,7 +4,7 @@ with ProduktionKonstanten;
 with LeseWeltkarte;
 with LeseForschungenDatenbank;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with ForschungstestsLogik;
 with ArbeitszeitWegLogik;
 with AufgabeFestlegenLogik;
@@ -67,7 +67,7 @@ package body WegErmittelnLogik is
             null;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WegErmittelnLogik.WegErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            MeldungssystemHTB1.Logik (MeldungExtern => "WegErmittelnLogik.WegErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
             return False;
       end case;
       

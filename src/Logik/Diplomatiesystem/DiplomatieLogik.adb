@@ -12,7 +12,7 @@ with SchreibeGrafiktask;
 with TasteneingabeLogik;
 with MausauswahlLogik;
 with AuswahlaufteilungLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with DiplomatischerZustandAenderbarLogik;
 with EinheitenverschiebungLogik;
 with HandelnLogik;
@@ -147,7 +147,7 @@ package body DiplomatieLogik is
                   return;
                   
                when others =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "DiplomatieLogik.Diplomatie: Ungültige Rückgabe: " & AktionAuswahl'Wide_Wide_Image);
+                  MeldungssystemHTB1.Logik (MeldungExtern => "DiplomatieLogik.Diplomatie: Ungültige Rückgabe: " & AktionAuswahl'Wide_Wide_Image);
             end case;
             
          end loop DiplomatieBetreibenSchleife;

@@ -113,7 +113,7 @@ package ChangelogJuli2024 is
 
    -- Version 0.05.8220 => 0.05.8280 (17.07.2024):
    
-   -- Fehlermeldungssystem überarbeitet.
+   -- MeldungssystemHTB1 überarbeitet.
    -- Unnötigen Code gelöscht.
    -- Code zusammengefasst.
    -- Weiter an einem Einlesesystem für verschiedene Betriebssysteme gearbeitet.

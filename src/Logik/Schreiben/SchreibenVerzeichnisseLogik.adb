@@ -3,8 +3,8 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with VerzeichnisKonstanten;
 
-with UmwandlungenAdaEigenes;
-with Fehlermeldungssystem;
+with UmwandlungssystemHTB3;
+with MeldungssystemHTB1;
 
 package body SchreibenVerzeichnisseLogik is
 
@@ -63,8 +63,8 @@ package body SchreibenVerzeichnisseLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenVerzeichnisseLogik.Verzeichnisse: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenVerzeichnisseLogik.Verzeichnisse: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
       
    end Verzeichnisse;
 

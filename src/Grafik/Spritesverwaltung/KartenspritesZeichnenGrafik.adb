@@ -2,7 +2,7 @@ with GrafikRecordKonstanten;
 with GrafikKonstanten;
 
 with TexturenskalierungGrafik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with SpritesverwaltungssystemGrafik;
 
 package body KartenspritesZeichnenGrafik is
@@ -19,7 +19,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern: null");
+         MeldungssystemHTB1.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern: null");
          
       else
          Skalierung := TexturenskalierungGrafik.Kartenfeldskalierung (TexturengrößeExtern => (Sf.sfUint32 (TexturbereichExtern.width), Sf.sfUint32 (TexturbereichExtern.height)));
@@ -47,7 +47,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern: null");
+         MeldungssystemHTB1.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern: null");
          
       else
          Skalierung := TexturenskalierungGrafik.Stadtbewirtschaftung (FeldgrößeExtern     => FeldgrößeExtern,
@@ -74,7 +74,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtkarteZeichnen: TexturAccessExtern: null");
+         MeldungssystemHTB1.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.StadtkarteZeichnen: TexturAccessExtern: null");
          
       else
          Skalierung := TexturenskalierungGrafik.Vollbildskalierung (TexturengrößeExtern => (Sf.sfUint32 (TexturenbereichExtern.x), Sf.sfUint32 (TexturenbereichExtern.y)));

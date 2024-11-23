@@ -3,7 +3,7 @@ with SpeziesKonstanten;
 
 with LeseEinheitenDatenbank;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with FehlermeldungssystemZusatzinformationen;
 
 package body LeseEinheitenGebaut is
@@ -79,7 +79,7 @@ package body LeseEinheitenGebaut is
       if
         GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte > ErlaubteLebenspunkte
       then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseEinheitenGebaut.Lebenspunkte: Vorhandene Lebenspunkte > Erlaubte Lebenspunkte, "
+         MeldungssystemHTB1.Logik (MeldungExtern => "LeseEinheitenGebaut.Lebenspunkte: Vorhandene Lebenspunkte > Erlaubte Lebenspunkte, "
                                      & FehlermeldungssystemZusatzinformationen.SpeziesID (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                           IDExtern      => EinheitID));
          GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte := ErlaubteLebenspunkte;
@@ -128,7 +128,7 @@ package body LeseEinheitenGebaut is
       if
         GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte > Beförderungsgrenze
       then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseEinheitenGebaut.Erfahrungspunkte: Mehr Erfahrungspunkte als erlaubt, "
+         MeldungssystemHTB1.Logik (MeldungExtern => "LeseEinheitenGebaut.Erfahrungspunkte: Mehr Erfahrungspunkte als erlaubt, "
                                      & FehlermeldungssystemZusatzinformationen.SpeziesID (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                           IDExtern      => EinheitID));
          GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte := Beförderungsgrenze;
@@ -166,7 +166,7 @@ package body LeseEinheitenGebaut is
       if
         GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang > MaximalerRang
       then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseEinheitenGebaut.Rang: Rang höher als erlaubt, "
+         MeldungssystemHTB1.Logik (MeldungExtern => "LeseEinheitenGebaut.Rang: Rang höher als erlaubt, "
                                      & FehlermeldungssystemZusatzinformationen.SpeziesID (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                           IDExtern      => EinheitID));
          GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang := MaximalerRang;

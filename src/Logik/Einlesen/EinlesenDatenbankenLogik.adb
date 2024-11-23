@@ -13,9 +13,9 @@ with StandardForschungenDatenbank;
 with StandardEinheitenDatenbank;
 with StandardEffekteDatenbank;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with VerzeichnisDateinamenTests;
-with UmwandlungenAdaEigenes;
+with UmwandlungssystemHTB3;
 
 package body EinlesenDatenbankenLogik is
    
@@ -39,7 +39,7 @@ package body EinlesenDatenbankenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.EinheitenDatenbank))
+                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.EinheitenDatenbank))
       is
          when False =>
             StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
@@ -67,8 +67,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Einheiten: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.Einheiten: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
          
          case
@@ -107,8 +107,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.EinheitenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.EinheitenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end EinheitenDurchgehen;
@@ -120,7 +120,7 @@ package body EinlesenDatenbankenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.ForschungenDatenbank))
+                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.ForschungenDatenbank))
       is
          when False =>
             StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
@@ -148,8 +148,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Forschungen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.Forschungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
          
          case
@@ -200,8 +200,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.ForschungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.ForschungenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ForschungenDurchgehen;
@@ -213,7 +213,7 @@ package body EinlesenDatenbankenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.GebaeudeDatenbank))
+                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.GebaeudeDatenbank))
       is
          when False =>
             StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
@@ -241,8 +241,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Gebäude: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.Gebäude: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
          
          case
@@ -281,8 +281,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.GebäudeDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.GebäudeDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end GebäudeDurchgehen;
@@ -294,7 +294,7 @@ package body EinlesenDatenbankenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.KartenDatenbank))
+                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.KartenDatenbank))
       is
          when False =>
             StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
@@ -328,8 +328,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Karten: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.Karten: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
          StandardKartenDatenbank.StandardZusatzgrundDatenbankLaden;
          StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
@@ -383,8 +383,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.KartenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.KartenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end KartenDurchgehen;
@@ -396,7 +396,7 @@ package body EinlesenDatenbankenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.VerbesserungenDatenbank))
+                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.VerbesserungenDatenbank))
       is
          when False =>
             StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
@@ -426,8 +426,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Verbesserungen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.Verbesserungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
          StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
          
@@ -471,8 +471,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.VerbesserungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.VerbesserungenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end VerbesserungenDurchgehen;
@@ -484,7 +484,7 @@ package body EinlesenDatenbankenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.SpeziesDatenbank))
+                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.SpeziesDatenbank))
       is
          when False =>
             StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
@@ -512,8 +512,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Spezies: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.Spezies: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
          
          case
@@ -552,8 +552,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.SpeziesDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.SpeziesDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end SpeziesDurchgehen;
@@ -565,7 +565,7 @@ package body EinlesenDatenbankenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.EffekteDatenbank))
+                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.EffekteDatenbank))
       is
          when False =>
             StandardEffekteDatenbank.StandardEffekteDatenbankLaden;
@@ -593,8 +593,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Effekte: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.Effekte: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardEffekteDatenbank.StandardEffekteDatenbankLaden;
          
          case
@@ -633,8 +633,8 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.EffekteDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenDatenbankenLogik.EffekteDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end EffekteDurchgehen;

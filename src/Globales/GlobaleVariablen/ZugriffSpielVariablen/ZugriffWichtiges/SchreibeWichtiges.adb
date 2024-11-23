@@ -9,11 +9,12 @@ with SpielVariablen;
 with LeseForschungenDatenbank;
 with LeseGrenzen;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 
 package body SchreibeWichtiges is
 
-   -- Warum kann die vorhandene Geldmenge überhaupt kleiner als 0 sein? Das mal ändern? äöü
+   -- Warum kann die vorhandene Geldmenge überhaupt kleiner als 0 sein? Das mal ändern. äöü
+   -- Die Berechnungen auch mal anpaasen, so dass die Ganzzahltests funktioneiren oder es entsprechend umschreiben, weil es könnten hier auch wieder Fehelr drin sein. äöü
    procedure Geldmenge
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldZugewinnExtern : in ZahlenDatentypen.EigenerInteger;
@@ -67,7 +68,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde + GeldZugewinnExtern <= ProduktionDatentypen.Produktion'First
             then
                SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde := ProduktionDatentypen.Produktion'First;
-               
+                                                                                         
             else
                SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde := SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde + GeldZugewinnExtern;
             end if;
@@ -264,7 +265,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte > LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte: Städtegrenze überschritten");
+               MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlStädte: Städtegrenze überschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte + 1;
@@ -274,7 +275,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte = StadtDatentypen.Städtebereich'First
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte: Minimum unterschritten");
+               MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlStädte: Minimum unterschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte - 1;
@@ -300,7 +301,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges
               > LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter: Einheitengrenze überschritten");
+               MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlArbeiter: Einheitengrenze überschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + 1;
@@ -310,7 +311,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter = EinheitenDatentypen.Einheitenbereich'First
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter: Minimum unterschritten");
+               MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlArbeiter: Minimum unterschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter - 1;
@@ -336,7 +337,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges
               > LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer: Einheitengrenze überschritten");
+               MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlKämpfer: Einheitengrenze überschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + 1;
@@ -346,7 +347,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer = EinheitenDatentypen.Einheitenbereich'First
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer: Minimum unterschritten");
+               MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlKämpfer: Minimum unterschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer - 1;
@@ -372,7 +373,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges
               > LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges: Einheitengrenze überschritten");
+               MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlSonstiges: Einheitengrenze überschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges + 1;
@@ -382,7 +383,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges = EinheitenDatentypen.Einheitenbereich'First
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges: Minimum unterschritten");
+               MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlSonstiges: Minimum unterschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges - 1;

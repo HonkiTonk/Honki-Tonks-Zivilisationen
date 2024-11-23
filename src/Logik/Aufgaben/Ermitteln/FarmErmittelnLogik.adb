@@ -4,7 +4,7 @@ with ProduktionKonstanten;
 with LeseWeltkarte;
 
 with RodenErmittelnLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with ArbeitszeitFarmLogik;
 with AufgabeFestlegenLogik;
 
@@ -71,7 +71,7 @@ package body FarmErmittelnLogik is
             null;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "FarmErmittelnLogik.FarmErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            MeldungssystemHTB1.Logik (MeldungExtern => "FarmErmittelnLogik.FarmErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
             return False;
       end case;
       

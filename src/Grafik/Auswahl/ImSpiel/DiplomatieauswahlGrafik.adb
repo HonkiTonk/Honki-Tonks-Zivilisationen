@@ -23,7 +23,7 @@ with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with MenuestringsSetzenGrafik;
 with TextfarbeGrafik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with TextaccessverwaltungssystemEinfachGrafik;
 
 package body DiplomatieauswahlGrafik is
@@ -87,7 +87,7 @@ package body DiplomatieauswahlGrafik is
                   Text := Text & Spieltexte.Zeug (TextnummernKonstanten.ZeugKrieg);
                
                when DiplomatieDatentypen.Unbekannt_Enum =>
-                  Fehlermeldungssystem.Grafik (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt");
+                  MeldungssystemHTB1.Grafik (MeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt");
                   Text := TextKonstanten.LeerUnboundedString;
             end case;
                

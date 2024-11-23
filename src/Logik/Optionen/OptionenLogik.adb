@@ -5,7 +5,7 @@ with OptionenSoundLogik;
 with OptionenGrafikLogik;
 with OptionenSonstigesLogik;
 with AuswahlaufteilungLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 
 package body OptionenLogik is
 
@@ -37,7 +37,7 @@ package body OptionenLogik is
                return AuswahlWert;
                
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenLogik.Optionen: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "OptionenLogik.Optionen: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
 
          case
@@ -50,7 +50,7 @@ package body OptionenLogik is
                null;
                      
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenLogik.Optionen: Falsche Rückgabe: " & RückgabeWert'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "OptionenLogik.Optionen: Falsche Rückgabe: " & RückgabeWert'Wide_Wide_Image);
          end case;
 
       end loop OptionenSchleife;

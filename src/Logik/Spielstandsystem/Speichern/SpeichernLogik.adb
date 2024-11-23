@@ -28,10 +28,10 @@ with SchreibeGrafiktask;
 with LadezeitenLogik;
 with SpielstandAllgemeinesLogik;
 with SpeichernKarteLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with MeldungFestlegenLogik;
 with UmwandlungenVerzeichnisse;
-with UmwandlungenAdaEigenes;
+with UmwandlungssystemHTB3;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -127,8 +127,8 @@ package body SpeichernLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Speichern: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernLogik.Speichern: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiSpeichern)
@@ -171,8 +171,8 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernLogik.Allgemeines: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Allgemeines;
@@ -289,8 +289,8 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end StädteEinheitenSpeichern;
@@ -342,8 +342,8 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernLogik.Spezieswerte: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;

@@ -15,7 +15,7 @@ private with TextArrays;
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
 
-private with UmwandlungenAdaEigenes;
+private with UmwandlungssystemHTB3;
 
 package WichtigesSeitenleisteGrafik is
    pragma Elaborate_Body;
@@ -105,10 +105,10 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
-   function ZahlAlsStringKostenLager is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Produktion);
+   function ZahlAlsStringKostenLager is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => ProduktionDatentypen.Produktion);
    
-   function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KartenDatentypen.EbeneVorhanden);
+   function ZahlAlsStringEbeneVorhanden is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => KartenDatentypen.EbeneVorhanden);
    
-   function ZahlAlsStringPositive is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => Natural);
+   function ZahlAlsStringPositive is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => Natural);
 
 end WichtigesSeitenleisteGrafik;

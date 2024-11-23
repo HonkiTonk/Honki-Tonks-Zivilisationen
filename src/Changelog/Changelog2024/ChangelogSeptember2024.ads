@@ -8,38 +8,38 @@ package ChangelogSeptember2024 is
    
    
 
-   -- Version 0.05. => 0.05. (29.09.2024):
+   -- Version 0.05.9665 => 0.05. (29.09.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (28.09.2024):
+   -- Version 0.05.9665 => 0.05.9665 (28.09.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (27.09.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (26.09.2024):
+   -- Version 0.05.9665 => 0.05.9665 (27.09.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9605 => 0.05. (25.09.2024):
+   -- Version 0.05.9665 => 0.05.9665 (26.09.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.9605 => 0.05.9665 (25.09.2024):
+   
+   -- Unnötigen Code gelöscht.
+   -- Die Bibliotheken endlich überall fertig eingebaut.
+   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Erfolgreich Musik eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
@@ -63,7 +63,7 @@ package ChangelogSeptember2024 is
 
    -- Version 0.05.9580 => 0.05.9605 (21.09.2024):
    
-   -- Lizensen aktualisiert.
+   -- Lizenzen aktualisiert/hinzugefügt.
    -- Kleinigkeiten korrigiert.
    
    

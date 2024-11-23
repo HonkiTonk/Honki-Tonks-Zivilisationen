@@ -5,7 +5,7 @@ package body UmwandlungenVerzeichnisse is
       return String
    is begin
       
-      return UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => (Verzeichnispfade (SpielstandarteExtern)));
+      return UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => (Verzeichnispfade (SpielstandarteExtern)));
       
    end Verzeichnispfad;
    
@@ -17,7 +17,7 @@ package body UmwandlungenVerzeichnisse is
       return String
    is begin
       
-      return UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => (Spielstandpfade (SpielstandarteExtern))) & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => SpielstandnameExtern);
+      return UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => (Spielstandpfade (SpielstandarteExtern))) & UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => SpielstandnameExtern);
       
    end Spielstandpfad;
      

@@ -85,5 +85,6 @@ package KartenRecordKonstanten is
                                                                               
                                                                                                  Kartenpole       => KartenpoleStandard
                                                                                                 );
+   
 
 end KartenRecordKonstanten;

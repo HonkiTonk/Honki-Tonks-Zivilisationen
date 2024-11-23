@@ -11,8 +11,8 @@ with SpeziesDatentypen;
 with LeseWeltkarte;
 
 with SpielstandAllgemeinesLogik;
-with Fehlermeldungssystem;
-with UmwandlungenAdaEigenes;
+with MeldungssystemHTB1;
+with UmwandlungssystemHTB3;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
@@ -97,8 +97,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.Karte: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernKarteLogik.Karte: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end Karte;
@@ -145,8 +145,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.SichtbarkeitSchreiben: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernKarteLogik.SichtbarkeitSchreiben: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end SichtbarkeitSchreiben;
@@ -174,8 +174,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end BasisgrundSchreiben;
@@ -284,8 +284,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelementeSchreiben: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelementeSchreiben: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end VorhandeneFeldelementeSchreiben;
@@ -398,8 +398,8 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.FeldelementeSchreiben: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernKarteLogik.FeldelementeSchreiben: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end FeldelementeSchreiben;

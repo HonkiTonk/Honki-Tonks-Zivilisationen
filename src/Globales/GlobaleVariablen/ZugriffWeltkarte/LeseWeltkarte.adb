@@ -4,7 +4,7 @@ with Weltkarte;
 with SpeziesKonstanten;
 with KartenRecordKonstanten;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with FehlermeldungssystemZusatzinformationen;
 
 package body LeseWeltkarte is
@@ -230,7 +230,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern)
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern)
                                         & "Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return False;
             
@@ -262,7 +262,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseWeltkarte.UnbelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return True;
             
          when others =>
@@ -281,7 +281,7 @@ package body LeseWeltkarte is
         or
           Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
       then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund: Werte ungültig: Spezies: "
+         MeldungssystemHTB1.Logik (MeldungExtern => "LeseWeltkarte.UnbelegterGrund: Werte ungültig: Spezies: "
                                      & Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Spezies'Wide_Wide_Image & " Nummer: "
                                      & Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung.Nummer'Wide_Wide_Image);
          return True;
@@ -303,7 +303,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.StadtbelegungGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseWeltkarte.StadtbelegungGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return StadtKonstanten.LeerStadt;
             
          when others =>
@@ -326,7 +326,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.BestimmteStadtBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseWeltkarte.BestimmteStadtBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return False;
             
          when others =>
@@ -357,7 +357,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.SpeziesBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseWeltkarte.SpeziesBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return SpeziesDatentypen.Leer_Spezies_Enum;
             
          when others =>
@@ -379,7 +379,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.EinheitenbelegungGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTB1.Logik (MeldungExtern => "LeseWeltkarte.EinheitenbelegungGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return EinheitenKonstanten.LeerEinheit;
             
          when others =>

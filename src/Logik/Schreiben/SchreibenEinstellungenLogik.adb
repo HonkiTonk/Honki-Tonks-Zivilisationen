@@ -2,6 +2,8 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Exceptions; use Ada.Exceptions;
 
 with DateizugriffssystemHTB5;
+with MeldungssystemHTB1;
+with UmwandlungssystemHTB3;
 
 with Sf.Window.Window;
 with Sf.System.Vector2;
@@ -21,8 +23,6 @@ with LeseEinstellungenGrafik;
 with LeseEinstellungenTon;
 with LeseTastenbelegungDatenbank;
 
-with UmwandlungenAdaEigenes;
-with Fehlermeldungssystem;
 with TexteinstellungenGrafik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
@@ -59,8 +59,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiNutzereinstellungen)
@@ -160,8 +160,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiGrafikeinstellungen)
@@ -195,8 +195,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Toneinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Toneinstellungen: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiToneinstellungen)
@@ -403,8 +403,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Tastatureinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Tastatureinstellungen: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiTastatureinstellungen)
@@ -435,8 +435,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.SpielendeEinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.SpielendeEinstellungen: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
                                               
          case
            Is_Open (File => DateiSpielendeEinstellungen)

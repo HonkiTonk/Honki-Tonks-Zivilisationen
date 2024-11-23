@@ -1,4 +1,4 @@
--- private with GrenztestsystemHTB2;
+-- private with GanzzahltestsHTB2;
 
 with SpeziesDatentypen;
 with EinheitenRecords;
@@ -65,6 +65,6 @@ private
 
 
 
-   -- function GanzeZahlPrüfen is new GrenztestsystemHTB2.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
+   -- function GanzeZahlPrüfen is new GanzzahltestsHTB2.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
 
 end PZBEingesetztLogik;

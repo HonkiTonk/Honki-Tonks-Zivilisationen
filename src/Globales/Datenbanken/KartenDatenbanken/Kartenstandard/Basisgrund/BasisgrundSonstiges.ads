@@ -2,7 +2,7 @@ with KartengrundDatentypen;
 with EinheitenDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
-with BewertungDatentypen;
+with DatentypenHTB6;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
@@ -19,7 +19,7 @@ package BasisgrundSonstiges is
                                                                             Passierbarkeit => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                                EinheitenDatentypen.Weltraum_Enum => True,
                                                                                                others                            => False),
-                                                                            Bewertung      => (others => BewertungDatentypen.Bewertung_Eins_Enum),
+                                                                            Bewertung      => (others => DatentypenHTB6.Bewertung_Eins_Enum),
 
                                                                             Wirtschaft =>
                                                                               (

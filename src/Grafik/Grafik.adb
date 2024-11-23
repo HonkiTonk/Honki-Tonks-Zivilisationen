@@ -31,7 +31,7 @@ with TexteinstellungenGrafik;
 with BildrateAnzeigenGrafik;
 with TexturenauswahlGrafik;
 
--- with Diagnoseinformationen;
+-- with DiagnosesystemZusatzinformationen;
 
 package body Grafik is
    
@@ -50,8 +50,8 @@ package body Grafik is
       FensterGrafik.FensterErzeugen;
       TextaccesseSetzenGrafik.Texthöhe;
       
-      -- Diagnoseinformationen.Größenprüfung;
-      -- Diagnoseinformationen.GrößenprüfungDatei;
+      -- DiagnosesystemZusatzinformationen.Größenprüfung;
+      -- DiagnosesystemZusatzinformationen.GrößenprüfungDatei;
             
       Startzeit := Clock;
       

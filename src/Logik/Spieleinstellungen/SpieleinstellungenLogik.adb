@@ -10,7 +10,7 @@ with KartengeneratorLogik;
 with SpieleinstellungenKartenLogik;
 with SpieleinstellungenSpeziesLogik;
 with SpieleinstellungenSonstigesLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with LadezeitenLogik;
 with AuswahlaufteilungLogik;
 with StandardSpielwerteSetzenLogik;
@@ -130,7 +130,7 @@ package body SpieleinstellungenLogik is
             null;
             
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpieleinstellungenLogik.AutomatischeEinstellungen: Speziesplatzierung unmöglich");
+            MeldungssystemHTB1.Logik (MeldungExtern => "SpieleinstellungenLogik.AutomatischeEinstellungen: Speziesplatzierung unmöglich");
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
             

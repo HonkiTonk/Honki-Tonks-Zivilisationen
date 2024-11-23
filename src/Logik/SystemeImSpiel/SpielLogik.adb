@@ -13,7 +13,7 @@ with SchreibeGrafiktask;
 with LadezeitenLogik;
 with SpeziesEntfernenLogik;
 with RundenendeLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with BefehlsauswahlLogik;
 with JaNeinLogik;
 with Spielertests;
@@ -51,7 +51,7 @@ package body SpielLogik is
                   null;
                
                when others =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.Spiel: Falsche Rückgabe: " & RückgabeSpezies'Wide_Wide_Image);
+                  MeldungssystemHTB1.Logik (MeldungExtern => "SpielLogik.Spiel: Falsche Rückgabe: " & RückgabeSpezies'Wide_Wide_Image);
             end case;
             
          end loop SpeziesSchleife;
@@ -150,7 +150,7 @@ package body SpielLogik is
                KISpieler (SpeziesExtern => SpeziesExtern);
                
             when SpeziesDatentypen.Leer_Spieler_Enum =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.SpeziesDurchgehen: Keine Spezies");
+               MeldungssystemHTB1.Logik (MeldungExtern => "SpielLogik.SpeziesDurchgehen: Keine Spezies");
                return RueckgabeDatentypen.Runde_Beenden_Enum;
          end case;
 
@@ -315,11 +315,11 @@ package body SpielLogik is
                   null;
                   
                else
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falsche Rückgabe: " & RückgabeSpielmenü'Wide_Wide_Image);
+                  MeldungssystemHTB1.Logik (MeldungExtern => "SpielLogik.MenschAmZug: Falsche Rückgabe: " & RückgabeSpielmenü'Wide_Wide_Image);
                end if;
                
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falscher Befehl: " & AktuellerBefehlSpieler'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "SpielLogik.MenschAmZug: Falscher Befehl: " & AktuellerBefehlSpieler'Wide_Wide_Image);
          end case;
                      
       end loop SpielerSchleife;

@@ -1,6 +1,6 @@
-with GrafikRecordKonstanten;
+with AllgemeinberechnungenHTB7;
 
-with PruefungenGrafik;
+with GrafikRecordKonstanten;
 
 package body TextskalierungGrafik is
 
@@ -13,7 +13,7 @@ package body TextskalierungGrafik is
       if
         AktuelleBreiteExtern > ErlaubteBreiteExtern
       then
-         return ErlaubteBreiteExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern);
+         return ErlaubteBreiteExtern / AllgemeinberechnungenHTB7.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern);
          
       else
          return GrafikRecordKonstanten.Standardskalierung.x;
@@ -32,12 +32,12 @@ package body TextskalierungGrafik is
       if
         AktuelleBreiteExtern > ErlaubteBreiteExtern
       then
-         return ErlaubteBreiteExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern);
+         return ErlaubteBreiteExtern / AllgemeinberechnungenHTB7.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern);
          
       elsif
         AktuelleBreiteExtern < ErlaubteBreiteExtern
       then
-         return AktuelleBreiteExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => ErlaubteBreiteExtern);
+         return AktuelleBreiteExtern / AllgemeinberechnungenHTB7.NullprüfungKommazahl (KommazahlExtern => ErlaubteBreiteExtern);
          
       else
          return GrafikRecordKonstanten.Standardskalierung.x;
@@ -56,7 +56,7 @@ package body TextskalierungGrafik is
       if
         AktuelleHöheExtern > ErlaubteHöheExtern
       then
-         return ErlaubteHöheExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleHöheExtern);
+         return ErlaubteHöheExtern / AllgemeinberechnungenHTB7.NullprüfungKommazahl (KommazahlExtern => AktuelleHöheExtern);
          
       else
          return GrafikRecordKonstanten.Standardskalierung.y;

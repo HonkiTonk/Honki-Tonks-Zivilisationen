@@ -19,7 +19,7 @@ with JaNeinLogik;
 with SpielstandEntfernenLogik;
 with UmwandlungenVerzeichnisse;
 with VerzeichnisDateinamenTests;
-with UmwandlungenAdaEigenes;
+with UmwandlungssystemHTB3;
 
 package body SpielstandlisteLogik is
 
@@ -75,7 +75,7 @@ package body SpielstandlisteLogik is
                                      Directory_Entry => Spielstanddatei);
                end case;
                
-               SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => UmwandlungenAdaEigenes.EigenesDecodeUnbounded (TextExtern => Simple_Name (Directory_Entry => Spielstanddatei)),
+               SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => UmwandlungssystemHTB3.DecodeUnbounded (TextExtern => Simple_Name (Directory_Entry => Spielstanddatei)),
                                                             NummerExtern => AktuellerSpielstand);
                
                if

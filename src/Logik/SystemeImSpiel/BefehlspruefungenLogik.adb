@@ -21,7 +21,7 @@ with AuswahlStadtEinheitLogik;
 with JaNeinLogik;
 with EinheitenSpielmeldungenLogik;
 with StadtAllgemeinesLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 
 -- Hier auch mal überarbeiten, vor allem die Prozeduren weiter unten. äöü
 package body BefehlspruefungenLogik is
@@ -60,7 +60,7 @@ package body BefehlspruefungenLogik is
                null;
             
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "BefehlspruefungenLogik.WasWirdEntfernt: Fehlerhafte Auswahl");
+               MeldungssystemHTB1.Logik (MeldungExtern => "BefehlspruefungenLogik.WasWirdEntfernt: Fehlerhafte Auswahl");
          end case;
          
       elsif
@@ -144,7 +144,7 @@ package body BefehlspruefungenLogik is
             null;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "BefehlspruefungenLogik.EinheitOderStadt: Fehlerhafte Auswahl");
+            MeldungssystemHTB1.Logik (MeldungExtern => "BefehlspruefungenLogik.EinheitOderStadt: Fehlerhafte Auswahl");
       end case;
       
    end EinheitOderStadt;
@@ -185,7 +185,7 @@ package body BefehlspruefungenLogik is
             null;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "BefehlspruefungenLogik.AuswahlEinheitTransporter: Fehlerhafte Auswahl:" & AusgewählteEinheit'Wide_Wide_Image);
+            MeldungssystemHTB1.Logik (MeldungExtern => "BefehlspruefungenLogik.AuswahlEinheitTransporter: Fehlerhafte Auswahl:" & AusgewählteEinheit'Wide_Wide_Image);
       end case;
       
    end AuswahlEinheitTransporter;

@@ -13,7 +13,7 @@ with LeseZeiger;
 with LeseEinheitenGebaut;
 
 with AuswahlaufteilungLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with DebugmenueAllgemeinesLogik;
 with ZahleneingabeLogik;
 with EinheitenErzeugenEntfernenLogik;
@@ -70,7 +70,7 @@ package body DebugmenueLogik is
                return;
                   
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "DebugmenueLogik.Debugmenü: Falsche Rückgabe: " & RückgabeDebugmenü'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "DebugmenueLogik.Debugmenü: Falsche Rückgabe: " & RückgabeDebugmenü'Wide_Wide_Image);
          end case;
       
       end loop DebugmenüSchleife;

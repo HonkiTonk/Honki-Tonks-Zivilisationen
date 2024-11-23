@@ -6,7 +6,7 @@ with SchreibeEinstellungenTon;
 with SchreibenEinstellungenLogik;
 
 with AuswahlaufteilungLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with ZahleneingabeLogik;
 with StarteinstellungenSound;
 with StarteinstellungenMusik;
@@ -36,7 +36,7 @@ package body OptionenSoundLogik is
                return AuswahlWert;
                
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSoundLogik.OptionenSound: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               MeldungssystemHTB1.Logik (MeldungExtern => "OptionenSoundLogik.OptionenSound: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop SoundSchleife;

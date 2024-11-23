@@ -1,8 +1,11 @@
 with Sf.System.Vector2;
 with Sf.Graphics.Rect;
 
+with StadtDatentypen;
+
 package Vergleiche is
    pragma Elaborate_Body;
+   use type StadtDatentypen.Einwohner;
    
    function Auswahlposition
      (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -22,5 +25,14 @@ package Vergleiche is
       AnfangswertExtern : in GanzeZahl;
       EndwertExtern : in GanzeZahl)
       return GanzeZahl;
+   
+   function FreieEinwohner
+     (EinwohnerExtern : in StadtDatentypen.Einwohner;
+      ArbeiterExtern : in StadtDatentypen.Einwohner)
+      return StadtDatentypen.Einwohner
+    with
+      Pre => (
+                EinwohnerExtern >= ArbeiterExtern
+             );
 
 end Vergleiche;

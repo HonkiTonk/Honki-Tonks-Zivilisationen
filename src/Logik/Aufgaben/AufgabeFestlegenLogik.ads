@@ -1,4 +1,4 @@
-private with GrenztestsystemHTB2;
+private with GanzzahltestsHTB2;
 
 with EinheitenRecords;
 with EinheitenKonstanten;
@@ -35,6 +35,6 @@ private
    
    Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
       
-   function ArbeitszeitPrüfen is new GrenztestsystemHTB2.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
+   function ArbeitszeitPrüfen is new GanzzahltestsHTB2.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
 
 end AufgabeFestlegenLogik;

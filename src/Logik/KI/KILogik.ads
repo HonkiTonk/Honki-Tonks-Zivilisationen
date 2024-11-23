@@ -1,11 +1,11 @@
+private with AllgemeinberechnungenHTB7;
+
 with SpeziesDatentypen;
 
 private with EinheitenDatentypen;
 private with StadtDatentypen;
 
 with LeseSpeziesbelegung;
-
-private with AllgemeineBerechnungen;
 
 package KILogik is
    pragma Elaborate_Body;
@@ -40,8 +40,8 @@ private
 
 
 
-   function BasiszeitwertEinheiten is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => EinheitenDatentypen.EinheitenbereichVorhanden);
+   function BasiszeitwertEinheiten is new AllgemeinberechnungenHTB7.Basiszeitwert (GanzeZahl => EinheitenDatentypen.EinheitenbereichVorhanden);
 
-   function BasiszeitwertStädte is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => Positive);
+   function BasiszeitwertStädte is new AllgemeinberechnungenHTB7.Basiszeitwert (GanzeZahl => Positive);
 
 end KILogik;

@@ -22,6 +22,10 @@ package StadtumgebungsbereichBerechnenLogik is
               );
    
 private
+      
+   GroßeStadt : constant KartenRecords.UmgebungDreiRecord := (3, 3);
+   MittlereStadt : constant KartenRecords.UmgebungDreiRecord := (2, 2);
+   KleineStadt : constant KartenRecords.UmgebungDreiRecord := (1, 1);
    
    Umgebung : KartenRecords.UmgebungDreiRecord;
    

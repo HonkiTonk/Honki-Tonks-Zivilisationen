@@ -17,7 +17,7 @@ private with TextArrays;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
-private with UmwandlungenAdaEigenes;
+private with UmwandlungssystemHTB3;
 
 package EinheitenseitenleisteGrafik is
    pragma Elaborate_Body;
@@ -208,24 +208,24 @@ private
    
    
    
-   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Einheitenbereich);
+   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => EinheitenDatentypen.Einheitenbereich);
    
-   function ZahlAlsStringProduktionFeld is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Feldproduktion);
+   function ZahlAlsStringProduktionFeld is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => ProduktionDatentypen.Feldproduktion);
    
-   function ZahlAlsStringGesamtproduktionStadt is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Stadtproduktion);
+   function ZahlAlsStringGesamtproduktionStadt is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => ProduktionDatentypen.Stadtproduktion);
    
-   function ZahlAlsStringLebenspunkte is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Lebenspunkte);
+   function ZahlAlsStringLebenspunkte is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => KampfDatentypen.Lebenspunkte);
    
-   function ZahlAlsStringBewegungspunkte is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Bewegungspunkte);
+   function ZahlAlsStringBewegungspunkte is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => EinheitenDatentypen.Bewegungspunkte);
    
-   function ZahlAlsStringKampfwerte is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Kampfwerte);
+   function ZahlAlsStringKampfwerte is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => KampfDatentypen.Kampfwerte);
    
-   function ZahlAlsStringArbeitszeit is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
+   function ZahlAlsStringArbeitszeit is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
    
-   function ZahlAlsStringErfahrungspunkte is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Erfahrungspunkte);
+   function ZahlAlsStringErfahrungspunkte is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => KampfDatentypen.Erfahrungspunkte);
    
-   function ZahlAlsStringRang is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Rang);
+   function ZahlAlsStringRang is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => KampfDatentypen.Rang);
    
-   function ZahlAlsStringTransportplätze is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Transportplätze);
+   function ZahlAlsStringTransportplätze is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => EinheitenDatentypen.Transportplätze);
 
 end EinheitenseitenleisteGrafik;

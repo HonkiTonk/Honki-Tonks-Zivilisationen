@@ -9,9 +9,9 @@ with TextKonstanten;
 
 with SchreibeOptionen;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with VerzeichnisDateinamenTests;
-with UmwandlungenAdaEigenes;
+with UmwandlungssystemHTB3;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenNutzereinstellungenLogik is
@@ -21,7 +21,7 @@ package body EinlesenNutzereinstellungenLogik is
       
       case
         VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                 WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => VerzeichnisKonstanten.Spieleinstellungen))
+                                                                 WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Spieleinstellungen))
       is
          when False =>
             OptionenVariablen.StandardNutzereinstellungenLaden;
@@ -48,8 +48,8 @@ package body EinlesenNutzereinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenNutzereinstellungenLogik.Nutzereinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenNutzereinstellungenLogik.Nutzereinstellungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.StandardNutzereinstellungenLaden;
          
          case
@@ -160,8 +160,8 @@ package body EinlesenNutzereinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenNutzereinstellungenLogik.NutzereinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenNutzereinstellungenLogik.NutzereinstellungenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
                   
          return False;
          

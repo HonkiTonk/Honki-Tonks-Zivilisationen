@@ -1,11 +1,11 @@
+private with AllgemeinberechnungenHTB7;
+
 private with KartenDatentypen;
 private with KartengrundDatentypen;
 private with KartenRecords;
 private with SystemDatentypen;
 
 private with LeseWeltkarteneinstellungen;
-
-private with AllgemeineBerechnungen;
 
 package KartengeneratorPlanetenkernLogik is
    pragma Elaborate_Body;
@@ -102,6 +102,6 @@ private
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   function Basiszeitwert is new AllgemeinberechnungenHTB7.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorPlanetenkernLogik;

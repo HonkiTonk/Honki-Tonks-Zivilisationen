@@ -3,8 +3,8 @@ with BetriebssystemKonstanten;
 
 with SchreibeLogiktask;
 
-with Fehlermeldungssystem;
-with UmwandlungenAdaEigenes;
+with MeldungssystemHTB1;
+with UmwandlungssystemHTB3;
 
 package body VerzeichnisDateinamenTests is
 
@@ -25,7 +25,7 @@ package body VerzeichnisDateinamenTests is
                return True;
                
             else
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
+               MeldungssystemHTB1.Logik (MeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
             
@@ -36,7 +36,7 @@ package body VerzeichnisDateinamenTests is
                return True;
                
             else
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
+               MeldungssystemHTB1.Logik (MeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
       end case;
@@ -57,9 +57,9 @@ package body VerzeichnisDateinamenTests is
     --     return False;
             
    --   elsif
-        Exists (Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => VerzeichnisDateinameExtern)) = False
+        Exists (Name => UmwandlungssystemHTB3.Encode (TextExtern => VerzeichnisDateinameExtern)) = False
       then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
+         MeldungssystemHTB1.Logik (MeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
          return False;
             
       else
@@ -83,9 +83,9 @@ package body VerzeichnisDateinamenTests is
          return False;
          
       elsif
-        Exists (Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => WindowsTextExtern)) = False
+        Exists (Name => UmwandlungssystemHTB3.Encode (TextExtern => WindowsTextExtern)) = False
       then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
+         MeldungssystemHTB1.Logik (MeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
          return False;
             
       else
@@ -109,7 +109,7 @@ package body VerzeichnisDateinamenTests is
          return False;
             
       elsif
-        Exists (Name => UmwandlungenAdaEigenes.EigenesEncode (TextExtern => WindowsTextExtern)) = False
+        Exists (Name => UmwandlungssystemHTB3.Encode (TextExtern => WindowsTextExtern)) = False
       then
          return False;
             

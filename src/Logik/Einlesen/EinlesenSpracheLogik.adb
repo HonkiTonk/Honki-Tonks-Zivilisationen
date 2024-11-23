@@ -3,7 +3,7 @@ with TextKonstanten;
 with VerzeichnisKonstanten;
 
 with VerzeichnisDateinamenTests;
-with UmwandlungenAdaEigenes;
+with UmwandlungssystemHTB3;
 
 package body EinlesenSpracheLogik is
 
@@ -32,7 +32,7 @@ package body EinlesenSpracheLogik is
             
          elsif
            False = VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
-                                                                     WindowsTextExtern => UmwandlungenAdaEigenes.EigenesDecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
+                                                                     WindowsTextExtern => UmwandlungssystemHTB3.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
                                                                                                                                          & Simple_Name (Directory_Entry => Verzeichnis)
                                                                                                                                          & VerzeichnisKonstanten.NullDatei))
          then
@@ -41,7 +41,7 @@ package body EinlesenSpracheLogik is
          elsif
            -- Kann das nicht einfach raus wenn irgendwann einmal Wide_Wide_Directories da ist? äöü
            -- Das ist je nur vorhandene Ordner durchgehen und man kann ja keine Dateien/Ordner anlegen die das Dateisystem nicht unterstützen. äöü
-           VerzeichnisDateinamenTests.GültigerNamen (NameExtern => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis))) = False
+           VerzeichnisDateinamenTests.GültigerNamen (NameExtern => UmwandlungssystemHTB3.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis))) = False
          then
             null;
              
@@ -53,7 +53,7 @@ package body EinlesenSpracheLogik is
             null;
             
          else
-            Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)));
+            Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => UmwandlungssystemHTB3.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)));
             
             VerzeichnisInnenSchleife:
             for SpracheSchleifenwert in TextArrays.SprachenTexturenEinlesen'Range loop

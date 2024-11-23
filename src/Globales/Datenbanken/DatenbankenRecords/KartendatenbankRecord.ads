@@ -1,14 +1,14 @@
 with SpeziesDatentypen;
 with KampfDatentypen;
 with ProduktionDatentypen;
-with BewertungDatentypen;
+with DatentypenHTB6;
 with EinheitenDatentypen;
 with EinheitenArrays;
 
 package KartendatenbankRecord is
    pragma Pure;
 
-   type BewertungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
+   type BewertungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of DatentypenHTB6.Bewertung_Enum;
    type ProduktionArray is array (ProduktionDatentypen.Produktion_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
    type BewegungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of EinheitenDatentypen.Bewegungspunkte;
    

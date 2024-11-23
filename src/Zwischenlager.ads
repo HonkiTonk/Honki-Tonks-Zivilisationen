@@ -26,7 +26,7 @@ then
          SchreibenEinstellungenLogik.Nutzereinstellungen;
 
       when False =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenLogik.EinlesenMitAnzeige: Sprachen nicht gefunden");
+         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenLogik.EinlesenMitAnzeige: Sprachen nicht gefunden");
          return;
    end case;
 

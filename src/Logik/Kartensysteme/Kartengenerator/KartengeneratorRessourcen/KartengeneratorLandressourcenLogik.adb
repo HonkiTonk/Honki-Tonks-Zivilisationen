@@ -1,10 +1,11 @@
+with ZufallsgeneratorenHTB6;
+
 with KartengrundDatentypen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
-with ZufallegeneratorenAllgemein;
 with KartengeneratorVariablenLogik;
 
 package body KartengeneratorLandressourcenLogik is
@@ -33,7 +34,7 @@ package body KartengeneratorLandressourcenLogik is
          elsif
            (GezogeneZahl = Zahlenspeicher
             and
-              ZufallegeneratorenAllgemein.Münzwurf = True)
+              ZufallsgeneratorenHTB6.Münzwurf = True)
            or
              GezogeneZahl > Zahlenspeicher
          then

@@ -1,5 +1,4 @@
 with "asfml.gpr";
-
 with "Bibliotheken/Grenztestsystem/HonkiTonksGrenztestsystem.gpr";
 with "Bibliotheken/Meldungssystem/HonkiTonksMeldungssystem.gpr";
 with "Bibliotheken/Umwandlungssystem/HonkiTonksUmwandlungssystem.gpr";
@@ -61,7 +60,7 @@ project HonkiTonksZivilisationen is
    end Compiler;
 
    package Builder is
-      for Switches ("ada") use ("-k", "-s", "-C", "-gnatW8", "-j4");
+      for Switches ("ada") use ("-k", "-C", "-gnatW8", "-j4", "-s");
    end Builder;
 
    package Binder is

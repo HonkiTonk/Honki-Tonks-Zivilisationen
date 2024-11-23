@@ -1,3 +1,5 @@
+private with ZufallsgeneratorenHTB6;
+
 with KampfDatentypen;
 
 package KampfberechnungenLogik is
@@ -12,5 +14,9 @@ private
       
    ErfolgeAngreifer : Natural;
    ErfolgeVerteidiger : Natural;
+   
+   
+   
+   function Kampferfolge is new ZufallsgeneratorenHTB6.ErreichteErfolge (GanzeZahl => KampfDatentypen.Kampfwerte);
    
 end KampfberechnungenLogik;

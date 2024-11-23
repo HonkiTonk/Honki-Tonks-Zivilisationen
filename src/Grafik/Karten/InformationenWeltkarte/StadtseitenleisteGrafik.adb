@@ -15,7 +15,7 @@ with KampfwerteStadtErmittelnLogik;
 with TextberechnungenHoeheGrafik;
 with GebaeudebeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
-with AllgemeineBerechnungen;
+with Vergleiche;
 with TextaccessverwaltungssystemErweitertGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -109,7 +109,7 @@ package body StadtseitenleisteGrafik is
          AnzuzeigenderText (5) := Spieltexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & StadtauswahlExtern.Forschungsrate'Wide_Wide_Image;
          AnzuzeigenderText (6) := Kampfwerte (StadtauswahlExtern => StadtauswahlExtern);
          AnzuzeigenderText (7) := Spieltexte.Zeug (TextnummernKonstanten.ZeugKorruption) & StadtauswahlExtern.Korruption'Wide_Wide_Image;
-         AnzuzeigenderText (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & AllgemeineBerechnungen.FreieEinwohner (EinwohnerExtern => StadtauswahlExtern.EinwohnerArbeiter (1),
+         AnzuzeigenderText (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & Vergleiche.FreieEinwohner (EinwohnerExtern => StadtauswahlExtern.EinwohnerArbeiter (1),
                                                                                                                                            ArbeiterExtern  => StadtauswahlExtern.EinwohnerArbeiter (2))'Wide_Wide_Image;
          AnzuzeigenderText (9) := AktuellesBauprojekt (SpeziesExtern    => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                        BauprojektExtern => StadtauswahlExtern.Bauprojekt,

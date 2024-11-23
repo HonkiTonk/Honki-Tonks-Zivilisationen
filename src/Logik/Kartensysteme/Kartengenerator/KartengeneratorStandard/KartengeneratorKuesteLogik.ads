@@ -1,9 +1,9 @@
+private with AllgemeinberechnungenHTB7;
+
 private with KartenDatentypen;
 private with KartenRecords;
 
 private with LeseWeltkarteneinstellungen;
-
-private with AllgemeineBerechnungen;
 
 package KartengeneratorKuesteLogik is
    pragma Elaborate_Body;
@@ -29,6 +29,6 @@ private
    
    
    
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   function Basiszeitwert is new AllgemeinberechnungenHTB7.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorKuesteLogik;

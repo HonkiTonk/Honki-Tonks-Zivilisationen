@@ -1,11 +1,11 @@
+private with AllgemeinberechnungenHTB7;
+
 with SpeziesDatentypen;
 
 private with ForschungenDatentypen;
 private with ForschungenDatenbank;
 
 with LeseSpeziesbelegung;
-
-private with AllgemeineBerechnungen;
 
 private with KIDatentypen;
 
@@ -42,6 +42,6 @@ private
    
    
    
-   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => Positive);
+   function Basiszeitwert is new AllgemeinberechnungenHTB7.Basiszeitwert (GanzeZahl => Positive);
 
 end KIForschungLogik;

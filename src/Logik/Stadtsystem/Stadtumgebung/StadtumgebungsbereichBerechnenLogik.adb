@@ -5,7 +5,7 @@ with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 with LeseForschungenDatenbank;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with ForschungstestsLogik;
 
 package body StadtumgebungsbereichBerechnenLogik is
@@ -19,7 +19,7 @@ package body StadtumgebungsbereichBerechnenLogik is
       is
          when SpeziesKonstanten.LeerSpezies =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtumgebungsbereichBerechnenLogik.StadtUmgebungsbereichFestlegen: Keine Spezies");
+            MeldungssystemHTB1.Logik (MeldungExtern => "StadtumgebungsbereichBerechnenLogik.StadtUmgebungsbereichFestlegen: Keine Spezies");
             
          when others =>
             StadtumgebungErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
@@ -50,7 +50,7 @@ package body StadtumgebungsbereichBerechnenLogik is
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtSpeziesNummerExtern.Spezies)
       then
-         Umgebung := (3, 3);
+         Umgebung := GroßeStadt;
          
       elsif
         True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
@@ -59,10 +59,10 @@ package body StadtumgebungsbereichBerechnenLogik is
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtSpeziesNummerExtern.Spezies)
       then
-         Umgebung := (2, 2);
+         Umgebung := MittlereStadt;
          
       else
-         Umgebung := (1, 1);
+         Umgebung := KleineStadt;
       end if;
       
       SchreibeStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

@@ -16,7 +16,7 @@ with TexteingabeLogik;
 with StadtproduktionLogik;
 with SichtbarkeitsberechnungssystemLogik;
 with EinheitenErzeugenEntfernenLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with WegeplatzierungssystemLogik;
 with EinheitenSpielmeldungenLogik;
 with MeldungFestlegenLogik;
@@ -69,7 +69,7 @@ package body StadtBauenLogik is
             end if;
             
          when SpeziesDatentypen.Leer_Spieler_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtBauenLogik.StadtBauen: Nicht vorhandene Spezies baut Stadt");
+            MeldungssystemHTB1.Logik (MeldungExtern => "StadtBauenLogik.StadtBauen: Nicht vorhandene Spezies baut Stadt");
             return False;
       end case;
             

@@ -9,8 +9,8 @@ with SchreibeWeltkarte;
 with SchreibeWeltkarteneinstellungen;
 
 with LadezeitenLogik;
-with Fehlermeldungssystem;
-with UmwandlungenAdaEigenes;
+with MeldungssystemHTB1;
+with UmwandlungssystemHTB3;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenKarteLogik is
@@ -250,8 +250,8 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.KarteLaden: Konnte nicht geladen werden"
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "LadenKarteLogik.KarteLaden: Konnte nicht geladen werden"
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end KarteLaden;
@@ -315,8 +315,8 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.ZahlNachSichtbarkeit: Konnte nicht geladen werden"
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "LadenKarteLogik.ZahlNachSichtbarkeit: Konnte nicht geladen werden"
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ZahlNachSichtbarkeit;
@@ -359,8 +359,8 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.BasisgrundEinlesen: Konnte nicht geladen werden"
-                                     & UmwandlungenAdaEigenes.EigenesDecode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTB1.Logik (MeldungExtern => "LadenKarteLogik.BasisgrundEinlesen: Konnte nicht geladen werden"
+                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end BasisgrundEinlesen;

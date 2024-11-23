@@ -1,5 +1,3 @@
-with ZufallsgeneratorenKampfLogik;
-
 package body KampfberechnungenLogik is
 
    -- Das direkt in den Zufallsgenerator schieben oder einzeln lassen um es später zu erweitern? äöü
@@ -10,8 +8,8 @@ package body KampfberechnungenLogik is
       return Integer
    is begin
       
-      ErfolgeAngreifer := ZufallsgeneratorenKampfLogik.ErreichteErfolge (WürfelanzahlExtern => AngriffExtern);
-      ErfolgeVerteidiger := ZufallsgeneratorenKampfLogik.ErreichteErfolge (WürfelanzahlExtern => VerteidigungExtern);
+      ErfolgeAngreifer := Kampferfolge (WürfelanzahlExtern => AngriffExtern);
+      ErfolgeVerteidiger := Kampferfolge (WürfelanzahlExtern => VerteidigungExtern);
       
       return ErfolgeAngreifer - ErfolgeVerteidiger;
       

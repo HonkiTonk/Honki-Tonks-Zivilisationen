@@ -10,10 +10,10 @@ with EinstellungenGrafik;
 
 with LeseOptionen;
 
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with EinlesenAllgemeinesLogik;
 with TextaccesseSchriftartGrafik;
-with UmwandlungenAdaEigenes;
+with UmwandlungssystemHTB3;
 
 -- Das hier auch mal in Lesen und Schreiben aufteilen? äöü
 package body TexteinstellungenGrafik is
@@ -31,7 +31,7 @@ package body TexteinstellungenGrafik is
          SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
          
       elsif
-        Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => AktuelleSprache) & VerzeichnisKonstanten.FontDatei) = False
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => AktuelleSprache) & VerzeichnisKonstanten.FontDatei) = False
       then
          SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
          
@@ -55,7 +55,7 @@ package body TexteinstellungenGrafik is
         Exists (Name => VerzeichnisKonstanten.FontOrdner & VerzeichnisKonstanten.SchriftartStandard)
       is
          when False =>
-            Fehlermeldungssystem.Grafik (FehlermeldungExtern => "TexteinstellungenGrafik.StandardSchriftartVerwenden: Standardfont nicht vorhanden");
+            MeldungssystemHTB1.Grafik (MeldungExtern => "TexteinstellungenGrafik.StandardSchriftartVerwenden: Standardfont nicht vorhanden");
             raise SchriftartFehlt;
             
          when True =>
@@ -74,7 +74,7 @@ package body TexteinstellungenGrafik is
    begin
            
       DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiSchriftart,
-                              NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungenAdaEigenes.EigenesEncode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
+                              NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTB3.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
       
       case
         EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSchriftart,
@@ -82,7 +82,7 @@ package body TexteinstellungenGrafik is
                                                          DateinameExtern     => "TexteinstellungenGrafik.EigeneSchriftartVerwenden")
       is
          when True =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlender Fontname");
+            MeldungssystemHTB1.Logik (MeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlender Fontname");
                
          when False =>
             EigeneSchriftart := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiSchriftart,
@@ -90,13 +90,13 @@ package body TexteinstellungenGrafik is
                                                                                  DateinameExtern     => "TexteinstellungenGrafik.EigeneSchriftartVerwenden");
             
             if
-              Exists (Name => VerzeichnisKonstanten.FontOrdner & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => EigeneSchriftart)) = False
+              Exists (Name => VerzeichnisKonstanten.FontOrdner & UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => EigeneSchriftart)) = False
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlende Fontdatei");
+               MeldungssystemHTB1.Logik (MeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlende Fontdatei");
                
             else
                Close (File => DateiSchriftart);
-               return VerzeichnisKonstanten.FontOrdner & UmwandlungenAdaEigenes.EigenesEncodeUnbounded (TextExtern => EigeneSchriftart);
+               return VerzeichnisKonstanten.FontOrdner & UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => EigeneSchriftart);
             end if;
       end case;
       

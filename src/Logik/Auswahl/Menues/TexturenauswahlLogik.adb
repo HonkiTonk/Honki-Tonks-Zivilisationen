@@ -6,7 +6,7 @@ with AuswahlKonstanten;
 with SchreibeGrafiktask;
 
 with TasteneingabeLogik;
-with Fehlermeldungssystem;
+with MeldungssystemHTB1;
 with MausauswahlLogik;
 with OftVerwendetSound;
 
@@ -65,7 +65,7 @@ package body TexturenauswahlLogik is
            and
              TextArrays.SprachenTexturenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "TexturenauswahlLogik.TexturenlisteFestlegen: Keine Texturen vorhanden");
+            MeldungssystemHTB1.Logik (MeldungExtern => "TexturenauswahlLogik.TexturenlisteFestlegen: Keine Texturen vorhanden");
             
          elsif
            EndeSchleifenwert > TextArrays.SprachenTexturenEinlesen'Last
