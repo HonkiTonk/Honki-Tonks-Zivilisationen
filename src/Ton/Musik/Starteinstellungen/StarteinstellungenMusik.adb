@@ -11,20 +11,54 @@ package body StarteinstellungenMusik is
       use type Sf.Audio.sfMusic_Ptr;
    begin
 
-      LiedSchleife:
-      for LiedSchleifenwert in EingeleseneMusik.MusikArray'Range loop
+      IntroSchleife:
+      for IntroSchleifenwert in EingeleseneMusik.Intromusik'Range loop
 
          if
-           EingeleseneMusik.Musik (LiedSchleifenwert) = null
+           EingeleseneMusik.Intromusik (IntroSchleifenwert) = null
          then
             null;
 
          else
-            Sf.Audio.Music.setVolume (music  => EingeleseneMusik.Musik (LiedSchleifenwert),
+            Sf.Audio.Music.setVolume (music  => EingeleseneMusik.Intromusik (IntroSchleifenwert),
                                       volume => LeseEinstellungenTon.Musiklautstärke);
          end if;
 
-      end loop LiedSchleife;
+      end loop IntroSchleife;
+
+
+
+      StandardmusikSchleife:
+      for StandardmusikSchleifenwert in EingeleseneMusik.Standardmusik'Range loop
+
+         if
+           EingeleseneMusik.Standardmusik (StandardmusikSchleifenwert) = null
+         then
+            null;
+
+         else
+            Sf.Audio.Music.setVolume (music  => EingeleseneMusik.Standardmusik (StandardmusikSchleifenwert),
+                                      volume => LeseEinstellungenTon.Musiklautstärke);
+         end if;
+
+      end loop StandardmusikSchleife;
+
+
+
+      ForschungserfolgSchleife:
+      for ForschungserfolgSchleifenwert in EingeleseneMusik.Forschungserfolg'Range loop
+
+         if
+           EingeleseneMusik.Forschungserfolg (ForschungserfolgSchleifenwert) = null
+         then
+            null;
+
+         else
+            Sf.Audio.Music.setVolume (music  => EingeleseneMusik.Intromusik (ForschungserfolgSchleifenwert),
+                                      volume => LeseEinstellungenTon.Musiklautstärke);
+         end if;
+
+      end loop ForschungserfolgSchleife;
 
    end Lautstärke;
 

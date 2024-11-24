@@ -141,6 +141,28 @@ package body EinlesenNutzereinstellungenLogik is
                                                 Texturen);
          end case;
          
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Musik := SystemRecordKonstanten.StandardNutzereinstellungen.Musik;
+               
+            when False =>
+               Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
+                                                Musik);
+         end case;
+         
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Sound := SystemRecordKonstanten.StandardNutzereinstellungen.Sound;
+               
+            when False =>
+               Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
+                                                Sound);
+         end case;
+         
          -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig eingelesen wurde!
          -- Sollte Probleme mit geänderten Datentypen teilweise vorbeugen.
          return End_Of_File (File => DateiLadenExtern);
@@ -149,6 +171,8 @@ package body EinlesenNutzereinstellungenLogik is
          SchreibeOptionen.GanzeSpieleinstellungen (EinstellungenExtern => (
                                                                            Sprache                   => Sprache,
                                                                            Texturen                  => Texturen,
+                                                                           Musik                     => Musik,
+                                                                           Sound                     => Sound,
                                                                            AnzahlAutospeichern       => AnzahlAutospeichern,
                                                                            RundenAutospeichern       => RundenAutospeichern,
                                                                            Dezimaltrennzeichen       => Dezimaltrennzeichen,

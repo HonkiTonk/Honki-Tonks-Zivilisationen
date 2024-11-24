@@ -1,3 +1,6 @@
+with Sf.Audio.Music;
+with Sf.Audio.SoundStatus;
+
 with TonDatentypen;
 with ZeitKonstanten;
 
@@ -5,9 +8,10 @@ with SchreibeLogiktask;
 with LeseMusiktask;
 with LeseGesamttask;
 
-with IntroMusik;
+-- with IntroMusik;
 with StartEndeMusik;
 with StarteinstellungenMusik;
+with EingeleseneMusik;
 
 package body Musik is
 
@@ -26,7 +30,6 @@ package body Musik is
          
       -- Musik wird direkt parallel aufgerufen. Steht auch im SFML Tutorial, allerdings unter Sound, und der Beschreibung der ASFML.
       -- Beim Abspielen von Musik einfach immer eine Sekunde delayen bevor geprüft wird ob die Musik noch spielt?
-      StartEndeMusik.Abspielen;
             
       MusikSchleife:
       loop
@@ -35,10 +38,19 @@ package body Musik is
            LeseMusiktask.AktuelleMusik
          is
             when TonDatentypen.Musik_Intro_Enum =>
-               IntroMusik.Intro;
+               case
+                 Sf.Audio.Music.getStatus (music => EingeleseneMusik.Intromusik (1))
+               is
+                  when Sf.Audio.SoundStatus.sfPlaying =>
+                     delay ZeitKonstanten.WartezeitMusik;
+                     
+                  when others =>
+                     StartEndeMusik.Abspielen (MusikExtern => EingeleseneMusik.Intromusik (1));
+                     -- IntroMusik.Intro;
+               end case;
                
             when TonDatentypen.Musik_Pause_Enum =>
-               delay ZeitKonstanten.WartezeitSound;
+               delay ZeitKonstanten.WartezeitMusik;
                
             when TonDatentypen.Musik_Ende_Enum =>
                exit MusikSchleife;

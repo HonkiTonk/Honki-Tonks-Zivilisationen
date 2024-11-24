@@ -16,18 +16,18 @@ package body EinlesenSoundsLogik is
    is begin
             
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei))
+        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei))
       is
          when False =>
             MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: "
-                                        & UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
+                                        & UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
             AktuelleZeile := 1;
             
             DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiSounds,
-                                    NameExtern     => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei);
+                                    NameExtern     => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei);
       end case;
       
       SoundsSchleife:
@@ -40,7 +40,7 @@ package body EinlesenSoundsLogik is
          is
             when True =>
                MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: "
-                                           & UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
+                                           & UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                exit SoundsSchleife;
                
             when False =>

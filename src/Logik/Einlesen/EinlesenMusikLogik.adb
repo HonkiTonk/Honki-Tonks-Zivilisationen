@@ -1,12 +1,15 @@
 with Sf.Audio.Music;
 
+with MeldungssystemHTB1;
 with DateizugriffssystemHTB5;
 with UmwandlungssystemHTB3;
 
 with VerzeichnisKonstanten;
+with TextKonstanten;
+
+with LeseOptionen;
 
 with EingeleseneMusik;
-with MeldungssystemHTB1;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
 
@@ -14,57 +17,96 @@ with VerzeichnisDateinamenTests;
 
 -- Unter Windows funktionieren UTF8 Namen bei den Texturdateien nicht, das beim Benennen der Texturen berücksichtigen.
 -- Eventuell kann auch einfach die SFML hier kein UTF8.
+-- Gilt das auch für Audiodateien? Vermutlich ja, aber trotzdem mal nachprüfen. äöü
+-- Könnte man Einlesen Texturen, Musik und später Sound zusammenfassen? Eventuell in dem man den Dateiort mitübergibt und die Festlegung in einzelne Bereiche unterteilt. äöü
 package body EinlesenMusikLogik is
 
    procedure EinlesenMusik
    is begin
       
       case
-        VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei))
+        -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht dder ganze Verzeichnisname.
+        VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                               WindowsTextExtern => (VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik) & VerzeichnisKonstanten.NullDateiWideWide))
       is
          when False =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Es fehlt: "
-                                      & UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
+            EinzulesendeZeile := 1;
             AktuelleZeile := 1;
             
             DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiMusik,
-                                                 NameExtern     => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei);
+                                                 NameExtern     => UmwandlungssystemHTB3.Encode (TextExtern => VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik)
+                                                                                                 & VerzeichnisKonstanten.NullDateiWideWide));
       end case;
       
-      VerzeichnisseSchleife:
-      for VerzeichnisSchleifenwert in EingeleseneMusik.MusikArray'Range loop
+      MusikSchleife:
+      loop
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiMusik,
-                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenMusikLogik.EinlesenMusik")
          is
             when True =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Fehlende Zeilen: "
-                                         & UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
-               exit VerzeichnisseSchleife;
+               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               exit MusikSchleife;
                
             when False =>
-               Lied := UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Musik & "/") & EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiMusik,
-                                                                                                                                                   AktuelleZeileExtern => Positive (VerzeichnisSchleifenwert),
-                                                                                                                                                   DateinameExtern     => "EinlesenMusikLogik.EinlesenLieder");
-               
-               if
-                 VerzeichnisDateinamenTests.Standardeinleseprüfung (VerzeichnisDateinameExtern => To_Wide_Wide_String (Source => Lied)) = False
-               then
-                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenLieder: Es fehlt: " & To_Wide_Wide_String (Source => Lied));
-            
-               else
-                  EingeleseneMusik.Musik (VerzeichnisSchleifenwert) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => Lied));
-               end if;
-               
-               AktuelleZeile := AktuelleZeile + 1;
+               Dateiname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiMusik,
+                                                                             AktuelleZeileExtern => EinzulesendeZeile,
+                                                                             DateinameExtern     => "EinlesenMusikLogik.EinlesenMusik");
+               GesamterPfad := VerzeichnisKonstanten.Musik & LeseOptionen.Musik & "/" & Dateiname;
+               EinzulesendeZeile := EinzulesendeZeile + 1;
          end case;
          
-      end loop VerzeichnisseSchleife;
+         case
+           To_Wide_Wide_String (Source => Dateiname) (1)
+         is
+            when TextKonstanten.TrennzeichenTextdateien =>
+               null;
+               
+            when others =>
+               if
+                 False = VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                                                                                WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+               then
+                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Datei oder Pfad existiert nicht");
+            
+               elsif
+                 AktuelleZeile = Intromusik
+               then
+                  EingeleseneMusik.Intromusik (AktuelleZeile) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  
+               elsif
+                 AktuelleZeile in StandardmusikAnfang .. StandardmusikEnde
+               then
+                  EingeleseneMusik.Standardmusik (AktuelleZeile - 1) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  
+               elsif
+                 AktuelleZeile = Forschungserfolg
+               then
+                  EingeleseneMusik.Forschungserfolg (Forschungserfolg - StandardmusikEnde) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+               
+               else
+                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenMusik: Außerhalb des Einlesebereichs");
+                  exit MusikSchleife;
+               end if;
+               
+               if
+                 AktuelleZeile < Forschungserfolg
+               then
+                  AktuelleZeile := AktuelleZeile + 1;
+                     
+               else
+                  -- Hier die Lautstärkeneinstellung aufrufen? äöü
+                  -- TexturenfelderBerechnenGrafik.TexturenfelderBerechnen;
+                  exit MusikSchleife;
+               end if;
+         end case;
+         
+      end loop MusikSchleife;
       
       Close (File => DateiMusik);
       

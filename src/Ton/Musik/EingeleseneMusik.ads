@@ -1,11 +1,16 @@
 with Sf.Audio;
 
-with TonDatentypen;
+-- with TonDatentypen;
 
 package EingeleseneMusik is
    pragma Elaborate_Body;
 
-   type MusikArray is array (TonDatentypen.AnzahlLieder'Range) of Sf.Audio.sfMusic_Ptr;
-   Musik : MusikArray := (others => null);
+   type Musikarray is array (Positive range <>) of Sf.Audio.sfMusic_Ptr;
+
+   Intromusik : Musikarray (1 .. 1) := (others => null);
+
+   Standardmusik : Musikarray (1 .. 3) := (others => null);
+
+   Forschungserfolg : Musikarray (1 .. 1) := (others => null);
 
 end EingeleseneMusik;

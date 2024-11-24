@@ -22,6 +22,26 @@ package body SchreibeOptionen is
    
    
    
+   procedure Musik
+     (MusikExtern : in Unbounded_Wide_Wide_String)
+   is begin
+      
+      OptionenVariablen.NutzerEinstellungen.Musik := MusikExtern;
+      
+   end Musik;
+   
+   
+   
+   procedure Sound
+     (SoundExtern : in Unbounded_Wide_Wide_String)
+   is begin
+      
+      OptionenVariablen.NutzerEinstellungen.Sound := SoundExtern;
+      
+   end Sound;
+   
+   
+   
    procedure AnzahlAutospeichern
      (AutospeicheranzahlExtern : in ZahlenDatentypen.EigenesNatural)
    is begin

@@ -46,9 +46,15 @@ package VerzeichnisKonstanten is
    
    GrafikOhneStrich : constant String (1 .. 6) := "Grafik";
    GrafikEinfach : constant String (1 .. 7) := "Grafik/";
-   Grafik : constant Wide_Wide_String (1 .. 7) := "Grafik/";
-   Musik : constant String (1 .. 14) := "Musik/Standard";
-   Sound : constant String (1 .. 14) := "Sound/Standard";
+   Grafik : constant Wide_Wide_String (GrafikEinfach'Range) := "Grafik/";
+   
+   MusikOhneStrich : constant String (1 .. 5) := "Musik";
+   MusikEinfach : constant String (1 .. 6) := "Musik/";
+   Musik : constant Wide_Wide_String (MusikEinfach'Range) := "Musik/";
+   
+   SoundOhneStricht : constant String (1 .. 5) := "Sound";
+   SoundEinfach : constant String (1 .. 14) := "Sound/Standard";
+   Sound : constant Wide_Wide_String (1 .. 6) := "Sound/";
    
    
    

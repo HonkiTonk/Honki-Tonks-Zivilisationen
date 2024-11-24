@@ -22,6 +22,26 @@ package body LeseOptionen is
    
    
    
+   function Musik
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      return OptionenVariablen.NutzerEinstellungen.Musik;
+      
+   end Musik;
+   
+   
+   
+   function Sound
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      return OptionenVariablen.NutzerEinstellungen.Sound;
+      
+   end Sound;
+   
+   
+   
    function AnzahlAutospeichern
      return ZahlenDatentypen.EigenesNatural
    is begin

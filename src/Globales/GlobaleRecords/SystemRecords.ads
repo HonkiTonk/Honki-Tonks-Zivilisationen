@@ -10,6 +10,8 @@ package SystemRecords is
       
       Sprache : Unbounded_Wide_Wide_String;
       Texturen : Unbounded_Wide_Wide_String;
+      Musik : Unbounded_Wide_Wide_String;
+      Sound : Unbounded_Wide_Wide_String;
       
       AnzahlAutospeichern : ZahlenDatentypen.EigenesNatural;
       RundenAutospeichern : ZahlenDatentypen.EigenesPositive;

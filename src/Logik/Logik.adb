@@ -6,10 +6,12 @@ with GrafikDatentypen;
 with ZeitKonstanten;
 with TastenbelegungDatentypen;
 with Projekteinstellungen;
+with TonDatentypen;
 
 with LeseLogiktask;
 with SchreibeGrafiktask;
 with SchreibeGesamttask;
+with SchreibeMusiktask;
 
 with SchreibenVerzeichnisseLogik;
 with EinlesenEinstellungenLogik;
@@ -67,6 +69,7 @@ package body Logik is
       SchreibeGrafiktask.SchriftrahmenSetzen (JaNeinExtern => True);
       SchreibeGrafiktask.TextSetzen (JaNeinExtern => True);
             
+      SchreibeMusiktask.AktuelleMusik (MusikExtern => TonDatentypen.Musik_Intro_Enum);
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Intro_Enum);
       
       IntroSchleife:

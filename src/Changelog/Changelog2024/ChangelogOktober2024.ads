@@ -169,38 +169,37 @@ package ChangelogOktober2024 is
    
    
 
-   -- Version 0.05. => 0.05. (07.10.2024):
+   -- Version 0.05.9740 => 0.05. (07.10.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (06.10.2024):
+   -- Version 0.05.9740 => 0.05.9740 (06.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (05.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (04.10.2024):
+   -- Version 0.05.9740 => 0.05.9740 (05.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9690 => 0.05. (03.10.2024):
+   -- Version 0.05.9740 => 0.05.9740 (04.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.9690 => 0.05.9740 (03.10.2024):
+   
+   -- Weiter am neuen Musiksystem gearbeitet.
+   -- Es ist jetzt möglich mehrere Lieder einzulesen.
+   -- Angefangen das System so zu erweitern dass die Musik Situationsabhängig geändert wird.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

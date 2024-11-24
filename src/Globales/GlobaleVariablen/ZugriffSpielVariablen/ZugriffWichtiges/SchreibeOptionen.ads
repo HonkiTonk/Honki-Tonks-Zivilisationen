@@ -22,6 +22,22 @@ package SchreibeOptionen is
               );
    pragma Inline (Texturen);
    
+   procedure Musik
+     (MusikExtern : in Unbounded_Wide_Wide_String)
+     with
+       Pre => (
+                 To_Wide_Wide_String (Source => MusikExtern)'Length >= 1
+              );
+   pragma Inline (Musik);
+   
+   procedure Sound
+     (SoundExtern : in Unbounded_Wide_Wide_String)
+     with
+       Pre => (
+                 To_Wide_Wide_String (Source => SoundExtern)'Length >= 1
+              );
+   pragma Inline (Sound);
+   
    procedure AnzahlAutospeichern
      (AutospeicheranzahlExtern : in ZahlenDatentypen.EigenesNatural);
    pragma Inline (AnzahlAutospeichern);

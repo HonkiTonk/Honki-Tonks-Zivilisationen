@@ -2,6 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with BetriebssystemKonstanten;
 
+-- Das mal teilweise oder ganz auslagern? äöü
 package TextKonstanten is
    pragma Elaborate_Body;
    
@@ -25,5 +26,7 @@ package TextKonstanten is
    LeerzeichenUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => Leerzeichen);
    
    Standardtexturen : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "Standard");
+   Standardmusik : constant Unbounded_Wide_Wide_String := Standardtexturen;
+   Stadnardsound : constant Unbounded_Wide_Wide_String := Standardtexturen;
    
 end TextKonstanten;

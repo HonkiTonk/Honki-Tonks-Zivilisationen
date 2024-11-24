@@ -23,6 +23,7 @@ package body EinlesenTexturenLogik is
    is begin
       
       case
+        -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht dder ganze Verzeichnisname.
         VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
                                                                WindowsTextExtern => (VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstanten.NullDateiWideWide))
       is
@@ -34,8 +35,8 @@ package body EinlesenTexturenLogik is
             AktuelleZeile := 1;
             
             DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiTexturen,
-                                    NameExtern     => UmwandlungssystemHTB3.Encode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
-                                                                                            & VerzeichnisKonstanten.NullDateiWideWide));
+                                                 NameExtern     => UmwandlungssystemHTB3.Encode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
+                                                                                                 & VerzeichnisKonstanten.NullDateiWideWide));
       end case;
       
       TexturenSchleife:
@@ -221,8 +222,8 @@ package body EinlesenTexturenLogik is
          if
            False = VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
                                                                      WindowsTextExtern => UmwandlungssystemHTB3.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.GrafikEinfach
-                                                                                                                                         & Simple_Name (Directory_Entry => Verzeichnis)
-                                                                                                                                         & VerzeichnisKonstanten.NullDatei))
+                                                                                                                                 & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                                 & VerzeichnisKonstanten.NullDatei))
          then
             null;
             

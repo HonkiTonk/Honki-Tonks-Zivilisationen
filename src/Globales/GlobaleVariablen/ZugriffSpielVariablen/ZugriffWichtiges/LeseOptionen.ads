@@ -13,6 +13,14 @@ package LeseOptionen is
      return Unbounded_Wide_Wide_String;
    pragma Inline (Texturen);
    
+   function Musik
+     return Unbounded_Wide_Wide_String;
+   pragma Inline (Musik);
+   
+   function Sound
+     return Unbounded_Wide_Wide_String;
+   pragma Inline (Sound);
+   
    function AnzahlAutospeichern
      return ZahlenDatentypen.EigenesNatural;
    pragma Inline (AnzahlAutospeichern);

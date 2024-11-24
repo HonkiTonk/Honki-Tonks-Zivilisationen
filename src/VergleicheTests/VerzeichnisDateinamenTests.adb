@@ -6,6 +6,7 @@ with SchreibeLogiktask;
 with MeldungssystemHTB1;
 with UmwandlungssystemHTB3;
 
+-- So umbauen dass die Zusammenfassung von Linux und Windows den Gesamtpfad ergibt? äöü
 package body VerzeichnisDateinamenTests is
 
    -- Bei Linux nur den Dateinamen übergeben, bei Windows zusätzlich noch den gesamten Pfad der Unterverzeichnisse.

@@ -9,11 +9,18 @@ package EinlesenMusikLogik is
 private
    use Ada.Wide_Wide_Text_IO;
    use Ada.Strings.Wide_Wide_Unbounded;
-         
-   AktuelleZeile : Positive;
    
-   Lied : Unbounded_Wide_Wide_String;
+   Intromusik : constant Positive := 1;
+   StandardmusikAnfang : constant Positive := Intromusik + 1;
+   StandardmusikEnde : constant Positive := Intromusik + 3;
+   Forschungserfolg : constant Positive := StandardmusikEnde + 1;
+   
+   AktuelleZeile : Positive;
+   EinzulesendeZeile : Positive;
+   
+   Dateiname : Unbounded_Wide_Wide_String;
+   GesamterPfad : Unbounded_Wide_Wide_String;
    
    DateiMusik : File_Type;
-
+      
 end EinlesenMusikLogik;

@@ -24,6 +24,8 @@ private
    
    Sprache : Unbounded_Wide_Wide_String;
    Texturen : Unbounded_Wide_Wide_String;
+   Musik : Unbounded_Wide_Wide_String;
+   Sound : Unbounded_Wide_Wide_String;
    
    DateiNutzereinstellungen : File_Type;
    
