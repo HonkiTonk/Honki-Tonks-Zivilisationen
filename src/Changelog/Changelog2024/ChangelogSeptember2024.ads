@@ -1,16 +1,15 @@
 package ChangelogSeptember2024 is
    pragma Pure;
 
-   -- Version 0.05. => 0.05. (30.09.2024):
+   -- Version 0.05.9690 => 0.05.9690 (30.09.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9665 => 0.05. (29.09.2024):
+   -- Version 0.05.9665 => 0.05.9690 (29.09.2024):
    
-   -- 
+   -- Musikdateien in OGG/Vorbis umgewandelt und bessser komprimiert.
    -- Kleinigkeiten korrigiert.
    
    
