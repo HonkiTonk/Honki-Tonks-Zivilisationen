@@ -141,37 +141,34 @@ package ChangelogOktober2024 is
    
    
 
-   -- Version 0.05. => 0.05. (11.10.2024):
+   -- Version 0.05.9765 => 0.05. (11.10.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (10.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (10.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (09.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (08.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (09.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9740 => 0.05. (07.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (08.10.2024):
    
-   -- 
+   -- null.
+   
+   
+
+   -- Version 0.05.9740 => 0.05.9765 (07.10.2024):
+   
+   -- Die Lautstärke von Sound und Musik zueinandern besser ausgepegelt.
    -- Kleinigkeiten korrigiert.
    
    
