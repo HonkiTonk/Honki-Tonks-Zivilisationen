@@ -1,150 +1,129 @@
 package ChangelogOktober2024 is
    pragma Pure;
    
-   -- Version 0.05. => 0.05. (31.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (31.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (30.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (29.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (30.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (28.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (27.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (29.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (26.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (25.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (28.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (24.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (23.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (27.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (22.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (21.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (26.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (20.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (19.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (25.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (18.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (17.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (24.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (16.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (15.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (23.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (14.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (13.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (22.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (12.10.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9765 => 0.05. (11.10.2024):
+   -- Version 0.05.9765 => 0.05.9765 (21.10.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (20.10.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (19.10.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (18.10.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (17.10.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (16.10.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (15.10.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (14.10.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (13.10.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (12.10.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (11.10.2024):
+   
+   -- null.
    
    
 

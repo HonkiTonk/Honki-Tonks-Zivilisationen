@@ -1,219 +1,210 @@
 package ChangelogDezember2024 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (31.12.2024):
+   -- Version 0.05. => 0.05. (31.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (30.12.2024):
+   -- Version 0.05. => 0.05. (30.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (29.12.2024):
+   -- Version 0.05. => 0.05. (29.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (28.12.2024):
+   -- Version 0.05. => 0.05. (28.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (27.12.2024):
+   -- Version 0.05. => 0.05. (27.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (26.12.2024):
+   -- Version 0.05. => 0.05. (26.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (25.12.2024):
+   -- Version 0.05. => 0.05. (25.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (24.12.2024):
+   -- Version 0.05. => 0.05. (24.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (23.12.2024):
+   -- Version 0.05. => 0.05. (23.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (22.12.2024):
+   -- Version 0.05. => 0.05. (22.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (21.12.2024):
+   -- Version 0.05. => 0.05. (21.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (20.12.2024):
+   -- Version 0.05. => 0.05. (20.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (19.12.2024):
+   -- Version 0.05. => 0.05. (19.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (18.12.2024):
+   -- Version 0.05. => 0.05. (18.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (17.12.2024):
+   -- Version 0.05. => 0.05. (17.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (16.12.2024):
+   -- Version 0.05. => 0.05. (16.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (15.12.2024):
+   -- Version 0.05. => 0.05. (15.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (14.12.2024):
+   -- Version 0.05. => 0.05. (14.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (13.12.2024):
+   -- Version 0.05. => 0.05. (13.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (12.12.2024):
+   -- Version 0.05. => 0.05. (12.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (11.12.2024):
+   -- Version 0.05. => 0.05. (11.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (10.12.2024):
+   -- Version 0.05.9780 => 0.05. (10.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (09.12.2024):
+   -- Version 0.05.9765 => 0.05.9780 (09.12.2024):
    
-   -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (08.12.2024):
+   -- Version 0.05.9765 => 0.05.9765 (08.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (07.12.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (06.12.2024):
+   -- Version 0.05.9765 => 0.05.9765 (07.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (05.12.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (04.12.2024):
+   -- Version 0.05.9765 => 0.05.9765 (06.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (03.12.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (02.12.2024):
+   -- Version 0.05.9765 => 0.05.9765 (05.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (01.12.2024):
+   -- Version 0.05.9765 => 0.05.9765 (04.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (03.12.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (02.12.2024):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.9765 => 0.05.9765 (01.12.2024):
+   
+   -- null.
 
 end ChangelogDezember2024;
