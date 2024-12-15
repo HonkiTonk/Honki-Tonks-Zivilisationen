@@ -113,45 +113,42 @@ package ChangelogDezember2024 is
    
    
 
-   -- Version 0.05. => 0.05. (15.12.2024):
+   -- Version 0.05.9815 => 0.05. (15.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (14.12.2024):
+   -- Version 0.05.9780 => 0.05.9815 (14.12.2024):
    
-   -- 
+   -- Alle Projekteinstellungsdateien an die neuen Datentypen angepasst.
+   -- Skript zum automatischen Erstellen von Paketen für GitHub hinzugefügt.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (13.12.2024):
+   -- Version 0.05.9780 => 0.05.9780 (13.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (12.12.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (11.12.2024):
+   -- Version 0.05.9780 => 0.05.9780 (12.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9780 => 0.05. (10.12.2024):
+   -- Version 0.05.9780 => 0.05.9780 (11.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.9780 => 0.05.9780 (10.12.2024):
+   
+   -- null.
    
    
 

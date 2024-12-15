@@ -17,7 +17,7 @@ package Projekteinstellungen is
                                                                          -- e => EUC Encoding
                                                                          -- 8 => UTF8 encoding
                                                                          -- b => Brackets encoding
-                                                                         Dateiform        => "WCEM=8"
+                                                                         Dateiform        => '8'
                                                                         );
 
 end Projekteinstellungen;
