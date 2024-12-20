@@ -78,45 +78,42 @@ package ChangelogDezember2024 is
    
    
 
-   -- Version 0.05. => 0.05. (20.12.2024):
+   -- Version 0.05.9865 => 0.05. (20.12.2024):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (19.12.2024):
+   -- Version 0.05.9840 => 0.05.9865 (19.12.2024):
    
-   -- 
+   -- Skript zum erstellen von Paketen überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (18.12.2024):
+   -- Version 0.05.9815 => 0.05.9840 (18.12.2024):
    
-   -- 
+   -- GNAT aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (17.12.2024):
+   -- Version 0.05.9815 => 0.05.9815 (17.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (16.12.2024):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.9815 => 0.05. (15.12.2024):
+   -- Version 0.05.9815 => 0.05.9815 (16.12.2024):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.9815 => 0.05.9815 (15.12.2024):
+   
+   -- null.
    
    
 

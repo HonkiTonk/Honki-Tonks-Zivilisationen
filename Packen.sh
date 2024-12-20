@@ -6,7 +6,7 @@ mkdir /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Windows
 
 
 # Linux
-# gprbuild -d -P/mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen.gpr
+gprbuild -d -P/mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Release.gpr
 
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Grafik/ /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Linux/ -r
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Musik/ /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Linux/ -r
