@@ -1,16 +1,18 @@
 package ChangelogDezember2024 is
    pragma Pure;
    
-   -- Version 0.05.9865 => 0.05.9890 (31.12.2024):
+   -- Version 0.05.9890 => 0.05.9925 (31.12.2024):
    
-   -- GNAT aktualisiert.
-   -- Kleinigkeiten korrigiert/angepasst.
+   -- Unnötige Dateien entfernt
+   -- Lizenzen angepasst.
+   -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.9865 => 0.05.9865 (30.12.2024):
+   -- Version 0.05.9865 => 0.05.9890 (30.12.2024):
    
-   -- null.
+   -- GNAT aktualisiert.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
 

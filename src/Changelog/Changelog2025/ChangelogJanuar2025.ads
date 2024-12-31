@@ -211,7 +211,7 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.05.9890 => 0.05. (01.01.2025):
+   -- Version 0.05.9925 => 0.05. (01.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
