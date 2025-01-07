@@ -176,16 +176,16 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (06.01.2025):
+   -- Version 0.05.9975 => 0.06. (06.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.9950 => 0.06. (05.01.2025):
+   -- Version 0.05.9950 => 0.05.9975 (05.01.2025):
    
-   -- 
+   -- GNAT Mingw eingerichtet um Windowsversionen ohne WINE kompilieren zu können.
    -- Kleinigkeiten korrigiert.
    
    
@@ -210,7 +210,7 @@ package ChangelogJanuar2025 is
 
    -- Version 0.05.9925 => 0.05.9950 (01.01.2025):
    
-   -- Paketersetllungsscript überarbeitet.
+   -- Paketersetllungsskript überarbeitet.
    -- Kleinigkeiten korrigiert.
 
 end ChangelogJanuar2025;
