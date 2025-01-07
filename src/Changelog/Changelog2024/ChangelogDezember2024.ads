@@ -3,7 +3,7 @@ package ChangelogDezember2024 is
    
    -- Version 0.05.9890 => 0.05.9925 (31.12.2024):
    
-   -- Unnötige Dateien entfernt
+   -- Unnötige Dateien entfernt.
    -- Lizenzen angepasst.
    -- Kleinigkeiten korrigiert.
    
