@@ -134,16 +134,16 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (12.01.2025):
+   -- Version 0.06.0145 => 0.06. (12.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0120 => 0.06. (11.01.2025):
+   -- Version 0.06.0120 => 0.06.0145 (11.01.2025):
    
-   -- 
+   -- Testmusik ausgetauscht.
    -- Kleinigkeiten korrigiert.
    
    
