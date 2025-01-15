@@ -162,16 +162,16 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (08.01.2025):
+   -- Version 0.06.0035 => 0.06. (08.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0010 => 0.06. (07.01.2025):
+   -- Version 0.06.0010 => 0.06.0035 (07.01.2025):
    
-   -- 
+   -- Fehler korrigiert der unter bestimmten Umständen das Kompilieren verhinderte.
    -- Kleinigkeiten korrigiert.
    
    

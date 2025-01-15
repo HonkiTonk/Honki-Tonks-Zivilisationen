@@ -73,6 +73,13 @@ package body BauauswahlGrafik is
       use type StadtDatentypen.Bauprojektart_Enum;
    begin
       
+      case
+        SpeziesExtern
+      is
+         when others =>
+            null;
+      end case;
+      
       ViewflächeAufteilung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAufteilung,
                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüKategorie).width,
                                                                                                         GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüKategorie).height));
@@ -129,6 +136,13 @@ package body BauauswahlGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GebäudeEinheitExtern : in Boolean)
    is begin
+            
+      case
+        SpeziesExtern
+      is
+         when others =>
+            null;
+      end case;
       
       ViewflächeBauliste := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeBauliste,
                                                                               VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüBauliste).width,
@@ -167,6 +181,13 @@ package body BauauswahlGrafik is
       BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
       return Float
    is begin
+      
+      case
+        SpeziesExtern
+      is
+         when others =>
+            null;
+      end case;
 
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
@@ -276,6 +297,13 @@ package body BauauswahlGrafik is
       BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
       return Float
    is begin
+      
+      case
+        SpeziesExtern
+      is
+         when others =>
+            null;
+      end case;
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
