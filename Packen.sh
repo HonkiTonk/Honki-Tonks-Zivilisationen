@@ -1,8 +1,8 @@
 rm /mnt/Programme/Ada/GitHub/ -r
 mkdir /mnt/Programme/Ada/GitHub
-mkdir /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Linux
-mkdir /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Windows
 cd /mnt/Programme/Ada/GitHub/
+mkdir Honki\ Tonks\ Zivilisationen\ Linux
+mkdir Honki\ Tonks\ Zivilisationen\ Windows
 
 
 
@@ -14,7 +14,7 @@ cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Musik/ /mnt/Pr
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Sound/ /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Windows/ -r
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Sprachen/ /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Windows/ -r
 
-cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/honkitonkszivilisationen.exe /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Windows/
+cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/HonkiTonksZivilisationen.exe /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Windows/
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/LICENSE /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Windows/
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/csfml-audio-2.dll /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Windows/
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/csfml-graphics-2.dll /mnt/Programme/Ada/GitHub/Honki\ Tonks\ Zivilisationen\ Windows/

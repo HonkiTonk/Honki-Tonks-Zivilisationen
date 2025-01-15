@@ -155,16 +155,16 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (09.01.2025):
+   -- Version 0.06.0060 => 0.06. (09.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0035 => 0.06. (08.01.2025):
+   -- Version 0.06.0035 => 0.06.0060 (08.01.2025):
    
-   -- 
+   -- Fehler im Paketerstellungsskript, welcher verhinderte dass das Windowspaket korrekt erstellt wurde, korrigiert.
    -- Kleinigkeiten korrigiert.
    
    
@@ -179,7 +179,7 @@ package ChangelogJanuar2025 is
    -- Version 0.05.9975 => 0.06.0010 (06.01.2025):
    
    -- Windowskompiler fertig eingerichtet.
-   -- Paketerstllungsskript überarbeitet.
+   -- Paketerstellungsskript überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
@@ -211,7 +211,7 @@ package ChangelogJanuar2025 is
 
    -- Version 0.05.9925 => 0.05.9950 (01.01.2025):
    
-   -- Paketerstllungsskript überarbeitet.
+   -- Paketerstellungsskript überarbeitet.
    -- Kleinigkeiten korrigiert.
 
 end ChangelogJanuar2025;
