@@ -45,3 +45,7 @@ cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/LICENSE /mnt/P
 
 tar cfv Honki_Tonks_Zivilisationen_Linux64.tar Honki\ Tonks\ Zivilisationen\ Linux/
 bzip2 -9 Honki_Tonks_Zivilisationen_Linux64.tar
+
+
+
+gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen.gpr
