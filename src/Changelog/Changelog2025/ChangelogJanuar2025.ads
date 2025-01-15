@@ -169,16 +169,17 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (07.01.2025):
+   -- Version 0.06.0010 => 0.06. (07.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.9975 => 0.06. (06.01.2025):
+   -- Version 0.05.9975 => 0.06.0010 (06.01.2025):
    
-   -- 
+   -- Windowskompiler fertig eingerichtet.
+   -- Paketerstllungsskript überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
@@ -210,7 +211,7 @@ package ChangelogJanuar2025 is
 
    -- Version 0.05.9925 => 0.05.9950 (01.01.2025):
    
-   -- Paketersetllungsskript überarbeitet.
+   -- Paketerstllungsskript überarbeitet.
    -- Kleinigkeiten korrigiert.
 
 end ChangelogJanuar2025;
