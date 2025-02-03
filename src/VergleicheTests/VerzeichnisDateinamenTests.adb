@@ -1,7 +1,8 @@
+with Ada.Wide_Wide_Characters.Handling; use Ada.Wide_Wide_Characters.Handling;
+
 with Projekteinstellungen;
 with BetriebssystemKonstanten;
-
-with SchreibeLogiktask;
+with SystemRecordKonstanten;
 
 with MeldungssystemHTB1;
 with UmwandlungssystemHTB3;
@@ -122,6 +123,7 @@ package body VerzeichnisDateinamenTests is
    
    
    
+   -- Das hier kann ausgelagert werden. äöü
    function GültigesZeichen
      (ZeichenExtern : in Wide_Wide_Character)
       return Boolean
@@ -154,7 +156,7 @@ package body VerzeichnisDateinamenTests is
             
                when others =>
                   -- Für den Fall das ich irgendwann einmal Wide_Wide_Directories haben kann ich hier True zurückgeben und damit alle Zeichen erlauben die nicht verboten sind. äöü
-                  return False; -- True;
+                  return True; -- False; -- True;
             end case;
       end case;
       
@@ -162,6 +164,7 @@ package body VerzeichnisDateinamenTests is
    
    
    
+   -- Das hier auch. äöü
    function GültigerNamen
      (NameExtern : in Wide_Wide_String)
       return Boolean
@@ -209,9 +212,12 @@ package body VerzeichnisDateinamenTests is
                is
                   when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstanten.Leerzeichen | BetriebssystemKonstanten.Bindestrich | BetriebssystemKonstanten.Unterstrich | BetriebssystemKonstanten.Punkt =>
                      null;
+                     
+                  when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstanten.NUL .. BetriebssystemKonstanten.US =>
+                     return False;
                
                   when others =>
-                     return False;
+                     null; -- return False;
                end case;
          
             end loop WindowsprüfungSchleife;
@@ -223,18 +229,19 @@ package body VerzeichnisDateinamenTests is
    
    
    
+   -- Das auch. äöü
    function Namensprüfungen
      (TextExtern : in Unbounded_Wide_Wide_String)
-      return Boolean
+      return SystemRecords.TextEingabeRecord
    is begin
       
       VerboteneNamenSchleife:
       for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneNamen'Range loop
          
          if
-           To_Wide_Wide_String (Source => TextExtern) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneNamen (VerboteneNamenSchleifenwert))
+           TextExtern = BetriebssystemKonstanten.VerboteneNamen (VerboteneNamenSchleifenwert)
          then
-            return False;
+            return SystemRecordKonstanten.LeerTexteingabe;
          
          else
             null;
@@ -246,7 +253,7 @@ package body VerzeichnisDateinamenTests is
         Projekteinstellungen.Einstellungen.Betriebssystem
       is
          when BetriebssystemDatentypen.Linux_Enum =>
-            return True;
+            return (True, TextExtern);
             
          when BetriebssystemDatentypen.Windows_Enum =>
             return NamenprüfungenWindows (TextExtern => TextExtern);
@@ -256,9 +263,10 @@ package body VerzeichnisDateinamenTests is
    
    
    
+   -- Das auch. äöü
    function NamenprüfungenWindows
      (TextExtern : in Unbounded_Wide_Wide_String)
-      return Boolean
+      return SystemRecords.TextEingabeRecord
    is begin
       
       Text := TextExtern;
@@ -269,7 +277,7 @@ package body VerzeichnisDateinamenTests is
          if
            To_Wide_Wide_String (Source => Text)'Length = 0
          then
-            return False;
+            return SystemRecordKonstanten.LeerTexteingabe;
             
          elsif
            -- Full_Stop = Period, nicht erlaubt am Ende unter Windows!
@@ -304,73 +312,195 @@ package body VerzeichnisDateinamenTests is
          
       end loop PunktLeerzeichenSchleife;
       
-      SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                           From    => To_Wide_Wide_String (Source => Text)'Last,
-                                                                                           Through => To_Wide_Wide_String (Source => Text)'Last));
-                  
-      VerboteneNamenSchleife:
-      for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenGroß'Range loop
-                  
-         if
-           To_Wide_Wide_String (Source => Text)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Length
-         then
-            Erlaubt := True;
-            
-         elsif
-           To_Wide_Wide_String (Source => Text) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))
-           or
-             To_Wide_Wide_String (Source => Text) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert))
-         then
-            return False;
-               
-         else
-            Erlaubt := False;
-                     
-            WörterSchleife:
-            for WörterSchleifenwert in To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Range loop
-         
-               if
-                 To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert)) (WörterSchleifenwert) = Element (Source => Text,
-                                                                                                                                                                     Index  => WörterSchleifenwert)
-                 or
-                   To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert)) (WörterSchleifenwert) = Element (Source => Text,
-                                                                                                                                                                       Index  => WörterSchleifenwert)
-               then
-                  null;
-               
-               else
-                  Erlaubt := True;
-                  exit WörterSchleife;
-               end if;
-                
-            end loop WörterSchleife;
-         end if;
-            
-         case
-           Erlaubt
-         is
-            when True =>
-               null;
-               
-            when False =>
-               if
-                 To_Wide_Wide_String (Source => Text)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1
-               then
-                  return False;
-                  
-               elsif
-                 BetriebssystemKonstanten.Punkt = To_Wide_Wide_String (Source => Text) (To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1)
-               then
-                  return False;
-                     
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop VerboteneNamenSchleife;
       
-      return True;
+      
+      VerbotenenamenDreiSchleife:
+      for VerbotenenamenDreiSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenDrei'Range loop
+         SchreibartenDreiSchleife:
+         for SSchreibartenDreiSchleifenwert in 0 .. 7 loop
+            
+            -- Standard ist alles groß.
+            DreierText := To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenDrei (VerbotenenamenDreiSchleifenwert));
+            
+            case
+              SSchreibartenDreiSchleifenwert
+            is
+               when 0 =>
+                  null;
+                  
+               when 1 =>
+                DreierText (1) := To_Lower (Item => DreierText) (1);
+                  
+               when 2 =>
+                DreierText (2) := To_Lower (Item => DreierText) (2);
+                  
+               when 3 =>
+                DreierText (3) := To_Lower (Item => DreierText) (3);
+                                                
+               when 4 =>
+                DreierText (1) := To_Lower (Item => DreierText) (1);
+                DreierText (2) := To_Lower (Item => DreierText) (2);
+                  
+               when 5 =>
+                DreierText (1) := To_Lower (Item => DreierText) (1);
+                DreierText (3) := To_Lower (Item => DreierText) (3);
+                  
+               when 6 =>
+                DreierText (2) := To_Lower (Item => DreierText) (2);
+                DreierText (3) := To_Lower (Item => DreierText) (3);
+                  
+               when 7 =>
+                DreierText (1) := To_Lower (Item => DreierText) (1);
+                DreierText (2) := To_Lower (Item => DreierText) (2);
+                DreierText (3) := To_Lower (Item => DreierText) (3);
+            end case;
+            
+            if
+              Text = DreierText
+            then
+               return SystemRecordKonstanten.LeerTexteingabe;
+            
+            elsif
+              To_Wide_Wide_String (Source => Text)'Length > DreierText'Length
+              and then
+                To_Wide_Wide_String (Source => Text) (1 .. DreierText'Length + 1) = DreierText & "."
+            then
+               return SystemRecordKonstanten.LeerTexteingabe;
+            
+            else
+               null;
+            end if;
+         
+         end loop SchreibartenDreiSchleife;
+      end loop VerbotenenamenDreiSchleife;
+      
+      
+      
+      VerbotenenamenVierSchleife:
+      for VerbotenenamenVierSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenVier'Range loop
+         SchreibartenVierSchleife:
+         for SchreibartenVierSchleifenwert in 0 .. 7 loop
+            
+            -- Standard ist alles groß.
+            ViererText := To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenVier (VerbotenenamenVierSchleifenwert));
+            
+            case
+              SchreibartenVierSchleifenwert
+            is
+               when 0 =>
+                  null;
+                  
+               when 1 =>
+                ViererText (1) := To_Lower (Item => ViererText) (1);
+                  
+               when 2 =>
+                ViererText (2) := To_Lower (Item => ViererText) (2);
+                  
+               when 3 =>
+                ViererText (3) := To_Lower (Item => ViererText) (3);
+                                                
+               when 4 =>
+                ViererText (1) := To_Lower (Item => ViererText) (1);
+                ViererText (2) := To_Lower (Item => ViererText) (2);
+                  
+               when 5 =>
+                ViererText (1) := To_Lower (Item => ViererText) (1);
+                ViererText (3) := To_Lower (Item => ViererText) (3);
+                  
+               when 6 =>
+                ViererText (2) := To_Lower (Item => ViererText) (2);
+                ViererText (3) := To_Lower (Item => ViererText) (3);
+                  
+               when 7 =>
+                ViererText (1) := To_Lower (Item => ViererText) (1);
+                ViererText (2) := To_Lower (Item => ViererText) (2);
+                ViererText (3) := To_Lower (Item => ViererText) (3);
+            end case;
+            
+            if
+              Text = ViererText
+            then
+               return SystemRecordKonstanten.LeerTexteingabe;
+            
+            elsif
+              To_Wide_Wide_String (Source => Text)'Length > ViererText'Length
+              and then
+                To_Wide_Wide_String (Source => Text) (1 .. ViererText'Length + 1) = ViererText & "."
+            then
+               return SystemRecordKonstanten.LeerTexteingabe;
+            
+            else
+               null;
+            end if;
+         
+         end loop SchreibartenVierSchleife;
+      end loop VerbotenenamenVierSchleife;
+      
+      
+      
+      VerbotenenamenFünfSchleife:
+      for VerbotenenamenFünfSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenFünf'Range loop
+         SchreibartenFünfSchleife:
+         for SchreibartenFünfSchleifenwert in 0 .. 7 loop
+            
+            -- Standard ist alles groß.
+            FünferText := To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenVier (VerbotenenamenFünfSchleifenwert));
+            
+            case
+              SchreibartenFünfSchleifenwert
+            is
+               when 0 =>
+                  null;
+                  
+               when 1 =>
+                FünferText (1) := To_Lower (Item => FünferText) (1);
+                  
+               when 2 =>
+                FünferText (2) := To_Lower (Item => FünferText) (2);
+                  
+               when 3 =>
+                FünferText (3) := To_Lower (Item => FünferText) (3);
+                                                
+               when 4 =>
+                FünferText (1) := To_Lower (Item => FünferText) (1);
+                FünferText (2) := To_Lower (Item => FünferText) (2);
+                  
+               when 5 =>
+                FünferText (1) := To_Lower (Item => FünferText) (1);
+                FünferText (3) := To_Lower (Item => FünferText) (3);
+                  
+               when 6 =>
+                FünferText (2) := To_Lower (Item => FünferText) (2);
+                FünferText (3) := To_Lower (Item => FünferText) (3);
+                  
+               when 7 =>
+                FünferText (1) := To_Lower (Item => FünferText) (1);
+                FünferText (2) := To_Lower (Item => FünferText) (2);
+                FünferText (3) := To_Lower (Item => FünferText) (3);
+            end case;
+            
+            if
+              Text = FünferText
+            then
+               return SystemRecordKonstanten.LeerTexteingabe;
+            
+            elsif
+              To_Wide_Wide_String (Source => Text)'Length > FünferText'Length
+              and then
+                To_Wide_Wide_String (Source => Text) (1 .. FünferText'Length + 1) = FünferText & "."
+            then
+               return SystemRecordKonstanten.LeerTexteingabe;
+            
+            else
+               null;
+            end if;
+         
+         end loop SchreibartenFünfSchleife;
+      end loop VerbotenenamenFünfSchleife;
+      
+      
+      
+      return (True, Text);
       
    end NamenprüfungenWindows;
 

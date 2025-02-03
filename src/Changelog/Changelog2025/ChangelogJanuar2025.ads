@@ -120,23 +120,26 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (14.01.2025):
+   -- Version 0.06.0230 => 0.06. (14.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (13.01.2025):
+   -- Version 0.06.0170 => 0.06.0230 (13.01.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Prüfung ob der eingegebene Dateinamen mit dem Dateisystem kompatibel ist überarbeitet.
+   -- Fehler in der Dateinamenprüfung korrigiert der eingegebene Zeichen gelöscht hat.
+   -- Unnötigen Code gelöscht.
+   -- Die Dateinamenprüfung unter Windows prüft die verbotenen Namen jetzt auch in verschiedenen Schreibarten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.06.0145 => 0.06. (12.01.2025):
+   -- Version 0.06.0145 => 0.06.0170 (12.01.2025):
    
-   -- 
+   -- Mingw aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

@@ -6,6 +6,8 @@ private with SystemDatentypen;
 private with VerzeichnisKonstanten;
 private with BetriebssystemDatentypen;
 
+with SystemRecords;
+
 package VerzeichnisDateinamenTests is
    pragma Elaborate_Body;
 
@@ -60,11 +62,15 @@ package VerzeichnisDateinamenTests is
 
    function Namensprüfungen
      (TextExtern : in Unbounded_Wide_Wide_String)
-      return Boolean
+      return SystemRecords.TextEingabeRecord
      with
        Pre => (
                  To_Wide_Wide_String (Source => TextExtern)'Length > 0
-              );
+              ),
+
+       Post => (
+                  if Namensprüfungen'Result.ErfolgreichAbbruch = True then To_Wide_Wide_String (Source => Namensprüfungen'Result.EingegebenerText)'Length > 0
+               );
 
 private
    use Ada.Directories;
@@ -72,6 +78,10 @@ private
    Erlaubt : Boolean;
 
    LängeAktuellesVerzeichnis : constant Positive := Current_Directory'Length;
+
+   DreierText : Wide_Wide_String (1 .. 3);
+   ViererText : Wide_Wide_String (1 .. 4);
+   FünferText : Wide_Wide_String (1 .. 5);
 
    Text : Unbounded_Wide_Wide_String;
 
@@ -88,10 +98,14 @@ private
 
    function NamenprüfungenWindows
      (TextExtern : in Unbounded_Wide_Wide_String)
-      return Boolean
+      return SystemRecords.TextEingabeRecord
      with
        Pre => (
                  To_Wide_Wide_String (Source => TextExtern)'Length > 0
-              );
+              ),
+
+       Post => (
+                  if NamenprüfungenWindows'Result.ErfolgreichAbbruch = True then To_Wide_Wide_String (Source => NamenprüfungenWindows'Result.EingegebenerText)'Length > 0
+               );
 
 end VerzeichnisDateinamenTests;

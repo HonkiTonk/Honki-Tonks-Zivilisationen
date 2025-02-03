@@ -57,10 +57,14 @@ package body TexteingabeGrafik is
                if
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                then
+                  TextGeprüft := VerzeichnisDateinamenTests.Namensprüfungen (TextExtern => LeseLogiktask.Texteingabe);
+                  
                   case
-                    VerzeichnisDateinamenTests.Namensprüfungen (TextExtern => LeseLogiktask.Texteingabe)
+                    TextGeprüft.ErfolgreichAbbruch
                   is
                      when True =>
+                        SchreibeLogiktask.Texteingabe (TextExtern => TextGeprüft.EingegebenerText);
+                        
                         SchreibeLogiktask.ErfolgTexteingabe (ErfolgExtern => True);
                         SchreibeGrafiktask.Texteingabe (JaNeinExtern => False);
                         SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
