@@ -1,3 +1,5 @@
+-- Das hier mal mit dem FehlermeldungssystemZusatzinformationen zusammenführen? äöü
+
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 

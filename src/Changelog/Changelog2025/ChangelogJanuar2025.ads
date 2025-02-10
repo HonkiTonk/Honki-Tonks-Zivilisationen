@@ -99,30 +99,31 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (17.01.2025):
+   -- Version 0.06.0315 => 0.06. (17.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (16.01.2025):
+   -- Version 0.06.0280 => 0.06.0315 (16.01.2025):
    
-   -- 
+   -- Die Bibliotheken entfernt.
+   -- Die neue universelle Bibliothek eingefügt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
+   
+   
+
+   -- Version 0.06.0255 => 0.06.0280 (15.01.2025):
+   
+   -- VerzeichnisDateinamenTests in eine eigene Bibliothek ausgelagert.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (15.01.2025):
+   -- Version 0.06.0230 => 0.06.0255 (14.01.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06.0230 => 0.06. (14.01.2025):
-   
-   -- 
+   -- Mingw aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

@@ -30,7 +30,7 @@ package SystemDatentypen is
    subtype Abspann_Vorhanden_Enum is Abspann_Enum range Abspann_Enum'Succ (Abspann_Enum'First) .. Abspann_Enum'Last;
    
    
-      
+   
    type NullBisHundert is range 0 .. 100;
    subtype EinsBisHundert is NullBisHundert range 1 .. NullBisHundert'Last;
    

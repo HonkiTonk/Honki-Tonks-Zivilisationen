@@ -1,12 +1,6 @@
 with "config/honki_tonks_zivilisationen_config.gpr";
 
-with "Bibliotheken/Grenztestsystem/HonkiTonksGrenztestsystem.gpr";
-with "Bibliotheken/Meldungssystem/HonkiTonksMeldungssystem.gpr";
-with "Bibliotheken/Umwandlungssystem/HonkiTonksUmwandlungssystem.gpr";
-with "Bibliotheken/Diagnosesystem/HonkiTonksDiagnosesystem.gpr";
-with "Bibliotheken/Dateizugriffssystem/HonkiTonksDateizugriffssystem.gpr";
-with "Bibliotheken/Zufallsgeneratoren/HonkiTonksZufallsgeneratoren.gpr";
-with "Bibliotheken/Allgemeinberechnungen/HonkiTonksAllgemeinberechnungen.gpr";
+with "Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek.gpr";
 
 project Honki_Tonks_Zivilisationen is
 

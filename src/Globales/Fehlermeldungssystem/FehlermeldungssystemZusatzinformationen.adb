@@ -1,3 +1,4 @@
+-- Das hier mal mit dem DiagnosesystemZusatzinformationen zusammenführen? äöü
 package body FehlermeldungssystemZusatzinformationen is
 
    function Koordinaten
