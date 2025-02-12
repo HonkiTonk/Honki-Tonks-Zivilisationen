@@ -92,16 +92,16 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (18.01.2025):
+   -- Version 0.06.0340 => 0.06. (18.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0315 => 0.06. (17.01.2025):
+   -- Version 0.06.0315 => 0.06.0340 (17.01.2025):
    
-   -- 
+   -- Spieleentwicklungsbibliothek aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

@@ -1,11 +1,11 @@
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-
 with Ada.Directories;
 with Ada.Exceptions;
 with Ada.Calendar;
 with Ada.Calendar.Formatting;
 
 with DateisystemvariablenHTSEB;
+with MeldungsvariablenHTSEB;
+with UmwandlungssystemHTSEB;
 
 package body MeldungSchreibenHTSEB is
 
@@ -42,15 +42,15 @@ package body MeldungSchreibenHTSEB is
       end case;
       
       Put (File => DateiMeldung,
-           Item => Decode (Item => Local_Image (Date                  => Clock,
-                                                Include_Time_Fraction => False))
-           & ": " & MeldungExtern);
+           Item => UmwandlungssystemHTSEB.Decode (TextExtern => Local_Image (Date                  => Clock,
+                                                                             Include_Time_Fraction => False))
+           & " (Version: " & MeldungsvariablenHTSEB.VersionsnummerAbfragen & "): " & MeldungExtern);
       
       Close (File => DateiMeldung);
       
    exception
      when StandardAdaFehler : others =>
-       Put (Item => "MeldungSchreiben.Meldung - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+       Put (Item => "MeldungSchreiben.Meldung - Konnte nicht geschrieben werden" & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiMeldung)
@@ -70,7 +70,7 @@ package body MeldungSchreibenHTSEB is
      (MeldungExtern : in String)
    is begin
 
-      Meldung (MeldungExtern => Decode (Item => MeldungExtern));
+      Meldung (MeldungExtern => UmwandlungssystemHTSEB.Decode (TextExtern => MeldungExtern));
       
    end MeldungASCII;
 

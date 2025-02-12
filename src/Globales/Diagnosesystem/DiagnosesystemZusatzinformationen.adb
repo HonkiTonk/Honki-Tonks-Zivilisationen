@@ -33,7 +33,7 @@ package body DiagnosesystemZusatzinformationen is
       ZuSpeichern := 0;
       
       DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpeichern,
-                                  NameExtern     => ("Test/" & "Test"));
+                                               NameExtern     => ("Test/" & "Test"));
       
       StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichern),
                                             ZuSpeichern);

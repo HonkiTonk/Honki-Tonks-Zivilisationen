@@ -4,7 +4,7 @@ private with Ada.Directories;
 
 with SystemRecordsHTSEB;
 
-package VerzeichnisDateinamentestsHTSEB is
+package DateisystemtestsHTSEB is
    pragma Elaborate_Body;
 
    function GültigeZeichenlänge
@@ -104,4 +104,4 @@ private
                   if NamenprüfungenWindows'Result.ErfolgreichAbbruch = True then To_Wide_Wide_String (Source => NamenprüfungenWindows'Result.EingegebenerText)'Length > 0
                );
 
-end VerzeichnisDateinamentestsHTSEB;
+end DateisystemtestsHTSEB;

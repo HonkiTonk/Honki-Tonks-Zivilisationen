@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Characters.Handling; use Ada.Wide_Wide_Characters.Handling;
+with Ada.Wide_Wide_Characters.Handling;
 
 with BetriebssystemKonstantenHTSEB;
 with BetriebssystemDatentypenHTSEB;
@@ -9,7 +9,7 @@ with UmwandlungssystemHTSEB;
 with DateisystemvariablenHTSEB;
 
 -- So umbauen dass die Zusammenfassung von Linux und Windows den Gesamtpfad ergibt? äöü
-package body VerzeichnisDateinamentestsHTSEB is
+package body DateisystemtestsHTSEB is
 
    -- Bei Linux nur den Dateinamen übergeben, bei Windows zusätzlich noch den gesamten Pfad der Unterverzeichnisse.
    function GültigeZeichenlänge
@@ -28,7 +28,7 @@ package body VerzeichnisDateinamentestsHTSEB is
                return True;
                
             else
-               MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
+               MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamentestsHTSEB.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
             
@@ -39,7 +39,7 @@ package body VerzeichnisDateinamentestsHTSEB is
                return True;
                
             else
-               MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
+               MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamentestsHTSEB.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
       end case;
@@ -62,7 +62,7 @@ package body VerzeichnisDateinamentestsHTSEB is
       --   elsif
         Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisDateinameExtern)) = False
       then
-         MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
+         MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamentestsHTSEB.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
          return False;
             
       else
@@ -88,7 +88,7 @@ package body VerzeichnisDateinamentestsHTSEB is
       elsif
         Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => WindowsTextExtern)) = False
       then
-         MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
+         MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamentestsHTSEB.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
          return False;
             
       else
@@ -270,7 +270,9 @@ package body VerzeichnisDateinamentestsHTSEB is
    function NamenprüfungenWindows
      (TextExtern : in Unbounded_Wide_Wide_String)
       return SystemRecordsHTSEB.TextEingabeRecord
-   is begin
+   is
+      use Ada.Wide_Wide_Characters.Handling;
+   begin
       
       Text := TextExtern;
       
@@ -504,7 +506,7 @@ package body VerzeichnisDateinamentestsHTSEB is
       
       
       return (True, Text);
-      
+         
    end NamenprüfungenWindows;
 
-end VerzeichnisDateinamentestsHTSEB;
+end DateisystemtestsHTSEB;
