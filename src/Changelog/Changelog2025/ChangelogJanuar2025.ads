@@ -85,17 +85,21 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (19.01.2025):
+   -- Version 0.06.0410 => 0.06. (19.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0340 => 0.06. (18.01.2025):
+   -- Version 0.06.0340 => 0.06.0410 (18.01.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diverse Datentypen, Records und Konstanten in die Spieleentwicklungsbibliothek ausgelagert.
+   -- Die Dateisystemtest der SEB eingebunden.
+   -- Alle Zugriffe auf die alten Bibliotheken auf die neue SEB geändert.
+   -- Angefangen die jetzt in der SEB enthaltenen Datentypen aus dem Projektkode zu entfernen.
+   -- Unnötigen Code gelöscht.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

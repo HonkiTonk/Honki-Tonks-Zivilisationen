@@ -1,4 +1,4 @@
-with ZufallsgeneratorenHTB6;
+with ZufallsgeneratorenHTSEB;
 
 with KartengrundDatentypen;
 
@@ -34,7 +34,7 @@ package body KartengeneratorLandressourcenLogik is
          elsif
            (GezogeneZahl = Zahlenspeicher
             and
-              ZufallsgeneratorenHTB6.Münzwurf = True)
+              ZufallsgeneratorenHTSEB.Münzwurf = True)
            or
              GezogeneZahl > Zahlenspeicher
          then

@@ -1,7 +1,7 @@
 with MenueDatentypen;
 
 with AuswahlaufteilungLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with StandardTastenbelegungDatenbank;
 with SchreibenEinstellungenLogik;
 
@@ -30,7 +30,7 @@ package body OptionenSteuerungLogik is
                return AuswahlWert;
                      
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "OptionenSteuerungLogik.SteuerungBelegen: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenSteuerungLogik.SteuerungBelegen: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop BelegungSchleife;

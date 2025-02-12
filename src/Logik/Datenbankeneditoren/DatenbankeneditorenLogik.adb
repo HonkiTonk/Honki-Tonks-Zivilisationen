@@ -9,7 +9,7 @@ with StandardForschungenDatenbank;
 with StandardEinheitenDatenbank;
 
 with AuswahlaufteilungLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 -- with EinheitenDatenbankeditorLogik;
 -- with ForschungenDatenbankeditorLogik;
 -- with GebaeudeDatenbankeditorLogik;
@@ -61,7 +61,7 @@ package body DatenbankeneditorenLogik is
                return AuswahlWert;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "DatenbankeneditorenLogik.DatenbankenEditoren: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "DatenbankeneditorenLogik.DatenbankenEditoren: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop EditorenSchleife;

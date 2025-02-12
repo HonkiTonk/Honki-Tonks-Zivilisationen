@@ -4,7 +4,7 @@ with ProduktionKonstanten;
 with LeseWeltkarte;
 
 with RodenErmittelnLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with ArbeitszeitMineLogik;
 with AufgabeFestlegenLogik;
 
@@ -62,7 +62,7 @@ package body MineErmittelnLogik is
             null;
             
          when others =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "MineErmittelnLogik.MineErmitteln: Falsche Aufgabe:" & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            MeldungssystemHTSEB.Logik (MeldungExtern => "MineErmittelnLogik.MineErmitteln: Falsche Aufgabe:" & Arbeitswerte.Aufgabe'Wide_Wide_Image);
             return False;
       end case;
       

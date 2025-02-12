@@ -6,7 +6,7 @@ with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
 with GebaeudeAllgemeinLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 
 package body StadtGebaeudeBauenLogik is
 
@@ -28,7 +28,7 @@ package body StadtGebaeudeBauenLogik is
             null;
             
          when SpeziesDatentypen.Leer_Spieler_Enum =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "StadtGebaeudeBauenLogik.GebäudeFertiggestellt: Unbelegte Spezies");
+            MeldungssystemHTSEB.Logik (MeldungExtern => "StadtGebaeudeBauenLogik.GebäudeFertiggestellt: Unbelegte Spezies");
       end case;
       
    end GebäudeFertiggestellt;

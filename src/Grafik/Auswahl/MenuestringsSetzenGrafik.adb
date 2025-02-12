@@ -8,7 +8,7 @@ with LeseEinstellungenGrafik;
 with LeseEinstellungenTon;
 with LeseOptionen;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 
 package body MenuestringsSetzenGrafik is
    
@@ -24,7 +24,7 @@ package body MenuestringsSetzenGrafik is
          null;
             
       else
-         MeldungssystemHTB1.Grafik (MeldungExtern => "MenuestringsSetzenGrafik.MenüstringsSetzen: Zeile zu groß: " & WelcheZeileExtern'Wide_Wide_Image & " " & WelchesMenüExtern'Wide_Wide_Image);
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "MenuestringsSetzenGrafik.MenüstringsSetzen: Zeile zu groß: " & WelcheZeileExtern'Wide_Wide_Image & " " & WelchesMenüExtern'Wide_Wide_Image);
          return "";
       end if;
       

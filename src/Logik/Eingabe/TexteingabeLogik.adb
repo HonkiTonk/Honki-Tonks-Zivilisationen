@@ -1,8 +1,9 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with SystemRecordsKonstantenHTSEB;
+
 with TextnummernKonstanten;
 with Speziestexte;
-with SystemRecordKonstanten;
 with GrafikDatentypen;
 with TextKonstanten;
 
@@ -18,7 +19,7 @@ package body TexteingabeLogik is
    function StadtName
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BauenExtern : in Boolean)
-      return SystemRecords.TextEingabeRecord
+      return SystemRecordsHTSEB.TextEingabeRecord
    is begin
       
       if
@@ -45,7 +46,7 @@ package body TexteingabeLogik is
    
    
    function SpielstandName
-     return SystemRecords.TextEingabeRecord
+     return SystemRecordsHTSEB.TextEingabeRecord
    is begin
       
       Name := NameEingeben (WelcheFrageExtern => TextnummernKonstanten.FrageSpielstandname);
@@ -76,7 +77,7 @@ package body TexteingabeLogik is
    
    function NameEingeben
      (WelcheFrageExtern : in Positive)
-      return SystemRecords.TextEingabeRecord
+      return SystemRecordsHTSEB.TextEingabeRecord
    is begin
             
       case
@@ -86,7 +87,7 @@ package body TexteingabeLogik is
             null;
             
          when others =>
-            SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordKonstanten.LeerTexteingabe);
+            SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordsKonstantenHTSEB.LeerTexteingabe);
       end case;
       
       SchreibeGrafiktask.Fragenanzeige (FrageExtern => WelcheFrageExtern);

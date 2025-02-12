@@ -7,7 +7,7 @@ with LeseEinheitenGebaut;
 with LeseWeltkarte;
 with LeseAllgemeines;
 
-with ZufallsgeneratorenHTB6;
+with ZufallsgeneratorenHTSEB;
 with KartenkoordinatenberechnungssystemLogik;
 with PassierbarkeitspruefungLogik;
 
@@ -40,7 +40,7 @@ package body KIZielSuchenLogik is
             QuadrantenauswahlSchleife:
             loop
             
-               WelcherQuadrant := KartenDatentypen.StandardQuadranten (ZufallsgeneratorenHTB6.VorgegebenerZahlenbereich (AnfangExtern => Positive (QuadrantenDurchgegangenArray'First),
+               WelcherQuadrant := KartenDatentypen.StandardQuadranten (ZufallsgeneratorenHTSEB.VorgegebenerZahlenbereich (AnfangExtern => Positive (QuadrantenDurchgegangenArray'First),
                                                                                                                               EndeExtern   => Positive (QuadrantenDurchgegangenArray'Last)));
             
                case

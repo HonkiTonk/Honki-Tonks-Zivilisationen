@@ -3,7 +3,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
 
-with SystemRecords;
+with SystemRecordsHTSEB;
 
 package SchreibeLogiktask is
    pragma Elaborate_Body;
@@ -33,6 +33,6 @@ package SchreibeLogiktask is
      (TextExtern : in Unbounded_Wide_Wide_String);
    
    procedure KompletteTexteingabe
-     (EingabeExtern : in SystemRecords.TextEingabeRecord);
+     (EingabeExtern : in SystemRecordsHTSEB.TextEingabeRecord);
 
 end SchreibeLogiktask;

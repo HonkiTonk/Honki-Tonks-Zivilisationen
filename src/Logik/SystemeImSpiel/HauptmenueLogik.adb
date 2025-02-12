@@ -11,7 +11,7 @@ with SpieleinstellungenLogik;
 with SpielLogik;
 with LadenLogik;
 with AuswahlaufteilungLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with DatenbankeneditorenLogik;
 
 package body HauptmenueLogik is
@@ -97,7 +97,7 @@ package body HauptmenueLogik is
                null;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "HauptmenueLogik.Hauptmenü: Ungültige Menüauswahl: " & RückgabeAuswahl'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "HauptmenueLogik.Hauptmenü: Ungültige Menüauswahl: " & RückgabeAuswahl'Wide_Wide_Image);
          end case;
          
       end loop HauptmenüSchleife;

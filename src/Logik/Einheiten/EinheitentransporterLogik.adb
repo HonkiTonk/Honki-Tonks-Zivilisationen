@@ -11,7 +11,7 @@ with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 with BewegungspunkteBerechnenLogik;
 with BewegungsberechnungEinheitenLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 
 package body EinheitentransporterLogik is
    
@@ -265,7 +265,7 @@ package body EinheitentransporterLogik is
       
       -- Das kann theortisch weg, aber zu Sicherheitszwischen mal drinnen lassen um besser Überprüfen zu können ob das Sortieren funktioniert. äöü
       -- Dauerhaft drinnen lassen? äöü
-      MeldungssystemHTB1.Logik (MeldungExtern => "EinheitentransporterLogik.LadungsnummerAnpassen: Transportierte Einheit wird nicht transportiert");
+      MeldungssystemHTSEB.Logik (MeldungExtern => "EinheitentransporterLogik.LadungsnummerAnpassen: Transportierte Einheit wird nicht transportiert");
       
    end LadungsnummerAnpassen;
    

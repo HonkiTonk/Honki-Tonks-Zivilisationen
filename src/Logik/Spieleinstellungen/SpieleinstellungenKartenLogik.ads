@@ -1,6 +1,7 @@
+private with SystemRecordsHTSEB;
+
 private with RueckgabeDatentypen;
 private with KartenDatentypen;
-private with SystemRecords;
 private with KartenRecords;
 
 package SpieleinstellungenKartenLogik is
@@ -27,8 +28,8 @@ private
    
    ZwischenwertKartenart : Positive;
    
-   BenutzerdefinierteGröße : SystemRecords.ZahlenEingabeRecord;
-   BenutzerdefinierteKartenart : SystemRecords.ZahlenEingabeRecord;
+   BenutzerdefinierteGröße : SystemRecordsHTSEB.ZahlenEingabeRecord;
+   BenutzerdefinierteKartenart : SystemRecordsHTSEB.ZahlenEingabeRecord;
    
    procedure KartenformZuweisen
      (WelchEbeneExtern : in RueckgabeDatentypen.Kartenform_Enum);

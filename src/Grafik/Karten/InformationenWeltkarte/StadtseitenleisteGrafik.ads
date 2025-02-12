@@ -15,7 +15,7 @@ private with GrafikRecordKonstanten;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
-private with UmwandlungssystemHTB3;
+private with UmwandlungssystemHTSEB;
 
 package StadtseitenleisteGrafik is
    pragma Elaborate_Body;
@@ -128,6 +128,6 @@ private
    
    
    
-   function ZahlAlsString is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => ProduktionDatentypen.Produktion);
+   function ZahlAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => ProduktionDatentypen.Produktion);
 
 end StadtseitenleisteGrafik;

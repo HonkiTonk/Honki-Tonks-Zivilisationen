@@ -83,7 +83,7 @@ package body SchreibeLogiktask is
    
    
    procedure KompletteTexteingabe
-     (EingabeExtern : in SystemRecords.TextEingabeRecord)
+     (EingabeExtern : in SystemRecordsHTSEB.TextEingabeRecord)
    is begin
       
       Logiktask.Eingabe.Text := EingabeExtern;

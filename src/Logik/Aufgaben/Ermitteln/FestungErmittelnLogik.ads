@@ -1,4 +1,4 @@
-private with GanzzahltestsHTB2;
+private with GanzzahltestsHTSEB;
 
 with SpeziesDatentypen;
 with KartenDatentypen;
@@ -85,7 +85,7 @@ private
                  GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
               );
 
-   function ArbeitszeitPrüfen is new GanzzahltestsHTB2.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
+   function ArbeitszeitPrüfen is new GanzzahltestsHTSEB.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
 
    -- Später Festungen für den Kern einbauen. äöü
 

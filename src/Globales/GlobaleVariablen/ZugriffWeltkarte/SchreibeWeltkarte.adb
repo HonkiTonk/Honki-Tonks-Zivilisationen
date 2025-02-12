@@ -6,7 +6,7 @@ with SpeziesKonstanten;
 
 with LeseWeltkarte;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with FehlermeldungssystemZusatzinformationen;
 
 package body SchreibeWeltkarte is
@@ -20,7 +20,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.Basisgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Basisgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Basisgrund := GrundExtern;
@@ -39,7 +39,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.Zusatzgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Zusatzgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Zusatzgrund := GrundExtern;
@@ -58,7 +58,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.Gesamtgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Gesamtgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Basisgrund := GrundExtern.Basisgrund;
@@ -78,7 +78,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.Feldeffekt: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Feldeffekt: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Effekte (FeldeffektExtern) := True;
@@ -97,7 +97,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.AlleFeldeffekte: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.AlleFeldeffekte: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Effekte := FeldeffekteExtern;
@@ -117,7 +117,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.Sichtbar: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Sichtbar: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Sichtbar (SpeziesExtern) := SichtbarExtern;
@@ -136,7 +136,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.GesamteSichtbarkeit: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.GesamteSichtbarkeit: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Sichtbar := SichtbarkeitExtern;
@@ -155,7 +155,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.Fluss: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Fluss: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Fluss := FlussExtern;
@@ -174,7 +174,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.Ressource: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Ressource: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Ressource := RessourceExtern;
@@ -193,7 +193,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.Weg: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Weg: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Weg := WegExtern;
@@ -212,7 +212,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.Verbesserung: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Verbesserung: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserung := VerbesserungExtern;
@@ -231,7 +231,7 @@ package body SchreibeWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Stadtbelegung := BelegterGrundExtern;

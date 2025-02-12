@@ -1,3 +1,6 @@
+with DateisystemtestsHTSEB;
+with UmwandlungssystemHTSEB;
+
 with TastenbelegungDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
@@ -18,8 +21,6 @@ with SpielstandAllgemeinesLogik;
 with JaNeinLogik;
 with SpielstandEntfernenLogik;
 with UmwandlungenVerzeichnisse;
-with VerzeichnisDateinamenTests;
-with UmwandlungssystemHTB3;
 
 package body SpielstandlisteLogik is
 
@@ -75,13 +76,13 @@ package body SpielstandlisteLogik is
                                      Directory_Entry => Spielstanddatei);
                end case;
                
-               SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => UmwandlungssystemHTB3.DecodeUnbounded (TextExtern => Simple_Name (Directory_Entry => Spielstanddatei)),
+               SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => Simple_Name (Directory_Entry => Spielstanddatei)),
                                                             NummerExtern => AktuellerSpielstand);
                
                if
                  -- Wird diese Prüfung hier so überhaupt gebraucht? äöü
                  -- Eventuell bis Wide_Wide_Directories? äöü
-                 VerzeichnisDateinamenTests.GültigerNamen (NameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => AktuellerSpielstand))) = False
+                 DateisystemtestsHTSEB.GültigerNamen (NameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => AktuellerSpielstand))) = False
                then
                   SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => TextKonstanten.LeerUnboundedString,
                                                                NummerExtern => AktuellerSpielstand);

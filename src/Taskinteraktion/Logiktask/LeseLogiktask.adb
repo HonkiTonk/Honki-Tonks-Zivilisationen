@@ -83,7 +83,7 @@ package body LeseLogiktask is
    
    
    function KompletteTexteingabe
-     return SystemRecords.TextEingabeRecord
+     return SystemRecordsHTSEB.TextEingabeRecord
    is begin
       
       return Logiktask.Eingabe.Text;

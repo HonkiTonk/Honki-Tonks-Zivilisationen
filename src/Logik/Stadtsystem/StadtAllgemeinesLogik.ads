@@ -1,8 +1,9 @@
+private with SystemRecordsHTSEB;
+
 with SpeziesDatentypen;
 with StadtRecords;
 with StadtKonstanten;
 
-private with SystemRecords;
 private with StadtDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenRecords;
@@ -40,7 +41,7 @@ private
    
    Stadtgrenze : StadtDatentypen.Städtebereich;
    
-   NeuerName : SystemRecords.TextEingabeRecord;
+   NeuerName : SystemRecordsHTSEB.TextEingabeRecord;
    
    Kartenwert : KartenRecords.KartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;

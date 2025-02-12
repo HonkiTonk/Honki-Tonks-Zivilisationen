@@ -1,7 +1,7 @@
 with KartengrundDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
-with DatentypenHTB6;
+with ZufallsgeneratorenDatentypenHTSEB;
 with KampfDatentypen;
 with ProduktionDatentypen;
 with KampfKonstanten;
@@ -17,24 +17,24 @@ package ZusatzgrundUnterflaeche is
                                                                                    (
                                                                                     Bewertung =>
                                                                                       (
-                                                                                       SpeziesDatentypen.Menschen_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Kasrodiah_Enum        => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Lasupin_Enum          => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Lamustra_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Manuky_Enum           => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Suroka_Enum           => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Pryolon_Enum          => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Moru_Phisihl_Enum     => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Larinos_Lotaris_Enum  => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Carupex_Enum          => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Alary_Enum            => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Natries_Zermanis_Enum => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Tridatus_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Senelari_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Aspari_2_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Ekropa_Enum           => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Tesorahn_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Talbidahr_Enum        => DatentypenHTB6.Bewertung_Sechs_Enum
+                                                                                       SpeziesDatentypen.Menschen_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Kasrodiah_Enum        => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Lasupin_Enum          => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Lamustra_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Manuky_Enum           => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Suroka_Enum           => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Pryolon_Enum          => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Moru_Phisihl_Enum     => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Larinos_Lotaris_Enum  => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Carupex_Enum          => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Alary_Enum            => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Natries_Zermanis_Enum => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Tridatus_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Senelari_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Aspari_2_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Ekropa_Enum           => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Tesorahn_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Talbidahr_Enum        => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum
                                                                                       ),
 
                                                                                     Wirtschaft =>
@@ -202,24 +202,24 @@ package ZusatzgrundUnterflaeche is
                                                                                    (
                                                                                     Bewertung =>
                                                                                       (
-                                                                                       SpeziesDatentypen.Menschen_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Kasrodiah_Enum        => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Lasupin_Enum          => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Lamustra_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Manuky_Enum           => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Suroka_Enum           => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Pryolon_Enum          => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Moru_Phisihl_Enum     => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Larinos_Lotaris_Enum  => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Carupex_Enum          => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Alary_Enum            => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Natries_Zermanis_Enum => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Tridatus_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Senelari_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Aspari_2_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Ekropa_Enum           => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Tesorahn_Enum         => DatentypenHTB6.Bewertung_Sechs_Enum,
-                                                                                       SpeziesDatentypen.Talbidahr_Enum        => DatentypenHTB6.Bewertung_Sechs_Enum
+                                                                                       SpeziesDatentypen.Menschen_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Kasrodiah_Enum        => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Lasupin_Enum          => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Lamustra_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Manuky_Enum           => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Suroka_Enum           => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Pryolon_Enum          => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Moru_Phisihl_Enum     => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Larinos_Lotaris_Enum  => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Carupex_Enum          => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Alary_Enum            => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Natries_Zermanis_Enum => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Tridatus_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Senelari_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Aspari_2_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Ekropa_Enum           => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Tesorahn_Enum         => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum,
+                                                                                       SpeziesDatentypen.Talbidahr_Enum        => ZufallsgeneratorenDatentypenHTSEB.Bewertung_Sechs_Enum
                                                                                       ),
 
                                                                                     Wirtschaft =>

@@ -2,7 +2,7 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.Window.Event;
 
-private with SystemRecords;
+private with SystemRecordsHTSEB;
 
 package TexteingabeGrafik is
    pragma Elaborate_Body;
@@ -18,7 +18,7 @@ private
 
    TextEingegeben : Sf.Window.Event.sfEvent;
    
-   TextGeprüft : SystemRecords.TextEingabeRecord;
+   TextGeprüft : SystemRecordsHTSEB.TextEingabeRecord;
 
    procedure ZeichenEntfernen;
    procedure Abbruch;

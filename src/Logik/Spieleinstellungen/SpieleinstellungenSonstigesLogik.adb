@@ -4,7 +4,7 @@ with SchreibeAllgemeines;
 
 with ZufallsgeneratorenSpieleinstellungenLogik;
 with AuswahlaufteilungLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with UmwandlungenDatentypen;
 
 package body SpieleinstellungenSonstigesLogik is
@@ -30,7 +30,7 @@ package body SpieleinstellungenSonstigesLogik is
                return;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "SpieleinstellungenSonstigesLogik.SchwierigkeitsgradFestlegen: Falsche Auswahl: " & SchwierigkeitAuswahl'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenSonstigesLogik.SchwierigkeitsgradFestlegen: Falsche Auswahl: " & SchwierigkeitAuswahl'Wide_Wide_Image);
          end case;
          
       end loop SchwierigkeitsgradSchleife;

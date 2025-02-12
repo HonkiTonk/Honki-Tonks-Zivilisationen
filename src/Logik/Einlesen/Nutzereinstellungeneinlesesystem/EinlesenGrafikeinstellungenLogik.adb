@@ -2,7 +2,10 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with Sf.Graphics.Color;
 
-with DateizugriffssystemHTB5;
+with DateizugriffssystemHTSEB;
+with DateisystemtestsHTSEB;
+with UmwandlungssystemHTSEB;
+with MeldungssystemHTSEB;
 
 with VerzeichnisKonstanten;
 with TextDatentypen;
@@ -10,10 +13,7 @@ with TextKonstanten;
 
 with SchreibeEinstellungenGrafik;
 
-with MeldungssystemHTB1;
 with EinstellungenGrafik;
-with VerzeichnisDateinamenTests;
-with UmwandlungssystemHTB3;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenGrafikeinstellungenLogik is
@@ -22,15 +22,15 @@ package body EinlesenGrafikeinstellungenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Grafikeinstellungen))
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Grafikeinstellungen))
       is
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiGrafikeinstellungen,
+            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiGrafikeinstellungen,
                                       NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       end case;
       
@@ -50,8 +50,8 @@ package body EinlesenGrafikeinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenGrafikeinstellungenLogik.Grafikeinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenGrafikeinstellungenLogik.Grafikeinstellungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          EinstellungenGrafik.StandardeinstellungenLaden;
          
          case
@@ -340,8 +340,8 @@ package body EinlesenGrafikeinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenGrafikeinstellungenLogik.GrafikeinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenGrafikeinstellungenLogik.GrafikeinstellungenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end GrafikeinstellungenDurchgehen;

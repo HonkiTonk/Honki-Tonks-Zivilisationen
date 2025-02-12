@@ -202,7 +202,7 @@ package ChangelogAugust2024 is
 
    -- Version 0.05.8820 => 0.05.8855 (03.08.2024):
    
-   -- Das MeldungssystemHTB1 in eine verallgemeinerte Bibliothek ausgelagert.
+   -- Das MeldungssystemHTSEB in eine verallgemeinerte Bibliothek ausgelagert.
    -- Die Meldungssystembibliothek eingebunden.
    -- Kleinigkeiten korrigiert.
    

@@ -1,6 +1,6 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
-with DateizugriffssystemHTB5;
+with DateizugriffssystemHTSEB;
 
 with EinheitenDatenbank;
 with ForschungenDatenbank;
@@ -12,8 +12,8 @@ with VerzeichnisKonstanten;
 with ForschungRecordKonstanten;
 with EffekteDatenbank;
 
-with MeldungssystemHTB1;
-with UmwandlungssystemHTB3;
+with MeldungssystemHTSEB;
+with UmwandlungssystemHTSEB;
 
 -- Das Schreiben/Einlesen der Datenbanken auch so aufteilen wie das Schreiben/Einlesen der Einstellungen. äöü
 package body SchreibenDatenbankenLogik is
@@ -36,7 +36,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenEinheitenDatenbank
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiEinheitendatenbank,
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiEinheitendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
       EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DateiEinheitendatenbank),
@@ -46,8 +46,8 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiEinheitendatenbank)
@@ -67,7 +67,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenForschungenDatenbank
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiForschungendatenbank,
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiForschungendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       
       ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DateiForschungendatenbank),
@@ -86,8 +86,8 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenForschungenDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenForschungenDatenbank: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiForschungendatenbank)
@@ -106,7 +106,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenGebäudeDatenbank
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiGebäudedatenbank,
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiGebäudedatenbank,
                                   NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
       GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DateiGebäudedatenbank),
@@ -116,8 +116,8 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenGebäudeDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenGebäudeDatenbank: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiGebäudedatenbank)
@@ -136,7 +136,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenKartenDatenbanken
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiKartendatenbank,
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiKartendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
             
       KartenDatenbank.BasisgrundlisteArray'Write (Stream (File => DateiKartendatenbank),
@@ -155,8 +155,8 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenKartenDatenbanken: Konnte nicht gespeichert werden: " &
-                                       UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenKartenDatenbanken: Konnte nicht gespeichert werden: " &
+                                       UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiKartendatenbank)
@@ -175,7 +175,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenVerbesserungenDatenbank
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiVerbesserungendatenbank,
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiVerbesserungendatenbank,
                                   NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
       VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DateiVerbesserungendatenbank),
@@ -188,8 +188,8 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiVerbesserungendatenbank)
@@ -208,7 +208,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenSpeziesDatenbank
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpeziesdatenbank,
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeziesdatenbank,
                                   NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
       SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DateiSpeziesdatenbank),
@@ -218,8 +218,8 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenSpeziesDatenbank: Konnte nicht gespeichert werden: " &
-                                       UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenSpeziesDatenbank: Konnte nicht gespeichert werden: " &
+                                       UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiSpeziesdatenbank)
@@ -238,7 +238,7 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenEffekteDatenbank
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiEffektedatenbank,
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiEffektedatenbank,
                                   NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
       EffekteDatenbank.EffektelisteArray'Write (Stream (File => DateiEffektedatenbank),
@@ -248,8 +248,8 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenEffekteDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenEffekteDatenbank: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiEffektedatenbank)

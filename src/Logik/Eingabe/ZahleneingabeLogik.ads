@@ -1,7 +1,8 @@
 private with Sf.Window.Keyboard;
 
+with SystemRecordsHTSEB;
+
 with ZahlenDatentypen;
-with SystemRecords;
 with Spieltexte;
 
 package ZahleneingabeLogik is
@@ -11,7 +12,7 @@ package ZahleneingabeLogik is
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       WelcheFrageExtern : in Positive)
-      return SystemRecords.ZahlenEingabeRecord
+      return SystemRecordsHTSEB.ZahlenEingabeRecord
      with
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
@@ -33,7 +34,7 @@ private
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
    Zwischenspeicher : Sf.Window.Keyboard.sfKeyCode;
 
-   EingegebeneZahl : SystemRecords.ZahlenEingabeRecord;
+   EingegebeneZahl : SystemRecordsHTSEB.ZahlenEingabeRecord;
 
    type Zahl_Prüfung_Enum is (Zahl_Hinzufügen, Eingabe_Abbrechen, Eingabe_Fertig, Zahl_Löschen, Vorzeichen_Minus, Vorzeichen_Plus, Leer);
 
@@ -84,7 +85,7 @@ private
    function ZahlSchleife
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
-      return SystemRecords.ZahlenEingabeRecord
+      return SystemRecordsHTSEB.ZahlenEingabeRecord
      with
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern

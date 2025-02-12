@@ -1,6 +1,6 @@
 with Ada.Exceptions;
 
-with DateizugriffssystemHTB5;
+with DateizugriffssystemHTSEB;
 
 with KartenRecords;
 with StadtRecords;
@@ -28,10 +28,10 @@ with SchreibeGrafiktask;
 with LadezeitenLogik;
 with SpielstandAllgemeinesLogik;
 with SpeichernKarteLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with MeldungFestlegenLogik;
 with UmwandlungenVerzeichnisse;
-with UmwandlungssystemHTB3;
+with UmwandlungssystemHTSEB;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -84,7 +84,7 @@ package body SpeichernLogik is
                Spielstandart := SystemDatentypen.Manueller_Spielstand_Enum;
          end case;
          
-         DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpeichern,
+         DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                   NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
                                                                                                               SpielstandnameExtern => Spielstandname));
          
@@ -127,8 +127,8 @@ package body SpeichernLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
-         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernLogik.Speichern: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernLogik.Speichern: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiSpeichern)
@@ -171,8 +171,8 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernLogik.Allgemeines: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernLogik.Allgemeines: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Allgemeines;
@@ -289,8 +289,8 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end StädteEinheitenSpeichern;
@@ -342,8 +342,8 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SpeichernLogik.Spezieswerte: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernLogik.Spezieswerte: Konnte nicht gespeichert werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;

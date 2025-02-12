@@ -1,12 +1,13 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with BetriebssystemKonstantenHTSEB;
+
 with Menuetexte;
 with Spieltexte;
 with Sequenzentexte;
 with Kartentexte;
 with Speziestexte;
-with BetriebssystemKonstanten;
 
 -- Das Ausgeben hier nicht aus dem Prozedurennamen entfernen, sonst kollidiert das mit den Dateinamen.
 -- Bei Änderungen in der Textreihenfolge sollte das hier immer angepasst werden.
@@ -55,7 +56,7 @@ package body DebugmenueTextausgabeLogik is
             when '5' =>
                SpeziestexteAusgeben;
                
-            when BetriebssystemKonstanten.ESC =>
+            when BetriebssystemKonstantenHTSEB.ESC =>
                exit TextausgabeSchleife;
             
             when others =>
@@ -335,7 +336,7 @@ package body DebugmenueTextausgabeLogik is
          
                end loop HandelsmenüSchleife;
                
-            when BetriebssystemKonstanten.ESC =>
+            when BetriebssystemKonstantenHTSEB.ESC =>
                return;
                
             when others =>
@@ -442,7 +443,7 @@ package body DebugmenueTextausgabeLogik is
          
                end loop BeschäftigungenSchleife;
                
-            when BetriebssystemKonstanten.ESC =>
+            when BetriebssystemKonstantenHTSEB.ESC =>
                return;
                
             when others =>
@@ -493,7 +494,7 @@ package body DebugmenueTextausgabeLogik is
          
                end loop OutroSchleife;
                
-            when BetriebssystemKonstanten.ESC =>
+            when BetriebssystemKonstantenHTSEB.ESC =>
                return;
                
             when others =>
@@ -599,7 +600,7 @@ package body DebugmenueTextausgabeLogik is
          
                end loop WegeSchleife;
                
-            when BetriebssystemKonstanten.ESC =>
+            when BetriebssystemKonstantenHTSEB.ESC =>
                return;
                
             when others =>
@@ -727,7 +728,7 @@ package body DebugmenueTextausgabeLogik is
          
                end loop SpeziesFünfSchleife;
                
-            when BetriebssystemKonstanten.ESC =>
+            when BetriebssystemKonstantenHTSEB.ESC =>
                return;
                
             when others =>

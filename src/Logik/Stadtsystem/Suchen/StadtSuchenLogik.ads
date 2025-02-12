@@ -1,3 +1,5 @@
+private with SystemRecordsHTSEB;
+
 with KartenDatentypen;
 with SpeziesDatentypen;
 with StadtDatentypen;
@@ -7,8 +9,6 @@ with StadtRecords;
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
-
-private with SystemRecords;
 
 package StadtSuchenLogik is
    pragma Elaborate_Body;
@@ -61,7 +61,7 @@ package StadtSuchenLogik is
    
 private
       
-   StadtName : SystemRecords.TextEingabeRecord;
+   StadtName : SystemRecordsHTSEB.TextEingabeRecord;
    
    Stadt : StadtRecords.SpeziesStadtnummerRecord;
 

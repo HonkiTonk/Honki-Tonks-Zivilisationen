@@ -7,7 +7,7 @@ with LeseStadtGebaut;
 with LeseWichtiges;
 
 with EinheitenanforderungenLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 
 with KIKonstanten;
 
@@ -152,7 +152,7 @@ package body KIEinheitenBauenLogik is
         AnzahlPassierbarkeiten
       is
          when 0 =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "KIEinheitenBauenLogik.EinheitBewerten: Einheit: "
+            MeldungssystemHTSEB.Logik (MeldungExtern => "KIEinheitenBauenLogik.EinheitBewerten: Einheit: "
                                         & StadtSpeziesNummerExtern.Spezies'Wide_Wide_Image & " " & IDExtern'Wide_Wide_Image & " hat keine Passierbarkeit");
             Gesamtwertung := KIDatentypen.BauenBewertung'First;
             
@@ -206,7 +206,7 @@ package body KIEinheitenBauenLogik is
             return KIDatentypen.BauenBewertung'First;
             
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "KIEinheitenBauenLogik.SpezielleEinheitBewerten: Leere Einheitart, ID: "
+            MeldungssystemHTSEB.Logik (MeldungExtern => "KIEinheitenBauenLogik.SpezielleEinheitBewerten: Leere Einheitart, ID: "
                                         & IDExtern'Wide_Wide_Image & " Spezies: " & StadtSpeziesNummerExtern.Spezies'Wide_Wide_Image);
       end case;
       

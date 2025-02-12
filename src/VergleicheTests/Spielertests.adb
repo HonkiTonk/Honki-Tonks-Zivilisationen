@@ -1,6 +1,6 @@
 with LeseSpeziesbelegung;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 
 package body Spielertests is
    
@@ -122,7 +122,7 @@ package body Spielertests is
             return VorhandeneMenschen;
             
          when others =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "Spielertests.AnzahlMenschlicheSpieler: Ungültige Anzahl an Spielern: " & VorhandeneMenschen'Wide_Wide_Image);
+            MeldungssystemHTSEB.Logik (MeldungExtern => "Spielertests.AnzahlMenschlicheSpieler: Ungültige Anzahl an Spielern: " & VorhandeneMenschen'Wide_Wide_Image);
             return 1;
       end case;
       

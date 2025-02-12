@@ -1,5 +1,6 @@
+private with SystemRecordsHTSEB;
+
 with SpeziesDatentypen;
-with SystemRecords;
 with DiplomatieDatentypen;
 
 with LeseSpeziesbelegung;
@@ -23,6 +24,6 @@ private
    
    AusgewählteSpezies : SpeziesDatentypen.Spezies_Vorhanden_Enum;
 
-   Zahleneingabe : SystemRecords.ZahlenEingabeRecord;
+   Zahleneingabe : SystemRecordsHTSEB.ZahlenEingabeRecord;
 
 end DebugmenueAllgemeinesLogik;

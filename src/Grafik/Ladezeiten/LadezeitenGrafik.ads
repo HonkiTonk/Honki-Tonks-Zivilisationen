@@ -11,7 +11,7 @@ private with SystemDatentypen;
 
 with LeseSpeziesbelegung;
 
-private with UmwandlungssystemHTB3;
+private with UmwandlungssystemHTSEB;
 
 package LadezeitenGrafik is
    pragma Elaborate_Body;
@@ -88,6 +88,6 @@ private
                   KIRechnet'Result >= 0.00
                );
    
-   function ZahlAlsString is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => SystemDatentypen.NullBisHundert);
+   function ZahlAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => SystemDatentypen.NullBisHundert);
 
 end LadezeitenGrafik;

@@ -2,7 +2,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Float_Text_IO;
 with Ada.Integer_Text_IO;
 
-with DateizugriffssystemHTB5;
+with DateizugriffssystemHTSEB;
 
 package body DiagnosesystemZusatzinformationen is
 
@@ -32,7 +32,7 @@ package body DiagnosesystemZusatzinformationen is
       
       ZuSpeichern := 0;
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpeichern,
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                NameExtern     => ("Test/" & "Test"));
       
       StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichern),

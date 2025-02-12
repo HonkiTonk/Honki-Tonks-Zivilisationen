@@ -3,10 +3,11 @@ with Ada.Calendar; use Ada.Calendar;
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
 
+with SystemRecordsHTSEB;
+
 with GrafikDatentypen;
 with ZahlenDatentypen;
 with EinheitenRecords;
-with SystemRecords;
 with StadtRecords;
 with MenueDatentypen;
 with TextnummernKonstanten;
@@ -15,6 +16,7 @@ with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with TonDatentypen;
+with SystemRecords;
 
 -- Eventuell ein paar der Namen noch einmal anpassen. äöü
 package TaskRecords is
@@ -38,7 +40,7 @@ package TaskRecords is
 
       Maustaste : Sf.Window.Mouse.sfMouseButton;
 
-      Text : SystemRecords.TextEingabeRecord;
+      Text : SystemRecordsHTSEB.TextEingabeRecord;
       
    end record;
    -- Logiktask

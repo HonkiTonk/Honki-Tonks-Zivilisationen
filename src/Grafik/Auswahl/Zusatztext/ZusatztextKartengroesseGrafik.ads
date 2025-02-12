@@ -3,7 +3,7 @@ with Sf.System.Vector2;
 private with KartenDatentypen;
 private with RueckgabeDatentypen;
 
-private with UmwandlungssystemHTB3;
+private with UmwandlungssystemHTSEB;
 
 package ZusatztextKartengroesseGrafik is
    pragma Elaborate_Body;
@@ -75,7 +75,7 @@ private
                   PositionFestlegen'Result.y >= 0.00
                );
    
-   function SenkrechteAlsString is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
-   function WaagerechteAlsString is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => KartenDatentypen.WaagerechtePositiv);
+   function SenkrechteAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   function WaagerechteAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KartenDatentypen.WaagerechtePositiv);
 
 end ZusatztextKartengroesseGrafik;

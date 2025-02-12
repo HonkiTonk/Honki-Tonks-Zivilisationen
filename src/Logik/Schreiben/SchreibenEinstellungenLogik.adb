@@ -1,9 +1,9 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Exceptions; use Ada.Exceptions;
 
-with DateizugriffssystemHTB5;
-with MeldungssystemHTB1;
-with UmwandlungssystemHTB3;
+with DateizugriffssystemHTSEB;
+with MeldungssystemHTSEB;
+with UmwandlungssystemHTSEB;
 
 with Sf.Window.Window;
 with Sf.System.Vector2;
@@ -32,8 +32,8 @@ package body SchreibenEinstellungenLogik is
    procedure Nutzereinstellungen
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiNutzereinstellungen,
-                                  NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiNutzereinstellungen,
+                                                NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       
       -- SystemRecords.NutzerEinstellungenRecord
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiNutzereinstellungen),
@@ -59,8 +59,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiNutzereinstellungen)
@@ -79,8 +79,8 @@ package body SchreibenEinstellungenLogik is
    procedure Grafikeinstellungen
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiGrafikeinstellungen,
-                                  NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiGrafikeinstellungen,
+                                                NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       
       -- GrafikRecords.GrafikeinstellungenRecord
       Sf.Window.Window.sfWindowStyle'Write (Stream (File => DateiGrafikeinstellungen),
@@ -160,8 +160,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiGrafikeinstellungen)
@@ -180,8 +180,8 @@ package body SchreibenEinstellungenLogik is
    procedure Toneinstellungen
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiToneinstellungen,
-                                  NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiToneinstellungen,
+                                                NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       
       -- TonRecords.ToneinstellungenRecord
       Float'Write (Stream (File => DateiToneinstellungen),
@@ -195,8 +195,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Toneinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Toneinstellungen: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiToneinstellungen)
@@ -215,8 +215,8 @@ package body SchreibenEinstellungenLogik is
    procedure Tastatureinstellungen
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiTastatureinstellungen,
-                                  NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiTastatureinstellungen,
+                                                NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       
       -- TastenbelegungDatenbank.AllgemeineBelegungArray
       -- TastenbelegungDatenbank.EinheitenbelegungArray
@@ -403,8 +403,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Tastatureinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Tastatureinstellungen: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiTastatureinstellungen)
@@ -423,8 +423,8 @@ package body SchreibenEinstellungenLogik is
    procedure SpielendeEinstellungen
    is begin
       
-      DateizugriffssystemHTB5.ErstellenStream (DateiartExtern => DateiSpielendeEinstellungen,
-                                  NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpielendeEinstellungen,
+                                                NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
       
       -- SystemRecords.SpielendeEinstellungenRecord
       ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiSpielendeEinstellungen),
@@ -435,8 +435,8 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "SchreibenEinstellungenLogik.SpielendeEinstellungen: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.SpielendeEinstellungen: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
                                               
          case
            Is_Open (File => DateiSpielendeEinstellungen)

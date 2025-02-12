@@ -1,4 +1,4 @@
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 
 with GrafikKonstanten;
 
@@ -100,7 +100,7 @@ package body Vergleiche is
       if
         ArbeiterExtern > EinwohnerExtern
       then
-         MeldungssystemHTB1.Sonstiges (MeldungExtern => "Vergleiche.FreieEinwohner: Einwohner < Arbeiter:" & EinwohnerExtern'Wide_Wide_Image & "," & ArbeiterExtern'Wide_Wide_Image);
+         MeldungssystemHTSEB.Sonstiges (MeldungExtern => "Vergleiche.FreieEinwohner: Einwohner < Arbeiter:" & EinwohnerExtern'Wide_Wide_Image & "," & ArbeiterExtern'Wide_Wide_Image);
          return StadtDatentypen.Einwohner'First;
          
       else

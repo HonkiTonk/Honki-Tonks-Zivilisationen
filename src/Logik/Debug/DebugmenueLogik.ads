@@ -1,8 +1,9 @@
+private with SystemRecordsHTSEB;
+
 with SpeziesDatentypen;
 
 private with RueckgabeDatentypen;
 private with DiplomatieDatentypen;
-private with SystemRecords;
 private with EinheitenDatentypen;
 
 with LeseSpeziesbelegung;
@@ -28,7 +29,7 @@ private
 
    Einheitennummer : EinheitenDatentypen.Einheitenbereich;
 
-   Einheitenauswahl : SystemRecords.ZahlenEingabeRecord;
+   Einheitenauswahl : SystemRecordsHTSEB.ZahlenEingabeRecord;
 
    Teststopp : exception;
 

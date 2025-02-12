@@ -1,6 +1,6 @@
 with Ada.Exceptions;
 
-with DateizugriffssystemHTB5;
+with DateizugriffssystemHTSEB;
 
 with GrafikDatentypen;
 with TextKonstanten;
@@ -25,8 +25,8 @@ with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
 with UmwandlungenVerzeichnisse;
-with UmwandlungssystemHTB3;
-with MeldungssystemHTB1;
+with UmwandlungssystemHTSEB;
+with MeldungssystemHTSEB;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 -- Änderungen an den zu ladenden Datentypen kann jederzeit Probleme bei Laden verursachen.
@@ -52,7 +52,7 @@ package body LadenLogik is
             LadezeitenLogik.SpeichernLadenNullsetzen;
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
             
-            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiLaden,
+            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiLaden,
                                       NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
                                                                                                   SpielstandnameExtern => Spielstandname));
          end if;
@@ -82,7 +82,7 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "LadenLogik.Laden: Konnte nicht geladen werden: " & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.Laden: Konnte nicht geladen werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiLaden)
@@ -195,8 +195,8 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "LadenLogik.AllgemeinesLaden: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.AllgemeinesLaden: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end AllgemeinesLaden;
@@ -318,8 +318,8 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "LadenLogik.StädteEinheitenLaden: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.StädteEinheitenLaden: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
    
    end StädteEinheitenLaden;
@@ -405,7 +405,7 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "LadenLogik.Spezieswerte: Konnte nicht geladen werden: " & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.Spezieswerte: Konnte nicht geladen werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;

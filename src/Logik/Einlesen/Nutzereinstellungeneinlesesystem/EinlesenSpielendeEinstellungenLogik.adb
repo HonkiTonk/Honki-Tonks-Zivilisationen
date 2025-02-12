@@ -1,16 +1,15 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
-with DateizugriffssystemHTB5;
+with DateizugriffssystemHTSEB;
+with DateisystemtestsHTSEB;
+with MeldungssystemHTSEB;
+with UmwandlungssystemHTSEB;
 
 with VerzeichnisKonstanten;
 with OptionenVariablen;
 with TextKonstanten;
 
 with SchreibeOptionen;
-
-with MeldungssystemHTB1;
-with VerzeichnisDateinamenTests;
-with UmwandlungssystemHTB3;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenSpielendeEinstellungenLogik is
@@ -19,15 +18,15 @@ package body EinlesenSpielendeEinstellungenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                 WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.SpielendeEinstellungen))
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                 WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SpielendeEinstellungen))
       is
          when False =>
             OptionenVariablen.SpielendeStandardeinstellungenLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiSonstigeEinstellungen,
+            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiSonstigeEinstellungen,
                                       NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
       end case;
       
@@ -47,8 +46,8 @@ package body EinlesenSpielendeEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenSpielendeEinstellungenLogik.SpielendeEinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSpielendeEinstellungenLogik.SpielendeEinstellungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.SpielendeStandardeinstellungenLaden;
          
          case
@@ -99,8 +98,8 @@ package body EinlesenSpielendeEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenSpielendeEinstellungenLogik.SonstigeEinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSpielendeEinstellungenLogik.SonstigeEinstellungenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end SpielendeEinstellungenDurchgehen;

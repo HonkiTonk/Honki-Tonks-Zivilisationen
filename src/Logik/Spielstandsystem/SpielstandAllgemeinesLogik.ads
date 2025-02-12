@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with SystemRecords;
+private with SystemRecordsHTSEB;
 
 with SystemDatentypen;
 
@@ -22,6 +22,6 @@ package SpielstandAllgemeinesLogik is
    
 private
    
-   SpielstandName : SystemRecords.TextEingabeRecord;
+   SpielstandName : SystemRecordsHTSEB.TextEingabeRecord;
 
 end SpielstandAllgemeinesLogik;

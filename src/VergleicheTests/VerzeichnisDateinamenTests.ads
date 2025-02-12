@@ -2,11 +2,12 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Ada.Directories;
 
+private with BetriebssystemDatentypenHTSEB;
+
+with SystemRecordsHTSEB;
+
 private with SystemDatentypen;
 private with VerzeichnisKonstanten;
-private with BetriebssystemDatentypen;
-
-with SystemRecords;
 
 package VerzeichnisDateinamenTests is
    pragma Elaborate_Body;
@@ -62,7 +63,7 @@ package VerzeichnisDateinamenTests is
 
    function Namensprüfungen
      (TextExtern : in Unbounded_Wide_Wide_String)
-      return SystemRecords.TextEingabeRecord
+      return SystemRecordsHTSEB.TextEingabeRecord
      with
        Pre => (
                  To_Wide_Wide_String (Source => TextExtern)'Length > 0
@@ -85,8 +86,8 @@ private
 
    Text : Unbounded_Wide_Wide_String;
 
-   type ZeichenabzugArray is array (BetriebssystemDatentypen.Betriebsystem_Zeichenabzug_Enum'Range, SystemDatentypen.Zeichenabzug_Enum'Range) of Natural;
-   Zeichenabzug : constant ZeichenabzugArray := (BetriebssystemDatentypen.Windows_Enum =>
+   type ZeichenabzugArray is array (BetriebssystemDatentypenHTSEB.Betriebsystem_Zeichenabzug_Enum'Range, SystemDatentypen.Zeichenabzug_Enum'Range) of Natural;
+   Zeichenabzug : constant ZeichenabzugArray := (BetriebssystemDatentypenHTSEB.Windows_Enum =>
                                                    (
                                                     SystemDatentypen.Speichern_Enum => VerzeichnisKonstanten.ExtrazeichenSpielstand,
                                                     SystemDatentypen.Text_Enum      => 0,
@@ -98,7 +99,7 @@ private
 
    function NamenprüfungenWindows
      (TextExtern : in Unbounded_Wide_Wide_String)
-      return SystemRecords.TextEingabeRecord
+      return SystemRecordsHTSEB.TextEingabeRecord
      with
        Pre => (
                  To_Wide_Wide_String (Source => TextExtern)'Length > 0

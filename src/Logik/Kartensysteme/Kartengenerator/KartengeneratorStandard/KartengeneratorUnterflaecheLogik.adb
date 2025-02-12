@@ -7,7 +7,7 @@ with LeseWeltkarte;
 with KartengeneratorVariablenLogik;
 with KartengeneratorErdweltLogik;
 with KartengeneratorWasserweltLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with LadezeitenLogik;
 
 package body KartengeneratorUnterflaecheLogik is
@@ -35,7 +35,7 @@ package body KartengeneratorUnterflaecheLogik is
                   KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when others =>
-                  MeldungssystemHTB1.Logik (MeldungExtern => "KartengeneratorUnterflaecheLogik.GenerierungLandschaft: Weder Wasser noch Erde");
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorUnterflaecheLogik.GenerierungLandschaft: Weder Wasser noch Erde");
             end case;
                               
          end loop WaagerechteSchleife;

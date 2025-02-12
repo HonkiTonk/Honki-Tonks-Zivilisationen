@@ -3,8 +3,11 @@ with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
 with Sf.Graphics.RenderWindow;
 
-with SystemRecordKonstanten;
-with BetriebssystemKonstanten;
+with SystemRecordsKonstantenHTSEB;
+with UmwandlungssystemHTSEB;
+with DateisystemtestsHTSEB;
+with BetriebssystemKonstantenHTSEB;
+
 with VerzeichnisKonstanten;
 
 with SchreibeLogiktask;
@@ -13,8 +16,6 @@ with SchreibeGrafiktask;
 with LeseGrafiktask;
 
 with FensterGrafik;
-with VerzeichnisDateinamenTests;
-with UmwandlungssystemHTB3;
 
 package body TexteingabeGrafik is
 
@@ -38,14 +39,14 @@ package body TexteingabeGrafik is
                EingegebenesZeichen := Wide_Wide_Character'Val (TextEingegeben.text.unicode);
                
                if
-                 EingegebenesZeichen = BetriebssystemKonstanten.CR
+                 EingegebenesZeichen = BetriebssystemKonstantenHTSEB.CR
                then
                   null;
                
                elsif
-                 EingegebenesZeichen = BetriebssystemKonstanten.BS
+                 EingegebenesZeichen = BetriebssystemKonstantenHTSEB.BS
                  or
-                   EingegebenesZeichen = BetriebssystemKonstanten.DEL
+                   EingegebenesZeichen = BetriebssystemKonstantenHTSEB.DEL
                then
                   ZeichenEntfernen;
          
@@ -57,7 +58,7 @@ package body TexteingabeGrafik is
                if
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                then
-                  TextGeprüft := VerzeichnisDateinamenTests.Namensprüfungen (TextExtern => LeseLogiktask.Texteingabe);
+                  TextGeprüft := DateisystemtestsHTSEB.Namensprüfungen (TextExtern => LeseLogiktask.Texteingabe);
                   
                   case
                     TextGeprüft.ErfolgreichAbbruch
@@ -105,7 +106,7 @@ package body TexteingabeGrafik is
    procedure Abbruch
    is begin
       
-      SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordKonstanten.LeerTexteingabe);
+      SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordsKonstantenHTSEB.LeerTexteingabe);
       SchreibeGrafiktask.Texteingabe (JaNeinExtern => False);
       SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
       
@@ -149,15 +150,15 @@ package body TexteingabeGrafik is
       -- Hier mal die Textlänge anzeigen lassen um herauszufinden warum das nicht funktioneirt.
       
       case
-        VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => LeseLogiktask.Texteingabe & EingegebenesZeichenExtern,
+        DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => LeseLogiktask.Texteingabe & EingegebenesZeichenExtern,
                                                           WindowsTextExtern =>
-                                                             UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.VerzeichnisSpielstand) & LeseLogiktask.Texteingabe & EingegebenesZeichenExtern)
+                                                             UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.VerzeichnisSpielstand) & LeseLogiktask.Texteingabe & EingegebenesZeichenExtern)
       is
          when False =>
             return False;
             
          when True =>
-            return VerzeichnisDateinamenTests.GültigesZeichen (ZeichenExtern => EingegebenesZeichenExtern);
+            return DateisystemtestsHTSEB.GültigesZeichen (ZeichenExtern => EingegebenesZeichenExtern);
       end case;
             
    end Spielstandnamen;

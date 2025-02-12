@@ -27,7 +27,7 @@ with TextskalierungGrafik;
 with TexteinstellungenGrafik;
 with UmwandlungenVerzeichnisse;
 with AllgemeineViewsGrafik;
-with UmwandlungssystemHTB3;
+with UmwandlungssystemHTSEB;
 
 package body SpielstandmenueGrafik is
 
@@ -269,7 +269,7 @@ package body SpielstandmenueGrafik is
          null;
       end if;
       
-      return (TextExtern & TextKonstanten.StandardAbstand & UmwandlungssystemHTB3.Decode
+      return (TextExtern & TextKonstanten.StandardAbstand & UmwandlungssystemHTSEB.Decode
               (TextExtern => Local_Image (Date                  => Modification_Time (Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandartExtern,
                                                                                                                                         SpielstandnameExtern => To_Unbounded_Wide_Wide_String (Source => TextExtern))),
                                           Include_Time_Fraction => False)));

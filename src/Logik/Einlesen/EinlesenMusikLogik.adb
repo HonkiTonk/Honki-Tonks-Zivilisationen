@@ -1,8 +1,9 @@
 with Sf.Audio.Music;
 
-with MeldungssystemHTB1;
-with DateizugriffssystemHTB5;
-with UmwandlungssystemHTB3;
+with MeldungssystemHTSEB;
+with DateizugriffssystemHTSEB;
+with UmwandlungssystemHTSEB;
+with DateisystemtestsHTSEB;
 
 with VerzeichnisKonstanten;
 with TextKonstanten;
@@ -11,7 +12,6 @@ with LeseOptionen;
 
 with EingeleseneMusik;
 with EinlesenAllgemeinesLogik;
-with VerzeichnisDateinamenTests;
 
 -- with DiagnosesystemHTB4;
 
@@ -26,7 +26,7 @@ package body EinlesenMusikLogik is
       
       case
         -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht dder ganze Verzeichnisname.
-        VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
                                                                WindowsTextExtern => (VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik) & VerzeichnisKonstanten.NullDateiWideWide))
       is
          when False =>
@@ -36,8 +36,8 @@ package body EinlesenMusikLogik is
             EinzulesendeZeile := 1;
             AktuelleZeile := 1;
             
-            DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiMusik,
-                                                 NameExtern     => UmwandlungssystemHTB3.Encode (TextExtern => VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik)
+            DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiMusik,
+                                                 NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik)
                                                                                                  & VerzeichnisKonstanten.NullDateiWideWide));
       end case;
       
@@ -50,7 +50,7 @@ package body EinlesenMusikLogik is
                                                             DateinameExtern     => "EinlesenMusikLogik.EinlesenMusik")
          is
             when True =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                exit MusikSchleife;
                
             when False =>
@@ -69,28 +69,28 @@ package body EinlesenMusikLogik is
                
             when others =>
                if
-                 False = VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                 False = DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
                                                                                 WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
                then
-                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Datei oder Pfad existiert nicht");
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Datei oder Pfad existiert nicht");
             
                elsif
                  AktuelleZeile = Intromusik
                then
-                  EingeleseneMusik.Intromusik (AktuelleZeile) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneMusik.Intromusik (AktuelleZeile) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile in StandardmusikAnfang .. StandardmusikEnde
                then
-                  EingeleseneMusik.Standardmusik (AktuelleZeile - 1) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneMusik.Standardmusik (AktuelleZeile - 1) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Forschungserfolg
                then
-                  EingeleseneMusik.Forschungserfolg (Forschungserfolg - StandardmusikEnde) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneMusik.Forschungserfolg (Forschungserfolg - StandardmusikEnde) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                
                else
-                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenMusik: Außerhalb des Einlesebereichs");
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenMusik: Außerhalb des Einlesebereichs");
                   exit MusikSchleife;
                end if;
                

@@ -1,16 +1,16 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
-with DateizugriffssystemHTB5;
+with DateizugriffssystemHTSEB;
+with DateisystemtestsHTSEB;
+with UmwandlungssystemHTSEB;
+with MeldungssystemHTSEB;
 
 with VerzeichnisKonstanten;
 with TextKonstanten;
 
 with SchreibeEinstellungenTon;
 
-with MeldungssystemHTB1;
 with EinstellungenTon;
-with VerzeichnisDateinamenTests;
-with UmwandlungssystemHTB3;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenToneinstellungenLogik is
@@ -19,15 +19,15 @@ package body EinlesenToneinstellungenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Toneinstellungen))
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Toneinstellungen))
       is
          when False =>
             EinstellungenTon.StandardeinstellungenLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiToneinstellungen,
+            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiToneinstellungen,
                                       NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       end case;
       
@@ -47,8 +47,8 @@ package body EinlesenToneinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenToneinstellungenLogik.Toneinstelllungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenToneinstellungenLogik.Toneinstelllungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          EinstellungenTon.StandardeinstellungenLaden;
          
          case
@@ -111,8 +111,8 @@ package body EinlesenToneinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenToneinstellungenLogik.ToneinstellungenDurchgehen: Konnte nicht geladen werden: " &
-                                       UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenToneinstellungenLogik.ToneinstellungenDurchgehen: Konnte nicht geladen werden: " &
+                                       UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ToneinstellungenDurchgehen;

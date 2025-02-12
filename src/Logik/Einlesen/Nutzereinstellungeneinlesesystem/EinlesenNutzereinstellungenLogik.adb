@@ -1,6 +1,9 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
-with DateizugriffssystemHTB5;
+with DateizugriffssystemHTSEB;
+with DateisystemtestsHTSEB;
+with UmwandlungssystemHTSEB;
+with MeldungssystemHTSEB;
 
 with OptionenVariablen;
 with VerzeichnisKonstanten;
@@ -9,10 +12,6 @@ with TextKonstanten;
 
 with SchreibeOptionen;
 
-with MeldungssystemHTB1;
-with VerzeichnisDateinamenTests;
-with UmwandlungssystemHTB3;
-
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenNutzereinstellungenLogik is
 
@@ -20,15 +19,15 @@ package body EinlesenNutzereinstellungenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                 WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Spieleinstellungen))
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                 WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Spieleinstellungen))
       is
          when False =>
             OptionenVariablen.StandardNutzereinstellungenLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiNutzereinstellungen,
+            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiNutzereinstellungen,
                                       NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       end case;
       
@@ -48,8 +47,8 @@ package body EinlesenNutzereinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenNutzereinstellungenLogik.Nutzereinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenNutzereinstellungenLogik.Nutzereinstellungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.StandardNutzereinstellungenLaden;
          
          case
@@ -184,8 +183,8 @@ package body EinlesenNutzereinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenNutzereinstellungenLogik.NutzereinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenNutzereinstellungenLogik.NutzereinstellungenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
                   
          return False;
          

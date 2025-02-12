@@ -1,7 +1,8 @@
+private with SystemRecordsHTSEB;
+
 with SpeziesDatentypen;
 with TastenbelegungDatentypen;
 
-private with SystemRecords;
 private with KartenRecords;
 private with KartenRecordKonstanten;
 
@@ -23,7 +24,7 @@ package ZeigerbewegungLogik is
 
 private
    
-   KoordinatenPunkt : SystemRecords.ZahlenEingabeRecord;
+   KoordinatenPunkt : SystemRecordsHTSEB.ZahlenEingabeRecord;
 
    NeueKoordinate : KartenRecords.KartenfeldNaturalRecord;
    KartenWert : KartenRecords.KartenfeldNaturalRecord;

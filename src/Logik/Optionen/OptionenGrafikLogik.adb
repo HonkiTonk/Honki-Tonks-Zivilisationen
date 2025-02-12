@@ -16,7 +16,7 @@ with SchreibeOptionen;
 
 with AuswahlaufteilungLogik;
 with ZahleneingabeLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with SchreibenEinstellungenLogik;
 with EinlesenTexturenLogik;
 with TexturenauswahlLogik;
@@ -66,7 +66,7 @@ package body OptionenGrafikLogik is
                return AuswahlWert;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "OptionenGrafikLogik.OptionenGrafik: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenGrafikLogik.OptionenGrafik: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop GrafikSchleife;
@@ -170,7 +170,7 @@ package body OptionenGrafikLogik is
             SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.StandardFenster);
             
          when others =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "OptionenGrafikLogik.VollbildFenster: Unbekannter Fenstermodus: " & LeseEinstellungenGrafik.Fenstermodus'Wide_Wide_Image);
+            MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenGrafikLogik.VollbildFenster: Unbekannter Fenstermodus: " & LeseEinstellungenGrafik.Fenstermodus'Wide_Wide_Image);
             SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.StandardFenster);
       end case;
       
@@ -207,7 +207,7 @@ package body OptionenGrafikLogik is
             end if;
             
          when False =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "OptionenGrafikLogik.TexturenWechseln: Texturen nicht gefunden.");
+            MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenGrafikLogik.TexturenWechseln: Texturen nicht gefunden.");
       end case;
         
    end TexturenWechseln;

@@ -23,7 +23,7 @@ with TextaccessverwaltungssystemEinfachGrafik;
 with KonvexverwaltungssystemGrafik;
 with TextfarbeGrafik;
 with SprachauswahlLogik;
-with UmwandlungssystemHTB3;
+with UmwandlungssystemHTSEB;
 
 package body SprachauswahlGrafik is
    
@@ -64,7 +64,7 @@ package body SprachauswahlGrafik is
                 ZeileSchleifenwert < Ende)
          then
             if
-              Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => AktuelleSprachen (ZeileSchleifenwert)) & VerzeichnisKonstanten.FontDatei) = False
+              Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => AktuelleSprachen (ZeileSchleifenwert)) & VerzeichnisKonstanten.FontDatei) = False
             then
                NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.StandardSchriftartVerwenden);
             

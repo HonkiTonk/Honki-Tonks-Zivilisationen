@@ -7,7 +7,7 @@ with ForschungKonstanten;
 
 with LeseWichtiges;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with ViewsEinstellenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
@@ -56,7 +56,7 @@ package body ForschungserfolgGrafik is
                                      ViewbreiteExtern  => Viewfläche.x);
             
          when others =>
-            MeldungssystemHTB1.Grafik (MeldungExtern => "ForschungserfolgGrafik.Forschungserfolg: Auswahlbereich: " & AuswahlExtern'Wide_Wide_Image);
+            MeldungssystemHTSEB.Grafik (MeldungExtern => "ForschungserfolgGrafik.Forschungserfolg: Auswahlbereich: " & AuswahlExtern'Wide_Wide_Image);
       end case;
       
       Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;

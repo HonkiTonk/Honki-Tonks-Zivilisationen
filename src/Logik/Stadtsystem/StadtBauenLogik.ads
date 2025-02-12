@@ -1,10 +1,11 @@
+private with SystemRecordsHTSEB;
+
 with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 
 private with KartenRecords;
 private with StadtDatentypen;
-private with SystemRecords;
 private with StadtRecords;
 private with AufgabenDatentypen;
 private with KartenKonstanten;
@@ -39,7 +40,7 @@ private
 
    StadtNummer : StadtDatentypen.Städtebereich;
 
-   StadtName : SystemRecords.TextEingabeRecord;
+   StadtName : SystemRecordsHTSEB.TextEingabeRecord;
 
    Einheitenkoordinaten : KartenRecords.KartenfeldNaturalRecord;
 

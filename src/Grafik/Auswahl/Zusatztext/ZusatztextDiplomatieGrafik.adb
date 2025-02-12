@@ -14,7 +14,7 @@ with LeseGrafiktask;
 
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with TextaccessverwaltungssystemEinfachGrafik;
 
 package body ZusatztextDiplomatieGrafik is
@@ -76,7 +76,7 @@ package body ZusatztextDiplomatieGrafik is
                Zustandnummer := TextnummernKonstanten.ZeugKrieg;
                
             when DiplomatieDatentypen.Unbekannt_Enum =>
-               MeldungssystemHTB1.Grafik (MeldungExtern => "ZusatztextDiplomatieGrafik.TextSetzen: Unbekannter Kontakt");
+               MeldungssystemHTSEB.Grafik (MeldungExtern => "ZusatztextDiplomatieGrafik.TextSetzen: Unbekannter Kontakt");
                return "";
          end case;
          

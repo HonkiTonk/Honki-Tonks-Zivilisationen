@@ -1,6 +1,6 @@
-with RueckgabeDatentypen;
+private with SystemRecordsHTSEB;
 
-private with SystemRecords;
+with RueckgabeDatentypen;
 
 package OptionenSoundLogik is
    pragma Elaborate_Body;
@@ -12,7 +12,7 @@ private
 
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
-   NeueLaustärke : SystemRecords.ZahlenEingabeRecord;
+   NeueLaustärke : SystemRecordsHTSEB.ZahlenEingabeRecord;
 
    procedure Soundlautstärke;
    procedure Musiklautstärke;

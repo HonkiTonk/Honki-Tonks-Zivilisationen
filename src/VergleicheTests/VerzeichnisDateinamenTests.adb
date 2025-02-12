@@ -1,11 +1,12 @@
 with Ada.Wide_Wide_Characters.Handling; use Ada.Wide_Wide_Characters.Handling;
 
-with Projekteinstellungen;
-with BetriebssystemKonstanten;
-with SystemRecordKonstanten;
+with SystemRecordsKonstantenHTSEB;
+with BetriebssystemKonstantenHTSEB;
 
-with MeldungssystemHTB1;
-with UmwandlungssystemHTB3;
+with Projekteinstellungen;
+
+with MeldungssystemHTSEB;
+with UmwandlungssystemHTSEB;
 
 -- So umbauen dass die Zusammenfassung von Linux und Windows den Gesamtpfad ergibt? äöü
 package body VerzeichnisDateinamenTests is
@@ -20,25 +21,25 @@ package body VerzeichnisDateinamenTests is
       case
         Projekteinstellungen.Einstellungen.Betriebssystem
       is
-         when BetriebssystemDatentypen.Linux_Enum =>
+         when BetriebssystemDatentypenHTSEB.Linux_Enum =>
             if
-              To_Wide_Wide_String (Source => LinuxTextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem
+              To_Wide_Wide_String (Source => LinuxTextExtern)'Length <= BetriebssystemKonstantenHTSEB.MaximaleZeichenlängeDateisystem
             then
                return True;
                
             else
-               MeldungssystemHTB1.Logik (MeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
+               MeldungssystemHTSEB.Logik (MeldungExtern => "DateisystemtestsHTSEB.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
             
-         when BetriebssystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypenHTSEB.Windows_Enum =>
             if
-              To_Wide_Wide_String (Source => WindowsTextExtern)'Length <= BetriebssystemKonstanten.MaximaleZeichenlängeDateisystem - LängeAktuellesVerzeichnis
+              To_Wide_Wide_String (Source => WindowsTextExtern)'Length <= BetriebssystemKonstantenHTSEB.MaximaleZeichenlängeDateisystem - LängeAktuellesVerzeichnis
             then
                return True;
                
             else
-               MeldungssystemHTB1.Logik (MeldungExtern => "VerzeichnisDateinamenTests.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
+               MeldungssystemHTSEB.Logik (MeldungExtern => "DateisystemtestsHTSEB.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
       end case;
@@ -47,6 +48,7 @@ package body VerzeichnisDateinamenTests is
    
    
    
+   -- Das hier kann komplett durch StandardeinleseprüfungNeu ersetzt werden, oder? äöü
    function Standardeinleseprüfung
      (VerzeichnisDateinameExtern : in Wide_Wide_String)
      return Boolean
@@ -59,9 +61,9 @@ package body VerzeichnisDateinamenTests is
     --     return False;
             
    --   elsif
-        Exists (Name => UmwandlungssystemHTB3.Encode (TextExtern => VerzeichnisDateinameExtern)) = False
+        Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisDateinameExtern)) = False
       then
-         MeldungssystemHTB1.Logik (MeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
+         MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
          return False;
             
       else
@@ -85,9 +87,9 @@ package body VerzeichnisDateinamenTests is
          return False;
          
       elsif
-        Exists (Name => UmwandlungssystemHTB3.Encode (TextExtern => WindowsTextExtern)) = False
+        Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => WindowsTextExtern)) = False
       then
-         MeldungssystemHTB1.Logik (MeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
+         MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamenTests.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
          return False;
             
       else
@@ -111,7 +113,7 @@ package body VerzeichnisDateinamenTests is
          return False;
             
       elsif
-        Exists (Name => UmwandlungssystemHTB3.Encode (TextExtern => WindowsTextExtern)) = False
+        Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => WindowsTextExtern)) = False
       then
          return False;
             
@@ -132,26 +134,27 @@ package body VerzeichnisDateinamenTests is
       case
         Projekteinstellungen.Einstellungen.Betriebssystem
       is
-         when BetriebssystemDatentypen.Linux_Enum =>
+         when BetriebssystemDatentypenHTSEB.Linux_Enum =>
             case
               ZeichenExtern
             is
-               when '/' | BetriebssystemKonstanten.NUL =>
+               when '/' | BetriebssystemKonstantenHTSEB.NUL =>
                   return False;
             
                when others =>
                   return True;
             end case;
             
-         when BetriebssystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypenHTSEB.Windows_Enum =>
             case
               ZeichenExtern
             is
                -- Die Zeichen auch mal in Konstante packen? äöü
-               when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstanten.NUL .. BetriebssystemKonstanten.US =>
+               when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstantenHTSEB.NUL .. BetriebssystemKonstantenHTSEB.US =>
                   return False;
             
-               when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstanten.Leerzeichen | BetriebssystemKonstanten.Bindestrich | BetriebssystemKonstanten.Unterstrich | BetriebssystemKonstanten.Punkt =>
+               when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstantenHTSEB.Leerzeichen | BetriebssystemKonstantenHTSEB.Bindestrich | BetriebssystemKonstantenHTSEB.Unterstrich
+                  | BetriebssystemKonstantenHTSEB.Punkt =>
                   return True;
             
                when others =>
@@ -171,10 +174,10 @@ package body VerzeichnisDateinamenTests is
    is begin
       
       AllgemeinesSchleife:
-      for AllgemeinesSchleifenwert in BetriebssystemKonstanten.VerboteneNamen'Range loop
+      for AllgemeinesSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneNamen'Range loop
         
          if
-           NameExtern = BetriebssystemKonstanten.VerboteneNamen (AllgemeinesSchleifenwert)
+           NameExtern = BetriebssystemKonstantenHTSEB.VerboteneNamen (AllgemeinesSchleifenwert)
          then
             return False;
             
@@ -187,14 +190,14 @@ package body VerzeichnisDateinamenTests is
       case
         Projekteinstellungen.Einstellungen.Betriebssystem
       is
-         when BetriebssystemDatentypen.Linux_Enum =>
+         when BetriebssystemDatentypenHTSEB.Linux_Enum =>
             LinuxprüfungSchleife:
             for LinuxprüfungSchleifenwert in NameExtern'Range loop
          
                case
                  NameExtern (LinuxprüfungSchleifenwert)
                is
-                  when '/' | BetriebssystemKonstanten.NUL =>
+                  when '/' | BetriebssystemKonstantenHTSEB.NUL =>
                      return False;
                
                   when others =>
@@ -203,17 +206,18 @@ package body VerzeichnisDateinamenTests is
          
             end loop LinuxprüfungSchleife;
             
-         when BetriebssystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypenHTSEB.Windows_Enum =>
             WindowsprüfungSchleife:
             for WindowsprüfungSchleifenwert in NameExtern'Range loop
          
                case
                  NameExtern (WindowsprüfungSchleifenwert)
                is
-                  when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstanten.Leerzeichen | BetriebssystemKonstanten.Bindestrich | BetriebssystemKonstanten.Unterstrich | BetriebssystemKonstanten.Punkt =>
+                  when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstantenHTSEB.Leerzeichen | BetriebssystemKonstantenHTSEB.Bindestrich | BetriebssystemKonstantenHTSEB.Unterstrich
+                     | BetriebssystemKonstantenHTSEB.Punkt =>
                      null;
                      
-                  when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstanten.NUL .. BetriebssystemKonstanten.US =>
+                  when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstantenHTSEB.NUL .. BetriebssystemKonstantenHTSEB.US =>
                      return False;
                
                   when others =>
@@ -232,16 +236,16 @@ package body VerzeichnisDateinamenTests is
    -- Das auch. äöü
    function Namensprüfungen
      (TextExtern : in Unbounded_Wide_Wide_String)
-      return SystemRecords.TextEingabeRecord
+      return SystemRecordsHTSEB.TextEingabeRecord
    is begin
       
       VerboteneNamenSchleife:
-      for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneNamen'Range loop
+      for VerboteneNamenSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneNamen'Range loop
          
          if
-           TextExtern = BetriebssystemKonstanten.VerboteneNamen (VerboteneNamenSchleifenwert)
+           TextExtern = BetriebssystemKonstantenHTSEB.VerboteneNamen (VerboteneNamenSchleifenwert)
          then
-            return SystemRecordKonstanten.LeerTexteingabe;
+            return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
          
          else
             null;
@@ -252,10 +256,10 @@ package body VerzeichnisDateinamenTests is
       case
         Projekteinstellungen.Einstellungen.Betriebssystem
       is
-         when BetriebssystemDatentypen.Linux_Enum =>
+         when BetriebssystemDatentypenHTSEB.Linux_Enum =>
             return (True, TextExtern);
             
-         when BetriebssystemDatentypen.Windows_Enum =>
+         when BetriebssystemDatentypenHTSEB.Windows_Enum =>
             return NamenprüfungenWindows (TextExtern => TextExtern);
       end case;
       
@@ -266,7 +270,7 @@ package body VerzeichnisDateinamenTests is
    -- Das auch. äöü
    function NamenprüfungenWindows
      (TextExtern : in Unbounded_Wide_Wide_String)
-      return SystemRecords.TextEingabeRecord
+      return SystemRecordsHTSEB.TextEingabeRecord
    is begin
       
       Text := TextExtern;
@@ -277,11 +281,11 @@ package body VerzeichnisDateinamenTests is
          if
            To_Wide_Wide_String (Source => Text)'Length = 0
          then
-            return SystemRecordKonstanten.LeerTexteingabe;
+            return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
          elsif
            -- Full_Stop = Period, nicht erlaubt am Ende unter Windows!
-           BetriebssystemKonstanten.Punkt = Element (Source => Text,
+           BetriebssystemKonstantenHTSEB.Punkt = Element (Source => Text,
                                                      Index  => To_Wide_Wide_String (Source => Text)'Last)
          then
             Text := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
@@ -290,7 +294,7 @@ package body VerzeichnisDateinamenTests is
             
          elsif
            -- Leerzeichen ist am Anfang unter Windows nicht erlaubt!
-           BetriebssystemKonstanten.Leerzeichen = Element (Source => Text,
+           BetriebssystemKonstantenHTSEB.Leerzeichen = Element (Source => Text,
                                                            Index  => To_Wide_Wide_String (Source => Text)'First)
          then
             Text := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
@@ -299,7 +303,7 @@ package body VerzeichnisDateinamenTests is
             
          elsif
            -- Leerzeichen ist am Ende unter Windows nicht erlaubt!
-           BetriebssystemKonstanten.Leerzeichen = Element (Source => Text,
+           BetriebssystemKonstantenHTSEB.Leerzeichen = Element (Source => Text,
                                                            Index  => To_Wide_Wide_String (Source => Text)'Last)
          then
             Text := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
@@ -315,12 +319,12 @@ package body VerzeichnisDateinamenTests is
       
       
       VerbotenenamenDreiSchleife:
-      for VerbotenenamenDreiSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenDrei'Range loop
+      for VerbotenenamenDreiSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenDrei'Range loop
          SchreibartenDreiSchleife:
          for SSchreibartenDreiSchleifenwert in 0 .. 7 loop
             
             -- Standard ist alles groß.
-            DreierText := To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenDrei (VerbotenenamenDreiSchleifenwert));
+            DreierText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenDrei (VerbotenenamenDreiSchleifenwert));
             
             case
               SSchreibartenDreiSchleifenwert
@@ -358,14 +362,14 @@ package body VerzeichnisDateinamenTests is
             if
               Text = DreierText
             then
-               return SystemRecordKonstanten.LeerTexteingabe;
+               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
             elsif
               To_Wide_Wide_String (Source => Text)'Length > DreierText'Length
               and then
                 To_Wide_Wide_String (Source => Text) (1 .. DreierText'Length + 1) = DreierText & "."
             then
-               return SystemRecordKonstanten.LeerTexteingabe;
+               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
             else
                null;
@@ -377,12 +381,12 @@ package body VerzeichnisDateinamenTests is
       
       
       VerbotenenamenVierSchleife:
-      for VerbotenenamenVierSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenVier'Range loop
+      for VerbotenenamenVierSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenVier'Range loop
          SchreibartenVierSchleife:
          for SchreibartenVierSchleifenwert in 0 .. 7 loop
             
             -- Standard ist alles groß.
-            ViererText := To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenVier (VerbotenenamenVierSchleifenwert));
+            ViererText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenVier (VerbotenenamenVierSchleifenwert));
             
             case
               SchreibartenVierSchleifenwert
@@ -420,14 +424,14 @@ package body VerzeichnisDateinamenTests is
             if
               Text = ViererText
             then
-               return SystemRecordKonstanten.LeerTexteingabe;
+               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
             elsif
               To_Wide_Wide_String (Source => Text)'Length > ViererText'Length
               and then
                 To_Wide_Wide_String (Source => Text) (1 .. ViererText'Length + 1) = ViererText & "."
             then
-               return SystemRecordKonstanten.LeerTexteingabe;
+               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
             else
                null;
@@ -439,12 +443,12 @@ package body VerzeichnisDateinamenTests is
       
       
       VerbotenenamenFünfSchleife:
-      for VerbotenenamenFünfSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenFünf'Range loop
+      for VerbotenenamenFünfSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenFünf'Range loop
          SchreibartenFünfSchleife:
          for SchreibartenFünfSchleifenwert in 0 .. 7 loop
             
             -- Standard ist alles groß.
-            FünferText := To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenVier (VerbotenenamenFünfSchleifenwert));
+            FünferText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenVier (VerbotenenamenFünfSchleifenwert));
             
             case
               SchreibartenFünfSchleifenwert
@@ -482,14 +486,14 @@ package body VerzeichnisDateinamenTests is
             if
               Text = FünferText
             then
-               return SystemRecordKonstanten.LeerTexteingabe;
+               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
             elsif
               To_Wide_Wide_String (Source => Text)'Length > FünferText'Length
               and then
                 To_Wide_Wide_String (Source => Text) (1 .. FünferText'Length + 1) = FünferText & "."
             then
-               return SystemRecordKonstanten.LeerTexteingabe;
+               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
             else
                null;

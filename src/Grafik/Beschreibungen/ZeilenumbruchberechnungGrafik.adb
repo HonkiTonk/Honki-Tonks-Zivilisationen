@@ -1,8 +1,9 @@
 with Sf.Graphics.Text;
 
+with BetriebssystemKonstantenHTSEB;
+
 with TextKonstanten;
 with TextaccessVariablen;
-with BetriebssystemKonstanten;
 
 package body ZeilenumbruchberechnungGrafik is
    
@@ -49,7 +50,7 @@ package body ZeilenumbruchberechnungGrafik is
             case
               TextExtern (TextbereichSchleifenwert)
             is
-               when BetriebssystemKonstanten.Leerzeichen =>
+               when BetriebssystemKonstantenHTSEB.Leerzeichen =>
                   Zwischenwert := TextbereichSchleifenwert;
                   
                when others =>
@@ -63,11 +64,11 @@ package body ZeilenumbruchberechnungGrafik is
                  Zwischenwert
                is
                   when -1 =>
-                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. TextbereichSchleifenwert) & BetriebssystemKonstanten.LF;
+                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. TextbereichSchleifenwert) & BetriebssystemKonstantenHTSEB.LF;
                      SchleifenAnfang := TextbereichSchleifenwert + 1;
                      
                   when others =>
-                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. Zwischenwert - 1) & BetriebssystemKonstanten.LF;
+                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. Zwischenwert - 1) & BetriebssystemKonstantenHTSEB.LF;
                      SchleifenAnfang := Zwischenwert + 1;
                end case;
                

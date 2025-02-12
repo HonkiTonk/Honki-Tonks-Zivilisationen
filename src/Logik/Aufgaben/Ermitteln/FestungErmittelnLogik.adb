@@ -2,7 +2,7 @@ with ProduktionKonstanten;
 
 with LeseWeltkarte;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with ArbeitszeitFestungLogik;
 with AufgabeFestlegenLogik;
 
@@ -56,7 +56,7 @@ package body FestungErmittelnLogik is
             null;
             
          when others =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "FestungErmittelnLogik.FestungErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            MeldungssystemHTSEB.Logik (MeldungExtern => "FestungErmittelnLogik.FestungErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
             return False;
       end case;
       

@@ -6,7 +6,7 @@ with LeseEinheitenDatenbank;
 with SchreibeWeltkarte;
 with LeseStadtGebaut;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with FehlermeldungssystemZusatzinformationen;
 
 package body SchreibeStadtGebaut is
@@ -31,7 +31,7 @@ package body SchreibeStadtGebaut is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "SchreibeStadtGebaut.Koordinaten: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeStadtGebaut.Koordinaten: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;

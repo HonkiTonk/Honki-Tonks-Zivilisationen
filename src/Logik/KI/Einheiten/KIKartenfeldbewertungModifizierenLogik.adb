@@ -1,5 +1,5 @@
 with KartenKonstanten;
-with DatentypenHTB6;
+with ZufallsgeneratorenDatentypenHTSEB;
 with GrafikKonstanten;
 with SystemDatentypen;
 
@@ -115,11 +115,11 @@ package body KIKartenfeldbewertungModifizierenLogik is
                if
                  LeseKartenDatenbanken.BewertungBasisgrund (GrundExtern   => LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern),
                                                             SpeziesExtern => SpeziesExtern)
-               in DatentypenHTB6.Fehlschlag
+               in ZufallsgeneratorenDatentypenHTSEB.Fehlschlag
                  and
                    LeseKartenDatenbanken.BewertungZusatzgrund (GrundExtern   => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
                                                                SpeziesExtern => SpeziesExtern)
-               in DatentypenHTB6.Fehlschlag
+               in ZufallsgeneratorenDatentypenHTSEB.Fehlschlag
                then
                   null;
                   

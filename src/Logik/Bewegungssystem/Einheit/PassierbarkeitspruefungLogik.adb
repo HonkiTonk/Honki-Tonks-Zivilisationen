@@ -11,7 +11,7 @@ with LeseKartenDatenbanken;
 
 with StadtSuchenLogik;
 with KartenkoordinatenberechnungssystemLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 
 package body PassierbarkeitspruefungLogik is
    
@@ -27,7 +27,7 @@ package body PassierbarkeitspruefungLogik is
         IDEinheit
       is
          when EinheitenDatentypen.EinheitenID'First =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer: Einheit ohne ID");
+            MeldungssystemHTSEB.Logik (MeldungExtern => "PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer: Einheit ohne ID");
             return False;
             
          when others =>

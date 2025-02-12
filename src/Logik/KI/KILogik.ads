@@ -1,4 +1,4 @@
-private with AllgemeinberechnungenHTB7;
+private with AllgemeineBerechnungenHTSEB;
 
 with SpeziesDatentypen;
 
@@ -40,8 +40,8 @@ private
 
 
 
-   function BasiszeitwertEinheiten is new AllgemeinberechnungenHTB7.Basiszeitwert (GanzeZahl => EinheitenDatentypen.EinheitenbereichVorhanden);
+   function BasiszeitwertEinheiten is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => EinheitenDatentypen.EinheitenbereichVorhanden);
 
-   function BasiszeitwertStädte is new AllgemeinberechnungenHTB7.Basiszeitwert (GanzeZahl => Positive);
+   function BasiszeitwertStädte is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => Positive);
 
 end KILogik;

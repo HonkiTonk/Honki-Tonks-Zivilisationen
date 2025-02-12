@@ -3,7 +3,7 @@ with EinheitenDatentypen;
 with KartengrundDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
-with DatentypenHTB6;
+with ZufallsgeneratorenDatentypenHTSEB;
 with KartenextraDatentypen;
 
 with LeseSpeziesbelegung;
@@ -20,7 +20,7 @@ package LeseKartenDatenbanken is
    function BewertungBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return DatentypenHTB6.Bewertung_Enum
+      return ZufallsgeneratorenDatentypenHTSEB.Bewertung_Enum
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
@@ -29,7 +29,7 @@ package LeseKartenDatenbanken is
    function BewertungZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return DatentypenHTB6.Bewertung_Enum
+      return ZufallsgeneratorenDatentypenHTSEB.Bewertung_Enum
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum

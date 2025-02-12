@@ -5,7 +5,7 @@ with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 with LeseForschungenDatenbank;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with ForschungstestsLogik;
 
 package body StadtumgebungsbereichBerechnenLogik is
@@ -19,7 +19,7 @@ package body StadtumgebungsbereichBerechnenLogik is
       is
          when SpeziesKonstanten.LeerSpezies =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
-            MeldungssystemHTB1.Logik (MeldungExtern => "StadtumgebungsbereichBerechnenLogik.StadtUmgebungsbereichFestlegen: Keine Spezies");
+            MeldungssystemHTSEB.Logik (MeldungExtern => "StadtumgebungsbereichBerechnenLogik.StadtUmgebungsbereichFestlegen: Keine Spezies");
             
          when others =>
             StadtumgebungErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);

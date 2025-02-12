@@ -2,7 +2,10 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with Sf.Window.Keyboard;
 
-with DateizugriffssystemHTB5;
+with DateizugriffssystemHTSEB;
+with DateisystemtestsHTSEB;
+with MeldungssystemHTSEB;
+with UmwandlungssystemHTSEB;
 
 with VerzeichnisKonstanten;
 with StandardTastenbelegungDatenbank;
@@ -11,9 +14,6 @@ with BefehleDatentypen;
 with TextKonstanten;
 
 with SchreibeTastenbelegungDatenbank;
-with VerzeichnisDateinamenTests;
-with MeldungssystemHTB1;
-with UmwandlungssystemHTB3;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenTastatureinstellungenLogik is
@@ -22,15 +22,15 @@ package body EinlesenTastatureinstellungenLogik is
    is begin
       
       case
-        VerzeichnisDateinamenTests.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungssystemHTB3.Decode (TextExtern => VerzeichnisKonstanten.Tastatureinstellungen))
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+                                                                    WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Tastatureinstellungen))
       is
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTB5.ÖffnenStream (DateiartExtern => DateiTastatureinstellungen,
+            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiTastatureinstellungen,
                                       NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       end case;
       
@@ -50,8 +50,8 @@ package body EinlesenTastatureinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTastatureinstellungenLogik.Tastatureinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTastatureinstellungenLogik.Tastatureinstellungen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
          
          case
@@ -722,8 +722,8 @@ package body EinlesenTastatureinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTastatureinstellungenLogik.TastatureinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTastatureinstellungenLogik.TastatureinstellungenDurchgehen: Konnte nicht geladen werden: "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end TastatureinstellungenDurchgehen;

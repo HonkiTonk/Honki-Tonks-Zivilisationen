@@ -1,4 +1,4 @@
-private with AllgemeinberechnungenHTB7;
+private with AllgemeineBerechnungenHTSEB;
 
 private with KartenDatentypen;
 
@@ -17,6 +17,6 @@ private
    
    
    
-   function Basiszeitwert is new AllgemeinberechnungenHTB7.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorRessourcenLogik;

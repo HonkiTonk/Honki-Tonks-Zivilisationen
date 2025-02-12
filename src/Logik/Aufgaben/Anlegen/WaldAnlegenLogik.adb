@@ -4,7 +4,7 @@ with KartenKonstanten;
 with SchreibeWeltkarte;
 with LeseWeltkarte;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with Zusatzgrundplatzierungssystem;
 
 package body WaldAnlegenLogik is
@@ -23,7 +23,7 @@ package body WaldAnlegenLogik is
             NeuerGrund := KartengrundDatentypen.Unterwald_Enum;
             
          when others =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "WaldAnlegenLogik.WaldAnlegen: Falsche Ebene" & KoordinatenExtern.Ebene'Wide_Wide_Image);
+            MeldungssystemHTSEB.Logik (MeldungExtern => "WaldAnlegenLogik.WaldAnlegen: Falsche Ebene" & KoordinatenExtern.Ebene'Wide_Wide_Image);
             return;
       end case;
       

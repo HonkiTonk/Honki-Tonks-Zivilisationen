@@ -1,8 +1,8 @@
 private with Ada.Strings.Wide_Wide_Unbounded;
 
-with RueckgabeDatentypen;
+private with SystemRecordsHTSEB;
 
-private with SystemRecords;
+with RueckgabeDatentypen;
 
 package OptionenSonstigesLogik is
    pragma Elaborate_Body;
@@ -19,7 +19,7 @@ private
    
    GewählteSprache : Unbounded_Wide_Wide_String;
    
-   EingegebeneZahl : SystemRecords.ZahlenEingabeRecord;
+   EingegebeneZahl : SystemRecordsHTSEB.ZahlenEingabeRecord;
    
    procedure AnzahlAutomatischerSpielstände;
    procedure RundenBisAutospeichern;

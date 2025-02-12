@@ -1,5 +1,6 @@
+with SystemRecordsHTSEB;
+
 with SpeziesDatentypen;
-with SystemRecords;
 with StadtRecords;
 with SpeziesKonstanten;
 
@@ -13,25 +14,25 @@ package TexteingabeLogik is
    function StadtName
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BauenExtern : in Boolean)
-      return SystemRecords.TextEingabeRecord
+      return SystemRecordsHTSEB.TextEingabeRecord
      with
        Pre => (
                  if StadtSpeziesNummerExtern.Spezies /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
    function SpielstandName
-     return SystemRecords.TextEingabeRecord;
+     return SystemRecordsHTSEB.TextEingabeRecord;
    
 private
    
    Frage : Positive;
    
-   Name : SystemRecords.TextEingabeRecord;
+   Name : SystemRecordsHTSEB.TextEingabeRecord;
    
    
    
    function NameEingeben
      (WelcheFrageExtern : in Positive)
-      return SystemRecords.TextEingabeRecord;
+      return SystemRecordsHTSEB.TextEingabeRecord;
 
 end TexteingabeLogik;

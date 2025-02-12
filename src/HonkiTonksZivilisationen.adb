@@ -12,7 +12,7 @@ with Grafik;
 with Musik;
 with Sound;
 
-with MeldungSchreibenHTB1;
+with MeldungSchreibenHTSEB;
 with StartEndeSound;
 -- with StartEndeMusik;
 with SchreibenEinstellungenLogik;
@@ -62,7 +62,7 @@ is
                null;
          end case;
 
-         MeldungSchreibenHTB1.MeldungASCII (MeldungExtern => "Logiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
+         MeldungSchreibenHTSEB.MeldungASCII (MeldungExtern => "Logiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Logiktask;
@@ -90,7 +90,7 @@ is
                null;
          end case;
 
-         MeldungSchreibenHTB1.MeldungASCII (MeldungExtern => "Grafiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
+         MeldungSchreibenHTSEB.MeldungASCII (MeldungExtern => "Grafiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Grafiktask;
@@ -118,7 +118,7 @@ is
                null;
          end case;
 
-         MeldungSchreibenHTB1.MeldungASCII (MeldungExtern => "Musiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
+         MeldungSchreibenHTSEB.MeldungASCII (MeldungExtern => "Musiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Musiktask;
@@ -146,7 +146,7 @@ is
                null;
          end case;
 
-         MeldungSchreibenHTB1.MeldungASCII (MeldungExtern => "Soundtask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
+         MeldungSchreibenHTSEB.MeldungASCII (MeldungExtern => "Soundtask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Soundtask;
@@ -271,6 +271,6 @@ exception
    when StandardAdaFehler : others =>
       Put_Line (Item => "Starttask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
 
-      MeldungSchreibenHTB1.MeldungASCII (MeldungExtern => "Starttask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
+      MeldungSchreibenHTSEB.MeldungASCII (MeldungExtern => "Starttask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
 
 end HonkiTonksZivilisationen;

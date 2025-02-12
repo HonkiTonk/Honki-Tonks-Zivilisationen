@@ -5,7 +5,7 @@ with LeseGrafiktask;
 
 with EingeleseneTexturenGrafik;
 with TexturenskalierungGrafik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with ObjekteZeichnenGrafik;
 with SpritesverwaltungssystemGrafik;
 with KartenspritesZeichnenGrafik;
@@ -113,7 +113,7 @@ package body HintergrundGrafik is
       if
         TexturAccessExtern = null
       then
-         MeldungssystemHTB1.Grafik (MeldungExtern => "HintergrundGrafik.HintergrundPositionierbar: Hintergrund fehlt: " & TexturAccessExtern'Wide_Wide_Image);
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "HintergrundGrafik.HintergrundPositionierbar: Hintergrund fehlt: " & TexturAccessExtern'Wide_Wide_Image);
          
          -- Zeichnen lassen, um zu signalisieren dass hier etwas nicht stimmt.
          ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
@@ -146,7 +146,7 @@ package body HintergrundGrafik is
       if
         EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern) = null
       then
-         MeldungssystemHTB1.Grafik (MeldungExtern => "HintergrundGrafik.Spezieshintergrund: Hintergrund fehlt: " & SpeziesExtern'Wide_Wide_Image & " " & HintergrundExtern'Wide_Wide_Image);
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "HintergrundGrafik.Spezieshintergrund: Hintergrund fehlt: " & SpeziesExtern'Wide_Wide_Image & " " & HintergrundExtern'Wide_Wide_Image);
       
          -- Cyan Zeichnen lassen, um zu signalisieren dass hier etwas nicht stimmt.
          ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,

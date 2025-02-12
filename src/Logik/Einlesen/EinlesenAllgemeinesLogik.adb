@@ -1,7 +1,7 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
-with MeldungssystemHTB1;
-with UmwandlungssystemHTB3;
+with MeldungssystemHTSEB;
+with UmwandlungssystemHTSEB;
 
 package body EinlesenAllgemeinesLogik is
 
@@ -26,8 +26,8 @@ package body EinlesenAllgemeinesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesDateienende: " & DateinameExtern & ": Aktuelle Zeile:" & AktuelleZeileExtern'Wide_Wide_Image & " "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesDateienende: " & DateinameExtern & ": Aktuelle Zeile:" & AktuelleZeileExtern'Wide_Wide_Image & " "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return True;
          
    end VorzeitigesDateienende;
@@ -68,8 +68,8 @@ package body EinlesenAllgemeinesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.TextEinlesenUngebunden: " & DateinameExtern & ": Aktuelle Zeile:" & AktuelleZeileExtern'Wide_Wide_Image & " "
-                                     & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.TextEinlesenUngebunden: " & DateinameExtern & ": Aktuelle Zeile:" & AktuelleZeileExtern'Wide_Wide_Image & " "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return To_Unbounded_Wide_Wide_String (Source => (DateinameExtern & ", Zeile:" & AktuelleZeileExtern'Wide_Wide_Image));
          
    end TextEinlesenUngebunden;
@@ -85,8 +85,8 @@ package body EinlesenAllgemeinesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.Texturenlimit: " & UmwandlungssystemHTB3.Decode (TextExtern => TexturenpfadExtern)
-                                     & " Texturenmaximum:" & MaximaleTexturengröße'Wide_Wide_Image & " " & UmwandlungssystemHTB3.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.Texturenlimit: " & UmwandlungssystemHTSEB.Decode (TextExtern => TexturenpfadExtern)
+                                     & " Texturenmaximum:" & MaximaleTexturengröße'Wide_Wide_Image & " " & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return null;
          
    end Texturenlimit;

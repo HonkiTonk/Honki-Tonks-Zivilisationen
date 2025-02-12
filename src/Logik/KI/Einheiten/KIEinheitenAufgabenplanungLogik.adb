@@ -3,7 +3,7 @@ with AufgabenDatentypen;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with FehlermeldungssystemZusatzinformationen;
 
 with KIDatentypen;
@@ -48,7 +48,7 @@ package body KIEinheitenAufgabenplanungLogik is
             KIPZBAufgabenLogik.PZBAufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                            
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "KIEinheitenAufgabenplanungLogik.Aufgabenplanung: Leere Einheitenart: "
+            MeldungssystemHTSEB.Logik (MeldungExtern => "KIEinheitenAufgabenplanungLogik.Aufgabenplanung: Leere Einheitenart: "
                                         & FehlermeldungssystemZusatzinformationen.SpeziesID (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                              IDExtern      => EinheitID));
             return False;

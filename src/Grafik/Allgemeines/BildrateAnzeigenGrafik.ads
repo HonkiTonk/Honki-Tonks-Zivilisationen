@@ -5,7 +5,7 @@ private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 
-private with UmwandlungssystemHTB3;
+private with UmwandlungssystemHTSEB;
 
 package BildrateAnzeigenGrafik is
    pragma Elaborate_Body;
@@ -27,6 +27,6 @@ private
    
    
    
-   function KommazahlAlsString is new UmwandlungssystemHTB3.Kommazahlenstring (Kommazahl => Float);
+   function KommazahlAlsString is new UmwandlungssystemHTSEB.Kommazahlenstring (Kommazahl => Float);
 
 end BildrateAnzeigenGrafik;

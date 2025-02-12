@@ -15,7 +15,7 @@ with LeseSpeziesbelegung;
 
 private with GrafikRecordKonstanten;
 
-private with UmwandlungssystemHTB3;
+private with UmwandlungssystemHTSEB;
 
 package EingabenanzeigeGrafik is
    pragma Elaborate_Body;
@@ -68,6 +68,6 @@ private
    
    
    
-   function ZahlAlsString is new UmwandlungssystemHTB3.Zahlenstring (GanzeZahl => Natural);
+   function ZahlAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => Natural);
 
 end EingabenanzeigeGrafik;

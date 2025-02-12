@@ -5,8 +5,8 @@ with LeseWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
 with Zusatzgrundplatzierungssystem;
-with MeldungssystemHTB1;
-with ZufallsgeneratorenHTB6;
+with MeldungssystemHTSEB;
+with ZufallsgeneratorenHTSEB;
 
 package body KartengeneratorWasserweltLogik is
 
@@ -39,7 +39,7 @@ package body KartengeneratorWasserweltLogik is
                                           GrundExtern       => KartengrundDatentypen.Meeresgrund_Enum);
             
          when others =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "KartengeneratorWasserweltLogik.BasisgrundBestimmen: Weder Küstengewässer noch Wasser");
+            MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorWasserweltLogik.BasisgrundBestimmen: Weder Küstengewässer noch Wasser");
       end case;
       
    end BasisgrundBestimmen;
@@ -70,7 +70,7 @@ package body KartengeneratorWasserweltLogik is
          elsif
            (GezogeneZahl = Zahlenspeicher
             and
-              ZufallsgeneratorenHTB6.Münzwurf = True)
+              ZufallsgeneratorenHTSEB.Münzwurf = True)
            or
              GezogeneZahl > Zahlenspeicher
          then

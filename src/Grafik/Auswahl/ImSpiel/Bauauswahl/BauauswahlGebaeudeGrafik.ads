@@ -10,7 +10,7 @@ private with GrafikRecords;
 
 with LeseSpeziesbelegung;
 
-private with UmwandlungssystemHTB3;
+private with UmwandlungssystemHTSEB;
 
 package BauauswahlGebaeudeGrafik is
    pragma Elaborate_Body;
@@ -53,6 +53,6 @@ private
    
    
       
-   function KommazahlAlsString is new UmwandlungssystemHTB3.Kommazahlenstring (Kommazahl => KampfDatentypen.Kampfbonus);
+   function KommazahlAlsString is new UmwandlungssystemHTSEB.Kommazahlenstring (Kommazahl => KampfDatentypen.Kampfbonus);
 
 end BauauswahlGebaeudeGrafik;

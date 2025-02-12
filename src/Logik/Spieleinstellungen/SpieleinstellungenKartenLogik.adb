@@ -10,7 +10,7 @@ with LeseWeltkarteneinstellungen;
 with ZahleneingabeLogik;
 with ZufallsgeneratorenSpieleinstellungenLogik;
 with AuswahlaufteilungLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with KartengeneratorVariablenLogik;
 with UmwandlungenDatentypen;
 with KartentestsLogik;
@@ -59,7 +59,7 @@ package body SpieleinstellungenKartenLogik is
                return;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenpoleWählen: Falsche Auswahl: " & KartenpoleAuswahl'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenpoleWählen: Falsche Auswahl: " & KartenpoleAuswahl'Wide_Wide_Image);
          end case;
          
       end loop KartenpoleSchleife;
@@ -146,7 +146,7 @@ package body SpieleinstellungenKartenLogik is
                return;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartengrößeWählen: Falsche Auswahl: " & KartengrößeAuswahl'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartengrößeWählen: Falsche Auswahl: " & KartengrößeAuswahl'Wide_Wide_Image);
          end case;
 
          KartentestsLogik.Größenanpassung;
@@ -234,7 +234,7 @@ package body SpieleinstellungenKartenLogik is
                exit KartenartSchleife;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenartWählen: Falsche Auswahl: " & KartenartAuswahl'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenartWählen: Falsche Auswahl: " & KartenartAuswahl'Wide_Wide_Image);
          end case;
                       
       end loop KartenartSchleife;
@@ -357,7 +357,7 @@ package body SpieleinstellungenKartenLogik is
                return;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenformWählen: Falsche Auswahl: " & KartenformAuswahl'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenformWählen: Falsche Auswahl: " & KartenformAuswahl'Wide_Wide_Image);
          end case;
 
       end loop KartenformSchleife;
@@ -473,7 +473,7 @@ package body SpieleinstellungenKartenLogik is
                return;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartentemperaturWählen: Falsche Auswahl: " & KartentemperaturAuswahl'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartentemperaturWählen: Falsche Auswahl: " & KartentemperaturAuswahl'Wide_Wide_Image);
          end case;
          
       end loop KartentemperaturSchleife;
@@ -503,7 +503,7 @@ package body SpieleinstellungenKartenLogik is
                return;
                
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenressourcenWählen: Falsche Auswahl: " & KartenressourcenAuswahl'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenressourcenWählen: Falsche Auswahl: " & KartenressourcenAuswahl'Wide_Wide_Image);
          end case;
          
       end loop KartenressourcenSchleife;

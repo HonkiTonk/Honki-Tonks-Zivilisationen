@@ -10,7 +10,7 @@ with EinlesenDatenbankenLogik;
 with SchreibenEinstellungenLogik;
 with SprachauswahlLogik;
 with EinlesenTexturenLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with EinlesenMusikLogik;
 with EinlesenSoundsLogik;
 
@@ -69,7 +69,7 @@ package body EinlesenLogik is
                SchreibenEinstellungenLogik.Nutzereinstellungen;
                   
             when False =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenLogik.EinlesenMitAnzeige: Sprachen nicht gefunden");
+               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenLogik.EinlesenMitAnzeige: Sprachen nicht gefunden");
                return;
          end case;
       end if;

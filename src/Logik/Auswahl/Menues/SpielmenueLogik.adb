@@ -6,7 +6,7 @@ with OptionenLogik;
 with SpeichernLogik;
 with LadenLogik;
 with AuswahlaufteilungLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 
 package body SpielmenueLogik is
 
@@ -54,7 +54,7 @@ package body SpielmenueLogik is
                return AuswahlSpielmenü;
                   
             when others =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "SpielmenueLogik.Spielmenü: Falsche Rückgabe: " & AuswahlSpielmenü'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpielmenueLogik.Spielmenü: Falsche Rückgabe: " & AuswahlSpielmenü'Wide_Wide_Image);
          end case;
       
       end loop SpielmenüSchleife;

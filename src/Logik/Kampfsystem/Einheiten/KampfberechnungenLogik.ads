@@ -1,4 +1,4 @@
-private with ZufallsgeneratorenHTB6;
+private with ZufallsgeneratorenHTSEB;
 
 with KampfDatentypen;
 
@@ -17,6 +17,6 @@ private
    
    
    
-   function Kampferfolge is new ZufallsgeneratorenHTB6.ErreichteErfolge (GanzeZahl => KampfDatentypen.Kampfwerte);
+   function Kampferfolge is new ZufallsgeneratorenHTSEB.ErreichteErfolge (GanzeZahl => KampfDatentypen.Kampfwerte);
    
 end KampfberechnungenLogik;

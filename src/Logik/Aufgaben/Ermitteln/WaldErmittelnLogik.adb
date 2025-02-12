@@ -5,7 +5,7 @@ with ProduktionKonstanten;
 with LeseWeltkarte;
 
 with RodenErmittelnLogik;
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 with JaNeinLogik;
 with ArbeitszeitWaldLogik;
 with AufgabeFestlegenLogik;
@@ -83,7 +83,7 @@ package body WaldErmittelnLogik is
             null;
             
          when others =>
-            MeldungssystemHTB1.Logik (MeldungExtern => "WaldErmittelnLogik.WaldErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            MeldungssystemHTSEB.Logik (MeldungExtern => "WaldErmittelnLogik.WaldErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
             return False;
       end case;
       

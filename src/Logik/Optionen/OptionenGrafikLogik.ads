@@ -2,9 +2,9 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-with RueckgabeDatentypen;
+private with SystemRecordsHTSEB;
 
-private with SystemRecords;
+with RueckgabeDatentypen;
 
 package OptionenGrafikLogik is
    pragma Elaborate_Body;
@@ -19,8 +19,8 @@ private
 
    GewählteTexturen : Unbounded_Wide_Wide_String;
 
-   EingabeAuflösung : SystemRecords.ZahlenEingabeRecord;
-   EingabeBildrate : SystemRecords.ZahlenEingabeRecord;
+   EingabeAuflösung : SystemRecordsHTSEB.ZahlenEingabeRecord;
+   EingabeBildrate : SystemRecordsHTSEB.ZahlenEingabeRecord;
 
    NeueAuflösung : Sf.System.Vector2.sfVector2u;
 

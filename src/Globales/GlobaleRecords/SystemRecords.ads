@@ -1,7 +1,8 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with BetriebssystemDatentypenHTSEB;
+
 with ZahlenDatentypen;
-with BetriebssystemDatentypen;
 
 package SystemRecords is
    pragma Preelaborate;
@@ -34,30 +35,14 @@ package SystemRecords is
    
    
    
-   type ZahlenEingabeRecord is record
-      
-      ErfolgreichAbbruch : Boolean;
-      EingegebeneZahl : ZahlenDatentypen.EigenerInteger;
-      
-   end record;
-   
-   
-   
-   type TextEingabeRecord is record
-      
-      ErfolgreichAbbruch : Boolean;
-      EingegebenerText : Unbounded_Wide_Wide_String;
-      
-   end record;
-   
-   
-   
+   -- Das auch auslagern und von außen setzen lassen? äöü
+   -- Auf jeden Fall die verschiedenen Versionen anpassen! äöü
    type ProjekteinstellungenRecord is record
       
       VolleInformation : Boolean;
       FehlerWarnung : Boolean;
-      Betriebssystem : BetriebssystemDatentypen.Betriebssystem_Enum;
-      Stringkodierung : BetriebssystemDatentypen.Kodierung_Enum;
+      Betriebssystem : BetriebssystemDatentypenHTSEB.Betriebssystem_Enum;
+      Stringkodierung : BetriebssystemDatentypenHTSEB.Kodierung_Enum;
       Dateiform : Character;
       
    end record;

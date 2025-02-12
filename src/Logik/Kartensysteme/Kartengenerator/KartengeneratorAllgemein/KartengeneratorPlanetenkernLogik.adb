@@ -5,7 +5,7 @@ with SchreibeWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
 with LadezeitenLogik;
-with ZufallsgeneratorenHTB6;
+with ZufallsgeneratorenHTSEB;
 
 -- Sollte ich in dieser Prozedur später weitere Berechnungen durchführen die Zugriff auf die Kartenkoordinatenberechnung vornehmen, äöü
 -- dann muss ich das hier wegverschieben da der Zugriff ebenfall in KartengeneratorStandardLogik.OberflächeGenerieren erfolgt. äöü
@@ -89,7 +89,7 @@ package body KartengeneratorPlanetenkernLogik is
          elsif
            (GezogeneZahl = Zahlenspeicher
             and
-              ZufallsgeneratorenHTB6.Münzwurf = True)
+              ZufallsgeneratorenHTSEB.Münzwurf = True)
            or
              GezogeneZahl > Zahlenspeicher
          then

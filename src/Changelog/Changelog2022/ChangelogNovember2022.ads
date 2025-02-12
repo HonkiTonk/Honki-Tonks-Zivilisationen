@@ -135,7 +135,7 @@ package ChangelogNovember2022 is
    -- Zusätzliche Überlaufprüfungen eingebaut.
    -- Zusätzliche Sicherheitsprüfungen eingebaut.
    -- Interne Sturktur überarbeitet.
-   -- Teile des Debugsystems und des MeldungssystemHTB1s miteinander verschmolzen.
+   -- Teile des Debugsystems und des MeldungssystemHTSEBs miteinander verschmolzen.
    -- Doppelten Code zusammengeführt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt.
    

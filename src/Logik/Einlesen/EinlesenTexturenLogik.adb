@@ -1,8 +1,9 @@
 with Sf.Graphics.Texture;
 
-with DateizugriffssystemHTB5;
-with UmwandlungssystemHTB3;
-with MeldungssystemHTB1;
+with DateizugriffssystemHTSEB;
+with UmwandlungssystemHTSEB;
+with MeldungssystemHTSEB;
+with DateisystemtestsHTSEB;
 
 with VerzeichnisKonstanten;
 with TextKonstanten;
@@ -12,7 +13,6 @@ with TextArrays;
 with LeseOptionen;
 
 with EinlesenAllgemeinesLogik;
-with VerzeichnisDateinamenTests;
 with TexturenfelderBerechnenGrafik;
 
 -- Unter Windows funktionieren UTF8 Namen bei den Texturdateien nicht, das beim Benennen der Texturen berücksichtigen.
@@ -24,7 +24,7 @@ package body EinlesenTexturenLogik is
       
       case
         -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht dder ganze Verzeichnisname.
-        VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
                                                                WindowsTextExtern => (VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstanten.NullDateiWideWide))
       is
          when False =>
@@ -34,8 +34,8 @@ package body EinlesenTexturenLogik is
             EinzulesendeZeile := 1;
             AktuelleZeile := 1;
             
-            DateizugriffssystemHTB5.ÖffnenText (DateiartExtern => DateiTexturen,
-                                                 NameExtern     => UmwandlungssystemHTB3.Encode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
+            DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiTexturen,
+                                                 NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
                                                                                                  & VerzeichnisKonstanten.NullDateiWideWide));
       end case;
       
@@ -48,7 +48,7 @@ package body EinlesenTexturenLogik is
                                                             DateinameExtern     => "EinlesenTexturenLogik.EinlesenTexturen")
          is
             when True =>
-               MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                exit TexturenSchleife;
                
             when False =>
@@ -67,118 +67,118 @@ package body EinlesenTexturenLogik is
                
             when others =>
                if
-                 False = VerzeichnisDateinamenTests.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                 False = DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
                                                                                 WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
                then
-                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Datei oder Pfad existiert nicht");
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Datei oder Pfad existiert nicht");
                
                elsif
                  AktuelleZeile = Basisgrund
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.BasisgrundAccess);
-                  EingeleseneTexturenGrafik.BasisgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.BasisgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Zusatzgrund
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.ZusatzgrundAccess);
-                  EingeleseneTexturenGrafik.ZusatzgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.ZusatzgrundAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Flüsse
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.FlussAccess);
-                  EingeleseneTexturenGrafik.FlussAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.FlussAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Ressourcen
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.RessourcenAccess);
-                  EingeleseneTexturenGrafik.RessourcenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.RessourcenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Verbesserungen
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.VerbesserungenAccess);
-                  EingeleseneTexturenGrafik.VerbesserungenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.VerbesserungenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Wege
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.WegeAccess);
-                  EingeleseneTexturenGrafik.WegeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.WegeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Feldeffekte
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.FeldeffekteAccess);
-                  EingeleseneTexturenGrafik.FeldeffekteAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.FeldeffekteAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Einheitenbefehle
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.EinheitenbefehleAccess);
-                  EingeleseneTexturenGrafik.EinheitenbefehleAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.EinheitenbefehleAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Kartenbefehle
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.KartenbefehleAccess);
-                  EingeleseneTexturenGrafik.KartenbefehleAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.KartenbefehleAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = RoterKnopf
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.RoterKnopfAccess);
-                  EingeleseneTexturenGrafik.RoterKnopfAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.RoterKnopfAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Intro
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.IntroAccess);
-                  EingeleseneTexturenGrafik.IntroAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.IntroAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Kartenformen
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.KartenformenAccess);
-                  EingeleseneTexturenGrafik.KartenformenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.KartenformenAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                                     
                elsif
                  AktuelleZeile = Allgemeines
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.AllgemeinesAccess);
-                  EingeleseneTexturenGrafik.AllgemeinesAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.AllgemeinesAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = PZBEnde
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.PZBEndeAccess);
-                  EingeleseneTexturenGrafik.PZBEndeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneTexturenGrafik.PZBEndeAccess := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                                     
                elsif
                  AktuelleZeile in HintergründeAnfang .. HintergründeEnde
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.AllgemeinesSpezienAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - HintergründeAnfang + 1)));
                   EingeleseneTexturenGrafik.AllgemeinesSpezienAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - HintergründeAnfang + 1))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile in EinheitenAnfang .. EinheitenEnde
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.EinheitenAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - EinheitenAnfang + 1)));
                   EingeleseneTexturenGrafik.EinheitenAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - EinheitenAnfang + 1))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile in GebäudeAnfang .. GebäudeEnde
                then
                   Sf.Graphics.Texture.destroy (texture => EingeleseneTexturenGrafik.GebäudeAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - GebäudeAnfang + 1)));
                   EingeleseneTexturenGrafik.GebäudeAccess (SpeziesDatentypen.Spezies_Vorhanden_Enum'Val (AktuelleZeile - GebäudeAnfang + 1))
-                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTB3.EncodeUnbounded (TextExtern => GesamterPfad));
+                    := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                else
-                  MeldungssystemHTB1.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Außerhalb des Einlesebereichs");
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Außerhalb des Einlesebereichs");
                   exit TexturenSchleife;
                end if;
                
@@ -220,8 +220,8 @@ package body EinlesenTexturenLogik is
                          Directory_Entry => Verzeichnis);
          
          if
-           False = VerzeichnisDateinamenTests.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
-                                                                     WindowsTextExtern => UmwandlungssystemHTB3.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.GrafikEinfach
+           False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
+                                                                     WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.GrafikEinfach
                                                                                                                                  & Simple_Name (Directory_Entry => Verzeichnis)
                                                                                                                                  & VerzeichnisKonstanten.NullDatei))
          then
@@ -230,7 +230,7 @@ package body EinlesenTexturenLogik is
          elsif
            -- Kann das nicht einfach raus wenn irgendwann einmal Wide_Wide_Directories da ist? äöü
            -- Das ist je nur vorhandene Ordner durchgehen und man kann ja keine Dateien/Ordner anlegen die das Dateisystem nicht unterstützen. äöü
-           VerzeichnisDateinamenTests.GültigerNamen (NameExtern => UmwandlungssystemHTB3.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis))) = False
+           DateisystemtestsHTSEB.GültigerNamen (NameExtern => UmwandlungssystemHTSEB.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis))) = False
          then
             null;
              
@@ -242,7 +242,7 @@ package body EinlesenTexturenLogik is
             null;
             
          else
-            Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => UmwandlungssystemHTB3.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)));
+            Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => UmwandlungssystemHTSEB.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)));
             
             VerzeichnisInnenSchleife:
             for TexturenSchleifenwert in TextArrays.SprachenTexturenEinlesen'Range loop

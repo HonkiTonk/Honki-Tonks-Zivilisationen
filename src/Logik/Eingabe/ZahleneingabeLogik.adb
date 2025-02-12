@@ -16,7 +16,7 @@ package body ZahleneingabeLogik is
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
       WelcheFrageExtern : in Positive)
-      return SystemRecords.ZahlenEingabeRecord
+      return SystemRecordsHTSEB.ZahlenEingabeRecord
    is begin
       
       ZahlenString := ZahlenStringLeer;
@@ -45,7 +45,7 @@ package body ZahleneingabeLogik is
    function ZahlSchleife
      (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
       ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
-      return SystemRecords.ZahlenEingabeRecord
+      return SystemRecordsHTSEB.ZahlenEingabeRecord
    is begin
                   
       ZahlenSchleife:

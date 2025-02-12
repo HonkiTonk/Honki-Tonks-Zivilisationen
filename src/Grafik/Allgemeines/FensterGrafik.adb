@@ -10,7 +10,7 @@ with GrafikKonstanten;
 with LeseEinstellungenGrafik;
 with SchreibeGrafiktask;
 
-with MeldungssystemHTB1;
+with MeldungssystemHTSEB;
 
 package body FensterGrafik is
    
@@ -22,7 +22,7 @@ package body FensterGrafik is
       if
         FensterAccess = null
       then
-         MeldungssystemHTB1.Grafik (MeldungExtern => "FensterGrafik.FensterErzeugen: FensterAccess: null");
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "FensterGrafik.FensterErzeugen: FensterAccess: null");
          raise FensterNichtErzeugbar;
 
       else
@@ -55,7 +55,7 @@ package body FensterGrafik is
             Startauflösung := (Sf.Window.VideoMode.getDesktopMode.width, Sf.Window.VideoMode.getDesktopMode.height);
             
          when others =>
-            MeldungssystemHTB1.Grafik (MeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & Fenstermodus'Wide_Wide_Image);
+            MeldungssystemHTSEB.Grafik (MeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & Fenstermodus'Wide_Wide_Image);
             Fenstermodus := GrafikKonstanten.StandardFenster;
             Startauflösung := (GrafikKonstanten.MinimaleAuflösungsbreite, GrafikKonstanten.MinimaleAuflösunghöhe);
       end case;
