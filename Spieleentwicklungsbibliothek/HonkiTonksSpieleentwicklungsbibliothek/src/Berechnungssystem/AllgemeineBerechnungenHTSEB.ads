@@ -33,14 +33,5 @@ package AllgemeineBerechnungenHTSEB is
        Post => (
                   Nullprüfung'Result /= 0
                );
-   
-private
-   
-   Nullwert : constant Natural := 0;
-   
-   Einswert : constant Positive := 1;
-   
-   KommazahlNullwert : constant Float := 0.00;
-   KommazahlEinswert : constant Float := 1.00;
 
 end AllgemeineBerechnungenHTSEB;

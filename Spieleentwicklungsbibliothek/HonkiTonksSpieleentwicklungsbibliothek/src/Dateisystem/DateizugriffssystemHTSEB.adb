@@ -2,6 +2,7 @@
 -- Es gibt keine verschiedenen Varianten des Schließens und den Paketzugriff bekomme ich auch nicht raus, da ich ja immer noch das File_Type aus dem Standardpaket brauche.
 -- Aber enventuell sinnvoll für die WideWide und Unbounded Versionen?
 -- Mal drüber nachdenken. äöü
+-- Löschen eventuell auch? äöü
 with Ada.Exceptions;
 
 with DateisystemvariablenHTSEB;

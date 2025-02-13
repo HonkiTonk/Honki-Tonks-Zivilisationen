@@ -1,9 +1,17 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.0200 => 0.01. ():
+   -- Version 0.01.0250 => 0.01. ():
    
    -- 
+   
+   
+   
+   -- Version 0.01.0200 => 0.01.0250 (13.02.2025):
+   
+   -- Lokale Pragmas angepasst, um Fehler zu beheben die beim Kompilieren mit meinem Spiel entstehen.
+   -- Falsche Fehlermeldungen korrigiert.
+   -- Kleinigkeiten überarbeitet.
    
    
    
@@ -13,7 +21,7 @@ package ChangelogHTSEB is
    -- Mehr Exceptions hinzugefügt.
    -- Falsche Fehlermeldungen korrigiert.
    -- Die Bibliothek sollte jetzt überall ihre eigene Enocde/Decode Variante verwenden.
-   -- Interne Benennung überarbeitet.
+   -- Internet Benennung überarbeitet.
    -- Das Dateizugriffssystem hat jetzt auch Prozeduren/Funktionen für Wide_Wide und Unbounded_Wide_Wide.
    -- Den Zugriff auf Teile der Standardbibliothek weiter eingeschränkt.
    -- Kleinigkeiten angepasst.

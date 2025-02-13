@@ -50,7 +50,7 @@ package body MeldungSchreibenHTSEB is
       
    exception
      when StandardAdaFehler : others =>
-       Put (Item => "MeldungSchreiben.Meldung - Konnte nicht geschrieben werden" & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+       Put (Item => "MeldungSchreibenHTSEB.Meldung - Konnte nicht geschrieben werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiMeldung)

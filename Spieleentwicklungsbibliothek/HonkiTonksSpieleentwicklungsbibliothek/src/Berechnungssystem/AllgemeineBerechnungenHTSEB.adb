@@ -1,3 +1,5 @@
+with SystemKonstantenHTSEB;
+
 package body AllgemeineBerechnungenHTSEB is
 
    function Basiszeitwert
@@ -18,9 +20,9 @@ package body AllgemeineBerechnungenHTSEB is
    is begin
       
       if
-        KommazahlExtern = KommazahlNullwert
+        KommazahlExtern = SystemKonstantenHTSEB.KommazahlNullwert
       then
-         return KommazahlEinswert;
+         return SystemKonstantenHTSEB.KommazahlEinswert;
          
       else
          return KommazahlExtern;
@@ -36,9 +38,9 @@ package body AllgemeineBerechnungenHTSEB is
    is begin
       
       if
-        ZahlExtern = Nullwert
+        ZahlExtern = SystemKonstantenHTSEB.Nullwert
       then
-         return Einswert;
+         return SystemKonstantenHTSEB.Einswert;
          
       else
          return ZahlExtern;

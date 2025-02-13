@@ -66,11 +66,7 @@ pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Dom
 
 pragma Restrictions (No_Default_Stream_Attributes);
 pragma Restrictions (No_Abort_Statements);
--- pragma Restrictions (No_Finalization);
--- pragma Restrictions (No_Task_Hierarchy);
 pragma Restrictions (No_Multiple_Elaboration);
--- pragma Restrictions (No_Relative_Delay);
--- pragma Normalize_Scalars;
 
 -- Kann nicht verwendet werden da bestimmte Zeitangaben benötigt werden.
 -- Ist das nicht identisch mit pragma Restrictions (No_Dependence => Ada.Calendar);?
@@ -82,6 +78,11 @@ pragma Restrictions (No_Multiple_Elaboration);
 -- Nicht verwendbar:
 -- Damit kann "pragma (Ordered);" nicht verwendet werden.
 -- pragma Restrictions (No_Implementation_Pragmas);
+-- Können Probleme mit meinen Spielen erzeugen.
+-- pragma Restrictions (No_Finalization);
+-- pragma Restrictions (No_Task_Hierarchy);
+-- pragma Restrictions (No_Relative_Delay);
+-- pragma Normalize_Scalars;
 
 
 
