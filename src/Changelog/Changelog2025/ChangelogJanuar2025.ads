@@ -71,16 +71,16 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (21.01.2025):
+   -- Version 0.06.0470 => 0.06. (21.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0445 => 0.06. (20.01.2025):
+   -- Version 0.06.0445 => 0.06.0470 (20.01.2025):
    
-   -- 
+   -- Musik erneut normalisiert damit die Lautstärke besser zum Sound passt.
    -- Kleinigkeiten korrigiert.
    
    
