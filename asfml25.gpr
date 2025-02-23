@@ -1,4 +1,4 @@
-library project ASFML is
+library project ASFML25 is
 
    type T_OS is ("Windows_NT", "Linux");
    V_OS : T_OS := external ("OS", "Linux");
@@ -7,13 +7,13 @@ library project ASFML is
 
    for Create_Missing_Dirs use "True";
 
-   for Source_Dirs use ("ASFML/include");
+   for Source_Dirs use ("ASFML25/include");
    for Object_Dir  use "obj_sfml";
 
    for Library_Name use "asfml";
 
-   for Library_Dir  use "ASFML/lib";
-   for Library_ALI_Dir use "ASFML/lib";
+   for Library_Dir  use "ASFML25/lib";
+   for Library_ALI_Dir use "ASFML25/lib";
    for Library_Kind use "static";
 
 
@@ -112,4 +112,4 @@ library project ASFML is
       for HTML_Custom_Dir use "tools/gnatdoc_html";
    end Documentation;
 
-end ASFML;
+end ASFML25;

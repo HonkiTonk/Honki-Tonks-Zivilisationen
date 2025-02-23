@@ -1,4 +1,4 @@
-with "asfml.gpr";
+with "asfml25.gpr";
 
 with "Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek.gpr";
 

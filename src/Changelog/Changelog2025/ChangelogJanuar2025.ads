@@ -64,16 +64,17 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (22.01.2025):
+   -- Version 0.06.0505 => 0.06. (22.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0470 => 0.06. (21.01.2025):
+   -- Version 0.06.0470 => 0.06.0505 (21.01.2025):
    
-   -- 
+   -- Unnötige Dateien entfernt.
+   -- Umbenennung vorgenommen um später einfacher die CSFML/SFML von Version 2.5 auf 2.6 aktualisieren zu können.
    -- Kleinigkeiten korrigiert.
    
    
