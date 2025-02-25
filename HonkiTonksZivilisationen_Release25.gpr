@@ -1,0 +1,73 @@
+with "asfml25.gpr";
+
+with "Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek.gpr";
+
+project HonkiTonksZivilisationen_Release25 is
+
+   type Betriebssystem_Type is ("Linux", "Windows");
+   Betriebssystem : Betriebssystem_Type := external ("Betriebssystem", "Linux");
+   type Status_Type is ("Entwicklung", "Veroeffentlichung");
+   Status : Status_Type := external ("Status", "Veroeffentlichung");
+
+   for Exec_Dir use "Honki Tonks Zivilisationen";
+   for Create_Missing_Dirs use "True";
+   for Main use ("HonkiTonksZivilisationen.adb");
+   for Runtime ("ada") use "default";
+
+   case Betriebssystem is
+      when "Linux" =>
+         case Status is
+            when "Entwicklung" =>
+               for Object_Dir use "obj";
+               for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux");
+
+            when "Veroeffentlichung" =>
+               for Object_Dir use "obj";
+               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungLinux");
+         end case;
+
+      when "Windows" =>
+         case Status is
+            when "Entwicklung" =>
+               for Object_Dir use "obj_windows";
+               for Source_Dirs use ("src/**", "srcBS/EntwicklungWindows");
+
+            when "Veroeffentlichung" =>
+               for Object_Dir use "obj_windows";
+               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungWindows");
+         end case;
+   end case;
+
+   package Naming is
+      for Casing use "MixedCase";
+   end Naming;
+
+   package Compiler is
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2022", "-O3", "-gnatn", "-funroll-loops", "-fPIC", "-fstack-check", "-flto", "-gnatVacdefimoprst", 
+         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L8");
+      for Local_Configuration_Pragmas use "Lokale Pragmas";
+   end Compiler;
+
+   package Builder is
+      for Switches ("ada") use ("-k", "-s", "-C", "-gnatW8", "-j4");
+   end Builder;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-static", "-d_C", "-W8");
+   end Binder;
+
+   package Pretty_Printer is
+      for Default_Switches ("ada") use ("-W8");
+   end Pretty_Printer;
+
+   package Prove is
+      for Proof_Switches ("ada") use ("-j4", "--proof-warnings", "--codepeer=on");
+   end Prove;
+
+   package Linker is
+      for Switches ("ada") use ("-s", "-Wl,--gc-sections", "-flto");
+      for Linker_Options use ("-static");
+   end Linker;
+
+end HonkiTonksZivilisationen_Release25;
+

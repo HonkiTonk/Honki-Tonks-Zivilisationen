@@ -1,8 +1,8 @@
-with "asfml25.gpr";
+with "asfml26.gpr";
 
 with "Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek.gpr";
 
-project HonkiTonksZivilisationen_Release is
+project HonkiTonksZivilisationen_Release26 is
 
    type Betriebssystem_Type is ("Linux", "Windows");
    Betriebssystem : Betriebssystem_Type := external ("Betriebssystem", "Linux");
@@ -69,5 +69,5 @@ project HonkiTonksZivilisationen_Release is
       for Linker_Options use ("-static");
    end Linker;
 
-end HonkiTonksZivilisationen_Release;
+end HonkiTonksZivilisationen_Release26;
 

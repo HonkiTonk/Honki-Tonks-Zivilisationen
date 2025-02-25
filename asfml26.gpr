@@ -1,19 +1,16 @@
-library project ASFML25 is
-
-   type T_OS is ("Windows_NT", "Linux");
-   V_OS : T_OS := external ("OS", "Linux");
+library project ASFML26 is
 
    for Languages use ("Ada");
 
    for Create_Missing_Dirs use "True";
 
-   for Source_Dirs use ("ASFML25/include");
-   for Object_Dir  use "obj_sfml25";
+   for Source_Dirs use ("ASFML26/include");
+   for Object_Dir  use "obj_sfml26";
 
    for Library_Name use "asfml";
 
-   for Library_Dir  use "ASFML25/lib";
-   for Library_ALI_Dir use "ASFML25/lib";
+   for Library_Dir  use "ASFML26/lib";
+   for Library_ALI_Dir use "ASFML26/lib";
    for Library_Kind use "static";
 
 
@@ -78,38 +75,36 @@ library project ASFML25 is
         Build_Switches &
         Runtime_Checks_Switches &
         Contracts_Switches &
-      ("-gnatQ");  -- Don't quit. Generate ALI and tree files even if illegalities
+        ("-gnatQ");  -- Don't quit. Generate ALI and tree files even if illegalities
    end Compiler;
 
    package Binder is
       for Switches ("Ada") use ("-Es"); --  Symbolic traceback
-	for Default_Switches ("ada") use ("-static");
    end Binder;
 
-   package Linker is
+  package Linker is
       for Linker_Options use
         (
-	  "-lcsfml-audio", "-lcsfml-graphics", "-lcsfml-window", "-lcsfml-system", "-lcsfml-network",
-          "-lasfml"
-         -- Wird nur benötigt wenn man es statisch kompilieren will.
-         -- "-lsfml-audio", "-lsfml-graphics", "-lsfml-window", "-lsfml-system", "-lsfml-network",
-	 -- "-lopenal",  "-logg", "-lvorbis", "-lvorbisenc", "-lvorbisfile", "-lFLAC", "-lfreetype",
-	 -- "-lOpenGL", "-lGLX", "-ludev", "-lXrandr", "-lX11", "-lstdc++", "-lm",
-
-	 -- Wird nicht benötigt, vollständigkeitshalber aber dennoch hier.
-	 -- "-lGLU", "-lpthread"
+         -- Add this if you need to provide your own compiled version of SFML/CSFML
+         -- "-L../../SFML/SFML/lib", "-L../../SFML/CSFML/lib",
+         -- "-lsfml-system", "-lsfml-audio", "-lsfml-network",
+         -- "-lsfml-audio", "-lsfml-graphics", "-lsfml-window",
+         -- End
+         "-lcsfml-system", "-lcsfml-audio", "-lcsfml-network",
+         "-lcsfml-audio", "-lcsfml-graphics", "-lcsfml-window",
+         "-lasfml"
         );
-   end Linker;
+  end Linker;
 
 
-   package Documentation is
-      for Documentation_Dir use "doc";
-      for Doc_Pattern use "^/ |^/< ";
-      --  This considers comments beginning with "--/ " to be documentation
-      for Custom_Tags_Definition use "tools/sfml-doc-tags.py";
-      --  GNATdoc loads provided file on startup to process custom tags
-      for Image_Dir use "images";
-      for HTML_Custom_Dir use "tools/gnatdoc_html";
-   end Documentation;
+  package Documentation is
+    for Documentation_Dir use "doc";
+    for Doc_Pattern use "^/ |^/< ";
+    --  This considers comments beginning with "--/ " to be documentation
+    for Custom_Tags_Definition use "tools/sfml-doc-tags.py";
+    --  GNATdoc loads provided file on startup to process custom tags
+    for Image_Dir use "images";
+    for HTML_Custom_Dir use "tools/gnatdoc_html";
+  end Documentation;
 
-end ASFML25;
+end ASFML26;

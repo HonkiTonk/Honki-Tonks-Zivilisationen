@@ -10,12 +10,14 @@ Honki Tonks Zivilisationen/*.exe
 Honki Tonks Zivilisationen/*.dll
 GNAT*
 ASFML25/lib/
+ASFML26/lib/
 alire/
 config/
 share/
 obj/
 obj_alire/
 obj_windows/
-obj_sfml/
+obj_sfml25/
+obj_sfml26/
 Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek/lib/
 Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek/obj/
