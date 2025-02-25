@@ -6,7 +6,6 @@ package Projekteinstellungen is
    pragma Preelaborate;
 
    -- Das auch auslagern und von außen setzen lassen? äöü
-   -- Auf jeden Fall die verschiedenen Versionen anpassen! äöü
    Einstellungen : constant SystemRecords.ProjekteinstellungenRecord := (
                                                                          VolleInformation => True,
                                                                          FehlerWarnung    => True,

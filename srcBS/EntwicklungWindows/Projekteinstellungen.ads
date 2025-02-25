@@ -1,5 +1,6 @@
+with BetriebssystemDatentypenHTSEB;
+
 with SystemRecords;
-with BetriebssystemDatentypen;
 
 package Projekteinstellungen is
    pragma Preelaborate;
@@ -7,8 +8,8 @@ package Projekteinstellungen is
    Einstellungen : constant SystemRecords.ProjekteinstellungenRecord := (
                                                                          VolleInformation => True,
                                                                          FehlerWarnung    => True,
-                                                                         Betriebssystem   => BetriebssystemDatentypen.Windows_Enum,
-                                                                         Stringkodierung  => BetriebssystemDatentypen.UTF8_Enum,
+                                                                         Betriebssystem   => BetriebssystemDatentypenHTSEB.Windows_Enum,
+                                                                         Stringkodierung  => BetriebssystemDatentypenHTSEB.UTF8_Enum,
 
                                                                          -- Gültige Werte:
                                                                          -- h => Hex ESC encoding

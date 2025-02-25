@@ -43,15 +43,19 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (25.01.2025):
+   -- Version 0.06.0610 => 0.06. (25.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0565 => 0.06. (24.01.2025):
+   -- Version 0.06.0565 => 0.06.0610 (24.01.2025):
    
+   -- Fehler im Packskrip korrigiert.
+   -- Das Packskript an die verschiedenen Versionen der A/C/SFML angepasst.
+   -- Die verschiedenen Projekteinstellungen an die Entwicklungsversion angepasst.
+   -- Fälschlicherweise entfernte Dateien wieder hinzugefügt.
    -- 
    -- Kleinigkeiten korrigiert.
    

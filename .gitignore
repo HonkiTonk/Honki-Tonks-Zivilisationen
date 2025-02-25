@@ -9,8 +9,10 @@ Honki Tonks Zivilisationen/HonkiTonksZivilisationen
 Honki Tonks Zivilisationen/*.exe
 Honki Tonks Zivilisationen/*.dll
 GNAT*
-ASFML25/lib/
-ASFML26/lib/
+ASFML25/lib/libasfml.a
+ASFML25/lib/*.ali
+ASFML26/lib/libasfml.a
+ASFML26/lib/*.ali
 alire/
 config/
 share/
