@@ -50,16 +50,16 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (24.01.2025):
+   -- Version 0.06.0565 => 0.06. (24.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0540 => 0.06. (23.01.2025):
+   -- Version 0.06.0540 => 0.06.0565 (23.01.2025):
    
-   -- 
+   -- DLL Dateien aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
@@ -67,7 +67,7 @@ package ChangelogJanuar2025 is
    -- Version 0.06.0505 => 0.06.0540 (22.01.2025):
    
    -- Neue gpr Dateien für A/C/SFML 2.6.1 angelegt.
-   -- Alles angepasst damit die A/C/SFML 2.6.1 Versionen korrekt funktionieren.
+   -- Alles angepasst damit die A/C/SFML 2.6.1 Versionen korrekt kompilieren/funktionieren.
    -- Kleinigkeiten korrigiert.
    
    

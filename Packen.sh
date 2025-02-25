@@ -7,7 +7,7 @@ mkdir Honki\ Tonks\ Zivilisationen\ Windows
 
 
 # Windows
-# gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Windows_Release.gpr --target=x86_64-w64-mingw32
+# gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Windows_Release26.gpr --target=x86_64-w64-mingw32
 
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Grafik/ Honki\ Tonks\ Zivilisationen\ Windows/ -r
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Musik/ Honki\ Tonks\ Zivilisationen\ Windows/ -r
@@ -33,7 +33,7 @@ zip -9 -r Honki_Tonks_Zivilisationen_Windows64.zip Honki\ Tonks\ Zivilisationen\
 
 
 # Linux
-gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Release.gpr
+gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Release25.gpr
 
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Grafik/Honki\ Tonks\ Zivilisationen\ Linux/ -r
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Musik/ Honki\ Tonks\ Zivilisationen\ Linux/ -r
@@ -48,4 +48,4 @@ bzip2 -9 Honki_Tonks_Zivilisationen_Linux64.tar
 
 
 
-gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen.gpr
+gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen25.gpr
