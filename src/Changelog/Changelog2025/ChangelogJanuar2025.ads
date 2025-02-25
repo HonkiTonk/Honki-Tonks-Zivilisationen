@@ -36,27 +36,27 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (26.01.2025):
+   -- Version 0.06.0645 => 0.06. (26.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0610 => 0.06. (25.01.2025):
+   -- Version 0.06.0610 => 0.06.0645 (25.01.2025):
    
-   -- 
+   -- Das Packskript erstellt jetzt auch eine A/C/SFML 2.6 Version für Linux.
+   -- Notwendige Dateien für A/C/SFML 2.6 hinzugefügt.
    -- Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.06.0565 => 0.06.0610 (24.01.2025):
    
-   -- Fehler im Packskrip korrigiert.
+   -- Fehler im Packskript korrigiert.
    -- Das Packskript an die verschiedenen Versionen der A/C/SFML angepasst.
    -- Die verschiedenen Projekteinstellungen an die Entwicklungsversion angepasst.
    -- Fälschlicherweise entfernte Dateien wieder hinzugefügt.
-   -- 
    -- Kleinigkeiten korrigiert.
    
    

@@ -24,11 +24,13 @@ zip -9 -r Honki_Tonks_Zivilisationen_Windows64_SFML25.zip Honki\ Tonks\ Zivilisa
 
 
 # A/C/SFML 2.6.X
-gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Windows_Release26.gpr --target=x86_64-w64-mingw32
+# gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Windows_Release26.gpr --target=x86_64-w64-mingw32
 
-cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/HonkiTonksZivilisationen.exe Honki\ Tonks\ Zivilisationen\ Windows/
+# cp /mnt/Programme/Ada/Zivilisationen/DLL/CSFML2.6.1_SFML2.6.2/. Honki\ Tonks\ Zivilisationen\ Windows -r
 
-zip -9 -r Honki_Tonks_Zivilisationen_Windows64_SFML26.zip Honki\ Tonks\ Zivilisationen\ Windows/
+# cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/HonkiTonksZivilisationen.exe Honki\ Tonks\ Zivilisationen\ Windows/
+
+# zip -9 -r Honki_Tonks_Zivilisationen_Windows64_SFML26.zip Honki\ Tonks\ Zivilisationen\ Windows/
 
 
 
@@ -44,7 +46,7 @@ cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Sprachen/ Honk
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/LICENSE Honki\ Tonks\ Zivilisationen\ Linux/
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/HonkiTonksZivilisationen Honki\ Tonks\ Zivilisationen\ Linux/
 
-tar cfv Honki_Tonks_Zivilisationen_Linux64.tar Honki\ Tonks\ Zivilisationen\ Linux/
+tar cfv Honki_Tonks_Zivilisationen_Linux64_SFML25.tar Honki\ Tonks\ Zivilisationen\ Linux/
 bzip2 -9 Honki_Tonks_Zivilisationen_Linux64_SFML25.tar
 
 
@@ -54,7 +56,7 @@ gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Rel
 
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/HonkiTonksZivilisationen Honki\ Tonks\ Zivilisationen\ Linux/
 
-tar cfv Honki_Tonks_Zivilisationen_Linux64.tar Honki\ Tonks\ Zivilisationen\ Linux/
+tar cfv Honki_Tonks_Zivilisationen_Linux64_SFML26.tar Honki\ Tonks\ Zivilisationen\ Linux/
 bzip2 -9 Honki_Tonks_Zivilisationen_Linux64_SFML26.tar
 
 

@@ -91,7 +91,7 @@ library project ASFML26 is
          -- "-lsfml-audio", "-lsfml-graphics", "-lsfml-window",
          -- End
          "-lcsfml-system", "-lcsfml-audio", "-lcsfml-network",
-         "-lcsfml-audio", "-lcsfml-graphics", "-lcsfml-window",
+         "-lcsfml-graphics", "-lcsfml-window",
          "-lasfml"
         );
   end Linker;
