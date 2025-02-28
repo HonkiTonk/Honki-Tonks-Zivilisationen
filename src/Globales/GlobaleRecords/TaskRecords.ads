@@ -175,8 +175,8 @@ package TaskRecords is
    -- Soundtask
    type SoundRecord is record
       
-      Starten : TonDatentypen.Sound_Aktuelle_Auswahl_Enum;
-      Stoppen : TonDatentypen.Sound_Aktuelle_Auswahl_Enum;
+      Starten : TonDatentypen.Sound_Enum;
+      Stoppen : TonDatentypen.Sound_Enum;
       
    end record;
    -- Soundtask

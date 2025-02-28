@@ -103,7 +103,7 @@ package body HauptmenueLogik is
       end loop HauptmenüSchleife;
       
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Ende_Enum);
-      SchreibeMusiktask.AktuelleMusik (MusikExtern => TonDatentypen.Musik_Ende_Enum);
+      SchreibeMusiktask.AktuelleMusikart (MusikExtern => TonDatentypen.Musik_Ende_Enum);
       SchreibeSoundtask.SoundStarten (SoundExtern => TonDatentypen.Sound_Ende_Enum);
       
    end Hauptmenü;

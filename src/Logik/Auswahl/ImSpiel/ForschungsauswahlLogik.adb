@@ -3,10 +3,12 @@ with InteraktionAuswahl;
 with GrafikDatentypen;
 with SpeziesKonstanten;
 with TextnummernKonstanten;
+with TonDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
 with SchreibeGrafiktask;
+with SchreibeMusiktask;
 
 with TasteneingabeLogik;
 with MausauswahlLogik;
@@ -121,6 +123,7 @@ package body ForschungsauswahlLogik is
       SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesExtern);
       Auswahl := 1;
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Forschungserfolg_Enum);
+      SchreibeMusiktask.NeueMusikart (MusikExtern => TonDatentypen.Musik_Forschung_Enum);
       
       ErfolgSchleife:
       loop
@@ -155,6 +158,8 @@ package body ForschungsauswahlLogik is
          end case;
          
       end loop ErfolgSchleife;
+      
+      SchreibeMusiktask.NeueMusikart (MusikExtern => TonDatentypen.Musik_Spiel_Enum);
       
       -- Das Setzen auf Leer ist nötig damit die Grafik nicht die alte Forschung anzeigt, wenn man eine neue Forschung auswählt.
       SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,

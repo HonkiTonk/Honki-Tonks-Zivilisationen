@@ -3,7 +3,10 @@ with TonDatentypen;
 package SchreibeMusiktask is
    pragma Preelaborate;
 
-   procedure AktuelleMusik
-     (MusikExtern : in TonDatentypen.Musik_Aktuelle_Auswahl_Enum);
+   procedure AktuelleMusikart
+     (MusikExtern : in TonDatentypen.Musikart_Enum);
+
+   procedure NeueMusikart
+     (MusikExtern : in TonDatentypen.Musikart_Enum);
 
 end SchreibeMusiktask;

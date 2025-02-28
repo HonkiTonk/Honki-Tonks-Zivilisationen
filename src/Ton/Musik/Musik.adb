@@ -1,18 +1,20 @@
 with Sf.Audio.Music;
 with Sf.Audio.SoundStatus;
 
-with TonDatentypen;
 with ZeitKonstanten;
 
 with SchreibeLogiktask;
 with LeseMusiktask;
 with LeseGesamttask;
+with SchreibeMusiktask;
 
--- with IntroMusik;
 with StartEndeMusik;
 with StarteinstellungenMusik;
 with EingeleseneMusik;
+with ZufallsgeneratorenHTSEB;
 
+-- Musik muss immer gestoppt werden, sonst wird sie nicht erneut abgespielt!
+-- Musik wird direkt parallel aufgerufen. Steht auch im SFML Tutorial, allerdings unter Sound, und der Beschreibung der ASFML.
 package body Musik is
 
    procedure Musik
@@ -27,30 +29,24 @@ package body Musik is
       
       StarteinstellungenMusik.Lautstärke;
       SchreibeLogiktask.WartenMusik (ZustandExtern => False);
-         
-      -- Musik wird direkt parallel aufgerufen. Steht auch im SFML Tutorial, allerdings unter Sound, und der Beschreibung der ASFML.
-      -- Beim Abspielen von Musik einfach immer eine Sekunde delayen bevor geprüft wird ob die Musik noch spielt?
-            
+      
       MusikSchleife:
       loop
          
          case
-           LeseMusiktask.AktuelleMusik
+           LeseMusiktask.AktuelleMusikart
          is
             when TonDatentypen.Musik_Intro_Enum =>
-               case
-                 Sf.Audio.Music.getStatus (music => EingeleseneMusik.Intromusik (1))
-               is
-                  when Sf.Audio.SoundStatus.sfPlaying =>
-                     delay ZeitKonstanten.WartezeitMusik;
-                     
-                  when others =>
-                     StartEndeMusik.Abspielen (MusikExtern => EingeleseneMusik.Intromusik (1));
-                     -- IntroMusik.Intro;
-               end case;
+               Intro;
+               
+            when TonDatentypen.Musik_Spiel_Enum =>
+               Spiel;
+               
+            when TonDatentypen.Musik_Forschung_Enum =>
+               Forschung;
                
             when TonDatentypen.Musik_Pause_Enum =>
-               delay ZeitKonstanten.WartezeitMusik;
+               Pause;
                
             when TonDatentypen.Musik_Ende_Enum =>
                exit MusikSchleife;
@@ -58,9 +54,117 @@ package body Musik is
          
       end loop MusikSchleife;
       
-      StartEndeMusik.Stoppen;
       StartEndeMusik.Entfernen;
       
    end Musik;
+      
+      
+      
+   procedure Intro
+   is
+      use type Sf.Audio.SoundStatus.sfSoundStatus;
+      use type TonDatentypen.Musikart_Enum;
+   begin
+      
+      Musikart := LeseMusiktask.NeueMusikart;
+                  
+      if
+        Musikart /= TonDatentypen.Musik_Intro_Enum
+      then
+         SchreibeMusiktask.AktuelleMusikart (MusikExtern => Musikart);
+         StartEndeMusik.Stoppen (MusikExtern => EingeleseneMusik.Intromusik (1));
+                  
+      elsif
+        Sf.Audio.Music.getStatus (music => EingeleseneMusik.Intromusik (1)) = Sf.Audio.SoundStatus.sfPlaying
+      then
+         delay ZeitKonstanten.WartezeitMusik;
+                     
+      else
+         StartEndeMusik.Stoppen (MusikExtern => EingeleseneMusik.Intromusik (1));
+         StartEndeMusik.Abspielen (MusikExtern => EingeleseneMusik.Intromusik (1));
+      end if;
+      
+   end Intro;
+   
+   
+   
+   -- Einen kleinen Zeitabstand einbauen zwischen dem Wechsel der Lieder? äöü
+   procedure Spiel
+   is
+      use type Sf.Audio.SoundStatus.sfSoundStatus;
+      use type TonDatentypen.Musikart_Enum;
+   begin
+      
+      Musikart := LeseMusiktask.NeueMusikart; 
+      
+      if
+        Musikart /= TonDatentypen.Musik_Spiel_Enum
+      then
+         SchreibeMusiktask.AktuelleMusikart (MusikExtern => Musikart);
+         StartEndeMusik.Stoppen (MusikExtern => EingeleseneMusik.Spielmusik (AktuelleMusik));
+                  
+      elsif
+        Sf.Audio.Music.getStatus (music => EingeleseneMusik.Spielmusik (AktuelleMusik)) = Sf.Audio.SoundStatus.sfPlaying
+      then
+         delay ZeitKonstanten.WartezeitMusik;
+         
+      else
+         StartEndeMusik.Stoppen (MusikExtern => EingeleseneMusik.Spielmusik (AktuelleMusik));
+         AktuelleMusik := ZufallsgeneratorenHTSEB.VorgegebenerZahlenbereich (AnfangExtern => EingeleseneMusik.Spielmusik'First,
+                                                                             EndeExtern   => EingeleseneMusik.Spielmusik'Last);
+         StartEndeMusik.Abspielen (MusikExtern => EingeleseneMusik.Spielmusik (AktuelleMusik));
+      end if;
+      
+   end Spiel;
+   
+   
+   
+   procedure Forschung
+   is
+      use type Sf.Audio.SoundStatus.sfSoundStatus;
+      use type TonDatentypen.Musikart_Enum;
+   begin
+      
+      Musikart := LeseMusiktask.NeueMusikart;
+      
+      if
+        Musikart /= TonDatentypen.Musik_Forschung_Enum
+      then
+         SchreibeMusiktask.AktuelleMusikart (MusikExtern => Musikart);
+         StartEndeMusik.Stoppen (MusikExtern => EingeleseneMusik.Forschungsmusik (1));
+                  
+      elsif
+        Sf.Audio.Music.getStatus (music => EingeleseneMusik.Forschungsmusik (1)) = Sf.Audio.SoundStatus.sfPlaying
+      then
+         delay ZeitKonstanten.WartezeitMusik;
+                  
+      else
+         StartEndeMusik.Stoppen (MusikExtern => EingeleseneMusik.Forschungsmusik (1));
+         StartEndeMusik.Abspielen (MusikExtern => EingeleseneMusik.Forschungsmusik (1));
+      end if;
+      
+   end Forschung;
+   
+   
+   
+   procedure Pause
+   is
+      use type TonDatentypen.Musikart_Enum;
+   begin
+      
+      Musikart := LeseMusiktask.NeueMusikart;
+               
+      if
+        LeseMusiktask.AktuelleMusikart = TonDatentypen.Musik_Pause_Enum
+        and
+          Musikart /= TonDatentypen.Musik_Pause_Enum
+      then
+         SchreibeMusiktask.AktuelleMusikart (MusikExtern => Musikart);
+                  
+      else
+         delay ZeitKonstanten.WartezeitMusik;
+      end if;
+      
+   end Pause;
 
 end Musik;

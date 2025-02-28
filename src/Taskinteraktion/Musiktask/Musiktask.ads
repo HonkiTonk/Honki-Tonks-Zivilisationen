@@ -1,8 +1,12 @@
 with TonDatentypen;
+with TonRecords;
 
 package Musiktask is
    pragma Preelaborate;
-
-   AktuelleMusik : TonDatentypen.Musik_Aktuelle_Auswahl_Enum := TonDatentypen.Musik_Pause_Enum;
+   
+   Musikart : TonRecords.MusikartRecord := (
+                                            AktuelleMusikart => TonDatentypen.Musik_Pause_Enum,
+                                            NeueMusikart     => TonDatentypen.Musik_Pause_Enum
+                                           );
    
 end Musiktask;

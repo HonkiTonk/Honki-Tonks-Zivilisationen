@@ -6,7 +6,14 @@ package StartEndeMusik is
    procedure Abspielen
      (MusikExtern : in Sf.Audio.sfMusic_Ptr);
 
-   procedure Stoppen;
+   procedure Stoppen
+     (MusikExtern : in Sf.Audio.sfMusic_Ptr);
+
    procedure Entfernen;
+
+private
+
+   procedure EntfernenVorgang
+     (MusikExtern : in Sf.Audio.sfMusic_Ptr);
 
 end StartEndeMusik;

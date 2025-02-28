@@ -9,8 +9,8 @@ package EingeleseneMusik is
 
    Intromusik : Musikarray (1 .. 1) := (others => null);
 
-   Standardmusik : Musikarray (1 .. 3) := (others => null);
+   Spielmusik : Musikarray (1 .. 5) := (others => null);
 
-   Forschungserfolg : Musikarray (1 .. 1) := (others => null);
+   Forschungsmusik : Musikarray (1 .. 1) := (others => null);
 
 end EingeleseneMusik;

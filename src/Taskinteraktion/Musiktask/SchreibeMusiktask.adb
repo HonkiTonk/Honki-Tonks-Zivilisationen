@@ -2,12 +2,22 @@ with Musiktask;
 
 package body SchreibeMusiktask is
 
-   procedure AktuelleMusik
-     (MusikExtern : in TonDatentypen.Musik_Aktuelle_Auswahl_Enum)
+   procedure AktuelleMusikart
+     (MusikExtern : in TonDatentypen.Musikart_Enum)
    is begin
       
-      Musiktask.AktuelleMusik := MusikExtern;
+      Musiktask.Musikart.AktuelleMusikart := MusikExtern;
       
-   end AktuelleMusik;
+   end AktuelleMusikart;
+   
+   
+   
+   procedure NeueMusikart
+     (MusikExtern : in TonDatentypen.Musikart_Enum)
+   is begin
+      
+      Musiktask.Musikart.NeueMusikart := MusikExtern;
+      
+   end NeueMusikart;
 
 end SchreibeMusiktask;

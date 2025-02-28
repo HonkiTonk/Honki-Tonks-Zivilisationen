@@ -10,7 +10,6 @@ with TextKonstanten;
 
 with LeseOptionen;
 
-with EingeleseneMusik;
 with EinlesenAllgemeinesLogik;
 
 -- with DiagnosesystemHTB4;
@@ -27,7 +26,7 @@ package body EinlesenMusikLogik is
       case
         -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht dder ganze Verzeichnisname.
         DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                               WindowsTextExtern => (VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik) & VerzeichnisKonstanten.NullDateiWideWide))
+                                                          WindowsTextExtern => (VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik) & VerzeichnisKonstanten.NullDateiWideWide))
       is
          when False =>
             return;
@@ -37,8 +36,8 @@ package body EinlesenMusikLogik is
             AktuelleZeile := 1;
             
             DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiMusik,
-                                                 NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik)
-                                                                                                 & VerzeichnisKonstanten.NullDateiWideWide));
+                                                  NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik)
+                                                                                                   & VerzeichnisKonstanten.NullDateiWideWide));
       end case;
       
       MusikSchleife:
@@ -70,24 +69,24 @@ package body EinlesenMusikLogik is
             when others =>
                if
                  False = DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
-                                                                                WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+                                                                           WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
                then
                   MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Datei oder Pfad existiert nicht");
             
                elsif
-                 AktuelleZeile = Intromusik
+                 AktuelleZeile in IntromusikAnfang .. IntromusikEnde
                then
                   EingeleseneMusik.Intromusik (AktuelleZeile) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
-                 AktuelleZeile in StandardmusikAnfang .. StandardmusikEnde
+                 AktuelleZeile in SpielmusikAnfang .. SpielmusikEnde
                then
-                  EingeleseneMusik.Standardmusik (AktuelleZeile - 1) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneMusik.Spielmusik (AktuelleZeile - IntromusikEnde) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
-                 AktuelleZeile = Forschungserfolg
+                 AktuelleZeile in ForschungsmusikAnfang .. ForschungsmusikEnde
                then
-                  EingeleseneMusik.Forschungserfolg (Forschungserfolg - StandardmusikEnde) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneMusik.Forschungsmusik (AktuelleZeile - SpielmusikEnde) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                
                else
                   MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenMusik: Außerhalb des Einlesebereichs");
@@ -95,7 +94,7 @@ package body EinlesenMusikLogik is
                end if;
                
                if
-                 AktuelleZeile < Forschungserfolg
+                 AktuelleZeile < ForschungsmusikEnde
                then
                   AktuelleZeile := AktuelleZeile + 1;
                      

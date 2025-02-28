@@ -72,7 +72,7 @@ package body Logik is
       SchreibeGrafiktask.SchriftrahmenSetzen (JaNeinExtern => True);
       SchreibeGrafiktask.TextSetzen (JaNeinExtern => True);
             
-      SchreibeMusiktask.AktuelleMusik (MusikExtern => TonDatentypen.Musik_Intro_Enum);
+      SchreibeMusiktask.NeueMusikart (MusikExtern => TonDatentypen.Musik_Intro_Enum);
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Intro_Enum);
       
       IntroSchleife:
@@ -89,6 +89,8 @@ package body Logik is
          end case;
          
       end loop IntroSchleife;
+      
+      SchreibeMusiktask.NeueMusikart (MusikExtern => TonDatentypen.Musik_Spiel_Enum);
       
       HauptmenueLogik.Hauptmenü;
       

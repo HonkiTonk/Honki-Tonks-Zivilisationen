@@ -29,17 +29,21 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (27.01.2025):
+   -- Version 0.06.0715 => 0.06. (27.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0645 => 0.06. (26.01.2025):
+   -- Version 0.06.0645 => 0.06.0715 (26.01.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Intromusik eingebaut.
+   -- Verschiedene Lieder für das Spiel eingebaut.
+   -- Forschungserfolgmusik eingebaut.
+   -- Unnötige Dateien gelöscht.
+   -- Diverse Benennungen angepasst.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/erweitert.
    
    
 

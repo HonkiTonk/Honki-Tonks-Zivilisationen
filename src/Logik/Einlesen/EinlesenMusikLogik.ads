@@ -1,6 +1,8 @@
 private with Ada.Wide_Wide_Text_IO;
 private with Ada.Strings.Wide_Wide_Unbounded;
 
+private with EingeleseneMusik;
+
 package EinlesenMusikLogik is
    pragma Elaborate_Body;
    
@@ -10,10 +12,12 @@ private
    use Ada.Wide_Wide_Text_IO;
    use Ada.Strings.Wide_Wide_Unbounded;
    
-   Intromusik : constant Positive := 1;
-   StandardmusikAnfang : constant Positive := Intromusik + 1;
-   StandardmusikEnde : constant Positive := Intromusik + 3;
-   Forschungserfolg : constant Positive := StandardmusikEnde + 1;
+   IntromusikAnfang : constant Positive := 1;
+   IntromusikEnde : constant Positive := EingeleseneMusik.Intromusik'Length;
+   SpielmusikAnfang : constant Positive := IntromusikEnde + 1;
+   SpielmusikEnde : constant Positive := IntromusikEnde + EingeleseneMusik.Spielmusik'Length;
+   ForschungsmusikAnfang : constant Positive := SpielmusikEnde + 1;
+   ForschungsmusikEnde : constant Positive := SpielmusikEnde + EingeleseneMusik.Forschungsmusik'Length;
    
    AktuelleZeile : Positive;
    EinzulesendeZeile : Positive;

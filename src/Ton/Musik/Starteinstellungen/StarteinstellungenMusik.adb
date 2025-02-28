@@ -29,15 +29,15 @@ package body StarteinstellungenMusik is
 
 
       StandardmusikSchleife:
-      for StandardmusikSchleifenwert in EingeleseneMusik.Standardmusik'Range loop
+      for StandardmusikSchleifenwert in EingeleseneMusik.Spielmusik'Range loop
 
          if
-           EingeleseneMusik.Standardmusik (StandardmusikSchleifenwert) = null
+           EingeleseneMusik.Spielmusik (StandardmusikSchleifenwert) = null
          then
             null;
 
          else
-            Sf.Audio.Music.setVolume (music  => EingeleseneMusik.Standardmusik (StandardmusikSchleifenwert),
+            Sf.Audio.Music.setVolume (music  => EingeleseneMusik.Spielmusik (StandardmusikSchleifenwert),
                                       volume => LeseEinstellungenTon.Musiklautstärke);
          end if;
 
@@ -46,10 +46,10 @@ package body StarteinstellungenMusik is
 
 
       ForschungserfolgSchleife:
-      for ForschungserfolgSchleifenwert in EingeleseneMusik.Forschungserfolg'Range loop
+      for ForschungserfolgSchleifenwert in EingeleseneMusik.Forschungsmusik'Range loop
 
          if
-           EingeleseneMusik.Forschungserfolg (ForschungserfolgSchleifenwert) = null
+           EingeleseneMusik.Forschungsmusik (ForschungserfolgSchleifenwert) = null
          then
             null;
 

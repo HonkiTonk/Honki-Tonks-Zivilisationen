@@ -2,12 +2,22 @@ with Musiktask;
 
 package body LeseMusiktask is
 
-   function AktuelleMusik
-     return TonDatentypen.Musik_Aktuelle_Auswahl_Enum
+   function AktuelleMusikart
+     return TonDatentypen.Musikart_Enum
    is begin
       
-      return Musiktask.AktuelleMusik;
+      return Musiktask.Musikart.AktuelleMusikart;
       
-   end AktuelleMusik;
+   end AktuelleMusikart;
+   
+   
+   
+   function NeueMusikart
+     return TonDatentypen.Musikart_Enum
+   is begin
+      
+      return Musiktask.Musikart.NeueMusikart;
+      
+   end NeueMusikart;
 
 end LeseMusiktask;

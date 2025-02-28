@@ -3,7 +3,7 @@ with Soundtask;
 package body SchreibeSoundtask is
 
    procedure SoundStarten
-     (SoundExtern : in TonDatentypen.Sound_Aktuelle_Auswahl_Enum)
+     (SoundExtern : in TonDatentypen.Sound_Enum)
    is begin
       
       Soundtask.Sound.Starten := SoundExtern;
@@ -13,7 +13,7 @@ package body SchreibeSoundtask is
    
    
    procedure SoundStoppen
-     (SoundExtern : in TonDatentypen.Sound_Aktuelle_Auswahl_Enum)
+     (SoundExtern : in TonDatentypen.Sound_Enum)
    is begin
       
       Soundtask.Sound.Stoppen := SoundExtern;

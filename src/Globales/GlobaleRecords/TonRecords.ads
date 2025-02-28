@@ -1,3 +1,5 @@
+with TonDatentypen;
+
 package TonRecords is
    pragma Pure;
    
@@ -5,6 +7,15 @@ package TonRecords is
       
       Soundlautstärke : Float;
       Musiklautstärke : Float;
+      
+   end record;
+   
+   
+   
+   type MusikartRecord is record
+      
+      AktuelleMusikart : TonDatentypen.Musikart_Enum;
+      NeueMusikart : TonDatentypen.Musikart_Enum;
       
    end record;
 
