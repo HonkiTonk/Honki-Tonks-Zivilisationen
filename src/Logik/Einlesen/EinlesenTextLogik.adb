@@ -47,9 +47,9 @@ package body EinlesenTextLogik is
                   
                elsif
                  False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
-                                                                           WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
-                                                                                                                                               & Simple_Name (Directory_Entry => Verzeichnis)
-                                                                                                                                               & VerzeichnisKonstanten.NullDatei))
+                                                                      WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
+                                                                                                                                   & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                                   & VerzeichnisKonstanten.NullDatei))
                then
                   null;
              
@@ -98,14 +98,14 @@ package body EinlesenTextLogik is
       
       case
         DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                               WindowsTextExtern => VerzeichnisExtern & "0")
+                                                          WindowsTextExtern => VerzeichnisExtern & "0")
       is
          when False =>
             return;
             
          when True =>
             DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiVerzeichnisse,
-                                    NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisExtern & "0"));
+                                                  NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisExtern & "0"));
       end case;
       
       EinlesenSchleife:
@@ -146,14 +146,14 @@ package body EinlesenTextLogik is
       
       case
         DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => DateinameExtern,
-                                                               WindowsTextExtern => VerzeichnisExtern & DateinameExtern)
+                                                          WindowsTextExtern => VerzeichnisExtern & DateinameExtern)
       is
          when False =>
             return;
             
          when True =>
             DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiText,
-                                    NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisExtern & DateinameExtern));
+                                                  NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisExtern & DateinameExtern));
       end case;
       
       case

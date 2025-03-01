@@ -46,6 +46,15 @@ package body TextaccesseSchriftstilGrafik is
      (StilExtern : in Sf.Graphics.Text.sfTextStyle)
    is begin
       
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.TestKleinAccess,
+                                 style => StilExtern);
+      
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.TestMittelAccess,
+                                 style => StilExtern);
+      
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.TestGroßAccess,
+                                 style => StilExtern);
+      
       Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.ÜberschriftAccess,
                                  style => StilExtern);
       

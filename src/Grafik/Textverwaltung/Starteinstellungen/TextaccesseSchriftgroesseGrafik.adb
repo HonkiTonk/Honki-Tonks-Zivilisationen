@@ -56,7 +56,6 @@ package body TextaccesseSchriftgroesseGrafik is
       KleinExtern : in Sf.sfUint32)
    is begin
       
-      
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TexthöhenAccess (TextDatentypen.Überschrift_Enum),
                                          size => ÜberschriftExtern);
       
@@ -76,6 +75,15 @@ package body TextaccesseSchriftgroesseGrafik is
       KleinExtern : in Sf.sfUint32)
    is begin
       
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TestKleinAccess,
+                                         size => KleinExtern);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TestMittelAccess,
+                                         size => StandardExtern);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TestGroßAccess,
+                                         size => ÜberschriftExtern);
+            
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ÜberschriftAccess,
                                          size => ÜberschriftExtern);
       

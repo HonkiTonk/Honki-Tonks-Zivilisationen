@@ -22,17 +22,18 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (28.01.2025):
+   -- Version 0.06.0750 => 0.06. (28.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0715 => 0.06. (27.01.2025):
+   -- Version 0.06.0715 => 0.06.0750 (27.01.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kompilieren einer Windowsversion aus dem Packskript entfernt, da die so erzeugte Version Probleme mit Unicode in Dateinamen hat.
+   -- Angefangen ein neues Intro einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

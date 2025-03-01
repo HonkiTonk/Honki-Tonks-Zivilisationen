@@ -30,5 +30,7 @@ library project HonkiTonksSpieleentwicklungsbibliothek is
       for Default_Switches ("ada") use ("-W8");
    end Pretty_Printer;
 
+   for Runtime ("ada") use "default";
+
 end HonkiTonksSpieleentwicklungsbibliothek;
 

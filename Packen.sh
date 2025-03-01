@@ -8,7 +8,7 @@ mkdir Honki\ Tonks\ Zivilisationen\ Windows
 
 # Windows
 # A/C/SFML 2.5.X
-gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Windows_Release25.gpr --target=x86_64-w64-mingw32
+# gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Windows_Release25.gpr --target=x86_64-w64-mingw32
 
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Grafik/ Honki\ Tonks\ Zivilisationen\ Windows/ -r
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Musik/ Honki\ Tonks\ Zivilisationen\ Windows/ -r
@@ -17,9 +17,9 @@ cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Sprachen/ Honk
 cp /mnt/Programme/Ada/Zivilisationen/DLL/CSFML2.5.2_SFML2.5.1/. Honki\ Tonks\ Zivilisationen\ Windows -r
 
 cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/LICENSE Honki\ Tonks\ Zivilisationen\ Windows/
-cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/HonkiTonksZivilisationen.exe Honki\ Tonks\ Zivilisationen\ Windows/
+# cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/HonkiTonksZivilisationen.exe Honki\ Tonks\ Zivilisationen\ Windows/
 
-zip -9 -r Honki_Tonks_Zivilisationen_Windows64_SFML25.zip Honki\ Tonks\ Zivilisationen\ Windows/
+# zip -9 -r Honki_Tonks_Zivilisationen_Windows64_SFML25.zip Honki\ Tonks\ Zivilisationen\ Windows/
 
 
 

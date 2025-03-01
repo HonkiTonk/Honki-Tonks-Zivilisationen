@@ -55,8 +55,6 @@ package body Logik is
       
       SchreibeGrafiktask.FensterErzeugen (JaNeinExtern => True);
       
-      -- Solche Warteschleifen mal alle in einer Datei sammeln und entsprechend aufrufen? äöü
-      -- Lohnt sich das? So oft verwende ich die ja nicht. äöü
       FensterVorhandenSchleife:
       while LeseLogiktask.WartenGrafik = True loop
          

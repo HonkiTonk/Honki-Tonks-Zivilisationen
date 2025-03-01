@@ -33,6 +33,15 @@ package body TextaccesseSchriftartGrafik is
      (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
    is begin
       
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.TestKleinAccess,
+                                font => SchriftaccessExtern);
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.TestMittelAccess,
+                                font => SchriftaccessExtern);
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.TestGroßAccess,
+                                font => SchriftaccessExtern);
+      
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.ÜberschriftAccess,
                                 font => SchriftaccessExtern);
       

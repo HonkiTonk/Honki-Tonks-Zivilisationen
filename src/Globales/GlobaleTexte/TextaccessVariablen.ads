@@ -18,6 +18,10 @@ package TextaccessVariablen is
    pragma Elaborate_Body;
    
    -- Allgemeines
+   TestKleinAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   TestMittelAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   TestGroßAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   
    ÜberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    VersionsnummerAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
       
@@ -56,7 +60,7 @@ package TextaccessVariablen is
    
    -- Menüs
    type MenüsAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1), InteraktionAuswahl.PositionenMenüeinträgeArray'Range (2)) of Sf.Graphics.sfText_Ptr;
-    MenüsAccess : constant MenüsAccessArray := (others => (others => Sf.Graphics.Text.create));
+   MenüsAccess : constant MenüsAccessArray := (others => (others => Sf.Graphics.Text.create));
    
    -- Ohne Überschrift.
    HauptmenüAccess : constant TextaccessArray (Menuetexte.Hauptmenü'Range) := (others => Sf.Graphics.Text.create);

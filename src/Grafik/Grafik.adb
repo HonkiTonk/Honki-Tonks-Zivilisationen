@@ -219,10 +219,9 @@ package body Grafik is
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
             SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
             
-            -- Wenn ich diese schreckliche Introlösung ersetze, dann die Sprachauswahl auch in die Menüs verschieben? äöü
+            -- Die Sprachauswahl auch in die Menüs schieben? äöü
          when GrafikDatentypen.Sprache_Enum =>
             SprachauswahlGrafik.Sprachauswahl;
-            Startzeit := Clock;
             
          when GrafikDatentypen.Texturen_Enum =>
             TexturenauswahlGrafik.Texturenauswahl;
@@ -230,11 +229,8 @@ package body Grafik is
          when GrafikDatentypen.Intro_Enum =>
             IntroGrafik.Intro;
             
-            -- Später eine bessere Variante dafür bauen. äöü
             if
-              Startzeit + ZeitKonstanten.Introzeit < Clock
-              or
-                LeseGrafiktask.IntroBeenden = True
+              LeseGrafiktask.IntroBeenden = True
             then
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
                SchreibeLogiktask.WartenIntro (ZustandExtern => False);

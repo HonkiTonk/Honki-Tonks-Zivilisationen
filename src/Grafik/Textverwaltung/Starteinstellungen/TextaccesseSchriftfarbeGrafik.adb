@@ -51,6 +51,15 @@ package body TextaccesseSchriftfarbeGrafik is
       SonstigeExtern : in Sf.Graphics.Color.sfColor)
    is begin
         
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TestKleinAccess,
+                                 color => SonstigeExtern);
+        
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TestMittelAccess,
+                                 color => StandardExtern);
+        
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TestGroßAccess,
+                                 color => ÜberschriftExtern);
+        
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ÜberschriftAccess,
                                  color => ÜberschriftExtern);
       

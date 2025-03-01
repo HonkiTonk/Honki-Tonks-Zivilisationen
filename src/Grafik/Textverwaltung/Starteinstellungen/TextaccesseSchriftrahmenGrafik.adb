@@ -31,6 +31,15 @@ package body TextaccesseSchriftrahmenGrafik is
      (RahmendickeExtern : in Float)
    is begin
       
+      Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.TestKleinAccess,
+                                            thickness => RahmendickeExtern);
+      
+      Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.TestMittelAccess,
+                                            thickness => RahmendickeExtern);
+      
+      Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.TestGroßAccess,
+                                            thickness => RahmendickeExtern);
+      
       Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.ÜberschriftAccess,
                                             thickness => RahmendickeExtern);
       
