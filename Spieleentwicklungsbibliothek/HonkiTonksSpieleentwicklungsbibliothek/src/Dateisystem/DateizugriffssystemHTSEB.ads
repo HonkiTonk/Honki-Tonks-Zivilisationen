@@ -21,6 +21,14 @@ package DateizugriffssystemHTSEB is
                  NameExtern'Length > 0
               );
    
+   procedure SchließenStream
+     (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
+      NameExtern : in String)
+     with
+       Pre => (
+                 NameExtern'Length > 0
+              );
+   
    procedure ErstellenText
      (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type;
       NameExtern : in String)
@@ -45,7 +53,13 @@ package DateizugriffssystemHTSEB is
                  NameExtern'Length > 0
               );
    
-   
+   procedure SchließenText
+     (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type;
+      NameExtern : in String)
+     with
+       Pre => (
+                 NameExtern'Length > 0
+              );
    
    procedure ErstellenStreamWideWide
      (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
@@ -56,6 +70,14 @@ package DateizugriffssystemHTSEB is
               );
 
    procedure ÖffnenStreamWideWide
+     (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
+      NameExtern : in Wide_Wide_String)
+     with
+       Pre => (
+                 NameExtern'Length > 0
+              );
+   
+   procedure SchließenStreamWideWide
      (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
       NameExtern : in Wide_Wide_String)
      with
@@ -87,7 +109,13 @@ package DateizugriffssystemHTSEB is
                  NameExtern'Length > 0
               );
    
-   
+   procedure SchließenTextWideWide
+     (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type;
+      NameExtern : in Wide_Wide_String)
+     with
+       Pre => (
+                 NameExtern'Length > 0
+              );
 
    procedure ErstellenStreamUnbounded
      (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
@@ -98,6 +126,14 @@ package DateizugriffssystemHTSEB is
               );
 
    procedure ÖffnenStreamUnbounded
+     (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
+      NameExtern : in Unbounded_Wide_Wide_String)
+     with
+       Pre => (
+                 To_Wide_Wide_String (Source => NameExtern)'Length > 0
+              );
+   
+   procedure SchließenStreamUnbounded
      (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
       NameExtern : in Unbounded_Wide_Wide_String)
      with
@@ -122,6 +158,14 @@ package DateizugriffssystemHTSEB is
               );
    
    procedure ErweiternTextUnbounded
+     (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type;
+      NameExtern : in Unbounded_Wide_Wide_String)
+     with
+       Pre => (
+                 To_Wide_Wide_String (Source => NameExtern)'Length > 0
+              );
+   
+   procedure SchließenTextUnbounded
      (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type;
       NameExtern : in Unbounded_Wide_Wide_String)
      with

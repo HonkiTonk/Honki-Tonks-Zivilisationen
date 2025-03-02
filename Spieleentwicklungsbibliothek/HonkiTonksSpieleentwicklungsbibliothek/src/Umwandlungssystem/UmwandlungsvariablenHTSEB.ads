@@ -1,10 +1,12 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
+with BetriebssystemDatentypenHTSEB;
+
 package UmwandlungsvariablenHTSEB is
    pragma Elaborate_Body;
 
    procedure KodierungWechseln
-     (KodierungExtern : in Ada.Strings.UTF_Encoding.Encoding_Scheme);
+     (KodierungExtern : in BetriebssystemDatentypenHTSEB.Kodierung_Enum);
    pragma Inline (KodierungWechseln);
    
    procedure TrennzeichenWechseln

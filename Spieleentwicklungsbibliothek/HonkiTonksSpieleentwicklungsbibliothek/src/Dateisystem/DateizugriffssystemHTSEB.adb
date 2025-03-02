@@ -1,8 +1,3 @@
--- Eine Prozedur für das Schließen einzubauen ist sinnfrei.
--- Es gibt keine verschiedenen Varianten des Schließens und den Paketzugriff bekomme ich auch nicht raus, da ich ja immer noch das File_Type aus dem Standardpaket brauche.
--- Aber enventuell sinnvoll für die WideWide und Unbounded Versionen?
--- Mal drüber nachdenken. äöü
--- Löschen eventuell auch? äöü
 with Ada.Exceptions;
 
 with DateisystemvariablenHTSEB;
@@ -52,6 +47,27 @@ package body DateizugriffssystemHTSEB is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
       
    end ÖffnenStream;
+   
+   
+   
+   procedure SchließenStream
+     (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
+      NameExtern : in String)
+   is
+      use Ada.Streams.Stream_IO;
+   begin
+      
+      case
+        Is_Open (File => DateiartExtern)
+      is
+         when True =>
+            Close (File => DateiartExtern);
+            
+         when False =>
+            MeldungssystemHTSEB.Logik (MeldungExtern => "DateizugriffssystemHTSEB.SchließenStream: Ungeöffneter Stream soll geschlossen werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => NameExtern));
+      end case;
+      
+   end SchließenStream;
    
    
    
@@ -121,6 +137,27 @@ package body DateizugriffssystemHTSEB is
    
    
    
+   procedure SchließenText
+     (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type;
+      NameExtern : in String)
+   is
+      use Ada.Wide_Wide_Text_IO;
+   begin
+      
+      case
+        Is_Open (File => DateiartExtern)
+      is
+         when True =>
+            Close (File => DateiartExtern);
+            
+         when False =>
+            MeldungssystemHTSEB.Logik (MeldungExtern => "DateizugriffssystemHTSEB.SchließenStream: Ungeöffneter Stream soll geschlossen werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => NameExtern));
+      end case;
+      
+   end SchließenText;
+   
+   
+   
    procedure ErstellenStreamWideWide
      (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
       NameExtern : in Wide_Wide_String)
@@ -142,6 +179,18 @@ package body DateizugriffssystemHTSEB is
                      NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => NameExtern));
       
    end ÖffnenStreamWideWide;
+   
+   
+   
+   procedure SchließenStreamWideWide
+     (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
+      NameExtern : in Wide_Wide_String)
+   is begin
+      
+      SchließenStream (DateiartExtern => DateiartExtern,
+                        NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => NameExtern));
+      
+   end SchließenStreamWideWide;
    
    
    
@@ -181,6 +230,18 @@ package body DateizugriffssystemHTSEB is
    
    
    
+   procedure SchließenTextWideWide
+     (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type;
+      NameExtern : in Wide_Wide_String)
+   is begin
+      
+      SchließenText (DateiartExtern => DateiartExtern,
+                      NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => NameExtern));
+      
+   end SchließenTextWideWide;
+   
+   
+   
    procedure ErstellenStreamUnbounded
      (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
       NameExtern : in Unbounded_Wide_Wide_String)
@@ -202,6 +263,18 @@ package body DateizugriffssystemHTSEB is
                      NameExtern     => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => NameExtern));
       
    end ÖffnenStreamUnbounded;
+   
+   
+   
+   procedure SchließenStreamUnbounded
+     (DateiartExtern : in out Ada.Streams.Stream_IO.File_Type;
+      NameExtern : in Unbounded_Wide_Wide_String)
+   is begin
+      
+      SchließenStream (DateiartExtern => DateiartExtern,
+                        NameExtern     => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => NameExtern));
+      
+   end SchließenStreamUnbounded;
    
    
    
@@ -238,5 +311,17 @@ package body DateizugriffssystemHTSEB is
                      NameExtern     => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => NameExtern));
       
    end ErweiternTextUnbounded;
+   
+   
+   
+   procedure SchließenTextUnbounded
+     (DateiartExtern : in out Ada.Wide_Wide_Text_IO.File_Type;
+      NameExtern : in Unbounded_Wide_Wide_String)
+   is begin
+      
+      SchließenText (DateiartExtern => DateiartExtern,
+                      NameExtern     => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => NameExtern));
+      
+   end SchließenTextUnbounded;
 
 end DateizugriffssystemHTSEB;

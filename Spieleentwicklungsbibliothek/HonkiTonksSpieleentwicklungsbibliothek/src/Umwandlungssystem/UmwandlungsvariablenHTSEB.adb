@@ -1,10 +1,22 @@
 package body UmwandlungsvariablenHTSEB is
 
    procedure KodierungWechseln
-     (KodierungExtern : in Ada.Strings.UTF_Encoding.Encoding_Scheme)
+     (KodierungExtern : in BetriebssystemDatentypenHTSEB.Kodierung_Enum)
    is begin
       
-      Kodierung := KodierungExtern;
+      case
+        KodierungExtern
+      is
+         when BetriebssystemDatentypenHTSEB.UTF8_Enum =>
+            Kodierung := Ada.Strings.UTF_Encoding.UTF_8;
+            
+         when BetriebssystemDatentypenHTSEB.UTF16BE_Enum =>
+            Kodierung := Ada.Strings.UTF_Encoding.UTF_16BE;
+            
+         when BetriebssystemDatentypenHTSEB.UTF16LE_Enum =>
+            Kodierung := Ada.Strings.UTF_Encoding.UTF_16LE;
+      end case;
+      
       
    end KodierungWechseln;
    
