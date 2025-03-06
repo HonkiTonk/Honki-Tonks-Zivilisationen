@@ -21,7 +21,7 @@ package body AbspannGrafik is
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.AbspannviewAccess,
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Abspannbereich);
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Sequenzbereich);
       
       case
         AbspannExtern

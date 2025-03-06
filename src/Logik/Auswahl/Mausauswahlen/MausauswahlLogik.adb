@@ -537,7 +537,7 @@ package body MausauswahlLogik is
    
    
    
-   function Sprachenauswahl
+   function Setauswahl
      (AnfangExtern : in Positive;
       EndeExtern : in Positive)
       return Natural
@@ -552,7 +552,7 @@ package body MausauswahlLogik is
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       RechteckExtern     => InteraktionAuswahl.PositionenSprachenTexturenauswahl (PositionSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenSetauswahl (PositionSchleifenwert))
          is
             when True =>
                return PositionSchleifenwert;
@@ -565,6 +565,6 @@ package body MausauswahlLogik is
       
       return AuswahlKonstanten.LeerAuswahl;
       
-   end Sprachenauswahl;
+   end Setauswahl;
    
 end MausauswahlLogik;

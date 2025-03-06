@@ -20,7 +20,7 @@ package body EinlesenNutzereinstellungenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                 WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Spieleinstellungen))
+                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Spieleinstellungen))
       is
          when False =>
             OptionenVariablen.StandardNutzereinstellungenLaden;
@@ -28,7 +28,7 @@ package body EinlesenNutzereinstellungenLogik is
             
          when True =>
             DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiNutzereinstellungen,
-                                      NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
+                                                    NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       end case;
       
       case
@@ -42,24 +42,18 @@ package body EinlesenNutzereinstellungenLogik is
             Nullwert := NutzereinstellungenDurchgehen (LadenPrüfenExtern => True,
                                                        DateiLadenExtern  => DateiNutzereinstellungen);
       end case;
-
-      Close (File => DateiNutzereinstellungen);
+            
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiNutzereinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenNutzereinstellungenLogik.Nutzereinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.StandardNutzereinstellungenLaden;
-         
-         case
-           Is_Open (File => DateiNutzereinstellungen)
-         is
-            when True =>
-               Close (File => DateiNutzereinstellungen);
-               
-            when False =>
-               null;
-         end case;
+            
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiNutzereinstellungen,
+                                                    NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       
    end Nutzereinstellungen;
    
@@ -184,7 +178,7 @@ package body EinlesenNutzereinstellungenLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenNutzereinstellungenLogik.NutzereinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
                   
          return False;
          

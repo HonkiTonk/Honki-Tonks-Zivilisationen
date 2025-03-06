@@ -33,6 +33,8 @@ package TastenbelegungDatentypen is
                                      
                                      Debugmenü_Enum
                                     );
+   -- Muss geordnet sein für EinlesenTastatureinstellungenLogik.DoppelbelegungEntfernen.
+   pragma Ordered (Allgemeine_Belegung_Enum);
    
    subtype Allgemeine_Belegung_Vorhanden_Enum is Allgemeine_Belegung_Enum range Allgemeine_Belegung_Enum'Succ (Allgemeine_Belegung_Enum'First) .. Allgemeine_Belegung_Enum'Last;
    

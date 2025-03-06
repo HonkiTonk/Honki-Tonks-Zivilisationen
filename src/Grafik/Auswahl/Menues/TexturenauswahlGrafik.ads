@@ -33,6 +33,6 @@ private
    
    PfeilAccess : constant Sf.Graphics.sfConvexShape_Ptr := Sf.Graphics.ConvexShape.create;
    
-   AktuelleTexturen : TextArrays.SprachenArray;
+   Auswahlmöglichkeiten : TextArrays.SprachenArray;
 
 end TexturenauswahlGrafik;

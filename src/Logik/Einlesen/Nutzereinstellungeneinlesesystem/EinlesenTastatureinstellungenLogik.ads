@@ -20,6 +20,8 @@ private
    
    Stadtbelegung : TastenbelegungDatenbank.StadtbelegungArray;
    
+   procedure DoppelbelegungEntfernen;
+   
    
    
    function TastatureinstellungenDurchgehen

@@ -130,8 +130,9 @@ package body EinlesenTextLogik is
          end case;
 
       end loop EinlesenSchleife;
-
-      Close (File => DateiVerzeichnisse);
+            
+      DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiVerzeichnisse,
+                                               NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisExtern & "0"));
       
    end Einlesen;
    
@@ -152,8 +153,8 @@ package body EinlesenTextLogik is
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiText,
-                                                  NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisExtern & DateinameExtern));
+            DateizugriffssystemHTSEB.ÖffnenTextWideWide (DateiartExtern => DateiText,
+                                                          NameExtern     => VerzeichnisExtern & DateinameExtern);
       end case;
       
       case
@@ -188,7 +189,8 @@ package body EinlesenTextLogik is
             MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.EinlesenAufteilen: Mehr eingelesen als möglich, Dateinummer: " & WelcheDateiExtern'Wide_Wide_Image);
       end case;
             
-      Close (File => DateiText);
+      DateizugriffssystemHTSEB.SchließenTextWideWide (DateiartExtern => DateiText,
+                                                       NameExtern     => VerzeichnisExtern & DateinameExtern);
       
    end EinlesenAufteilen;
    

@@ -20,7 +20,7 @@ package body EinlesenToneinstellungenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Toneinstellungen))
+                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Toneinstellungen))
       is
          when False =>
             EinstellungenTon.StandardeinstellungenLaden;
@@ -28,7 +28,7 @@ package body EinlesenToneinstellungenLogik is
             
          when True =>
             DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiToneinstellungen,
-                                      NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
+                                                    NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       end case;
       
       case
@@ -42,24 +42,18 @@ package body EinlesenToneinstellungenLogik is
          when False =>
             EinstellungenTon.StandardeinstellungenLaden;
       end case;
-      
-      Close (File => DateiToneinstellungen);
+            
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiToneinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenToneinstellungenLogik.Toneinstelllungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          EinstellungenTon.StandardeinstellungenLaden;
-         
-         case
-           Is_Open (File => DateiToneinstellungen)
-         is
-            when True =>
-               Close (File => DateiToneinstellungen);
-               
-            when False =>
-               null;
-         end case;
+            
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiToneinstellungen,
+                                                    NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       
    end Toneinstelllungen;
    
@@ -112,7 +106,7 @@ package body EinlesenToneinstellungenLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenToneinstellungenLogik.ToneinstellungenDurchgehen: Konnte nicht geladen werden: " &
-                                       UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                      UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ToneinstellungenDurchgehen;

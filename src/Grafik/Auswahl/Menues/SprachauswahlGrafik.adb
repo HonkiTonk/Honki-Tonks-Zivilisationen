@@ -1,5 +1,4 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Directories; use Ada.Directories;
 
 with Sf.Graphics.Text;
 with Sf.Graphics.Font;
@@ -9,7 +8,6 @@ with InteraktionAuswahl;
 with TextaccessVariablen;
 with Views;
 with GrafikKonstanten;
-with VerzeichnisKonstanten;
 with ViewKonstanten;
 
 with LeseGrafiktask;
@@ -23,7 +21,6 @@ with TextaccessverwaltungssystemEinfachGrafik;
 with KonvexverwaltungssystemGrafik;
 with TextfarbeGrafik;
 with SprachauswahlLogik;
-with UmwandlungssystemHTSEB;
 
 package body SprachauswahlGrafik is
    
@@ -34,7 +31,7 @@ package body SprachauswahlGrafik is
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.SprachenTexturenbereich);
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.SprachenTexturenMusikSoundbereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                     AbmessungenExtern => Viewfläche);
@@ -63,14 +60,7 @@ package body SprachauswahlGrafik is
               and
                 ZeileSchleifenwert < Ende)
          then
-            if
-              Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => AktuelleSprachen (ZeileSchleifenwert)) & VerzeichnisKonstanten.FontDatei) = False
-            then
-               NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.StandardSchriftartVerwenden);
-            
-            else
-               NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))));
-            end if;
+            NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))));
             
             if
               NeuerPfad /= AktuellerPfad
@@ -99,7 +89,7 @@ package body SprachauswahlGrafik is
             NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                                     TextbreiteExtern => GrafikKonstanten.Nullwert);
             
-            InteraktionAuswahl.PositionenSprachenTexturenauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
+            InteraktionAuswahl.PositionenSetauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
                         
          elsif
            MehrereSeitenVorhanden
@@ -119,7 +109,7 @@ package body SprachauswahlGrafik is
                                                                  PositionExtern     => Textposition,
                                                                  FarbeExtern        => AktuelleTextFarbe);
             
-            InteraktionAuswahl.PositionenSprachenTexturenauswahl (Ende) := Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess);
+            InteraktionAuswahl.PositionenSetauswahl (Ende) := Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess);
             
             NeueTextbreite := TextberechnungenBreiteGrafik.Spaltenabstand + Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
             

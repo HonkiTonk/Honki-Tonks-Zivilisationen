@@ -53,8 +53,8 @@ package body LadenLogik is
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
             
             DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiLaden,
-                                      NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
-                                                                                                  SpielstandnameExtern => Spielstandname));
+                                                    NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
+                                                                                                                SpielstandnameExtern => Spielstandname));
          end if;
          
          case
@@ -62,7 +62,9 @@ package body LadenLogik is
          is
             when False =>
                MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungLadenFehlgeschlagen);
-               Close (File => DateiLaden);
+               DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiLaden,
+                                                          NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
+                                                                                                                      SpielstandnameExtern => Spielstandname));
                
             when True =>
                StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => True);
@@ -72,7 +74,9 @@ package body LadenLogik is
                
                Ladevorgang (DateiLadenExtern => DateiLaden);
       
-               Close (File => DateiLaden);
+               DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiLaden,
+                                                          NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
+                                                                                                                      SpielstandnameExtern => Spielstandname));
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
 
                return True;
@@ -84,15 +88,9 @@ package body LadenLogik is
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.Laden: Konnte nicht geladen werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
-         case
-           Is_Open (File => DateiLaden)
-         is
-            when True =>
-               Close (File => DateiLaden);
-               
-            when False =>
-               null;
-         end case;
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiLaden,
+                                                    NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
+                                                                                                                SpielstandnameExtern => Spielstandname));
          
          return False;
       
@@ -196,7 +194,7 @@ package body LadenLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.AllgemeinesLaden: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end AllgemeinesLaden;
@@ -269,7 +267,7 @@ package body LadenLogik is
       
       
       EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
-                                                             VorhandeneEinheiten);
+                                                 VorhandeneEinheiten);
       
       EinheitenSchleife:
       for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. VorhandeneEinheiten loop
@@ -293,7 +291,7 @@ package body LadenLogik is
       
       
       StadtDatentypen.Städtebereich'Read (Stream (File => DateiLadenExtern),
-                                                       VorhandeneStädte);
+                                           VorhandeneStädte);
       
       StadtSchleife:
       for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. VorhandeneStädte loop
@@ -319,7 +317,7 @@ package body LadenLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.StädteEinheitenLaden: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
    
    end StädteEinheitenLaden;

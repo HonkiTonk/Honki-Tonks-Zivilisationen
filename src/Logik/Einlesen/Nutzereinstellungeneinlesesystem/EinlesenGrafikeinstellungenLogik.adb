@@ -23,7 +23,7 @@ package body EinlesenGrafikeinstellungenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Grafikeinstellungen))
+                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Grafikeinstellungen))
       is
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;
@@ -31,7 +31,7 @@ package body EinlesenGrafikeinstellungenLogik is
             
          when True =>
             DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiGrafikeinstellungen,
-                                      NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
+                                                    NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       end case;
       
       case
@@ -45,24 +45,18 @@ package body EinlesenGrafikeinstellungenLogik is
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;
       end case;
-      
-      Close (File => DateiGrafikeinstellungen);
+            
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGrafikeinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenGrafikeinstellungenLogik.Grafikeinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          EinstellungenGrafik.StandardeinstellungenLaden;
-         
-         case
-           Is_Open (File => DateiGrafikeinstellungen)
-         is
-            when True =>
-               Close (File => DateiGrafikeinstellungen);
-               
-            when False =>
-               null;
-         end case;
+            
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGrafikeinstellungen,
+                                                    NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       
    end Grafikeinstellungen;
    
@@ -341,7 +335,7 @@ package body EinlesenGrafikeinstellungenLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenGrafikeinstellungenLogik.GrafikeinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end GrafikeinstellungenDurchgehen;

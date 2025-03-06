@@ -29,7 +29,7 @@ package body TexturenauswahlGrafik is
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.SprachenTexturenbereich);
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.SprachenTexturenMusikSoundbereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                     AbmessungenExtern => Viewfläche);
@@ -39,14 +39,14 @@ package body TexturenauswahlGrafik is
       MehrereSeitenVorhanden := LeseGrafiktask.Seitenauswahl;
       AktuelleAuswahl := LeseGrafiktask.Erstauswahl;
       Ende := LeseGrafiktask.Endauswahl;
-      AktuelleTexturen := TexturenauswahlLogik.AktuelleTexturen;
+      Auswahlmöglichkeiten := TexturenauswahlLogik.AktuelleTexturen;
       
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       
       AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       AnzeigeSchleife:
-      for ZeileSchleifenwert in AktuelleTexturen'Range loop
+      for ZeileSchleifenwert in Auswahlmöglichkeiten'Range loop
          
          AktuelleTextFarbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => ZeileSchleifenwert,
                                                                      AuswahlExtern    => AktuelleAuswahl);
@@ -59,7 +59,7 @@ package body TexturenauswahlGrafik is
                 ZeileSchleifenwert < Ende)
          then
             TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                                TextExtern       => To_Wide_Wide_String (Source => AktuelleTexturen (ZeileSchleifenwert)),
+                                                                TextExtern       => To_Wide_Wide_String (Source => Auswahlmöglichkeiten (ZeileSchleifenwert)),
                                                                 FarbeExtern      => AktuelleTextFarbe);
             
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
@@ -71,12 +71,12 @@ package body TexturenauswahlGrafik is
             NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                                     TextbreiteExtern => GrafikKonstanten.Nullwert);
             
-            InteraktionAuswahl.PositionenSprachenTexturenauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
+            InteraktionAuswahl.PositionenSetauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
                         
          elsif
            MehrereSeitenVorhanden
            and
-             ZeileSchleifenwert = AktuelleTexturen'Last
+             ZeileSchleifenwert = Auswahlmöglichkeiten'Last
          then
             Textposition.y := Textposition.y + 3.00 * TextberechnungenHoeheGrafik.Zeilenabstand;
             
@@ -91,7 +91,7 @@ package body TexturenauswahlGrafik is
                                                                  PositionExtern     => Textposition,
                                                                  FarbeExtern        => AktuelleTextFarbe);
             
-            InteraktionAuswahl.PositionenSprachenTexturenauswahl (Ende) := Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess);
+            InteraktionAuswahl.PositionenSetauswahl (Ende) := Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess);
             
             NeueTextbreite := TextberechnungenBreiteGrafik.Spaltenabstand + Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
             

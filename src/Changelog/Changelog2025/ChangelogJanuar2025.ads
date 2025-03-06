@@ -1,17 +1,20 @@
 package ChangelogJanuar2025 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (31.01.2025):
+   -- Version 0.06.0860 => 0.06. (31.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0800 => 0.06. (30.01.2025):
+   -- Version 0.06.0800 => 0.06.0860 (30.01.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Eigene Schließenprozedur eingebaut, um zusätzliche Debuginformationen zu bekommen und um zu verhindern dass versucht wird ungeöffnete Dateien zu schließen.
+   -- Beim Einlesen der Steuerungsdatei wird jetzt geprüft ob eine Doppelbelegung vorliegt, was eventuell auftreten kann wenn die Steuerung erweitert wurde aber eine veraltete Steuerungsdatei verwendet wird.
+   -- Einlesen der Font überarbeitet.
+   -- Angefangen die Auswahl für Sprachen und Texturen in einem System zusammenzufügen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

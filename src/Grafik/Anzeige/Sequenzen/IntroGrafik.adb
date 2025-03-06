@@ -65,13 +65,13 @@ package body IntroGrafik is
       -- Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => Viewfläche,
-                                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Abspannbereich.width,
-                                                                                                               GrafikRecordKonstanten.Abspannbereich.height));
+                                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Sequenzbereich.width,
+                                                                                                               GrafikRecordKonstanten.Sequenzbereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.AbspannviewAccess,
                                             GrößeExtern          => Viewfläche,
                                             -- Warum benutze ich denn für das Intro auch den Abspannbereich und habe keinen eigenen Introbereich oder generell einen Sequenzenbereich? äöü
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Abspannbereich);
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Sequenzbereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Intro_Eins_Enum,
                                     AbmessungenExtern => Viewfläche);
@@ -132,8 +132,7 @@ package body IntroGrafik is
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.AbspannviewAccess,
                                             GrößeExtern          => Viewfläche,
-                                            -- Warum benutze ich denn für das Intro auch den Abspannbereich und habe keinen eigenen Introbereich oder generell einen Sequenzenbereich? äöü
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Abspannbereich);
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Sequenzbereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Intro_Eins_Enum,
                                     AbmessungenExtern => Viewfläche);

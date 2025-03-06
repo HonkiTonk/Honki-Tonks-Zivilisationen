@@ -41,24 +41,18 @@ package body EinlesenSpielendeEinstellungenLogik is
          when False =>
             OptionenVariablen.SpielendeStandardeinstellungenLaden;
       end case;
-      
-      Close (File => DateiSonstigeEinstellungen);
+            
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSonstigeEinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSpielendeEinstellungenLogik.SpielendeEinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.SpielendeStandardeinstellungenLaden;
-         
-         case
-           Is_Open (File => DateiSonstigeEinstellungen)
-         is
-            when True =>
-               Close (File => DateiSonstigeEinstellungen);
-               
-            when False =>
-               null;
-         end case;
+            
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSonstigeEinstellungen,
+                                                    NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
       
    end SpielendeEinstellungen;
    

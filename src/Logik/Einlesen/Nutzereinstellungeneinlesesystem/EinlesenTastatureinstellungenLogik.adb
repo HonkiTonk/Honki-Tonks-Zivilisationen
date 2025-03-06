@@ -23,7 +23,7 @@ package body EinlesenTastatureinstellungenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                                    WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Tastatureinstellungen))
+                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Tastatureinstellungen))
       is
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
@@ -31,7 +31,7 @@ package body EinlesenTastatureinstellungenLogik is
             
          when True =>
             DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiTastatureinstellungen,
-                                      NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
+                                                    NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       end case;
       
       case
@@ -45,24 +45,18 @@ package body EinlesenTastatureinstellungenLogik is
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
       end case;
-      
-      Close (File => DateiTastatureinstellungen);
+            
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiTastatureinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTastatureinstellungenLogik.Tastatureinstellungen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
-         
-         case
-           Is_Open (File => DateiTastatureinstellungen)
-         is
-            when True =>
-               Close (File => DateiTastatureinstellungen);
-               
-            when False =>
-               null;
-         end case;
+            
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiTastatureinstellungen,
+                                                    NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       
    end Tastatureinstellungen;
    
@@ -713,6 +707,9 @@ package body EinlesenTastatureinstellungenLogik is
          return End_Of_File (File => DateiLadenExtern);
       
       else
+         
+         DoppelbelegungEntfernen;
+         
          SchreibeTastenbelegungDatenbank.GesamteAllgemeineTastenbelegung (BelegungExtern => AllgemeineBelegung);
          SchreibeTastenbelegungDatenbank.GesamteEinheitenbelegung (BelegungExtern => Einheitenbelegung);
          SchreibeTastenbelegungDatenbank.GesamteStadtbelegung (BelegungExtern => Stadtbelegung);
@@ -723,9 +720,92 @@ package body EinlesenTastatureinstellungenLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTastatureinstellungenLogik.TastatureinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end TastatureinstellungenDurchgehen;
+   
+   
+   
+   -- Bei einem Erweitern der möglichen Befehle im Spiel und der Verwendung einer alten Tastenbelegungsdatei kann es zu ungewollter Doppelbelegung kommen, diese wird hier geprüft/entfernt.
+   procedure DoppelbelegungEntfernen
+   is
+      use type TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
+      use type Sf.Window.Keyboard.sfKeyCode;
+      use type BefehleDatentypen.Einheitenbelegung_Enum;
+      use type BefehleDatentypen.Stadtbefehle_Enum;
+   begin
+      
+      AllgemeineAußenSchleife:
+      for AllgemeineAußenSchleifenwert in AllgemeineBelegung'Range loop
+         AllgemeineInnenSchleife:
+         for AllgemeineInnenSchleifenwert in AllgemeineAußenSchleifenwert .. AllgemeineBelegung'Last loop
+            
+            if
+              AllgemeineAußenSchleifenwert = AllgemeineInnenSchleifenwert
+            then
+               null;
+               
+            elsif
+              AllgemeineBelegung (AllgemeineAußenSchleifenwert) = AllgemeineBelegung (AllgemeineInnenSchleifenwert)
+            then
+               AllgemeineBelegung (AllgemeineInnenSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+               
+            else
+               null;
+            end if;
+            
+         end loop AllgemeineInnenSchleife;
+      end loop AllgemeineAußenSchleife;
+      
+      
+      
+      EinheitenAußenSchleife:
+      for EinheitenAußenSchleifenwert in Einheitenbelegung'Range loop
+         EinheitenInnenSchleife:
+         for EinheitenInnenSchleifenwert in EinheitenAußenSchleifenwert .. Einheitenbelegung'Last loop
+            
+            if
+              EinheitenAußenSchleifenwert = EinheitenInnenSchleifenwert
+            then
+               null;
+               
+            elsif
+              Einheitenbelegung (EinheitenAußenSchleifenwert) = Einheitenbelegung (EinheitenInnenSchleifenwert)
+            then
+               Einheitenbelegung (EinheitenInnenSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+               
+            else
+               null;
+            end if;
+            
+         end loop EinheitenInnenSchleife;
+      end loop EinheitenAußenSchleife;
+      
+      
+      
+      StadtAußenSchleife:
+      for StadtAußenSchleifenwert in Stadtbelegung'Range loop
+         StadtInnenSchleife:
+         for StadtInnenSchleifenwert in StadtAußenSchleifenwert .. Stadtbelegung'Last loop
+            
+            if
+              StadtAußenSchleifenwert = StadtInnenSchleifenwert
+            then
+               null;
+               
+            elsif
+              Stadtbelegung (StadtAußenSchleifenwert) = Stadtbelegung (StadtInnenSchleifenwert)
+            then
+               Stadtbelegung (StadtInnenSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+               
+            else
+               null;
+            end if;
+            
+         end loop StadtInnenSchleife;
+      end loop StadtAußenSchleife;
+      
+   end DoppelbelegungEntfernen;
 
 end EinlesenTastatureinstellungenLogik;

@@ -102,7 +102,7 @@ package body Musik is
       then
          SchreibeMusiktask.AktuelleMusikart (MusikExtern => Musikart);
          StartEndeMusik.Stoppen (MusikExtern => EingeleseneMusik.Spielmusik (AktuelleMusik));
-                  
+         
       elsif
         Sf.Audio.Music.getStatus (music => EingeleseneMusik.Spielmusik (AktuelleMusik)) = Sf.Audio.SoundStatus.sfPlaying
       then

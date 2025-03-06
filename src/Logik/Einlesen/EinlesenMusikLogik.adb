@@ -106,8 +106,10 @@ package body EinlesenMusikLogik is
          end case;
          
       end loop MusikSchleife;
-      
-      Close (File => DateiMusik);
+            
+      DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiMusik,
+                                               NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik)
+                                                                                                & VerzeichnisKonstanten.NullDateiWideWide));
       
    end EinlesenMusik;
 

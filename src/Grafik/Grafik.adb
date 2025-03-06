@@ -225,6 +225,15 @@ package body Grafik is
             
          when GrafikDatentypen.Texturen_Enum =>
             TexturenauswahlGrafik.Texturenauswahl;
+            
+         when GrafikDatentypen.Musik_Enum =>
+            null;
+            
+         when GrafikDatentypen.Sound_Enum =>
+            null;
+            
+         when GrafikDatentypen.Set_Enum =>
+            null;
                
          when GrafikDatentypen.Intro_Enum =>
             IntroGrafik.Intro;

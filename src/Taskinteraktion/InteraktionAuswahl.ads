@@ -33,7 +33,7 @@ package InteraktionAuswahl is
 
 
 
-   PositionenSprachenTexturenauswahl : PositionenArray (1 .. 11) := (others => GrafikRecordKonstanten.Leerbereich);
+   PositionenSetauswahl : PositionenArray (1 .. 11) := (others => GrafikRecordKonstanten.Leerbereich);
 
    PositionenJaNein : PositionenArray (1 .. 2) := (others => GrafikRecordKonstanten.Leerbereich);
 

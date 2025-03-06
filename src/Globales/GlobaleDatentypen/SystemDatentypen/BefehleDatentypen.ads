@@ -8,6 +8,8 @@ package BefehleDatentypen is
                               
                               Stadtkarte_Enum, Bauen_Enum, Verkaufen_Enum, Umbenennen_Enum, Auflösen_Enum, Verlassen_Enum
                              );
+   -- Muss geordnet sein wegen EinlesenTastatureinstellungenLogik.DoppelbelegungEntfernen.
+   pragma Ordered (Stadtbefehle_Enum);
    
    subtype Stadtbefehle_Vorhanden_Enum is Stadtbefehle_Enum range Stadtbefehle_Enum'Succ (Stadtbefehle_Enum'First) .. Stadtbefehle_Enum'Last;
    subtype Stadtbefehle_Auswählen_Enum is Stadtbefehle_Vorhanden_Enum range Stadtkarte_Enum .. Stadtbefehle_Vorhanden_Enum'Last;
@@ -41,6 +43,8 @@ package BefehleDatentypen is
                                    
                                    Abwählen_Enum
                                   );
+   -- Muss geordnet sein wegen EinlesenTastatureinstellungenLogik.DoppelbelegungEntfernen.
+   pragma Ordered (Einheitenbelegung_Enum);
    
    subtype Einheitenbelegung_Vorhanden_Enum is Einheitenbelegung_Enum range Einheitenbelegung_Enum'Succ (Einheitenbelegung_Enum'First) .. Einheitenbelegung_Enum'Last;
    subtype Belegung_Auswählen_Enum is Einheitenbelegung_Vorhanden_Enum range Oben_Enum .. Entladen_Enum;

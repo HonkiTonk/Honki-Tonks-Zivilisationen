@@ -85,7 +85,7 @@ package MausauswahlLogik is
                   StadtEinheitauswahl'Result >= -1
                );
    
-   function Sprachenauswahl
+   function Setauswahl
      (AnfangExtern : in Positive;
       EndeExtern : in Positive)
       return Natural

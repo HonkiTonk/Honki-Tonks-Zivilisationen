@@ -1,43 +1,40 @@
-with TextKonstanten;
+with MeldungssystemHTSEB;
+
 with GrafikDatentypen;
+with TextKonstanten;
 with TastenbelegungDatentypen;
 with AuswahlKonstanten;
 
 with SchreibeGrafiktask;
 
-with TasteneingabeLogik;
-with MeldungssystemHTSEB;
 with MausauswahlLogik;
+with TasteneingabeLogik;
 with OftVerwendetSound;
 
--- with SetauswahlLogik;
+package body SetauswahlLogik is
 
-package body TexturenauswahlLogik is
-
-   function AuswahlTexturen
+   function Setauswahl
      return Unbounded_Wide_Wide_String
    is begin
       
       ZehnerReihe := 0;
       MehrereSeiten := False;
       
-      TexturenlisteFestlegen;
+      SetlisteFestlegen;
       
-      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Texturen_Enum);
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Set_Enum);
+            
+      return AuswahlSet;
       
-      return AuswahlTexturenSFML;
-      
-      -- return SetauswahlLogik.Setauswahl;
-      
-   end AuswahlTexturen;
+   end Setauswahl;
    
    
    
-   procedure TexturenlisteFestlegen
+   procedure SetlisteFestlegen
    is begin
             
       if
-        ZehnerReihe * 10 < TextArrays.SprachenTexturenEinlesen'Last
+        ZehnerReihe * 10 < TextArrays.SetsEinlesen'Last
       then
          ZehnerReihe := ZehnerReihe + 1;
          
@@ -46,7 +43,7 @@ package body TexturenauswahlLogik is
       end if;
          
       if
-        TextArrays.SprachenTexturenEinlesen (ZehnerReihe * 10 - 9) = TextKonstanten.LeerUnboundedString
+        TextArrays.SetsEinlesen (ZehnerReihe * 10 - 9) = TextKonstanten.LeerUnboundedString
       then
          ZehnerReihe := 1;
          
@@ -54,30 +51,30 @@ package body TexturenauswahlLogik is
          null;
       end if;
       
-      AktuelleTexturen := (others => TextKonstanten.LeerUnboundedString);
+      Auswahlmöglichkeiten := (others => TextKonstanten.LeerUnboundedString);
       
       EndeBestimmenSchleife:
       for EndeSchleifenwert in ZehnerReihe * 10 - 9 .. ZehnerReihe * 10 loop
          
          if
-           EndeSchleifenwert > TextArrays.SprachenTexturenEinlesen'Last
+           EndeSchleifenwert > TextArrays.SetsEinlesen'Last
          then
             exit EndeBestimmenSchleife;
             
          elsif
-           EndeSchleifenwert = TextArrays.SprachenTexturenEinlesen'First
+           EndeSchleifenwert = TextArrays.SetsEinlesen'First
            and
-             TextArrays.SprachenTexturenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
+             TextArrays.SetsEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
-            MeldungssystemHTSEB.Logik (MeldungExtern => "TexturenauswahlLogik.TexturenlisteFestlegen: Keine Texturen vorhanden");
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SetauswahlLogik.SetlisteFestlegen: Keine Einträge vorhanden");
             
          elsif
-           EndeSchleifenwert > TextArrays.SprachenTexturenEinlesen'Last
+           EndeSchleifenwert > TextArrays.SetsEinlesen'Last
          then
             exit EndeBestimmenSchleife;
            
          elsif
-           TextArrays.SprachenTexturenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
+           TextArrays.SetsEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             exit EndeBestimmenSchleife;
             
@@ -85,32 +82,32 @@ package body TexturenauswahlLogik is
             Ende := EndeSchleifenwert - ((ZehnerReihe - 1) * 10);
          end if;
          
-         AktuelleTexturen (EndeSchleifenwert - ((ZehnerReihe - 1) * 10)) := TextArrays.SprachenTexturenEinlesen (EndeSchleifenwert);
+         Auswahlmöglichkeiten (EndeSchleifenwert - ((ZehnerReihe - 1) * 10)) := TextArrays.SetsEinlesen (EndeSchleifenwert);
          
       end loop EndeBestimmenSchleife;
       
-      MehrSprachenVorhandenSchleife:
-      for SprachenSchleifenwert in TextArrays.SprachenTexturenEinlesen'Range loop
+      MehrEinträgeVorhandenSchleife:
+      for EinträgeSchleifenwert in TextArrays.SetsEinlesen'Range loop
          
          if
-           SprachenSchleifenwert <= TextArrays.SprachenArray'Last
+           EinträgeSchleifenwert <= TextArrays.SetsArray'Last
            and
-             TextArrays.SprachenTexturenEinlesen (SprachenSchleifenwert) = TextKonstanten.LeerUnboundedString
+             TextArrays.SetsEinlesen (EinträgeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             SchreibeGrafiktask.Endauswahl (AuswahlExtern => Ende);
             SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => MehrereSeiten);
             return;
             
          elsif
-           SprachenSchleifenwert >= TextArrays.SprachenArray'Last
+           EinträgeSchleifenwert >= TextArrays.SetsArray'Last
          then
-            exit MehrSprachenVorhandenSchleife;
+            exit MehrEinträgeVorhandenSchleife;
             
          else
             null;
          end if;
             
-      end loop MehrSprachenVorhandenSchleife;
+      end loop MehrEinträgeVorhandenSchleife;
       
       Ende := Ende + 1;
       MehrereSeiten := True;
@@ -118,18 +115,18 @@ package body TexturenauswahlLogik is
       SchreibeGrafiktask.Endauswahl (AuswahlExtern => Ende);
       SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => MehrereSeiten);
       
-   end TexturenlisteFestlegen;
+   end SetlisteFestlegen;
    
    
    
-   function AuswahlTexturenSFML
+   function AuswahlSet
      return Unbounded_Wide_Wide_String
    is begin
       
       AuswahlSchleife:
       loop
             
-         AktuelleAuswahl := MausauswahlLogik.Setauswahl (AnfangExtern => AktuelleTexturen'First,
+         AktuelleAuswahl := MausauswahlLogik.Setauswahl (AnfangExtern => Auswahlmöglichkeiten'First,
                                                               EndeExtern   => Ende);
          SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
             
@@ -148,11 +145,11 @@ package body TexturenauswahlLogik is
                    MehrereSeiten
                then
                   OftVerwendetSound.Klick;
-                  TexturenlisteFestlegen;
+                  SetlisteFestlegen;
                   
                else
                   OftVerwendetSound.Klick;
-                  return AktuelleTexturen (AktuelleAuswahl);
+                  return Auswahlmöglichkeiten (AktuelleAuswahl);
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
@@ -164,6 +161,6 @@ package body TexturenauswahlLogik is
       
       end loop AuswahlSchleife;
       
-   end AuswahlTexturenSFML;
+   end AuswahlSet;
 
-end TexturenauswahlLogik;
+end SetauswahlLogik;

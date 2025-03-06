@@ -72,9 +72,17 @@ package body TexteinstellungenGrafik is
    is
       use Ada.Directories;
    begin
-           
-      DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiSchriftart,
-                              NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei)
+      is
+         when False =>
+            return StandardSchriftartVerwenden;
+            
+         when True =>
+            DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiSchriftart,
+                                                  NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
+      end case;
       
       case
         EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSchriftart,
@@ -95,12 +103,14 @@ package body TexteinstellungenGrafik is
                MeldungssystemHTSEB.Logik (MeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlende Fontdatei");
                
             else
-               Close (File => DateiSchriftart);
+               DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiSchriftart,
+                                                        NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
                return VerzeichnisKonstanten.FontOrdner & UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => EigeneSchriftart);
             end if;
       end case;
-      
-      Close (File => DateiSchriftart);
+            
+      DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiSchriftart,
+                                               NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
       
       return StandardSchriftartVerwenden;
       

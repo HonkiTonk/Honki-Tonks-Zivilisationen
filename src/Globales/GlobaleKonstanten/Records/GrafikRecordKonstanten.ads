@@ -32,8 +32,8 @@ package GrafikRecordKonstanten is
    -- Und eventuell in einen eigenen Bereich verschieben? äöü
    Bildratenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.05, 0.05);
      
-   SprachenTexturenbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
-   Abspannbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
+   SprachenTexturenMusikSoundbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
+   Sequenzbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
    
    Überschriftbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 0.10);
    Unterschriftbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, Überschriftbereich.height, 1.00, 1.00 - Überschriftbereich.height);

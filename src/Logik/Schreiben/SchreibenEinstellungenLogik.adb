@@ -55,22 +55,16 @@ package body SchreibenEinstellungenLogik is
                                         LeseOptionen.Texturen);
       -- SystemRecords.NutzerEinstellungenRecord
       
-      Close (File => DateiNutzereinstellungen);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiNutzereinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiNutzereinstellungen)
-         is
-            when True =>
-               Close (File => DateiNutzereinstellungen);
-               
-            when False =>
-               null;
-         end case;
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiNutzereinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
       
    end Nutzereinstellungen;
    
@@ -156,22 +150,16 @@ package body SchreibenEinstellungenLogik is
                    TexteinstellungenGrafik.SchriftrahmenLesen);
       -- GrafikRecords.GrafikeinstellungenRecord
       
-      Close (File => DateiGrafikeinstellungen);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGrafikeinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiGrafikeinstellungen)
-         is
-            when True =>
-               Close (File => DateiGrafikeinstellungen);
-               
-            when False =>
-               null;
-         end case;
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGrafikeinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
       
    end Grafikeinstellungen;
    
@@ -191,27 +179,22 @@ package body SchreibenEinstellungenLogik is
                    LeseEinstellungenTon.Musiklautstärke);
       -- TonRecords.ToneinstellungenRecord
       
-      Close (File => DateiToneinstellungen);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiToneinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Toneinstellungen: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiToneinstellungen)
-         is
-            when True =>
-               Close (File => DateiToneinstellungen);
-               
-            when False =>
-               null;
-         end case;
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiToneinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
             
    end Toneinstellungen;
    
    
 
+   -- Hier werden die Arrays nicht gleich komplett geschrieben, damit man sie bei einer Erweiterung hinten anhängen kann und die alten Einstellungen weiter verwenden kann.
    procedure Tastatureinstellungen
    is begin
       
@@ -399,23 +382,16 @@ package body SchreibenEinstellungenLogik is
       -- TastenbelegungDatenbank.EinheitenbelegungArray
       -- TastenbelegungDatenbank.StadtbelegungArray
       
-      Close (File => DateiTastatureinstellungen);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiTastatureinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.Tastatureinstellungen: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiTastatureinstellungen)
-         is
-            when True =>
-               Close (File => DateiTastatureinstellungen);
-               
-            when False =>
-               null;
-         end case;
       
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiTastatureinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
    end Tastatureinstellungen;
    
    
@@ -431,22 +407,16 @@ package body SchreibenEinstellungenLogik is
                                               LeseOptionen.AktuellerAutospeichernwert);
       -- SystemRecords.SpielendeEinstellungenRecord
       
-      Close (File => DateiSpielendeEinstellungen);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpielendeEinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenEinstellungenLogik.SpielendeEinstellungen: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-                                              
-         case
-           Is_Open (File => DateiSpielendeEinstellungen)
-         is
-            when True =>
-               Close (File => DateiSpielendeEinstellungen);
-               
-            when False =>
-               null;
-         end case;
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpielendeEinstellungen,
+                                                 NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
       
    end SpielendeEinstellungen;
 

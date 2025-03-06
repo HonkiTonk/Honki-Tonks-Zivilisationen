@@ -125,8 +125,8 @@ package body SprachauswahlLogik is
       AuswahlSchleife:
       loop
             
-         AktuelleAuswahl := MausauswahlLogik.Sprachenauswahl (AnfangExtern => AktuelleSprachen'First,
-                                                              EndeExtern   => Ende);
+         AktuelleAuswahl := MausauswahlLogik.Setauswahl (AnfangExtern => AktuelleSprachen'First,
+                                                         EndeExtern   => Ende);
          SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
             
          case

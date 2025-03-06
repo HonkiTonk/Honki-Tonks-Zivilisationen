@@ -20,14 +20,14 @@ package body EinlesenSoundsLogik is
       is
          when False =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: "
-                                        & UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei));
+                                       & UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
             AktuelleZeile := 1;
             
             DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiSounds,
-                                    NameExtern     => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei);
+                                                  NameExtern     => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei);
       end case;
       
       SoundsSchleife:
@@ -40,7 +40,7 @@ package body EinlesenSoundsLogik is
          is
             when True =>
                MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: "
-                                           & UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
+                                          & UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                exit SoundsSchleife;
                
             when False =>
@@ -62,8 +62,9 @@ package body EinlesenSoundsLogik is
          AktuelleZeile := AktuelleZeile + 1;
          
       end loop SoundsSchleife;
-      
-      Close (File => DateiSounds);
+            
+      DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiSounds,
+                                               NameExtern     => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei);
       
       EingeleseneSounds.SoundsFestlegen;
       

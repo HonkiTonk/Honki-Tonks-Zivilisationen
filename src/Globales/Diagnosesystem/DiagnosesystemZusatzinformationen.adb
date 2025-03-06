@@ -38,7 +38,8 @@ package body DiagnosesystemZusatzinformationen is
       StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichern),
                                             ZuSpeichern);
       
-      Close (File => DateiSpeichern);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
+                                                NameExtern     => ("Test/" & "Test"));
       
    end GrößenprüfungDatei;
                

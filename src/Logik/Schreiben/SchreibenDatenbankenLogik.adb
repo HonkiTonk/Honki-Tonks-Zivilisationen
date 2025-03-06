@@ -37,27 +37,21 @@ package body SchreibenDatenbankenLogik is
    is begin
       
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiEinheitendatenbank,
-                                  NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
+                                                NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
       EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DateiEinheitendatenbank),
                                                     EinheitenDatenbank.Einheitenliste);
       
-      Close (File => DateiEinheitendatenbank);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiEinheitendatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
-         case
-           Is_Open (File => DateiEinheitendatenbank)
-         is
-            when True =>
-               Close (File => DateiEinheitendatenbank);
-               
-            when False =>
-               null;
-         end case;
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiEinheitendatenbank,
+                                                    NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
    end SchreibenEinheitenDatenbank;
    
@@ -82,23 +76,17 @@ package body SchreibenDatenbankenLogik is
       ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray'Write (Stream (File => DateiForschungendatenbank),
                                                                         ForschungenDatenbank.TechnologieUmgebungsgröße);
       
-      Close (File => DateiForschungendatenbank);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiForschungendatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenForschungenDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
-         case
-           Is_Open (File => DateiForschungendatenbank)
-         is
-            when True =>
-               Close (File => DateiForschungendatenbank);
-               
-            when False =>
-               null;
-         end case;
-      
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiForschungendatenbank,
+                                                    NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
+         
    end SchreibenForschungenDatenbank;
    
    
@@ -112,22 +100,16 @@ package body SchreibenDatenbankenLogik is
       GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DateiGebäudedatenbank),
                                                   GebaeudeDatenbank.Gebäudeliste);
       
-      Close (File => DateiGebäudedatenbank);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGebäudedatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenGebäudeDatenbank: Konnte nicht gespeichert werden: "
                                      & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiGebäudedatenbank)
-         is
-            when True =>
-               Close (File => DateiGebäudedatenbank);
-               
-            when False =>
-               null;
-         end case;
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGebäudedatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
    end SchreibenGebäudeDatenbank;
    
@@ -151,22 +133,16 @@ package body SchreibenDatenbankenLogik is
       KartenDatenbank.KartenressourcenlisteArray'Write (Stream (File => DateiKartendatenbank),
                                                         KartenDatenbank.Kartenressourcenliste);
       
-      Close (File => DateiKartendatenbank);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiKartendatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenKartenDatenbanken: Konnte nicht gespeichert werden: " &
                                        UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiKartendatenbank)
-         is
-            when True =>
-               Close (File => DateiKartendatenbank);
-               
-            when False =>
-               null;
-         end case;
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiKartendatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
       
    end SchreibenKartenDatenbanken;
    
@@ -184,22 +160,16 @@ package body SchreibenDatenbankenLogik is
       VerbesserungenDatenbank.WegelisteArray'Write (Stream (File => DateiVerbesserungendatenbank),
                                                     VerbesserungenDatenbank.Wegeliste);
       
-      Close (File => DateiVerbesserungendatenbank);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiVerbesserungendatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank: Konnte nicht gespeichert werden: "
                                      & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiVerbesserungendatenbank)
-         is
-            when True =>
-               Close (File => DateiVerbesserungendatenbank);
-               
-            when False =>
-               null;
-         end case;
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiVerbesserungendatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
    end SchreibenVerbesserungenDatenbank;
       
@@ -214,22 +184,16 @@ package body SchreibenDatenbankenLogik is
       SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DateiSpeziesdatenbank),
                                                 SpeziesDatenbank.Speziesliste);
       
-      Close (File => DateiSpeziesdatenbank);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeziesdatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenSpeziesDatenbank: Konnte nicht gespeichert werden: " &
                                        UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiSpeziesdatenbank)
-         is
-            when True =>
-               Close (File => DateiSpeziesdatenbank);
-               
-            when False =>
-               null;
-         end case;
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeziesdatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
    end SchreibenSpeziesDatenbank;
    
@@ -244,22 +208,16 @@ package body SchreibenDatenbankenLogik is
       EffekteDatenbank.EffektelisteArray'Write (Stream (File => DateiEffektedatenbank),
                                                 EffekteDatenbank.Effekteliste);
       
-      Close (File => DateiEffektedatenbank);
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiEffektedatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenEffekteDatenbank: Konnte nicht gespeichert werden: "
                                      & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiEffektedatenbank)
-         is
-            when True =>
-               Close (File => DateiEffektedatenbank);
-               
-            when False =>
-               null;
-         end case;
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiEffektedatenbank,
+                                                 NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
    end SchreibenEffekteDatenbank;
 

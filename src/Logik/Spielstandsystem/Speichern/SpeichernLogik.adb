@@ -108,7 +108,9 @@ package body SpeichernLogik is
             SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
          end if;
             
-         Close (File => DateiSpeichern);
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
+                                                    NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
+                                                                                                                SpielstandnameExtern => Spielstandname));
          
          LadezeitenLogik.SpeichernLadenMaximum;
 
@@ -128,17 +130,11 @@ package body SpeichernLogik is
       when StandardAdaFehler : others =>
          MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
          MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernLogik.Speichern: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         
-         case
-           Is_Open (File => DateiSpeichern)
-         is
-            when True =>
-               Close (File => DateiSpeichern);
-               
-            when False =>
-               null;
-         end case;
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+            
+         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
+                                                    NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
+                                                                                                                SpielstandnameExtern => Spielstandname));
          
          case
            AutospeichernExtern

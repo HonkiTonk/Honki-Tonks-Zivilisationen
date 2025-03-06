@@ -25,7 +25,7 @@ package body EinlesenTexturenLogik is
       case
         -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht dder ganze Verzeichnisname.
         DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
-                                                               WindowsTextExtern => (VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstanten.NullDateiWideWide))
+                                                          WindowsTextExtern => (VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstanten.NullDateiWideWide))
       is
          when False =>
             return;
@@ -35,8 +35,8 @@ package body EinlesenTexturenLogik is
             AktuelleZeile := 1;
             
             DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiTexturen,
-                                                 NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
-                                                                                                 & VerzeichnisKonstanten.NullDateiWideWide));
+                                                  NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
+                                                                                                   & VerzeichnisKonstanten.NullDateiWideWide));
       end case;
       
       TexturenSchleife:
@@ -68,7 +68,7 @@ package body EinlesenTexturenLogik is
             when others =>
                if
                  False = DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
-                                                                                WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+                                                                           WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
                then
                   MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Datei oder Pfad existiert nicht");
                
@@ -194,8 +194,10 @@ package body EinlesenTexturenLogik is
          end case;
                   
       end loop TexturenSchleife;
-      
-      Close (File => DateiTexturen);
+            
+      DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiTexturen,
+                                               NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
+                                                                                                & VerzeichnisKonstanten.NullDateiWideWide));
       
    end EinlesenTexturen;
    
@@ -221,9 +223,9 @@ package body EinlesenTexturenLogik is
          
          if
            False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
-                                                                     WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.GrafikEinfach
-                                                                                                                                 & Simple_Name (Directory_Entry => Verzeichnis)
-                                                                                                                                 & VerzeichnisKonstanten.NullDatei))
+                                                                WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.GrafikEinfach
+                                                                                                                             & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                             & VerzeichnisKonstanten.NullDatei))
          then
             null;
             
