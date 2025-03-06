@@ -8,16 +8,16 @@ package ChangelogJanuar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (30.01.2025):
+   -- Version 0.06.0800 => 0.06. (30.01.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0775 => 0.06. (29.01.2025):
+   -- Version 0.06.0775 => 0.06.0800 (29.01.2025):
    
-   -- 
+   -- Unifont aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
