@@ -2,6 +2,8 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
 
+private with ArraysHTSEB;
+
 with SpeziesDatentypen;
 with KartenDatentypen;
 with KartenRecords;
@@ -10,7 +12,6 @@ private with TextaccessVariablen;
 private with ProduktionDatentypen;
 private with ForschungenDatentypen;
 private with ZahlenDatentypen;
-private with TextArrays;
 
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
@@ -63,7 +64,7 @@ private
       
    YTextposition : Float;
    
-   AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteWichtigesAccess'Range);
+   AnzuzeigenderText : ArraysHTSEB.AllgemeinesTextArray (TextaccessVariablen.KarteWichtigesAccess'Range);
    
    
          

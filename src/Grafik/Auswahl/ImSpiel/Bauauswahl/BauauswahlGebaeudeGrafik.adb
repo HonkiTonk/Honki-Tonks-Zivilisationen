@@ -104,7 +104,7 @@ package body BauauswahlGebaeudeGrafik is
    function Informationstexte
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return TextArrays.AllgemeinesTextArray
+      return ArraysHTSEB.AllgemeinesTextArray
    is begin
       
       return (Spieltexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,

@@ -514,7 +514,7 @@ package body TextaccesseSchriftstilGrafik is
      (StilExtern : in Sf.Graphics.Text.sfTextStyle)
    is begin
       
-      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SprachauswahlAccess,
+      Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SetauswahlAccess,
                                  style => StilExtern);
       
    end Sprachauswahl;

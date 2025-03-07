@@ -72,7 +72,7 @@ package ChangelogMai2023 is
 
    -- Version 0.05.1215 => 0.05.1255 (23.05.2023):
    
-   -- Soweit möglich überall TextArrays.AllgemeinesTextArray eingebaut.
+   -- Soweit möglich überall ArraysHTSEB.AllgemeinesTextArray eingebaut.
    -- Angefangen die Festlegung der Kartenfelderproduktionswerte zu überarbeitet.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    

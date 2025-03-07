@@ -14,6 +14,7 @@ package body SichtweitenGrafik is
    is begin
       
       AktuelleSenkrechteZoomstufe := StandardSenkrechteZoomstufe;
+      AktuelleWaagerechteZoomstufe := StandardWaagerechteZoomstufe;
       KartenfelderAbmessungBerechnen;
       
    end StandardSichtweiten;

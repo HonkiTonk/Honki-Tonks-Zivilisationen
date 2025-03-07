@@ -507,7 +507,7 @@ package body TextaccesseSchriftartGrafik is
      (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
    is begin
       
-      Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.SetauswahlAccess,
                                 font => SchriftaccessExtern);
       
    end Sprachauswahl;

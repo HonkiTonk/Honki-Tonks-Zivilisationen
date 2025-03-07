@@ -5,12 +5,13 @@ with TextArrays;
 package SetauswahlLogik is
    pragma Elaborate_Body;
    
-   Auswahlmöglichkeiten : TextArrays.SprachenArray;
+   Auswahlmöglichkeiten : TextArrays.SetsArray;
    
    
 
    function Setauswahl
-     return Unbounded_Wide_Wide_String;
+     (SpracheExtern : in Boolean)
+      return Unbounded_Wide_Wide_String;
    
 private
 

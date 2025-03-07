@@ -2,6 +2,8 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
 
+private with ArraysHTSEB;
+
 with SpeziesDatentypen;
 with SpeziesKonstanten;
 
@@ -9,7 +11,6 @@ private with KartenRecords;
 private with KartenverbesserungDatentypen;
 private with TextaccessVariablen;
 private with KartenextraDatentypen;
-private with TextArrays;
 private with KartengrundDatentypen;
 
 with LeseSpeziesbelegung;
@@ -49,7 +50,7 @@ private
 
    AktuelleKoordinaten : KartenRecords.KartenfeldNaturalRecord;
    
-   AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteAllgemeinesAccess'Range);
+   AnzuzeigenderText : ArraysHTSEB.AllgemeinesTextArray (TextaccessVariablen.KarteAllgemeinesAccess'Range);
    
    
    

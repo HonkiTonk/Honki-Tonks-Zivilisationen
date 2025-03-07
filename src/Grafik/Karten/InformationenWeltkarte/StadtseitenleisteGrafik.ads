@@ -2,6 +2,8 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
 
+private with ArraysHTSEB;
+
 with SpeziesDatentypen;
 with StadtRecords;
 with StadtKonstanten;
@@ -9,7 +11,6 @@ with StadtGrafikRecords;
 
 private with ProduktionDatentypen;
 private with TextaccessVariablen;
-private with TextArrays;
 private with GrafikRecordKonstanten;
 
 with LeseGrenzen;
@@ -66,7 +67,7 @@ private
       
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    
-   AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.StadtInformationenAccess'Range);
+   AnzuzeigenderText : ArraysHTSEB.AllgemeinesTextArray (TextaccessVariablen.StadtInformationenAccess'Range);
    
    
    

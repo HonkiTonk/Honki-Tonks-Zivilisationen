@@ -70,7 +70,7 @@ package body WeltkarteZusatzZeichnenGrafik is
             
          when KartenverbesserungDatentypen.Verbesserung_Städte_Enum =>
             if
-              KoordinatenExtern.Ebene = EbeneExtern
+              KoordinatenExtern.Ebene /= EbeneExtern
             then
                StadtnameAnzeigen (KoordinatenExtern => KoordinatenExtern,
                                   PositionExtern    => PositionExtern,
@@ -79,7 +79,7 @@ package body WeltkarteZusatzZeichnenGrafik is
             else
                null;
             end if;
-               
+            
          when others =>
             null;
       end case;
@@ -250,18 +250,18 @@ package body WeltkarteZusatzZeichnenGrafik is
         ObenUntenExtern
       is
          when True =>
-            Textposition.y := PositionExtern.y - Textgröße.y;
+            Textposition.y := PositionExtern.y - 2.00 * Textgröße.y;
             
          when False =>
             Textposition.y := PositionExtern.y;
       end case;
-      
+            
       HintergrundGrafik.HintergrundPositionierbar (TexturAccessExtern     => EingeleseneTexturenGrafik.AllgemeinesAccess,
-                                                      TexturbereichExtern    => TexturenfelderVariablenGrafik.AllgemeinesRechteck (HintergrundExtern => GrafikDatentypen.Auswahl_Enum,
-                                                                                                                                   SpeziesExtern     => SpeziesDatentypen.Leer_Spezies_Enum),
-                                                      AbmessungenExtern      => (Textgröße.x * Skalierung.x * 1.02, Textgröße.y),
-                                                      PositionExtern         => Textposition,
-                                                      DurchsichtigkeitExtern => GrafikKonstanten.Bewegungsfeldtransparents);
+                                                   TexturbereichExtern    => TexturenfelderVariablenGrafik.AllgemeinesRechteck (HintergrundExtern => GrafikDatentypen.Auswahl_Enum,
+                                                                                                                                SpeziesExtern     => SpeziesDatentypen.Leer_Spezies_Enum),
+                                                   AbmessungenExtern      => (Textgröße.x * Skalierung.x * 1.02, Textgröße.y),
+                                                   PositionExtern         => Textposition,
+                                                   DurchsichtigkeitExtern => GrafikKonstanten.Bewegungsfeldtransparents);
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtnameKarteAccess,
                                                                  PositionExtern   => Textposition);

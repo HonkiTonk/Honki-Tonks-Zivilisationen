@@ -14,7 +14,8 @@ with OftVerwendetSound;
 package body SetauswahlLogik is
 
    function Setauswahl
-     return Unbounded_Wide_Wide_String
+     (SpracheExtern : in Boolean)
+      return Unbounded_Wide_Wide_String
    is begin
       
       ZehnerReihe := 0;
@@ -22,7 +23,15 @@ package body SetauswahlLogik is
       
       SetlisteFestlegen;
       
-      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Set_Enum);
+      case
+        SpracheExtern
+      is
+         when True =>
+            SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Sprache_Enum);
+            
+         when False =>
+            SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Set_Enum);
+      end case;
             
       return AuswahlSet;
       
@@ -127,7 +136,7 @@ package body SetauswahlLogik is
       loop
             
          AktuelleAuswahl := MausauswahlLogik.Setauswahl (AnfangExtern => Auswahlmöglichkeiten'First,
-                                                              EndeExtern   => Ende);
+                                                         EndeExtern   => Ende);
          SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
             
          case

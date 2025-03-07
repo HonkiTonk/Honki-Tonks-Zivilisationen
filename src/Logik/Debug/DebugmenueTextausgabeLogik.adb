@@ -86,7 +86,7 @@ package body DebugmenueTextausgabeLogik is
    
    -- Ist das so sicher? äöü
    procedure Test
-     (ArrayExtern : in TextArrays.AllgemeinesTextArray)
+     (ArrayExtern : in ArraysHTSEB.AllgemeinesTextArray)
    is begin
       
       AnzeigeSchleife:

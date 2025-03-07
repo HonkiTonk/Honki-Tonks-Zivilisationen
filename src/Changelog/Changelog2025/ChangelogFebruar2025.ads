@@ -190,7 +190,7 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (01.02.2025):
+   -- Version 0.06.0940 => 0.06. (01.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.

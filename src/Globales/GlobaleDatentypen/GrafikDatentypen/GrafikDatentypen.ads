@@ -8,8 +8,7 @@ package GrafikDatentypen is
                                   
                                   Generierungszeit_Enum, KI_Rechenzeit_Enum, Rundenende_Enum, Speichern_Laden_Enum,
                                   
-                                  Menüs_Enum, Set_Enum,
-                                  Sprache_Enum, Texturen_Enum, Musik_Enum, Sound_Enum,
+                                  Menüs_Enum, Sprache_Enum, Set_Enum,
                                   
                                   Editoren_Enum,
                                   
@@ -26,7 +25,6 @@ package GrafikDatentypen is
    
    subtype Ladezeiten_Enum is Aktuelle_Anzeige_Enum range Generierungszeit_Enum .. Speichern_Laden_Enum;
    -- Eventuell kann ich das nach der Zusammenfassung als ein Eintrag, anstelle von mehreren behandeln. äöü
-   subtype Sets_Enum is Aktuelle_Anzeige_Enum range Sprache_Enum .. Sound_Enum;
    subtype Stadt_Enum is Aktuelle_Anzeige_Enum range Stadtumgebung_Enum .. Stadtkarte_Enum;
    
    

@@ -3,6 +3,8 @@ private with Ada.Calendar;
 private with Sf.System.Vector2;
 private with Sf.Graphics.Rect;
 
+private with ArraysHTSEB;
+
 with SpeziesDatentypen;
 with StadtKonstanten;
 with StadtGrafikRecords;
@@ -10,7 +12,6 @@ with StadtGrafikRecords;
 private with StadtDatentypen;
 private with KartenRecords;
 private with GrafikRecordKonstanten;
-private with TextArrays;
 private with KampfDatentypen;
 
 with LeseSpeziesbelegung;
@@ -49,7 +50,7 @@ private
 
    Rechteck : Sf.Graphics.Rect.sfFloatRect;
 
-   Gebäudetexte : TextArrays.AllgemeinesTextArray (1 .. 11);
+   Gebäudetexte : ArraysHTSEB.AllgemeinesTextArray (1 .. 11);
 
    procedure GrafischeDarstellung
      (GrundExtern : in KartenRecords.KartengrundRecord);

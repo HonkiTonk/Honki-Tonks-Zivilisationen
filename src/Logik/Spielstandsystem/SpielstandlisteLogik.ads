@@ -29,6 +29,8 @@ private
 
    Spielstanddatei : Directory_Entry_Type;
 
+
+
    function Mausauswahl
      (SpeichernLadenExtern : in Boolean)
       return Integer;

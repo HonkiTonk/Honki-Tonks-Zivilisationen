@@ -1,18 +1,19 @@
 with TextKonstanten;
+with VerzeichnisKonstanten;
 
 with SchreibeGrafiktask;
 with SchreibeOptionen;
 with LeseOptionen;
 
-with EinlesenSpracheLogik;
 with EinlesenTextLogik;
 with EinlesenDatenbankenLogik;
 with SchreibenEinstellungenLogik;
-with SprachauswahlLogik;
+with SetauswahlLogik;
 with EinlesenTexturenLogik;
 with MeldungssystemHTSEB;
 with EinlesenMusikLogik;
 with EinlesenSoundsLogik;
+with EinlesenSetsLogik;
 
 package body EinlesenLogik is
 
@@ -45,13 +46,13 @@ package body EinlesenLogik is
          
       else
          case
-           EinlesenSpracheLogik.EinlesenSprache
+           EinlesenSetsLogik.EinlesenSets (OrdnerExtern => VerzeichnisKonstanten.Sprachen)
          is
             when True =>
                SpracheAuswählenSchleife:
                loop
                   
-                  GewählteSprache := SprachauswahlLogik.AuswahlSprache;
+                  GewählteSprache := SetauswahlLogik.Setauswahl (SpracheExtern => True);
                   
                   if
                     GewählteSprache = TextKonstanten.LeerUnboundedString

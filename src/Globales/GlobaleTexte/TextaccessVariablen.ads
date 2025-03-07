@@ -176,9 +176,9 @@ package TextaccessVariablen is
    
    
    
-   -- Sprachauswahl
-   SprachauswahlAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   -- Sprachauswahl
+   -- Setauswahl
+   SetauswahlAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   -- Setauswahl
 
    
    

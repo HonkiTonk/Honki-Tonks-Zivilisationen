@@ -2,17 +2,18 @@ with TextKonstanten;
 with MenueDatentypen;
 with TextnummernKonstanten;
 with SystemKonstanten;
+with VerzeichnisKonstanten;
 
 with SchreibenEinstellungenLogik;
-with EinlesenSpracheLogik;
 with EinlesenTextLogik;
 with SchreibeOptionen;
 with SchreibeGrafiktask;
 
-with SprachauswahlLogik;
+with SetauswahlLogik;
 with ZahleneingabeLogik;
 with AuswahlaufteilungLogik;
 with MeldungssystemHTSEB;
+with EinlesenSetsLogik;
 
 package body OptionenSonstigesLogik is
 
@@ -104,10 +105,10 @@ package body OptionenSonstigesLogik is
       
       -- Das hier mit dem Einlesen.Einlesen zusammenführen? Geht das überhaupt sinnvoll? äöü
       case
-        EinlesenSpracheLogik.EinlesenSprache
+        EinlesenSetsLogik.EinlesenSets (OrdnerExtern => VerzeichnisKonstanten.Sprachen)
       is
          when True =>
-            GewählteSprache := SprachauswahlLogik.AuswahlSprache;
+            GewählteSprache := SetauswahlLogik.Setauswahl (SpracheExtern => True);
             
             if
               GewählteSprache = TextKonstanten.LeerUnboundedString

@@ -36,6 +36,8 @@ private
       
    Transparents : Sf.sfUint8;
    
+   Test : Natural;
+   
    Sichtbereich : KartenRecords.KartenfeldumgebungPositivRecord;
       
    Feldposition : Sf.System.Vector2.sfVector2f;

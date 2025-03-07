@@ -497,7 +497,7 @@ package body TextaccesseSchriftrahmenGrafik is
      (RahmendickeExtern : in Float)
    is begin
       
-      Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.SprachauswahlAccess,
+      Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.SetauswahlAccess,
                                             thickness => RahmendickeExtern);
       
    end Sprachauswahl;

@@ -2,6 +2,8 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
 
+private with ArraysHTSEB;
+
 with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
@@ -12,7 +14,6 @@ private with KampfDatentypen;
 private with TextaccessVariablen;
 private with StadtDatentypen;
 private with AufgabenDatentypen;
-private with TextArrays;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -73,7 +74,7 @@ private
       
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    
-   AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.EinheitenInformationenAccess'Range);
+   AnzuzeigenderText : ArraysHTSEB.AllgemeinesTextArray (TextaccessVariablen.EinheitenInformationenAccess'Range);
    
    
    

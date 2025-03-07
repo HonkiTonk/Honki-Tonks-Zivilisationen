@@ -521,7 +521,7 @@ package body TextaccesseSchriftfarbeGrafik is
      (StandardExtern : in Sf.Graphics.Color.sfColor)
    is begin
             
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SprachauswahlAccess,
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SetauswahlAccess,
                                  color => StandardExtern);
       
    end Sprachauswahl;

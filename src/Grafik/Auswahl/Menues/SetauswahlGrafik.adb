@@ -3,35 +3,36 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.Text;
 with Sf.Graphics.Font;
 
+with Views;
+with ViewKonstanten;
+with GrafikKonstanten;
 with GrafikDatentypen;
 with InteraktionAuswahl;
 with TextaccessVariablen;
-with Views;
-with GrafikKonstanten;
-with ViewKonstanten;
 
 with LeseGrafiktask;
 
-with TextberechnungenBreiteGrafik;
-with TextberechnungenHoeheGrafik;
-with TexteinstellungenGrafik;
 with ViewsEinstellenGrafik;
+with TextberechnungenHoeheGrafik;
 with HintergrundGrafik;
-with TextaccessverwaltungssystemEinfachGrafik;
-with KonvexverwaltungssystemGrafik;
+with SetauswahlLogik;
 with TextfarbeGrafik;
-with SprachauswahlLogik;
+with TextaccessverwaltungssystemEinfachGrafik;
+with TextberechnungenBreiteGrafik;
+with KonvexverwaltungssystemGrafik;
+with TexteinstellungenGrafik;
 
-package body SprachauswahlGrafik is
-   
-   procedure Sprachauswahl
+package body SetauswahlGrafik is
+
+   procedure Setauswahl
+     (SpracheExtern : in Boolean)
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.SprachenTexturenMusikSoundbereich);
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Setbereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                     AbmessungenExtern => Viewfläche);
@@ -41,14 +42,14 @@ package body SprachauswahlGrafik is
       MehrereSeitenVorhanden := LeseGrafiktask.Seitenauswahl;
       AktuelleAuswahl := LeseGrafiktask.Erstauswahl;
       Ende := LeseGrafiktask.Endauswahl;
-      AktuelleSprachen := SprachauswahlLogik.AktuelleSprachen;
+      Auswahlmöglichkeiten := SetauswahlLogik.Auswahlmöglichkeiten;
       
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       
       AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       AnzeigeSchleife:
-      for ZeileSchleifenwert in AktuelleSprachen'Range loop
+      for ZeileSchleifenwert in Auswahlmöglichkeiten'Range loop
          
          AktuelleTextFarbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => ZeileSchleifenwert,
                                                                      AuswahlExtern    => AktuelleAuswahl);
@@ -60,41 +61,49 @@ package body SprachauswahlGrafik is
               and
                 ZeileSchleifenwert < Ende)
          then
-            NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))));
+            case
+              SpracheExtern
+            is
+               when True =>
+                  NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => Auswahlmöglichkeiten (ZeileSchleifenwert))));
             
-            if
-              NeuerPfad /= AktuellerPfad
-            then
-               AktuellerPfad := NeuerPfad;
-               -- Muss imemr erst destroyed werden da es sonst bei der Verwendung mehrerer Fonts zu einem Speicherleck kommt.
-               Sf.Graphics.Font.destroy (font => SchriftartAccess);
-               SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => To_String (Source => AktuellerPfad));
-               Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
-                                         font => SchriftartAccess);
+                  if
+                    NeuerPfad /= AktuellerPfad
+                  then
+                     AktuellerPfad := NeuerPfad;
+                     -- Muss imemr erst destroyed werden da es sonst bei der Verwendung mehrerer Fonts zu einem Speicherleck kommt.
+                     Sf.Graphics.Font.destroy (font => SchriftartAccess);
+                     SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => To_String (Source => AktuellerPfad));
+                     Sf.Graphics.Text.setFont (text => TextaccessVariablen.SetauswahlAccess,
+                                               font => SchriftartAccess);
                
-            else
-               null;
-            end if;
+                  else
+                     null;
+                  end if;
+                  
+               when False =>
+                  null;
+            end case;
             
-            TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                                TextExtern       => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)),
+            TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SetauswahlAccess,
+                                                                TextExtern       => To_Wide_Wide_String (Source => Auswahlmöglichkeiten (ZeileSchleifenwert)),
                                                                 FarbeExtern      => AktuelleTextFarbe);
             
-            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
+            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SetauswahlAccess,
                                                                                     ViewbreiteExtern => Viewfläche.x);
             
-            TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
+            TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SetauswahlAccess,
                                                                        PositionExtern   => Textposition);
             
-            NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
+            NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SetauswahlAccess,
                                                                                     TextbreiteExtern => GrafikKonstanten.Nullwert);
             
-            InteraktionAuswahl.PositionenSetauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
+            InteraktionAuswahl.PositionenSetauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SetauswahlAccess);
                         
          elsif
            MehrereSeitenVorhanden
            and
-             ZeileSchleifenwert = AktuelleSprachen'Last
+             ZeileSchleifenwert = Auswahlmöglichkeiten'Last
          then
             Textposition.y := Textposition.y + 3.00 * TextberechnungenHoeheGrafik.Zeilenabstand;
             
@@ -133,6 +142,6 @@ package body SprachauswahlGrafik is
             
       Viewfläche := (AktuelleTextbreite, Textposition.y);
       
-   end Sprachauswahl;
+   end Setauswahl;
 
-end SprachauswahlGrafik;
+end SetauswahlGrafik;

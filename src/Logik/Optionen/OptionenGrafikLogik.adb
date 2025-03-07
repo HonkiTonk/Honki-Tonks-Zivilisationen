@@ -5,6 +5,7 @@ with ZeitKonstanten;
 with GrafikKonstanten;
 with ZahlenDatentypen;
 with TextKonstanten;
+with VerzeichnisKonstanten;
 
 with SchreibeEinstellungenGrafik;
 with LeseEinstellungenGrafik;
@@ -19,7 +20,8 @@ with ZahleneingabeLogik;
 with MeldungssystemHTSEB;
 with SchreibenEinstellungenLogik;
 with EinlesenTexturenLogik;
-with TexturenauswahlLogik;
+with SetauswahlLogik;
+with EinlesenSetsLogik;
 
 package body OptionenGrafikLogik is
 
@@ -187,14 +189,15 @@ package body OptionenGrafikLogik is
    
    
    
+   -- Das hier als Funktion aufrufen um die neuen Texturen direkt zu speichern? äöü
    procedure TexturenWechseln
    is begin
       
       case
-        EinlesenTexturenLogik.Texturenauswahl
+        EinlesenSetsLogik.EinlesenSets (OrdnerExtern => VerzeichnisKonstanten.GrafikOhneStrich)
       is
          when True =>
-            GewählteTexturen := TexturenauswahlLogik.AuswahlTexturen;
+            GewählteTexturen := SetauswahlLogik.Setauswahl (SpracheExtern => False);
             
             if
               GewählteTexturen = TextKonstanten.LeerUnboundedString
@@ -202,6 +205,7 @@ package body OptionenGrafikLogik is
                null;
                
             else
+               -- Das hier als Funktion aufrufen um bei Fehlern nicht den falschen Wert zu schreiben? äöü
                SchreibeOptionen.Texturen (TexturenExtern => GewählteTexturen);
                EinlesenTexturenLogik.EinlesenTexturen;
             end if;

@@ -1,20 +1,21 @@
-with UmwandlungssystemHTSEB;
 with DateisystemtestsHTSEB;
+with UmwandlungssystemHTSEB;
+with VerzeichnisKonstanten;
 
 with TextArrays;
 with TextKonstanten;
-with VerzeichnisKonstanten;
 
-package body EinlesenSpracheLogik is
+package body EinlesenSetsLogik is
 
-   function EinlesenSprache
+   function EinlesenSets
+     (OrdnerExtern : in String)
      return Boolean
    is begin
       
-      TextArrays.SprachenTexturenEinlesen := (others => TextKonstanten.LeerUnboundedString);
+      TextArrays.SetsEinlesen := (others => TextKonstanten.LeerUnboundedString);
             
       Start_Search (Search    => Suche,
-                    Directory => VerzeichnisKonstanten.Sprachen,
+                    Directory => OrdnerExtern,
                     Pattern   => "",
                     Filter    => (Directory => True,
                                   others    => False));
@@ -26,29 +27,32 @@ package body EinlesenSpracheLogik is
                          Directory_Entry => Verzeichnis);
          
          if
-           Simple_Name (Directory_Entry => Verzeichnis) = VerzeichnisKonstanten.FontsOrdner
+           OrdnerExtern = VerzeichnisKonstanten.Sprachen
+           and
+             Simple_Name (Directory_Entry => Verzeichnis) = VerzeichnisKonstanten.FontsOrdner
          then
             null;
             
          elsif
            False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
-                                                                     WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
-                                                                                                                                         & Simple_Name (Directory_Entry => Verzeichnis)
-                                                                                                                                         & VerzeichnisKonstanten.NullDatei))
+                                                                WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => OrdnerExtern & "/"
+                                                                                                                             & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                             & VerzeichnisKonstanten.NullDatei))
          then
             null;
             
          elsif
            -- Kann das nicht einfach raus wenn irgendwann einmal Wide_Wide_Directories da ist? äöü
            -- Das ist je nur vorhandene Ordner durchgehen und man kann ja keine Dateien/Ordner anlegen die das Dateisystem nicht unterstützen. äöü
+           -- Kann das dank dem Encode nicht jetzt schon raus? äöü
            DateisystemtestsHTSEB.GültigerNamen (NameExtern => UmwandlungssystemHTSEB.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis))) = False
          then
             null;
              
          elsif
            -- Das ausgeklammerte unten drunter funktioniert unter Windwos nicht, wenn man Sonderzeichen verwendet.
-           -- EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
-           Exists (Name => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei) = False
+           -- EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => OrdnerExtern & "/" & Simple_Name (Directory_Entry => Verzeichnis)) = True
+           Exists (Name => OrdnerExtern & "/" & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei) = False
          then
             null;
             
@@ -56,14 +60,14 @@ package body EinlesenSpracheLogik is
             Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => UmwandlungssystemHTSEB.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)));
             
             VerzeichnisInnenSchleife:
-            for SpracheSchleifenwert in TextArrays.SprachenTexturenEinlesen'Range loop
+            for SetSchleifenwert in TextArrays.SetsEinlesen'Range loop
                if
-                 TextArrays.SprachenTexturenEinlesen (SpracheSchleifenwert) /= TextKonstanten.LeerUnboundedString
+                 TextArrays.SetsEinlesen (SetSchleifenwert) /= TextKonstanten.LeerUnboundedString
                then
                   null;
             
                else
-                  TextArrays.SprachenTexturenEinlesen (SpracheSchleifenwert) := Verzeichnisname;
+                  TextArrays.SetsEinlesen (SetSchleifenwert) := Verzeichnisname;
                   exit VerzeichnisInnenSchleife;
                end if;
          
@@ -75,28 +79,29 @@ package body EinlesenSpracheLogik is
       End_Search (Search => Suche);
       
       if
-        TextArrays.SprachenTexturenEinlesen (1) = TextKonstanten.LeerUnboundedString
+        TextArrays.SetsEinlesen (1) = TextKonstanten.LeerUnboundedString
       then
          return False;
          
       else
-         SprachenSortieren;
+         SetsSortieren;
          return True;
       end if;
       
-   end EinlesenSprache;
+   end EinlesenSets;
    
    
    
    -- Sollte sowas nicht auch bei den Spielständen funktionieren, wenn ich die Zeit der Erstellung abfrage und danach sortiere? äöü
-   procedure SprachenSortieren
+   -- Vermutlich nicht, da das Spielstandsystem ein wenig komplexer ist als die Sets, aber trotzdem mal drüber nachdenken. äöü
+   procedure SetsSortieren
    is begin
             
       SortierSchleife:
-      for PositionSchleifenwert in TextArrays.SprachenTexturenEinlesen'First + 1 .. TextArrays.SprachenTexturenEinlesen'Last loop
+      for PositionSchleifenwert in TextArrays.SetsEinlesen'First + 1 .. TextArrays.SetsEinlesen'Last loop
          
          if
-           TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert) = TextKonstanten.LeerUnboundedString
+           TextArrays.SetsEinlesen (PositionSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             exit SortierSchleife;
             
@@ -106,9 +111,9 @@ package body EinlesenSpracheLogik is
             loop
                
                if
-                 PositionSchleifenwert - SchleifenAbzug > TextArrays.SprachenTexturenEinlesen'First
+                 PositionSchleifenwert - SchleifenAbzug > TextArrays.SetsEinlesen'First
                  and then
-                   TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert) < TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
+                   TextArrays.SetsEinlesen (PositionSchleifenwert) < TextArrays.SetsEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
                then
                   SchleifenAbzug := SchleifenAbzug + 1;
                   
@@ -125,9 +130,9 @@ package body EinlesenSpracheLogik is
                   VerschiebungSchleife:
                   while SchleifenAbzug > 0 loop
                      
-                     Zwischenspeicher := TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert);
-                     TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert) := TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert - SchleifenAbzug);
-                     TextArrays.SprachenTexturenEinlesen (PositionSchleifenwert - SchleifenAbzug) := Zwischenspeicher;
+                     Zwischenspeicher := TextArrays.SetsEinlesen (PositionSchleifenwert);
+                     TextArrays.SetsEinlesen (PositionSchleifenwert) := TextArrays.SetsEinlesen (PositionSchleifenwert - SchleifenAbzug);
+                     TextArrays.SetsEinlesen (PositionSchleifenwert - SchleifenAbzug) := Zwischenspeicher;
                      SchleifenAbzug := SchleifenAbzug - 1;
                      
                   end loop VerschiebungSchleife;
@@ -140,6 +145,6 @@ package body EinlesenSpracheLogik is
          
       end loop SortierSchleife;
       
-   end SprachenSortieren;
+   end SetsSortieren;
 
-end EinlesenSpracheLogik;
+end EinlesenSetsLogik;

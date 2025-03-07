@@ -1,10 +1,11 @@
 private with Sf.System.Vector2;
 
+private with ArraysHTSEB;
+
 with SpeziesDatentypen;
 with EinheitenDatentypen;
 
 private with GrafikRecordKonstanten;
-private with TextArrays;
 
 with LeseSpeziesbelegung;
 
@@ -26,7 +27,7 @@ private
 
    Transportkapazität : EinheitenDatentypen.Transportplätze;
    
-   Einheitentexte : TextArrays.AllgemeinesTextArray (1 .. 11);
+   Einheitentexte : ArraysHTSEB.AllgemeinesTextArray (1 .. 11);
 
    YPosition : Float;
    

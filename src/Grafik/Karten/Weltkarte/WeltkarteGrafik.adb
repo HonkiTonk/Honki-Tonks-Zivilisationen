@@ -76,6 +76,7 @@ package body WeltkarteGrafik is
       is
          when KartenartDatentypen.Senkrechte_Übergangslos_Enum =>
             Feldposition := GrafikRecordKonstanten.Nullposition;
+            Test := 0;
             
          when others =>
             return;
@@ -93,12 +94,7 @@ package body WeltkarteGrafik is
             if
               KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
-               null;    
-               
-            elsif
-              KartenWert.Senkrechte > KartenDatentypen.SenkrechtePositiv'First
-            then
-               exit SenkrechteamenSchleife;
+               null;
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
@@ -109,9 +105,18 @@ package body WeltkarteGrafik is
             elsif
               LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert) in KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range
             then
-               WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
-                                                                PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
-                                                                ObenUntenExtern   => False);
+               if
+                 Test = Integer (Sichtbereich.Senkrechte + Sichtbereich.Senkrechte)
+               then
+                  WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
+                                                                   PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
+                                                                   ObenUntenExtern   => True);
+                     
+               else
+                  WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
+                                                                   PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
+                                                                   ObenUntenExtern   => False);
+               end if;
                
             else
                null;
@@ -121,7 +126,9 @@ package body WeltkarteGrafik is
             
          end loop WaagerechteamenSchleife;
          
-         Feldposition := (GrafikKonstanten.Nullwert, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
+            Feldposition := (GrafikKonstanten.Nullwert, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
+            
+            Test := Test + 1;
          
       end loop SenkrechteamenSchleife;
             

@@ -1,4 +1,4 @@
-private with TextArrays;
+private with ArraysHTSEB;
 
 package DebugmenueTextausgabeLogik is
 
@@ -17,7 +17,7 @@ private
    procedure SpeziestexteAusgeben;
 
    procedure Test
-     (ArrayExtern : in TextArrays.AllgemeinesTextArray);
+     (ArrayExtern : in ArraysHTSEB.AllgemeinesTextArray);
 
 
    function Pause

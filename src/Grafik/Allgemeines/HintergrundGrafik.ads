@@ -41,7 +41,7 @@ package HintergrundGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
      with
-       Pre => ( -- failed precondition from HintergrundGrafik.ads:45
+       Pre => (
                  AbmessungenExtern.x >= 0.00
                and
                  AbmessungenExtern.y >= 0.00

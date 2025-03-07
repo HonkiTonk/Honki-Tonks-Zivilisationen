@@ -544,7 +544,7 @@ package body TextaccesseSchriftgroesseGrafik is
      (StandardExtern : in Sf.sfUint32)
    is begin
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SprachauswahlAccess,
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SetauswahlAccess,
                                          size => StandardExtern);
             
    end Sprachauswahl;

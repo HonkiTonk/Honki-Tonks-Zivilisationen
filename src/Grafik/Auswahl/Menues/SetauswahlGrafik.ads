@@ -1,16 +1,18 @@
+
 private with Ada.Strings.Unbounded;
 
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
 private with Sf.Graphics.ConvexShape;
+private with Sf.Graphics;
 
-private with TextArrays;
 private with GrafikRecordKonstanten;
+private with TextArrays;
 
-package TexturenauswahlGrafik is
-   pragma Elaborate_Body;
+package SetauswahlGrafik is
 
-   procedure Texturenauswahl;
+   procedure Setauswahl
+     (SpracheExtern : in Boolean);
    
 private
    use Ada.Strings.Unbounded;
@@ -31,8 +33,10 @@ private
    
    AktuelleTextFarbe : Sf.Graphics.Color.sfColor;
    
+   SchriftartAccess : Sf.Graphics.sfFont_Ptr := null;
+   
    PfeilAccess : constant Sf.Graphics.sfConvexShape_Ptr := Sf.Graphics.ConvexShape.create;
    
-   Auswahlmöglichkeiten : TextArrays.SprachenArray;
+   Auswahlmöglichkeiten : TextArrays.SetsArray;
 
-end TexturenauswahlGrafik;
+end SetauswahlGrafik;

@@ -1,10 +1,15 @@
 package ChangelogJanuar2025 is
    pragma Pure;
    
-   -- Version 0.06.0860 => 0.06. (31.01.2025):
+   -- Version 0.06.0860 => 0.06.0940 (31.01.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Sprachauswahl und Texturenauswahl zu einem Setauswahlsystem verschmolzen.
+   -- Unnötigen Code gelöscht.
+   -- Das Einlesen der Sprachen- und Texturenordner in einem System zusammengeführt.
+   -- Fehler korrigiert der die Stadtnamen falsch platzierte.
+   -- Fehler korrigiert der unter bestimmten Bedingungen beim Anzeigen der Stadtnamen zu Abstürzen führen konnte.
+   -- Fehler korrigiert der unter bestimmten Umständen die Kartenfeldergröße falsch berechnete.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

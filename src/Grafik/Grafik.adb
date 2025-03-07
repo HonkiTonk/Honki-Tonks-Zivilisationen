@@ -12,7 +12,6 @@ with MenueaufteilungGrafik;
 with FensterGrafik;
 with SichtweitenGrafik;
 with ForschungsauswahlGrafik;
-with SprachauswahlGrafik;
 with EingabenanzeigeGrafik;
 with BauauswahlGrafik;
 with TexteingabeGrafik;
@@ -29,7 +28,7 @@ with VerkaufsauswahlGrafik;
 with UebergabeRecordErmittelnGrafik;
 with TexteinstellungenGrafik;
 with BildrateAnzeigenGrafik;
-with TexturenauswahlGrafik;
+with SetauswahlGrafik;
 
 -- with DiagnosesystemZusatzinformationen;
 
@@ -219,21 +218,11 @@ package body Grafik is
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
             SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
             
-            -- Die Sprachauswahl auch in die Menüs schieben? äöü
          when GrafikDatentypen.Sprache_Enum =>
-            SprachauswahlGrafik.Sprachauswahl;
-            
-         when GrafikDatentypen.Texturen_Enum =>
-            TexturenauswahlGrafik.Texturenauswahl;
-            
-         when GrafikDatentypen.Musik_Enum =>
-            null;
-            
-         when GrafikDatentypen.Sound_Enum =>
-            null;
+            SetauswahlGrafik.Setauswahl (SpracheExtern => True);
             
          when GrafikDatentypen.Set_Enum =>
-            null;
+            SetauswahlGrafik.Setauswahl (SpracheExtern => False);
                
          when GrafikDatentypen.Intro_Enum =>
             IntroGrafik.Intro;

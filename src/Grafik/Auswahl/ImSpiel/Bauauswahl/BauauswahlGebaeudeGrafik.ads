@@ -1,8 +1,9 @@
 private with Sf.System.Vector2;
 
+with ArraysHTSEB;
+
 with SpeziesDatentypen;
 with StadtDatentypen;
-with TextArrays;
 
 private with GrafikRecordKonstanten;
 private with KampfDatentypen;
@@ -30,11 +31,11 @@ package BauauswahlGebaeudeGrafik is
    function Informationstexte
      (AuswahlExtern : in StadtDatentypen.GebäudeID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return TextArrays.AllgemeinesTextArray;
+      return ArraysHTSEB.AllgemeinesTextArray;
    
 private
    
-   Gebäudetexte : TextArrays.AllgemeinesTextArray (1 .. 10);
+   Gebäudetexte : ArraysHTSEB.AllgemeinesTextArray (1 .. 10);
 
    Textbreite : Float;
    
