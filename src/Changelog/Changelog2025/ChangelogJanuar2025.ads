@@ -5,7 +5,7 @@ package ChangelogJanuar2025 is
    
    -- Sprachauswahl und Texturenauswahl zu einem Setauswahlsystem verschmolzen.
    -- Unnötigen Code gelöscht.
-   -- Das Einlesen der Sprachen- und Texturenordner in einem System zusammengeführt.
+   -- Das Einlesen der Sprachen- und Texturenordner in ein System zusammengeführt.
    -- Fehler korrigiert der die Stadtnamen falsch platzierte.
    -- Fehler korrigiert der unter bestimmten Bedingungen beim Anzeigen der Stadtnamen zu Abstürzen führen konnte.
    -- Fehler korrigiert der unter bestimmten Umständen die Kartenfeldergröße falsch berechnete.

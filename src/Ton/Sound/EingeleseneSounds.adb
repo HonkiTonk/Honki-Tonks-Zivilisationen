@@ -20,6 +20,8 @@ package body EingeleseneSounds is
             null;
             
          else
+            -- destroy funktioniert hier so nicht, unwichtig? Beser noch mal nachprüfen. äöü
+            -- Sf.Audio.Sound.destroy (sound => Soundaccesse (SoundSchleifenwert));
             Sf.Audio.Sound.setBuffer (sound  => Soundaccesse (SoundSchleifenwert),
                                       buffer => Sound (SoundSchleifenwert));
          end if;

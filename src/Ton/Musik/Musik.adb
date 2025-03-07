@@ -1,6 +1,8 @@
 with Sf.Audio.Music;
 with Sf.Audio.SoundStatus;
 
+with ZufallsgeneratorenHTSEB;
+
 with ZeitKonstanten;
 
 with SchreibeLogiktask;
@@ -11,7 +13,6 @@ with SchreibeMusiktask;
 with StartEndeMusik;
 with StarteinstellungenMusik;
 with EingeleseneMusik;
-with ZufallsgeneratorenHTSEB;
 
 -- Musik muss immer gestoppt werden, sonst wird sie nicht erneut abgespielt!
 -- Musik wird direkt parallel aufgerufen. Steht auch im SFML Tutorial, allerdings unter Sound, und der Beschreibung der ASFML.

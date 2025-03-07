@@ -53,6 +53,12 @@ package body SchreibenEinstellungenLogik is
       
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiNutzereinstellungen),
                                         LeseOptionen.Texturen);
+      
+      Unbounded_Wide_Wide_String'Write (Stream (File => DateiNutzereinstellungen),
+                                        LeseOptionen.Musik);
+      
+      Unbounded_Wide_Wide_String'Write (Stream (File => DateiNutzereinstellungen),
+                                        LeseOptionen.Sound);
       -- SystemRecords.NutzerEinstellungenRecord
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiNutzereinstellungen,

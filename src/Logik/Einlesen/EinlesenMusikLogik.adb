@@ -12,12 +12,13 @@ with LeseOptionen;
 
 with EinlesenAllgemeinesLogik;
 
--- with DiagnosesystemHTB4;
-
 -- Unter Windows funktionieren UTF8 Namen bei den Texturdateien nicht, das beim Benennen der Texturen berücksichtigen.
 -- Eventuell kann auch einfach die SFML hier kein UTF8.
 -- Gilt das auch für Audiodateien? Vermutlich ja, aber trotzdem mal nachprüfen. äöü
 -- Könnte man Einlesen Texturen, Musik und später Sound zusammenfassen? Eventuell in dem man den Dateiort mitübergibt und die Festlegung in einzelne Bereiche unterteilt. äöü
+
+-- Von hier aus die Musiklautstärke einstellen, damit beim Wechsel der Musik alles gleich wieder eingestellt wird! äöü
+-- Muss auch beim Sound gemacht werden! äöü
 package body EinlesenMusikLogik is
 
    procedure EinlesenMusik
@@ -100,7 +101,6 @@ package body EinlesenMusikLogik is
                      
                else
                   -- Hier die Lautstärkeneinstellung aufrufen? äöü
-                  -- TexturenfelderBerechnenGrafik.TexturenfelderBerechnen;
                   exit MusikSchleife;
                end if;
          end case;

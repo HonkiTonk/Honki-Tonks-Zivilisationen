@@ -190,6 +190,7 @@ package body OptionenGrafikLogik is
    
    
    -- Das hier als Funktion aufrufen um die neuen Texturen direkt zu speichern? äöü
+   -- Würde aktuell eher nein sagen. äöü
    procedure TexturenWechseln
    is begin
       
@@ -206,6 +207,7 @@ package body OptionenGrafikLogik is
                
             else
                -- Das hier als Funktion aufrufen um bei Fehlern nicht den falschen Wert zu schreiben? äöü
+               -- Würde eher nein sagen aktuell. äöü
                SchreibeOptionen.Texturen (TexturenExtern => GewählteTexturen);
                EinlesenTexturenLogik.EinlesenTexturen;
             end if;

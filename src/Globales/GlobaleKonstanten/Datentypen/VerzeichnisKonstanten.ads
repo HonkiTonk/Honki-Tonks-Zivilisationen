@@ -52,8 +52,8 @@ package VerzeichnisKonstanten is
    MusikEinfach : constant String (1 .. 6) := "Musik/";
    Musik : constant Wide_Wide_String (MusikEinfach'Range) := "Musik/";
    
-   SoundOhneStricht : constant String (1 .. 5) := "Sound";
-   SoundEinfach : constant String (1 .. 14) := "Sound/Standard";
+   SoundOhneStrich : constant String (1 .. 5) := "Sound";
+   SoundEinfach : constant String (1 .. 6) := "Sound/";
    Sound : constant Wide_Wide_String (1 .. 6) := "Sound/";
    
    

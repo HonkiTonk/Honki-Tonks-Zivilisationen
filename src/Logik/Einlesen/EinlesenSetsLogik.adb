@@ -9,7 +9,7 @@ package body EinlesenSetsLogik is
 
    function EinlesenSets
      (OrdnerExtern : in String)
-     return Boolean
+      return Boolean
    is begin
       
       TextArrays.SetsEinlesen := (others => TextKonstanten.LeerUnboundedString);
@@ -93,7 +93,7 @@ package body EinlesenSetsLogik is
    
    
    -- Sollte sowas nicht auch bei den Spielständen funktionieren, wenn ich die Zeit der Erstellung abfrage und danach sortiere? äöü
-   -- Vermutlich nicht, da das Spielstandsystem ein wenig komplexer ist als die Sets, aber trotzdem mal drüber nachdenken. äöü
+   -- Vermutlich nicht, da das Spielstandsystem komplexer ist als die Sets, aber trotzdem mal drüber nachdenken. äöü
    procedure SetsSortieren
    is begin
             

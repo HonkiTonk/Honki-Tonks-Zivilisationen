@@ -183,16 +183,18 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (02.02.2025):
+   -- Version 0.06.0985 => 0.06. (02.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0940 => 0.06. (01.02.2025):
+   -- Version 0.06.0940 => 0.06.0985 (01.02.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Es ist jetzt möglich benutzerdefinierte Musikordner einzulesen, wie bei den Sprachen/Texturen.
+   -- Es ist jetzt möglich benutzerdefinierte Soundordner einzulesen, wie bei den Sprachen/Texturen.
+   -- Nutzereinstellungen sollten jetzt alle geschrieben werden.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
 
 end ChangelogFebruar2025;

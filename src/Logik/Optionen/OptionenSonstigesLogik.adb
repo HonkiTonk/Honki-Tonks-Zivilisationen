@@ -103,7 +103,6 @@ package body OptionenSonstigesLogik is
    procedure SpracheWechseln
    is begin
       
-      -- Das hier mit dem Einlesen.Einlesen zusammenführen? Geht das überhaupt sinnvoll? äöü
       case
         EinlesenSetsLogik.EinlesenSets (OrdnerExtern => VerzeichnisKonstanten.Sprachen)
       is

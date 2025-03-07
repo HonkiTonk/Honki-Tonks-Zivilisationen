@@ -19,7 +19,7 @@ package MenueKonstanten is
                                            MenueDatentypen.Editoren_Menü_Enum           => 10,
                                            MenueDatentypen.Spieleinstellungen_Menü_Enum => 7,
                                            MenueDatentypen.Grafik_Menü_Enum             => 12,
-                                           MenueDatentypen.Sound_Menü_Enum              => 6,
+                                           MenueDatentypen.Sound_Menü_Enum              => 8,
                                            MenueDatentypen.Debug_Menü_Enum              => 11,
                                            MenueDatentypen.Kartenart_Menü_Enum          => 9,
                                            MenueDatentypen.Kartentemperatur_Menü_Enum   => 8,

@@ -12,7 +12,8 @@ private
 
    AktuelleZeile : Positive;
 
-   Sound : Unbounded_Wide_Wide_String;
+   Soundname : Unbounded_Wide_Wide_String;
+   GesamterPfad : Unbounded_Wide_Wide_String;
 
    DateiSounds : File_Type;
 
