@@ -169,16 +169,16 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (04.02.2025):
+   -- Version 0.06.1035 => 0.06. (04.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1010 => 0.06. (03.02.2025):
+   -- Version 0.06.1010 => 0.06.1035 (03.02.2025):
    
-   -- 
+   -- Von GNAT 13 auf GNAT 14 gewechselt.
    -- Kleinigkeiten korrigiert.
    
    
