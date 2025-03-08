@@ -176,16 +176,16 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (03.02.2025):
+   -- Version 0.06.1010 => 0.06. (03.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.0985 => 0.06. (02.02.2025):
+   -- Version 0.06.0985 => 0.06.1010 (02.02.2025):
    
-   -- 
+   -- Neue Version veröffentlicht.
    -- Kleinigkeiten korrigiert.
    
    
