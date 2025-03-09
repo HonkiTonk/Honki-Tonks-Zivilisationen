@@ -31,7 +31,7 @@ VSync
 Alterar a taxa de fotogramas
 Camadas visíveis abaixo
 Mostrar taxa de fotogramas
-Alterar texturas
+Alterar o conjunto de texturas
 Guardar
 ~1~
 ~2~
@@ -40,6 +40,8 @@ Guardar
 Menu de som
 Volume do som
 Volume da música
+Alterar o conjunto de música
+Alterar conjunto de sons
 ~1~
 ~2~
 ~3~

@@ -169,9 +169,9 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06.1035 => 0.06. (04.02.2025):
+   -- Version 0.06.1035 => 0.06.1060 (04.02.2025):
    
-   -- 
+   -- Alle Sprachdateien an die letzten Änderungen angepasst.
    -- Kleinigkeiten korrigiert.
    
    
