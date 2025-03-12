@@ -1,7 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
-with Sf.Graphics.Font;
 
 with Views;
 with ViewKonstanten;
@@ -61,30 +60,9 @@ package body SetauswahlGrafik is
               and
                 ZeileSchleifenwert < Ende)
          then
-            case
-              SpracheExtern
-            is
-               when True =>
-                  NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => Auswahlmöglichkeiten (ZeileSchleifenwert))));
-            
-                  if
-                    NeuerPfad /= AktuellerPfad
-                  then
-                     AktuellerPfad := NeuerPfad;
-                     -- Muss imemr erst destroyed werden da es sonst bei der Verwendung mehrerer Fonts zu einem Speicherleck kommt.
-                     Sf.Graphics.Font.destroy (font => SchriftartAccess);
-                     SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => To_String (Source => AktuellerPfad));
-                     Sf.Graphics.Text.setFont (text => TextaccessVariablen.SetauswahlAccess,
-                                               font => SchriftartAccess);
-               
-                  else
-                     null;
-                  end if;
-                  
-               when False =>
-                  null;
-            end case;
-            
+            Sprachenauswahl (SpracheExtern => SpracheExtern,
+                             ZeileExtern   => ZeileSchleifenwert);
+                        
             TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SetauswahlAccess,
                                                                 TextExtern       => To_Wide_Wide_String (Source => Auswahlmöglichkeiten (ZeileSchleifenwert)),
                                                                 FarbeExtern      => AktuelleTextFarbe);
@@ -143,5 +121,38 @@ package body SetauswahlGrafik is
       Viewfläche := (AktuelleTextbreite, Textposition.y);
       
    end Setauswahl;
+   
+   
+   
+   procedure Sprachenauswahl
+     (SpracheExtern : in Boolean;
+      ZeileExtern : in Positive)
+   is begin
+      
+      case
+        SpracheExtern
+      is
+         when False =>
+            return;
+            
+         when True =>
+            NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => Auswahlmöglichkeiten (ZeileExtern))));
+      end case;
+            
+      if
+        NeuerPfad /= AktuellerPfad
+      then
+         AktuellerPfad := NeuerPfad;
+         
+         SchriftartAccess :=TexteinstellungenGrafik.SchriftartaccessFestlegen (SchriftartAccessExtern => SchriftartAccess,
+                                                                               FontpfadExtern         => To_String (Source => AktuellerPfad));
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.SetauswahlAccess,
+                                   font => SchriftartAccess);
+               
+      else
+         null;
+      end if;
+      
+   end Sprachenauswahl;
 
 end SetauswahlGrafik;

@@ -41,8 +41,9 @@ package EinlesenAllgemeinesLogik is
                  DateinameExtern'Length > 0
               );
 
-   function Texturenlimit
-     (TexturenpfadExtern : in String)
+   function TexturFestlegen
+     (TexturenAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturenpfadExtern : in String)
       return Sf.Graphics.sfTexture_Ptr
      with
        Pre => (

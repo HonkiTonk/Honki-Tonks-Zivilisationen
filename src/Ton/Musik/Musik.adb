@@ -11,7 +11,7 @@ with LeseGesamttask;
 with SchreibeMusiktask;
 
 with StartEndeMusik;
-with StarteinstellungenMusik;
+with EinstellungenMusik;
 with EingeleseneMusik;
 
 -- Musik muss immer gestoppt werden, sonst wird sie nicht erneut abgespielt!
@@ -28,7 +28,7 @@ package body Musik is
          
       end loop EinlesenAbwartenSchleife;
       
-      StarteinstellungenMusik.Lautstärke;
+      EinstellungenMusik.Lautstärke;
       SchreibeLogiktask.WartenMusik (ZustandExtern => False);
       
       MusikSchleife:

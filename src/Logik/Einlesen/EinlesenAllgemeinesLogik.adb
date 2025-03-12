@@ -76,19 +76,22 @@ package body EinlesenAllgemeinesLogik is
    
    
    
-   function Texturenlimit
-     (TexturenpfadExtern : in String)
+   function TexturFestlegen
+     (TexturenAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturenpfadExtern : in String)
       return Sf.Graphics.sfTexture_Ptr
    is begin
+      
+      Sf.Graphics.Texture.destroy (texture => TexturenAccessExtern);
       
       return Sf.Graphics.Texture.createFromFile (filename => TexturenpfadExtern);
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.Texturenlimit: " & UmwandlungssystemHTSEB.Decode (TextExtern => TexturenpfadExtern)
-                                     & " Texturenmaximum:" & MaximaleTexturengröße'Wide_Wide_Image & " " & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.TexturFestlegen: " & UmwandlungssystemHTSEB.Decode (TextExtern => TexturenpfadExtern)
+                                    & " Texturenmaximum:" & MaximaleTexturengröße'Wide_Wide_Image & " " & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return null;
          
-   end Texturenlimit;
+   end TexturFestlegen;
    
 end EinlesenAllgemeinesLogik;

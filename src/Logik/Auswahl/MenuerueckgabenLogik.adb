@@ -67,11 +67,6 @@ package body MenuerueckgabenLogik is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Speichern_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
-      then
          return RueckgabeDatentypen.Standard_Enum;
          
       else

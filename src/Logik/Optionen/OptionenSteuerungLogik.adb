@@ -18,15 +18,12 @@ package body OptionenSteuerungLogik is
          
          case
            AuswahlWert
-         is   
-            when RueckgabeDatentypen.Speichern_Enum =>
-               SchreibenEinstellungenLogik.Tastatureinstellungen;
-               
+         is
             when RueckgabeDatentypen.Standard_Enum =>
                StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
-               SchreibenEinstellungenLogik.Tastatureinstellungen;
             
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
+               SchreibenEinstellungenLogik.Tastatureinstellungen;
                return AuswahlWert;
                      
             when others =>

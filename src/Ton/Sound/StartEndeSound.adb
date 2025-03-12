@@ -18,22 +18,22 @@ package body StartEndeSound is
    begin
       
       if
-        EingeleseneSounds.Sound (SoundExtern) = null
+        EingeleseneSounds.SoundbufferAccesse (SoundExtern) = null
       then
          null;
          
       elsif
-        EingeleseneSounds.Soundaccesse (SoundExtern) = null
+        EingeleseneSounds.SoundAccesse (SoundExtern) = null
       then
          null;
          
       elsif
-        Sf.Audio.Sound.getStatus (sound => EingeleseneSounds.Soundaccesse (SoundExtern)) = Sf.Audio.SoundStatus.sfPlaying
+        Sf.Audio.Sound.getStatus (sound => EingeleseneSounds.SoundAccesse (SoundExtern)) = Sf.Audio.SoundStatus.sfPlaying
       then
          null;
          
       else
-         Sf.Audio.Sound.play (sound => EingeleseneSounds.Soundaccesse (SoundExtern));
+         Sf.Audio.Sound.play (sound => EingeleseneSounds.SoundAccesse (SoundExtern));
       end if;
       
    end Abspielen;
@@ -49,19 +49,19 @@ package body StartEndeSound is
    begin
       
       if
-        EingeleseneSounds.Sound (SoundExtern) = null
+        EingeleseneSounds.SoundbufferAccesse (SoundExtern) = null
       then
          null;
          
       elsif
-        EingeleseneSounds.Soundaccesse (SoundExtern) = null
+        EingeleseneSounds.SoundAccesse (SoundExtern) = null
       then
          null;
          
       elsif
-        Sf.Audio.Sound.getStatus (sound => EingeleseneSounds.Soundaccesse (SoundExtern)) = Sf.Audio.SoundStatus.sfPlaying
+        Sf.Audio.Sound.getStatus (sound => EingeleseneSounds.SoundAccesse (SoundExtern)) = Sf.Audio.SoundStatus.sfPlaying
       then
-         Sf.Audio.Sound.stop (sound => EingeleseneSounds.Soundaccesse (SoundExtern));
+         Sf.Audio.Sound.stop (sound => EingeleseneSounds.SoundAccesse (SoundExtern));
          
       else
          null;
@@ -85,11 +85,11 @@ package body StartEndeSound is
    is begin
             
       SoundSchleife:
-      for SoundSchleifenwert in EingeleseneSounds.SoundaccesseArray'Range loop
+      for SoundSchleifenwert in EingeleseneSounds.SoundAccesseArray'Range loop
          
          -- Das hier ist notwendig um die Fehlermeldung "AL lib: (EE) alc_cleanup: 1 device not closed" beim Beenden des Programms zu verhindern.
-         Sf.Audio.SoundBuffer.destroy (soundBuffer => EingeleseneSounds.Sound (SoundSchleifenwert));
-         Sf.Audio.Sound.destroy (sound => EingeleseneSounds.Soundaccesse (SoundSchleifenwert));
+         Sf.Audio.SoundBuffer.destroy (soundBuffer => EingeleseneSounds.SoundbufferAccesse (SoundSchleifenwert));
+         Sf.Audio.Sound.destroy (sound => EingeleseneSounds.SoundAccesse (SoundSchleifenwert));
          
       end loop SoundSchleife;
       

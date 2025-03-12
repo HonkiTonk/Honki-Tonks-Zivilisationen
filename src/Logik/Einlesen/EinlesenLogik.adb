@@ -35,14 +35,17 @@ package body EinlesenLogik is
       if
         LeseOptionen.Sprache /= TextKonstanten.LeerUnboundedString
       then
-         null;
+         EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => True);
+         return;
          
-      elsif
-        Systemsprache = True
+      else
+         GewählteSprache := Systemsprache;
+      end if;
+         
+      if
+        GewählteSprache /= TextKonstanten.LeerUnboundedString
       then
-         SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
-         SchreibeGrafiktask.SchriftartSetzen (JaNeinExtern => True);
-         SchreibenEinstellungenLogik.Nutzereinstellungen;
+         null;
          
       else
          case
@@ -65,16 +68,15 @@ package body EinlesenLogik is
                   
                end loop SpracheAuswählenSchleife;
                   
-               SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
-               SchreibeGrafiktask.SchriftartSetzen (JaNeinExtern => True);
-               SchreibenEinstellungenLogik.Nutzereinstellungen;
-                  
             when False =>
                MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenLogik.EinlesenMitAnzeige: Sprachen nicht gefunden");
                return;
          end case;
       end if;
       
+      SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
+      SchreibeGrafiktask.SchriftartSetzen (JaNeinExtern => True);
+      SchreibenEinstellungenLogik.Nutzereinstellungen;
       EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => True);
       
    end EinlesenMitAnzeige;
@@ -83,9 +85,8 @@ package body EinlesenLogik is
    
    -- Hier noch eine Prüfung einbauen ob der Sprachordner überhaupt vorhanden ist? äöü
    -- Oder sollte das bei den Standardsprachen selbstverständlich sein? äöü
-   -- Hier auch die Sprache zurückgeben. äöü
    function Systemsprache
-     return Boolean
+     return Unbounded_Wide_Wide_String
    is begin
       
       LokaleSprache := Ada.Locales.Language;
@@ -93,7 +94,7 @@ package body EinlesenLogik is
       if
         LokaleSprache = Ada.Locales.Language_Unknown
       then
-         return False;
+         return TextKonstanten.LeerUnboundedString;
          
       else
          null;
@@ -105,8 +106,7 @@ package body EinlesenLogik is
          if
            LokaleSprache = Standardsprachen (SprachenSchleifenwert).ISONummer
          then
-            GewählteSprache := Standardsprachen (SprachenSchleifenwert).Sprache;
-            return True;
+            return Standardsprachen (SprachenSchleifenwert).Sprache;
             
          else
             null;
@@ -114,7 +114,7 @@ package body EinlesenLogik is
          
       end loop SprachenSchleife;
             
-      return False;
+      return TextKonstanten.LeerUnboundedString;
       
    end Systemsprache;
 

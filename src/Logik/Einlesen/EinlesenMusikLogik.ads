@@ -1,6 +1,8 @@
 private with Ada.Wide_Wide_Text_IO;
 private with Ada.Strings.Wide_Wide_Unbounded;
 
+private with Sf.Audio;
+
 private with EingeleseneMusik;
 
 package EinlesenMusikLogik is
@@ -26,5 +28,16 @@ private
    GesamterPfad : Unbounded_Wide_Wide_String;
    
    DateiMusik : File_Type;
+   
+   
+   
+   function MusikAccessFestlegen
+     (MusicAccessExtern : in Sf.Audio.sfMusic_Ptr;
+      MusikpfadExtern : in String)
+      return Sf.Audio.sfMusic_Ptr
+     with
+       Pre => (
+                 MusikpfadExtern'Length > 0
+              );
       
 end EinlesenMusikLogik;

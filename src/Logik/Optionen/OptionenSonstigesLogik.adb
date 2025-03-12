@@ -100,6 +100,7 @@ package body OptionenSonstigesLogik is
    
    
    
+   -- Das nicht mit dem Startsystem zum Auswählen der Sprache zusammenführen, da hier unter anderem ein Abbruch der Auswahl möglich ist.
    procedure SpracheWechseln
    is begin
       

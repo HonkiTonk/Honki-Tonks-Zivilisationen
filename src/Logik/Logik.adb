@@ -1,5 +1,5 @@
 with MeldungsvariablenHTSEB;
--- with UmwandlungsvariablenHTSEB;
+with UmwandlungsvariablenHTSEB;
 with DateisystemvariablenHTSEB;
 
 with GrafikDatentypen;
@@ -27,7 +27,7 @@ package body Logik is
       
       MeldungsvariablenHTSEB.FehlerMeldungWechseln (FehlerMeldungExtern => Projekteinstellungen.Einstellungen.FehlerWarnung);
       MeldungsvariablenHTSEB.VersionsnummerWechseln (VersionsnummerExtern => SonstigesKonstanten.Versionsnummer);
-      -- UmwandlungsvariablenHTSEB.KodierungWechseln (KodierungExtern => Projekteinstellungen.Einstellungen.Stringkodierung);
+      UmwandlungsvariablenHTSEB.KodierungWechseln (KodierungExtern => Projekteinstellungen.Einstellungen.Stringkodierung);
       DateisystemvariablenHTSEB.DateiformWechseln (DateiformExtern => Projekteinstellungen.Einstellungen.Dateiform);
       DateisystemvariablenHTSEB.BetriebssystemWechseln (BetriebssystemExtern => Projekteinstellungen.Einstellungen.Betriebssystem);
       

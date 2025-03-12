@@ -508,7 +508,7 @@ package body TexturenfelderBerechnenGrafik is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.KartenbefehleAccess);
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.EinheitenbefehleAccess);
       
       Feldgröße := (Texturengröße.x / FelderanzahlEinheitenbefehle.x, Texturengröße.y / FelderanzahlEinheitenbefehle.y);
       

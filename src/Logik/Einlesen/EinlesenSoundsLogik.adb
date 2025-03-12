@@ -13,6 +13,7 @@ with EingeleseneSounds;
 with MeldungssystemHTSEB;
 with EinlesenAllgemeinesLogik;
 with VerzeichnisDateinamenTests;
+with EinstellungenSound;
 
 package body EinlesenSoundsLogik is
 
@@ -45,7 +46,7 @@ package body EinlesenSoundsLogik is
       --         null;
       -- hier einbauen. äöü
       SoundsSchleife:
-      for SoundSchleifenwert in EingeleseneSounds.SoundArray'Range loop
+      for SoundSchleifenwert in EingeleseneSounds.SoundbufferAccesseArray'Range loop
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSounds,
@@ -71,8 +72,8 @@ package body EinlesenSoundsLogik is
                MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: " & To_Wide_Wide_String (Source => GesamterPfad));
             
             when True =>
-               Sf.Audio.SoundBuffer.destroy (soundBuffer => EingeleseneSounds.Sound (SoundSchleifenwert));
-               EingeleseneSounds.Sound (SoundSchleifenwert) := Sf.Audio.SoundBuffer.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+               EingeleseneSounds.SoundbufferAccesse (SoundSchleifenwert) := SoundAccessFestlegen (SoundAccessExtern => EingeleseneSounds.SoundbufferAccesse (SoundSchleifenwert),
+                                                                                                  SoundpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
          end case;
          
          AktuelleZeile := AktuelleZeile + 1;
@@ -83,7 +84,22 @@ package body EinlesenSoundsLogik is
                                                NameExtern     => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei);
       
       EingeleseneSounds.SoundsFestlegen;
+      EinstellungenSound.Lautstärke;
       
    end EinlesenSounds;
+   
+   
+   
+   function SoundAccessFestlegen
+     (SoundAccessExtern : in Sf.Audio.sfSoundBuffer_Ptr;
+      SoundpfadExtern : in String)
+      return Sf.Audio.sfSoundBuffer_Ptr
+   is begin
+      
+      Sf.Audio.SoundBuffer.destroy (soundBuffer => SoundAccessExtern);
+      
+      return Sf.Audio.SoundBuffer.createFromFile (filename => SoundpfadExtern);
+      
+   end SoundAccessFestlegen;
 
 end EinlesenSoundsLogik;

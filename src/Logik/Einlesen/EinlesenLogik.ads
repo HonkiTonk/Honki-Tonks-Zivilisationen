@@ -132,6 +132,6 @@ private
 
 
    function Systemsprache
-     return Boolean;
+     return Unbounded_Wide_Wide_String;
 
 end EinlesenLogik;

@@ -155,17 +155,24 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (06.02.2025):
+   -- Version 0.06.1160 => 0.06. (06.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (05.02.2025):
+   -- Version 0.06.1060 => 0.06.1160 (05.02.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der verhinderte das man über das Interface bestimmte Einheitenbefehle ausführen konnte.
+   -- Menüs überarbeitet.
+   -- Ein Speicherleck behoben welches auftreten konnte wenn man die Sprache wechselte.
+   -- Möglicherweise ein Speicherleck behoben welches auftreten konnte wenn man das Soundset wechselte.
+   -- Ein Speicherleck behoben welches auftreten konnte wenn man das Musikset wechselte.
+   -- Die Musiklautstärke wird jetzt korrekt gesetzt wenn man das Musikset wechselt.
+   -- Die Soundlautstärke wird jetzt korrekt gesetzt wenn man das Soundset wechselt.
+   -- Interne Benennung verbessert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -11,6 +11,7 @@ with TextKonstanten;
 with LeseOptionen;
 
 with EinlesenAllgemeinesLogik;
+with EinstellungenMusik;
 
 -- Unter Windows funktionieren UTF8 Namen bei den Texturdateien nicht, das beim Benennen der Texturen berücksichtigen.
 -- Eventuell kann auch einfach die SFML hier kein UTF8.
@@ -77,17 +78,20 @@ package body EinlesenMusikLogik is
                elsif
                  AktuelleZeile in IntromusikAnfang .. IntromusikEnde
                then
-                  EingeleseneMusik.Intromusik (AktuelleZeile) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneMusik.Intromusik (AktuelleZeile) := MusikAccessFestlegen (MusicAccessExtern => EingeleseneMusik.Intromusik (AktuelleZeile),
+                                                                                       MusikpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile in SpielmusikAnfang .. SpielmusikEnde
                then
-                  EingeleseneMusik.Spielmusik (AktuelleZeile - IntromusikEnde) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneMusik.Spielmusik (AktuelleZeile - IntromusikEnde) := MusikAccessFestlegen (MusicAccessExtern => EingeleseneMusik.Spielmusik (AktuelleZeile - IntromusikEnde),
+                                                                                                        MusikpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile in ForschungsmusikAnfang .. ForschungsmusikEnde
                then
-                  EingeleseneMusik.Forschungsmusik (AktuelleZeile - SpielmusikEnde) := Sf.Audio.Music.createFromFile (filename => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+                  EingeleseneMusik.Forschungsmusik (AktuelleZeile - SpielmusikEnde) := MusikAccessFestlegen (MusicAccessExtern => EingeleseneMusik.Forschungsmusik (AktuelleZeile - SpielmusikEnde),
+                                                                                                             MusikpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                
                else
                   MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenMusik: Außerhalb des Einlesebereichs");
@@ -100,7 +104,6 @@ package body EinlesenMusikLogik is
                   AktuelleZeile := AktuelleZeile + 1;
                      
                else
-                  -- Hier die Lautstärkeneinstellung aufrufen? äöü
                   exit MusikSchleife;
                end if;
          end case;
@@ -111,6 +114,22 @@ package body EinlesenMusikLogik is
                                                NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik)
                                                                                                 & VerzeichnisKonstanten.NullDateiWideWide));
       
+      EinstellungenMusik.Lautstärke;
+      
    end EinlesenMusik;
-
+   
+   
+   
+   function MusikAccessFestlegen
+     (MusicAccessExtern : in Sf.Audio.sfMusic_Ptr;
+      MusikpfadExtern : in String)
+      return Sf.Audio.sfMusic_Ptr
+   is begin
+      
+      Sf.Audio.Music.destroy (music => MusicAccessExtern);
+      
+      return Sf.Audio.Music.createFromFile (filename => MusikpfadExtern);
+      
+   end MusikAccessFestlegen;
+      
 end EinlesenMusikLogik;

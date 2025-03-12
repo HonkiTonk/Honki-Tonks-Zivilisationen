@@ -24,24 +24,42 @@ package body TexteinstellungenGrafik is
    begin
       
       AktuelleSprache := LeseOptionen.Sprache;
-      
+        
       if
         AktuelleSprache = TextKonstanten.LeerUnboundedString
       then
-         SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
+         SchriftartAccess := SchriftartaccessFestlegen (SchriftartAccessExtern => SchriftartAccess,
+                                                        FontpfadExtern         => StandardSchriftartVerwenden);
          
       elsif
         Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => AktuelleSprache) & VerzeichnisKonstanten.FontDatei) = False
       then
-         SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
+         SchriftartAccess := SchriftartaccessFestlegen (SchriftartAccessExtern => SchriftartAccess,
+                                                        FontpfadExtern         => StandardSchriftartVerwenden);
          
       else
-         SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprache)));
+         SchriftartAccess := SchriftartaccessFestlegen (SchriftartAccessExtern => SchriftartAccess,
+                                                        FontpfadExtern         => EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprache)));
       end if;
       
       TextaccesseSchriftartGrafik.SchriftartSetzen (SchriftaccessExtern => SchriftartAccess);
       
    end SchriftartFestlegen;
+   
+   
+   
+   function SchriftartaccessFestlegen
+     (SchriftartAccessExtern : in Sf.Graphics.sfFont_Ptr;
+      FontpfadExtern : in String)
+      return Sf.Graphics.sfFont_Ptr
+   is begin
+      
+      -- Muss immer auch destroyed werden damit es nicht zu einem Speicherleck kommt!
+      Sf.Graphics.Font.destroy (font => SchriftartAccessExtern);
+      
+      return Sf.Graphics.Font.createFromFile (filename => FontpfadExtern);
+      
+   end SchriftartaccessFestlegen;
    
    
    

@@ -77,6 +77,15 @@ package TexteinstellungenGrafik is
                  SchriftrahmenLesen'Result >= 0.00 
                );
    
+   function SchriftartaccessFestlegen
+     (SchriftartAccessExtern : in Sf.Graphics.sfFont_Ptr;
+      FontpfadExtern : in String)
+      return Sf.Graphics.sfFont_Ptr
+     with
+       Pre => (
+                 FontpfadExtern'Length > 0
+              );
+   
 private
    use Ada.Strings.Wide_Wide_Unbounded;
    use Ada.Wide_Wide_Text_IO;

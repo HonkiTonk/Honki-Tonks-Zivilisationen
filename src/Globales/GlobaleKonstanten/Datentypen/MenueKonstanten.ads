@@ -18,7 +18,7 @@ package MenueKonstanten is
                                            MenueDatentypen.Einstellungen_Menü_Enum      => 12,
                                            MenueDatentypen.Editoren_Menü_Enum           => 10,
                                            MenueDatentypen.Spieleinstellungen_Menü_Enum => 7,
-                                           MenueDatentypen.Grafik_Menü_Enum             => 12,
+                                           MenueDatentypen.Grafik_Menü_Enum             => 11,
                                            MenueDatentypen.Sound_Menü_Enum              => 8,
                                            MenueDatentypen.Debug_Menü_Enum              => 11,
                                            MenueDatentypen.Kartenart_Menü_Enum          => 9,
@@ -35,7 +35,7 @@ package MenueKonstanten is
                                            MenueDatentypen.Kartenform_Menü_Enum         => 14,
 
                                            -- Steuerungsmenü.
-                                           MenueDatentypen.Steuerung_Menü_Enum          => 63,
+                                           MenueDatentypen.Steuerung_Menü_Enum          => 62,
 
                                            -- Spielstandmenü
                                            MenueDatentypen.Spielstand_Menü_Enum         => 18

@@ -15,6 +15,9 @@ package OptionenGrafikLogik is
 private
    use Ada.Strings.Wide_Wide_Unbounded;
 
+   EinstellungenSchreiben : Boolean;
+   EinstellungenGeändert : Boolean;
+
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    GewählteTexturen : Unbounded_Wide_Wide_String;
@@ -24,9 +27,17 @@ private
 
    NeueAuflösung : Sf.System.Vector2.sfVector2u;
 
-   procedure AuflösungÄndern;
-   procedure BildrateÄndern;
    procedure VollbildFenster;
-   procedure TexturenWechseln;
+
+
+
+   function AuflösungÄndern
+     return Boolean;
+
+   function BildrateÄndern
+     return Boolean;
+
+   function TexturenWechseln
+     return Boolean;
 
 end OptionenGrafikLogik;

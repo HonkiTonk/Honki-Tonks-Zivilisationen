@@ -30,6 +30,9 @@ package body OptionenGrafikLogik is
    is
       use type Sf.sfBool;
    begin
+      
+      EinstellungenSchreiben := False;
+      EinstellungenGeändert := False;
             
       GrafikSchleife:
       loop
@@ -40,44 +43,67 @@ package body OptionenGrafikLogik is
            AuswahlWert
          is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-               AuflösungÄndern;
+               EinstellungenGeändert := AuflösungÄndern;
             
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                VollbildFenster;
+               EinstellungenGeändert := True;
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                SchreibeEinstellungenGrafik.VSync (AktivierenDeaktivierenExtern => not LeseEinstellungenGrafik.VSync);
                SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Bildrate_Ändern_Enum);
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               BildrateÄndern;
+               EinstellungenGeändert := BildrateÄndern;
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                SchreibeEinstellungenGrafik.EbenenUnterhalbSichtbar;
+               EinstellungenGeändert := True;
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                SchreibeEinstellungenGrafik.BildrateAnzeigen;
+               EinstellungenGeändert := True;
                
             when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
-               TexturenWechseln;
-               
-            when RueckgabeDatentypen.Auswahl_Acht_Enum =>
-               SchreibenEinstellungenLogik.Grafikeinstellungen;
+               EinstellungenGeändert := TexturenWechseln;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
-               return AuswahlWert;
+               exit GrafikSchleife;
                
             when others =>
                MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenGrafikLogik.OptionenGrafik: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
+         case
+           EinstellungenGeändert
+         is
+            when True =>
+               EinstellungenSchreiben := True;
+               
+            when False =>
+               null;
+         end case;
+         
       end loop GrafikSchleife;
+      
+      case
+        EinstellungenSchreiben
+      is
+         when True =>
+            SchreibenEinstellungenLogik.Grafikeinstellungen;
+            
+         when False =>
+            null;
+      end case;
+      
+      return AuswahlWert;
       
    end OptionenGrafik;
    
    
    
-   procedure AuflösungÄndern
+   function AuflösungÄndern
+     return Boolean
    is begin
       
       EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleAuflösungsbreite),
@@ -88,7 +114,7 @@ package body OptionenGrafikLogik is
         EingabeAuflösung.ErfolgreichAbbruch
       is
          when False =>
-            return;
+            return False;
             
          when True =>
             NeueAuflösung.x := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
@@ -102,7 +128,7 @@ package body OptionenGrafikLogik is
         EingabeAuflösung.ErfolgreichAbbruch
       is
          when False =>
-            return;
+            return False;
             
          when True =>
             NeueAuflösung.y := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
@@ -119,12 +145,15 @@ package body OptionenGrafikLogik is
          delay ZeitKonstanten.WartezeitLogik;
          
       end loop ErzeugungNeuesFensterAbwartenSchleife;
+      
+      return True;
             
    end AuflösungÄndern;
    
    
    
-   procedure BildrateÄndern
+   function BildrateÄndern
+     return Boolean
    is
       use type GrafikDatentypen.Fenster_Anpassen_Enum;
    begin
@@ -137,7 +166,7 @@ package body OptionenGrafikLogik is
         EingabeBildrate.ErfolgreichAbbruch
       is
          when False =>
-            return;
+            return False;
             
          when True =>
             SchreibeEinstellungenGrafik.Bildrate (BildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
@@ -151,6 +180,8 @@ package body OptionenGrafikLogik is
          delay ZeitKonstanten.WartezeitLogik;
          
       end loop NeueBildrateAbwartenSchleife;
+      
+      return True;
       
    end BildrateÄndern;
    
@@ -189,9 +220,8 @@ package body OptionenGrafikLogik is
    
    
    
-   -- Das hier als Funktion aufrufen um die neuen Texturen direkt zu speichern? äöü
-   -- Würde aktuell eher nein sagen. äöü
-   procedure TexturenWechseln
+   function TexturenWechseln
+     return Boolean
    is begin
       
       case
@@ -206,15 +236,16 @@ package body OptionenGrafikLogik is
                null;
                
             else
-               -- Das hier als Funktion aufrufen um bei Fehlern nicht den falschen Wert zu schreiben? äöü
-               -- Würde eher nein sagen aktuell. äöü
                SchreibeOptionen.Texturen (TexturenExtern => GewählteTexturen);
                EinlesenTexturenLogik.EinlesenTexturen;
+               return True;
             end if;
             
          when False =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenGrafikLogik.TexturenWechseln: Texturen nicht gefunden.");
       end case;
+      
+      return False;
         
    end TexturenWechseln;
 

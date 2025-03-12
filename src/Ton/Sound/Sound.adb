@@ -6,7 +6,7 @@ with SchreibeSoundtask;
 with LeseGesamttask;
 
 with StartEndeSound;
-with StarteinstellungenSound;
+with EinstellungenSound;
 
 package body Sound is
 
@@ -21,7 +21,7 @@ package body Sound is
          
       end loop EinlesenAbwartenSchleife;
       
-      StarteinstellungenSound.Lautstärke;
+      EinstellungenSound.Lautstärke;
       SchreibeLogiktask.WartenSound (ZustandExtern => False);
             
       SoundSchleife:
@@ -34,8 +34,6 @@ package body Sound is
                delay ZeitKonstanten.WartezeitSound;
                               
             when TonDatentypen.Sound_Ende_Enum =>
-               -- Hier vielleicht null und unten drunter dann alle Sounds stoppen und entsprechend die Schleife verlassen? äöü
-               -- Oder vielleicht das ganze noch einmal neu und besser gestalten? äöü
                exit SoundSchleife;
                
             when others =>

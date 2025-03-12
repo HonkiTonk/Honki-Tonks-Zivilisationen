@@ -14,8 +14,8 @@ with SchreibeMusiktask;
 
 with AuswahlaufteilungLogik;
 with ZahleneingabeLogik;
-with StarteinstellungenSound;
-with StarteinstellungenMusik;
+with EinstellungenSound;
+with EinstellungenMusik;
 with EinlesenSetsLogik;
 with SetauswahlLogik;
 with EinlesenMusikLogik;
@@ -42,7 +42,6 @@ package body OptionenSoundLogik is
                Musiklautstärke;
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               null;
                MusikWechseln;
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
@@ -77,7 +76,7 @@ package body OptionenSoundLogik is
             
          when True =>
             SchreibeEinstellungenTon.Soundlautstärke (LautstärkeExtern => Float (NeueLaustärke.EingegebeneZahl));
-            StarteinstellungenSound.Lautstärke;
+            EinstellungenSound.Lautstärke;
       end case;
       
    end Soundlautstärke;
@@ -99,7 +98,7 @@ package body OptionenSoundLogik is
             
          when True =>
             SchreibeEinstellungenTon.Musiklautstärke (LautstärkeExtern => Float (NeueLaustärke.EingegebeneZahl));
-            StarteinstellungenMusik.Lautstärke;
+            EinstellungenMusik.Lautstärke;
       end case;
       
    end Musiklautstärke;
@@ -123,8 +122,6 @@ package body OptionenSoundLogik is
                null;
                
             else
-               -- Das hier als Funktion aufrufen um bei Fehlern nicht den falschen Wert zu schreiben? äöü
-               -- Würde eher nein sagen aktuell. äöü
                SchreibeOptionen.Musik (MusikExtern => GewählterTon);
                EinlesenMusikLogik.EinlesenMusik;
                SchreibenEinstellungenLogik.Nutzereinstellungen;
