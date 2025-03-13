@@ -134,16 +134,16 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (09.02.2025):
+   -- Version 0.06.1225 => 0.06. (09.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1200 => 0.06. (08.02.2025):
+   -- Version 0.06.1200 => 0.06.1225 (08.02.2025):
    
-   -- 
+   -- Spieleentwicklungsbibliothek aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
