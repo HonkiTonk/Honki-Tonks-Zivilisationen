@@ -1,9 +1,18 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.0350 => 0.01. ():
+   -- Version 0.01.0400 => 0.01. ():
    
    -- 
+   -- Kleinigkeiten angepasst.
+   
+   
+   
+   -- Version 0.01.0350 => 0.01.0400 (14.03.2025):
+   
+   -- Fehlermeldungen an die letzten Änderungen angepasst.
+   -- Allgemeine Prüfungen für das Einlesen von Text eingebaut.
+   -- Kleinigkeiten angepasst.
    
    
    
