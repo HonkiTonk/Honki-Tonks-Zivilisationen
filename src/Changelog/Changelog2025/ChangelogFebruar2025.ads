@@ -120,16 +120,16 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (11.02.2025):
+   -- Version 0.06.1340 => 0.06. (11.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1315 => 0.06. (10.02.2025):
+   -- Version 0.06.1315 => 0.06.1340 (10.02.2025):
    
-   -- 
+   -- Alle Sprachdateien an die letzten Änderungen angepasst.
    -- Kleinigkeiten korrigiert.
    
    
