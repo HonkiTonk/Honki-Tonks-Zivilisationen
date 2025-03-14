@@ -1,3 +1,5 @@
+with TextKonstantenHTSEB;
+
 with TextKonstanten;
 
 with LeseWeltkarte;
@@ -40,7 +42,7 @@ package body AllgemeinesSeitenleisteGrafik is
             for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
          
                if
-                 AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
+                 AnzuzeigenderText (TextSchleifenwert) = TextKonstantenHTSEB.LeerUnboundedString
                then
                   Leerzeilen := Leerzeilen + 1;
             
@@ -95,7 +97,7 @@ package body AllgemeinesSeitenleisteGrafik is
         RessourceExtern
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return TextKonstanten.LeerUnboundedString;
+            return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
             return KartenbeschreibungenGrafik.KurzbeschreibungRessource (KartenRessourceExtern => RessourceExtern);
@@ -114,7 +116,7 @@ package body AllgemeinesSeitenleisteGrafik is
         VerbesserungExtern
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return TextKonstanten.LeerUnboundedString;
+            return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
             return AufgabenbeschreibungenGrafik.KurzbeschreibungVerbesserung (KartenVerbesserungExtern => VerbesserungExtern);
@@ -133,7 +135,7 @@ package body AllgemeinesSeitenleisteGrafik is
         WegExtern
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return TextKonstanten.LeerUnboundedString;
+            return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
             return AufgabenbeschreibungenGrafik.KurzbeschreibungWeg (KartenWegExtern => WegExtern);
@@ -152,7 +154,7 @@ package body AllgemeinesSeitenleisteGrafik is
         FlussExtern
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return TextKonstanten.LeerUnboundedString;
+            return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
             return KartenbeschreibungenGrafik.KurzbeschreibungFluss (KartenFlussExtern => FlussExtern);
@@ -167,7 +169,7 @@ package body AllgemeinesSeitenleisteGrafik is
       return Unbounded_Wide_Wide_String
    is begin
       
-      Zwischenspeicher := TextKonstanten.LeerUnboundedString;
+      Zwischenspeicher := TextKonstantenHTSEB.LeerUnboundedString;
       
       FeldeffekteSchleife:
       for FeldeffektSchleifenwert in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
@@ -179,7 +181,7 @@ package body AllgemeinesSeitenleisteGrafik is
             null;
             
          elsif
-           Zwischenspeicher = TextKonstanten.LeerUnboundedString
+           Zwischenspeicher = TextKonstantenHTSEB.LeerUnboundedString
          then
             Zwischenspeicher := KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert);
                   

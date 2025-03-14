@@ -1,7 +1,7 @@
 with MeldungssystemHTSEB;
+with TextKonstantenHTSEB;
 
 with GrafikDatentypen;
-with TextKonstanten;
 with TastenbelegungDatentypen;
 with AuswahlKonstanten;
 
@@ -9,7 +9,7 @@ with SchreibeGrafiktask;
 
 with MausauswahlLogik;
 with TasteneingabeLogik;
-with OftVerwendetSound;
+with OftVerwendeterSound;
 
 package body SetauswahlLogik is
 
@@ -43,7 +43,7 @@ package body SetauswahlLogik is
    is begin
             
       if
-        ZehnerReihe * 10 < TextArrays.SetsEinlesen'Last
+        ZehnerReihe * 10 < ArraysHTSEB.SetsEinlesen'Last
       then
          ZehnerReihe := ZehnerReihe + 1;
          
@@ -52,7 +52,7 @@ package body SetauswahlLogik is
       end if;
          
       if
-        TextArrays.SetsEinlesen (ZehnerReihe * 10 - 9) = TextKonstanten.LeerUnboundedString
+        ArraysHTSEB.SetsEinlesen (ZehnerReihe * 10 - 9) = TextKonstantenHTSEB.LeerUnboundedString
       then
          ZehnerReihe := 1;
          
@@ -60,30 +60,30 @@ package body SetauswahlLogik is
          null;
       end if;
       
-      Auswahlmöglichkeiten := (others => TextKonstanten.LeerUnboundedString);
+      Auswahlmöglichkeiten := (others => TextKonstantenHTSEB.LeerUnboundedString);
       
       EndeBestimmenSchleife:
       for EndeSchleifenwert in ZehnerReihe * 10 - 9 .. ZehnerReihe * 10 loop
          
          if
-           EndeSchleifenwert > TextArrays.SetsEinlesen'Last
+           EndeSchleifenwert > ArraysHTSEB.SetsEinlesen'Last
          then
             exit EndeBestimmenSchleife;
             
          elsif
-           EndeSchleifenwert = TextArrays.SetsEinlesen'First
+           EndeSchleifenwert = ArraysHTSEB.SetsEinlesen'First
            and
-             TextArrays.SetsEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
+             ArraysHTSEB.SetsEinlesen (EndeSchleifenwert) = TextKonstantenHTSEB.LeerUnboundedString
          then
             MeldungssystemHTSEB.Logik (MeldungExtern => "SetauswahlLogik.SetlisteFestlegen: Keine Einträge vorhanden");
             
          elsif
-           EndeSchleifenwert > TextArrays.SetsEinlesen'Last
+           EndeSchleifenwert > ArraysHTSEB.SetsEinlesen'Last
          then
             exit EndeBestimmenSchleife;
            
          elsif
-           TextArrays.SetsEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
+           ArraysHTSEB.SetsEinlesen (EndeSchleifenwert) = TextKonstantenHTSEB.LeerUnboundedString
          then
             exit EndeBestimmenSchleife;
             
@@ -91,24 +91,24 @@ package body SetauswahlLogik is
             Ende := EndeSchleifenwert - ((ZehnerReihe - 1) * 10);
          end if;
          
-         Auswahlmöglichkeiten (EndeSchleifenwert - ((ZehnerReihe - 1) * 10)) := TextArrays.SetsEinlesen (EndeSchleifenwert);
+         Auswahlmöglichkeiten (EndeSchleifenwert - ((ZehnerReihe - 1) * 10)) := ArraysHTSEB.SetsEinlesen (EndeSchleifenwert);
          
       end loop EndeBestimmenSchleife;
       
       MehrEinträgeVorhandenSchleife:
-      for EinträgeSchleifenwert in TextArrays.SetsEinlesen'Range loop
+      for EinträgeSchleifenwert in ArraysHTSEB.SetsEinlesen'Range loop
          
          if
-           EinträgeSchleifenwert <= TextArrays.SetsArray'Last
+           EinträgeSchleifenwert <= ArraysHTSEB.SetsArray'Last
            and
-             TextArrays.SetsEinlesen (EinträgeSchleifenwert) = TextKonstanten.LeerUnboundedString
+             ArraysHTSEB.SetsEinlesen (EinträgeSchleifenwert) = TextKonstantenHTSEB.LeerUnboundedString
          then
             SchreibeGrafiktask.Endauswahl (AuswahlExtern => Ende);
             SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => MehrereSeiten);
             return;
             
          elsif
-           EinträgeSchleifenwert >= TextArrays.SetsArray'Last
+           EinträgeSchleifenwert >= ArraysHTSEB.SetsArray'Last
          then
             exit MehrEinträgeVorhandenSchleife;
             
@@ -153,16 +153,16 @@ package body SetauswahlLogik is
                  and
                    MehrereSeiten
                then
-                  OftVerwendetSound.Klick;
+                  OftVerwendeterSound.Klick;
                   SetlisteFestlegen;
                   
                else
-                  OftVerwendetSound.Klick;
+                  OftVerwendeterSound.Klick;
                   return Auswahlmöglichkeiten (AktuelleAuswahl);
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               return TextKonstanten.LeerUnboundedString;
+               return TextKonstantenHTSEB.LeerUnboundedString;
             
             when others =>
                null;

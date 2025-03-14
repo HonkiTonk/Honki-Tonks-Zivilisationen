@@ -1,4 +1,3 @@
-
 private with Ada.Strings.Unbounded;
 
 private with Sf.System.Vector2;
@@ -6,8 +5,9 @@ private with Sf.Graphics.Color;
 private with Sf.Graphics.ConvexShape;
 private with Sf.Graphics;
 
+private with ArraysHTSEB;
+
 private with GrafikRecordKonstanten;
-private with TextArrays;
 
 package SetauswahlGrafik is
 
@@ -37,7 +37,7 @@ private
    
    PfeilAccess : constant Sf.Graphics.sfConvexShape_Ptr := Sf.Graphics.ConvexShape.create;
    
-   Auswahlmöglichkeiten : TextArrays.SetsArray;
+   Auswahlmöglichkeiten : ArraysHTSEB.SetsArray;
    
    procedure Sprachenauswahl
      (SpracheExtern : in Boolean;

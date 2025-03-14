@@ -1,10 +1,11 @@
+with TextKonstantenHTSEB;
+
 with GrafikDatentypen;
 with TextnummernKonstanten;
 with MenueDatentypen;
 with ZeitKonstanten;
 with GrafikKonstanten;
 with ZahlenDatentypen;
-with TextKonstanten;
 with VerzeichnisKonstanten;
 
 with SchreibeEinstellungenGrafik;
@@ -231,11 +232,12 @@ package body OptionenGrafikLogik is
             GewählteTexturen := SetauswahlLogik.Setauswahl (SpracheExtern => False);
             
             if
-              GewählteTexturen = TextKonstanten.LeerUnboundedString
+              GewählteTexturen = TextKonstantenHTSEB.LeerUnboundedString
             then
                null;
                
             else
+               -- Das hier als Funktion aufrufen um bei Fehlern nicht den falschen Wert zu schreiben? äöü
                SchreibeOptionen.Texturen (TexturenExtern => GewählteTexturen);
                EinlesenTexturenLogik.EinlesenTexturen;
                return True;

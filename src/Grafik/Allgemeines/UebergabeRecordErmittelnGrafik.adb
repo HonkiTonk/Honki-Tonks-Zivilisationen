@@ -1,6 +1,7 @@
+with TextKonstantenHTSEB;
+
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
-with TextKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -134,7 +135,7 @@ package body UebergabeRecordErmittelnGrafik is
         StadtSpeziesNummerExtern.Nummer
       is
          when StadtKonstanten.LeerNummer =>
-            ZwischenspeicherSpeziesStadtname.Stadtname := TextKonstanten.LeerUnboundedString;
+            ZwischenspeicherSpeziesStadtname.Stadtname := TextKonstantenHTSEB.LeerUnboundedString;
                         
          when others =>
             ZwischenspeicherSpeziesStadtname.Stadtname := LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);

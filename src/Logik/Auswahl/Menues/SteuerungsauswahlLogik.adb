@@ -12,7 +12,7 @@ with SchreibeGrafiktask;
 with TasteneingabeLogik;
 with MenuerueckgabenLogik;
 with MausauswahlLogik;
-with OftVerwendetSound;
+with OftVerwendeterSound;
 with EingabeAllgemeinLogik;
 
 package body SteuerungsauswahlLogik is
@@ -34,20 +34,20 @@ package body SteuerungsauswahlLogik is
                if
                  AktuelleAuswahl < AuswahlKonstanten.LeerAuswahl
                then
-                  OftVerwendetSound.Klick;
+                  OftVerwendeterSound.Klick;
                   WelcheSteuerung := NummerZuKategorie (AktuelleAuswahl);
                   
                elsif
                  AktuelleAuswahl in MenueKonstanten.AllgemeineSteuerung .. MenueKonstanten.SonstigesSteuerung - 1
                then
-                  OftVerwendetSound.Klick;
+                  OftVerwendeterSound.Klick;
                   TasteBelegen (AuswahlExtern         => AktuelleAuswahl,
                                 WelcheSteuerungExtern => WelcheSteuerung);
                   
                elsif
                  AktuelleAuswahl >= MenueKonstanten.SonstigesSteuerung
                then
-                  OftVerwendetSound.Klick;
+                  OftVerwendeterSound.Klick;
                   return MenuerueckgabenLogik.SteuerungMenü (AnfangExtern          => MenueKonstanten.SonstigesSteuerung,
                                                               EndeExtern            => InteraktionAuswahl.PositionenSteuerung'Last,
                                                               AktuelleAuswahlExtern => AktuelleAuswahl);

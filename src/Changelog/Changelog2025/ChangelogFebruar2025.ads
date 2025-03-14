@@ -127,17 +127,23 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (10.02.2025):
+   -- Version 0.06.1315 => 0.06. (10.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1225 => 0.06. (09.02.2025):
+   -- Version 0.06.1225 => 0.06.1315 (09.02.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- TextArrays vollständig durch die SEB Version ersetzt.
+   -- Unnötigen Code gelöscht.
+   -- Prüfen der Systemsprache durch die SEB Version ersetzt.
+   -- Teile der TextKonstanten durch die SEB Version ersetzt.
+   -- Intro überarbeitet.
+   -- Das Einlesesystem für die Sounddateien an die anderen Einlesesysteme angeglichen.
+   -- Es führt jetzt nicht mehr zu Programmstopps wenn eine 0-Datei eine Leerzeile enthält, außer bei Sprachen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

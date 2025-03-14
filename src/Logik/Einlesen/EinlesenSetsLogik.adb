@@ -1,9 +1,8 @@
 with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
 with VerzeichnisKonstanten;
-
-with TextArrays;
-with TextKonstanten;
+with ArraysHTSEB;
+with TextKonstantenHTSEB;
 
 package body EinlesenSetsLogik is
 
@@ -12,7 +11,7 @@ package body EinlesenSetsLogik is
       return Boolean
    is begin
       
-      TextArrays.SetsEinlesen := (others => TextKonstanten.LeerUnboundedString);
+      ArraysHTSEB.SetsEinlesen := (others => TextKonstantenHTSEB.LeerUnboundedString);
             
       Start_Search (Search    => Suche,
                     Directory => OrdnerExtern,
@@ -34,7 +33,7 @@ package body EinlesenSetsLogik is
             null;
             
          elsif
-           False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
+           False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstantenHTSEB.LeerUnboundedString,
                                                                 WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => OrdnerExtern & "/"
                                                                                                                              & Simple_Name (Directory_Entry => Verzeichnis)
                                                                                                                              & VerzeichnisKonstanten.NullDatei))
@@ -60,14 +59,14 @@ package body EinlesenSetsLogik is
             Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => UmwandlungssystemHTSEB.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)));
             
             VerzeichnisInnenSchleife:
-            for SetSchleifenwert in TextArrays.SetsEinlesen'Range loop
+            for SetSchleifenwert in ArraysHTSEB.SetsEinlesen'Range loop
                if
-                 TextArrays.SetsEinlesen (SetSchleifenwert) /= TextKonstanten.LeerUnboundedString
+                 ArraysHTSEB.SetsEinlesen (SetSchleifenwert) /= TextKonstantenHTSEB.LeerUnboundedString
                then
                   null;
             
                else
-                  TextArrays.SetsEinlesen (SetSchleifenwert) := Verzeichnisname;
+                  ArraysHTSEB.SetsEinlesen (SetSchleifenwert) := Verzeichnisname;
                   exit VerzeichnisInnenSchleife;
                end if;
          
@@ -79,7 +78,7 @@ package body EinlesenSetsLogik is
       End_Search (Search => Suche);
       
       if
-        TextArrays.SetsEinlesen (1) = TextKonstanten.LeerUnboundedString
+        ArraysHTSEB.SetsEinlesen (1) = TextKonstantenHTSEB.LeerUnboundedString
       then
          return False;
          
@@ -98,10 +97,10 @@ package body EinlesenSetsLogik is
    is begin
             
       SortierSchleife:
-      for PositionSchleifenwert in TextArrays.SetsEinlesen'First + 1 .. TextArrays.SetsEinlesen'Last loop
+      for PositionSchleifenwert in ArraysHTSEB.SetsEinlesen'First + 1 .. ArraysHTSEB.SetsEinlesen'Last loop
          
          if
-           TextArrays.SetsEinlesen (PositionSchleifenwert) = TextKonstanten.LeerUnboundedString
+           ArraysHTSEB.SetsEinlesen (PositionSchleifenwert) = TextKonstantenHTSEB.LeerUnboundedString
          then
             exit SortierSchleife;
             
@@ -111,9 +110,9 @@ package body EinlesenSetsLogik is
             loop
                
                if
-                 PositionSchleifenwert - SchleifenAbzug > TextArrays.SetsEinlesen'First
+                 PositionSchleifenwert - SchleifenAbzug > ArraysHTSEB.SetsEinlesen'First
                  and then
-                   TextArrays.SetsEinlesen (PositionSchleifenwert) < TextArrays.SetsEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
+                   ArraysHTSEB.SetsEinlesen (PositionSchleifenwert) < ArraysHTSEB.SetsEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
                then
                   SchleifenAbzug := SchleifenAbzug + 1;
                   
@@ -130,9 +129,9 @@ package body EinlesenSetsLogik is
                   VerschiebungSchleife:
                   while SchleifenAbzug > 0 loop
                      
-                     Zwischenspeicher := TextArrays.SetsEinlesen (PositionSchleifenwert);
-                     TextArrays.SetsEinlesen (PositionSchleifenwert) := TextArrays.SetsEinlesen (PositionSchleifenwert - SchleifenAbzug);
-                     TextArrays.SetsEinlesen (PositionSchleifenwert - SchleifenAbzug) := Zwischenspeicher;
+                     Zwischenspeicher := ArraysHTSEB.SetsEinlesen (PositionSchleifenwert);
+                     ArraysHTSEB.SetsEinlesen (PositionSchleifenwert) := ArraysHTSEB.SetsEinlesen (PositionSchleifenwert - SchleifenAbzug);
+                     ArraysHTSEB.SetsEinlesen (PositionSchleifenwert - SchleifenAbzug) := Zwischenspeicher;
                      SchleifenAbzug := SchleifenAbzug - 1;
                      
                   end loop VerschiebungSchleife;

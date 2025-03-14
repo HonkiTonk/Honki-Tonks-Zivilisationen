@@ -1,6 +1,6 @@
 with Ada.Directories;
 
-with TextKonstanten;
+with TextKonstantenHTSEB;
 
 with SchreibeGrafiktask;
 
@@ -26,7 +26,7 @@ package body SpielstandAllgemeinesLogik is
             return SpielstandName.EingegebenerText;
             
          when False =>
-            return TextKonstanten.LeerUnboundedString;
+            return TextKonstantenHTSEB.LeerUnboundedString;
       end case;
             
    end SpielstandNameErmitteln;

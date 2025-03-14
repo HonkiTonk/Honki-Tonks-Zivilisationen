@@ -1,9 +1,11 @@
 with Ada.Exceptions;
 
 with DateizugriffssystemHTSEB;
+with TextKonstantenHTSEB;
+with UmwandlungssystemHTSEB;
+with MeldungssystemHTSEB;
 
 with GrafikDatentypen;
-with TextKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
 with TextnummernKonstanten;
@@ -25,8 +27,6 @@ with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
 with UmwandlungenVerzeichnisse;
-with UmwandlungssystemHTSEB;
-with MeldungssystemHTSEB;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 -- Änderungen an den zu ladenden Datentypen kann jederzeit Probleme bei Laden verursachen.
@@ -44,7 +44,7 @@ package body LadenLogik is
          Spielstandname := SpielstandlisteLogik.Spielstandliste (SpeichernLadenExtern => False);
       
          if
-           Spielstandname = TextKonstanten.LeerUnboundedString
+           Spielstandname = TextKonstantenHTSEB.LeerUnboundedString
          then
             return False;
          

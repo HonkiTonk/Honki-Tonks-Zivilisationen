@@ -1,5 +1,5 @@
 with MeldungssystemHTSEB;
-with OftVerwendetSound;
+with OftVerwendeterSound;
 
 package body MenuerueckgabenLogik is
    
@@ -10,7 +10,7 @@ package body MenuerueckgabenLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      OftVerwendetSound.Klick;
+      OftVerwendeterSound.Klick;
       
       case
         WelchesMenüExtern

@@ -1,8 +1,8 @@
 with Sf.Graphics.Text;
 
 with BetriebssystemKonstantenHTSEB;
+with TextKonstantenHTSEB;
 
-with TextKonstanten;
 with TextaccessVariablen;
 
 package body ZeilenumbruchberechnungGrafik is
@@ -18,10 +18,10 @@ package body ZeilenumbruchberechnungGrafik is
         TextExtern'Length
       is
          when 0 =>
-            return TextKonstanten.LeerString;
+            return TextKonstantenHTSEB.LeerString;
             
          when others =>
-            NeuerText := TextKonstanten.LeerUnboundedString;
+            NeuerText := TextKonstantenHTSEB.LeerUnboundedString;
       
             SchleifenAnfang := TextExtern'First;
             SchleifenEnde := TextExtern'Last;

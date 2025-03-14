@@ -66,9 +66,9 @@ package body BildrateAnzeigenGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Bildratenbereich);
       
       TextaccessverwaltungssystemEinfachGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.BildrateAccess,
-                                                                   TextExtern       => KommazahlAlsString (KommazahlExtern => AktuelleBildrate),
-                                                                   PositionExtern   => GrafikRecordKonstanten.StartView,
-                                                                   FarbeExtern      => Farbe);
+                                                                          TextExtern       => KommazahlAlsString (KommazahlExtern => AktuelleBildrate),
+                                                                          PositionExtern   => GrafikRecordKonstanten.StartView,
+                                                                          FarbeExtern      => Farbe);
       
       Viewfläche.x := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.BildrateAccess,
                                                                              TextbreiteExtern => 5.00);

@@ -1,13 +1,13 @@
 with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
+with ArraysHTSEB;
+with TextKonstantenHTSEB;
 
 with TastenbelegungDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
 with TextnummernKonstanten;
-with TextKonstanten;
 with AuswahlKonstanten;
-with TextArrays;
 with MenueKonstanten;
 with SpielstandVariablen;
 with SystemDatentypen;
@@ -35,7 +35,7 @@ package body SpielstandlisteLogik is
       SpielstandSchleife:
       loop
          
-         Schleifenanfang := TextArrays.SpielstandArray'First;
+         Schleifenanfang := ArraysHTSEB.SetsArray'First;
          SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => False);
          
          Start_Search (Search    => Suche,
@@ -50,14 +50,14 @@ package body SpielstandlisteLogik is
             case
               Schleifenanfang
             is
-               when TextArrays.SpielstandArray'First =>
+               when ArraysHTSEB.SetsArray'First =>
                   SpielstandVariablen.Nullsetzung;
                   
                when others =>
-                  Zwischenspeicher := SpielstandVariablen.SpielstandnameLesen (NummerExtern => TextArrays.SpielstandArray'Last);
+                  Zwischenspeicher := SpielstandVariablen.SpielstandnameLesen (NummerExtern => ArraysHTSEB.SetsArray'Last);
                   SpielstandVariablen.Nullsetzung;
                   SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => Zwischenspeicher,
-                                                               NummerExtern => TextArrays.SpielstandArray'First);
+                                                               NummerExtern => ArraysHTSEB.SetsArray'First);
             end case;
             
             AktuellerSpielstand := Schleifenanfang;
@@ -84,11 +84,11 @@ package body SpielstandlisteLogik is
                  -- Eventuell bis Wide_Wide_Directories? äöü
                  DateisystemtestsHTSEB.GültigerNamen (NameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => AktuellerSpielstand))) = False
                then
-                  SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => TextKonstanten.LeerUnboundedString,
+                  SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => TextKonstantenHTSEB.LeerUnboundedString,
                                                                NummerExtern => AktuellerSpielstand);
                   
                elsif
-                 AktuellerSpielstand = TextArrays.SpielstandArray'Last
+                 AktuellerSpielstand = ArraysHTSEB.SetsArray'Last
                then
                   SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => True);
                   exit SpeicherdateiSchleife;
@@ -116,18 +116,18 @@ package body SpielstandlisteLogik is
                  Ausgewählt
                is
                   when AuswahlKonstanten.LeerAuswahl | AuswahlKonstanten.Zurück =>
-                     RückgabeWert := TextKonstanten.LeerUnboundedString;
+                     RückgabeWert := TextKonstantenHTSEB.LeerUnboundedString;
                      exit SpielstandSchleife;
                      
                   when AuswahlKonstanten.MehrAnzeigen =>
                      if
-                       SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt) = TextKonstanten.LeerUnboundedString
+                       SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt) = TextKonstantenHTSEB.LeerUnboundedString
                      then
                         exit MittelSchleife;
                      
                      else
                         -- Schleifenanfang muss hier auf einen Wert ungleich SpielstandVariablen.SpielstandArray'First gesetzt werden, damit bei mehreren Seiten es korrekt weitergeht.
-                        Schleifenanfang := TextArrays.SpielstandArray'First + 1;
+                        Schleifenanfang := ArraysHTSEB.SetsArray'First + 1;
                         exit AuswahlSchleife;
                      end if;
                   
@@ -135,7 +135,7 @@ package body SpielstandlisteLogik is
                      RückgabeWert := NameNutzer;
                      
                      if
-                       RückgabeWert = TextKonstanten.LeerUnboundedString
+                       RückgabeWert = TextKonstantenHTSEB.LeerUnboundedString
                      then
                         null;
                         
@@ -158,7 +158,7 @@ package body SpielstandlisteLogik is
                      elsif
                        Löschauswahl = AuswahlKonstanten.MehrAnzeigen
                        and then
-                         SpielstandVariablen.SpielstandnameLesen (NummerExtern => Löschauswahl) = TextKonstanten.LeerUnboundedString
+                         SpielstandVariablen.SpielstandnameLesen (NummerExtern => Löschauswahl) = TextKonstantenHTSEB.LeerUnboundedString
                      then
                         exit MittelSchleife;
                      
@@ -166,14 +166,14 @@ package body SpielstandlisteLogik is
                        Löschauswahl = AuswahlKonstanten.MehrAnzeigen
                      then
                         -- Schleifenanfang muss hier auf einen Wert ungleich SpielstandVariablen.SpielstandArray'First gesetzt werden, damit bei mehreren Seiten es korrekt weitergeht.
-                        Schleifenanfang := TextArrays.SpielstandArray'First + 1;
+                        Schleifenanfang := ArraysHTSEB.SetsArray'First + 1;
                         exit AuswahlSchleife;
                         
                      elsif
                        Löschauswahl = AuswahlKonstanten.Zurück
                      then
                         LöschenAktiv := False;
-                        RückgabeWert := TextKonstanten.LeerUnboundedString;
+                        RückgabeWert := TextKonstantenHTSEB.LeerUnboundedString;
                         SchreibeGrafiktask.Löschauswahl (JaNeinExtern => False);
                         exit SpielstandSchleife;
                         
@@ -307,7 +307,7 @@ package body SpielstandlisteLogik is
    is begin
       
       if
-        LeseAllgemeines.Ironman /= TextKonstanten.LeerUnboundedString
+        LeseAllgemeines.Ironman /= TextKonstantenHTSEB.LeerUnboundedString
       then
          return LeseAllgemeines.Ironman;
                
@@ -316,7 +316,7 @@ package body SpielstandlisteLogik is
       end if;
          
       if
-        Spielstandname = TextKonstanten.LeerUnboundedString
+        Spielstandname = TextKonstantenHTSEB.LeerUnboundedString
       then
          null;
             
@@ -332,7 +332,7 @@ package body SpielstandlisteLogik is
          null;
                      
       else
-         Spielstandname := TextKonstanten.LeerUnboundedString;
+         Spielstandname := TextKonstantenHTSEB.LeerUnboundedString;
       end if;
       
       return Spielstandname;

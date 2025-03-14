@@ -24,7 +24,7 @@ package body SpielstandVariablen is
    
    
    function GanzeSpielstandliste
-     return TextArrays.SpielstandArray
+     return ArraysHTSEB.SetsArray
    is begin
       
       return Spielstand;
@@ -36,7 +36,7 @@ package body SpielstandVariablen is
    procedure Nullsetzung
    is begin
       
-      Spielstand := (others => TextKonstanten.LeerUnboundedString);
+      Spielstand := (others => TextKonstantenHTSEB.LeerUnboundedString);
       
    end Nullsetzung;
    

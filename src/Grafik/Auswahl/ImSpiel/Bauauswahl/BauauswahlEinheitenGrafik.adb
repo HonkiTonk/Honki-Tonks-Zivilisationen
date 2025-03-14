@@ -1,5 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with TextKonstantenHTSEB;
+
 with Views;
 with GrafikDatentypen;
 with TextnummernKonstanten;
@@ -7,7 +9,6 @@ with Spieltexte;
 with TextaccessVariablen;
 with ProduktionDatentypen;
 with EinheitenKonstanten;
-with TextKonstanten;
 with ViewKonstanten;
 
 with LeseEinheitenDatenbank;
@@ -84,8 +85,8 @@ package body BauauswahlEinheitenGrafik is
         or
           Transportkapazität = 0
       then
-         Einheitentexte (9) := TextKonstanten.LeerUnboundedString;
-         Einheitentexte (10) := TextKonstanten.LeerUnboundedString;
+         Einheitentexte (9) := TextKonstantenHTSEB.LeerUnboundedString;
+         Einheitentexte (10) := TextKonstantenHTSEB.LeerUnboundedString;
             
       else
          Einheitentexte (9) := Spieltexte.Zeug (TextnummernKonstanten.ZeugTransportergröße) & " "
@@ -100,7 +101,7 @@ package body BauauswahlEinheitenGrafik is
         Transportgröße
       is
          when EinheitenKonstanten.LeerKannTransportiertWerden =>
-            Einheitentexte (11) := TextKonstanten.LeerUnboundedString;
+            Einheitentexte (11) := TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
             Einheitentexte (11) := Spieltexte.Zeug (TextnummernKonstanten.ZeugEinheitengröße) & " "

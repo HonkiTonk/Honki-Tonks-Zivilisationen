@@ -4,11 +4,11 @@ with DateizugriffssystemHTSEB;
 with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
+with TextKonstantenHTSEB;
 
 with OptionenVariablen;
 with VerzeichnisKonstanten;
 with SystemRecordKonstanten;
-with TextKonstanten;
 
 with SchreibeOptionen;
 
@@ -19,7 +19,7 @@ package body EinlesenNutzereinstellungenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Spieleinstellungen))
       is
          when False =>

@@ -1,3 +1,5 @@
+with TextKonstantenHTSEB;
+
 with EinheitenDatentypen;
 with StadtDatentypen;
 with Spieltexte;
@@ -116,14 +118,14 @@ package body StadtseitenleisteGrafik is
                                                        BauzeitExtern    => StadtauswahlExtern.Bauzeit);
 
       else
-         AnzuzeigenderText (2 .. 9) := (others => TextKonstanten.LeerUnboundedString);
+         AnzuzeigenderText (2 .. 9) := (others => TextKonstantenHTSEB.LeerUnboundedString);
       end if;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.StadtInformationenAccess'Range loop
          
          if
-           AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
+           AnzuzeigenderText (TextSchleifenwert) = TextKonstantenHTSEB.LeerUnboundedString
          then
             Leerzeilen := Leerzeilen + 1;
             

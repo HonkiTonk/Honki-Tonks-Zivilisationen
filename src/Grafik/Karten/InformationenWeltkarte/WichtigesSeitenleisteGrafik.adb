@@ -1,3 +1,5 @@
+with TextKonstantenHTSEB;
+
 with Spieltexte;
 with TextnummernKonstanten;
 with TextKonstanten;
@@ -35,7 +37,7 @@ package body WichtigesSeitenleisteGrafik is
       for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
          
          if
-           AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
+           AnzuzeigenderText (TextSchleifenwert) = TextKonstantenHTSEB.LeerUnboundedString
          then
             Leerzeilen := Leerzeilen + 1;
             
@@ -69,7 +71,7 @@ package body WichtigesSeitenleisteGrafik is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return TextKonstanten.LeerUnboundedString;
+            return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
             return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.Ebene) & ","
@@ -124,7 +126,7 @@ package body WichtigesSeitenleisteGrafik is
         SpeziesExtern
       is
          when SpeziesDatentypen.Ekropa_Enum =>
-            return TextKonstanten.LeerUnboundedString;
+            return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
             Geldzuwachs := LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern);

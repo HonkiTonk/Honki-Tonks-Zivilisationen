@@ -1,6 +1,10 @@
 private with Ada.Wide_Wide_Text_IO;
 private with Ada.Strings.Wide_Wide_Unbounded;
 
+private with Sf.Graphics;
+private with Sf;
+private with Sf.Graphics.Texture;
+
 private with SpeziesDatentypen;
 
 package EinlesenTexturenLogik is
@@ -43,5 +47,18 @@ private
    GesamterPfad : Unbounded_Wide_Wide_String;
 
    DateiTexturen : File_Type;
+
+   MaximaleTexturengröße : constant Sf.sfUint32 := Sf.Graphics.Texture.getMaximumSize;
+
+
+
+   function TexturFestlegen
+     (TexturenAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturenpfadExtern : in String)
+      return Sf.Graphics.sfTexture_Ptr
+     with
+       Pre => (
+                 TexturenpfadExtern'Length > 0
+              );
 
 end EinlesenTexturenLogik;

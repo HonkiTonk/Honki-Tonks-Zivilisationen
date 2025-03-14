@@ -13,15 +13,27 @@ package OptionenSoundLogik is
 private
    use Ada.Strings.Wide_Wide_Unbounded;
 
+   EinstellungenSchreiben : Boolean;
+   EinstellungenGeändert : Boolean;
+
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    GewählterTon : Unbounded_Wide_Wide_String;
 
    NeueLaustärke : SystemRecordsHTSEB.ZahlenEingabeRecord;
 
-   procedure Soundlautstärke;
-   procedure Musiklautstärke;
-   procedure MusikWechseln;
-   procedure SoundWechseln;
+
+
+   function Soundlautstärke
+     return Boolean;
+
+   function Musiklautstärke
+     return Boolean;
+
+   function MusikWechseln
+     return Boolean;
+
+   function SoundWechseln
+     return Boolean;
 
 end OptionenSoundLogik;

@@ -1,4 +1,5 @@
-with TextKonstanten;
+with TextKonstantenHTSEB;
+
 with MenueDatentypen;
 with TextnummernKonstanten;
 with SystemKonstanten;
@@ -111,7 +112,7 @@ package body OptionenSonstigesLogik is
             GewählteSprache := SetauswahlLogik.Setauswahl (SpracheExtern => True);
             
             if
-              GewählteSprache = TextKonstanten.LeerUnboundedString
+              GewählteSprache = TextKonstantenHTSEB.LeerUnboundedString
             then
                null;
                

@@ -4,9 +4,9 @@ with DateizugriffssystemHTSEB;
 with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
+with TextKonstantenHTSEB;
 
 with VerzeichnisKonstanten;
-with TextKonstanten;
 
 with SchreibeEinstellungenTon;
 
@@ -19,7 +19,7 @@ package body EinlesenToneinstellungenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Toneinstellungen))
       is
          when False =>

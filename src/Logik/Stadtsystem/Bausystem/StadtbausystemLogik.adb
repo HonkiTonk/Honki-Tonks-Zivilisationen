@@ -12,7 +12,7 @@ with TasteneingabeLogik;
 with GebaeudeanforderungenLogik;
 with EinheitenanforderungenLogik;
 with MausauswahlLogik;
-with OftVerwendetSound;
+with OftVerwendeterSound;
 with UmwandlungenDatentypen;
 with JaNeinLogik;
 
@@ -133,7 +133,7 @@ package body StadtbausystemLogik is
                  and
                    AktuelleBauprojektExtern.Einheit = AuswahlKonstanten.LeerEinheitenauswahl
                then
-                  OftVerwendetSound.Klick;
+                  OftVerwendeterSound.Klick;
                   return UmwandlungenDatentypen.AuswahlBauprojekt (AuswahlExtern => InteraktionAuswahl.MöglicheBauoptionen (AktuelleAuswahl.Bauauswahl));
                   
                elsif
@@ -155,7 +155,7 @@ package body StadtbausystemLogik is
                      null;
                      
                   else
-                     OftVerwendetSound.Klick;
+                     OftVerwendeterSound.Klick;
                      return UmwandlungenDatentypen.AuswahlBauprojekt (AuswahlExtern => InteraktionAuswahl.MöglicheBauoptionen (AktuelleAuswahl.Bauauswahl));
                   end if;
                   

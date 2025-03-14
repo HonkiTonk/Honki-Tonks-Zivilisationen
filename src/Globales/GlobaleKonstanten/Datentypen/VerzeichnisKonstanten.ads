@@ -1,3 +1,4 @@
+-- Das mal teilweise oder ganz auslagern? äöü
 package VerzeichnisKonstanten is
    pragma Pure;
    

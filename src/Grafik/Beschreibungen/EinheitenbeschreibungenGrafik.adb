@@ -1,8 +1,9 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with TextKonstantenHTSEB;
+
 with Spieltexte;
 with Speziestexte;
-with TextKonstanten;
 with EinheitenKonstanten;
 with TextnummernKonstanten;
 
@@ -18,7 +19,7 @@ package body EinheitenbeschreibungenGrafik is
         IDExtern
       is
          when EinheitenKonstanten.LeerID =>
-            return TextKonstanten.LeerString;
+            return TextKonstantenHTSEB.LeerString;
             
          when others =>
             return To_Wide_Wide_String (Source => Speziestexte.Einheiten (SpeziesExtern, IDExtern, TextnummernKonstanten.KurzeBeschreibung));

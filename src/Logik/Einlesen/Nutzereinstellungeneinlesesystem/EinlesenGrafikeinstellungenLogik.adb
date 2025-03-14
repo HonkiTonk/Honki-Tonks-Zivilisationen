@@ -6,10 +6,10 @@ with DateizugriffssystemHTSEB;
 with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
+with TextKonstantenHTSEB;
 
 with VerzeichnisKonstanten;
 with TextDatentypen;
-with TextKonstanten;
 
 with SchreibeEinstellungenGrafik;
 
@@ -22,7 +22,7 @@ package body EinlesenGrafikeinstellungenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Grafikeinstellungen))
       is
          when False =>

@@ -31,7 +31,7 @@ private
    
    
    
-   function MusikAccessFestlegen
+   function MusikFestlegen
      (MusicAccessExtern : in Sf.Audio.sfMusic_Ptr;
       MusikpfadExtern : in String)
       return Sf.Audio.sfMusic_Ptr

@@ -1,11 +1,11 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with TextArrays;
+with ArraysHTSEB;
 
 package SetauswahlLogik is
    pragma Elaborate_Body;
    
-   Auswahlmöglichkeiten : TextArrays.SetsArray;
+   Auswahlmöglichkeiten : ArraysHTSEB.SetsArray;
    
    
 

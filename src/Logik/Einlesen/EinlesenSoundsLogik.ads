@@ -13,8 +13,9 @@ private
    use Ada.Strings.Wide_Wide_Unbounded;
 
    AktuelleZeile : Positive;
+   EinzulesendeZeile : Positive;
 
-   Soundname : Unbounded_Wide_Wide_String;
+   Dateiname : Unbounded_Wide_Wide_String;
    GesamterPfad : Unbounded_Wide_Wide_String;
 
    DateiSounds : File_Type;

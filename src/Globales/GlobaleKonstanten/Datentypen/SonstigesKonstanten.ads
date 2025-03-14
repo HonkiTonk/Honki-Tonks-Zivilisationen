@@ -3,7 +3,9 @@ package SonstigesKonstanten is
 
    Spielname : constant Wide_Wide_String (1 .. 26) := "Honki Tonks Zivilisationen";
 
-   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.06.1225";
+   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.06.1315";
+
+   Entwickler : constant Wide_Wide_String (1 .. 10) := "Honki Tonk";
 
    SourceCode : constant Wide_Wide_String (1 .. 55) := "https://github.com/HonkiTonk/Honki-Tonks-Zivilisationen";
 

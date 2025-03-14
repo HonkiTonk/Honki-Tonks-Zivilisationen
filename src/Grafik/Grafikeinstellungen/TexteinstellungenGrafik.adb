@@ -3,17 +3,17 @@ with Ada.Directories;
 with Sf.Graphics.Font;
 
 with DateizugriffssystemHTSEB;
+with TextKonstantenHTSEB;
+with MeldungssystemHTSEB;
+with UmwandlungssystemHTSEB;
 
 with VerzeichnisKonstanten;
-with TextKonstanten;
 with EinstellungenGrafik;
 
 with LeseOptionen;
 
-with MeldungssystemHTSEB;
 with EinlesenAllgemeinesLogik;
 with TextaccesseSchriftartGrafik;
-with UmwandlungssystemHTSEB;
 
 -- Das hier auch mal in Lesen und Schreiben aufteilen? äöü
 package body TexteinstellungenGrafik is
@@ -26,7 +26,7 @@ package body TexteinstellungenGrafik is
       AktuelleSprache := LeseOptionen.Sprache;
         
       if
-        AktuelleSprache = TextKonstanten.LeerUnboundedString
+        AktuelleSprache = TextKonstantenHTSEB.LeerUnboundedString
       then
          SchriftartAccess := SchriftartaccessFestlegen (SchriftartAccessExtern => SchriftartAccess,
                                                         FontpfadExtern         => StandardSchriftartVerwenden);

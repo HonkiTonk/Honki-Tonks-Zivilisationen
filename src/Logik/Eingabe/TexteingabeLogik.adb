@@ -1,11 +1,11 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemRecordsKonstantenHTSEB;
+with TextKonstantenHTSEB;
 
 with TextnummernKonstanten;
 with Speziestexte;
 with GrafikDatentypen;
-with TextKonstanten;
 
 with LeseStadtGebaut;
 with SchreibeLogiktask;
@@ -32,7 +32,7 @@ package body TexteingabeLogik is
         StadtSpeziesNummerExtern.Spezies = SpeziesKonstanten.LeerSpezies
       then
          Frage := TextnummernKonstanten.FrageStadtSuchen;
-         SchreibeLogiktask.Texteingabe (TextExtern => TextKonstanten.LeerUnboundedString);
+         SchreibeLogiktask.Texteingabe (TextExtern => TextKonstantenHTSEB.LeerUnboundedString);
          
       else
          Frage := TextnummernKonstanten.FrageStadtname;
@@ -65,7 +65,7 @@ package body TexteingabeLogik is
         To_Wide_Wide_String (Source => Name.EingegebenerText)'Length
       is
          when 0 =>
-            return (True, TextKonstanten.LeerzeichenUnboundedString);
+            return (True, TextKonstantenHTSEB.LeerzeichenUnboundedString);
               
          when others =>
             return Name;

@@ -46,7 +46,7 @@ package body EinlesenTextLogik is
                   null;
                   
                elsif
-                 False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstanten.LeerUnboundedString,
+                 False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstantenHTSEB.LeerUnboundedString,
                                                                       WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
                                                                                                                                    & Simple_Name (Directory_Entry => Verzeichnis)
                                                                                                                                    & VerzeichnisKonstanten.NullDatei))
@@ -97,7 +97,7 @@ package body EinlesenTextLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                           WindowsTextExtern => VerzeichnisExtern & "0")
       is
          when False =>
@@ -108,6 +108,7 @@ package body EinlesenTextLogik is
                                                   NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisExtern & "0"));
       end case;
       
+      -- Hier noch eine Prüfung für # und Leerzeile einbauen. äöü
       EinlesenSchleife:
       for WelcheDateienSchleifenwert in 1 .. AnzahlTextdateien loop
 
@@ -226,7 +227,7 @@ package body EinlesenTextLogik is
          case
            To_Wide_Wide_String (Source => Zwischenspeicher) (1)
          is
-            when TextKonstanten.TrennzeichenTextdateien =>
+            when TextKonstantenHTSEB.TrennzeichenTextdateien =>
                null;
                
             when others =>
@@ -280,7 +281,7 @@ package body EinlesenTextLogik is
          case
            To_Wide_Wide_String (Source => Zwischenspeicher) (1)
          is
-            when TextKonstanten.TrennzeichenTextdateien =>
+            when TextKonstantenHTSEB.TrennzeichenTextdateien =>
                null;
                
             when others =>
@@ -475,7 +476,7 @@ package body EinlesenTextLogik is
          case
            To_Wide_Wide_String (Source => Zwischenspeicher) (1)
          is
-            when TextKonstanten.TrennzeichenTextdateien =>
+            when TextKonstantenHTSEB.TrennzeichenTextdateien =>
                null;
                
             when others =>
@@ -579,7 +580,7 @@ package body EinlesenTextLogik is
          case
            To_Wide_Wide_String (Source => Zwischenspeicher) (1)
          is
-            when TextKonstanten.TrennzeichenTextdateien =>
+            when TextKonstantenHTSEB.TrennzeichenTextdateien =>
                null;
                
             when others =>
@@ -648,7 +649,7 @@ package body EinlesenTextLogik is
          case
            To_Wide_Wide_String (Source => Zwischenspeicher) (1)
          is
-            when TextKonstanten.TrennzeichenTextdateien =>
+            when TextKonstantenHTSEB.TrennzeichenTextdateien =>
                null;
                
             when others =>
@@ -756,7 +757,7 @@ package body EinlesenTextLogik is
          case
            To_Wide_Wide_String (Source => Zwischenspeicher) (1)
          is
-            when TextKonstanten.TrennzeichenTextdateien =>
+            when TextKonstantenHTSEB.TrennzeichenTextdateien =>
                null;
                
             when others =>
@@ -910,7 +911,7 @@ package body EinlesenTextLogik is
                
          when False =>
             if
-              VorhandenerTextExtern = TextKonstanten.FehlenderText
+              VorhandenerTextExtern = TextKonstantenHTSEB.FehlenderText
               or
                 -- Sollte das nicht besser nach der grafischen Länge statt der Anzahl der Zeichen beurteilt werden? äöü
               To_Wide_Wide_String (Source => VorhandenerTextExtern)'Length < To_Wide_Wide_String (Source => EingelesenerTextExtern)'Length

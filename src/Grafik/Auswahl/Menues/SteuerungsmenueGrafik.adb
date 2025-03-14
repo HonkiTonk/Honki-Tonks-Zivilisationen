@@ -5,8 +5,6 @@ with GrafikDatentypen;
 with TextaccessVariablen;
 with TextKonstanten;
 with TastenbelegungKonstanten;
-with Spieltexte;
-with TextnummernKonstanten;
 with Menuetexte;
 with BefehleDatentypen;
 with ViewKonstanten;
@@ -224,7 +222,7 @@ package body SteuerungsmenueGrafik is
         AktuelleBelegung
       is
          when Sf.Window.Keyboard.sfKeyUnknown =>
-            Text := Text & Spieltexte.Zeug (TextnummernKonstanten.ZeugLeer);
+            null;
 
          when TastenbelegungKonstanten.TastennamenArray'Range =>
             Text := Text & TastenbelegungKonstanten.Tastennamen (AktuelleBelegung);

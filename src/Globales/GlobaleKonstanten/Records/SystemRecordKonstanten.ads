@@ -1,3 +1,5 @@
+with TextKonstantenHTSEB;
+
 with SystemRecords;
 with TextKonstanten;
 
@@ -5,7 +7,7 @@ package SystemRecordKonstanten is
    pragma Elaborate_Body;
 
    StandardNutzereinstellungen : constant SystemRecords.NutzerEinstellungenRecord := (
-                                                                                      Sprache                   => TextKonstanten.LeerUnboundedString,
+                                                                                      Sprache                   => TextKonstantenHTSEB.LeerUnboundedString,
                                                                                       Texturen                  => TextKonstanten.Standardtexturen,
                                                                                       Musik                     => TextKonstanten.Standardmusik,
                                                                                       Sound                     => TextKonstanten.Stadnardsound,

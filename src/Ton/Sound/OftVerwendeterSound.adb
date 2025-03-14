@@ -2,7 +2,7 @@ with TonDatentypen;
 
 with SchreibeSoundtask;
 
-package body OftVerwendetSound is
+package body OftVerwendeterSound is
 
    procedure Klick
    is begin
@@ -11,4 +11,4 @@ package body OftVerwendetSound is
       
    end Klick;
 
-end OftVerwendetSound;
+end OftVerwendeterSound;

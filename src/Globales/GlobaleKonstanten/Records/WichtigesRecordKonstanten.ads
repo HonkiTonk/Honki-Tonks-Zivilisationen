@@ -1,9 +1,10 @@
+with TextKonstantenHTSEB;
+
 with KartenRecords;
 with KartenRecordKonstanten;
 with SpielRecords;
 with WichtigesKonstanten;
 with SpielDatentypen;
-with TextKonstanten;
 with SpeziesDatentypen;
 with SpeziesKonstanten;
 
@@ -36,7 +37,7 @@ package WichtigesRecordKonstanten is
                                                                  Schwierigkeitsgrad    => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
                                                                  Rundenanzahl          => Positive'First,
                                                                  Rundengrenze          => Natural'First,
-                                                                 IronmanName           => TextKonstanten.LeerUnboundedString,
+                                                                 IronmanName           => TextKonstantenHTSEB.LeerUnboundedString,
                                                                  PlanetVernichtet      => SpeziesKonstanten.LeerSpezies,
                                                                  Zusammenbruchszeit    => WichtigesKonstanten.KeinZusammenbruch,
                                                                  AnzahlEingesetzterPZB => 0

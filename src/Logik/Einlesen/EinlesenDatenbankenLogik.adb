@@ -4,9 +4,9 @@ with DateizugriffssystemHTSEB;
 with DateisystemtestsHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
+with TextKonstantenHTSEB;
 
 with VerzeichnisKonstanten;
-with TextKonstanten;
 
 with StandardVerbesserungenDatenbank;
 with StandardSpeziesDatenbank;
@@ -37,7 +37,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.EinheitenDatenbank))
       is
          when False =>
@@ -112,7 +112,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.ForschungenDatenbank))
       is
          when False =>
@@ -199,7 +199,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.GebaeudeDatenbank))
       is
          when False =>
@@ -274,7 +274,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.KartenDatenbank))
       is
          when False =>
@@ -370,7 +370,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.VerbesserungenDatenbank))
       is
          when False =>
@@ -452,7 +452,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SpeziesDatenbank))
       is
          when False =>
@@ -527,7 +527,7 @@ package body EinlesenDatenbankenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.EffekteDatenbank))
       is
          when False =>

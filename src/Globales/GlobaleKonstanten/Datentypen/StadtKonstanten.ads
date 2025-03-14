@@ -1,12 +1,13 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
 
+with TextKonstantenHTSEB;
+
 with SystemDatentypen;
 with ForschungKonstanten;
 with StadtDatentypen;
 with KartenDatentypen;
 with KartenverbesserungDatentypen;
-with TextKonstanten;
 with SpeziesDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
@@ -44,7 +45,7 @@ package StadtKonstanten is
    LeerKorruption : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerZufriedenheit : constant ProduktionDatentypen.ZufriedenheitVorhanden := ProduktionDatentypen.ZufriedenheitVorhanden'First;
    LeerGebäude : constant Boolean := False;
-   LeerName : constant Unbounded_Wide_Wide_String := TextKonstanten.LeerUnboundedString;
+   LeerName : constant Unbounded_Wide_Wide_String := TextKonstantenHTSEB.LeerUnboundedString;
    LeerUmgebungBewirtschaftet : constant Boolean := False;
    LeerUmgebungGröße : constant KartenRecords.UmgebungDreiRecord := (0, 0);
    LeerMeldung : constant StadtDatentypen.Stadt_Meldung_Enum := StadtDatentypen.Leer_Stadt_Meldung_Enum;

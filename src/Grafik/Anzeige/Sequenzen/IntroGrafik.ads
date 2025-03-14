@@ -1,6 +1,7 @@
 private with Ada.Calendar;
 
 private with Sf.System.Vector2;
+private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 private with SonstigesKonstanten;
@@ -13,7 +14,9 @@ package IntroGrafik is
 private
    use Ada.Calendar;
 
-   Spielstart : Boolean := True;
+   StartSpiel : Boolean := True;
+   StartEntwickler : Boolean := True;
+   StartHelfer : Boolean := True;
 
    AktuellerBuchstabe : Natural := 0;
 
@@ -22,20 +25,28 @@ private
    Textbreite : Float;
    Leerwert : Float;
 
-   Buchstabenanzeige : constant Duration := 0.50;
+   Buchstabenanzeige : constant Duration := 0.20;
+   Anzeigezeit : constant Duration := 2.00;
 
-   Startzeit : Time;
+   ZeitStart : Time;
+   ZeitEntwickler : Time;
+   ZeitHelfer : Time;
 
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
    Skalierung : Sf.System.Vector2.sfVector2f;
+
+   Farbe : Sf.Graphics.Color.sfColor;
 
 
 
    function Titel
      return Boolean;
 
-   function Namen
+   function Entwickler
+     return Boolean;
+
+   function Helfer
      return Boolean;
 
 end IntroGrafik;

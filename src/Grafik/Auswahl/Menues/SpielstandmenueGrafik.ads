@@ -1,8 +1,9 @@
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
 
+private with ArraysHTSEB;
+
 private with GrafikRecordKonstanten;
-private with TextArrays;
 private with AuswahlKonstanten;
 private with MenueKonstanten;
 
@@ -39,7 +40,7 @@ private
 
    Farbe : Sf.Graphics.Color.sfColor;
       
-   Spielstand : TextArrays.SpielstandArray;
+   Spielstand : ArraysHTSEB.SetsArray;
    
    
    

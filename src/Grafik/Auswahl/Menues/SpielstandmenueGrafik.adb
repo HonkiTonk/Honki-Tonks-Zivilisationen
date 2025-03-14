@@ -4,6 +4,9 @@ with Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
 
+with TextKonstantenHTSEB;
+with UmwandlungssystemHTSEB;
+
 with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
@@ -27,7 +30,6 @@ with TextskalierungGrafik;
 with TexteinstellungenGrafik;
 with UmwandlungenVerzeichnisse;
 with AllgemeineViewsGrafik;
-with UmwandlungssystemHTSEB;
 
 package body SpielstandmenueGrafik is
 
@@ -255,7 +257,7 @@ package body SpielstandmenueGrafik is
    begin
       
       if
-        TextExtern = TextKonstanten.LeerString
+        TextExtern = TextKonstantenHTSEB.LeerString
       then
          return TextExtern;
          

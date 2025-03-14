@@ -2,15 +2,15 @@ private with Ada.Wide_Wide_Text_IO;
 private with Ada.Directories;
 private with Ada.Strings.Wide_Wide_Unbounded;
 
+private with TextKonstantenHTSEB;
+private with UmwandlungssystemHTSEB;
+
 private with Menuetexte;
-private with TextKonstanten;
 private with Spieltexte;
 private with Sequenzentexte;
 private with Kartentexte;
 private with Speziestexte;
 private with SpeziesDatentypen;
-
-private with UmwandlungssystemHTSEB;
 
 package EinlesenTextLogik is
    pragma Elaborate_Body;
@@ -104,7 +104,7 @@ private
    Zwischenspeicher : Unbounded_Wide_Wide_String;
    
    type ErsetzungenEingelesenArray is array (1 .. 6) of Unbounded_Wide_Wide_String;
-   ErsetzungenEingelesen : ErsetzungenEingelesenArray := (others => TextKonstanten.FehlenderText);
+   ErsetzungenEingelesen : ErsetzungenEingelesenArray := (others => TextKonstantenHTSEB.FehlenderText);
    
    procedure Debugmenü;
    

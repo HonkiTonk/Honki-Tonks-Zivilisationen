@@ -2,7 +2,9 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
+with TextKonstantenHTSEB;
 
+-- Das könnte man doch auch mal auslagern. äöü
 package body EinlesenAllgemeinesLogik is
 
    function VorzeitigesDateienende
@@ -60,13 +62,14 @@ package body EinlesenAllgemeinesLogik is
         End_Of_Line (File => DateiExtern)
       is
          when True =>
-            return To_Unbounded_Wide_Wide_String (Source => ("Leerzeile in " & DateinameExtern & ", Zeile:" & AktuelleZeileExtern'Wide_Wide_Image));
+            return To_Unbounded_Wide_Wide_String (Source => (" Leerzeile in " & DateinameExtern & ", Zeile:" & AktuelleZeileExtern'Wide_Wide_Image));
             
          when False =>
             return To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
       end case;
       
    exception
+   -- Den Rückgabewert mal ändern? äöü
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.TextEinlesenUngebunden: " & DateinameExtern & ": Aktuelle Zeile:" & AktuelleZeileExtern'Wide_Wide_Image & " "
                                      & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
@@ -76,22 +79,30 @@ package body EinlesenAllgemeinesLogik is
    
    
    
-   function TexturFestlegen
-     (TexturenAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      TexturenpfadExtern : in String)
-      return Sf.Graphics.sfTexture_Ptr
+   function DateinamenEinlesenUngebunden
+     (DateiExtern : in File_Type;
+      AktuelleZeileExtern : in Positive;
+      DateinameExtern : in Wide_Wide_String)
+      return Unbounded_Wide_Wide_String
    is begin
       
-      Sf.Graphics.Texture.destroy (texture => TexturenAccessExtern);
-      
-      return Sf.Graphics.Texture.createFromFile (filename => TexturenpfadExtern);
+      case
+        End_Of_Line (File => DateiExtern)
+      is
+         when True =>
+            return TextKonstantenHTSEB.LeerUnboundedString;
+            
+         when False =>
+            return To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+      end case;
       
    exception
+   -- Den Rückgabewert mal ändern? äöü
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.TexturFestlegen: " & UmwandlungssystemHTSEB.Decode (TextExtern => TexturenpfadExtern)
-                                    & " Texturenmaximum:" & MaximaleTexturengröße'Wide_Wide_Image & " " & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return null;
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesLogik.TextEinlesenUngebunden: " & DateinameExtern & ": Aktuelle Zeile:" & AktuelleZeileExtern'Wide_Wide_Image & " "
+                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return To_Unbounded_Wide_Wide_String (Source => (DateinameExtern & ", Zeile:" & AktuelleZeileExtern'Wide_Wide_Image));
          
-   end TexturFestlegen;
+   end DateinamenEinlesenUngebunden;
    
 end EinlesenAllgemeinesLogik;

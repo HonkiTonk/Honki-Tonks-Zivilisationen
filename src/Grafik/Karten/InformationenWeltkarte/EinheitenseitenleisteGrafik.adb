@@ -1,3 +1,5 @@
+with TextKonstantenHTSEB;
+
 with Spieltexte;
 with StadtKonstanten;
 with TextnummernKonstanten;
@@ -122,14 +124,14 @@ package body EinheitenseitenleisteGrafik is
                                           IDExtern                   => IDExtern);
          
       else
-         AnzuzeigenderText (3 .. 9) := (others => TextKonstanten.LeerUnboundedString);
+         AnzuzeigenderText (3 .. 9) := (others => TextKonstantenHTSEB.LeerUnboundedString);
       end if;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
          
          if
-           AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
+           AnzuzeigenderText (TextSchleifenwert) = TextKonstantenHTSEB.LeerUnboundedString
          then
             Leerzeilen := Leerzeilen + 1;
             
@@ -291,7 +293,7 @@ package body EinheitenseitenleisteGrafik is
                                                    IDExtern      => IDExtern)
       is
          when EinheitenKonstanten.LeerKannTransportieren =>
-            return TextKonstanten.LeerUnboundedString;
+            return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
             MaximaleLadung := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,

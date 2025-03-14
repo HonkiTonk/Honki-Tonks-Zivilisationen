@@ -6,13 +6,13 @@ with DateizugriffssystemHTSEB;
 with DateisystemtestsHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
+with TextKonstantenHTSEB;
 
 with VerzeichnisKonstanten;
 with StandardTastenbelegungDatenbank;
 with TastenbelegungDatentypen;
 with BefehleDatentypen;
-with TextKonstanten;
-
+  
 with SchreibeTastenbelegungDatenbank;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
@@ -22,7 +22,7 @@ package body EinlesenTastatureinstellungenLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstanten.LeerString,
+        DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
                                                             WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Tastatureinstellungen))
       is
          when False =>

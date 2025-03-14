@@ -1,4 +1,6 @@
-with TextKonstanten;
+with SystemspracheHTSEB;
+with TextKonstantenHTSEB;
+
 with VerzeichnisKonstanten;
 
 with SchreibeGrafiktask;
@@ -33,17 +35,17 @@ package body EinlesenLogik is
    is begin
             
       if
-        LeseOptionen.Sprache /= TextKonstanten.LeerUnboundedString
+        LeseOptionen.Sprache /= TextKonstantenHTSEB.LeerUnboundedString
       then
          EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => True);
          return;
          
       else
-         GewählteSprache := Systemsprache;
+         GewählteSprache := SystemspracheHTSEB.Systemsprache;
       end if;
          
       if
-        GewählteSprache /= TextKonstanten.LeerUnboundedString
+        GewählteSprache /= TextKonstantenHTSEB.LeerUnboundedString
       then
          null;
          
@@ -58,7 +60,7 @@ package body EinlesenLogik is
                   GewählteSprache := SetauswahlLogik.Setauswahl (SpracheExtern => True);
                   
                   if
-                    GewählteSprache = TextKonstanten.LeerUnboundedString
+                    GewählteSprache = TextKonstantenHTSEB.LeerUnboundedString
                   then
                      null;
                      
@@ -80,42 +82,5 @@ package body EinlesenLogik is
       EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => True);
       
    end EinlesenMitAnzeige;
-   
-   
-   
-   -- Hier noch eine Prüfung einbauen ob der Sprachordner überhaupt vorhanden ist? äöü
-   -- Oder sollte das bei den Standardsprachen selbstverständlich sein? äöü
-   function Systemsprache
-     return Unbounded_Wide_Wide_String
-   is begin
-      
-      LokaleSprache := Ada.Locales.Language;
-      
-      if
-        LokaleSprache = Ada.Locales.Language_Unknown
-      then
-         return TextKonstanten.LeerUnboundedString;
-         
-      else
-         null;
-      end if;
-      
-      SprachenSchleife:
-      for SprachenSchleifenwert in StandardsprachenArray'Range loop
-         
-         if
-           LokaleSprache = Standardsprachen (SprachenSchleifenwert).ISONummer
-         then
-            return Standardsprachen (SprachenSchleifenwert).Sprache;
-            
-         else
-            null;
-         end if;
-         
-      end loop SprachenSchleife;
-            
-      return TextKonstanten.LeerUnboundedString;
-      
-   end Systemsprache;
 
 end EinlesenLogik;

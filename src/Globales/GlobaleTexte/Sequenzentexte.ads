@@ -1,6 +1,5 @@
 with ArraysHTSEB;
-
-with TextKonstanten;
+with TextKonstantenHTSEB;
 
 package Sequenzentexte is
    pragma Elaborate_Body;
@@ -8,7 +7,7 @@ package Sequenzentexte is
    IntroEnde : constant Positive := 2;
    OutroEnde : constant Positive := 4;
    
-   Intro : ArraysHTSEB.AllgemeinesTextArray (1 .. IntroEnde) := (others => TextKonstanten.FehlenderText);
-   Outro : ArraysHTSEB.AllgemeinesTextArray (1 .. OutroEnde) := (others => TextKonstanten.FehlenderText);
+   Intro : ArraysHTSEB.AllgemeinesTextArray (1 .. IntroEnde) := (others => TextKonstantenHTSEB.FehlenderText);
+   Outro : ArraysHTSEB.AllgemeinesTextArray (1 .. OutroEnde) := (others => TextKonstantenHTSEB.FehlenderText);
 
 end Sequenzentexte;

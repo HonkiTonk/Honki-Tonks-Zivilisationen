@@ -1,7 +1,8 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with TextKonstanten;
-with TextArrays;
+with ArraysHTSEB;
+with TextKonstantenHTSEB;
+
 with SystemDatentypen;
 
 package SpielstandVariablen is
@@ -23,14 +24,14 @@ package SpielstandVariablen is
       return Unbounded_Wide_Wide_String;
    
    function GanzeSpielstandliste
-     return TextArrays.SpielstandArray;
+     return ArraysHTSEB.SetsArray;
    
    function SpielstandartLesen
      return SystemDatentypen.Spielstand_Enum;
    
 private
       
-   Spielstand : TextArrays.SpielstandArray := (others => TextKonstanten.LeerUnboundedString);
+   Spielstand : ArraysHTSEB.SetsArray := (others => TextKonstantenHTSEB.LeerUnboundedString);
    
    Spielstandart : SystemDatentypen.Spielstand_Enum := SystemDatentypen.Manueller_Spielstand_Enum;
    

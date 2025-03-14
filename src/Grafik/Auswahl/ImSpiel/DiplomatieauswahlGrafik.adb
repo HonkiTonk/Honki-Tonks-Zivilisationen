@@ -1,5 +1,8 @@
 with Sf.Graphics.Text;
 
+with TextKonstantenHTSEB;
+with MeldungssystemHTSEB;
+
 with Spieltexte;
 with GrafikDatentypen;
 with TextnummernKonstanten;
@@ -23,7 +26,6 @@ with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with MenuestringsSetzenGrafik;
 with TextfarbeGrafik;
-with MeldungssystemHTSEB;
 with TextaccessverwaltungssystemEinfachGrafik;
 
 package body DiplomatieauswahlGrafik is
@@ -88,7 +90,7 @@ package body DiplomatieauswahlGrafik is
                
                when DiplomatieDatentypen.Unbekannt_Enum =>
                   MeldungssystemHTSEB.Grafik (MeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt");
-                  Text := TextKonstanten.LeerUnboundedString;
+                  Text := TextKonstantenHTSEB.LeerUnboundedString;
             end case;
                
             TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.DiplomatieAccess,

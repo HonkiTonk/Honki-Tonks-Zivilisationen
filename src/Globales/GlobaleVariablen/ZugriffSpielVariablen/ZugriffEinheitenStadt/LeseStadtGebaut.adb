@@ -1,4 +1,5 @@
-with TextKonstanten;
+with TextKonstantenHTSEB;
+
 with GebautVariablen;
 with SpeziesKonstanten;
 
@@ -220,7 +221,7 @@ package body LeseStadtGebaut is
         or
           StadtSpeziesNummerExtern.Nummer = StadtKonstanten.LeerNummer
       then
-         return TextKonstanten.LeerUnboundedString;
+         return TextKonstantenHTSEB.LeerUnboundedString;
       
       else
          return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Name;

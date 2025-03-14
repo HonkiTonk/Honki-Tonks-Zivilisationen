@@ -1,11 +1,13 @@
 with Ada.Exceptions;
 
 with DateizugriffssystemHTSEB;
+with TextKonstantenHTSEB;
+with MeldungssystemHTSEB;
+with UmwandlungssystemHTSEB;
 
 with KartenRecords;
 with StadtRecords;
 with SpielRecords;
-with TextKonstanten;
 with EinheitenRecords;
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
@@ -28,10 +30,8 @@ with SchreibeGrafiktask;
 with LadezeitenLogik;
 with SpielstandAllgemeinesLogik;
 with SpeichernKarteLogik;
-with MeldungssystemHTSEB;
 with MeldungFestlegenLogik;
 with UmwandlungenVerzeichnisse;
-with UmwandlungssystemHTSEB;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -64,7 +64,7 @@ package body SpeichernLogik is
          end case;
       
          if
-           Spielstandname = TextKonstanten.LeerUnboundedString
+           Spielstandname = TextKonstantenHTSEB.LeerUnboundedString
          then
             return;
       
@@ -351,7 +351,7 @@ package body SpeichernLogik is
    is begin
       
       if
-        To_Wide_Wide_String (Source => LeseAllgemeines.Ironman) /= TextKonstanten.LeerString
+        To_Wide_Wide_String (Source => LeseAllgemeines.Ironman) /= TextKonstantenHTSEB.LeerString
       then
          Autospeichernname := LeseAllgemeines.Ironman;
                

@@ -1,10 +1,10 @@
 with MeldungssystemHTSEB;
+with TextKonstantenHTSEB;
 
 with MenueDatentypen;
 with TextnummernKonstanten;
 with TonKonstanten;
 with VerzeichnisKonstanten;
-with TextKonstanten;
 with TonDatentypen;
 
 with SchreibeEinstellungenTon;
@@ -27,6 +27,9 @@ package body OptionenSoundLogik is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
+      EinstellungenSchreiben := False;
+      EinstellungenGeändert := False;
+      
       SoundSchleife:
       loop
          
@@ -36,32 +39,54 @@ package body OptionenSoundLogik is
            AuswahlWert
          is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-               Soundlautstärke;
+               EinstellungenGeändert := Soundlautstärke;
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               Musiklautstärke;
+               EinstellungenGeändert := Musiklautstärke;
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               MusikWechseln;
+               EinstellungenGeändert := MusikWechseln;
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               SoundWechseln;
+               EinstellungenGeändert := SoundWechseln;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
-               SchreibenEinstellungenLogik.Toneinstellungen;
-               return AuswahlWert;
+               exit SoundSchleife;
                
             when others =>
                MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenSoundLogik.OptionenSound: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
+         case
+           EinstellungenGeändert
+         is
+            when True =>
+               EinstellungenSchreiben := True;
+               
+            when False =>
+               null;
+         end case;
+         
       end loop SoundSchleife;
+      
+      case
+        EinstellungenSchreiben
+      is
+         when True =>
+            SchreibenEinstellungenLogik.Toneinstellungen;
+            
+         when False =>
+            null;
+      end case;
+      
+      return AuswahlWert;
       
    end OptionenSound;
    
    
    
-   procedure Soundlautstärke
+   function Soundlautstärke
+     return Boolean
    is begin
       
       NeueLaustärke := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Natural (TonKonstanten.MinimaleLautstärke),
@@ -79,11 +104,14 @@ package body OptionenSoundLogik is
             EinstellungenSound.Lautstärke;
       end case;
       
+      return NeueLaustärke.ErfolgreichAbbruch;
+      
    end Soundlautstärke;
    
    
    
-   procedure Musiklautstärke
+   function Musiklautstärke
+     return Boolean
    is begin
       
       NeueLaustärke := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Natural (TonKonstanten.MinimaleLautstärke),
@@ -101,11 +129,14 @@ package body OptionenSoundLogik is
             EinstellungenMusik.Lautstärke;
       end case;
       
+      return NeueLaustärke.ErfolgreichAbbruch;
+      
    end Musiklautstärke;
    
    
    
-   procedure MusikWechseln
+   function MusikWechseln
+     return Boolean
    is begin
       
       SchreibeMusiktask.NeueMusikart (MusikExtern => TonDatentypen.Musik_Pause_Enum);
@@ -117,14 +148,16 @@ package body OptionenSoundLogik is
             GewählterTon := SetauswahlLogik.Setauswahl (SpracheExtern => False);
             
             if
-              GewählterTon = TextKonstanten.LeerUnboundedString
+              GewählterTon = TextKonstantenHTSEB.LeerUnboundedString
             then
                null;
                
             else
+               -- Das hier als Funktion aufrufen um bei Fehlern nicht den falschen Wert zu schreiben? äöü
                SchreibeOptionen.Musik (MusikExtern => GewählterTon);
                EinlesenMusikLogik.EinlesenMusik;
                SchreibenEinstellungenLogik.Nutzereinstellungen;
+               return True;
             end if;
             
          when False =>
@@ -133,11 +166,14 @@ package body OptionenSoundLogik is
       
       SchreibeMusiktask.NeueMusikart (MusikExtern => TonDatentypen.Musik_Spiel_Enum);
       
+      return False;
+      
    end MusikWechseln;
    
    
    
-   procedure SoundWechseln
+   function SoundWechseln
+     return Boolean
    is begin
       
       case
@@ -147,21 +183,23 @@ package body OptionenSoundLogik is
             GewählterTon := SetauswahlLogik.Setauswahl (SpracheExtern => False);
             
             if
-              GewählterTon = TextKonstanten.LeerUnboundedString
+              GewählterTon = TextKonstantenHTSEB.LeerUnboundedString
             then
                null;
                
             else
                -- Das hier als Funktion aufrufen um bei Fehlern nicht den falschen Wert zu schreiben? äöü
-               -- Würde eher nein sagen aktuell. äöü
                SchreibeOptionen.Sound (SoundExtern => GewählterTon);
                EinlesenSoundsLogik.EinlesenSounds;
                SchreibenEinstellungenLogik.Nutzereinstellungen;
+               return True;
             end if;
             
          when False =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenSoundLogik.SoundWechseln: Sound nicht gefunden.");
       end case;
+      
+      return False;
       
    end SoundWechseln;
 

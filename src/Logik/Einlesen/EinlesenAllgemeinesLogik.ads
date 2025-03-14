@@ -3,11 +3,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Ada.Directories;
 
-with Sf.Graphics;
-
-private with Sf;
-private with Sf.Graphics.Texture;
-
 package EinlesenAllgemeinesLogik is
    pragma Elaborate_Body;
 
@@ -41,13 +36,14 @@ package EinlesenAllgemeinesLogik is
                  DateinameExtern'Length > 0
               );
 
-   function TexturFestlegen
-     (TexturenAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      TexturenpfadExtern : in String)
-      return Sf.Graphics.sfTexture_Ptr
+   function DateinamenEinlesenUngebunden
+     (DateiExtern : in File_Type;
+      AktuelleZeileExtern : in Positive;
+      DateinameExtern : in Wide_Wide_String)
+      return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 TexturenpfadExtern'Length > 0
+                 DateinameExtern'Length > 0
               );
 
 private
@@ -56,7 +52,5 @@ private
    Prüfungssuche : Search_Type;
 
    Verzeichnisprüfung : Directory_Entry_Type;
-
-   MaximaleTexturengröße : constant Sf.sfUint32 := Sf.Graphics.Texture.getMaximumSize;
 
 end EinlesenAllgemeinesLogik;
