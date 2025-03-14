@@ -157,6 +157,7 @@ package body OptionenSoundLogik is
                SchreibeOptionen.Musik (MusikExtern => GewählterTon);
                EinlesenMusikLogik.EinlesenMusik;
                SchreibenEinstellungenLogik.Nutzereinstellungen;
+               SchreibeMusiktask.NeueMusikart (MusikExtern => TonDatentypen.Musik_Spiel_Enum);
                return True;
             end if;
             
@@ -164,6 +165,8 @@ package body OptionenSoundLogik is
             MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenSoundLogik.MusikWechseln: Musik nicht gefunden.");
       end case;
       
+      -- In dem Fall einfach versuchen Standard zu verwenden? äöü
+      -- Aich bei Sounds und Texturen? äöü
       SchreibeMusiktask.NeueMusikart (MusikExtern => TonDatentypen.Musik_Spiel_Enum);
       
       return False;

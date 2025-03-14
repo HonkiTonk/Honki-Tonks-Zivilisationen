@@ -10,7 +10,7 @@ with EinheitenDatentypen;
 with LeseOptionen;
 
 with MeldungssystemHTSEB;
-with EinlesenAllgemeinesLogik;
+with EinlesenAllgemeinesHTSEB;
 
 package body EinlesenTextLogik is
 
@@ -113,7 +113,7 @@ package body EinlesenTextLogik is
       for WelcheDateienSchleifenwert in 1 .. AnzahlTextdateien loop
 
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiVerzeichnisse,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiVerzeichnisse,
                                                             AktuelleZeileExtern => WelcheDateienSchleifenwert,
                                                             DateinameExtern     => "EinlesenTextLogik.Einlesen")
          is
@@ -124,7 +124,7 @@ package body EinlesenTextLogik is
             when False =>
                EinlesenAufteilen (WelcheDateiExtern => WelcheDateienSchleifenwert,
                                   VerzeichnisExtern => VerzeichnisExtern,
-                                  DateinameExtern   => EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiVerzeichnisse,
+                                  DateinameExtern   => EinlesenAllgemeinesHTSEB.TextEinlesen (DateiExtern         => DateiVerzeichnisse,
                                                                                               AktuelleZeileExtern => WelcheDateienSchleifenwert,
                                                                                               DateinameExtern     => "EinlesenTextLogik.Einlesen"),
                                   EinsprachigExtern => EinsprachigExtern);
@@ -209,7 +209,7 @@ package body EinlesenTextLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenTextLogik.Ersetzungen")
          is
@@ -218,7 +218,7 @@ package body EinlesenTextLogik is
                return;
                
             when False =>
-               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+               Zwischenspeicher := EinlesenAllgemeinesHTSEB.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
                                                                                     AktuelleZeileExtern => EinzulesendeZeile,
                                                                                     DateinameExtern     => "EinlesenTextLogik.Ersetzungen");
                EinzulesendeZeile := EinzulesendeZeile + 1;
@@ -263,7 +263,7 @@ package body EinlesenTextLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenTextLogik.Menüs")
          is
@@ -272,7 +272,7 @@ package body EinlesenTextLogik is
                return;
                
             when False =>
-               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesHTSEB.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
                                                                                                                 AktuelleZeileExtern => EinzulesendeZeile,
                                                                                                                 DateinameExtern     => "EinlesenTextLogik.Menüs"));
                EinzulesendeZeile := EinzulesendeZeile + 1;
@@ -458,7 +458,7 @@ package body EinlesenTextLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenTextLogik.AllgemeineTexte")
          is
@@ -467,7 +467,7 @@ package body EinlesenTextLogik is
                return;
                
             when False =>
-               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesHTSEB.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
                                                                                                                 AktuelleZeileExtern => EinzulesendeZeile,
                                                                                                                 DateinameExtern     => "EinlesenTextLogik.AllgemeineTexte"));
                EinzulesendeZeile := EinzulesendeZeile + 1;
@@ -562,7 +562,7 @@ package body EinlesenTextLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenTextLogik.Sequenzen")
          is
@@ -571,7 +571,7 @@ package body EinlesenTextLogik is
                return;
                
             when False =>
-               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesHTSEB.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
                                                                                                                 AktuelleZeileExtern => EinzulesendeZeile,
                                                                                                                 DateinameExtern     => "EinlesenTextLogik.Sequenzen"));
                EinzulesendeZeile := EinzulesendeZeile + 1;
@@ -631,7 +631,7 @@ package body EinlesenTextLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenTextLogik.Karte")
          is
@@ -640,7 +640,7 @@ package body EinlesenTextLogik is
                return;
                
             when False =>
-               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesHTSEB.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
                                                                                                                 AktuelleZeileExtern => EinzulesendeZeile,
                                                                                                                 DateinameExtern     => "EinlesenTextLogik.Karte"));
                EinzulesendeZeile := EinzulesendeZeile + 1;
@@ -739,7 +739,7 @@ package body EinlesenTextLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenTextLogik.Spezies")
          is
@@ -748,7 +748,7 @@ package body EinlesenTextLogik is
                return;
                
             when False =>
-               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesHTSEB.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
                                                                                                                 AktuelleZeileExtern => EinzulesendeZeile,
                                                                                                                 DateinameExtern     => "EinlesenTextLogik.Spezies"));
                EinzulesendeZeile := EinzulesendeZeile + 1;
@@ -894,7 +894,7 @@ package body EinlesenTextLogik is
    
    
    
-   -- Das nach EinlesenAllgemeinesLogik verschieben? äöü
+   -- Das nach EinlesenAllgemeinesHTSEB verschieben? äöü
    -- Wird vermutlich nur hier jemals gebraucht werden, also hier lassen? äöü
    function Einsprachig
      (EinsprachigExtern : in Boolean;

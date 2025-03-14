@@ -11,7 +11,7 @@ with EingeleseneTexturenGrafik;
 
 with LeseOptionen;
 
-with EinlesenAllgemeinesLogik;
+with EinlesenAllgemeinesHTSEB;
 with TexturenfelderBerechnenGrafik;
 
 -- Unter Windows funktionieren UTF8 Namen bei den Texturdateien nicht und es kommt zu einem Absturz, das beim Benennen der Texturen berücksichtigen.
@@ -43,7 +43,7 @@ package body EinlesenTexturenLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiTexturen,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiTexturen,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenTexturenLogik.EinlesenTexturen")
          is
@@ -52,7 +52,7 @@ package body EinlesenTexturenLogik is
                exit TexturenSchleife;
                
             when False =>
-               Dateiname := EinlesenAllgemeinesLogik.DateinamenEinlesenUngebunden (DateiExtern         => DateiTexturen,
+               Dateiname := EinlesenAllgemeinesHTSEB.DateinamenEinlesenUngebunden (DateiExtern         => DateiTexturen,
                                                                                    AktuelleZeileExtern => EinzulesendeZeile,
                                                                                    DateinameExtern     => "EinlesenTexturenLogik.EinlesenTexturen");
                GesamterPfad := VerzeichnisKonstanten.Grafik & LeseOptionen.Texturen & "/" & Dateiname;

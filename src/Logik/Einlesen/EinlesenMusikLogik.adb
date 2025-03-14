@@ -10,13 +10,12 @@ with VerzeichnisKonstanten;
 
 with LeseOptionen;
 
-with EinlesenAllgemeinesLogik;
+with EinlesenAllgemeinesHTSEB;
 with EinstellungenMusik;
 
 -- Unter Windows funktionieren UTF8 Namen bei den Musikdateien nicht und es kommt zu einem Absturz, das beim Benennen der Lieder berücksichtigen.
 package body EinlesenMusikLogik is
 
-   -- Unter Windows startet die Musik nicht mehr nach einem Wechsel, herausfinden warum! äöü
    procedure EinlesenMusik
    is begin
       
@@ -43,7 +42,7 @@ package body EinlesenMusikLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiMusik,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiMusik,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenMusikLogik.EinlesenMusik")
          is
@@ -52,7 +51,7 @@ package body EinlesenMusikLogik is
                exit MusikSchleife;
                
             when False =>
-               Dateiname := EinlesenAllgemeinesLogik.DateinamenEinlesenUngebunden (DateiExtern         => DateiMusik,
+               Dateiname := EinlesenAllgemeinesHTSEB.DateinamenEinlesenUngebunden (DateiExtern         => DateiMusik,
                                                                                    AktuelleZeileExtern => EinzulesendeZeile,
                                                                                    DateinameExtern     => "EinlesenMusikLogik.EinlesenMusik");
                GesamterPfad := VerzeichnisKonstanten.Musik & LeseOptionen.Musik & "/" & Dateiname;

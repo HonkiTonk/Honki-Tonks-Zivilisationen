@@ -49,7 +49,9 @@ package EinlesenAllgemeinesHTSEB is
 private
    use Ada.Directories;
 
-   Prüfungssuche : Search_Type;
+   -- Das verursacht Probleme, warum auch immer. äöü
+   -- Mal Nachprüfen. äöü
+   -- Prüfungssuche : Search_Type;
 
    Verzeichnisprüfung : Directory_Entry_Type;
 

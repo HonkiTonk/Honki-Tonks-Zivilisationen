@@ -2,6 +2,8 @@ with Ada.Task_Identification; use Ada.Task_Identification;
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Text_IO; use Ada.Text_IO;
 
+with MeldungSchreibenHTSEB;
+
 with ZeitKonstanten;
 with Projekteinstellungen;
 
@@ -12,7 +14,6 @@ with Grafik;
 with Musik;
 with Sound;
 
-with MeldungSchreibenHTSEB;
 with StartEndeSound;
 -- with StartEndeMusik;
 with SchreibenEinstellungenLogik;

@@ -12,7 +12,7 @@ with TonDatentypen;
 with LeseOptionen;
 
 with EingeleseneSounds;
-with EinlesenAllgemeinesLogik;
+with EinlesenAllgemeinesHTSEB;
 with EinstellungenSound;
 
 -- Unter Windows funktionieren UTF8 Namen bei den Sounddateien nicht, aber es kommt nicht zu einem Absturz, das beim Benennen der Sounds berücksichtigen.
@@ -44,7 +44,7 @@ package body EinlesenSoundsLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSounds,
+           EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiSounds,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
                                                             DateinameExtern     => "EinlesenSoundsLogik.EinlesenSounds")
          is
@@ -54,7 +54,7 @@ package body EinlesenSoundsLogik is
                exit SoundsSchleife;
                
             when False =>
-               Dateiname := EinlesenAllgemeinesLogik.DateinamenEinlesenUngebunden (DateiExtern         => DateiSounds,
+               Dateiname := EinlesenAllgemeinesHTSEB.DateinamenEinlesenUngebunden (DateiExtern         => DateiSounds,
                                                                                    AktuelleZeileExtern => EinzulesendeZeile,
                                                                                    DateinameExtern     => "EinlesenSoundsLogik.EinlesenSounds");
                GesamterPfad := VerzeichnisKonstanten.Sound & LeseOptionen.Sound & "/" & Dateiname;

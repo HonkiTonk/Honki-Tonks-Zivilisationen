@@ -6,13 +6,13 @@ with DateizugriffssystemHTSEB;
 with TextKonstantenHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
+with EinlesenAllgemeinesHTSEB;
 
 with VerzeichnisKonstanten;
 with EinstellungenGrafik;
 
 with LeseOptionen;
 
-with EinlesenAllgemeinesLogik;
 with TextaccesseSchriftartGrafik;
 
 -- Das hier auch mal in Lesen und Schreiben aufteilen? äöü
@@ -22,7 +22,7 @@ package body TexteinstellungenGrafik is
    is
       use Ada.Directories;
    begin
-      
+            
       AktuelleSprache := LeseOptionen.Sprache;
         
       if
@@ -103,7 +103,7 @@ package body TexteinstellungenGrafik is
       end case;
       
       case
-        EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSchriftart,
+        EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiSchriftart,
                                                          AktuelleZeileExtern => 1,
                                                          DateinameExtern     => "TexteinstellungenGrafik.EigeneSchriftartVerwenden")
       is
@@ -111,7 +111,7 @@ package body TexteinstellungenGrafik is
             MeldungssystemHTSEB.Logik (MeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlender Fontname");
                
          when False =>
-            EigeneSchriftart := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiSchriftart,
+            EigeneSchriftart := EinlesenAllgemeinesHTSEB.TextEinlesenUngebunden (DateiExtern         => DateiSchriftart,
                                                                                  AktuelleZeileExtern => 1,
                                                                                  DateinameExtern     => "TexteinstellungenGrafik.EigeneSchriftartVerwenden");
             

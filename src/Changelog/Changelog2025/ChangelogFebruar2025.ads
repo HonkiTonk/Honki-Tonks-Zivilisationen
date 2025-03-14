@@ -106,17 +106,18 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (13.02.2025):
+   -- Version 0.06.1400 => 0.06. (13.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1365 => 0.06. (12.02.2025):
+   -- Version 0.06.1365 => 0.06.1400 (12.02.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- EinlesenAllgemeinesLogik vollständig durch die SEB Version ersetzt.
+   -- Fehler korrigiert der verhinderte dass die Musik wieder startete nachdem man das Musikset gewechselt hat.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

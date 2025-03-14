@@ -50,7 +50,7 @@ package body EinlesenSetsLogik is
              
          elsif
            -- Das ausgeklammerte unten drunter funktioniert unter Windwos nicht, wenn man Sonderzeichen verwendet.
-           -- EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => OrdnerExtern & "/" & Simple_Name (Directory_Entry => Verzeichnis)) = True
+           -- EinlesenAllgemeinesHTSEB.LeeresVerzeichnis (VerzeichnisExtern => OrdnerExtern & "/" & Simple_Name (Directory_Entry => Verzeichnis)) = True
            Exists (Name => OrdnerExtern & "/" & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei) = False
          then
             null;
