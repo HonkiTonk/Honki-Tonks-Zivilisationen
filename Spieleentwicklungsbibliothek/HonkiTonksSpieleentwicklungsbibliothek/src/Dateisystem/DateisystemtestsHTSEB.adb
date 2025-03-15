@@ -28,7 +28,7 @@ package body DateisystemtestsHTSEB is
                return True;
                
             else
-               MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamentestsHTSEB.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
+               MeldungssystemHTSEB.Logik (MeldungExtern => "DateisystemtestsHTSEB.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
             
@@ -39,7 +39,7 @@ package body DateisystemtestsHTSEB is
                return True;
                
             else
-               MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamentestsHTSEB.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
+               MeldungssystemHTSEB.Logik (MeldungExtern => "DateisystemtestsHTSEB.GültigeZeichenlänge: Gültige Zeichenlänge überschritten: " & To_Wide_Wide_String (Source => WindowsTextExtern));
                return False;
             end if;
       end case;
@@ -62,7 +62,7 @@ package body DateisystemtestsHTSEB is
       --   elsif
         Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisDateinameExtern)) = False
       then
-         MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamentestsHTSEB.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
+         MeldungssystemHTSEB.Logik (MeldungExtern => "DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
          return False;
             
       else
@@ -88,7 +88,7 @@ package body DateisystemtestsHTSEB is
       elsif
         Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => WindowsTextExtern)) = False
       then
-         MeldungssystemHTSEB.Logik (MeldungExtern => "VerzeichnisDateinamentestsHTSEB.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
+         MeldungssystemHTSEB.Logik (MeldungExtern => "DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: " & WindowsTextExtern);
          return False;
             
       else

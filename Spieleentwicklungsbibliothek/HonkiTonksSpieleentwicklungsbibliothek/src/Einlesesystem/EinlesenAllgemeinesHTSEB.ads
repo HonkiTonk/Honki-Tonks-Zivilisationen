@@ -1,8 +1,6 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with Ada.Directories;
-
 package EinlesenAllgemeinesHTSEB is
    pragma Elaborate_Body;
 
@@ -45,14 +43,5 @@ package EinlesenAllgemeinesHTSEB is
        Pre => (
                  DateinameExtern'Length > 0
               );
-
-private
-   use Ada.Directories;
-
-   -- Das verursacht Probleme, warum auch immer. äöü
-   -- Mal Nachprüfen. äöü
-   -- Prüfungssuche : Search_Type;
-
-   Verzeichnisprüfung : Directory_Entry_Type;
 
 end EinlesenAllgemeinesHTSEB;
