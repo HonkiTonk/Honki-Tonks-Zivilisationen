@@ -1,3 +1,5 @@
+with MeldungssystemHTSEB;
+
 with GrafikDatentypen;
 with TonDatentypen;
 with MenueDatentypen;
@@ -11,7 +13,6 @@ with SpieleinstellungenLogik;
 with SpielLogik;
 with LadenLogik;
 with AuswahlaufteilungLogik;
-with MeldungssystemHTSEB;
 with DatenbankeneditorenLogik;
 
 package body HauptmenueLogik is

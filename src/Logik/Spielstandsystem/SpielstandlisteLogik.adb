@@ -22,6 +22,8 @@ with JaNeinLogik;
 with SpielstandEntfernenLogik;
 with UmwandlungenVerzeichnisse;
 
+with DiagnosesystemHTSEB;
+
 package body SpielstandlisteLogik is
 
    -- Noch einen Weg finden die Spielstände nach Datum/Name zu sortieren. äöü
@@ -29,7 +31,7 @@ package body SpielstandlisteLogik is
      (SpeichernLadenExtern : in Boolean)
       return Unbounded_Wide_Wide_String
    is begin
-      
+            
       LöschenAktiv := False;
             
       SpielstandSchleife:
@@ -96,6 +98,7 @@ package body SpielstandlisteLogik is
                else
                   AktuellerSpielstand := AktuellerSpielstand + 1;
                end if;
+               DiagnosesystemHTSEB.Zahl (1);
                
             end loop SpeicherdateiSchleife;
                                     

@@ -449,7 +449,7 @@ package body DateisystemtestsHTSEB is
          for SchreibartenFünfSchleifenwert in 0 .. 7 loop
             
             -- Standard ist alles groß.
-            FünferText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenFünf (VerbotenenamenFünfSchleifenwert));
+            FünferText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenFünf (VerbotenenamenFünfSchleifenwert)) (1 .. 5);
             
             case
               SchreibartenFünfSchleifenwert
