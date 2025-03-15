@@ -1,4 +1,4 @@
-# Honki-Tonks-Spieleentwicklungsbibliothek - Version: 0.01.0450
+# Honki-Tonks-Spieleentwicklungsbibliothek - Version: 0.01.0470
 
 Eine verallgemeinerte Sammlung an Code den ich für [Honki Tonks Zivilisationen](https://github.com/HonkiTonk/Honki-Tonks-Zivilisationen) geschrieben habe, aber meiner Meinung nach auch für weitere Spiele nützlich ist.
 

@@ -1,9 +1,15 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.0450 => 0.01. ():
+   -- Version 0.01.0470 => 0.01. ():
    
    -- 
+   
+   
+   
+   -- Version 0.01.0450 => 0.01.0470 (15.03.2025):
+   
+   -- Fehler in DateisystemtestsHTSEB.NamenprüfungenWindows korrigiert.
    
    
    
