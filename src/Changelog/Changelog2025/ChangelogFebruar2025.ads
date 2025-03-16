@@ -78,16 +78,16 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (17.02.2025):
+   -- Version 0.06.1520 => 0.06. (17.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1495 => 0.06. (16.02.2025):
+   -- Version 0.06.1495 => 0.06.1520 (16.02.2025):
    
-   -- 
+   -- GNAT aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
