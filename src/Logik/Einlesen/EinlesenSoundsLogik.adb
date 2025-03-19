@@ -5,6 +5,7 @@ with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
 with TextKonstantenHTSEB;
 with MeldungssystemHTSEB;
+with EinlesenAllgemeinesHTSEB;
 
 with VerzeichnisKonstanten;
 with TonDatentypen;
@@ -12,7 +13,6 @@ with TonDatentypen;
 with LeseOptionen;
 
 with EingeleseneSounds;
-with EinlesenAllgemeinesHTSEB;
 with EinstellungenSound;
 
 -- Unter Windows funktionieren UTF8 Namen bei den Sounddateien nicht, aber es kommt nicht zu einem Absturz, das beim Benennen der Sounds berücksichtigen.
@@ -61,35 +61,34 @@ package body EinlesenSoundsLogik is
                EinzulesendeZeile := EinzulesendeZeile + 1;
          end case;
                   
-         if
-           Dateiname = TextKonstantenHTSEB.LeerUnboundedString
-           or else
-             To_Wide_Wide_String (Source => Dateiname) (1) = TextKonstantenHTSEB.TrennzeichenTextdateien
-         then
-            null;
+         case
+           EinlesenAllgemeinesHTSEB.ZeileVerwenden (DateinameExtern => Dateiname)
+         is
+            when False =>
+               null;
                
-         else
-            if
-              False = DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
-                                                                     WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
-            then
-               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Datei oder Pfad existiert nicht");
+            when True =>
+               if
+                 False = DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                                                                        WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+               then
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Datei oder Pfad existiert nicht");
                   
-            else
-               EingeleseneSounds.SoundbufferAccesse (TonDatentypen.Sound_Vorhanden_Enum'Val (AktuelleZeile))
-                 := SoundAccessFestlegen (SoundAccessExtern => EingeleseneSounds.SoundbufferAccesse (TonDatentypen.Sound_Vorhanden_Enum'Val (AktuelleZeile)),
-                                          SoundpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
-            end if;
+               else
+                  EingeleseneSounds.SoundbufferAccesse (TonDatentypen.Sound_Vorhanden_Enum'Val (AktuelleZeile))
+                    := SoundAccessFestlegen (SoundAccessExtern => EingeleseneSounds.SoundbufferAccesse (TonDatentypen.Sound_Vorhanden_Enum'Val (AktuelleZeile)),
+                                             SoundpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+               end if;
                
-            if
-              AktuelleZeile < TonDatentypen.Sound_Vorhanden_Enum'Pos (EingeleseneSounds.SoundbufferAccesse'Last)
-            then
-               AktuelleZeile := AktuelleZeile + 1;
+               if
+                 AktuelleZeile < TonDatentypen.Sound_Vorhanden_Enum'Pos (EingeleseneSounds.SoundbufferAccesse'Last)
+               then
+                  AktuelleZeile := AktuelleZeile + 1;
                      
-            else
-               exit SoundsSchleife;
-            end if;
-         end if;
+               else
+                  exit SoundsSchleife;
+               end if;
+         end case;
          
       end loop SoundsSchleife;
             

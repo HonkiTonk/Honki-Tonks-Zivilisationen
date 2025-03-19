@@ -1,5 +1,7 @@
 with Sf.Graphics.Text;
 
+with MeldungssystemHTSEB;
+
 with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
@@ -23,6 +25,9 @@ with TextaccessverwaltungssystemEinfachGrafik;
 with SteuerungsauswahlLogik;
 with TextaccessverwaltungssystemErweitertGrafik;
 with FensterGrafik;
+
+with DiagnosesystemZusatzinformationen;
+with DiagnosesystemHTSEB;
 
 package body SteuerungsmenueGrafik is
 
@@ -56,14 +61,17 @@ package body SteuerungsmenueGrafik is
       
       -- Nicht der Anzeigestart muss geändert werden, sondern ich muss move verwenden, vermutlich. äöü
       
-     -- if
-    --    AuswahlExtern.Zweitauswahl /= 0
-   --   then
-   --      Bewegung := 0.00; -- 1.00 - 1.00 / Float (AuswahlExtern.Zweitauswahl);
-         
-    --  else
-    --     null;
-    --  end if;
+      DiagnosesystemHTSEB.Zahl (AuswahlExtern.Zweitauswahl);
+      
+      case
+        AuswahlExtern.Zweitauswahl
+      is
+         when InteraktionAuswahl.PositionenSteuerungsleiste'Range =>
+            Bewegung.y := (Float (AuswahlExtern.Zweitauswahl) - 1.00) * 100.00;
+            
+         when others =>
+            null;
+      end case;
       
       AktuelleAuflösungshöhe := FensterGrafik.AktuelleAuflösung.y;
       
@@ -76,9 +84,14 @@ package body SteuerungsmenueGrafik is
          null;
       end if;
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungAuswahl),
-                                            GrößeExtern          => ViewflächeBelegung,
-                                            AnzeigebereichExtern => Anzeigebereich);
+      ViewsEinstellenGrafik.ViewEinstellenBewegen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungAuswahl),
+                                                   GrößeExtern          => ViewflächeBelegung,
+                                                   BewegungExtern       => Bewegung,
+                                                   AnzeigebereichExtern => Anzeigebereich);
+      
+      -- ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungAuswahl),
+      --                                       GrößeExtern          => ViewflächeBelegung,
+      --                                       AnzeigebereichExtern => Anzeigebereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                     AbmessungenExtern => ViewflächeBelegung);
@@ -90,19 +103,8 @@ package body SteuerungsmenueGrafik is
       
       
       -- Zum Scrollen.
-      ViewflächeScrollen := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeScrollen,
-                                                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungScrollleiste).width,
-                                                                                                                       GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungScrollleiste).height));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste),
-                                            GrößeExtern          => ViewflächeScrollen,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungScrollleiste));
-      
-      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
-                                    AbmessungenExtern => ViewflächeScrollen);
-      
-      ViewflächeScrollen.y := Scrollen;
-      
+      Scrollen (BelegungslängeExtern => ViewflächeBelegung.y);
+                  
    end Steuerungsmenü;
    
    
@@ -280,11 +282,56 @@ package body SteuerungsmenueGrafik is
    
    
    
-   function Scrollen
-     return Float
+   procedure Scrollen
+     (BelegungslängeExtern : in Float)
    is begin
       
-      return 1.00;
+      ViewflächeScrollen := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeScrollen,
+                                                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungScrollleiste).width,
+                                                                                                                       GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungScrollleiste).height));
+      
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste),
+                                            GrößeExtern          => ViewflächeScrollen,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungScrollleiste));
+      
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
+                                    AbmessungenExtern => ViewflächeScrollen);
+      
+      if
+        BelegungslängeExtern <= AktuelleAuflösungshöhe
+      then
+         return;
+         
+      else
+         DiagnosesystemHTSEB.Kommazahl (BelegungslängeExtern);
+         Durchläufe := 2;
+      end if;
+      
+      while BelegungslängeExtern > 100.00 * Float (Durchläufe) loop
+         
+         Durchläufe := Durchläufe + 1;
+         
+      end loop;
+      
+      if
+        Durchläufe > InteraktionAuswahl.PositionenSteuerungsleiste'Last
+      then
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "SteuerungsmenueGrafik.Scrollen: Zu viele Durchläufe, erlaubt: " & InteraktionAuswahl.PositionenSteuerungsleiste'Last'Wide_Wide_Image
+                                     & " notwendig: " & Durchläufe'Wide_Wide_Image);
+         return;
+         
+      else
+         null;
+      end if;
+      
+      for Schleifenwert in InteraktionAuswahl.PositionenSteuerungsleiste'First .. Durchläufe loop
+         
+         InteraktionAuswahl.PositionenSteuerungsleiste (Schleifenwert) := (0.00, Float (Schleifenwert - 1) * 100.00, ViewflächeScrollen.x, Float (Schleifenwert) * 100.00);
+         DiagnosesystemZusatzinformationen.KommaBoxinformationen (InteraktionAuswahl.PositionenSteuerungsleiste (Schleifenwert));
+         
+      end loop;
+      
+      ViewflächeScrollen.y := BelegungslängeExtern;
       
    end Scrollen;
 

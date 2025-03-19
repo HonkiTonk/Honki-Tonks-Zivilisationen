@@ -27,6 +27,30 @@ package body ViewsEinstellenGrafik is
    
    
    
+   procedure ViewEinstellenBewegen
+     (ViewExtern : in Sf.Graphics.sfView_Ptr;
+      GrößeExtern : in Sf.System.Vector2.sfVector2f;
+      BewegungExtern : in Sf.System.Vector2.sfVector2f;
+      AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect)
+   is begin
+      
+      Sf.Graphics.View.setSize (view => ViewExtern,
+                                size => GrößeExtern);
+      Sf.Graphics.View.setCenter (view   => ViewExtern,
+                                  center => (GrößeExtern.x / GrafikKonstanten.Halbierung, GrößeExtern.y / GrafikKonstanten.Halbierung));
+      Sf.Graphics.View.setViewport (view     => ViewExtern,
+                                    viewport => AnzeigebereichExtern);
+      
+      Sf.Graphics.View.move (view   => ViewExtern,
+                             offset => BewegungExtern);
+      
+      Sf.Graphics.RenderWindow.setView (renderWindow => FensterGrafik.FensterLesen,
+                                        view         => ViewExtern);
+      
+   end ViewEinstellenBewegen;
+   
+   
+   
    procedure ViewSetzen
      (ViewExtern : in Sf.Graphics.sfView_Ptr)
    is begin

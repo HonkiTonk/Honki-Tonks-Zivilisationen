@@ -27,6 +27,28 @@ package ViewsEinstellenGrafik is
                  AnzeigebereichExtern.height >= 0.00
               );
    
+   procedure ViewEinstellenBewegen
+     (ViewExtern : in Sf.Graphics.sfView_Ptr;
+      GrößeExtern : in Sf.System.Vector2.sfVector2f;
+      BewegungExtern : in Sf.System.Vector2.sfVector2f;
+      AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect)
+     with
+       Pre => (
+                 ViewExtern /= null
+               and
+                 GrößeExtern.x >= 0.00
+               and
+                 GrößeExtern.y >= 0.00
+               and
+                 AnzeigebereichExtern.left >= 0.00
+               and
+                 AnzeigebereichExtern.top >= 0.00
+               and
+                 AnzeigebereichExtern.width >= 0.00
+               and
+                 AnzeigebereichExtern.height >= 0.00
+              );
+   
    procedure ViewSetzen
      (ViewExtern : in Sf.Graphics.sfView_Ptr)
      with

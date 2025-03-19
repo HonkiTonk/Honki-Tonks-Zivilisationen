@@ -271,17 +271,23 @@ package body MausauswahlLogik is
                                                                  point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                  view         => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste));
       
-      case
-        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    RechteckExtern     => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste)).x,
-                                                           Sf.Graphics.View.getSize (view => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste)).y))
-      is
-         when True =>
-            return (AuswahlKonstanten.LeerAuswahl, 2);
-            
-         when False =>
-            return (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl);
-      end case;
+      LeisteSchleife:
+      for LeisteSchleifenwert in InteraktionAuswahl.PositionenSteuerungsleiste'Range loop
+                  
+         case
+           Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                       RechteckExtern     => InteraktionAuswahl.PositionenSteuerungsleiste (LeisteSchleifenwert))
+         is
+            when True =>
+               return (AuswahlKonstanten.LeerAuswahl, LeisteSchleifenwert);
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop LeisteSchleife;
+      
+      return (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl);
       
    end Steuerung;
    

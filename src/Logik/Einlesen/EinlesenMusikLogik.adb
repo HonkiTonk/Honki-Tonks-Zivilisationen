@@ -5,12 +5,12 @@ with DateizugriffssystemHTSEB;
 with UmwandlungssystemHTSEB;
 with DateisystemtestsHTSEB;
 with TextKonstantenHTSEB;
+with EinlesenAllgemeinesHTSEB;
 
 with VerzeichnisKonstanten;
 
 with LeseOptionen;
 
-with EinlesenAllgemeinesHTSEB;
 with EinstellungenMusik;
 
 -- Unter Windows funktionieren UTF8 Namen bei den Musikdateien nicht und es kommt zu einem Absturz, das beim Benennen der Lieder berücksichtigen.
@@ -58,52 +58,51 @@ package body EinlesenMusikLogik is
                EinzulesendeZeile := EinzulesendeZeile + 1;
          end case;
          
-         if
-           Dateiname = TextKonstantenHTSEB.LeerUnboundedString
-           or else
-             To_Wide_Wide_String (Source => Dateiname) (1) = TextKonstantenHTSEB.TrennzeichenTextdateien
-         then
-            null;
+         case
+           EinlesenAllgemeinesHTSEB.ZeileVerwenden (DateinameExtern => Dateiname)
+         is
+            when False =>
+               null;
                
-         else
-            if
-              False = DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
-                                                                     WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
-            then
-               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Datei oder Pfad existiert nicht");
+            when True =>
+               if
+                 False = DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                                                                        WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+               then
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Datei oder Pfad existiert nicht");
             
-            elsif
-              AktuelleZeile in IntromusikAnfang .. IntromusikEnde
-            then
-               EingeleseneMusik.Intromusik (AktuelleZeile) := MusikFestlegen (MusicAccessExtern => EingeleseneMusik.Intromusik (AktuelleZeile),
-                                                                              MusikpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+               elsif
+                 AktuelleZeile in IntromusikAnfang .. IntromusikEnde
+               then
+                  EingeleseneMusik.Intromusik (AktuelleZeile) := MusikFestlegen (MusicAccessExtern => EingeleseneMusik.Intromusik (AktuelleZeile),
+                                                                                 MusikpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
-            elsif
-              AktuelleZeile in SpielmusikAnfang .. SpielmusikEnde
-            then
-               EingeleseneMusik.Spielmusik (AktuelleZeile - IntromusikEnde) := MusikFestlegen (MusicAccessExtern => EingeleseneMusik.Spielmusik (AktuelleZeile - IntromusikEnde),
-                                                                                               MusikpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+               elsif
+                 AktuelleZeile in SpielmusikAnfang .. SpielmusikEnde
+               then
+                  EingeleseneMusik.Spielmusik (AktuelleZeile - IntromusikEnde) := MusikFestlegen (MusicAccessExtern => EingeleseneMusik.Spielmusik (AktuelleZeile - IntromusikEnde),
+                                                                                                  MusikpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
-            elsif
-              AktuelleZeile in ForschungsmusikAnfang .. ForschungsmusikEnde
-            then
-               EingeleseneMusik.Forschungsmusik (AktuelleZeile - SpielmusikEnde) := MusikFestlegen (MusicAccessExtern => EingeleseneMusik.Forschungsmusik (AktuelleZeile - SpielmusikEnde),
-                                                                                                    MusikpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+               elsif
+                 AktuelleZeile in ForschungsmusikAnfang .. ForschungsmusikEnde
+               then
+                  EingeleseneMusik.Forschungsmusik (AktuelleZeile - SpielmusikEnde) := MusikFestlegen (MusicAccessExtern => EingeleseneMusik.Forschungsmusik (AktuelleZeile - SpielmusikEnde),
+                                                                                                       MusikpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                
-            else
-               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenMusik: Außerhalb des Einlesebereichs");
-               exit MusikSchleife;
-            end if;
+               else
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenMusik: Außerhalb des Einlesebereichs");
+                  exit MusikSchleife;
+               end if;
                
-            if
-              AktuelleZeile < ForschungsmusikEnde
-            then
-               AktuelleZeile := AktuelleZeile + 1;
+               if
+                 AktuelleZeile < ForschungsmusikEnde
+               then
+                  AktuelleZeile := AktuelleZeile + 1;
                      
-            else
-               exit MusikSchleife;
-            end if;
-         end if;
+               else
+                  exit MusikSchleife;
+               end if;
+         end case;
          
       end loop MusikSchleife;
             

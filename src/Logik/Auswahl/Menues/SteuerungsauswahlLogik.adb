@@ -25,8 +25,6 @@ package body SteuerungsauswahlLogik is
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Steuerung;
-         SchreibeGrafiktask.Gesamtauswahl (AuswahlExtern => AktuelleAuswahl);
-         
          AllgemeineAuswahl := TasteneingabeLogik.VereinfachteEingabe;
          
          case
@@ -42,6 +40,8 @@ package body SteuerungsauswahlLogik is
          if
            AktuelleAuswahl.Erstauswahl /= AuswahlKonstanten.LeerAuswahl
          then
+            SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl.Erstauswahl);
+            
             case
               AllgemeineAuswahl
             is
@@ -78,6 +78,8 @@ package body SteuerungsauswahlLogik is
          elsif
            AktuelleAuswahl.Zweitauswahl /= AuswahlKonstanten.LeerAuswahl
          then
+            SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AktuelleAuswahl.Zweitauswahl);
+            
             case
               AllgemeineAuswahl
             is

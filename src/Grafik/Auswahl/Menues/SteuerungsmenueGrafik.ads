@@ -24,8 +24,7 @@ private
    UnbekannteTaste : constant Positive := 191;
    ArrayAnfang : Positive;
    ArrayEnde : Positive;
-   
-   Bewegung : Float := 0.00;
+   Durchläufe : Positive;
       
    AktuelleBelegung : Sf.Window.Keyboard.sfKeyCode;
    
@@ -36,6 +35,7 @@ private
    ViewflächeAufteilung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeBelegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeScrollen : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   Bewegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.Nullposition;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    Farbe : Sf.Graphics.Color.sfColor;
@@ -48,6 +48,13 @@ private
                                              2 => MenueKonstanten.Einheitensteuerung,
                                              3 => MenueKonstanten.Stadtsteuerung
                                             );
+   
+   procedure Scrollen
+     (BelegungslängeExtern : in Float)
+     with
+       Pre => (
+                 BelegungslängeExtern >= 0.00
+              );
    
    
    
@@ -80,12 +87,5 @@ private
      (WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum;
       WelcheZeileExtern : in Positive)
       return Wide_Wide_String;
-   
-   function Scrollen
-     return Float
-     with
-       Post => (
-                  Scrollen'Result >= 0.00
-               );
 
 end SteuerungsmenueGrafik;

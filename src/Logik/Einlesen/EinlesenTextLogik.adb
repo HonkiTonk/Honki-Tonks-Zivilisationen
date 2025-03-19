@@ -1,5 +1,7 @@
 with DateizugriffssystemHTSEB;
 with DateisystemtestsHTSEB;
+with MeldungssystemHTSEB;
+with EinlesenAllgemeinesHTSEB;
 
 with VerzeichnisKonstanten;
 with SpeziesKonstanten;
@@ -8,9 +10,6 @@ with ForschungenDatentypen;
 with EinheitenDatentypen;
 
 with LeseOptionen;
-
-with MeldungssystemHTSEB;
-with EinlesenAllgemeinesHTSEB;
 
 package body EinlesenTextLogik is
 
@@ -134,42 +133,40 @@ package body EinlesenTextLogik is
                EinzulesendeDateizeile := EinzulesendeDateizeile + 1;
          end case;
          
-         if
-           Dateiname = TextKonstantenHTSEB.LeerUnboundedString
-           or else
-             To_Wide_Wide_String (Source => Dateiname) (1) = TextKonstantenHTSEB.TrennzeichenTextdateien
-         then
-            null;
-            
-         else
-            if
-              False = DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
-                                                                     WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
-            then
-               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Datei oder Pfad existiert nicht");
+         case
+           EinlesenAllgemeinesHTSEB.ZeileVerwenden (DateinameExtern => Dateiname)
+         is
+            when False =>
+               null;
                
-            elsif
-              AktuelleDateizeile in 1 .. AnzahlTextdateien
-            then
-               EinlesenAufteilen (WelcheDateiExtern => AktuelleDateizeile,
-                                  DateipfadExtern   => To_Wide_Wide_String (Source => GesamterPfad),
-                                  EinsprachigExtern => EinsprachigExtern);
+            when True =>
+               if
+                 False = DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                                                                        WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+               then
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Datei oder Pfad existiert nicht");
+               
+               elsif
+                 AktuelleDateizeile in 1 .. AnzahlTextdateien
+               then
+                  EinlesenAufteilen (WelcheDateiExtern => AktuelleDateizeile,
+                                     DateipfadExtern   => To_Wide_Wide_String (Source => GesamterPfad),
+                                     EinsprachigExtern => EinsprachigExtern);
             
-            else
-               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Außerhalb des Einlesebereichs");
-               exit EinlesenSchleife;
-            end if;
+               else
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Außerhalb des Einlesebereichs");
+                  exit EinlesenSchleife;
+               end if;
             
-            if
-              AktuelleDateizeile < AnzahlTextdateien
-            then
-               AktuelleDateizeile := AktuelleDateizeile + 1;
+               if
+                 AktuelleDateizeile < AnzahlTextdateien
+               then
+                  AktuelleDateizeile := AktuelleDateizeile + 1;
                      
-            else
-               exit EinlesenSchleife;
-            end if;
-            
-         end if;
+               else
+                  exit EinlesenSchleife;
+               end if;
+         end case;
 
       end loop EinlesenSchleife;
    

@@ -57,17 +57,18 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (20.02.2025):
+   -- Version 0.06.1650 => 0.06. (20.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1615 => 0.06. (19.02.2025):
+   -- Version 0.06.1615 => 0.06.1650 (19.02.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Standardprüfung nach einer Leerzeile oder dem Trennzeichen auf die SEB Version geändert.
+   -- Weiter am neuen Steuerungsmenü gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
