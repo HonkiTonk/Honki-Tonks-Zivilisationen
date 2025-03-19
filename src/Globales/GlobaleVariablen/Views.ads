@@ -29,7 +29,7 @@ package Views is
    MenüviewAccesse : constant ViewsArray (ViewKonstanten.MenüAuswahl .. ViewKonstanten.MenüZusatztext) := (others => Sf.Graphics.View.create);
 
    FragenviewAccesse : constant ViewsArray (ViewKonstanten.Frage .. ViewKonstanten.Antwort) := (others => Sf.Graphics.View.create);
-   SteuerungviewAccesse : constant ViewsArray (ViewKonstanten.SteuerungKategorie .. ViewKonstanten.SteuerungAuswahl) := (others => Sf.Graphics.View.create);
+   SteuerungviewAccesse : constant ViewsArray (ViewKonstanten.SteuerungKategorie .. ViewKonstanten.SteuerungScrollleiste) := (others => Sf.Graphics.View.create);
    SpielstandviewAccesse : constant ViewsArray (ViewKonstanten.SpielstandKategorie .. ViewKonstanten.SpielstandAuswahl) := (others => Sf.Graphics.View.create);
 
    WeltkarteAccesse : constant ViewsArray (ViewKonstanten.WeltKarte .. ViewKonstanten.WeltSeitenleiste) := (others => Sf.Graphics.View.create);

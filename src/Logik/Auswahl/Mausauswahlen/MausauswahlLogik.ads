@@ -7,6 +7,7 @@ with StadtRecords;
 with MenueDatentypen;
 with BefehleDatentypen;
 with TastenbelegungDatentypen;
+with SystemRecords;
 
 package MausauswahlLogik is
    pragma Elaborate_Body;
@@ -46,7 +47,7 @@ package MausauswahlLogik is
                );
    
    function Steuerung
-     return Integer;
+     return SystemRecords.DoppelauswahlRecord;
    
    function Weltkartenbefehle
      return TastenbelegungDatentypen.Weltkartenbefehle_Enum;

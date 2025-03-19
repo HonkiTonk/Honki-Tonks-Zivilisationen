@@ -9,6 +9,7 @@ with KartenRecords;
 with ZahlenDatentypen;
 with TextnummernKonstanten;
 with EinheitenRecords;
+with SystemRecords;
 
 -- Hier noch Contracts einbauen. äöü
 package LeseGrafiktask is
@@ -79,6 +80,9 @@ package LeseGrafiktask is
    
    function Endauswahl
      return ZahlenDatentypen.EigenesNatural;
+   
+   function Gesamtauswahl
+     return SystemRecords.DoppelauswahlRecord;
    
    function Erstauswahl
      return ZahlenDatentypen.EigenerInteger;

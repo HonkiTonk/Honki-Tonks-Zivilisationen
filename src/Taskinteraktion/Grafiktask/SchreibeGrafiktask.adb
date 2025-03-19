@@ -222,6 +222,17 @@ package body SchreibeGrafiktask is
    
    
    
+   procedure Gesamtauswahl
+     (AuswahlExtern : in SystemRecords.DoppelauswahlRecord)
+   is begin
+      
+      Erstauswahl (AuswahlExtern => AuswahlExtern.Erstauswahl);
+      Zweitauswahl (AuswahlExtern => AuswahlExtern.Zweitauswahl);
+      
+   end Gesamtauswahl;
+   
+   
+   
    procedure Erstauswahl
      (AuswahlExtern : in ZahlenDatentypen.EigenerInteger)
    is begin

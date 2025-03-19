@@ -14,6 +14,7 @@ package body SpielstandAllgemeinesLogik is
      return Unbounded_Wide_Wide_String
    is begin
      
+      SchreibeGrafiktask.Spielstandname (JaNeinExtern => True);
       SpielstandName := TexteingabeLogik.SpielstandName;
       SchreibeGrafiktask.Spielstandname (JaNeinExtern => False);
       

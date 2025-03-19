@@ -104,34 +104,75 @@ package body EinlesenTextLogik is
             return;
             
          when True =>
+            EinzulesendeDateizeile := 1;
+            AktuelleDateizeile := 1;
+            
+            
             DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiVerzeichnisse,
                                                   NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisExtern & "0"));
       end case;
       
-      -- Hier noch eine Prüfung für # und Leerzeile einbauen. äöü
       EinlesenSchleife:
-      for WelcheDateienSchleifenwert in 1 .. AnzahlTextdateien loop
+      loop
 
          case
            EinlesenAllgemeinesHTSEB.VorzeitigesDateienende (AktuelleDateiExtern => DateiVerzeichnisse,
-                                                            AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                            AktuelleZeileExtern => EinzulesendeDateizeile,
                                                             DateinameExtern     => "EinlesenTextLogik.Einlesen")
          is
             when True =>
-               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Fehlende Zeilen, aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                exit EinlesenSchleife;
                
             when False =>
-               EinlesenAufteilen (WelcheDateiExtern => WelcheDateienSchleifenwert,
-                                  VerzeichnisExtern => VerzeichnisExtern,
-                                  DateinameExtern   => EinlesenAllgemeinesHTSEB.TextEinlesen (DateiExtern         => DateiVerzeichnisse,
-                                                                                              AktuelleZeileExtern => WelcheDateienSchleifenwert,
-                                                                                              DateinameExtern     => "EinlesenTextLogik.Einlesen"),
-                                  EinsprachigExtern => EinsprachigExtern);
+               Dateiname := EinlesenAllgemeinesHTSEB.DateinamenEinlesenUngebunden (DateiExtern         => DateiVerzeichnisse,
+                                                                                   AktuelleZeileExtern => EinzulesendeDateizeile,
+                                                                                   DateinameExtern     => "EinlesenTextLogik.Einlesen");
+               GesamterPfad := VerzeichnisExtern & "/" & Dateiname;
+               
+               
+               EinzulesendeDateizeile := EinzulesendeDateizeile + 1;
          end case;
+         
+         if
+           Dateiname = TextKonstantenHTSEB.LeerUnboundedString
+           or else
+             To_Wide_Wide_String (Source => Dateiname) (1) = TextKonstantenHTSEB.TrennzeichenTextdateien
+         then
+            null;
+            
+         else
+            if
+              False = DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                                                                        WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+            then
+               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Datei oder Pfad existiert nicht");
+               
+            elsif
+              AktuelleDateizeile in 1 .. AnzahlTextdateien
+            then
+               EinlesenAufteilen (WelcheDateiExtern => AktuelleDateizeile,
+                                  DateipfadExtern   => To_Wide_Wide_String (Source => GesamterPfad),
+                                  EinsprachigExtern => EinsprachigExtern);
+            
+            else
+               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Außerhalb des Einlesebereichs");
+               exit EinlesenSchleife;
+            end if;
+            
+            if
+              AktuelleDateizeile < AnzahlTextdateien
+            then
+               AktuelleDateizeile := AktuelleDateizeile + 1;
+                     
+            else
+               exit EinlesenSchleife;
+            end if;
+            
+         end if;
 
       end loop EinlesenSchleife;
-            
+   
       DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiVerzeichnisse,
                                                NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisExtern & "0"));
       
@@ -141,22 +182,12 @@ package body EinlesenTextLogik is
    
    procedure EinlesenAufteilen
      (WelcheDateiExtern : in Positive;
-      VerzeichnisExtern : in Wide_Wide_String;
-      DateinameExtern : in Wide_Wide_String;
+      DateipfadExtern : in Wide_Wide_String;
       EinsprachigExtern : in Boolean)
    is begin
       
-      case
-        DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => DateinameExtern,
-                                                          WindowsTextExtern => VerzeichnisExtern & DateinameExtern)
-      is
-         when False =>
-            return;
-            
-         when True =>
-            DateizugriffssystemHTSEB.ÖffnenTextWideWide (DateiartExtern => DateiText,
-                                                          NameExtern     => VerzeichnisExtern & DateinameExtern);
-      end case;
+      DateizugriffssystemHTSEB.ÖffnenTextWideWide (DateiartExtern => DateiText,
+                                                    NameExtern     => DateipfadExtern);
       
       case
         WelcheDateiExtern
@@ -191,7 +222,7 @@ package body EinlesenTextLogik is
       end case;
             
       DateizugriffssystemHTSEB.SchließenTextWideWide (DateiartExtern => DateiText,
-                                                       NameExtern     => VerzeichnisExtern & DateinameExtern);
+                                                       NameExtern     => DateipfadExtern);
       
    end EinlesenAufteilen;
    

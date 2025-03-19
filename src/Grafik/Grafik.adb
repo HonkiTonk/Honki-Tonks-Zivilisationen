@@ -248,7 +248,7 @@ package body Grafik is
          
          when GrafikDatentypen.Menüs_Enum =>
             MenueaufteilungGrafik.Menüaufteilung (WelchesMenüExtern     => LeseGrafiktask.Menü,
-                                                   AktuelleAuswahlExtern => (LeseGrafiktask.Erstauswahl, LeseGrafiktask.Zweitauswahl));
+                                                   AktuelleAuswahlExtern => LeseGrafiktask.Gesamtauswahl);
                
          when GrafikDatentypen.Editoren_Enum =>
             EditorenGrafik.Editoren (WelcherEditorExtern => LeseGrafiktask.Editorart);

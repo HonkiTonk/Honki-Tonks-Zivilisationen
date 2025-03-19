@@ -25,37 +25,13 @@ package body SteuerungsauswahlLogik is
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Steuerung;
-         SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
+         SchreibeGrafiktask.Gesamtauswahl (AuswahlExtern => AktuelleAuswahl);
+         
+         AllgemeineAuswahl := TasteneingabeLogik.VereinfachteEingabe;
          
          case
-           TasteneingabeLogik.VereinfachteEingabe
+           AllgemeineAuswahl
          is
-            when TastenbelegungDatentypen.Auswählen_Enum =>
-               if
-                 AktuelleAuswahl < AuswahlKonstanten.LeerAuswahl
-               then
-                  OftVerwendeterSound.Klick;
-                  WelcheSteuerung := NummerZuKategorie (AktuelleAuswahl);
-                  
-               elsif
-                 AktuelleAuswahl in MenueKonstanten.AllgemeineSteuerung .. MenueKonstanten.SonstigesSteuerung - 1
-               then
-                  OftVerwendeterSound.Klick;
-                  TasteBelegen (AuswahlExtern         => AktuelleAuswahl,
-                                WelcheSteuerungExtern => WelcheSteuerung);
-                  
-               elsif
-                 AktuelleAuswahl >= MenueKonstanten.SonstigesSteuerung
-               then
-                  OftVerwendeterSound.Klick;
-                  return MenuerueckgabenLogik.SteuerungMenü (AnfangExtern          => MenueKonstanten.SonstigesSteuerung,
-                                                              EndeExtern            => InteraktionAuswahl.PositionenSteuerung'Last,
-                                                              AktuelleAuswahlExtern => AktuelleAuswahl);
-                  
-               else
-                  null;
-               end if;
-               
             when TastenbelegungDatentypen.Abwählen_Enum =>
                return RueckgabeDatentypen.Zurück_Enum;
                
@@ -63,6 +39,59 @@ package body SteuerungsauswahlLogik is
                null;
          end case;
          
+         if
+           AktuelleAuswahl.Erstauswahl /= AuswahlKonstanten.LeerAuswahl
+         then
+            case
+              AllgemeineAuswahl
+            is
+               when TastenbelegungDatentypen.Auswählen_Enum =>
+                  if
+                    AktuelleAuswahl.Erstauswahl < AuswahlKonstanten.LeerAuswahl
+                  then
+                     OftVerwendeterSound.Klick;
+                     WelcheSteuerung := NummerZuKategorie (AktuelleAuswahl.Erstauswahl);
+                  
+                  elsif
+                    AktuelleAuswahl.Erstauswahl in MenueKonstanten.AllgemeineSteuerung .. MenueKonstanten.SonstigesSteuerung - 1
+                  then
+                     OftVerwendeterSound.Klick;
+                     TasteBelegen (AuswahlExtern         => AktuelleAuswahl.Erstauswahl,
+                                   WelcheSteuerungExtern => WelcheSteuerung);
+                  
+                  elsif
+                    AktuelleAuswahl.Erstauswahl >= MenueKonstanten.SonstigesSteuerung
+                  then
+                     OftVerwendeterSound.Klick;
+                     return MenuerueckgabenLogik.SteuerungMenü (AnfangExtern          => MenueKonstanten.SonstigesSteuerung,
+                                                                 EndeExtern            => InteraktionAuswahl.PositionenSteuerung'Last,
+                                                                 AktuelleAuswahlExtern => AktuelleAuswahl.Erstauswahl);
+                  
+                  else
+                     null;
+                  end if;
+               
+               when others =>
+                  null;
+            end case;
+            
+         elsif
+           AktuelleAuswahl.Zweitauswahl /= AuswahlKonstanten.LeerAuswahl
+         then
+            case
+              AllgemeineAuswahl
+            is
+               when TastenbelegungDatentypen.Auswählen_Enum =>
+                  OftVerwendeterSound.Klick;
+                  
+               when others =>
+                  null;
+            end case;
+            
+         else
+            null;
+         end if;
+            
       end loop AuswahlSchleife;
       
    end Auswahl;

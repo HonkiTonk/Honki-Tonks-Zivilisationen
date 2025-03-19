@@ -86,6 +86,8 @@ private
    
    EinzulesendeZeile : Positive;
    AktuelleZeile : Positive;
+   EinzulesendeDateizeile : Positive;
+   AktuelleDateizeile : Positive;
    ZeilenumwandlungForschungen : Positive;
    ZeilenumwandlungEinheiten : Positive;
    ZeilenumwandlungGebäude : Positive;
@@ -102,6 +104,8 @@ private
    Verzeichnis : Directory_Entry_Type;
    
    Zwischenspeicher : Unbounded_Wide_Wide_String;
+   Dateiname : Unbounded_Wide_Wide_String;
+   GesamterPfad : Unbounded_Wide_Wide_String;
    
    type ErsetzungenEingelesenArray is array (1 .. 6) of Unbounded_Wide_Wide_String;
    ErsetzungenEingelesen : ErsetzungenEingelesenArray := (others => TextKonstantenHTSEB.FehlenderText);
@@ -119,16 +123,13 @@ private
    
    procedure EinlesenAufteilen
      (WelcheDateiExtern : in Positive;
-      VerzeichnisExtern : in Wide_Wide_String;
-      DateinameExtern : in Wide_Wide_String;
+      DateipfadExtern : in Wide_Wide_String;
       EinsprachigExtern : in Boolean)
      with
        Pre => (
                  WelcheDateiExtern <= AnzahlTextdateien
                and
-                 VerzeichnisExtern'Length > 0
-               and
-                 DateinameExtern'Length > 0
+                 DateipfadExtern'Length > 0
               );
    
    procedure Ersetzungen

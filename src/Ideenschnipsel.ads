@@ -18,8 +18,3 @@ end if;
 
 HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                AbmessungenExtern => ViewbereichBeschreibung.Viewbereich);
-
-
-
-
-Könnte Ada.Strings.UTF_Encoding.Conversions bei Windows mit den Ordnernamen helfen?

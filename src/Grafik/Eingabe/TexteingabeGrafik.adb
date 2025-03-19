@@ -58,7 +58,15 @@ package body TexteingabeGrafik is
                if
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                then
-                  TextGeprüft := DateisystemtestsHTSEB.Namensprüfungen (TextExtern => LeseLogiktask.Texteingabe);
+                  case
+                    LeseGrafiktask.Spielstandname
+                  is
+                     when False =>
+                        TextGeprüft.ErfolgreichAbbruch := True;
+                        
+                     when True =>
+                        TextGeprüft := DateisystemtestsHTSEB.Namensprüfungen (TextExtern => LeseLogiktask.Texteingabe);
+                  end case;
                   
                   case
                     TextGeprüft.ErfolgreichAbbruch
@@ -117,7 +125,7 @@ package body TexteingabeGrafik is
    procedure ZeichenHinzufügen
      (EingegebenesZeichenExtern : in Wide_Wide_Character)
    is begin
-            
+      
       case
         LeseGrafiktask.Spielstandname
       is

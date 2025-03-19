@@ -222,6 +222,16 @@ package body LeseGrafiktask is
    
    
    
+   function Gesamtauswahl
+     return SystemRecords.DoppelauswahlRecord
+   is begin
+      
+      return (Erstauswahl, Zweitauswahl);
+      
+   end Gesamtauswahl;
+   
+   
+   
    function Erstauswahl
      return ZahlenDatentypen.EigenerInteger
    is begin

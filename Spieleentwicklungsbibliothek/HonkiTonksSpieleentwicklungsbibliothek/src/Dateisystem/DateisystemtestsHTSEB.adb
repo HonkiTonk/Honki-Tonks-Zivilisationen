@@ -3,10 +3,10 @@ with Ada.Wide_Wide_Characters.Handling;
 with BetriebssystemKonstantenHTSEB;
 with BetriebssystemDatentypenHTSEB;
 with SystemRecordsKonstantenHTSEB;
-
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 with DateisystemvariablenHTSEB;
+with TextKonstantenHTSEB;
 
 -- So umbauen dass die Zusammenfassung von Linux und Windows den Gesamtpfad ergibt? äöü
 package body DateisystemtestsHTSEB is
@@ -45,31 +45,6 @@ package body DateisystemtestsHTSEB is
       end case;
       
    end GültigeZeichenlänge;
-   
-   
-   
-   function Standardeinleseprüfung
-     (VerzeichnisDateinameExtern : in Wide_Wide_String)
-      return Boolean
-   is begin
-      
-      if
-        --    False = GültigeZeichenlänge (TextExtern         => To_Unbounded_Wide_Wide_String (Source => VerzeichnisDateinameExtern),
-        ----                                  ZeichenabzugExtern => SystemDatentypen.Text_Enum)
-        --  then
-        --     return False;
-            
-      --   elsif
-        Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisDateinameExtern)) = False
-      then
-         MeldungssystemHTSEB.Logik (MeldungExtern => "DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: " & VerzeichnisDateinameExtern);
-         return False;
-            
-      else
-         return True;
-      end if;
-      
-   end Standardeinleseprüfung;
    
    
    
@@ -124,7 +99,6 @@ package body DateisystemtestsHTSEB is
    
    
    
-   -- Das hier kann ausgelagert werden. äöü
    function GültigesZeichen
      (ZeichenExtern : in Wide_Wide_Character)
       return Boolean
@@ -152,13 +126,13 @@ package body DateisystemtestsHTSEB is
                when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstantenHTSEB.NUL .. BetriebssystemKonstantenHTSEB.US =>
                   return False;
             
-              -- when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstantenHTSEB.Leerzeichen | BetriebssystemKonstantenHTSEB.Bindestrich
-              --    | BetriebssystemKonstantenHTSEB.Unterstrich | BetriebssystemKonstantenHTSEB.Punkt =>
-              --    return True;
+               when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstantenHTSEB.Leerzeichen | BetriebssystemKonstantenHTSEB.Bindestrich
+                  | BetriebssystemKonstantenHTSEB.Unterstrich | BetriebssystemKonstantenHTSEB.Punkt =>
+                  return True;
             
                when others =>
                   -- Für den Fall das ich irgendwann einmal Wide_Wide_Directories haben kann ich hier True zurückgeben und damit alle Zeichen erlauben die nicht verboten sind. äöü
-                  return True; -- False;
+                  return False;
             end case;
       end case;
       
@@ -212,15 +186,15 @@ package body DateisystemtestsHTSEB is
                case
                  NameExtern (WindowsprüfungSchleifenwert)
                is
-                  -- when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstantenHTSEB.Leerzeichen | BetriebssystemKonstantenHTSEB.Bindestrich
-                  --    | BetriebssystemKonstantenHTSEB.Unterstrich | BetriebssystemKonstantenHTSEB.Punkt =>
-                  --    null;
+                  when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstantenHTSEB.Leerzeichen | BetriebssystemKonstantenHTSEB.Bindestrich
+                     | BetriebssystemKonstantenHTSEB.Unterstrich | BetriebssystemKonstantenHTSEB.Punkt =>
+                     null;
                      
                   when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstantenHTSEB.NUL .. BetriebssystemKonstantenHTSEB.US =>
                      return False;
                
                   when others =>
-                     null; -- return False;
+                     return False;
                end case;
          
             end loop WindowsprüfungSchleife;
@@ -237,6 +211,15 @@ package body DateisystemtestsHTSEB is
      (TextExtern : in Unbounded_Wide_Wide_String)
       return SystemRecordsHTSEB.TextEingabeRecord
    is begin
+      
+      if
+        TextExtern = TextKonstantenHTSEB.LeerUnboundedString
+      then
+         return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
+         
+      else
+         null;
+      end if;
       
       VerboteneNamenSchleife:
       for VerboteneNamenSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneNamen'Range loop

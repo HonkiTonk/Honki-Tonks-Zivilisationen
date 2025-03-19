@@ -3,17 +3,20 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 private with Sf.Window.Keyboard;
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
+private with Sf.Graphics.Rect;
 
 private with GrafikRecordKonstanten;
 private with InteraktionAuswahl;
 private with MenueKonstanten;
 private with TastenbelegungDatentypen;
 
+with SystemRecords;
+
 package SteuerungsmenueGrafik is
    pragma Elaborate_Body;
 
    procedure Steuerungsmenü
-     (AuswahlExtern : in Integer);
+     (AuswahlExtern : in SystemRecords.DoppelauswahlRecord);
    
 private
    use Ada.Strings.Wide_Wide_Unbounded;
@@ -21,16 +24,23 @@ private
    UnbekannteTaste : constant Positive := 191;
    ArrayAnfang : Positive;
    ArrayEnde : Positive;
+   
+   Bewegung : Float := 0.00;
       
    AktuelleBelegung : Sf.Window.Keyboard.sfKeyCode;
+   
+   AktuelleAuflösungshöhe : Float;
    
    Text : Unbounded_Wide_Wide_String;
       
    ViewflächeAufteilung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeBelegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   ViewflächeScrollen : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    Farbe : Sf.Graphics.Color.sfColor;
+   
+   Anzeigebereich : Sf.Graphics.Rect.sfFloatRect;
    
    type AufteilungArray is array (InteraktionAuswahl.PositionenSteuerungsaufteilung'Range) of Positive;
    Aufteilung : constant AufteilungArray := (
@@ -70,5 +80,12 @@ private
      (WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum;
       WelcheZeileExtern : in Positive)
       return Wide_Wide_String;
+   
+   function Scrollen
+     return Float
+     with
+       Post => (
+                  Scrollen'Result >= 0.00
+               );
 
 end SteuerungsmenueGrafik;

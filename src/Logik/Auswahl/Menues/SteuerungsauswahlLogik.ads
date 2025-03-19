@@ -1,5 +1,7 @@
 with Sf.Window.Keyboard;
 
+private with SystemRecords;
+
 with RueckgabeDatentypen;
 with TastenbelegungDatentypen;
 
@@ -20,11 +22,13 @@ private
    Anfang : constant Positive := 1;
    Ende : Positive;
    
-   AktuelleAuswahl : Integer;
-   
    Rückgabewert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
+   AllgemeineAuswahl : TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
+   
    NeueTaste : Sf.Window.Keyboard.sfKeyCode;
+   
+   AktuelleAuswahl : SystemRecords.DoppelauswahlRecord;
    
    type NummerZuKategorieArray is array (-3 .. -1) of TastenbelegungDatentypen.Tastenbelegungskategorie_Enum;
    NummerZuKategorie : constant NummerZuKategorieArray := (

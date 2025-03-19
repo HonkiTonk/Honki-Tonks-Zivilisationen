@@ -10,6 +10,7 @@ with ZahlenDatentypen;
 with TextnummernKonstanten;
 with EinheitenRecords;
 with StadtRecords;
+with SystemRecords;
 
 package SchreibeGrafiktask is
    pragma Elaborate_Body;
@@ -79,6 +80,9 @@ package SchreibeGrafiktask is
    
    procedure Endauswahl
      (AuswahlExtern : in ZahlenDatentypen.EigenesNatural);
+   
+   procedure Gesamtauswahl
+     (AuswahlExtern : in SystemRecords.DoppelauswahlRecord);
    
    procedure Erstauswahl
      (AuswahlExtern : in ZahlenDatentypen.EigenerInteger);

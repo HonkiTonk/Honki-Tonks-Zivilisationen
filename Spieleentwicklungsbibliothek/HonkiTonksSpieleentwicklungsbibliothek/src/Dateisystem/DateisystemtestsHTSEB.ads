@@ -16,14 +16,6 @@ package DateisystemtestsHTSEB is
                  To_Wide_Wide_String (Source => WindowsTextExtern)'Length >= To_Wide_Wide_String (Source => LinuxTextExtern)'Length
               );
 
-   function Standardeinleseprüfung
-     (VerzeichnisDateinameExtern : in Wide_Wide_String)
-      return Boolean
-     with
-       Pre => (
-                 VerzeichnisDateinameExtern'Length > 0
-              );
-
    function StandardeinleseprüfungNeu
      (LinuxTextExtern : in Wide_Wide_String;
       WindowsTextExtern : in Wide_Wide_String)
@@ -60,10 +52,6 @@ package DateisystemtestsHTSEB is
      (TextExtern : in Unbounded_Wide_Wide_String)
       return SystemRecordsHTSEB.TextEingabeRecord
      with
-       Pre => (
-                 To_Wide_Wide_String (Source => TextExtern)'Length > 0
-              ),
-
        Post => (
                   if Namensprüfungen'Result.ErfolgreichAbbruch = True then To_Wide_Wide_String (Source => Namensprüfungen'Result.EingegebenerText)'Length > 0
                );
@@ -96,10 +84,6 @@ private
      (TextExtern : in Unbounded_Wide_Wide_String)
       return SystemRecordsHTSEB.TextEingabeRecord
      with
-       Pre => (
-                 To_Wide_Wide_String (Source => TextExtern)'Length > 0
-              ),
-
        Post => (
                   if NamenprüfungenWindows'Result.ErfolgreichAbbruch = True then To_Wide_Wide_String (Source => NamenprüfungenWindows'Result.EingegebenerText)'Length > 0
                );

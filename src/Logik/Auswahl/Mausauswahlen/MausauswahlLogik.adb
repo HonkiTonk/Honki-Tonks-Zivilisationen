@@ -220,7 +220,7 @@ package body MausauswahlLogik is
          
    
    function Steuerung
-     return Integer
+     return SystemRecords.DoppelauswahlRecord
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -235,7 +235,7 @@ package body MausauswahlLogik is
                                        RechteckExtern     => InteraktionAuswahl.PositionenSteuerungsaufteilung (AufteilungSchleifenwert))
          is
             when True =>
-               return -AufteilungSchleifenwert;
+               return (-AufteilungSchleifenwert, AuswahlKonstanten.LeerAuswahl);
                
             when False =>
                null;
@@ -257,7 +257,7 @@ package body MausauswahlLogik is
                                        RechteckExtern     => InteraktionAuswahl.PositionenSteuerung (SteuerungSchleifenwert))
          is
             when True =>
-               return SteuerungSchleifenwert;
+               return (SteuerungSchleifenwert, AuswahlKonstanten.LeerAuswahl);
                
             when False =>
                null;
@@ -265,7 +265,23 @@ package body MausauswahlLogik is
          
       end loop SteuerungSchleife;
       
-      return AuswahlKonstanten.LeerAuswahl;
+      
+      
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                                 point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
+                                                                 view         => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste));
+      
+      case
+        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                    RechteckExtern     => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste)).x,
+                                                           Sf.Graphics.View.getSize (view => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste)).y))
+      is
+         when True =>
+            return (AuswahlKonstanten.LeerAuswahl, 2);
+            
+         when False =>
+            return (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl);
+      end case;
       
    end Steuerung;
    

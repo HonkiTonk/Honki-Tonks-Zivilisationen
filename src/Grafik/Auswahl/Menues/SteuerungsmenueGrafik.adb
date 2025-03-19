@@ -22,13 +22,15 @@ with TexteinstellungenGrafik;
 with TextaccessverwaltungssystemEinfachGrafik;
 with SteuerungsauswahlLogik;
 with TextaccessverwaltungssystemErweitertGrafik;
+with FensterGrafik;
 
 package body SteuerungsmenueGrafik is
 
    procedure Steuerungsmenü
-     (AuswahlExtern : in Integer)
+     (AuswahlExtern : in SystemRecords.DoppelauswahlRecord)
    is begin
       
+      -- Die verschiedenen Reiter oben.
       ViewflächeAufteilung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAufteilung,
                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungKategorie).width,
                                                                                                         GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungKategorie).height));
@@ -40,25 +42,66 @@ package body SteuerungsmenueGrafik is
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                     AbmessungenExtern => ViewflächeAufteilung);
                   
-      ViewflächeAufteilung := Steuerungsaufteilung (AuswahlExtern         => AuswahlExtern,
+      ViewflächeAufteilung := Steuerungsaufteilung (AuswahlExtern         => AuswahlExtern.Erstauswahl,
                                                      WelcheSteuerungExtern => SteuerungsauswahlLogik.WelcheSteuerung);
       
       
       
+      -- Die Tastenbelegung.
       ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeBelegung,
-                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).width,
-                                                                                                    GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).height));
+                                                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).width,
+                                                                                                                       GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).height));
+      
+      Anzeigebereich := GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl);
+      
+      -- Nicht der Anzeigestart muss geändert werden, sondern ich muss move verwenden, vermutlich. äöü
+      
+     -- if
+    --    AuswahlExtern.Zweitauswahl /= 0
+   --   then
+   --      Bewegung := 0.00; -- 1.00 - 1.00 / Float (AuswahlExtern.Zweitauswahl);
+         
+    --  else
+    --     null;
+    --  end if;
+      
+      AktuelleAuflösungshöhe := FensterGrafik.AktuelleAuflösung.y;
+      
+      if
+        ViewflächeBelegung.y > AktuelleAuflösungshöhe
+      then
+         Anzeigebereich.height := ViewflächeBelegung.y / AktuelleAuflösungshöhe;
+         
+      else
+         null;
+      end if;
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungAuswahl),
                                             GrößeExtern          => ViewflächeBelegung,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl));
+                                            AnzeigebereichExtern => Anzeigebereich);
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                     AbmessungenExtern => ViewflächeBelegung);
       
-      ViewflächeBelegung.y := Steuerung (AuswahlExtern            => AuswahlExtern,
+      ViewflächeBelegung.y := Steuerung (AuswahlExtern            => AuswahlExtern.Erstauswahl,
                                           WelcheSteuerungExtern    => SteuerungsauswahlLogik.WelcheSteuerung,
                                           MaximaleTextbreiteExtern => ViewflächeBelegung.x);
+      
+      
+      
+      -- Zum Scrollen.
+      ViewflächeScrollen := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeScrollen,
+                                                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungScrollleiste).width,
+                                                                                                                       GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungScrollleiste).height));
+      
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste),
+                                            GrößeExtern          => ViewflächeScrollen,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungScrollleiste));
+      
+      HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
+                                    AbmessungenExtern => ViewflächeScrollen);
+      
+      ViewflächeScrollen.y := Scrollen;
       
    end Steuerungsmenü;
    
@@ -234,5 +277,15 @@ package body SteuerungsmenueGrafik is
       return To_Wide_Wide_String (Source => Text);
       
    end TextFestlegen;
+   
+   
+   
+   function Scrollen
+     return Float
+   is begin
+      
+      return 1.00;
+      
+   end Scrollen;
 
 end SteuerungsmenueGrafik;
