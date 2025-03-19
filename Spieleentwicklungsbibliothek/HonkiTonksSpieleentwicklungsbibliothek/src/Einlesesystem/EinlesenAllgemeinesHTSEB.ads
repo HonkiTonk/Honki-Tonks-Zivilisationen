@@ -44,4 +44,8 @@ package EinlesenAllgemeinesHTSEB is
                  DateinameExtern'Length > 0
               );
 
+   function ZeileVerwenden
+     (DateinameExtern : in Unbounded_Wide_Wide_String)
+      return Boolean;
+
 end EinlesenAllgemeinesHTSEB;

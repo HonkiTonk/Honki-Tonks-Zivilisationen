@@ -22,8 +22,8 @@ package body EinlesenTexturenLogik is
       
       case
         -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht der ganze Verzeichnisname.
-        DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                          WindowsTextExtern => (VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstanten.NullDateiWideWide))
+        DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
+                                                       WindowsTextExtern => (VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstanten.NullDateiWideWide))
       is
          when False =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Es fehlt: " & VerzeichnisKonstanten.Grafik
@@ -68,8 +68,8 @@ package body EinlesenTexturenLogik is
             
          else
             if
-              False = DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
-                                                                        WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+              False = DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                                                                     WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
             then
                MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Datei oder Pfad existiert nicht");
                

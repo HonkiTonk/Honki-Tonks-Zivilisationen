@@ -23,8 +23,8 @@ package body EinlesenSoundsLogik is
             
       case
         -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht der ganze Verzeichnisname.
-        DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                          WindowsTextExtern => VerzeichnisKonstanten.Sound & To_Wide_Wide_String (Source => LeseOptionen.Sound) & VerzeichnisKonstanten.NullDateiWideWide)
+        DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
+                                                       WindowsTextExtern => VerzeichnisKonstanten.Sound & To_Wide_Wide_String (Source => LeseOptionen.Sound) & VerzeichnisKonstanten.NullDateiWideWide)
       is
          when False =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: " & VerzeichnisKonstanten.Sound & To_Wide_Wide_String (Source => LeseOptionen.Sound)
@@ -70,8 +70,8 @@ package body EinlesenSoundsLogik is
                
          else
             if
-              False = DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
-                                                                        WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+              False = DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                                                                     WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
             then
                MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Datei oder Pfad existiert nicht");
                   

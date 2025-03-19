@@ -108,4 +108,24 @@ package body EinlesenAllgemeinesHTSEB is
          
    end DateinamenEinlesenUngebunden;
    
+   
+   
+   function ZeileVerwenden
+     (DateinameExtern : in Unbounded_Wide_Wide_String)
+      return Boolean
+   is begin
+   
+      if
+        DateinameExtern = TextKonstantenHTSEB.LeerUnboundedString
+        or else
+          To_Wide_Wide_String (Source => DateinameExtern) (1) = TextKonstantenHTSEB.TrennzeichenTextdateien
+      then
+         return False;
+         
+      else
+         return True;
+      end if;
+         
+   end ZeileVerwenden;
+   
 end EinlesenAllgemeinesHTSEB;

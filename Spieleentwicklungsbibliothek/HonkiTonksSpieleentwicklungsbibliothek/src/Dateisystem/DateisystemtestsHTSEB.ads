@@ -16,7 +16,7 @@ package DateisystemtestsHTSEB is
                  To_Wide_Wide_String (Source => WindowsTextExtern)'Length >= To_Wide_Wide_String (Source => LinuxTextExtern)'Length
               );
 
-   function StandardeinleseprüfungNeu
+   function Standardeinleseprüfung
      (LinuxTextExtern : in Wide_Wide_String;
       WindowsTextExtern : in Wide_Wide_String)
       return Boolean
@@ -69,21 +69,16 @@ private
 
    Text : Unbounded_Wide_Wide_String;
 
-  -- type ZeichenabzugArray is array (BetriebssystemDatentypenHTSEB.Betriebsystem_Zeichenabzug_Enum'Range, SystemDatentypen.Zeichenabzug_Enum'Range) of Natural;
-  -- Zeichenabzug : constant ZeichenabzugArray := (BetriebssystemDatentypenHTSEB.Windows_Enum =>
-  --                                                 (
-  --                                                  SystemDatentypen.Speichern_Enum => VerzeichnisKonstanten.ExtrazeichenSpielstand,
-  --                                                  SystemDatentypen.Text_Enum      => 0,
-   --                                                 SystemDatentypen.Texturen_Enum  => 0
-   --                                                )
-   --                                             );
-
 
 
    function NamenprüfungenWindows
      (TextExtern : in Unbounded_Wide_Wide_String)
       return SystemRecordsHTSEB.TextEingabeRecord
      with
+       Pre => (
+                 To_Wide_Wide_String (Source => TextExtern)'Length > 0
+              ),
+
        Post => (
                   if NamenprüfungenWindows'Result.ErfolgreichAbbruch = True then To_Wide_Wide_String (Source => NamenprüfungenWindows'Result.EingegebenerText)'Length > 0
                );

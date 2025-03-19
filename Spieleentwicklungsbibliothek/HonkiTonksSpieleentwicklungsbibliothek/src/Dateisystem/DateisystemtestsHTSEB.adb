@@ -3,10 +3,10 @@ with Ada.Wide_Wide_Characters.Handling;
 with BetriebssystemKonstantenHTSEB;
 with BetriebssystemDatentypenHTSEB;
 with SystemRecordsKonstantenHTSEB;
+
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 with DateisystemvariablenHTSEB;
-with TextKonstantenHTSEB;
 
 -- So umbauen dass die Zusammenfassung von Linux und Windows den Gesamtpfad ergibt? äöü
 package body DateisystemtestsHTSEB is
@@ -48,7 +48,7 @@ package body DateisystemtestsHTSEB is
    
    
    
-   function StandardeinleseprüfungNeu
+   function Standardeinleseprüfung
      (LinuxTextExtern : in Wide_Wide_String;
       WindowsTextExtern : in Wide_Wide_String)
       return Boolean
@@ -70,7 +70,7 @@ package body DateisystemtestsHTSEB is
          return True;
       end if;
       
-   end StandardeinleseprüfungNeu;
+   end Standardeinleseprüfung;
    
    
    
@@ -140,7 +140,6 @@ package body DateisystemtestsHTSEB is
    
    
    
-   -- Das hier auch. äöü
    function GültigerNamen
      (NameExtern : in Wide_Wide_String)
       return Boolean
@@ -206,20 +205,10 @@ package body DateisystemtestsHTSEB is
    
    
    
-   -- Das auch. äöü
    function Namensprüfungen
      (TextExtern : in Unbounded_Wide_Wide_String)
       return SystemRecordsHTSEB.TextEingabeRecord
    is begin
-      
-      if
-        TextExtern = TextKonstantenHTSEB.LeerUnboundedString
-      then
-         return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
-         
-      else
-         null;
-      end if;
       
       VerboteneNamenSchleife:
       for VerboteneNamenSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneNamen'Range loop
@@ -249,7 +238,6 @@ package body DateisystemtestsHTSEB is
    
    
    
-   -- Das auch. äöü
    function NamenprüfungenWindows
      (TextExtern : in Unbounded_Wide_Wide_String)
       return SystemRecordsHTSEB.TextEingabeRecord

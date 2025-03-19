@@ -97,8 +97,8 @@ package body EinlesenTextLogik is
    is begin
       
       case
-        DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                          WindowsTextExtern => VerzeichnisExtern & "0")
+        DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
+                                                       WindowsTextExtern => VerzeichnisExtern & "0")
       is
          when False =>
             return;
@@ -143,8 +143,8 @@ package body EinlesenTextLogik is
             
          else
             if
-              False = DateisystemtestsHTSEB.StandardeinleseprüfungNeu (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
-                                                                        WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
+              False = DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => To_Wide_Wide_String (Source => Dateiname),
+                                                                     WindowsTextExtern => To_Wide_Wide_String (Source => GesamterPfad))
             then
                MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTextLogik.Einlesen: Datei oder Pfad existiert nicht");
                

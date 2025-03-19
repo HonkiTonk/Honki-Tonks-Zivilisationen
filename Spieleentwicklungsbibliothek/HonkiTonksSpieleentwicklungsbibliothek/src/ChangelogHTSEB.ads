@@ -1,9 +1,17 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.0470 => 0.01. ():
+   -- Version 0.01.0550 => 0.01. ():
    
    -- 
+   
+   
+   
+   -- Version 0.01.0470 => 0.01.0550 (19.03.2025):
+   
+   -- Unnötige Kommentare gelöscht.
+   -- Veralteten Code gelöscht.
+   -- Funktion hinzugefügt um zu Prüfen ob ein String leer ist oder das erste Zeichen das Ignorierenzeichen ist.
    
    
    
