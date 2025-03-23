@@ -1,9 +1,16 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.0550 => 0.01. ():
+   -- Version 0.01.0600 => 0.01. ():
    
    -- 
+   
+   
+   
+   -- Version 0.01.0550 => 0.01.0600 (23.03.2025):
+   
+   -- Einige Fehlermeldungen angepasst.
+   -- Prüfung der verboteten Windowsdateinamen überarbeitet.
    
    
    

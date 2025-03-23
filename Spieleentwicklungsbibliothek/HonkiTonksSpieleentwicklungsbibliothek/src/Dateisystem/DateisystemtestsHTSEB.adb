@@ -292,189 +292,222 @@ package body DateisystemtestsHTSEB is
       
       VerbotenenamenDreiSchleife:
       for VerbotenenamenDreiSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenDrei'Range loop
-         SchreibartenDreiSchleife:
-         for SSchreibartenDreiSchleifenwert in 0 .. 7 loop
+         DreiEinsSchleife:
+         for DreiEinsSchleifenwert in Boolean'Range loop
+            DreiZweiSchleife:
+            for DreiZweiSchleifenwert in Boolean'Range loop
+               DreiDreiSchleife:
+               for DreiDreiSchleifenwert in Boolean'Range loop
+                                    
+                  -- Standard ist alles groß.
+                  DreierText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenDrei (VerbotenenamenDreiSchleifenwert));
+                  
+                  case
+                    DreiEinsSchleifenwert
+                  is
+                     when True =>
+                        DreierText (1) := To_Lower (Item => DreierText) (1);
+                        
+                     when False =>
+                        null;
+                  end case;
+                  
+                  case
+                    DreiZweiSchleifenwert
+                  is
+                     when True =>
+                        DreierText (2) := To_Lower (Item => DreierText) (2);
+                        
+                     when False =>
+                        null;
+                  end case;
+                  
+                  case
+                    DreiDreiSchleifenwert
+                  is
+                     when True =>
+                        DreierText (3) := To_Lower (Item => DreierText) (3);
+                        
+                     when False =>
+                        null;
+                  end case;
+                 
+                  if
+                    Text = DreierText
+                  then
+                     return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
-            -- Standard ist alles groß.
-            DreierText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenDrei (VerbotenenamenDreiSchleifenwert));
+                  elsif
+                    To_Wide_Wide_String (Source => Text)'Length > DreierText'Length
+                    and then
+                      To_Wide_Wide_String (Source => Text) (1 .. DreierText'Length + 1) = DreierText & "."
+                  then
+                     return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
-            case
-              SSchreibartenDreiSchleifenwert
-            is
-               when 0 =>
-                  null;
+                  else
+                     null;
+                  end if;
                   
-               when 1 =>
-                  DreierText (1) := To_Lower (Item => DreierText) (1);
-                  
-               when 2 =>
-                  DreierText (2) := To_Lower (Item => DreierText) (2);
-                  
-               when 3 =>
-                  DreierText (3) := To_Lower (Item => DreierText) (3);
-                                                
-               when 4 =>
-                  DreierText (1) := To_Lower (Item => DreierText) (1);
-                  DreierText (2) := To_Lower (Item => DreierText) (2);
-                  
-               when 5 =>
-                  DreierText (1) := To_Lower (Item => DreierText) (1);
-                  DreierText (3) := To_Lower (Item => DreierText) (3);
-                  
-               when 6 =>
-                  DreierText (2) := To_Lower (Item => DreierText) (2);
-                  DreierText (3) := To_Lower (Item => DreierText) (3);
-                  
-               when 7 =>
-                  DreierText (1) := To_Lower (Item => DreierText) (1);
-                  DreierText (2) := To_Lower (Item => DreierText) (2);
-                  DreierText (3) := To_Lower (Item => DreierText) (3);
-            end case;
-            
-            if
-              Text = DreierText
-            then
-               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
-            
-            elsif
-              To_Wide_Wide_String (Source => Text)'Length > DreierText'Length
-              and then
-                To_Wide_Wide_String (Source => Text) (1 .. DreierText'Length + 1) = DreierText & "."
-            then
-               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
-            
-            else
-               null;
-            end if;
-         
-         end loop SchreibartenDreiSchleife;
+               end loop DreiDreiSchleife;
+            end loop DreiZweiSchleife;
+         end loop DreiEinsSchleife;
       end loop VerbotenenamenDreiSchleife;
       
       
       
       VerbotenenamenVierSchleife:
       for VerbotenenamenVierSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenVier'Range loop
-         SchreibartenVierSchleife:
-         for SchreibartenVierSchleifenwert in 0 .. 7 loop
+         VierEinsSchleife:
+         for VierEinsSchleifenwert in Boolean'Range loop
+            VierZweiSchleife:
+            for VierZweiSchleifenwert in Boolean'Range loop
+               VierDreiSchleife:
+               for VierDreiSchleifenwert in Boolean'Range loop
+                                    
+                  -- Standard ist alles groß.
+                  ViererText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenVier (VerbotenenamenVierSchleifenwert));
+                  
+                  case
+                    VierEinsSchleifenwert
+                  is
+                     when True =>
+                        ViererText (1) := To_Lower (Item => ViererText) (1);
+                        
+                     when False =>
+                        null;
+                  end case;
+                  
+                  case
+                    VierZweiSchleifenwert
+                  is
+                     when True =>
+                        ViererText (2) := To_Lower (Item => ViererText) (2);
+                        
+                     when False =>
+                        null;
+                  end case;
+                  
+                  case
+                    VierDreiSchleifenwert
+                  is
+                     when True =>
+                        ViererText (3) := To_Lower (Item => ViererText) (3);
+                        
+                     when False =>
+                        null;
+                  end case;
+                 
+                  if
+                    Text = ViererText
+                  then
+                     return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
-            -- Standard ist alles groß.
-            ViererText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenVier (VerbotenenamenVierSchleifenwert));
+                  elsif
+                    To_Wide_Wide_String (Source => Text)'Length > ViererText'Length
+                    and then
+                      To_Wide_Wide_String (Source => Text) (1 .. ViererText'Length + 1) = ViererText & "."
+                  then
+                     return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
-            case
-              SchreibartenVierSchleifenwert
-            is
-               when 0 =>
-                  null;
+                  else
+                     null;
+                  end if;
                   
-               when 1 =>
-                  ViererText (1) := To_Lower (Item => ViererText) (1);
-                  
-               when 2 =>
-                  ViererText (2) := To_Lower (Item => ViererText) (2);
-                  
-               when 3 =>
-                  ViererText (3) := To_Lower (Item => ViererText) (3);
-                                                
-               when 4 =>
-                  ViererText (1) := To_Lower (Item => ViererText) (1);
-                  ViererText (2) := To_Lower (Item => ViererText) (2);
-                  
-               when 5 =>
-                  ViererText (1) := To_Lower (Item => ViererText) (1);
-                  ViererText (3) := To_Lower (Item => ViererText) (3);
-                  
-               when 6 =>
-                  ViererText (2) := To_Lower (Item => ViererText) (2);
-                  ViererText (3) := To_Lower (Item => ViererText) (3);
-                  
-               when 7 =>
-                  ViererText (1) := To_Lower (Item => ViererText) (1);
-                  ViererText (2) := To_Lower (Item => ViererText) (2);
-                  ViererText (3) := To_Lower (Item => ViererText) (3);
-            end case;
-            
-            if
-              Text = ViererText
-            then
-               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
-            
-            elsif
-              To_Wide_Wide_String (Source => Text)'Length > ViererText'Length
-              and then
-                To_Wide_Wide_String (Source => Text) (1 .. ViererText'Length + 1) = ViererText & "."
-            then
-               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
-            
-            else
-               null;
-            end if;
-         
-         end loop SchreibartenVierSchleife;
+               end loop VierDreiSchleife;
+            end loop VierZweiSchleife;
+         end loop VierEinsSchleife;
       end loop VerbotenenamenVierSchleife;
       
       
       
-      VerbotenenamenFünfSchleife:
-      for VerbotenenamenFünfSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenFünf'Range loop
-         SchreibartenFünfSchleife:
-         for SchreibartenFünfSchleifenwert in 0 .. 7 loop
+      -- VerbotenenamenFünfSchleife:
+      -- for VerbotenenamenFünfSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenFünf'Range loop
+      FünfEinsSchleife:
+      for FünfEinsSchleifenwert in Boolean'Range loop
+         FünfZweiSchleife:
+         for FünfZweiSchleifenwert in Boolean'Range loop
+            FünfDreiSchleife:
+            for FünfDreiSchleifenwert in Boolean'Range loop
+               FünfVierSchleife:
+               for FünfVierSchleifenwert in Boolean'Range loop
+                  FünfFünfSchleife:
+                  for FünfFünfSchleifenwert in Boolean'Range loop
+                                    
+                     -- Standard ist alles groß.
+                     FünferText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenFünf (1));
+                  
+                     case
+                       FünfEinsSchleifenwert
+                     is
+                        when True =>
+                           FünferText (1) := To_Lower (Item => FünferText) (1);
+                        
+                        when False =>
+                           null;
+                     end case;
+                  
+                     case
+                       FünfZweiSchleifenwert
+                     is
+                        when True =>
+                           FünferText (2) := To_Lower (Item => FünferText) (2);
+                        
+                        when False =>
+                           null;
+                     end case;
+                  
+                     case
+                       FünfDreiSchleifenwert
+                     is
+                        when True =>
+                           FünferText (3) := To_Lower (Item => FünferText) (3);
+                        
+                        when False =>
+                           null;
+                     end case;
+                  
+                     case
+                       FünfVierSchleifenwert
+                     is
+                        when True =>
+                           FünferText (4) := To_Lower (Item => FünferText) (4);
+                        
+                        when False =>
+                           null;
+                     end case;
+                  
+                     case
+                       FünfFünfSchleifenwert
+                     is
+                        when True =>
+                           FünferText (5) := To_Lower (Item => FünferText) (5);
+                        
+                        when False =>
+                           null;
+                     end case;
+                 
+                     if
+                       Text = FünferText
+                     then
+                        return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
-            -- Standard ist alles groß.
-            FünferText := To_Wide_Wide_String (Source => BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenFünf (VerbotenenamenFünfSchleifenwert)) (1 .. 5);
+                     elsif
+                       To_Wide_Wide_String (Source => Text)'Length > FünferText'Length
+                       and then
+                         To_Wide_Wide_String (Source => Text) (1 .. FünferText'Length + 1) = FünferText & "."
+                     then
+                        return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
             
-            case
-              SchreibartenFünfSchleifenwert
-            is
-               when 0 =>
-                  null;
+                     else
+                        null;
+                     end if;
                   
-               when 1 =>
-                  FünferText (1) := To_Lower (Item => FünferText) (1);
-                  
-               when 2 =>
-                  FünferText (2) := To_Lower (Item => FünferText) (2);
-                  
-               when 3 =>
-                  FünferText (3) := To_Lower (Item => FünferText) (3);
-                                                
-               when 4 =>
-                  FünferText (1) := To_Lower (Item => FünferText) (1);
-                  FünferText (2) := To_Lower (Item => FünferText) (2);
-                  
-               when 5 =>
-                  FünferText (1) := To_Lower (Item => FünferText) (1);
-                  FünferText (3) := To_Lower (Item => FünferText) (3);
-                  
-               when 6 =>
-                  FünferText (2) := To_Lower (Item => FünferText) (2);
-                  FünferText (3) := To_Lower (Item => FünferText) (3);
-                  
-               when 7 =>
-                  FünferText (1) := To_Lower (Item => FünferText) (1);
-                  FünferText (2) := To_Lower (Item => FünferText) (2);
-                  FünferText (3) := To_Lower (Item => FünferText) (3);
-            end case;
-            
-            if
-              Text = FünferText
-            then
-               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
-            
-            elsif
-              To_Wide_Wide_String (Source => Text)'Length > FünferText'Length
-              and then
-                To_Wide_Wide_String (Source => Text) (1 .. FünferText'Length + 1) = FünferText & "."
-            then
-               return SystemRecordsKonstantenHTSEB.LeerTexteingabe;
-            
-            else
-               null;
-            end if;
-         
-         end loop SchreibartenFünfSchleife;
-      end loop VerbotenenamenFünfSchleife;
-      
-      
+                  end loop FünfFünfSchleife;
+               end loop FünfVierSchleife;
+            end loop FünfDreiSchleife;
+         end loop FünfZweiSchleife;
+      end loop FünfEinsSchleife;
+      -- end loop VerbotenenamenFünfSchleife;
       
       return (True, Text);
          

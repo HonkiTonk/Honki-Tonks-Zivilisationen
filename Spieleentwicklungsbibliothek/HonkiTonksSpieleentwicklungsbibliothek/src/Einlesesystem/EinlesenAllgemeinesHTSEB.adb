@@ -102,7 +102,7 @@ package body EinlesenAllgemeinesHTSEB is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesHTSEB.TextEinlesenUngebunden: " & DateinameExtern & ": Aktuelle Zeile:" & AktuelleZeileExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenAllgemeinesHTSEB.DateinamenEinlesenUngebunden: " & DateinameExtern & ": Aktuelle Zeile:" & AktuelleZeileExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return TextKonstantenHTSEB.LeerUnboundedString;
          
