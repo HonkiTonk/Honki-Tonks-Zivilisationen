@@ -58,9 +58,7 @@ package body SteuerungsmenueGrafik is
                                                                                                                        GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).height));
       
       Anzeigebereich := GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl);
-      
-      -- Nicht der Anzeigestart muss geändert werden, sondern ich muss move verwenden, vermutlich. äöü
-      
+            
       DiagnosesystemHTSEB.Zahl (AuswahlExtern.Zweitauswahl);
       
       case
@@ -298,7 +296,7 @@ package body SteuerungsmenueGrafik is
                                     AbmessungenExtern => ViewflächeScrollen);
       
       if
-        BelegungslängeExtern <= AktuelleAuflösungshöhe
+        BelegungslängeExtern <= FensterGrafik.AktuelleAuflösung.y
       then
          return;
          
@@ -307,7 +305,7 @@ package body SteuerungsmenueGrafik is
          Durchläufe := 2;
       end if;
       
-      while BelegungslängeExtern > 100.00 * Float (Durchläufe) loop
+      while BelegungslängeExtern > FensterGrafik.AktuelleAuflösung.y + 100.00 * Float (Durchläufe) loop
          
          Durchläufe := Durchläufe + 1;
          
@@ -318,7 +316,7 @@ package body SteuerungsmenueGrafik is
       then
          MeldungssystemHTSEB.Grafik (MeldungExtern => "SteuerungsmenueGrafik.Scrollen: Zu viele Durchläufe, erlaubt: " & InteraktionAuswahl.PositionenSteuerungsleiste'Last'Wide_Wide_Image
                                      & " notwendig: " & Durchläufe'Wide_Wide_Image);
-         return;
+         Durchläufe := InteraktionAuswahl.PositionenSteuerungsleiste'Last;
          
       else
          null;

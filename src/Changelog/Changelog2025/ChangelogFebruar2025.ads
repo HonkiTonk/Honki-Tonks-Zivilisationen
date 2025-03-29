@@ -43,17 +43,17 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (22.02.2025):
+   -- Version 0.06.1700 => 0.06. (22.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1675 => 0.06. (21.02.2025):
+   -- Version 0.06.1675 => 0.06.1700 (21.02.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Steuerungsmenü gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
