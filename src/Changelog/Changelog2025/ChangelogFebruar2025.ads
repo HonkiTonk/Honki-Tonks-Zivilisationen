@@ -36,16 +36,16 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (23.02.2025):
+   -- Version 0.06.1725 => 0.06. (23.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1700 => 0.06. (22.02.2025):
+   -- Version 0.06.1700 => 0.06.1725 (22.02.2025):
    
-   -- 
+   -- Die Lizenz von GPL v3.0 auf EUPL v1.2 geändert.
    -- Kleinigkeiten korrigiert.
    
    
