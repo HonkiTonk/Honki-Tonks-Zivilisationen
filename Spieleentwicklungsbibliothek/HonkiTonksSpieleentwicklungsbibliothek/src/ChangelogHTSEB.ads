@@ -1,9 +1,15 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.0600 => 0.01. ():
+   -- Version 0.01.0650 => 0.01. ():
    
    -- 
+   
+   
+   
+   -- Version 0.01.0600 => 0.01.0650 (31.03.2025):
+   
+   -- Die Lizenz von GPL v3.0 auf EUPL v1.2 geändert.
    
    
    
