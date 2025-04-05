@@ -65,7 +65,7 @@ package body SteuerungsmenueGrafik is
         AuswahlExtern.Zweitauswahl
       is
          when InteraktionAuswahl.PositionenSteuerungsleiste'Range =>
-            Bewegung.y := (Float (AuswahlExtern.Zweitauswahl) - 1.00) * 100.00;
+            Bewegung.y := Float (AuswahlExtern.Zweitauswahl) * 100.00;
             
          when others =>
             null;
@@ -305,7 +305,7 @@ package body SteuerungsmenueGrafik is
          Durchläufe := 2;
       end if;
       
-      while BelegungslängeExtern > FensterGrafik.AktuelleAuflösung.y + 100.00 * Float (Durchläufe) loop
+      while BelegungslängeExtern > 100.00 * Float (Durchläufe) loop
          
          Durchläufe := Durchläufe + 1;
          
@@ -322,9 +322,14 @@ package body SteuerungsmenueGrafik is
          null;
       end if;
       
+      Test := ViewflächeScrollen.y / Float (Durchläufe);
+      DiagnosesystemHTSEB.Kommazahl (ViewflächeScrollen.y);
+      DiagnosesystemHTSEB.Zahl (Durchläufe);
+      DiagnosesystemHTSEB.Kommazahl (Test);
+      
       for Schleifenwert in InteraktionAuswahl.PositionenSteuerungsleiste'First .. Durchläufe loop
          
-         InteraktionAuswahl.PositionenSteuerungsleiste (Schleifenwert) := (0.00, Float (Schleifenwert - 1) * 100.00, ViewflächeScrollen.x, Float (Schleifenwert) * 100.00);
+         InteraktionAuswahl.PositionenSteuerungsleiste (Schleifenwert) := (0.00, Float (Schleifenwert - 1) * Test, ViewflächeScrollen.x, Float (Schleifenwert) * Test);
          DiagnosesystemZusatzinformationen.KommaBoxinformationen (InteraktionAuswahl.PositionenSteuerungsleiste (Schleifenwert));
          
       end loop;

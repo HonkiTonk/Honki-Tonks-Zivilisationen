@@ -29,6 +29,7 @@ private
    AktuelleBelegung : Sf.Window.Keyboard.sfKeyCode;
    
    AktuelleAuflösungshöhe : Float;
+   Test : Float;
    
    Text : Unbounded_Wide_Wide_String;
       

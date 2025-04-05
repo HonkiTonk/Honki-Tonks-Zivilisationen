@@ -57,6 +57,49 @@ package body TasteneingabeLogik is
    
    
    
+   function ErweiterteVereinfachteEingabe
+     return TastenbelegungDatentypen.Allgemeine_Belegung_Enum
+   is
+      use type Sf.Window.Mouse.sfMouseButton;
+      use type Sf.Window.Keyboard.sfKeyCode;
+      use type Sf.sfBool;
+   begin
+      
+      VereinfachteEingabeTasten := EingabeanfangSetzen;
+         
+      if
+        VereinfachteEingabeTasten.Maustaste = Sf.Window.Mouse.sfMouseLeft
+        and
+          Sf.Window.Mouse.isButtonPressed (button => VereinfachteEingabeTasten.Maustaste) = Sf.sfTrue
+      then
+         return TastenbelegungDatentypen.Auswählen_Enum;
+         
+      elsif
+        VereinfachteEingabeTasten.Maustaste = Sf.Window.Mouse.sfMouseLeft
+        or
+          (VereinfachteEingabeTasten.Tastaturtaste /= Sf.Window.Keyboard.sfKeyUnknown
+           and
+             VereinfachteEingabeTasten.Tastaturtaste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Auswählen_Enum))
+      then
+         return TastenbelegungDatentypen.Auswählen_Enum;
+        
+      elsif
+        VereinfachteEingabeTasten.Maustaste = Sf.Window.Mouse.sfMouseRight
+        or
+          (VereinfachteEingabeTasten.Tastaturtaste /= Sf.Window.Keyboard.sfKeyUnknown
+           and
+             VereinfachteEingabeTasten.Tastaturtaste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Abwählen_Enum))
+      then
+         return TastenbelegungDatentypen.Abwählen_Enum;
+      
+      else
+         return TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum;
+      end if;
+      
+   end ErweiterteVereinfachteEingabe;
+   
+   
+   
    function AllgemeineTaste
      return TastenbelegungDatentypen.Allgemeine_Belegung_Enum
    is

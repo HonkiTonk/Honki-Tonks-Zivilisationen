@@ -11,6 +11,9 @@ package TasteneingabeLogik is
    function VereinfachteEingabe
      return TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
    
+   function ErweiterteVereinfachteEingabe
+     return TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
+   
    function AllgemeineTaste
      return TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
    
