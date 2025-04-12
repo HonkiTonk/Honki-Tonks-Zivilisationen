@@ -15,17 +15,17 @@ package ChangelogFebruar2025 is
    
    
 
-   -- Version 0.06. => 0.06. (26.02.2025):
+   -- Version 0.06.1805 => 0.06. (26.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1775 => 0.06. (25.02.2025):
+   -- Version 0.06.1775 => 0.06.1805 (25.02.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das neue Steuerungsmenü endlich fertig gestellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/erweitert.
    
    
 

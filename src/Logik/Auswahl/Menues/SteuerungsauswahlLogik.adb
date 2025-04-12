@@ -21,7 +21,7 @@ package body SteuerungsauswahlLogik is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
             
-      SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
+      SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AuswahlKonstanten.ErstAuswahl);
       
       AuswahlSchleife:
       loop
@@ -53,6 +53,7 @@ package body SteuerungsauswahlLogik is
                   then
                      OftVerwendeterSound.Klick;
                      WelcheSteuerung := NummerZuKategorie (AktuelleAuswahl.Erstauswahl);
+                     SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AuswahlKonstanten.ErstAuswahl);
                   
                   elsif
                     AktuelleAuswahl.Erstauswahl in MenueKonstanten.AllgemeineSteuerung .. MenueKonstanten.SonstigesSteuerung - 1
@@ -93,7 +94,7 @@ package body SteuerungsauswahlLogik is
             end case;
             
          else
-            null;
+            SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
          end if;
             
       end loop AuswahlSchleife;

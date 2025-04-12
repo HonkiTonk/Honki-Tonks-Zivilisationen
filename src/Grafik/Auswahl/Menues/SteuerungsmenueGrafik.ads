@@ -21,15 +21,18 @@ package SteuerungsmenueGrafik is
 private
    use Ada.Strings.Wide_Wide_Unbounded;
    
+   Durchläufe : Natural;
+   
    UnbekannteTaste : constant Positive := 191;
    ArrayAnfang : Positive;
    ArrayEnde : Positive;
-   Durchläufe : Positive;
       
    AktuelleBelegung : Sf.Window.Keyboard.sfKeyCode;
    
+   Scrollleistenabschnitt : constant Float := 10.00;
    AktuelleAuflösungshöhe : Float;
-   Test : Float;
+   Leistenabschnitt : Float;
+   Zwischenspeicher : Float;
    
    Text : Unbounded_Wide_Wide_String;
       
@@ -51,10 +54,13 @@ private
                                             );
    
    procedure Scrollen
-     (BelegungslängeExtern : in Float)
+     (BelegungslängeExtern : in Float;
+      AuflösungshöheExtern : in Float)
      with
        Pre => (
                  BelegungslängeExtern >= 0.00
+               and
+                 AuflösungshöheExtern >= 0.00
               );
    
    

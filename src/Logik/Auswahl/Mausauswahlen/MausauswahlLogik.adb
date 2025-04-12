@@ -270,10 +270,10 @@ package body MausauswahlLogik is
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                  view         => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungScrollleiste));
-      
+            
       LeisteSchleife:
       for LeisteSchleifenwert in InteraktionAuswahl.PositionenSteuerungsleiste'Range loop
-                  
+         
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
                                        RechteckExtern     => InteraktionAuswahl.PositionenSteuerungsleiste (LeisteSchleifenwert))

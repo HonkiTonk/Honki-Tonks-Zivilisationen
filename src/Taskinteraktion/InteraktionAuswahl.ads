@@ -27,7 +27,7 @@ package InteraktionAuswahl is
 
    PositionenSteuerungsaufteilung : PositionenArray (1 .. 3) := (others => GrafikRecordKonstanten.Leerbereich);
    PositionenSteuerung : PositionenArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
-   PositionenSteuerungsleiste : PositionenArray (1 .. 15) := (others => GrafikRecordKonstanten.Leerbereich);
+   PositionenSteuerungsleiste : PositionenArray (1 .. 100) := (others => GrafikRecordKonstanten.Leerbereich);
 
    PositionenSpielstandaufteilung : PositionenArray (1 .. 2) := (others => GrafikRecordKonstanten.Leerbereich);
    PositionenSpielstand : PositionenArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
