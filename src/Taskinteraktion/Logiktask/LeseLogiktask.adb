@@ -89,5 +89,15 @@ package body LeseLogiktask is
       return Logiktask.Eingabe.Text;
       
    end KompletteTexteingabe;
+   
+   
+   
+   function Scrollleiste
+     return Boolean
+   is begin
+      
+      return Logiktask.Scrollleiste;
+      
+   end Scrollleiste;
 
 end LeseLogiktask;

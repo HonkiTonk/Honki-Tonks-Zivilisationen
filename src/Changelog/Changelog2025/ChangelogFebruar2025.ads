@@ -1,17 +1,18 @@
 package ChangelogFebruar2025 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (28.02.2025):
+   -- Version 0.06.1870 => 0.06. (28.02.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1830 => 0.06. (27.02.2025):
+   -- Version 0.06.1830 => 0.06.1870 (27.02.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das neue Steuerungsmenü verbessert.
+   -- Angefangen eine allgemeine Version der Scrollleiste einzubauen.
+   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

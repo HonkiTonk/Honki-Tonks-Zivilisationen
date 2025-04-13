@@ -7,6 +7,6 @@ package Logiktask is
    
    Eingabe : TaskRecords.EingabeLogikRecord;
    
-   ScrollleisteVorhanden : Boolean := True;
+   Scrollleiste : Boolean := True;
       
 end Logiktask;

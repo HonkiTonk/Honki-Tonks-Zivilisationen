@@ -34,5 +34,8 @@ package SchreibeLogiktask is
    
    procedure KompletteTexteingabe
      (EingabeExtern : in SystemRecordsHTSEB.TextEingabeRecord);
+   
+   procedure Scrollleiste
+     (ScrollleisteExtern : in Boolean);
 
 end SchreibeLogiktask;

@@ -35,4 +35,7 @@ package LeseLogiktask is
    function KompletteTexteingabe
      return SystemRecordsHTSEB.TextEingabeRecord;
    
+   function Scrollleiste
+     return Boolean;
+   
 end LeseLogiktask;

@@ -89,5 +89,15 @@ package body SchreibeLogiktask is
       Logiktask.Eingabe.Text := EingabeExtern;
       
    end KompletteTexteingabe;
+   
+   
+   
+   procedure Scrollleiste
+     (ScrollleisteExtern : in Boolean)
+   is begin
+      
+      Logiktask.Scrollleiste := ScrollleisteExtern;
+      
+   end Scrollleiste;
 
 end SchreibeLogiktask;

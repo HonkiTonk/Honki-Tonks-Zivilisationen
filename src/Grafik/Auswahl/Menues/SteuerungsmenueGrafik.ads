@@ -23,24 +23,18 @@ private
    
    Vollauswahl : Boolean;
    
-   Durchläufe : Natural;
-   
    UnbekannteTaste : constant Positive := 191;
    ArrayAnfang : Positive;
    ArrayEnde : Positive;
       
    AktuelleBelegung : Sf.Window.Keyboard.sfKeyCode;
    
-   Scrollleistenabschnitt : constant Float := 10.00;
    AktuelleAuflösungshöhe : Float;
-   Leistenabschnitt : Float;
-   Zwischenspeicher : Float;
    
    Text : Unbounded_Wide_Wide_String;
       
    ViewflächeAufteilung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeBelegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
-   ViewflächeScrollen : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Bewegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.Nullposition;
    Textposition : Sf.System.Vector2.sfVector2f;
    Auswahlverhältnis : Sf.System.Vector2.sfVector2f;
@@ -55,13 +49,6 @@ private
                                              2 => MenueKonstanten.Einheitensteuerung,
                                              3 => MenueKonstanten.Stadtsteuerung
                                             );
-   
-   procedure Scrollen
-     (BelegungslängeExtern : in Float);
-   --  with
-      -- Pre => (
-      --           BelegungslängeExtern >= 0.00
-      --        );
    
    
    
