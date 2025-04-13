@@ -35,8 +35,9 @@ package ViewKonstanten is
    Antwort : constant Positive := Frage + 1;
    
    SteuerungKategorie : constant Positive := 1;
-   SteuerungAuswahl : constant Positive := SteuerungKategorie + 1;
-   SteuerungScrollleiste : constant Positive := SteuerungAuswahl + 1;
+   SteuerungVollauswahl : constant Positive := SteuerungKategorie + 1;
+   SteuerungTeilauswahl : constant Positive := SteuerungVollauswahl + 1;
+   SteuerungScrollleiste : constant Positive := SteuerungTeilauswahl + 1;
    
    SpielstandKategorie : constant Positive := 1;
    SpielstandAuswahl : constant Positive := SpielstandKategorie + 1;

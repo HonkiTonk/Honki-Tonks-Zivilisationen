@@ -55,7 +55,8 @@ package GrafikRecordKonstanten is
    
    Steuerungbereich : constant BereicheArray (Views.SteuerungviewAccesse'Range) := (
                                                                                     ViewKonstanten.SteuerungKategorie    => (0.00, Überschriftbereich.height, 1.00, 0.05),
-                                                                                    ViewKonstanten.SteuerungAuswahl      => (0.00, Überschriftbereich.height + 0.05, 0.98, 1.00 - Überschriftbereich.height - 0.05),
+                                                                                    ViewKonstanten.SteuerungTeilauswahl  => (0.00, Überschriftbereich.height + 0.05, 1.00, 1.00 - Überschriftbereich.height - 0.05),
+                                                                                    ViewKonstanten.SteuerungVollauswahl  => (0.00, Überschriftbereich.height + 0.05, 0.98, 1.00 - Überschriftbereich.height - 0.05),
                                                                                     ViewKonstanten.SteuerungScrollleiste => (0.98, Überschriftbereich.height + 0.05, 0.02, 1.00 - Überschriftbereich.height - 0.05)
                                                                                    );
    

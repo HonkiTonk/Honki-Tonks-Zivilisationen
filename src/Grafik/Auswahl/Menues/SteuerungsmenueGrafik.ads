@@ -21,6 +21,8 @@ package SteuerungsmenueGrafik is
 private
    use Ada.Strings.Wide_Wide_Unbounded;
    
+   Vollauswahl : Boolean;
+   
    Durchläufe : Natural;
    
    UnbekannteTaste : constant Positive := 191;
@@ -41,6 +43,7 @@ private
    ViewflächeScrollen : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Bewegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.Nullposition;
    Textposition : Sf.System.Vector2.sfVector2f;
+   Auswahlverhältnis : Sf.System.Vector2.sfVector2f;
    
    Farbe : Sf.Graphics.Color.sfColor;
    
@@ -54,14 +57,11 @@ private
                                             );
    
    procedure Scrollen
-     (BelegungslängeExtern : in Float;
-      AuflösungshöheExtern : in Float)
-     with
-       Pre => (
-                 BelegungslängeExtern >= 0.00
-               and
-                 AuflösungshöheExtern >= 0.00
-              );
+     (BelegungslängeExtern : in Float);
+   --  with
+      -- Pre => (
+      --           BelegungslängeExtern >= 0.00
+      --        );
    
    
    

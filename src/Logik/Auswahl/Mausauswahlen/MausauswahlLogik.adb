@@ -15,6 +15,8 @@ with SichtweitenGrafik;
 with FensterGrafik;
 with MausauswahlAllgemeinLogik;
 
+with Logiktask;
+
 -- Thematisch aufteilen? äöü
 -- Mal schauen ob die Vorabprüfung ob der Mauszeiger überhaupt im richtigen Bereich ist noch fehlerfrei überall eingebaut werden kann. äöü
 package body MausauswahlLogik is
@@ -245,9 +247,19 @@ package body MausauswahlLogik is
       
       
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                 point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
-                                                                 view         => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungAuswahl));
+      case
+        Logiktask.ScrollleisteVorhanden
+      is
+         when True =>
+            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                                       point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
+                                                                       view         => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungTeilauswahl));
+            
+         when False =>
+            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                                       point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
+                                                                       view         => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungVollauswahl));
+      end case;
       
       SteuerungSchleife:
       for SteuerungSchleifenwert in InteraktionAuswahl.PositionenSteuerung'Range loop

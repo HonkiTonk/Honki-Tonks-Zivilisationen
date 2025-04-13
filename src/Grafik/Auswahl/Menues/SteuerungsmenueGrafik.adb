@@ -26,6 +26,9 @@ with SteuerungsauswahlLogik;
 with TextaccessverwaltungssystemErweitertGrafik;
 with FensterGrafik;
 
+with Logiktask;
+with DiagnosesystemHTSEB;
+
 package body SteuerungsmenueGrafik is
 
    procedure Steuerungsmenü
@@ -50,21 +53,38 @@ package body SteuerungsmenueGrafik is
       
       
       -- Die Tastenbelegung.
-      ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeBelegung,
-                                                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).width,
-                                                                                                                       GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).height));
-      
-      Anzeigebereich := GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl);
-      
       AktuelleAuflösungshöhe := FensterGrafik.AktuelleAuflösung.y;
       
       if
-        ViewflächeBelegung.y * GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).height > AktuelleAuflösungshöhe
+        ViewflächeBelegung.y <= AktuelleAuflösungshöhe
       then
-         Anzeigebereich.height := ViewflächeBelegung.y * GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).height / AktuelleAuflösungshöhe;
+         Vollauswahl := True;
+         Auswahlverhältnis := (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungVollauswahl).width, GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungVollauswahl).height);
+         Anzeigebereich := GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungVollauswahl);
+         Logiktask.ScrollleisteVorhanden := False;
          
       else
-         Anzeigebereich.height := GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).height;
+         Vollauswahl := False;
+         Auswahlverhältnis := (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungTeilauswahl).width, GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungTeilauswahl).height);
+         Anzeigebereich := GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungTeilauswahl);
+         Logiktask.ScrollleisteVorhanden := True;
+      end if;
+      
+      ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeBelegung,
+                                                                                                 VerhältnisExtern => Auswahlverhältnis);
+      
+      if
+        Vollauswahl = False
+        -- ViewflächeBelegung.y * Auswahlverhältnis.y > AktuelleAuflösungshöhe
+      then
+         Anzeigebereich.height := ViewflächeBelegung.y * Auswahlverhältnis.y / AktuelleAuflösungshöhe;
+         
+      else
+         Anzeigebereich.height := Auswahlverhältnis.y;
+      
+         DiagnosesystemHTSEB.Kommazahl (ViewflächeBelegung.y);
+         DiagnosesystemHTSEB.Kommazahl (AktuelleAuflösungshöhe);
+         DiagnosesystemHTSEB.Zeilenabstand;
       end if;
       
       case
@@ -90,10 +110,20 @@ package body SteuerungsmenueGrafik is
             null;
       end case;
       
-      ViewsEinstellenGrafik.ViewEinstellenBewegen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungAuswahl),
-                                                   GrößeExtern          => ViewflächeBelegung,
-                                                   BewegungExtern       => Bewegung,
-                                                   AnzeigebereichExtern => Anzeigebereich);
+      case
+        Vollauswahl
+      is
+         when True =>
+            ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungVollauswahl),
+                                                  GrößeExtern          => ViewflächeBelegung,
+                                                  AnzeigebereichExtern => Anzeigebereich);
+         
+         when False =>
+            ViewsEinstellenGrafik.ViewEinstellenBewegen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungTeilauswahl),
+                                                         GrößeExtern          => ViewflächeBelegung,
+                                                         BewegungExtern       => Bewegung,
+                                                         AnzeigebereichExtern => Anzeigebereich);
+      end case;
       
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                     AbmessungenExtern => ViewflächeBelegung);
@@ -105,8 +135,15 @@ package body SteuerungsmenueGrafik is
       
       
       -- Zum Scrollen.
-      Scrollen (BelegungslängeExtern => ViewflächeBelegung.y,
-                AuflösungshöheExtern => AktuelleAuflösungshöhe);
+      case
+        Vollauswahl
+      is
+         when True =>
+            null;
+         
+         when False =>
+            Scrollen (BelegungslängeExtern => ViewflächeBelegung.y - AktuelleAuflösungshöhe);
+      end case;
                   
    end Steuerungsmenü;
    
@@ -286,8 +323,7 @@ package body SteuerungsmenueGrafik is
    
    
    procedure Scrollen
-     (BelegungslängeExtern : in Float;
-      AuflösungshöheExtern : in Float)
+     (BelegungslängeExtern : in Float)
    is begin
       
       ViewflächeScrollen := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeScrollen,
@@ -301,19 +337,10 @@ package body SteuerungsmenueGrafik is
       HintergrundGrafik.Aufteilung (HintergrundExtern => GrafikDatentypen.Menü_Enum,
                                     AbmessungenExtern => ViewflächeScrollen);
       
-      -- Eventuell so umbauen dass das Ganze hier überhaupt nur aufgerufen wird wenn die Länge die Auflösung überschreitet. äöü
-      if
-        BelegungslängeExtern <= AuflösungshöheExtern
-      then
-         InteraktionAuswahl.PositionenSteuerungsleiste := (others => GrafikRecordKonstanten.Leerbereich);
-         return;
-         
-      else
-         Durchläufe := 1;
-      end if;
+      Durchläufe := 1;
       
       DurchläufeSchleife:
-      while BelegungslängeExtern - AuflösungshöheExtern >= Scrollleistenabschnitt * Float (Durchläufe) loop
+      while BelegungslängeExtern >= Scrollleistenabschnitt * Float (Durchläufe) loop
          
          Durchläufe := Durchläufe + 1;
          
