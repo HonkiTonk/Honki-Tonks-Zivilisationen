@@ -30,7 +30,9 @@ with TexteinstellungenGrafik;
 with BildrateAnzeigenGrafik;
 with SetauswahlGrafik;
 
--- with DiagnosesystemZusatzinformationen;
+with DiagnosesystemZusatzinformationen;
+with DiagnosesystemHTSEB;
+with KartenRecords;
 
 package body Grafik is
    
@@ -49,8 +51,8 @@ package body Grafik is
       FensterGrafik.FensterErzeugen;
       TextaccesseSetzenGrafik.Texthöhe;
       
-      -- DiagnosesystemZusatzinformationen.Größenprüfung;
-      -- DiagnosesystemZusatzinformationen.GrößenprüfungDatei;
+      DiagnosesystemZusatzinformationen.GrößenprüfungDatei;
+      DiagnosesystemHTSEB.Größenprüfung (DatentypgrößeExtern => KartenRecords.FeldeffektArray'Size);
             
       Startzeit := Clock;
       

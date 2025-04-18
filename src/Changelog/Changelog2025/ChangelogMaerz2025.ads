@@ -204,16 +204,16 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (02.03.2025):
+   -- Version 0.06.1975 => 0.06. (02.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.1950 => 0.06. (01.03.2025):
+   -- Version 0.06.1950 => 0.06.1975 (01.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen das Speichersystem zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert.
 
 end ChangelogMaerz2025;

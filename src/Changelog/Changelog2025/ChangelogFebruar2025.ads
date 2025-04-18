@@ -3,7 +3,7 @@ package ChangelogFebruar2025 is
    
    -- Version 0.06.1870 => 0.06.1950 (28.02.2025):
    
-   -- Scrolleistensystem ausgelagert und überarbeitet.
+   -- Scrolleistensystem überarbeitet.
    -- Steuerungsmenü überarbeitet.
    -- Die VereinfachteEingabe überarbeitet und erweitert.
    -- Mausradbewegung ist jetzt eine eigene Eingabeart.

@@ -4,6 +4,10 @@ with Ada.Integer_Text_IO;
 
 with DateizugriffssystemHTSEB;
 
+-- with StadtRecords;
+-- with StadtDatentypen;
+-- with KartenextraDatentypen;
+
 package body DiagnosesystemZusatzinformationen is
 
    procedure GrößenprüfungKartenfeld
@@ -33,16 +37,16 @@ package body DiagnosesystemZusatzinformationen is
       ZuSpeichern := 0;
       
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
-                                               NameExtern     => ("Test/" & "Test"));
-      
-      StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichern),
-                                            ZuSpeichern);
-      
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                 NameExtern     => ("Test/" & "Test"));
       
+      KartenRecords.FeldeffektArray'Write (Stream (File => DateiSpeichern),
+                                           (True, True, True, True));
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
+                                                 NameExtern     => ("Test/" & "Test"));
+      
    end GrößenprüfungDatei;
-               
+   
    
 
    procedure Koordinateninformationen
