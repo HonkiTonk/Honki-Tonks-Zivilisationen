@@ -1,6 +1,8 @@
 with Sf.Window.Window;
 with Sf;
 
+with TextKonstantenHTSEB;
+
 with Menuetexte;
 with TextKonstanten;
 
@@ -123,10 +125,10 @@ package body MenuestringsSetzenGrafik is
            LeseEinstellungenGrafik.Fenstermodus
          is
             when Sf.Window.Window.sfFullscreen =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Haken;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Haken;
                
             when others =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Kreuz;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Kreuz;
          end case;
          
       elsif
@@ -136,10 +138,10 @@ package body MenuestringsSetzenGrafik is
            LeseEinstellungenGrafik.VSync
          is
             when Sf.sfTrue =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Haken;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Haken;
                
             when others =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Kreuz;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Kreuz;
          end case;
             
       elsif
@@ -169,10 +171,10 @@ package body MenuestringsSetzenGrafik is
            LeseEinstellungenGrafik.EbenenUnterhalbSichtbar
          is
             when True =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Haken;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Haken;
                
             when False =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Kreuz;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Kreuz;
          end case;
             
       elsif
@@ -182,10 +184,10 @@ package body MenuestringsSetzenGrafik is
            LeseEinstellungenGrafik.BildrateAnzeigen
          is
             when True =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Haken;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Haken;
                
             when False =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Kreuz;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Kreuz;
          end case;
 
       else
@@ -239,7 +241,7 @@ package body MenuestringsSetzenGrafik is
            LeseOptionen.AnzahlAutospeichern
          is
             when 0 =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Kreuz;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Kreuz;
                
             when others =>
                Zwischenspeicher := Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => Natural (LeseOptionen.AnzahlAutospeichern)) & ")";
@@ -252,7 +254,7 @@ package body MenuestringsSetzenGrafik is
            LeseOptionen.AnzahlAutospeichern
          is
             when 0 =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Kreuz;
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Kreuz;
                
             when others =>
                Zwischenspeicher := Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => Natural (LeseOptionen.RundenAutospeichern)) & ")";

@@ -28,11 +28,15 @@ package TasteneingabeLogik is
    
 private
    
+   Tasteneingabe : TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
+   
    type TastenRecord is record
       
       Maustaste : Sf.Window.Mouse.sfMouseButton;
       
       Tastaturtaste : Sf.Window.Keyboard.sfKeyCode;
+      
+      Mausrad : Float;
       
    end record;
    

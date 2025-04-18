@@ -40,6 +40,7 @@ package TastenbelegungDatentypen is
    
    subtype Tastenbelegung_Bewegung_Erweitert_Enum is Allgemeine_Belegung_Vorhanden_Enum range Auswählen_Enum .. Ebene_Runter_Enum;
    subtype Tastenbelegung_Bewegung_Enum is Tastenbelegung_Bewegung_Erweitert_Enum range Oben_Enum .. Tastenbelegung_Bewegung_Erweitert_Enum'Last;
+   subtype Tastenbelegung_Ebene_Enum is Tastenbelegung_Bewegung_Enum range Ebene_Hoch_Enum .. Tastenbelegung_Bewegung_Enum'Last;
    
    subtype Weltkartenbefehle_Enum is Allgemeine_Belegung_Enum range Allgemeine_Belegung_Enum'First .. Runde_Beenden_Enum;
    subtype Kartenbefehle_Enum is Weltkartenbefehle_Enum range Forschung_Enum .. Runde_Beenden_Enum;

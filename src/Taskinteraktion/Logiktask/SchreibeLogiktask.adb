@@ -62,6 +62,16 @@ package body SchreibeLogiktask is
    
    
    
+   procedure Mausrad
+     (BewegungExtern : in Float)
+   is begin
+      
+      Logiktask.Eingabe.Mausrad := BewegungExtern;
+      
+   end Mausrad;
+   
+   
+   
    procedure ErfolgTexteingabe
      (ErfolgExtern : in Boolean)
    is begin

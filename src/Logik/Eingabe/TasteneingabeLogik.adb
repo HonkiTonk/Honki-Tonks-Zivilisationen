@@ -1,3 +1,5 @@
+with GrafikKonstanten;
+
 with LeseTastenbelegungDatenbank;
 with SchreibeLogiktask;
 with LeseLogiktask;
@@ -16,7 +18,7 @@ package body TasteneingabeLogik is
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
-      return (LeseLogiktask.Maustaste, LeseLogiktask.Tastaturtaste);
+      return (LeseLogiktask.Maustaste, LeseLogiktask.Tastaturtaste, LeseLogiktask.Mausrad);
       
    end EingabeanfangSetzen;
    
@@ -49,6 +51,18 @@ package body TasteneingabeLogik is
       then
          return TastenbelegungDatentypen.Abwählen_Enum;
          
+         -- Eventuell später eigene tasten für das Hoch- und Runterscrollen einbauen. äöü
+         -- Dann auch TasteneingabeGrafik.Tasteneingabe entsprechend überarbeiten und SichtweitenGrafik.ZoomstufeÄndern entsprechend anpassen. äöü
+      elsif
+        VereinfachteEingabeTasten.Mausrad < GrafikKonstanten.Nullwert
+      then
+         return TastenbelegungDatentypen.Ebene_Hoch_Enum;
+         
+      elsif
+        VereinfachteEingabeTasten.Mausrad > GrafikKonstanten.Nullwert
+      then
+         return TastenbelegungDatentypen.Ebene_Runter_Enum;
+         
       else
          return TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum;
       end if;
@@ -59,42 +73,13 @@ package body TasteneingabeLogik is
    
    function ErweiterteVereinfachteEingabe
      return TastenbelegungDatentypen.Allgemeine_Belegung_Enum
-   is
-      use type Sf.Window.Mouse.sfMouseButton;
-      use type Sf.Window.Keyboard.sfKeyCode;
-      use type Sf.sfBool;
-   begin
+   is begin
       
-      VereinfachteEingabeTasten := EingabeanfangSetzen;
-         
-      if
-        VereinfachteEingabeTasten.Maustaste = Sf.Window.Mouse.sfMouseLeft
-        and
-          Sf.Window.Mouse.isButtonPressed (button => VereinfachteEingabeTasten.Maustaste) = Sf.sfTrue
-      then
-         return TastenbelegungDatentypen.Auswählen_Enum;
-         
-      elsif
-        VereinfachteEingabeTasten.Maustaste = Sf.Window.Mouse.sfMouseLeft
-        or
-          (VereinfachteEingabeTasten.Tastaturtaste /= Sf.Window.Keyboard.sfKeyUnknown
-           and
-             VereinfachteEingabeTasten.Tastaturtaste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Auswählen_Enum))
-      then
-         return TastenbelegungDatentypen.Auswählen_Enum;
-        
-      elsif
-        VereinfachteEingabeTasten.Maustaste = Sf.Window.Mouse.sfMouseRight
-        or
-          (VereinfachteEingabeTasten.Tastaturtaste /= Sf.Window.Keyboard.sfKeyUnknown
-           and
-             VereinfachteEingabeTasten.Tastaturtaste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Abwählen_Enum))
-      then
-         return TastenbelegungDatentypen.Abwählen_Enum;
+      SchreibeGrafiktask.MaustasteGehalten (JaNeinExtern => True);
+      Tasteneingabe := VereinfachteEingabe;
+      SchreibeGrafiktask.MaustasteGehalten (JaNeinExtern => False);
       
-      else
-         return TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum;
-      end if;
+      return Tasteneingabe;
       
    end ErweiterteVereinfachteEingabe;
    

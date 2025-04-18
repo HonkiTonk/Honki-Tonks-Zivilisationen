@@ -26,6 +26,9 @@ package SchreibeLogiktask is
    procedure Maustaste
      (TasteExtern : in Sf.Window.Mouse.sfMouseButton);
    
+   procedure Mausrad
+     (BewegungExtern : in Float);
+   
    procedure ErfolgTexteingabe
      (ErfolgExtern : in Boolean);
    

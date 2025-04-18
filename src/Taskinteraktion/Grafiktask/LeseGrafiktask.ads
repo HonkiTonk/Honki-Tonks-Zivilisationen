@@ -115,6 +115,12 @@ package LeseGrafiktask is
    function Zahleneingabe
      return ZahlenDatentypen.EigenesNatural;
    
+   function MaustasteGehalten
+     return Boolean;
+   
+   function TastaturtasteGehalten
+     return Boolean;
+   
    function Spielmeldung
      return TextnummernKonstanten.Spielmeldungen;
    

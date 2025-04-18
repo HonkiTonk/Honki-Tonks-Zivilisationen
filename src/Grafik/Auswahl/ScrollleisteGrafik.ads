@@ -2,20 +2,19 @@ private with Sf.System.Vector2;
 
 private with GrafikRecordKonstanten;
 
+with InteraktionAuswahl;
+
 package ScrollleisteGrafik is
    pragma Elaborate_Body;
    
    procedure Scrollen
-     (BelegungslängeExtern : in Float;
-      AbschnittExtern : in Natural)
+     (AbschnittExtern : in Natural)
      with
        Pre => (
-                 BelegungslängeExtern >= 0.00
+                 AbschnittExtern < InteraktionAuswahl.PositionenSteuerungsleiste'Last
               );
 
 private
-   
-   Durchläufe : Natural;
    
    Leistenabschnitt : Float;
    

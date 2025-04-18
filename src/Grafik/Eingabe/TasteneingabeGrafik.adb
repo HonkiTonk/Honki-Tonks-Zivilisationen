@@ -3,6 +3,8 @@ with Sf.Graphics.RenderWindow;
 with Sf.Window.Mouse;
 with Sf.Window.Keyboard;
 
+-- with 
+
 with KartenDatentypen;
 with GrafikDatentypen;
 with GrafikRecordKonstanten;
@@ -28,6 +30,7 @@ package body TasteneingabeGrafik is
       -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen? Scheint zu funktionieren.
       SchreibeLogiktask.Maustaste (TasteExtern => Sf.Window.Mouse.sfMouseButtonCount);
       SchreibeLogiktask.Tastaturtaste (TasteExtern => Sf.Window.Keyboard.sfKeyUnknown);
+      SchreibeLogiktask.Mausrad (BewegungExtern => GrafikKonstanten.Nullwert);
       
       TasteSchleife:
       while
@@ -69,23 +72,42 @@ package body TasteneingabeGrafik is
                   
             when Sf.Window.Event.sfEvtMouseWheelScrolled =>
                if
-                 LeseGrafiktask.Darstellung /= GrafikDatentypen.Weltkarte_Enum
+                 LeseGrafiktask.Darstellung = GrafikDatentypen.Weltkarte_Enum
                then
-                  null;
+                  if
+                    Nutzereingabe.mouseWheelScroll.eventDelta < GrafikKonstanten.Nullwert
+                  then
+                     SichtweitenGrafik.ZoomstufeÄndern (ÄnderungExtern => 1);
                   
-               elsif
-                 Nutzereingabe.mouseWheelScroll.eventDelta < GrafikKonstanten.Nullwert
-               then
-                  SichtweitenGrafik.ZoomstufeÄndern (ÄnderungExtern => 1);
+                  else
+                     SichtweitenGrafik.ZoomstufeÄndern (ÄnderungExtern => -1);
+                  end if;
                   
                else
-                  SichtweitenGrafik.ZoomstufeÄndern (ÄnderungExtern => -1);
+                  SchreibeLogiktask.Mausrad (BewegungExtern => Nutzereingabe.mouseWheelScroll.eventDelta);
                end if;
                   
             when Sf.Window.Event.sfEvtMouseButtonPressed =>
                SchreibeLogiktask.Maustaste (TasteExtern => Nutzereingabe.mouseButton.button);
                
             when others =>
+               null;
+         end case;
+         
+         case
+           LeseGrafiktask.MaustasteGehalten
+         is
+            when True =>
+               if
+                 Sf.Window.Mouse.isButtonPressed (button => Sf.Window.Mouse.sfMouseLeft) = Sf.sfTrue
+               then
+                  SchreibeLogiktask.Maustaste (TasteExtern => Sf.Window.Mouse.sfMouseLeft);
+               
+               else
+                  null;
+               end if;
+               
+            when False =>
                null;
          end case;
                      

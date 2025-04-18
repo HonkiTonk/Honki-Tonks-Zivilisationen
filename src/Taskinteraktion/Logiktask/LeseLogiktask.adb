@@ -62,6 +62,16 @@ package body LeseLogiktask is
    
    
    
+   function Mausrad
+     return Float
+   is begin
+      
+      return Logiktask.Eingabe.Mausrad;
+      
+   end Mausrad;
+   
+   
+   
    function ErfolgTexteingabe
      return Boolean
    is begin

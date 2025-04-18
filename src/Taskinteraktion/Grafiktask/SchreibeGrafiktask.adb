@@ -344,6 +344,26 @@ package body SchreibeGrafiktask is
    
    
    
+   procedure MaustasteGehalten
+     (JaNeinExtern : in Boolean)
+   is begin
+      
+      Grafiktask.Eingabe.MaustasteGehalten := JaNeinExtern;
+      
+   end MaustasteGehalten;
+   
+   
+   
+   procedure TastaturtasteGehalten
+     (JaNeinExtern : in Boolean)
+   is begin
+      
+      Grafiktask.Eingabe.TastaturtasteGehalten := JaNeinExtern;
+      
+   end TastaturtasteGehalten;
+   
+   
+   
    procedure Spielmeldung
      (MeldungExtern : in TextnummernKonstanten.Spielmeldungen)
    is begin

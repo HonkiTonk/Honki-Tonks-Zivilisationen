@@ -206,7 +206,7 @@ package body BauauswahlGrafik is
 
             when others =>
                Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                                     TextAccessExtern         =>
                                                                                                        TextaccessVariablen.GebäudetextAccess (SpeziesExtern,
                                                                                                       StadtDatentypen.GebäudeIDVorhanden (BaulisteExtern (GebäudeSchleifenwert))),
@@ -236,7 +236,7 @@ package body BauauswahlGrafik is
          InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteZurück) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück));
          
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => (Textposition.x + ViewflächeBauliste.x / 2.00, Textposition.y),
-                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                               TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
                                                                                               FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteWeiter,
                                                                                                                                                                  AuswahlExtern    => Natural (AuswahlExtern)));
@@ -247,7 +247,7 @@ package body BauauswahlGrafik is
         BaulisteExtern (InteraktionAuswahl.BaulisteZurück) = AuswahlKonstanten.ErstAuswahl
       then
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                               TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück),
                                                                                               FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteZurück,
                                                                                                                                                                  AuswahlExtern    => Natural (AuswahlExtern)));
@@ -258,7 +258,7 @@ package body BauauswahlGrafik is
         BaulisteExtern (InteraktionAuswahl.BaulisteWeiter) = AuswahlKonstanten.ErstAuswahl
       then
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                               TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
                                                                                               FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteWeiter,
                                                                                                                                                                  AuswahlExtern    => Natural (AuswahlExtern)));
@@ -322,18 +322,12 @@ package body BauauswahlGrafik is
 
             when others =>
                Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                                    MaximaleTextbreiteExtern => ViewflächeBauliste.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                                     TextAccessExtern         => TextaccessVariablen.EinheitentextAccess (SpeziesExtern,
                                                                                                       EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert))),
                                                                                                     FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => EinheitenSchleifenwert,
                                                                                                                                                                        AuswahlExtern    => Natural (AuswahlExtern)));
                
-               -- Ist das hier noch aus einem Grund hier oder kann das weg? äöü
-               -- DiagnosesystemZusatzinformationen.Zahl (ZahlExtern => BaulisteExtern (EinheitenSchleifenwert));
-               -- DiagnosesystemZusatzinformationen.Zahl (ZahlExtern => Integer (EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert))));
-               -- DiagnosesystemZusatzinformationen.Boxinformationen
-               --   (BoxExtern => Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenDatentypen.EinheitenIDVorhanden (BaulisteExtern (EinheitenSchleifenwert)))));
-               -- DiagnosesystemZusatzinformationen.Zeilenabstand;
                
                -- Sollte auch mit EinheitenIDVorhanden anstelle von EinheitenID funktionieren, tut es aber nicht. Später mal herausfinden warum. äöü
                -- Das Problem existiert auch bei den Gebäuden. äöü
@@ -350,7 +344,7 @@ package body BauauswahlGrafik is
           BaulisteExtern (InteraktionAuswahl.BaulisteWeiter) = AuswahlKonstanten.ErstAuswahl
       then
          LeerYTextposition := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                                 MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                                 MaximaleTextbreiteExtern => ViewflächeBauliste.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                                  TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück),
                                                                                                  FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteZurück,
                                                                                                                                                                     AuswahlExtern    => Natural (AuswahlExtern)));
@@ -358,7 +352,7 @@ package body BauauswahlGrafik is
          InteraktionAuswahl.PositionenBaumöglichkeiten (InteraktionAuswahl.BaulisteZurück) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück));
          
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => (Textposition.x + ViewflächeBauliste.x / 2.00, Textposition.y),
-                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                               TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
                                                                                               FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteWeiter,
                                                                                                                                                                  AuswahlExtern    => Natural (AuswahlExtern)));
@@ -369,7 +363,7 @@ package body BauauswahlGrafik is
         BaulisteExtern (InteraktionAuswahl.BaulisteZurück) = AuswahlKonstanten.ErstAuswahl
       then
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                               TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugZurück),
                                                                                               FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteZurück,
                                                                                                                                                                  AuswahlExtern    => Natural (AuswahlExtern)));
@@ -380,7 +374,7 @@ package body BauauswahlGrafik is
         BaulisteExtern (InteraktionAuswahl.BaulisteWeiter) = AuswahlKonstanten.ErstAuswahl
       then
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenFarbeZeichnen (TextpositionExtern       => Textposition,
-                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x,
+                                                                                              MaximaleTextbreiteExtern => ViewflächeBauliste.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                               TextAccessExtern         => TextaccessVariablen.ZeugAccess (TextnummernKonstanten.ZeugWeiter),
                                                                                               FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => InteraktionAuswahl.BaulisteWeiter,
                                                                                                                                                                  AuswahlExtern    => Natural (AuswahlExtern)));

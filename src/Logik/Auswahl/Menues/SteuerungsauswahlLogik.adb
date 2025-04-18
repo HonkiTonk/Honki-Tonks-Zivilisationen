@@ -8,6 +8,7 @@ with AuswahlKonstanten;
 with LeseTastenbelegungDatenbank;
 with SchreibeTastenbelegungDatenbank;
 with SchreibeGrafiktask;
+with LeseGrafiktask;
 
 with TasteneingabeLogik;
 with MenuerueckgabenLogik;
@@ -27,13 +28,33 @@ package body SteuerungsauswahlLogik is
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Steuerung;
-         AllgemeineAuswahl := TasteneingabeLogik.VereinfachteEingabe;
+         AllgemeineAuswahl := TasteneingabeLogik.ErweiterteVereinfachteEingabe;
          
          case
            AllgemeineAuswahl
          is
             when TastenbelegungDatentypen.Abwählen_Enum =>
                return RueckgabeDatentypen.Zurück_Enum;
+               
+            when TastenbelegungDatentypen.Ebene_Hoch_Enum =>
+               if
+                 LeseGrafiktask.Zweitauswahl < InteraktionAuswahl.PositionenSteuerungsleiste'Last
+               then
+                  SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => LeseGrafiktask.Zweitauswahl + 1);
+                              
+               else
+                  SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => InteraktionAuswahl.PositionenSteuerungsleiste'First);
+               end if;
+               
+            when TastenbelegungDatentypen.Ebene_Runter_Enum =>
+               if
+                 LeseGrafiktask.Zweitauswahl > InteraktionAuswahl.PositionenSteuerungsleiste'First
+               then
+                  SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => LeseGrafiktask.Zweitauswahl - 1);
+                              
+               else
+                  SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => InteraktionAuswahl.PositionenSteuerungsleiste'Last);
+               end if;
                
             when others =>
                null;
@@ -51,7 +72,7 @@ package body SteuerungsauswahlLogik is
                   if
                     AktuelleAuswahl.Erstauswahl < AuswahlKonstanten.LeerAuswahl
                   then
-                     OftVerwendeterSound.Klick;
+                     -- OftVerwendeterSound.Klick;
                      WelcheSteuerung := NummerZuKategorie (AktuelleAuswahl.Erstauswahl);
                      SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AuswahlKonstanten.ErstAuswahl);
                   
@@ -86,7 +107,7 @@ package body SteuerungsauswahlLogik is
               AllgemeineAuswahl
             is
                when TastenbelegungDatentypen.Auswählen_Enum =>
-                  OftVerwendeterSound.Klick;
+                  -- OftVerwendeterSound.Klick;
                   SchreibeGrafiktask.Zweitauswahl (AuswahlExtern => AktuelleAuswahl.Zweitauswahl);
                   
                when others =>

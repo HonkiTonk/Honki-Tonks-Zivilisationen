@@ -114,8 +114,8 @@ package body BauauswahlEinheitenGrafik is
       for InformationSchleifenwert in Einheitentexte'Range loop
          
          YPosition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),
-                                                                                        TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, YPosition),
-                                                                                        MaximaleTextbreiteExtern => ViewflächeInformationen.x,
+                                                                                        TextpositionExtern       => (TextberechnungenBreiteGrafik.KleinerSpaltenabstand, YPosition),
+                                                                                        MaximaleTextbreiteExtern => ViewflächeInformationen.x - TextberechnungenBreiteGrafik.KleinerSpaltenabstand,
                                                                                         TextAccessExtern         => TextaccessVariablen.EinheitenbauinformationenAccess);
          
       end loop InformationenSchleife;
@@ -161,7 +161,7 @@ package body BauauswahlEinheitenGrafik is
                                                                                                                                                                       SpeziesExtern => SpeziesExtern),
                                                                                               TextfeldbreiteExtern => ViewflächeBeschreibung.x,
                                                                                               BreitenabzugExtern   => TextberechnungenBreiteGrafik.WinzigerSpaltenabstand),
-                                                                                           TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, YPosition),
+                                                                                           TextpositionExtern       => (TextberechnungenBreiteGrafik.KleinerSpaltenabstand, YPosition),
                                                                                            MaximaleTextbreiteExtern => ViewflächeBeschreibung.x,
                                                                                            TextAccessExtern         => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern));
       

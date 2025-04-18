@@ -1,11 +1,12 @@
 -- Das mal teilweise oder ganz auslagern? äöü
+-- Das alles als Wide_Wiide_String anlegen und an den entsprechenden Stellen dann einfach umwandeln? äöü
+-- Muss ja teilweise eh umwandeln und es würde die Doppelvarianten entfernen. äöü
 package VerzeichnisKonstanten is
    pragma Pure;
    
    -- Da das hier nicht nur Verzeichnisse sondern auch Dateien enthält sollte ich es mal umbenennen oder aufteilen. äöü
    -- Wird für Windows benötigt da die 255 Zeichen sich auf den ganzen Pfad und nicht nur den Dateinamen beziehen.
    VerzeichnisSpielstand : constant String (1 .. 20) := "/Spielstand/Manuell/";
-   ExtrazeichenSpielstand : constant Positive := VerzeichnisSpielstand'Length;
    
    Spielstand : constant String (1 .. 10) := "Spielstand";
    SpielstandStrich : constant String (1 .. 11) := Spielstand & "/";

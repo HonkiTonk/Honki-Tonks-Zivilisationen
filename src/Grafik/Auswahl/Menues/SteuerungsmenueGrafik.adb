@@ -10,7 +10,6 @@ with BefehleDatentypen;
 with ViewKonstanten;
 with TextDatentypen;
 with GrafikKonstanten;
-with GrafikVariablen;
 
 with LeseTastenbelegungDatenbank;
 with SchreibeLogiktask;
@@ -32,7 +31,7 @@ package body SteuerungsmenueGrafik is
    procedure Steuerungsmenü
      (AuswahlExtern : in SystemRecords.DoppelauswahlRecord)
    is begin
-      
+            
       -- Die verschiedenen Reiter oben.
       ViewflächeAufteilung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAufteilung,
                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungKategorie).width,
@@ -51,7 +50,7 @@ package body SteuerungsmenueGrafik is
       
       
       -- Die Tastenbelegung.
-      AktuelleAuflösungshöhe := FensterGrafik.AktuelleAuflösung.y;
+      AktuelleAuflösungshöhe := FensterGrafik.AktuelleAuflösung.y * Anzeigemodifikator;
       
       if
         ViewflächeBelegung.y <= AktuelleAuflösungshöhe
@@ -76,24 +75,8 @@ package body SteuerungsmenueGrafik is
       then
          Anzeigebereich.height := ViewflächeBelegung.y * Auswahlverhältnis.y / AktuelleAuflösungshöhe;
          
-         case
-           AuswahlExtern.Zweitauswahl
-         is
-            when InteraktionAuswahl.PositionenSteuerungsleiste'Range =>
-               Bewegung.y := Float (AuswahlExtern.Zweitauswahl - 1) * GrafikVariablen.Scrollleistenabschnitt;
-            
-               if
-                 Bewegung.y > ViewflächeBelegung.y - AktuelleAuflösungshöhe
-               then
-                  Bewegung.y := ViewflächeBelegung.y - AktuelleAuflösungshöhe;
-               
-               else
-                  null;
-               end if;
-            
-            when others =>
-               null;
-         end case;
+         Scrollweite := (ViewflächeBelegung.y - AktuelleAuflösungshöhe) / Float (InteraktionAuswahl.PositionenSteuerungsleiste'Last - 1);
+         Bewegung.y := Float (AuswahlExtern.Zweitauswahl - 1) * Scrollweite;
          
          ViewsEinstellenGrafik.ViewEinstellenBewegen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungTeilauswahl),
                                                       GrößeExtern          => ViewflächeBelegung,
@@ -111,7 +94,7 @@ package body SteuerungsmenueGrafik is
       
       ViewflächeBelegung.y := Steuerung (AuswahlExtern            => AuswahlExtern.Erstauswahl,
                                           WelcheSteuerungExtern    => SteuerungsauswahlLogik.WelcheSteuerung,
-                                          MaximaleTextbreiteExtern => ViewflächeBelegung.x);
+                                          MaximaleTextbreiteExtern => ViewflächeBelegung.x - TextberechnungenBreiteGrafik.Spaltenabstand);
       
       
       
@@ -123,17 +106,9 @@ package body SteuerungsmenueGrafik is
             null;
          
          when False =>
-            if
-              ViewflächeBelegung.y - AktuelleAuflösungshöhe < 0.00
-            then
-               null;
-               
-            else
-               ScrollleisteGrafik.Scrollen (BelegungslängeExtern => ViewflächeBelegung.y - AktuelleAuflösungshöhe,
-                                            AbschnittExtern      => AuswahlExtern.Zweitauswahl - 1);
-            end if;
+            ScrollleisteGrafik.Scrollen (AbschnittExtern => AuswahlExtern.Zweitauswahl - 1);
       end case;
-                  
+      
    end Steuerungsmenü;
    
    
@@ -225,7 +200,7 @@ package body SteuerungsmenueGrafik is
             ArrayEnde := MenueKonstanten.SonstigesSteuerung - 1;
       end case;
       
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
+      Textposition.x := TextberechnungenBreiteGrafik.Spaltenabstand; -- .KleinerSpaltenabstand;
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       
       TextSchleife:

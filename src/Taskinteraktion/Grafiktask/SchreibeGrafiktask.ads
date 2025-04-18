@@ -117,6 +117,12 @@ package SchreibeGrafiktask is
    procedure Zahleneingabe
      (ZahlExtern : in ZahlenDatentypen.EigenesNatural);
    
+   procedure MaustasteGehalten
+     (JaNeinExtern : in Boolean);
+   
+   procedure TastaturtasteGehalten
+     (JaNeinExtern : in Boolean);
+   
    procedure Spielmeldung
      (MeldungExtern : in TextnummernKonstanten.Spielmeldungen);
    

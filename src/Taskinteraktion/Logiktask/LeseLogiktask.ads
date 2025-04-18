@@ -26,6 +26,9 @@ package LeseLogiktask is
    function Maustaste
      return Sf.Window.Mouse.sfMouseButton;
    
+   function Mausrad
+     return Float;
+   
    function ErfolgTexteingabe
      return Boolean;
    

@@ -47,11 +47,14 @@ package Grafiktask is
                                                 );
          
    Eingabe : TaskRecords.EingabeGrafikRecord := (
-                                                 Tasteneingabe     => False,
-                                                 Texteingabe       => False,
-                                                 Vorzeicheneingabe => False,
-                                                 Eingabeart        => GrafikDatentypen.Keine_Eingabe_Enum,
-                                                 Zahleneingabe     => ZahlenDatentypen.EigenesNatural'First
+                                                 Tasteneingabe         => False,
+                                                 Texteingabe           => False,
+                                                 Vorzeicheneingabe     => False,
+                                                 Eingabeart            => GrafikDatentypen.Keine_Eingabe_Enum,
+                                                 Zahleneingabe         => ZahlenDatentypen.EigenesNatural'First,
+                                                 MaustasteGehalten     => False,
+                                                 TastaturtasteGehalten => False
+                                                 
                                                 );
    
    Meldung : TaskRecords.MeldungGrafikRecord := (

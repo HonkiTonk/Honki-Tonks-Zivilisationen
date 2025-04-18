@@ -1,10 +1,15 @@
 package ChangelogFebruar2025 is
    pragma Pure;
    
-   -- Version 0.06.1870 => 0.06. (28.02.2025):
+   -- Version 0.06.1870 => 0.06.1950 (28.02.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Scrolleistensystem ausgelagert und überarbeitet.
+   -- Steuerungsmenü überarbeitet.
+   -- Die VereinfachteEingabe überarbeitet und erweitert.
+   -- Mausradbewegung ist jetzt eine eigene Eingabeart.
+   -- Diverse Menüs leicht angepasst.
+   -- Diverse Konstanten durch die HTSEB Varianten ersetzt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

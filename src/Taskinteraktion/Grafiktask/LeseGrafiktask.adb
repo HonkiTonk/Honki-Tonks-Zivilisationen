@@ -332,6 +332,26 @@ package body LeseGrafiktask is
    
    
    
+   function MaustasteGehalten
+     return Boolean
+   is begin
+      
+      return Grafiktask.Eingabe.MaustasteGehalten;
+      
+   end MaustasteGehalten;
+   
+   
+   
+   function TastaturtasteGehalten
+     return Boolean
+   is begin
+      
+      return Grafiktask.Eingabe.TastaturtasteGehalten;
+      
+   end TastaturtasteGehalten;
+   
+   
+   
    function Spielmeldung
      return TextnummernKonstanten.Spielmeldungen
    is begin

@@ -211,7 +211,7 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (01.03.2025):
+   -- Version 0.06.1950 => 0.06. (01.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.

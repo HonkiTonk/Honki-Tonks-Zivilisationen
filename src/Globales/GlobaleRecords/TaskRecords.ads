@@ -39,6 +39,8 @@ package TaskRecords is
       Tastaturtaste : Sf.Window.Keyboard.sfKeyCode;
 
       Maustaste : Sf.Window.Mouse.sfMouseButton;
+      
+      Mausrad : Float;
 
       Text : SystemRecordsHTSEB.TextEingabeRecord;
       
@@ -121,6 +123,9 @@ package TaskRecords is
       Eingabeart : GrafikDatentypen.Eingabe_Enum;
    
       Zahleneingabe : ZahlenDatentypen.EigenesNatural;
+      
+      MaustasteGehalten : Boolean;
+      TastaturtasteGehalten : Boolean;
       
    end record;
    
