@@ -54,9 +54,7 @@ private
    
    Kartenfeld : constant Positive := WeltkarteRecords.WeltkarteRecord'Size;
    ZuPrüfendeGröße : constant Positive := StadtDatentypen.Städtebereich'Size;
-   
-   ZuSpeichern : StadtDatentypen.Städtebereich;
-      
+         
    DateiSpeichern : File_Type;
    
    Zwischenspeicher : Unbounded_Wide_Wide_String;
