@@ -30,7 +30,7 @@ with TexteinstellungenGrafik;
 with BildrateAnzeigenGrafik;
 with SetauswahlGrafik;
 
--- with DiagnosesystemZusatzinformationen;
+with DiagnosesystemZusatzinformationen;
 -- with DiagnosesystemHTSEB;
 
 package body Grafik is
@@ -50,7 +50,7 @@ package body Grafik is
       FensterGrafik.FensterErzeugen;
       TextaccesseSetzenGrafik.Texthöhe;
       
-      -- DiagnosesystemZusatzinformationen.GrößenprüfungDatei;
+      DiagnosesystemZusatzinformationen.GrößenprüfungDatei;
       -- DiagnosesystemHTSEB.Größenprüfung (DatentypgrößeExtern => StadtRecords.StadtGebautRecord'Size);
             
       Startzeit := Clock;

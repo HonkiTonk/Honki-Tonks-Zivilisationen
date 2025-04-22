@@ -190,17 +190,19 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (04.03.2025):
+   -- Version 0.06.2045 => 0.06. (04.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2000 => 0.06. (03.03.2025):
+   -- Version 0.06.2000 => 0.06.2045 (03.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter das Speichersystem überarbeitet.
+   -- Datentypen/Records angepasst.
+   -- Interne Benennung überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

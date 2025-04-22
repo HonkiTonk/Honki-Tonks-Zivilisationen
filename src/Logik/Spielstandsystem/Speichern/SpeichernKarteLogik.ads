@@ -23,15 +23,15 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
-   
    Sichtbarkeit : SystemDatentypen.Sichtbarkeitszahl;
+   AktuelleSichtbarkeit : SystemDatentypen.Sichtbarkeitszahl;
    
-   VorhandeneFeldelemente : SystemDatentypen.FeldelementVorhanden;
+   VorhandeneFeldeffekte : SystemDatentypen.Feldeffektezahl;
+   AktuellerFeldeffekt : SystemDatentypen.Feldeffektezahl;
+   
+   VorhandeneFeldelemente : SystemDatentypen.Feldelementezahl;
       
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
-   
-   Feldeffekte : KartenRecords.FeldeffektArray;
       
    Fluss : KartenextraDatentypen.Fluss_Enum;
    
@@ -41,9 +41,13 @@ private
    
    Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
    
+   Feldeffekte : KartenRecords.FeldeffektArray;
+   
    Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
      
    Stadt : StadtRecords.SpeziesStadtnummerRecord;
+   
+   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
    
    
       

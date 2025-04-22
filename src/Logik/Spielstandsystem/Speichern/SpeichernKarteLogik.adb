@@ -6,7 +6,6 @@ with StadtKonstanten;
 with KartenRecordKonstanten;
 with SystemKonstanten;
 with SpeziesKonstanten;
-with SpeziesDatentypen;
 
 with LeseWeltkarte;
 
@@ -98,7 +97,7 @@ package body SpeichernKarteLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Karte: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end Karte;
@@ -119,6 +118,7 @@ package body SpeichernKarteLogik is
       for BereichSchleifenwert in SpeziesKonstanten.SpeziesanfangLadenSpeichernArray'Range loop
          
          Sichtbarkeit := 0;
+         AktuelleSichtbarkeit := 1;
       
          SichtbarkeitSchleife:
          for SichtbarkeitSchleifenwert in SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
@@ -127,12 +127,15 @@ package body SpeichernKarteLogik is
               GesamteSichtbarkeit (SichtbarkeitSchleifenwert)
             is
                when True =>
-                  Sichtbarkeit := Sichtbarkeit + 2**(SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SichtbarkeitSchleifenwert)
-                                                     - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert)));
+                  Sichtbarkeit := Sichtbarkeit + AktuelleSichtbarkeit;
+                  -- Sichtbarkeit := Sichtbarkeit + 2**(SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SichtbarkeitSchleifenwert)
+                  --                                   - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert)));
                
                when False =>
                   null;
             end case;
+            
+            AktuelleSichtbarkeit := AktuelleSichtbarkeit * 2;
          
          end loop SichtbarkeitSchleife;
       
@@ -146,7 +149,7 @@ package body SpeichernKarteLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.SichtbarkeitSchreiben: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end SichtbarkeitSchreiben;
@@ -175,7 +178,7 @@ package body SpeichernKarteLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end BasisgrundSchreiben;
@@ -197,7 +200,7 @@ package body SpeichernKarteLogik is
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
       use type StadtRecords.SpeziesStadtnummerRecord;
       use type KartenRecords.FeldeffektArray;
-      use type SystemDatentypen.FeldelementVorhanden;
+      use type SystemDatentypen.Feldelementezahl;
    begin
       
       case
@@ -277,15 +280,15 @@ package body SpeichernKarteLogik is
          VorhandeneFeldelemente := VorhandeneFeldelemente + SystemKonstanten.StadtVorhanden;
       end if;
       
-      SystemDatentypen.FeldelementVorhanden'Write (Stream (File => DateiSpeichernExtern),
-                                                   VorhandeneFeldelemente);
+      SystemDatentypen.Feldelementezahl'Write (Stream (File => DateiSpeichernExtern),
+                                               VorhandeneFeldelemente);
       
       return True;
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelementeSchreiben: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end VorhandeneFeldelementeSchreiben;
@@ -307,6 +310,7 @@ package body SpeichernKarteLogik is
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
       use type StadtRecords.SpeziesStadtnummerRecord;
       use type KartenRecords.FeldeffektArray;
+      use type SystemDatentypen.Feldeffektezahl;
    begin
       
       if
@@ -379,8 +383,37 @@ package body SpeichernKarteLogik is
          null;
                   
       else
-         KartenRecords.FeldeffektArray'Write (Stream (File => DateiSpeichernExtern),
-                                              FeldeffekteExtern);
+         VorhandeneFeldeffekte := 0;
+         AktuellerFeldeffekt := 1;
+         
+         FeldeffekteSchleife:
+         for FeldeffekteSchleifenwert in KartenRecords.FeldeffektArray'Range loop
+            
+            case
+              FeldeffekteExtern (FeldeffekteSchleifenwert)
+            is
+               when True =>
+                  VorhandeneFeldeffekte := VorhandeneFeldeffekte + AktuellerFeldeffekt;
+                  
+               when False =>
+                  null;
+            end case;
+            
+            AktuellerFeldeffekt := AktuellerFeldeffekt * 2;
+            
+         end loop FeldeffekteSchleife;
+         
+         case
+           VorhandeneFeldeffekte
+         is
+            when 0 =>
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.FeldelementeSchreiben: Vorhandene Feldeffekte sind nicht vorhanden: "
+                                          & FeldeffekteExtern'Wide_Wide_Image);
+               
+            when others =>
+               SystemDatentypen.Feldeffektezahl'Write (Stream (File => DateiSpeichernExtern),
+                                                       VorhandeneFeldeffekte);
+         end case;
       end if;
       
       case
@@ -399,7 +432,7 @@ package body SpeichernKarteLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.FeldelementeSchreiben: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end FeldelementeSchreiben;

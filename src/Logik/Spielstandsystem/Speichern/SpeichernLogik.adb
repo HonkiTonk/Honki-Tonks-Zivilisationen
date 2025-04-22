@@ -150,6 +150,7 @@ package body SpeichernLogik is
    
    
    
+   -- Das hier auch optimieren, aber erst am Ende da es nur einmal gespeichert wird. äöü
    function Allgemeines
      (DateiSpeichernExtern : in File_Type)
       return Boolean
@@ -212,6 +213,7 @@ package body SpeichernLogik is
    
    
    
+   -- Für die Einheiten und Städte ein System bauen wie für die Karte und nur speichern was aktuell auch vorhanden/notwendig ist. äöü
    function StädteEinheitenSpeichern
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type)

@@ -20,7 +20,8 @@ package body LadenKarteLogik is
       DateiLadenExtern : in File_Type)
       return Boolean
    is
-      use type SystemDatentypen.FeldelementVorhanden;
+      use type SystemDatentypen.Feldelementezahl;
+      use type SystemDatentypen.Feldeffektezahl;
    begin
       
       case
@@ -59,8 +60,8 @@ package body LadenKarteLogik is
                   return False;
                      
                else
-                  SystemDatentypen.FeldelementVorhanden'Read (Stream (File => DateiLadenExtern),
-                                                              VorhandeneFeldelemente);
+                  SystemDatentypen.Feldelementezahl'Read (Stream (File => DateiLadenExtern),
+                                                          VorhandeneFeldelemente);
                end if;
                
                if
@@ -199,9 +200,27 @@ package body LadenKarteLogik is
                if
                  Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.FeldeffekteVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
                then
-                  KartenRecords.FeldeffektArray'Read (Stream (File => DateiLadenExtern),
-                                                      Feldeffekte);
+                  SystemDatentypen.Feldeffektezahl'Read (Stream (File => DateiLadenExtern),
+                                                         VorhandeneFeldeffekte);
                   VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.FeldeffekteVorhanden;
+                  
+                  AktuellerFeldeffekt := 2**(KartenRecords.FeldeffektArray'Length - 1);
+                  
+                  FeldeffekteSchleife:
+                  for FeldeffekteSchleifenwert in reverse KartenRecords.FeldeffektArray'Range loop
+                     
+                     if
+                       Natural (VorhandeneFeldeffekte) - Positive (AktuellerFeldeffekt) >= Natural (SystemKonstanten.NichtsVorhanden)
+                     then
+                        Feldeffekte (FeldeffekteSchleifenwert) := True;
+                        
+                     else
+                        Feldeffekte (FeldeffekteSchleifenwert) := False;
+                     end if;
+                     
+                     AktuellerFeldeffekt := AktuellerFeldeffekt / 2;
+                     
+                  end loop FeldeffekteSchleife;
                   
                   case
                     LadenPrüfenExtern
@@ -251,13 +270,14 @@ package body LadenKarteLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.KarteLaden: Konnte nicht geladen werden"
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end KarteLaden;
    
    
    
+   -- Lässt sich das einfach Gestalten, bzw. kann ich das so bauen wie die Feldeffekte? äöü
    function ZahlNachSichtbarkeit
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
@@ -316,7 +336,7 @@ package body LadenKarteLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.ZahlNachSichtbarkeit: Konnte nicht geladen werden"
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ZahlNachSichtbarkeit;
@@ -360,7 +380,7 @@ package body LadenKarteLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.BasisgrundEinlesen: Konnte nicht geladen werden"
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end BasisgrundEinlesen;

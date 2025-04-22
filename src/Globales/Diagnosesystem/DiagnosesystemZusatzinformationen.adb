@@ -4,6 +4,9 @@ with Ada.Integer_Text_IO;
 
 with DateizugriffssystemHTSEB;
 
+with SystemDatentypen;
+with EinheitenRecordKonstanten;
+
 package body DiagnosesystemZusatzinformationen is
 
    procedure GrößenprüfungKartenfeld
@@ -31,13 +34,24 @@ package body DiagnosesystemZusatzinformationen is
    is begin
       
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
-                                                NameExtern     => ("Test/" & "Test"));
+                                                NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
       
-      Integer'Write (Stream (File => DateiSpeichern),
-                     1);
+      EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichern),
+                                                    EinheitenRecordKonstanten.LeerEinheit);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
-                                                 NameExtern     => ("Test/" & "Test"));
+                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
+      
+      
+      
+      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
+                                                NameExtern     => ("Spielstand/Manuell/Z" & "Neue Version"));
+      
+      SystemDatentypen.Feldelementezahl'Write (Stream (File => DateiSpeichern),
+                                               1);
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
+                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Neue Version"));
       
    end GrößenprüfungDatei;
    

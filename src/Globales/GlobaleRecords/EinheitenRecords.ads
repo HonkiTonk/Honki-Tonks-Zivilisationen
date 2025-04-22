@@ -68,7 +68,7 @@ package EinheitenRecords is
       KoordinatenAktuell : KartenRecords.KartenfeldNaturalRecord;
       Heimatstadt : StadtDatentypen.Städtebereich;
       
-      Lebenspunkte : KampfDatentypen.Lebenspunkte;
+      Lebenspunkte : KampfDatentypen.LebenspunkteVorhanden;
       Bewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
       Erfahrungspunkte : KampfDatentypen.Erfahrungspunkte;
       Rang : KampfDatentypen.Rang;
