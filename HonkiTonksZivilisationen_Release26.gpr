@@ -50,6 +50,7 @@ project HonkiTonksZivilisationen_Release26 is
 
    package Builder is
       for Switches ("ada") use ("-k", "-s", "-C", "-gnatW8", "-j4");
+      for Executable ("HonkiTonksZivilisationen.adb") use "Honki Tonks Zivilisationen";
    end Builder;
 
    package Binder is

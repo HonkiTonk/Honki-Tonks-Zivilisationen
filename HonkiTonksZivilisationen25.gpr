@@ -1,4 +1,5 @@
 with "asfml25.gpr";
+
 with "Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek.gpr";
 
 project HonkiTonksZivilisationen25 is
@@ -58,6 +59,7 @@ project HonkiTonksZivilisationen25 is
 
    package Builder is
       for Switches ("ada") use ("-k", "-C", "-gnatW8", "-j4", "-s");
+      for Executable ("HonkiTonksZivilisationen.adb") use "Honki Tonks Zivilisationen";
    end Builder;
 
    package Binder is

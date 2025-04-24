@@ -183,16 +183,16 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (05.03.2025):
+   -- Version 0.06.2070 => 0.06. (05.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2045 => 0.06. (04.03.2025):
+   -- Version 0.06.2045 => 0.06.2070 (04.03.2025):
    
-   -- 
+   -- gpr Dateien überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
