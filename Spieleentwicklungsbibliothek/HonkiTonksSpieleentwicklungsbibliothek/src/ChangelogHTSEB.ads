@@ -1,9 +1,15 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.0650 => 0.01. ():
+   -- Version 0.01.0700 => 0.01. ():
    
    -- 
+   
+   
+   
+   -- Version 0.01.0650 => 0.01.0700 (24.04.2025):
+   
+   -- gpr Dateien angepasst damit keine Probleme mit Alire auftreten.
    
    
    

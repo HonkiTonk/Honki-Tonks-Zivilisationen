@@ -37,7 +37,7 @@ project Honki_Tonks_Zivilisationen is
    package Compiler is
       for Default_Switches ("ada") use ("-gnatW8", "-ffunction-sections", "-fdata-sections", "-O3", "-gnatn", "-funroll-loops", "-flto", "-fstack-check", "-gnat2022", "-fPIC", "-gnatVacdefimoprst", 
          "-gnatw.a.bc.c_cd.df.fg.gh.hi.ij.jk.kl.lm.m.nop.o.p_pq.qr.r.zzy.xx.ww.vv.uu.tt.s_r.e.Ye", "-gnatyaA-defhiknOprSxM222lCL8s");
-      for Local_Configuration_Pragmas use "Alire Pragmas";
+      for Local_Configuration_Pragmas use "Lokale Pragmas";
    end Compiler;
 
    package Builder is

@@ -169,16 +169,18 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (07.03.2025):
+   -- Version 0.06.2140 => 0.06. (07.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2095 => 0.06. (06.03.2025):
+   -- Version 0.06.2095 => 0.06.2140 (06.03.2025):
    
-   -- 
+   -- Spieleentwicklungsbibliothek aktualisiert.
+   -- "Alire Pragmas" durch "Lokale Pragmas" ersetzt.
+   -- Lizenz in Alire angepasst.
    -- Kleinigkeiten korrigiert.
    
    
