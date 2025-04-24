@@ -13,7 +13,7 @@ library project HonkiTonksSpieleentwicklungsbibliothek is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2022", "-g", "-gnata", "-gnatn", "-O3", "-fstack-check", "-gnato", "-funroll-loops", "-flto", "-gnatVacdefimoprst", 
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2022", "-g", "-gnata", "-gnatn", "-O3", "-fstack-check", "-gnato", "-funroll-loops", "-gnatVacdefimoprst", 
          "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcghiklopqrtuvwxyz_c_re.u_pjfmd_qa", "-gnatyACOSadefhiklnprsxM222L8");
       for Local_Configuration_Pragmas use "Lokale Pragmas";
    end Compiler;

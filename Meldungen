@@ -1,0 +1,48 @@
+2025-04-25 01:03:10 (Version: 0.06.2095): Logikfehler: DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: Grafik/Standard/0
+2025-04-25 01:03:10 (Version: 0.06.2095): Logikfehler: EinlesenTexturenLogik.EinlesenTexturen: Es fehlt: Grafik/Standard/0
+2025-04-25 01:03:10 (Version: 0.06.2095): Logikfehler: DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: Musik/Standard/0
+2025-04-25 01:03:10 (Version: 0.06.2095): Logikfehler: EinlesenMusikLogik.EinlesenMusik: Es fehlt: Grafik/Standard/0
+2025-04-25 01:03:10 (Version: 0.06.2095): Logikfehler: DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: Sound/Standard/0
+2025-04-25 01:03:10 (Version: 0.06.2095): Logikfehler: EinlesenSoundsLogik.EinlesenSounds: Es fehlt: Sound/Standard/0
+2025-04-25 01:03:10 (Version: 0.06.2095): Grafikfehler: TexteinstellungenGrafik.StandardSchriftartVerwenden: Standardfont nicht vorhanden
+2025-04-25 01:03:10 (Version: 0.06.2095): Grafiktask wurde abgebrochen: raised TEXTEINSTELLUNGENGRAFIK.SCHRIFTARTFEHLT : TexteinstellungenGrafik.adb:77
+[/mnt/Programme/Ada/Zivilisationen/Honki Tonks Zivilisationen/Honki Tonks Zivilisationen]
+0x42f9d3
+0x5483c5
+[/lib/x86_64-linux-gnu/libc.so.6]
+0x7f0404f3bb79
+0x7f0404fb97b6
+0xfffffffffffffffe
+
+2025-04-25 01:03:25 (Version: 0.06.2095): Logikfehler: DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: Grafik/Standard/0
+2025-04-25 01:03:25 (Version: 0.06.2095): Logikfehler: EinlesenTexturenLogik.EinlesenTexturen: Es fehlt: Grafik/Standard/0
+2025-04-25 01:03:25 (Version: 0.06.2095): Logikfehler: DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: Musik/Standard/0
+2025-04-25 01:03:25 (Version: 0.06.2095): Logikfehler: EinlesenMusikLogik.EinlesenMusik: Es fehlt: Grafik/Standard/0
+2025-04-25 01:03:25 (Version: 0.06.2095): Logikfehler: DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: Sound/Standard/0
+2025-04-25 01:03:25 (Version: 0.06.2095): Logikfehler: EinlesenSoundsLogik.EinlesenSounds: Es fehlt: Sound/Standard/0
+2025-04-25 01:03:25 (Version: 0.06.2095): Grafikfehler: TexteinstellungenGrafik.StandardSchriftartVerwenden: Standardfont nicht vorhanden
+2025-04-25 01:03:25 (Version: 0.06.2095): Grafiktask wurde abgebrochen: raised TEXTEINSTELLUNGENGRAFIK.SCHRIFTARTFEHLT : TexteinstellungenGrafik.adb:77
+[/mnt/Programme/Ada/Zivilisationen/Honki Tonks Zivilisationen/Honki Tonks Zivilisationen]
+0x42f9d3
+0x5483c5
+[/lib/x86_64-linux-gnu/libc.so.6]
+0x7f9937512b79
+0x7f99375907b6
+0xfffffffffffffffe
+
+2025-04-25 01:03:46 (Version: 0.06.2095): Logikfehler: DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: Grafik/Standard/0
+2025-04-25 01:03:46 (Version: 0.06.2095): Logikfehler: EinlesenTexturenLogik.EinlesenTexturen: Es fehlt: Grafik/Standard/0
+2025-04-25 01:03:46 (Version: 0.06.2095): Logikfehler: DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: Musik/Standard/0
+2025-04-25 01:03:46 (Version: 0.06.2095): Logikfehler: EinlesenMusikLogik.EinlesenMusik: Es fehlt: Grafik/Standard/0
+2025-04-25 01:03:46 (Version: 0.06.2095): Logikfehler: DateisystemtestsHTSEB.Standardeinleseprüfung: Es fehlt: Sound/Standard/0
+2025-04-25 01:03:46 (Version: 0.06.2095): Logikfehler: EinlesenSoundsLogik.EinlesenSounds: Es fehlt: Sound/Standard/0
+2025-04-25 01:03:46 (Version: 0.06.2095): Grafikfehler: TexteinstellungenGrafik.StandardSchriftartVerwenden: Standardfont nicht vorhanden
+2025-04-25 01:03:46 (Version: 0.06.2095): Grafiktask wurde abgebrochen: raised TEXTEINSTELLUNGENGRAFIK.SCHRIFTARTFEHLT : TexteinstellungenGrafik.adb:77
+[/mnt/Programme/Ada/Zivilisationen/Honki Tonks Zivilisationen/Honki Tonks Zivilisationen]
+0x42f9d3
+0x5483c5
+[/lib/x86_64-linux-gnu/libc.so.6]
+0x7f844261eb79
+0x7f844269c7b6
+0xfffffffffffffffe
+
