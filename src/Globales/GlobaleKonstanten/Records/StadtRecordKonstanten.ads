@@ -9,7 +9,7 @@ package StadtRecordKonstanten is
 
    LeerStadt : constant StadtRecords.StadtGebautRecord := (
                                                            ID                      => StadtKonstanten.LeerID,
-                                                           KoordinatenAktuell      => KartenRecordKonstanten.LeerKoordinate,
+                                                           Koordinaten             => KartenRecordKonstanten.LeerKoordinate,
                                                            EinwohnerArbeiter       => StadtKonstanten.LeerEinwohnerArbeiter,
                                                            Nahrungsmittel          => StadtKonstanten.LeerNahrungsmittel,
                                                            Nahrungsproduktion      => StadtKonstanten.LeerNahrungsproduktion,
@@ -22,7 +22,7 @@ package StadtRecordKonstanten is
                                                            Bauzeit                 => StadtKonstanten.LeerBauzeit,
                                                            Korruption              => StadtKonstanten.LeerKorruption,
                                                            Zufriedenheit           => StadtKonstanten.LeerZufriedenheit,
-                                                           GebäudeVorhanden        => (others => StadtKonstanten.LeerGebäude),
+                                                           Gebäude                 => (others => StadtKonstanten.LeerGebäude),
                                                            Name                    => StadtKonstanten.LeerName,
                                                            UmgebungBewirtschaftung => (others => (others => StadtKonstanten.LeerUmgebungBewirtschaftet)),
                                                            UmgebungGröße           => StadtKonstanten.LeerUmgebungGröße,

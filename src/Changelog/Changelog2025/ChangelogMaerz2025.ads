@@ -162,17 +162,17 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (08.03.2025):
+   -- Version 0.06.2170 => 0.06. (08.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2140 => 0.06. (07.03.2025):
+   -- Version 0.06.2140 => 0.06.2170 (07.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen das Speichersystem für Städte zu überarbeiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

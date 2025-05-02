@@ -6,13 +6,11 @@ with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
 with KartenRecords;
-with StadtRecords;
 with SpielRecords;
 with EinheitenRecords;
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
-with StadtKonstanten;
 with EinheitenKonstanten;
 with TextnummernKonstanten;
 
@@ -22,7 +20,6 @@ with LeseAllgemeines;
 with LeseDiplomatie;
 with LeseZeiger;
 with LeseEinheitenGebaut;
-with LeseStadtGebaut;
 with LeseOptionen;
 with SchreibeOptionen;
 with SchreibeGrafiktask;
@@ -32,6 +29,7 @@ with SpielstandAllgemeinesLogik;
 with SpeichernKarteLogik;
 with MeldungFestlegenLogik;
 with UmwandlungenVerzeichnisse;
+with SpeichernStaedteLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -194,7 +192,13 @@ package body SpeichernLogik is
                                               DateiSpeichernExtern => DateiSpeichernExtern)
          then
             return False;
-                  
+            
+         elsif
+           False = SpeichernStaedteLogik.Städte (SpeziesExtern        => SpeziesSchleifenwert,
+                                                  DateiSpeichernExtern => DateiSpeichernExtern)
+         then
+            return False;
+           
          elsif
            False = Spezieswerte (SpeziesExtern        => SpeziesSchleifenwert,
                                  DateiSpeichernExtern => DateiSpeichernExtern)
@@ -252,36 +256,6 @@ package body SpeichernLogik is
                                                        LeseEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
          
       end loop EinheitenSchleife;
-      
-      
-
-      VorhandeneStädte := StadtKonstanten.LeerNummer;
-      
-      AnzahlStädteSchleife:
-      for AnzahlStädteSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
-
-         case
-           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, AnzahlStädteSchleifenwert))
-         is
-            when StadtKonstanten.LeerID =>
-               exit AnzahlStädteSchleife;
-               
-            when others =>
-               VorhandeneStädte := AnzahlStädteSchleifenwert;
-         end case;
-
-      end loop AnzahlStädteSchleife;
-      
-      StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichernExtern),
-                                            VorhandeneStädte);
-      
-      StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. VorhandeneStädte loop
-                  
-         StadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernExtern),
-                                               LeseStadtGebaut.GanzerEintrag (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
-            
-      end loop StadtSchleife;
       
       return True;
       

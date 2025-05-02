@@ -2,7 +2,6 @@ private with Ada.Streams.Stream_IO;
 private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
-private with StadtDatentypen;
 private with EinheitenDatentypen;
 private with ZahlenDatentypen;
 private with SystemDatentypen;
@@ -29,11 +28,10 @@ private
 
    Spielstandart : SystemDatentypen.Spielstand_Enum;
 
-   VorhandeneStädte : StadtDatentypen.Städtebereich;
-
    VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
 
    AktuellerAutospeichernwert : ZahlenDatentypen.EigenesPositive;
+
 
    MaximalerAutospeichernwert : Natural;
 

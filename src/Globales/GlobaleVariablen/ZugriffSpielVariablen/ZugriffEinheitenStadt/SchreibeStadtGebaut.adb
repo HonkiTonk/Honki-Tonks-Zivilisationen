@@ -34,7 +34,7 @@ package body SchreibeStadtGebaut is
             MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeStadtGebaut.Koordinaten: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
+            GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Koordinaten := KoordinatenExtern;
       end case;
       
    end Koordinaten;
@@ -490,7 +490,7 @@ package body SchreibeStadtGebaut is
       HinzufügenEntfernenExtern : in Boolean)
    is begin
       
-      GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).GebäudeVorhanden (WelchesGebäudeExtern) := HinzufügenEntfernenExtern;
+      GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Gebäude (WelchesGebäudeExtern) := HinzufügenEntfernenExtern;
       
    end GebäudeVorhanden;
    

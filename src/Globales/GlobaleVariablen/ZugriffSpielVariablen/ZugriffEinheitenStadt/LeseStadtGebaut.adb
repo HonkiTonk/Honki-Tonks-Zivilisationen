@@ -21,7 +21,7 @@ package body LeseStadtGebaut is
       return KartenRecords.KartenfeldNaturalRecord
    is begin
             
-      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).KoordinatenAktuell;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Koordinaten;
       
    end Koordinaten;
    
@@ -185,13 +185,14 @@ package body LeseStadtGebaut is
    
    
    
+   -- Hier mal das Welches entfernen. äöü
    function GebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).GebäudeVorhanden (WelchesGebäudeExtern);
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Gebäude (WelchesGebäudeExtern);
       
    end GebäudeVorhanden;
    
@@ -202,7 +203,7 @@ package body LeseStadtGebaut is
       return StadtArrays.GebäudeArray
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).GebäudeVorhanden;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Gebäude;
       
    end AlleGebäude;
    
@@ -231,6 +232,7 @@ package body LeseStadtGebaut is
    
    
    
+   -- Y/X noch durch Senkrechte/Waagerechte ersetzen. äöü
    function UmgebungBewirtschaftung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       YKoordinateExtern : in KartenDatentypen.SenkrechteUmgebungDrei;

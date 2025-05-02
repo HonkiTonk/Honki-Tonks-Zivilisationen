@@ -90,7 +90,7 @@ package StadtRecords is
    type StadtGebautRecord is record
       
       ID : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
-      KoordinatenAktuell : KartenRecords.KartenfeldNaturalRecord;
+      Koordinaten : KartenRecords.KartenfeldNaturalRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
       Nahrungsmittel : ProduktionDatentypen.Stadtproduktion;
@@ -108,7 +108,7 @@ package StadtRecords is
       -- Korruption auch in einen eigenen Datentypen packen? äöü
       Korruption : ProduktionDatentypen.Stadtproduktion;
       Zufriedenheit : ProduktionDatentypen.ZufriedenheitVorhanden;
-      GebäudeVorhanden : StadtArrays.GebäudeArray;
+      Gebäude : StadtArrays.GebäudeArray;
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;

@@ -4,8 +4,10 @@ with Ada.Integer_Text_IO;
 
 with DateizugriffssystemHTSEB;
 
-with SystemDatentypen;
-with EinheitenRecordKonstanten;
+with StadtRecordKonstanten;
+with KartenverbesserungDatentypen;
+with ProduktionDatentypen;
+with KIDatentypen;
 
 package body DiagnosesystemZusatzinformationen is
 
@@ -36,8 +38,8 @@ package body DiagnosesystemZusatzinformationen is
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
       
-      EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichern),
-                                                    EinheitenRecordKonstanten.LeerEinheit);
+      StadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichern),
+                                            StadtRecordKonstanten.LeerStadt);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                  NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
@@ -47,8 +49,7 @@ package body DiagnosesystemZusatzinformationen is
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Neue Version"));
       
-      SystemDatentypen.Feldelementezahl'Write (Stream (File => DateiSpeichern),
-                                               1);
+      
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                  NameExtern     => ("Spielstand/Manuell/Z" & "Neue Version"));
