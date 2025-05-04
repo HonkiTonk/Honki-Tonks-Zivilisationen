@@ -77,14 +77,14 @@ package SpielRecords is
       
       Gewonnen : Boolean;
       Weiterspielen : Boolean;
-      SpeziesAmZugNachLaden : SpeziesDatentypen.Spezies_Enum;
+      SpezieszugNachLaden : SpeziesDatentypen.Spezies_Enum;
       Schwierigkeitsgrad : SpielDatentypen.Schwierigkeitsgrad_Enum;
       Rundenanzahl : ZahlenDatentypen.EigenesPositive;
       Rundengrenze : ZahlenDatentypen.EigenesNatural;   
       IronmanName : Unbounded_Wide_Wide_String;
       PlanetVernichtet : SpeziesDatentypen.Spezies_Enum;
       Zusammenbruchszeit : ZahlenDatentypen.EigenerInteger;
-      AnzahlEingesetzterPZB : ZahlenDatentypen.EigenesNatural;
+      EingesetztePZB : ZahlenDatentypen.EigenesNatural;
       
    end record;
    

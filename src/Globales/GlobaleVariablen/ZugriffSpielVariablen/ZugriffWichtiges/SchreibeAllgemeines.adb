@@ -24,13 +24,13 @@ package body SchreibeAllgemeines is
    
    
    
-   procedure SpeziesAmzugNachLaden
+   procedure SpezieszugNachLaden
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
    is begin
       
-      SpielVariablen.Allgemeines.SpeziesAmZugNachLaden := SpeziesExtern;
+      SpielVariablen.Allgemeines.SpezieszugNachLaden := SpeziesExtern;
       
-   end SpeziesAmzugNachLaden;
+   end SpezieszugNachLaden;
    
       
    
@@ -104,13 +104,13 @@ package body SchreibeAllgemeines is
    
    
    
-   procedure AnzahlEingesetzterPZB
+   procedure EingesetztePZB
    is begin
       
-      SpielVariablen.Allgemeines.AnzahlEingesetzterPZB := EigeneZahlPrüfen (GrundwertExtern  => SpielVariablen.Allgemeines.AnzahlEingesetzterPZB,
+      SpielVariablen.Allgemeines.EingesetztePZB := EigeneZahlPrüfen (GrundwertExtern  => SpielVariablen.Allgemeines.EingesetztePZB,
                                                                             ZusatzwertExtern => 1);
       
-   end AnzahlEingesetzterPZB;
+   end EingesetztePZB;
    
    
    

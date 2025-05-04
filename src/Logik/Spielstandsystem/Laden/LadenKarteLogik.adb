@@ -20,8 +20,7 @@ package body LadenKarteLogik is
       DateiLadenExtern : in File_Type)
       return Boolean
    is
-      use type SystemDatentypen.Feldelementezahl;
-      use type SystemDatentypen.Feldeffektezahl;
+      use type SystemDatentypen.EinByte;
    begin
       
       case
@@ -60,7 +59,7 @@ package body LadenKarteLogik is
                   return False;
                      
                else
-                  SystemDatentypen.Feldelementezahl'Read (Stream (File => DateiLadenExtern),
+                  SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
                                                           VorhandeneFeldelemente);
                end if;
                
@@ -200,7 +199,7 @@ package body LadenKarteLogik is
                if
                  Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.FeldeffekteVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
                then
-                  SystemDatentypen.Feldeffektezahl'Read (Stream (File => DateiLadenExtern),
+                  SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
                                                          VorhandeneFeldeffekte);
                   VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.FeldeffekteVorhanden;
                   
@@ -284,13 +283,13 @@ package body LadenKarteLogik is
       LadenPrüfenExtern : in Boolean)
       return Boolean
    is
-      use type SystemDatentypen.Sichtbarkeitszahl;
+      use type SystemDatentypen.EinByte;
    begin
       
       BereichSchleife:
       for BereichSchleifenwert in SpeziesKonstanten.SpeziesanfangLadenSpeichernArray'Range loop
          
-         SystemDatentypen.Sichtbarkeitszahl'Read (Stream (File => DateiLadenExtern),
+         SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
                                                   Sichtbarkeit);
          
          case

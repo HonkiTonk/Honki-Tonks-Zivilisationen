@@ -23,12 +23,12 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   Sichtbarkeit : SystemDatentypen.Sichtbarkeitszahl;
+   Sichtbarkeit : SystemDatentypen.EinByte;
    
-   VorhandeneFeldeffekte : SystemDatentypen.Feldeffektezahl;
-   AktuellerFeldeffekt : SystemDatentypen.Feldeffektezahl;
+   VorhandeneFeldeffekte : SystemDatentypen.EinByte;
+   AktuellerFeldeffekt : SystemDatentypen.EinByte;
    
-   VorhandeneFeldelemente : SystemDatentypen.Feldelementezahl;
+   VorhandeneFeldelemente : SystemDatentypen.EinByte;
    
    Potenz : Natural;
    

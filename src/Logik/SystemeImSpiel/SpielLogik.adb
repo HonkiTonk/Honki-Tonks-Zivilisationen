@@ -57,7 +57,7 @@ package body SpielLogik is
          end loop SpeziesSchleife;
          
          if
-           LeseAllgemeines.SpeziesAmzugNachLaden = SpeziesKonstanten.LeerSpezies
+           LeseAllgemeines.SpezieszugNachLaden = SpeziesKonstanten.LeerSpezies
          then
             case
               Spielertests.MenschlicheSpieler (SpeziesExtern => SpeziesKonstanten.LeerSpezies)
@@ -134,11 +134,11 @@ package body SpielLogik is
    begin
             
       if
-        LeseAllgemeines.SpeziesAmzugNachLaden = SpeziesKonstanten.LeerSpezies
+        LeseAllgemeines.SpezieszugNachLaden = SpeziesKonstanten.LeerSpezies
         or
-          LeseAllgemeines.SpeziesAmzugNachLaden = SpeziesExtern
+          LeseAllgemeines.SpezieszugNachLaden = SpeziesExtern
       then
-         SchreibeAllgemeines.SpeziesAmzugNachLaden (SpeziesExtern => SpeziesKonstanten.LeerSpezies);
+         SchreibeAllgemeines.SpezieszugNachLaden (SpeziesExtern => SpeziesKonstanten.LeerSpezies);
             
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)

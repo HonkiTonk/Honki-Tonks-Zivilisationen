@@ -17,9 +17,9 @@ package SchreibeAllgemeines is
      (WeiterspielenExtern : in Boolean);
    pragma Inline (Weiterspielen);
    
-   procedure SpeziesAmzugNachLaden
+   procedure SpezieszugNachLaden
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum);
-   pragma Inline (SpeziesAmzugNachLaden);
+   pragma Inline (SpezieszugNachLaden);
    
    procedure Schwierigkeitsgrad
      (SchwierigkeitsgradExtern : in SpielDatentypen.Schwierigkeitsgrad_Enum);
@@ -44,8 +44,8 @@ package SchreibeAllgemeines is
      (ZeitExtern : in ZahlenDatentypen.EigenerInteger;
       RechnenSetzenExtern : in Boolean);
    
-   procedure AnzahlEingesetzterPZB;
-   pragma Inline (AnzahlEingesetzterPZB);
+   procedure EingesetztePZB;
+   pragma Inline (EingesetztePZB);
    
    procedure Standardeinstellungen;
    pragma Inline (Standardeinstellungen);

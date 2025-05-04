@@ -5,24 +5,16 @@ with TextKonstantenHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
-with KartenRecords;
-with SpielRecords;
-with EinheitenRecords;
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
-with EinheitenKonstanten;
 with TextnummernKonstanten;
 
-with LeseWichtiges;
-with LeseGrenzen;
 with LeseAllgemeines;
-with LeseDiplomatie;
-with LeseZeiger;
-with LeseEinheitenGebaut;
 with LeseOptionen;
 with SchreibeOptionen;
 with SchreibeGrafiktask;
+with LeseSpeziesbelegung;
 
 with LadezeitenLogik;
 with SpielstandAllgemeinesLogik;
@@ -30,6 +22,10 @@ with SpeichernKarteLogik;
 with MeldungFestlegenLogik;
 with UmwandlungenVerzeichnisse;
 with SpeichernStaedteLogik;
+with SpeichernEinheitenLogik;
+with SpeichernDiplomatieLogik;
+with SpeichernSpezienspezifischesLogik;
+with SpeichernAllgemeinesLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -83,8 +79,8 @@ package body SpeichernLogik is
          end case;
          
          DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
-                                                  NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
-                                                                                                              SpielstandnameExtern => Spielstandname));
+                                                   NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
+                                                                                                               SpielstandnameExtern => Spielstandname));
          
          if
            False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
@@ -92,13 +88,14 @@ package body SpeichernLogik is
          then
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
+            -- Karte wurde noch nicht überarbeitet. äöü
          elsif
-           False = Allgemeines (DateiSpeichernExtern => DateiSpeichern)
+           False = SpeichernAllgemeinesLogik.Allgemeines (DateiSpeichernExtern => DateiSpeichern)
          then
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          elsif
-           False = SpezieswerteSpeichern (DateiSpeichernExtern => DateiSpeichern)
+           False = Spezieswerte (DateiSpeichernExtern => DateiSpeichern)
          then
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
@@ -148,33 +145,7 @@ package body SpeichernLogik is
    
    
    
-   -- Das hier auch optimieren, aber erst am Ende da es nur einmal gespeichert wird. äöü
-   function Allgemeines
-     (DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is
-      use Ada.Exceptions;
-   begin
-            
-      SpielRecords.AllgemeinesRecord'Write (Stream (File => DateiSpeichernExtern),
-                                            LeseAllgemeines.GanzerEintrag);
-            
-      SpielRecords.SpeziesbelegungArray'Write (Stream (File => DateiSpeichernExtern),
-                                               LeseSpeziesbelegung.GanzesArray);
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernLogik.Allgemeines: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-      
-   end Allgemeines;
-   
-   
-   
-   function SpezieswerteSpeichern
+   function Spezieswerte
      (DateiSpeichernExtern : in File_Type)
       return Boolean
    is begin
@@ -186,10 +157,16 @@ package body SpeichernLogik is
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
-               
+            
          elsif
-           False = StädteEinheitenSpeichern (SpeziesExtern        => SpeziesSchleifenwert,
-                                              DateiSpeichernExtern => DateiSpeichernExtern)
+           False = SpeichernSpezienspezifischesLogik.Spezienspezifisches (SpeziesExtern        => SpeziesSchleifenwert,
+                                                                          DateiSpeichernExtern => DateiSpeichernExtern)
+         then
+            return False;
+            
+         elsif
+           False = SpeichernEinheitenLogik.Einheiten (SpeziesExtern        => SpeziesSchleifenwert,
+                                                      DateiSpeichernExtern => DateiSpeichernExtern)
          then
             return False;
             
@@ -200,8 +177,8 @@ package body SpeichernLogik is
             return False;
            
          elsif
-           False = Spezieswerte (SpeziesExtern        => SpeziesSchleifenwert,
-                                 DateiSpeichernExtern => DateiSpeichernExtern)
+           False = SpeichernDiplomatieLogik.Diplomatie (SpeziesExtern        => SpeziesSchleifenwert,
+                                                        DateiSpeichernExtern => DateiSpeichernExtern)
          then
             return False;
                   
@@ -212,111 +189,6 @@ package body SpeichernLogik is
       end loop SpeziesSchleife;
       
       return True;
-      
-   end SpezieswerteSpeichern;
-   
-   
-   
-   -- Für die Einheiten und Städte ein System bauen wie für die Karte und nur speichern was aktuell auch vorhanden/notwendig ist. äöü
-   function StädteEinheitenSpeichern
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is
-      use Ada.Exceptions;
-   begin
-      
-      SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                        LeseGrenzen.GanzerEintrag (SpeziesExtern => SpeziesExtern));
-      
-      VorhandeneEinheiten := EinheitenKonstanten.LeerNummer;
-      
-      AnzahlEinheitenSchleife:
-      for AnzahlEinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
-         
-         case
-           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, AnzahlEinheitenSchleifenwert))
-         is
-            when EinheitenKonstanten.LeerID =>
-               exit AnzahlEinheitenSchleife;
-               
-            when others =>
-               VorhandeneEinheiten := AnzahlEinheitenSchleifenwert;
-         end case;
-         
-      end loop AnzahlEinheitenSchleife;
-      
-      EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
-                                                  VorhandeneEinheiten);
-      
-      EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. VorhandeneEinheiten loop
-                  
-         EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                       LeseEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
-         
-      end loop EinheitenSchleife;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-      
-   end StädteEinheitenSpeichern;
-   
-   
-   
-   function Spezieswerte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is
-      use type SpeziesDatentypen.Spezies_Enum;
-      use Ada.Exceptions;
-   begin
-      
-      DiplomatieSchleife:
-      for DiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
-
-         if
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => DiplomatieSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
-           or
-             DiplomatieSchleifenwert = SpeziesExtern
-         then
-            null;
-                     
-         else
-            SpielRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                 LeseDiplomatie.GanzerEintrag (SpeziesEinsExtern => SpeziesExtern,
-                                                                               SpeziesZweiExtern => DiplomatieSchleifenwert));
-         end if;
-
-      end loop DiplomatieSchleife;
-      
-      SpielRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernExtern),
-                                          LeseWichtiges.GanzerEintrag (SpeziesExtern => SpeziesExtern));
-      
-      case
-        LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
-      is
-         when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            KartenRecords.ZeigerRecord'Write (Stream (File => DateiSpeichernExtern),
-                                              LeseZeiger.GanzerEintrag (SpeziesExtern => SpeziesExtern));
-            
-         when others =>
-            null;
-      end case;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernLogik.Spezieswerte: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
       
    end Spezieswerte;
    

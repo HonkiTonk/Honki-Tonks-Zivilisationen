@@ -2,11 +2,8 @@ private with Ada.Streams.Stream_IO;
 private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
-private with EinheitenDatentypen;
 private with ZahlenDatentypen;
 private with SystemDatentypen;
-
-private with LeseSpeziesbelegung;
 
 package SpeichernLogik is
    pragma Elaborate_Body;
@@ -28,8 +25,6 @@ private
 
    Spielstandart : SystemDatentypen.Spielstand_Enum;
 
-   VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
-
    AktuellerAutospeichernwert : ZahlenDatentypen.EigenesPositive;
 
 
@@ -42,31 +37,9 @@ private
 
 
 
-   function Allgemeines
-     (DateiSpeichernExtern : in File_Type)
-      return Boolean;
-
-   function SpezieswerteSpeichern
-     (DateiSpeichernExtern : in File_Type)
-      return Boolean;
-
-   function StädteEinheitenSpeichern
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-
    function Spezieswerte
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
+     (DateiSpeichernExtern : in File_Type)
+      return Boolean;
 
    function NameAutoSpeichern
      return Unbounded_Wide_Wide_String;

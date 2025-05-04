@@ -22,13 +22,13 @@ package body LeseAllgemeines is
    
    
    
-   function SpeziesAmzugNachLaden
+   function SpezieszugNachLaden
      return SpeziesDatentypen.Spezies_Enum
    is begin
       
-      return SpielVariablen.Allgemeines.SpeziesAmZugNachLaden;
+      return SpielVariablen.Allgemeines.SpezieszugNachLaden;
       
-   end SpeziesAmzugNachLaden;
+   end SpezieszugNachLaden;
    
    
    
@@ -82,13 +82,13 @@ package body LeseAllgemeines is
    
    
    
-   function AnzahlEingesetzterPZB
+   function EingesetztePZB
      return ZahlenDatentypen.EigenesNatural
    is begin
       
-      return SpielVariablen.Allgemeines.AnzahlEingesetzterPZB;
+      return SpielVariablen.Allgemeines.EingesetztePZB;
       
-   end AnzahlEingesetzterPZB;
+   end EingesetztePZB;
    
    
    

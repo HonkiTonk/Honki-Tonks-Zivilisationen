@@ -28,7 +28,7 @@ package body PZBEingesetztLogik is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      SchreibeAllgemeines.AnzahlEingesetzterPZB;
+      SchreibeAllgemeines.EingesetztePZB;
       SchreibeAllgemeines.PlanetVernichtet (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
       Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
@@ -49,7 +49,7 @@ package body PZBEingesetztLogik is
             end if;
                
          when others =>
-            EingesetztePZB := LeseAllgemeines.AnzahlEingesetzterPZB;
+            EingesetztePZB := LeseAllgemeines.EingesetztePZB;
             
             if
               LeseWeltkarteneinstellungen.Senkrechte <= KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.Waagerechte)

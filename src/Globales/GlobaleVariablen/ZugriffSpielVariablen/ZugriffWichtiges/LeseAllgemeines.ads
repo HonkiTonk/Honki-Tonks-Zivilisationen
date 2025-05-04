@@ -16,9 +16,9 @@ package LeseAllgemeines is
      return Boolean;
    pragma Inline (Weiterspielen);
    
-   function SpeziesAmzugNachLaden
+   function SpezieszugNachLaden
      return SpeziesDatentypen.Spezies_Enum;
-   pragma Inline (SpeziesAmzugNachLaden);
+   pragma Inline (SpezieszugNachLaden);
    
    function Schwierigkeitsgrad
      return SpielDatentypen.Schwierigkeitsgrad_Enum;
@@ -44,9 +44,9 @@ package LeseAllgemeines is
      return ZahlenDatentypen.EigenerInteger;
    pragma Inline (Zusammenbruchszeit);
    
-   function AnzahlEingesetzterPZB
+   function EingesetztePZB
      return ZahlenDatentypen.EigenesNatural;
-   pragma Inline (AnzahlEingesetzterPZB);
+   pragma Inline (EingesetztePZB);
    
    function GanzerEintrag
      return SpielRecords.AllgemeinesRecord;

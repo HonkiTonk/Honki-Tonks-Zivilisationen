@@ -43,15 +43,10 @@ package SystemDatentypen is
    
    
    
-   -- Das hier noch mal anders/besser benennen? äöü
    -- Für vorzeichenlose Datentypen mod verwenden.
-   -- Wird gespeichert als ein Byte.
-   type Sichtbarkeitszahl is mod 2**6;
-   
-   -- Wird gespeichert als ein Byte.
-   type Feldelementezahl is mod 2**8;
-   
-   type Feldeffektezahl is mod 2**4;
+   type EinByte is mod 2**8;
+   type ZweiByte is mod 2**16;
+   type VierByte is mod 2**32;
    
    
    

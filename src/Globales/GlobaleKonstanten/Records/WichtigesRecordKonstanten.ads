@@ -33,14 +33,14 @@ package WichtigesRecordKonstanten is
    LeerAllgemeines : constant SpielRecords.AllgemeinesRecord := (
                                                                  Gewonnen              => False,
                                                                  Weiterspielen         => False,
-                                                                 SpeziesAmZugNachLaden => SpeziesKonstanten.LeerSpezies,
+                                                                 SpezieszugNachLaden => SpeziesKonstanten.LeerSpezies,
                                                                  Schwierigkeitsgrad    => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
                                                                  Rundenanzahl          => Positive'First,
                                                                  Rundengrenze          => Natural'First,
                                                                  IronmanName           => TextKonstantenHTSEB.LeerUnboundedString,
                                                                  PlanetVernichtet      => SpeziesKonstanten.LeerSpezies,
                                                                  Zusammenbruchszeit    => WichtigesKonstanten.KeinZusammenbruch,
-                                                                 AnzahlEingesetzterPZB => 0
+                                                                 EingesetztePZB => 0
                                                                 );
    
    LeerGrenzen : constant SpielRecords.GrenzenRecord := (

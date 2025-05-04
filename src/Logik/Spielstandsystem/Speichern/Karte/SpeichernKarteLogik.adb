@@ -109,7 +109,7 @@ package body SpeichernKarteLogik is
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
-      use type SystemDatentypen.Sichtbarkeitszahl;
+      use type SystemDatentypen.EinByte;
    begin
       
       GesamteSichtbarkeit := LeseWeltkarte.GesamteSichtbarkeit (KoordinatenExtern => KoordinatenExtern);
@@ -139,8 +139,8 @@ package body SpeichernKarteLogik is
          
          end loop SichtbarkeitSchleife;
       
-         SystemDatentypen.Sichtbarkeitszahl'Write (Stream (File => DateiSpeichernExtern),
-                                                   Sichtbarkeit);
+         SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                         Sichtbarkeit);
          
       end loop BereichSchleife;
       
@@ -200,7 +200,7 @@ package body SpeichernKarteLogik is
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
       use type StadtRecords.SpeziesStadtnummerRecord;
       use type KartenRecords.FeldeffektArray;
-      use type SystemDatentypen.Feldelementezahl;
+      use type SystemDatentypen.EinByte;
    begin
       
       case
@@ -280,8 +280,8 @@ package body SpeichernKarteLogik is
          VorhandeneFeldelemente := VorhandeneFeldelemente + SystemKonstanten.StadtVorhanden;
       end if;
       
-      SystemDatentypen.Feldelementezahl'Write (Stream (File => DateiSpeichernExtern),
-                                               VorhandeneFeldelemente);
+      SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                      VorhandeneFeldelemente);
       
       return True;
       
@@ -310,7 +310,7 @@ package body SpeichernKarteLogik is
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
       use type StadtRecords.SpeziesStadtnummerRecord;
       use type KartenRecords.FeldeffektArray;
-      use type SystemDatentypen.Feldeffektezahl;
+      use type SystemDatentypen.EinByte;
    begin
       
       if
@@ -411,8 +411,8 @@ package body SpeichernKarteLogik is
                                           & FeldeffekteExtern'Wide_Wide_Image);
                
             when others =>
-               SystemDatentypen.Feldeffektezahl'Write (Stream (File => DateiSpeichernExtern),
-                                                       VorhandeneFeldeffekte);
+               SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                               VorhandeneFeldeffekte);
          end case;
       end if;
       
