@@ -8,6 +8,7 @@ private with EinheitenRecords;
 private with StadtRecords;
 private with KartenDatentypen;
 private with SystemDatentypen;
+private with ZahlenDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -28,7 +29,7 @@ private
    AktuellerFeldeffekt : SystemDatentypen.EinByte;
    VorhandeneFeldelemente : SystemDatentypen.EinByte;
    
-   Potenz : Natural;
+   Potenz : ZahlenDatentypen.EigenesPositive;
    
    Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    

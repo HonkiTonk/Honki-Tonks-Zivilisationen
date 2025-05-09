@@ -9,6 +9,7 @@ private with SpielDatentypen;
 private with ZahlenDatentypen;
 
 package LadenAllgemeinesLogik is
+   pragma Elaborate_Body;
 
    function Aufteilung
      (LadenPrüfenExtern : in Boolean;
@@ -22,6 +23,7 @@ private
    Weiterspielen : Boolean;
    
    GewonnenWeiterspielen : SystemDatentypen.EinByte;
+   Besiegt : SystemDatentypen.EinByte;
       
    SpezieszugNachLaden : SpeziesDatentypen.Spezies_Enum;
       
@@ -40,6 +42,8 @@ private
    EingesetztePZB : ZahlenDatentypen.EigenesNatural;
 
    Belegung : SpielRecords.SpeziesbelegungArray;
+   
+   Potenz : ZahlenDatentypen.EigenesPositive;
    
    
    

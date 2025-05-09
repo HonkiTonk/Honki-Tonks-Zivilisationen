@@ -3,6 +3,8 @@ with Ada.Exceptions;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
+with SpeziesKonstanten;
+
 with SchreibeAllgemeines;
 with SchreibeSpeziesbelegung;
 
@@ -124,11 +126,40 @@ package body LadenAllgemeinesLogik is
       return Boolean
    is
       use Ada.Exceptions;
+      use type SystemDatentypen.EinByte;
    begin
       
-      SpielRecords.SpeziesbelegungArray'Read (Stream (File => DateiLadenExtern),
-                                              Belegung);
+      BereichSchleife:
+      for BereichSchleifenwert in SpeziesKonstanten.SpeziesanfangLadenSpeichernArray'Range loop
+         SpeziesbelegungSchleife:
+         for SpeziesbelegungSchleifenwert in SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
+              
+            SpeziesDatentypen.Spieler_Enum'Read (Stream (File => DateiLadenExtern),
+                                                 Belegung (SpeziesbelegungSchleifenwert).Belegung);
+            
+         end loop SpeziesbelegungSchleife;
       
+         SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
+                                        Besiegt);
+         
+         SpeziesBesiegtSchleife:
+         for SpeziesBesiegtSchleifenwert in reverse SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
+              
+            Potenz := SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesBesiegtSchleifenwert) - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert));
+            
+            if
+              Integer (Besiegt) - Potenz >= 0
+            then
+               Belegung (SpeziesBesiegtSchleifenwert).Besiegt := True;
+               Besiegt := Besiegt - 2**Potenz;
+               
+            else
+               Belegung (SpeziesBesiegtSchleifenwert).Besiegt := False;
+            end if;
+            
+         end loop SpeziesBesiegtSchleife;
+      end loop BereichSchleife;
+            
       case
         LadenPrüfenExtern
       is

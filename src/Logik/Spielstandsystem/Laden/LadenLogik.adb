@@ -11,10 +11,6 @@ with EinheitenKonstanten;
 with TextnummernKonstanten;
 with SpielstandVariablen;
 
-with SchreibeWichtiges;
-with SchreibeGrenzen;
-with SchreibeDiplomatie;
-with SchreibeZeiger;
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
 with SchreibeGrafiktask;
@@ -27,6 +23,8 @@ with LadenKarteLogik;
 with UmwandlungenVerzeichnisse;
 with LadenAllgemeinesLogik;
 with SpielstandAllgemeinesLogik;
+with LadenSpezienspezifischesLogik;
+with LadenDiplomatieLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenLogik is
@@ -161,8 +159,7 @@ package body LadenLogik is
       
    end Ladevorgang;
    
-   
-   
+      
    
    function SpezieswerteLaden
      (LadenPrüfenExtern : in Boolean;
@@ -179,6 +176,15 @@ package body LadenLogik is
             null;
             
          elsif
+           False = LadenSpezienspezifischesLogik.Aufteilung (LadenPrüfenExtern => LadenPrüfenExtern,
+                                                             SpeziesExtern     => SpeziesSchleifenwert,
+                                                             DateiLadenExtern  => DateiLadenExtern)
+         then
+            return False;
+            
+            
+            
+         elsif
            False = StädteEinheitenLaden (LadenPrüfenExtern => LadenPrüfenExtern,
                                           SpeziesExtern     => SpeziesSchleifenwert,
                                           DateiLadenExtern  => DateiLadenExtern)
@@ -186,9 +192,9 @@ package body LadenLogik is
             return False;
                
          elsif
-           False = Spezieswerte (LadenPrüfenExtern => LadenPrüfenExtern,
-                                 SpeziesExtern     => SpeziesSchleifenwert,
-                                 DateiLadenExtern  => DateiLadenExtern)
+           False = LadenDiplomatieLogik.Diplomatie (LadenPrüfenExtern => LadenPrüfenExtern,
+                                                    SpeziesExtern     => SpeziesSchleifenwert,
+                                                    DateiLadenExtern  => DateiLadenExtern)
          then
             return False;
             
@@ -212,23 +218,7 @@ package body LadenLogik is
    is
       use Ada.Exceptions;
    begin
-      
-      SpielRecords.GrenzenRecord'Read (Stream (File => DateiLadenExtern),
-                                       Grenzen);
-      
-      case
-        LadenPrüfenExtern
-      is
-         when True =>
-            SchreibeGrenzen.GanzerEintrag (SpeziesExtern => SpeziesExtern,
-                                           EintragExtern => Grenzen);
             
-         when False =>
-            null;
-      end case;
-      
-      
-      
       EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
                                                  VorhandeneEinheiten);
       
@@ -284,91 +274,5 @@ package body LadenLogik is
          return False;
    
    end StädteEinheitenLaden;
-
-
-   
-   function Spezieswerte
-     (LadenPrüfenExtern : in Boolean;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      DateiLadenExtern : in File_Type)
-      return Boolean
-   is
-      use type SpeziesDatentypen.Spezies_Enum;
-      use Ada.Exceptions;
-   begin
-            
-      DiplomatieSchleife:
-      for SpeziesDiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
-
-         if
-           SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesDiplomatieSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
-           or
-             SpeziesExtern = SpeziesDiplomatieSchleifenwert
-         then
-            null;
-            
-         else
-            SpielRecords.DiplomatieRecord'Read (Stream (File => DateiLadenExtern),
-                                                Diplomatie);
-            
-            case
-              LadenPrüfenExtern
-            is
-               when True =>
-                  SchreibeDiplomatie.GanzerEintrag (SpeziesEinsExtern => SpeziesExtern,
-                                                    SpeziesZweiExtern => SpeziesDiplomatieSchleifenwert,
-                                                    EintragExtern     => Diplomatie);
-            
-               when False =>
-                  null;
-            end case;
-         end if;
-
-      end loop DiplomatieSchleife;
-      
-      
-      SpielRecords.WichtigesRecord'Read (Stream (File => DateiLadenExtern),
-                                         Wichtiges);
-      
-      case
-        SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesExtern)
-      is
-         when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            KartenRecords.ZeigerRecord'Read (Stream (File => DateiLadenExtern),
-                                             Zeiger);
-            
-         when others =>
-            null;
-      end case;
-            
-      case
-        LadenPrüfenExtern
-      is
-         when True =>
-            SchreibeWichtiges.GanzerEintrag (SpeziesExtern => SpeziesExtern,
-                                             EintragExtern => Wichtiges);
-            
-            if
-              SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
-            then
-               SchreibeZeiger.GanzerEintrag (SpeziesExtern => SpeziesExtern,
-                                             EintragExtern => Zeiger);
-               
-            else
-               null;
-            end if;
-            
-         when False =>
-            null;
-      end case;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.Spezieswerte: Konnte nicht geladen werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-      
-   end Spezieswerte;
 
 end LadenLogik;

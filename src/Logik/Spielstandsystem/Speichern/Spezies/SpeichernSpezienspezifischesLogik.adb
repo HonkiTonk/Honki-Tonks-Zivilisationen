@@ -9,6 +9,8 @@ with ZahlenDatentypen;
 with ProduktionDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
+with ForschungKonstanten;
+with ForschungenDatentypen;
 
 with LeseWichtiges;
 with LeseGrenzen;
@@ -70,9 +72,11 @@ package body SpeichernSpezienspezifischesLogik is
       ZahlenDatentypen.EigenerInteger'Write (Stream (File => DateiSpeichernExtern),
                                              LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern));
       
+      -- Das hier, und eventuell auch andere Sachen, weglassen und einfach neu berechnen nach dem Laden? äöü
       ProduktionDatentypen.Produktion'Write (Stream (File => DateiSpeichernExtern),
                                              LeseWichtiges.GeldRundengewinn (SpeziesExtern => SpeziesExtern));
       
+      -- Das hier, und eventuell auch andere Sachen, weglassen und einfach neu berechnen nach dem Laden? äöü
       ProduktionDatentypen.Lagermenge'Write (Stream (File => DateiSpeichernExtern),
                                              LeseWichtiges.GesamteForschungsrate (SpeziesExtern => SpeziesExtern));
       
@@ -88,13 +92,13 @@ package body SpeichernSpezienspezifischesLogik is
       
       -- Solle sich die Anzahl der Forschungen nicht zu weit erhöhen könnte man das auch als 2 statt 4 Bytes speichern und noch einmal 2 Byte pro Speicherung sparen.
       BereichSchleife:
-      for BereichSchleifenwert in ForschungsbereichArray'Range loop
+      for BereichSchleifenwert in ForschungKonstanten.ForschungsbereichArray'Range loop
       
          ForschungVorhanden := 0;
          AktuellerForschungswert := 1;
          
          ForschungSchleife:
-         for ForschungSchleifenwert in Forschunganfang (BereichSchleifenwert) .. Forschungsende (BereichSchleifenwert) loop
+         for ForschungSchleifenwert in ForschungKonstanten.Forschunganfang (BereichSchleifenwert) .. ForschungKonstanten.Forschungsende (BereichSchleifenwert) loop
          
             case
               LeseWichtiges.Erforscht (SpeziesExtern           => SpeziesExtern,
@@ -116,6 +120,7 @@ package body SpeichernSpezienspezifischesLogik is
          
       end loop BereichSchleife;
       
+      -- Sind diese vier Werte für menschliche Spieler überhaupt relevant? äöü
       StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichernExtern),
                                             LeseWichtiges.AnzahlStädte (SpeziesExtern => SpeziesExtern));
       

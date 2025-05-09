@@ -2,8 +2,6 @@ private with Ada.Streams.Stream_IO;
 private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
-private with KartenRecords;
-private with SpielRecords;
 private with StadtRecords;
 private with EinheitenRecords;
 private with StadtDatentypen;
@@ -26,14 +24,6 @@ private
    DateiLaden : File_Type;
 
    Spielstandname : Unbounded_Wide_Wide_String;
-
-   Wichtiges : SpielRecords.WichtigesRecord;
-
-   Diplomatie : SpielRecords.DiplomatieRecord;
-
-   Grenzen : SpielRecords.GrenzenRecord;
-
-   Zeiger : KartenRecords.ZeigerRecord;
 
    Stadt : StadtRecords.StadtGebautRecord;
 
@@ -58,12 +48,6 @@ private
       return Boolean;
 
    function StädteEinheitenLaden
-     (LadenPrüfenExtern : in Boolean;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      DateiLadenExtern : in File_Type)
-      return Boolean;
-
-   function Spezieswerte
      (LadenPrüfenExtern : in Boolean;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiLadenExtern : in File_Type)
