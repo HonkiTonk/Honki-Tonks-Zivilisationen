@@ -23,11 +23,9 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   Sichtbarkeit : SystemDatentypen.EinByte;
-   
+   SichtbarkeitVorhanden : SystemDatentypen.EinByte;
    VorhandeneFeldeffekte : SystemDatentypen.EinByte;
    AktuellerFeldeffekt : SystemDatentypen.EinByte;
-   
    VorhandeneFeldelemente : SystemDatentypen.EinByte;
    
    Potenz : Natural;
@@ -56,7 +54,7 @@ private
    
    
       
-   function ZahlNachSichtbarkeit
+   function Sichtbarkeit
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
@@ -72,6 +70,23 @@ private
               );
    
    function BasisgrundEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean
+     with
+       Pre => (
+                 if
+                   LadenPrüfenExtern
+                     then
+                 (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+                  and
+                    KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte)
+              );
+   
+   
+   
+   function Feldelemente
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       LadenPrüfenExtern : in Boolean)

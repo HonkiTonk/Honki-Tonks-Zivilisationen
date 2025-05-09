@@ -5,7 +5,7 @@ private with SystemDatentypen;
 package SpeichernAllgemeinesLogik is
    pragma Elaborate_Body;
 
-   function Allgemeines
+   function Aufteilung
      (DateiSpeichernExtern : in File_Type)
       return Boolean;
 
@@ -16,6 +16,10 @@ private
    Besiegt : SystemDatentypen.EinByte;
 
 
+
+   function Allgemeines
+     (DateiSpeichernExtern : in File_Type)
+      return Boolean;
 
    function Speziesbelegung
      (DateiSpeichernExtern : in File_Type)

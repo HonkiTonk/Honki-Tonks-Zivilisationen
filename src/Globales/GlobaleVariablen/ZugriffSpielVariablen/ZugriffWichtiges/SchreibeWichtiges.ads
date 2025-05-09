@@ -19,7 +19,7 @@ package SchreibeWichtiges is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   procedure GeldZugewinnProRunde
+   procedure GeldRundengewinn
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)

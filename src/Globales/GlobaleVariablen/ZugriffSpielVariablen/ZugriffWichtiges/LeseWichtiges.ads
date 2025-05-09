@@ -23,14 +23,14 @@ package LeseWichtiges is
               );
    pragma Inline (Geldmenge);
    
-   function GeldZugewinnProRunde
+   function GeldRundengewinn
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Produktion
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-   pragma Inline (GeldZugewinnProRunde);
+   pragma Inline (GeldRundengewinn);
 
    function GesamteForschungsrate
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)

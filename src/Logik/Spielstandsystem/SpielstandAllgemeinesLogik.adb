@@ -64,5 +64,26 @@ package body SpielstandAllgemeinesLogik is
       end case;
       
    end FortschrittErhöhen;
+   
+   
+   
+   procedure SpeziesbelegungSchreiben
+     (SpeziesbelegungExtern : in SpielRecords.SpeziesbelegungArray)
+   is begin
+      
+      Speziesbelegung := SpeziesbelegungExtern;
+      
+   end SpeziesbelegungSchreiben;
+   
+   
+   
+   function SpeziesbelegungLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return SpeziesDatentypen.Spieler_Enum
+   is begin
+      
+      return Speziesbelegung (SpeziesExtern).Belegung;
+      
+   end SpeziesbelegungLesen;
 
 end SpielstandAllgemeinesLogik;

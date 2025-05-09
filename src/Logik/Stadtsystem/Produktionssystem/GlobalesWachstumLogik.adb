@@ -20,7 +20,7 @@ package body GlobalesWachstumLogik is
             null;
             
          when others =>
-            SchreibeWichtiges.GeldZugewinnProRunde (SpeziesExtern       => SpeziesExtern,
+            SchreibeWichtiges.GeldRundengewinn (SpeziesExtern       => SpeziesExtern,
                                                     GeldZugewinnExtern  => WichtigesKonstanten.LeerGeldZugewinnProRunde,
                                                     RechnenSetzenExtern => False);
       end case;
@@ -45,7 +45,7 @@ package body GlobalesWachstumLogik is
                   null;
                   
                else
-                  SchreibeWichtiges.GeldZugewinnProRunde (SpeziesExtern       => SpeziesExtern,
+                  SchreibeWichtiges.GeldRundengewinn (SpeziesExtern       => SpeziesExtern,
                                                           GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)),
                                                           RechnenSetzenExtern => True);
                end if;

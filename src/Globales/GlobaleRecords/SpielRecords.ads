@@ -26,14 +26,14 @@ package SpielRecords is
    type WichtigesRecord is record
       
       Geldmenge : ZahlenDatentypen.EigenerInteger;
-      GeldZugewinnProRunde : ProduktionDatentypen.Produktion;
+      GeldRundengewinn : ProduktionDatentypen.Produktion;
 
       GesamteForschungsrate : ProduktionDatentypen.Lagermenge;
       Forschungsmenge : ProduktionDatentypen.Lagermenge;
       VerbleibendeForschungszeit : ProduktionDatentypen.Lagermenge;
       Forschungsprojekt : ForschungenDatentypen.ForschungID;
       
-      -- Wenn ich ein Record für diese Variable hier anlege, dann könnten man die bereits investierte Forschung behalten. XXX
+      -- Wenn ich ein Record für dieses Array hier anlege, dann könnten man die bereits investierte Forschung behalten. XXX
       Erforscht : ForschungenDatentypen.ErforschtArray;
       
       AnzahlStädte : StadtDatentypen.Städtebereich;

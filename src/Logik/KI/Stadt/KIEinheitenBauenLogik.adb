@@ -437,7 +437,7 @@ package body KIEinheitenBauenLogik is
          return 5;
          
       elsif
-        LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
+        LeseWichtiges.GeldRundengewinn (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                                                                           IDExtern           => EinheitenIDExtern,
                                                                                                                                           WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
         < WichtigesKonstanten.LeerGeldZugewinnProRunde

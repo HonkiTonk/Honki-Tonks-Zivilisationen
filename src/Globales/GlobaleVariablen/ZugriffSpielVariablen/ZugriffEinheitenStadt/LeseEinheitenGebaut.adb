@@ -35,7 +35,7 @@ package body LeseEinheitenGebaut is
       return KartenRecords.KartenfeldNaturalRecord
    is begin
       
-      return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).KoordinatenAktuell;
+      return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Koordinaten;
       
    end Koordinaten;
    
@@ -323,6 +323,17 @@ package body LeseEinheitenGebaut is
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Meldungen (WelcheMeldungExtern);
       
    end Meldungen;
+   
+   
+   
+   function AlleMeldungen
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return EinheitenRecords.EinheitMeldungenArray
+   is begin
+      
+      return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Meldungen;
+      
+   end AlleMeldungen;
    
    
    

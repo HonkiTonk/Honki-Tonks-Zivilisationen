@@ -36,7 +36,7 @@ package body SchreibeEinheitenGebaut is
                                                 EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
-      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Koordinaten := KoordinatenExtern;
       
       SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern          => KoordinatenExtern,
                                           EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,

@@ -9,7 +9,7 @@ package EinheitenRecordKonstanten is
 
    LeerEinheit : constant EinheitenRecords.EinheitenGebautRecord := (
                                                                      ID                          => EinheitenKonstanten.LeerID,
-                                                                     KoordinatenAktuell          => KartenRecordKonstanten.LeerKoordinate,
+                                                                     Koordinaten                 => KartenRecordKonstanten.LeerKoordinate,
                                                                      Heimatstadt                 => EinheitenKonstanten.LeerHeimatstadt,
                                                                      Lebenspunkte                => EinheitenKonstanten.LeerLebenspunkte,
                                                                      Bewegungspunkte             => EinheitenKonstanten.LeerBewegungspunkte,

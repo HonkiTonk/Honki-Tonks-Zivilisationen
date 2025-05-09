@@ -39,10 +39,6 @@ private
 
    Einheit : EinheitenRecords.EinheitenGebautRecord;
 
-   Allgemeines : SpielRecords.AllgemeinesRecord;
-
-   Speziesbelegung : SpielRecords.SpeziesbelegungArray;
-
    VorhandeneStädte : StadtDatentypen.Städtebereich;
 
    VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
@@ -54,11 +50,6 @@ private
 
    function Prüfen
      (DateiLadenExtern : in File_Type)
-      return Boolean;
-
-   function AllgemeinesLaden
-     (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
       return Boolean;
 
    function SpezieswerteLaden

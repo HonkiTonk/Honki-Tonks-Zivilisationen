@@ -1,4 +1,4 @@
-with Ada.Exceptions; use Ada.Exceptions;
+with Ada.Exceptions;
 with Ada.Strings.Wide_Wide_Unbounded;
 
 with MeldungssystemHTSEB;
@@ -13,12 +13,32 @@ with LeseAllgemeines;
 with LeseSpeziesbelegung;
 
 package body SpeichernAllgemeinesLogik is
+   
+   function Aufteilung
+     (DateiSpeichernExtern : in File_Type)
+      return Boolean
+   is begin
+      
+      case
+        Allgemeines (DateiSpeichernExtern => DateiSpeichernExtern)
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            return Speziesbelegung (DateiSpeichernExtern => DateiSpeichernExtern);
+      end case;
+      
+   end Aufteilung;
+   
+   
 
    function Allgemeines
      (DateiSpeichernExtern : in File_Type)
       return Boolean
    is
       use Ada.Strings.Wide_Wide_Unbounded;
+      use Ada.Exceptions;
       use type SystemDatentypen.EinByte;
    begin
                   
@@ -69,7 +89,7 @@ package body SpeichernAllgemeinesLogik is
       ZahlenDatentypen.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
                                              LeseAllgemeines.EingesetztePZB);
             
-      return Speziesbelegung (DateiSpeichernExtern => DateiSpeichernExtern);
+      return True;
       
    exception
       when StandardAdaFehler : others =>
@@ -85,6 +105,7 @@ package body SpeichernAllgemeinesLogik is
      (DateiSpeichernExtern : in File_Type)
       return Boolean
    is
+      use Ada.Exceptions;
       use type SystemDatentypen.EinByte;
    begin
       

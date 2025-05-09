@@ -3,6 +3,7 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with SpeziesDatentypen;
 
 private with StadtDatentypen;
+private with SystemDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -25,10 +26,21 @@ private
 
    VorhandeneStädte : StadtDatentypen.Städtebereich;
    
-   AktuellesGebäude : Positive;
-   AktuelleBewirtschaftung : Positive;
-      
-   VorhandeneGebäude : Natural;
-   VorhandeneBewirtschaftung : Natural;
+   AktuellesGebäude : SystemDatentypen.VierByte;
+   VorhandeneGebäude : SystemDatentypen.VierByte;
+   AktuelleBewirtschaftung : SystemDatentypen.VierByte;
+   VorhandeneBewirtschaftung : SystemDatentypen.VierByte;
+   
+   
+   
+   function Städtewerte
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      DateiSpeichernExtern : in File_Type;
+      StädtebereichExtern : in StadtDatentypen.Städtebereich)
+      return Boolean
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
 
 end SpeichernStaedteLogik;

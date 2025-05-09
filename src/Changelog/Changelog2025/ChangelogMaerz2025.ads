@@ -148,17 +148,19 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (10.03.2025):
+   -- Version 0.06.2260 => 0.06. (10.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2210 => 0.06. (09.03.2025):
+   -- Version 0.06.2210 => 0.06.2260 (09.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Bennenung überarbeitet.
+   -- Weiter das Speichersystem überarbeitet.
+   -- Unnötigen Code entfernt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

@@ -129,7 +129,7 @@ package body WichtigesSeitenleisteGrafik is
             return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
-            Geldzuwachs := LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern);
+            Geldzuwachs := LeseWichtiges.GeldRundengewinn (SpeziesExtern => SpeziesExtern);
       end case;
       
       if
@@ -141,11 +141,11 @@ package body WichtigesSeitenleisteGrafik is
         Geldzuwachs > ProduktionKonstanten.LeerProduktion
       then
          return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+"
-           & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern));
+           & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldRundengewinn (SpeziesExtern => SpeziesExtern));
          
       else
          return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
-           & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern));
+           & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldRundengewinn (SpeziesExtern => SpeziesExtern));
       end if;
       
    end Geld;

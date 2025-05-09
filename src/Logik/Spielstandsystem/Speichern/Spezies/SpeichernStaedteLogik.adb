@@ -42,10 +42,33 @@ package body SpeichernStaedteLogik is
       StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichernExtern),
                                             VorhandeneStädte);
       
+      return Städtewerte (SpeziesExtern        => SpeziesExtern,
+                          DateiSpeichernExtern => DateiSpeichernExtern,
+                          StädtebereichExtern  => VorhandeneStädte);
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernStaedteLogik.Städte: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+         
+   end Städte;
+   
+   
+   
+   function Städtewerte
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      DateiSpeichernExtern : in File_Type;
+      StädtebereichExtern : in StadtDatentypen.Städtebereich)
+      return Boolean
+   is
+      use type SystemDatentypen.VierByte;
+   begin
+      
       Belegung := LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern);
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. VorhandeneStädte loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. StädtebereichExtern loop
                            
          KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                        LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
@@ -122,8 +145,8 @@ package body SpeichernStaedteLogik is
             
          end loop GebäudeSchleife;
          
-         Natural'Write (Stream (File => DateiSpeichernExtern),
-                        VorhandeneGebäude);
+         SystemDatentypen.VierByte'Write (Stream (File => DateiSpeichernExtern),
+                                          VorhandeneGebäude);
          
          Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
                                            LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
@@ -153,8 +176,8 @@ package body SpeichernStaedteLogik is
             end loop WaagerechteBewirtschaftungSchleife;
          end loop SenkrechteBewirtschaftungSchleife;
          
-         Natural'Write (Stream (File => DateiSpeichernExtern),
-                        VorhandeneBewirtschaftung);
+         SystemDatentypen.VierByte'Write (Stream (File => DateiSpeichernExtern),
+                                          VorhandeneBewirtschaftung);
          
          AktuelleBewirtschaftung := 1;
          VorhandeneBewirtschaftung := 0;
@@ -181,8 +204,8 @@ package body SpeichernStaedteLogik is
             end loop WaagerechteBewirtschaftungZweiSchleife;
          end loop SenkrechteBewirtschaftungZweiSchleife;
          
-         Natural'Write (Stream (File => DateiSpeichernExtern),
-                        VorhandeneBewirtschaftung);
+         SystemDatentypen.VierByte'Write (Stream (File => DateiSpeichernExtern),
+                                          VorhandeneBewirtschaftung);
          
          KartenRecords.UmgebungDreiRecord'Write (Stream (File => DateiSpeichernExtern),
                                                  LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
@@ -211,10 +234,10 @@ package body SpeichernStaedteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernStaedteLogik.Städte: Konnte nicht gespeichert werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernStaedteLogik.Städtewerte: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
-         
-   end Städte;
+      
+   end Städtewerte;
 
 end SpeichernStaedteLogik;

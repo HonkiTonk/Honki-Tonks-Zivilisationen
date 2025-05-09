@@ -13,14 +13,14 @@ package body LeseWichtiges is
    
 
 
-   function GeldZugewinnProRunde
+   function GeldRundengewinn
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ProduktionDatentypen.Produktion
    is begin
 
-      return SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde;
+      return SpielVariablen.Wichtiges (SpeziesExtern).GeldRundengewinn;
 
-   end GeldZugewinnProRunde;
+   end GeldRundengewinn;
    
    
 

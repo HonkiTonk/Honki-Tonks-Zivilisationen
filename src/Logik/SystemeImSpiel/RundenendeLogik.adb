@@ -221,7 +221,7 @@ package body RundenendeLogik is
                   
          when others =>
             SchreibeWichtiges.Geldmenge (SpeziesExtern       => SpeziesExtern,
-                                         GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern)),
+                                         GeldZugewinnExtern  => Integer (LeseWichtiges.GeldRundengewinn (SpeziesExtern => SpeziesExtern)),
                                          RechnenSetzenExtern => True);
       end case;
                

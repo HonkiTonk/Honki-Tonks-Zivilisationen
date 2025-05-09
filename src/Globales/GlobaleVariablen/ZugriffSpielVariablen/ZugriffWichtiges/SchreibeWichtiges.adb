@@ -11,6 +11,7 @@ with LeseGrenzen;
 
 with MeldungssystemHTSEB;
 
+-- Teile davon mal durch die Standardversion in der HTSEB ersetzen! äöü
 package body SchreibeWichtiges is
 
    -- Warum kann die vorhandene Geldmenge überhaupt kleiner als 0 sein? Das mal ändern. äöü
@@ -47,7 +48,7 @@ package body SchreibeWichtiges is
    
    
    
-   procedure GeldZugewinnProRunde
+   procedure GeldRundengewinn
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldZugewinnExtern : in ProduktionDatentypen.Stadtproduktion;
       RechnenSetzenExtern : in Boolean)
@@ -60,24 +61,24 @@ package body SchreibeWichtiges is
       is
          when True =>
             if
-              SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde + GeldZugewinnExtern >= LeseGrenzen.Geldgewinngrenze (SpeziesExtern => SpeziesExtern)
+              SpielVariablen.Wichtiges (SpeziesExtern).GeldRundengewinn + GeldZugewinnExtern >= LeseGrenzen.Geldgewinngrenze (SpeziesExtern => SpeziesExtern)
             then
-               SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde := LeseGrenzen.Geldgewinngrenze (SpeziesExtern => SpeziesExtern);
+               SpielVariablen.Wichtiges (SpeziesExtern).GeldRundengewinn := LeseGrenzen.Geldgewinngrenze (SpeziesExtern => SpeziesExtern);
                
             elsif
-              SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde + GeldZugewinnExtern <= ProduktionDatentypen.Produktion'First
+              SpielVariablen.Wichtiges (SpeziesExtern).GeldRundengewinn + GeldZugewinnExtern <= ProduktionDatentypen.Produktion'First
             then
-               SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde := ProduktionDatentypen.Produktion'First;
+               SpielVariablen.Wichtiges (SpeziesExtern).GeldRundengewinn := ProduktionDatentypen.Produktion'First;
                                                                                          
             else
-               SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde := SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde + GeldZugewinnExtern;
+               SpielVariablen.Wichtiges (SpeziesExtern).GeldRundengewinn := SpielVariablen.Wichtiges (SpeziesExtern).GeldRundengewinn + GeldZugewinnExtern;
             end if;
             
          when False =>
-            SpielVariablen.Wichtiges (SpeziesExtern).GeldZugewinnProRunde := GeldZugewinnExtern;
+            SpielVariablen.Wichtiges (SpeziesExtern).GeldRundengewinn := GeldZugewinnExtern;
       end case;
       
-   end GeldZugewinnProRunde;
+   end GeldRundengewinn;
    
    
    

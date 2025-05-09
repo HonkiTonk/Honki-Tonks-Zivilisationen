@@ -18,7 +18,7 @@ package WichtigesRecordKonstanten is
    
    LeerWichtigesZeug : constant SpielRecords.WichtigesRecord := (
                                                                  Geldmenge                  => WichtigesKonstanten.LeerGeldmenge,
-                                                                 GeldZugewinnProRunde       => WichtigesKonstanten.LeerGeldZugewinnProRunde,
+                                                                 GeldRundengewinn           => WichtigesKonstanten.LeerGeldZugewinnProRunde,
                                                                  GesamteForschungsrate      => WichtigesKonstanten.LeerGesamteForschungsrate,
                                                                  Forschungsmenge            => WichtigesKonstanten.LeerForschungsmenge,
                                                                  VerbleibendeForschungszeit => WichtigesKonstanten.LeerVerbleibendeForschungszeit,
@@ -31,16 +31,16 @@ package WichtigesRecordKonstanten is
                                                                 );
   
    LeerAllgemeines : constant SpielRecords.AllgemeinesRecord := (
-                                                                 Gewonnen              => False,
-                                                                 Weiterspielen         => False,
+                                                                 Gewonnen            => False,
+                                                                 Weiterspielen       => False,
                                                                  SpezieszugNachLaden => SpeziesKonstanten.LeerSpezies,
-                                                                 Schwierigkeitsgrad    => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
-                                                                 Rundenanzahl          => Positive'First,
-                                                                 Rundengrenze          => Natural'First,
-                                                                 IronmanName           => TextKonstantenHTSEB.LeerUnboundedString,
-                                                                 PlanetVernichtet      => SpeziesKonstanten.LeerSpezies,
-                                                                 Zusammenbruchszeit    => WichtigesKonstanten.KeinZusammenbruch,
-                                                                 EingesetztePZB => 0
+                                                                 Schwierigkeitsgrad  => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
+                                                                 Rundenanzahl        => Positive'First,
+                                                                 Rundengrenze        => Natural'First,
+                                                                 IronmanName         => TextKonstantenHTSEB.LeerUnboundedString,
+                                                                 PlanetVernichtet    => SpeziesKonstanten.LeerSpezies,
+                                                                 Zusammenbruchszeit  => WichtigesKonstanten.KeinZusammenbruch,
+                                                                 EingesetztePZB      => 0
                                                                 );
    
    LeerGrenzen : constant SpielRecords.GrenzenRecord := (

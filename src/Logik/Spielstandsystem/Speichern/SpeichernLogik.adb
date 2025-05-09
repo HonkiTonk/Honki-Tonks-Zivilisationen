@@ -82,15 +82,15 @@ package body SpeichernLogik is
                                                    NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
                                                                                                                SpielstandnameExtern => Spielstandname));
          
+         -- Wenn hier ein False auftritt auch die Datei löschen? äöü
          if
            False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
                                               AutospeichernExtern  => AutospeichernExtern)
          then
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
-            -- Karte wurde noch nicht überarbeitet. äöü
          elsif
-           False = SpeichernAllgemeinesLogik.Allgemeines (DateiSpeichernExtern => DateiSpeichern)
+           False = SpeichernAllgemeinesLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichern)
          then
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
@@ -159,8 +159,8 @@ package body SpeichernLogik is
             null;
             
          elsif
-           False = SpeichernSpezienspezifischesLogik.Spezienspezifisches (SpeziesExtern        => SpeziesSchleifenwert,
-                                                                          DateiSpeichernExtern => DateiSpeichernExtern)
+           False = SpeichernSpezienspezifischesLogik.Aufteilung (SpeziesExtern        => SpeziesSchleifenwert,
+                                                                 DateiSpeichernExtern => DateiSpeichernExtern)
          then
             return False;
             

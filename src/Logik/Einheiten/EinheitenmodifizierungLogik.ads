@@ -12,7 +12,7 @@ private with KampfDatentypen;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
-private with KIDatentypen;
+-- private with KIDatentypen;
 
 package EinheitenmodifizierungLogik is
    pragma Elaborate_Body;
@@ -56,7 +56,7 @@ private
    
    AktuelleBeschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    
-   KIBeschäftigung : KIDatentypen.Einheit_Aufgabe_Enum;
+   -- KIBeschäftigung : KIDatentypen.Einheit_Aufgabe_Enum;
    
    Heimatstadt : StadtDatentypen.Städtebereich;
    

@@ -23,13 +23,13 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   Sichtbarkeit : SystemDatentypen.EinByte;
+   SichtbarkeitVorhanden : SystemDatentypen.EinByte;
    AktuelleSichtbarkeit : SystemDatentypen.EinByte;
    
-   VorhandeneFeldeffekte : SystemDatentypen.EinByte;
+   FeldeffekteVorhanden : SystemDatentypen.EinByte;
    AktuellerFeldeffekt : SystemDatentypen.EinByte;
    
-   VorhandeneFeldelemente : SystemDatentypen.EinByte;
+   FeldelementeVorhanden : SystemDatentypen.EinByte;
       
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
       
@@ -51,7 +51,7 @@ private
    
    
       
-   function SichtbarkeitSchreiben
+   function Sichtbarkeit
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       DateiSpeichernExtern : in File_Type)
       return Boolean
@@ -62,7 +62,7 @@ private
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
       
-   function BasisgrundSchreiben
+   function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       DateiSpeichernExtern : in File_Type)
       return Boolean
@@ -73,7 +73,7 @@ private
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
-   function VorhandeneFeldelementeSchreiben
+   function VorhandeneFeldelemente
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       FeldeffekteExtern : in KartenRecords.FeldeffektArray;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum;
@@ -85,7 +85,7 @@ private
       DateiSpeichernExtern : in File_Type)
       return Boolean;
    
-   function FeldelementeSchreiben
+   function Feldelemente
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       FeldeffekteExtern : in KartenRecords.FeldeffektArray;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum;

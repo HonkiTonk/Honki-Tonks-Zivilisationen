@@ -65,7 +65,7 @@ package EinheitenRecords is
    type EinheitenGebautRecord is record
       
       ID : EinheitenDatentypen.EinheitenID;
-      KoordinatenAktuell : KartenRecords.KartenfeldNaturalRecord;
+      Koordinaten : KartenRecords.KartenfeldNaturalRecord;
       Heimatstadt : StadtDatentypen.Städtebereich;
       
       Lebenspunkte : KampfDatentypen.LebenspunkteVorhanden;

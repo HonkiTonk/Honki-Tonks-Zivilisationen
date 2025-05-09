@@ -17,8 +17,6 @@ with SchreibeDiplomatie;
 with SchreibeZeiger;
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
-with SchreibeAllgemeines;
-with SchreibeSpeziesbelegung;
 with SchreibeGrafiktask;
 
 with LadezeitenLogik;
@@ -27,9 +25,10 @@ with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
 with UmwandlungenVerzeichnisse;
+with LadenAllgemeinesLogik;
+with SpielstandAllgemeinesLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
--- Änderungen an den zu ladenden Datentypen kann jederzeit Probleme bei Laden verursachen.
 package body LadenLogik is
    
    function Laden
@@ -98,6 +97,7 @@ package body LadenLogik is
    
    
    
+   -- Man könnte das Laden vermutlich deutlich beschleunigen wenn man es nur prüft und dann direkt zuweist statt noch einmal durchzugehen. äöü
    function Prüfen
      (DateiLadenExtern : in File_Type)
       return Boolean
@@ -115,8 +115,8 @@ package body LadenLogik is
       end case;
       
       case
-        AllgemeinesLaden (LadenPrüfenExtern => False,
-                          DateiLadenExtern  => DateiLadenExtern)
+        LadenAllgemeinesLogik.Aufteilung (LadenPrüfenExtern => False,
+                                          DateiLadenExtern  => DateiLadenExtern)
       is
          when False =>
             return False;
@@ -148,8 +148,8 @@ package body LadenLogik is
       Leerwert := LadenKarteLogik.KarteLaden (LadenPrüfenExtern => True,
                                               DateiLadenExtern  => DateiLadenExtern);
                
-      Leerwert := AllgemeinesLaden (LadenPrüfenExtern => True,
-                                    DateiLadenExtern  => DateiLadenExtern);
+      Leerwert := LadenAllgemeinesLogik.Aufteilung (LadenPrüfenExtern => True,
+                                                    DateiLadenExtern  => DateiLadenExtern);
       LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       Leerwert := SpezieswerteLaden (LadenPrüfenExtern => True,
@@ -160,44 +160,7 @@ package body LadenLogik is
       LadezeitenLogik.SpeichernLadenMaximum;
       
    end Ladevorgang;
-        
    
-   
-   -- Hier mal eine Möglichkeit finden die Speziesbelegung nicht einfach Prozedur/Funktionsübergreifend zu nutzen. äöü
-   function AllgemeinesLaden
-     (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
-      return Boolean
-   is
-      use Ada.Exceptions;
-   begin
-            
-      SpielRecords.AllgemeinesRecord'Read (Stream (File => DateiLadenExtern),
-                                           Allgemeines);
-      
-      SpielRecords.SpeziesbelegungArray'Read (Stream (File => DateiLadenExtern),
-                                              Speziesbelegung);
-      
-      case
-        LadenPrüfenExtern
-      is
-         when True =>
-            SchreibeAllgemeines.GanzerEintrag (EintragExtern => Allgemeines);
-            SchreibeSpeziesbelegung.GanzesArray (ArrayExtern => Speziesbelegung);
-            
-         when False =>
-            null;
-      end case;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.AllgemeinesLaden: Konnte nicht geladen werden: "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-         
-   end AllgemeinesLaden;
    
    
    
@@ -211,7 +174,7 @@ package body LadenLogik is
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
-           Speziesbelegung (SpeziesSchleifenwert).Belegung = SpeziesDatentypen.Leer_Spieler_Enum
+          SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
             
@@ -338,7 +301,7 @@ package body LadenLogik is
       for SpeziesDiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
 
          if
-           Speziesbelegung (SpeziesDiplomatieSchleifenwert).Belegung = SpeziesDatentypen.Leer_Spieler_Enum
+           SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesDiplomatieSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
            or
              SpeziesExtern = SpeziesDiplomatieSchleifenwert
          then
@@ -368,7 +331,7 @@ package body LadenLogik is
                                          Wichtiges);
       
       case
-        Speziesbelegung (SpeziesExtern).Belegung
+        SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesExtern)
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
             KartenRecords.ZeigerRecord'Read (Stream (File => DateiLadenExtern),
@@ -386,7 +349,7 @@ package body LadenLogik is
                                              EintragExtern => Wichtiges);
             
             if
-              Speziesbelegung (SpeziesExtern).Belegung = SpeziesDatentypen.Mensch_Spieler_Enum
+              SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
             then
                SchreibeZeiger.GanzerEintrag (SpeziesExtern => SpeziesExtern,
                                              EintragExtern => Zeiger);

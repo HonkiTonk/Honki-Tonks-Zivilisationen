@@ -153,7 +153,7 @@ package body KIGebaeudeBauenLogik is
       use type KIDatentypen.BauenBewertung;
    begin
       
-      Produktion := LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+      Produktion := LeseWichtiges.GeldRundengewinn (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       Produktionsbonus := LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => StadtSpeziesNummerExtern.Spezies,
                                                                   IDExtern               => IDExtern,
                                                                   ProduktionsbonusExtern => ProduktionDatentypen.Geld_Enum);

@@ -3,12 +3,17 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with SystemRecordsHTSEB;
 
 with SystemDatentypen;
+with SpielRecords;
+with SpeziesDatentypen;
 
 package SpielstandAllgemeinesLogik is
    pragma Elaborate_Body;
       
    procedure FortschrittErhöhen
      (AutospeichernExtern : in Boolean);
+   
+   procedure SpeziesbelegungSchreiben
+     (SpeziesbelegungExtern : in SpielRecords.SpeziesbelegungArray);
    
    
 
@@ -20,8 +25,14 @@ package SpielstandAllgemeinesLogik is
       SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
       return Boolean;
    
+   function SpeziesbelegungLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return SpeziesDatentypen.Spieler_Enum;
+   
 private
    
    SpielstandName : SystemRecordsHTSEB.TextEingabeRecord;
+
+   Speziesbelegung : SpielRecords.SpeziesbelegungArray;
 
 end SpielstandAllgemeinesLogik;

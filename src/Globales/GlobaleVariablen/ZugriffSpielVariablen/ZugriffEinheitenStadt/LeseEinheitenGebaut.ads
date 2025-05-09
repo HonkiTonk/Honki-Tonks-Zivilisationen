@@ -301,6 +301,17 @@ package LeseEinheitenGebaut is
               );
    pragma Inline (Meldungen);
    
+   function AlleMeldungen
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return EinheitenRecords.EinheitMeldungenArray
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (AlleMeldungen);
+   
    function GanzerEintrag
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenRecords.EinheitenGebautRecord

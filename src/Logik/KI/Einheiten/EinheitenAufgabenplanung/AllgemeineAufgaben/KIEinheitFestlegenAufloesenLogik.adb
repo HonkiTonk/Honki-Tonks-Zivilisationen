@@ -141,7 +141,7 @@ package body KIEinheitFestlegenAufloesenLogik is
                                                  WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
         > 0
         and
-          LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) < 0
+          LeseWichtiges.GeldRundengewinn (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) < 0
       then
          return True;
             
