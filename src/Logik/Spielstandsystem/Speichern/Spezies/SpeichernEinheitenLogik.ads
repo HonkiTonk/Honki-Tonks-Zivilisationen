@@ -3,7 +3,6 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with SpeziesDatentypen;
 
 private with EinheitenDatentypen;
-private with SystemDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -24,10 +23,9 @@ private
    
    Belegung : SpeziesDatentypen.Spieler_Belegt_Enum;
 
-   ID : EinheitenDatentypen.EinheitenID;
+   ID : EinheitenDatentypen.EinheitenIDVorhanden;
    
-   TransportplätzeBelegt : SystemDatentypen.EinByte;
-   AktuelleTransportplatz : SystemDatentypen.EinByte;
+   TransportplätzeBelegt : EinheitenDatentypen.Transportplätze;
    
    VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
    GeladeneEinheit : EinheitenDatentypen.Einheitenbereich;

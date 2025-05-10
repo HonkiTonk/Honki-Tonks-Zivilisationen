@@ -84,13 +84,13 @@ package body SpeichernLogik is
          
          -- Wenn hier ein False auftritt auch die Datei löschen? äöü
          if
-           False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
-                                              AutospeichernExtern  => AutospeichernExtern)
+           False = SpeichernAllgemeinesLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichern)
          then
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          elsif
-           False = SpeichernAllgemeinesLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichern)
+           False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
+                                              AutospeichernExtern  => AutospeichernExtern)
          then
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             

@@ -43,9 +43,17 @@ package body SpeichernEinheitenLogik is
       EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
                                                   VorhandeneEinheiten);
       
-      return Einheitenwerte (SpeziesExtern          => SpeziesExtern,
-                             DateiSpeichernExtern   => DateiSpeichernExtern,
-                             EinheitenbereichExtern => VorhandeneEinheiten);
+      case
+        VorhandeneEinheiten
+      is
+         when 0 =>
+            return True;
+            
+         when others =>
+            return Einheitenwerte (SpeziesExtern          => SpeziesExtern,
+                                   DateiSpeichernExtern   => DateiSpeichernExtern,
+                                   EinheitenbereichExtern => VorhandeneEinheiten);
+      end case;
       
    exception
       when StandardAdaFehler : others =>
@@ -63,7 +71,7 @@ package body SpeichernEinheitenLogik is
       EinheitenbereichExtern : in EinheitenDatentypen.Einheitenbereich)
       return Boolean
    is
-      use type SystemDatentypen.EinByte;
+      use type EinheitenDatentypen.Transportplätze;
    begin
       
       Belegung := LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern);
@@ -73,8 +81,8 @@ package body SpeichernEinheitenLogik is
          
          ID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert));
          
-         EinheitenDatentypen.EinheitenID'Write (Stream (File => DateiSpeichernExtern),
-                                                ID);
+         EinheitenDatentypen.EinheitenIDVorhanden'Write (Stream (File => DateiSpeichernExtern),
+                                                         ID);
                   
          KartenRecords.KartenfeldNaturalRecord'Write (Stream (File => DateiSpeichernExtern),
                                                       LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
@@ -107,7 +115,7 @@ package body SpeichernEinheitenLogik is
                                                       LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
          
          case
-          Belegung
+           Belegung
          is
             when SpeziesDatentypen.KI_Spieler_Enum =>
                KIDatentypen.Einheit_Aufgabe_Enum'Write (Stream (File => DateiSpeichernExtern),
@@ -136,7 +144,6 @@ package body SpeichernEinheitenLogik is
                
             when others =>
                TransportplätzeBelegt := 0;
-               AktuelleTransportplatz := 1;
                
                TransportSchleife:
                for TransportSchleifenwert in EinheitenRecords.TransporterArray'Range loop
@@ -149,18 +156,16 @@ package body SpeichernEinheitenLogik is
                         null;
                         
                      when others =>
-                        TransportplätzeBelegt := TransportplätzeBelegt + AktuelleTransportplatz;
+                        TransportplätzeBelegt := TransportplätzeBelegt + 1;
                   end case;
-                  
-                  AktuelleTransportplatz := AktuelleTransportplatz * 2;
                   
                end loop TransportSchleife;
                
-               SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                               TransportplätzeBelegt);
+               EinheitenDatentypen.Transportplätze'Write (Stream (File => DateiSpeichernExtern),
+                                                           TransportplätzeBelegt);
                
                LadungSchleife:
-               for LadungSchleifenwert in EinheitenRecords.TransporterArray'Range loop
+               for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. TransportplätzeBelegt loop
                   
                   GeladeneEinheit := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert),
                                                                         PlatzExtern                => LadungSchleifenwert);
@@ -169,11 +174,12 @@ package body SpeichernEinheitenLogik is
                     GeladeneEinheit
                   is
                      when 0 =>
-                        exit LadungSchleife;
+                        MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernEinheitenLogik.Einheitenwerte: Geladene Einheit ist leer");
+                        return False;
                         
                      when others =>
-                        EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
-                                                                    GeladeneEinheit);
+                        EinheitenDatentypen.EinheitenbereichVorhanden'Write (Stream (File => DateiSpeichernExtern),
+                                                                             GeladeneEinheit);
                   end case;
                   
                end loop LadungSchleife;

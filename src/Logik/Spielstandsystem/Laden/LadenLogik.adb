@@ -6,13 +6,11 @@ with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
 
 with GrafikDatentypen;
-with StadtKonstanten;
-with EinheitenKonstanten;
 with TextnummernKonstanten;
 with SpielstandVariablen;
+with SpeziesDatentypen;
 
 with SchreibeEinheitenGebaut;
-with SchreibeStadtGebaut;
 with SchreibeGrafiktask;
 
 with LadezeitenLogik;
@@ -25,6 +23,8 @@ with LadenAllgemeinesLogik;
 with SpielstandAllgemeinesLogik;
 with LadenSpezienspezifischesLogik;
 with LadenDiplomatieLogik;
+with LadenEinheitenLogik;
+with LadenStaedteLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenLogik is
@@ -165,13 +165,15 @@ package body LadenLogik is
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean
-   is begin
+   is
+      use type SpeziesDatentypen.Spieler_Enum;
+   begin
       
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
          if
-          SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
+           SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
             
@@ -182,15 +184,20 @@ package body LadenLogik is
          then
             return False;
             
-            
-            
          elsif
-           False = StädteEinheitenLaden (LadenPrüfenExtern => LadenPrüfenExtern,
-                                          SpeziesExtern     => SpeziesSchleifenwert,
-                                          DateiLadenExtern  => DateiLadenExtern)
+           False = LadenEinheitenLogik.Einheiten (LadenPrüfenExtern => LadenPrüfenExtern,
+                                                  SpeziesExtern     => SpeziesSchleifenwert,
+                                                  DateiLadenExtern  => DateiLadenExtern)
          then
             return False;
-               
+            
+         elsif
+           False = LadenStaedteLogik.Städte (LadenPrüfenExtern => LadenPrüfenExtern,
+                                              SpeziesExtern     => SpeziesSchleifenwert,
+                                              DateiLadenExtern  => DateiLadenExtern)
+         then
+            return False;
+            
          elsif
            False = LadenDiplomatieLogik.Diplomatie (LadenPrüfenExtern => LadenPrüfenExtern,
                                                     SpeziesExtern     => SpeziesSchleifenwert,
@@ -207,72 +214,5 @@ package body LadenLogik is
       return True;
       
    end SpezieswerteLaden;
-   
-   
-   
-   function StädteEinheitenLaden
-     (LadenPrüfenExtern : in Boolean;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      DateiLadenExtern : in File_Type)
-      return Boolean
-   is
-      use Ada.Exceptions;
-   begin
-            
-      EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
-                                                 VorhandeneEinheiten);
-      
-      EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. VorhandeneEinheiten loop
-            
-         EinheitenRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenExtern),
-                                                      Einheit);
-         
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert),
-                                                      EintragExtern              => Einheit);
-            
-            when False =>
-               null;
-         end case;
-            
-      end loop EinheitenSchleife;
-      
-      
-      
-      StadtDatentypen.Städtebereich'Read (Stream (File => DateiLadenExtern),
-                                           VorhandeneStädte);
-      
-      StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. VorhandeneStädte loop
-         
-         StadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenExtern),
-                                              Stadt);
-         
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeStadtGebaut.GanzerEintrag (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
-                                                  EintragExtern            => Stadt);
-            
-            when False =>
-               null;
-         end case;
-         
-      end loop StadtSchleife;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenLogik.StädteEinheitenLaden: Konnte nicht geladen werden: "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-   
-   end StädteEinheitenLaden;
 
 end LadenLogik;
