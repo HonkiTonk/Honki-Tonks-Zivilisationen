@@ -11,6 +11,7 @@ private with KartenRecords;
 private with KIDatentypen;
 private with SystemDatentypen;
 private with StadtArrays;
+private with ZahlenDatentypen;
 
 package LadenStaedteLogik is
    pragma Elaborate_Body;
@@ -64,7 +65,7 @@ private
    
    Stadtname : Unbounded_Wide_Wide_String;
    
-   Bewirtschaftung : SystemDatentypen.VierByte;
+   Bewirtschaftung : SystemDatentypen.EinByte;
    
    Bewirtschaftungsbelegung : StadtRecords.UmgebungBewirtschaftungArray;
    
@@ -74,7 +75,7 @@ private
    
    KIBeschäftigung : KIDatentypen.Stadt_Aufgabe_Enum;
    
-   Potenz : Positive;
+   Potenz : ZahlenDatentypen.EigenesNatural;
    
    
    

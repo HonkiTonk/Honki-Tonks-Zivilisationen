@@ -111,7 +111,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ErfahrungspunkteExtern : in KampfDatentypen.ErfahrungspunkteVorhanden;
+      ErfahrungspunkteExtern : in KampfDatentypen.Erfahrungspunkte;
       AddierenSetzenExtern : in Boolean)
      with
        Pre => (

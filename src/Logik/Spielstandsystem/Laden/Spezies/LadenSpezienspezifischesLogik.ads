@@ -36,9 +36,9 @@ private
    
    Forschungsprojekt : ForschungenDatentypen.ForschungID;
    
-   ForschungVorhanden : SystemDatentypen.EinByte;
+   ForschungVorhanden : SystemDatentypen.VierByte;
    
-   Potenz : ZahlenDatentypen.EigenesPositive;
+   Potenz : ZahlenDatentypen.EigenesNatural;
    
    Erforscht : ForschungenDatentypen.ErforschtArray;
    

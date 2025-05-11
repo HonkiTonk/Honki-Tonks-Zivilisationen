@@ -26,10 +26,11 @@ private
 
    VorhandeneStädte : StadtDatentypen.Städtebereich;
    
+   AktuelleBewirtschaftung : SystemDatentypen.EinByte;
+   VorhandeneBewirtschaftung : SystemDatentypen.EinByte;
+   
    AktuellesGebäude : SystemDatentypen.VierByte;
    VorhandeneGebäude : SystemDatentypen.VierByte;
-   AktuelleBewirtschaftung : SystemDatentypen.VierByte;
-   VorhandeneBewirtschaftung : SystemDatentypen.VierByte;
    
    
    

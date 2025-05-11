@@ -32,16 +32,26 @@ package body DiagnosesystemZusatzinformationen is
    procedure GrößenprüfungDatei
    is begin
       
+      Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Test");
+      
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
       
-      KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichern),
-                                                             KartengrundDatentypen.Flachland_Enum);
+      Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichern),
+                                        Zwischenspeicher);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                  NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
       
+      DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiSpeichern,
+                                              NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
       
+      Unbounded_Wide_Wide_String'Read (Stream (File => DateiSpeichern),
+                                       Zwischenspeicher);
+      
+      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
+                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
+                                              
       
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Neue Version"));

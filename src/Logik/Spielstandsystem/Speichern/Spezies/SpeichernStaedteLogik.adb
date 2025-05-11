@@ -62,6 +62,7 @@ package body SpeichernStaedteLogik is
       StädtebereichExtern : in StadtDatentypen.Städtebereich)
       return Boolean
    is
+      use type SystemDatentypen.EinByte;
       use type SystemDatentypen.VierByte;
    begin
       
@@ -138,12 +139,13 @@ package body SpeichernStaedteLogik is
          
          Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
                                            LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
-
-         AktuelleBewirtschaftung := 1;
-         VorhandeneBewirtschaftung := 0;
          
          SenkrechteBewirtschaftungSchleife:
-         for SenkrechteBewirtschaftungSchleifenwert in StadtRecords.UmgebungBewirtschaftungArray'First (1) .. 0 loop
+         for SenkrechteBewirtschaftungSchleifenwert in StadtRecords.UmgebungBewirtschaftungArray'Range (1) loop
+
+            AktuelleBewirtschaftung := 1;
+            VorhandeneBewirtschaftung := 0;
+            
             WaagerechteBewirtschaftungSchleife:
             for WaagerechteBewirtschaftungSchleifenwert in StadtRecords.UmgebungBewirtschaftungArray'Range (2) loop
                
@@ -162,39 +164,11 @@ package body SpeichernStaedteLogik is
                AktuelleBewirtschaftung := AktuelleBewirtschaftung * 2;
                
             end loop WaagerechteBewirtschaftungSchleife;
+            
+            SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                            VorhandeneBewirtschaftung);
+            
          end loop SenkrechteBewirtschaftungSchleife;
-         
-         SystemDatentypen.VierByte'Write (Stream (File => DateiSpeichernExtern),
-                                          VorhandeneBewirtschaftung);
-         
-         AktuelleBewirtschaftung := 1;
-         VorhandeneBewirtschaftung := 0;
-         
-         -- Umbauen mit BereichSchleife wie in LadenSpezienspezifischesLogik.Wichtiges? äöü
-         SenkrechteBewirtschaftungZweiSchleife:
-         for SenkrechteBewirtschaftungSchleifenwert in 1 .. StadtRecords.UmgebungBewirtschaftungArray'Last (1) loop
-            WaagerechteBewirtschaftungZweiSchleife:
-            for WaagerechteBewirtschaftungSchleifenwert in StadtRecords.UmgebungBewirtschaftungArray'Range (2) loop
-               
-               case
-                 LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
-                                                          YKoordinateExtern        => SenkrechteBewirtschaftungSchleifenwert,
-                                                          XKoordinateExtern        => WaagerechteBewirtschaftungSchleifenwert)
-               is
-                  when True =>
-                     VorhandeneBewirtschaftung := VorhandeneBewirtschaftung + AktuelleBewirtschaftung;
-                  
-                  when False =>
-                     null;
-               end case;
-               
-               AktuelleBewirtschaftung := AktuelleBewirtschaftung * 2;
-               
-            end loop WaagerechteBewirtschaftungZweiSchleife;
-         end loop SenkrechteBewirtschaftungZweiSchleife;
-         
-         SystemDatentypen.VierByte'Write (Stream (File => DateiSpeichernExtern),
-                                          VorhandeneBewirtschaftung);
          
          KartenRecords.UmgebungDreiRecord'Write (Stream (File => DateiSpeichernExtern),
                                                  LeseStadtGebaut.Gesamtumgebung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));

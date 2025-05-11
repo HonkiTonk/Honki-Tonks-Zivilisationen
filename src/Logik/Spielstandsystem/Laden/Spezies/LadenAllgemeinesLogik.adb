@@ -144,11 +144,11 @@ package body LadenAllgemeinesLogik is
          
          SpeziesBesiegtSchleife:
          for SpeziesBesiegtSchleifenwert in reverse SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
-              
+            
             Potenz := SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesBesiegtSchleifenwert) - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert));
             
             if
-              Integer (Besiegt) - Potenz >= 0
+              Integer (Besiegt) >= 2**Potenz
             then
                Belegung (SpeziesBesiegtSchleifenwert).Besiegt := True;
                Besiegt := Besiegt - 2**Potenz;

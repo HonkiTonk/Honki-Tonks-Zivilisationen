@@ -43,7 +43,7 @@ private
 
    Belegung : SpielRecords.SpeziesbelegungArray;
    
-   Potenz : ZahlenDatentypen.EigenesPositive;
+   Potenz : ZahlenDatentypen.EigenesNatural;
    
    
    

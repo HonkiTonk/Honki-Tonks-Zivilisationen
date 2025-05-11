@@ -112,7 +112,7 @@ package body LadenKarteLogik is
                   Potenz := SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SichtbarkeitSchleifenwert) - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert));
                   
                   if
-                    Natural (SichtbarkeitVorhanden) - 2**Potenz >= 0
+                    Natural (SichtbarkeitVorhanden) >= 2**Potenz
                   then
                      GesamteSichtbarkeit (SichtbarkeitSchleifenwert) := True;
                      SichtbarkeitVorhanden := SichtbarkeitVorhanden - 2**Potenz;
@@ -349,7 +349,8 @@ package body LadenKarteLogik is
          VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.FeldeffekteVorhanden;
                   
          AktuellerFeldeffekt := 2**(KartenRecords.FeldeffektArray'Length - 1);
-                  
+         
+         -- Das auch noch an das geänderte Potenzsystem anpassen. äöü
          FeldeffekteSchleife:
          for FeldeffekteSchleifenwert in reverse KartenRecords.FeldeffektArray'Range loop
                      

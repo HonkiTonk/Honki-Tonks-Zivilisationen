@@ -102,17 +102,6 @@ package body LadenLogik is
    is begin
       
       case
-        LadenKarteLogik.KarteLaden (LadenPrüfenExtern => False,
-                                    DateiLadenExtern  => DateiLadenExtern)
-      is
-         when False =>
-            return False;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
         LadenAllgemeinesLogik.Aufteilung (LadenPrüfenExtern => False,
                                           DateiLadenExtern  => DateiLadenExtern)
       is
@@ -121,6 +110,17 @@ package body LadenLogik is
             
          when True =>
             LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      end case;
+      
+      case
+        LadenKarteLogik.KarteLaden (LadenPrüfenExtern => False,
+                                    DateiLadenExtern  => DateiLadenExtern)
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            null;
       end case;
       
       case
@@ -143,12 +143,12 @@ package body LadenLogik is
      (DateiLadenExtern : in File_Type)
    is begin
                
-      Leerwert := LadenKarteLogik.KarteLaden (LadenPrüfenExtern => True,
-                                              DateiLadenExtern  => DateiLadenExtern);
-               
       Leerwert := LadenAllgemeinesLogik.Aufteilung (LadenPrüfenExtern => True,
                                                     DateiLadenExtern  => DateiLadenExtern);
       LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+               
+      Leerwert := LadenKarteLogik.KarteLaden (LadenPrüfenExtern => True,
+                                              DateiLadenExtern  => DateiLadenExtern);
       
       Leerwert := SpezieswerteLaden (LadenPrüfenExtern => True,
                                      DateiLadenExtern  => DateiLadenExtern);

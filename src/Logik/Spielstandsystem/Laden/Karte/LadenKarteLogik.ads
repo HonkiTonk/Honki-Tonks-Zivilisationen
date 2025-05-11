@@ -29,7 +29,7 @@ private
    AktuellerFeldeffekt : SystemDatentypen.EinByte;
    VorhandeneFeldelemente : SystemDatentypen.EinByte;
    
-   Potenz : ZahlenDatentypen.EigenesPositive;
+   Potenz : ZahlenDatentypen.EigenesNatural;
    
    Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    

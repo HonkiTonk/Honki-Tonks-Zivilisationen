@@ -9,6 +9,8 @@ with SchreibeStadtGebaut;
 
 with SpielstandAllgemeinesLogik;
 
+with DiagnosesystemHTSEB;
+
 package body LadenStaedteLogik is
 
    function Städte
@@ -72,6 +74,7 @@ package body LadenStaedteLogik is
    is
       use type SpeziesDatentypen.Spieler_Enum;
       use type SystemDatentypen.VierByte;
+      use type SystemDatentypen.EinByte;
    begin
       
       KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Read (Stream (File => DateiLadenExtern),
@@ -119,13 +122,13 @@ package body LadenStaedteLogik is
       SystemDatentypen.VierByte'Read (Stream (File => DateiLadenExtern),
                                       Gebäude);
       
+      Potenz := Positive (StadtDatentypen.GebäudeIDVorhanden'Last);
+      
       GebäudeSchleife:
       for GebäudeSchleifenwert in reverse StadtDatentypen.GebäudeIDVorhanden'Range loop
-         
-         Potenz := Positive (GebäudeSchleifenwert) - Positive (StadtDatentypen.GebäudeIDVorhanden'First);
             
          if
-           Integer (Gebäude) - Potenz >= 0
+           Integer (Gebäude) >= 2**Potenz
          then
             VorhandeneGebäude (GebäudeSchleifenwert) := True;
             Gebäude := Gebäude - SystemDatentypen.VierByte (2**Potenz);
@@ -134,17 +137,41 @@ package body LadenStaedteLogik is
             VorhandeneGebäude (GebäudeSchleifenwert) := False;
          end if;
          
+         Potenz := Potenz - 1;
+         
       end loop GebäudeSchleife;
+         
+      DiagnosesystemHTSEB.Zahl (1);
          
       Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
                                        Stadtname);
-            
-      SystemDatentypen.VierByte'Read (Stream (File => DateiLadenExtern),
-                                      Bewirtschaftung);
       
-      SystemDatentypen.VierByte'Read (Stream (File => DateiLadenExtern),
-                                      Bewirtschaftung);
+      SenkrechteBewirtschaftungSchleife:
+      for SenkrechteBewirtschaftungSchleifenwert in StadtRecords.UmgebungBewirtschaftungArray'Range (1) loop
+
+         SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
+                                        Bewirtschaftung);
          
+         Potenz := StadtRecords.UmgebungBewirtschaftungArray'Length (2) - 1;
+         
+         WaagerechteBewirtschaftungSchleife:
+         for WaagerechteBewirtschaftungSchleifenwert in reverse StadtRecords.UmgebungBewirtschaftungArray'Range (2) loop
+               
+            if
+              Integer (Bewirtschaftung) >= 2**Potenz
+            then
+               Bewirtschaftungsbelegung (SenkrechteBewirtschaftungSchleifenwert, WaagerechteBewirtschaftungSchleifenwert) := True;
+               Bewirtschaftung := Bewirtschaftung - SystemDatentypen.EinByte (2**Potenz);
+                  
+            else
+               Bewirtschaftungsbelegung (SenkrechteBewirtschaftungSchleifenwert, WaagerechteBewirtschaftungSchleifenwert) := False;
+            end if;
+            
+            Potenz := Potenz - 1;
+               
+         end loop WaagerechteBewirtschaftungSchleife;
+      end loop SenkrechteBewirtschaftungSchleife;
+      
       KartenRecords.UmgebungDreiRecord'Read (Stream (File => DateiLadenExtern),
                                              Gesamtumgebung);
       

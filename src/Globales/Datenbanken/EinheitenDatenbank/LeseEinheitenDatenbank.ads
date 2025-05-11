@@ -154,20 +154,22 @@ package LeseEinheitenDatenbank is
    function KannTransportieren
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return EinheitenDatentypen.Transport_Enum
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
+      return EinheitenDatentypen.Transport_Enum;
+   -- Kann wegen LadenEinheitenLogik nicht verwendet werden.
+   -- with
+   --   Pre => (
+   --             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+   --          );
    
    function KannTransportiertWerden
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID)
-      return EinheitenDatentypen.Transport_Enum
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
+      return EinheitenDatentypen.Transport_Enum;
+   -- Kann wegen LadenEinheitenLogik nicht verwendet werden.
+   -- with
+   --   Pre => (
+   --             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+   --          );
    
    function Transportkapazität
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
