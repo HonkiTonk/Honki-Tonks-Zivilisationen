@@ -72,6 +72,16 @@ package LeseStadtGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
+   function EinwohnerArbeiterSpeichern
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.EinwohnerArbeiterArray
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
    function Arbeitslose
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return StadtDatentypen.Einwohner
@@ -148,6 +158,17 @@ package LeseStadtGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    pragma Inline (PermanenteKostenPosten);
+   
+   function AlleKostenposten
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.PermanenteKostenArray
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (AlleKostenposten);
       
    function Forschungsrate
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -325,6 +346,17 @@ package LeseStadtGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    pragma Inline (Meldungen);
+   
+   function AlleMeldungen
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.StadtMeldungenArray
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (AlleMeldungen);
       
    function KIBeschäftigung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)

@@ -152,6 +152,28 @@ package LeseEinheitenGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    pragma Inline (BeschäftigungszeitNachfolger);
+   
+   function BeschäftigungSpeichern
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return EinheitenRecords.ArbeitRecord
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (BeschäftigungSpeichern);
+   
+   function BeschäftigungNachfolgerSpeichern
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return EinheitenRecords.ArbeitRecord
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (BeschäftigungNachfolgerSpeichern);
       
    -- Die KIZugriffe müssen auch für menschliche Spieler lesbar sein wegen dem Debugsystem.
    function KIZielKoordinaten

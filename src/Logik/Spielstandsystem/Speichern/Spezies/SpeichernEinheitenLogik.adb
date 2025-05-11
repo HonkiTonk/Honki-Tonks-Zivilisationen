@@ -103,12 +103,10 @@ package body SpeichernEinheitenLogik is
                                      LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
          
          EinheitenRecords.ArbeitRecord'Write (Stream (File => DateiSpeichernExtern),
-                                              (LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)),
-                                               LeseEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert))));
+                                              LeseEinheitenGebaut.BeschäftigungSpeichern (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
          
          EinheitenRecords.ArbeitRecord'Write (Stream (File => DateiSpeichernExtern),
-                                              (LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)),
-                                               LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert))));
+                                              LeseEinheitenGebaut.BeschäftigungNachfolgerSpeichern (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
          
          -- Das hier wird auch für die Festlegung der menschlichen Bewegung verwendet, muss also Belegungsunabhängig gespeichert werden.
          KartenRecords.KartenfeldNaturalRecord'Write (Stream (File => DateiSpeichernExtern),

@@ -70,7 +70,10 @@ package body LadenEinheitenLogik is
       DateiLadenExtern : in File_Type;
       EinheitExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Einheitenbereich;
+      use type SpeziesDatentypen.Spieler_Enum;
+   begin
       
       EinheitenDatentypen.EinheitenIDVorhanden'Read (Stream (File => DateiLadenExtern),
                                                      ID);
@@ -129,7 +132,7 @@ package body LadenEinheitenLogik is
                                                    IDExtern      => ID)
       is
          when EinheitenDatentypen.Kein_Transport_Enum =>
-            null;
+            Ladung (Ladung'First) := 0;
             
          when others =>
             EinheitenDatentypen.Transportplätze'Read (Stream (File => DateiLadenExtern),
@@ -151,7 +154,7 @@ package body LadenEinheitenLogik is
                                                         IDExtern      => ID)
       is
          when EinheitenDatentypen.Kein_Transport_Enum =>
-            null;
+            WirdTransportiert := EinheitenKonstanten.LeerWirdTransportiert;
                
          when others =>
             EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
@@ -166,9 +169,21 @@ package body LadenEinheitenLogik is
                                         IDExtern                   => ID);
             
             -- Wenn ich dafür ein entsprechendes System baue, dann muss ich die Koordinaten gar nicht bei der Karte speichern! äöü
-            SchreibeEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
-                                                 KoordinatenExtern          => Koordinaten,
-                                                 EinheitentauschExtern      => False);
+            if
+              WirdTransportiert = EinheitenKonstanten.LeerWirdTransportiert
+            then
+               Kartenplatzierung := True;
+               
+            else
+               Kartenplatzierung := False;
+               
+               SchreibeEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
+                                                          TransporterExtern          => WirdTransportiert);
+            end if;
+            
+            SchreibeEinheitenGebaut.KoordinatenLaden (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
+                                                      KoordinatenExtern          => Koordinaten,
+                                                      KartenplatzierungExtern    => Kartenplatzierung);
             
             SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
                                                  HeimatstadtExtern          => Heimatstadt);
@@ -185,19 +200,47 @@ package body LadenEinheitenLogik is
                                                       ErfahrungspunkteExtern     => Erfahrungspunkte,
                                                       AddierenSetzenExtern       => False);
             
-            SchreibeEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern)); -- ,
-            -- RangExtern                 => Rang,
-            -- RechnenSetzenExtern        => False);
-         
-            -- EinheitenRecords.ArbeitRecord'Read (Stream (File => DateiLadenExtern),
-            --                                    Beschäftigung);
-                                                          
-            -- EinheitenRecords.ArbeitRecord'Read (Stream (File => DateiLadenExtern),
-            --                                    BeschäftigungNachfolger);
+            SchreibeEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
+                                          AddierenSetzenExtern       => False,
+                                          RangExtern                 => Rang);
+            
+            SchreibeEinheitenGebaut.BeschäftigungLaden (EinheitSpeziesNummerExtern     => (SpeziesExtern, EinheitExtern),
+                                                         BeschäftigungExtern           => Beschäftigung,
+                                                         BeschäftigungNachfolgerExtern => BeschäftigungNachfolger);
             
             -- Das hier wird auch für die Festlegung der menschlichen Bewegung verwendet, muss also Belegungsunabhängig gespeichert werden.
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
                                                        KoordinatenExtern          => KIZielKoordinaten);
+            
+            if
+              BelegungExtern = SpeziesDatentypen.KI_Spieler_Enum
+            then
+               SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
+                                                       AufgabeExtern              => KIBeschäftigt);
+               
+               SchreibeEinheitenGebaut.KIZielKoordinatenNachfolger (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
+                                                                    KoordinatenExtern          => KIZielKoordinatenNachfolger);
+               
+               SchreibeEinheitenGebaut.KIBeschäftigtNachfolger (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
+                                                                 AufgabeExtern              => KIBeschäftigtNachfolger);
+               
+               SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
+                                                       BeschäftigungExtern        => KIVerbesserung);
+            
+            else
+               SchreibeEinheitenGebaut.AlleMeldungen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
+                                                      MeldungExtern              => AlleMeldungen);
+            end if;
+            
+            if
+              Ladung (Ladung'First) = 0
+            then
+               null;
+               
+            else
+               SchreibeEinheitenGebaut.GesamteLadung (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitExtern),
+                                                      LadungExtern               => Ladung);
+            end if;
             
          when False =>
             null;

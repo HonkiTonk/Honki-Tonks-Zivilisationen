@@ -223,6 +223,28 @@ package body LeseEinheitenGebaut is
    end BeschäftigungszeitNachfolger;
    
    
+   
+   function BeschäftigungSpeichern
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return EinheitenRecords.ArbeitRecord
+   is begin
+      
+      return (Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern), Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+      
+   end BeschäftigungSpeichern;
+   
+   
+   
+   function BeschäftigungNachfolgerSpeichern
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return EinheitenRecords.ArbeitRecord
+   is begin
+      
+      return (BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern), BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+      
+   end BeschäftigungNachfolgerSpeichern;
+   
+   
       
    function KIZielKoordinaten
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

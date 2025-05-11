@@ -1,3 +1,5 @@
+with MeldungssystemHTSEB;
+
 with StadtRecordKonstanten;
 with GebautVariablen;
 
@@ -5,8 +7,6 @@ with LeseGebaeudeDatenbank;
 with LeseEinheitenDatenbank;
 with SchreibeWeltkarte;
 with LeseStadtGebaut;
-
-with MeldungssystemHTSEB;
 with FehlermeldungssystemZusatzinformationen;
 
 package body SchreibeStadtGebaut is
@@ -38,6 +38,22 @@ package body SchreibeStadtGebaut is
       end case;
       
    end Koordinaten;
+   
+   
+   
+   procedure IDKoordinatenLaden
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+   is begin
+      
+      SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
+                                      VerbesserungExtern => IDExtern);
+      
+      Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                   KoordinatenExtern        => KoordinatenExtern);
+      
+   end IDKoordinatenLaden;
    
    
    
@@ -110,6 +126,17 @@ package body SchreibeStadtGebaut is
       end case;
       
    end EinwohnerArbeiter;
+   
+   
+   
+   procedure EinwohnerArbeiterLaden
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      EinwohnerArbeiterExtern : in StadtRecords.EinwohnerArbeiterArray)
+   is begin
+      
+      GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).EinwohnerArbeiter := EinwohnerArbeiterExtern;
+      
+   end EinwohnerArbeiterLaden;
    
       
       
@@ -496,6 +523,17 @@ package body SchreibeStadtGebaut is
    
    
    
+   procedure AlleGebäude
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      GebäudeExtern : in StadtArrays.GebäudeArray)
+   is begin
+      
+      GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Gebäude := GebäudeExtern;
+      
+   end AlleGebäude;
+   
+   
+   
    procedure Name
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       NameExtern : in Unbounded_Wide_Wide_String)
@@ -517,6 +555,17 @@ package body SchreibeStadtGebaut is
       GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungBewirtschaftung (YKoordinateExtern, XKoordinateExtern) := BelegenEntfernenExtern;
       
    end UmgebungBewirtschaftung;
+   
+   
+   
+   procedure GesamteBewirtschaftung
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      BewirtschaftungExtern : in StadtRecords.UmgebungBewirtschaftungArray)
+   is begin
+      
+      GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungBewirtschaftung := BewirtschaftungExtern;
+      
+   end GesamteBewirtschaftung;
    
    
    
@@ -613,6 +662,17 @@ package body SchreibeStadtGebaut is
       GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Meldungen (WelcheMeldungExtern) := MeldungExtern;
       
    end Meldungen;
+      
+   
+      
+   procedure AlleMeldungen
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      MeldungenExtern : in StadtRecords.StadtMeldungenArray)
+   is begin
+      
+      GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Meldungen := MeldungenExtern;
+      
+   end AlleMeldungen;
       
    
       

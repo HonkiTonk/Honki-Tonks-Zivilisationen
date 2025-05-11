@@ -21,6 +21,8 @@ package LadenEinheitenLogik is
    
 private
    
+   Kartenplatzierung : Boolean;
+   
    Belegung : SpeziesDatentypen.Spieler_Belegt_Enum;
    
    VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;

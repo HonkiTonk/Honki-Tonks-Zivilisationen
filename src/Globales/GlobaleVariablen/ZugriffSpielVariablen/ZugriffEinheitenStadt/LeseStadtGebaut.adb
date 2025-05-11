@@ -47,6 +47,17 @@ package body LeseStadtGebaut is
    
    
    
+   function EinwohnerArbeiterSpeichern
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.EinwohnerArbeiterArray
+   is begin
+      
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).EinwohnerArbeiter;
+      
+   end EinwohnerArbeiterSpeichern;
+   
+   
+   
    function Arbeitslose
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return StadtDatentypen.Einwohner
@@ -127,6 +138,18 @@ package body LeseStadtGebaut is
       return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).PermanenteKostenPosten (WelcherPostenExtern);
       
    end PermanenteKostenPosten;
+   
+   
+   
+   function AlleKostenposten
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.PermanenteKostenArray
+   is begin
+      
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).PermanenteKostenPosten;
+      
+   end AlleKostenposten;
+     
    
    
       
@@ -299,6 +322,17 @@ package body LeseStadtGebaut is
       return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Meldungen (WelcheMeldungExtern);
       
    end Meldungen;
+   
+   
+   
+   function AlleMeldungen
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.StadtMeldungenArray
+   is begin
+      
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Meldungen;
+      
+   end AlleMeldungen;
    
       
       

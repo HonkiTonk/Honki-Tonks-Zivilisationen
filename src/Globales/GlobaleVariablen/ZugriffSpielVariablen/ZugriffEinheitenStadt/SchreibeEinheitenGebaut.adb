@@ -1,6 +1,7 @@
 with KartenRecordKonstanten;
 with EinheitenRecordKonstanten;
 with GebautVariablen;
+with KampfKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -43,6 +44,30 @@ package body SchreibeEinheitenGebaut is
                                           EinheitentauschExtern      => EinheitentauschExtern);
       
    end Koordinaten;
+   
+   
+   
+   procedure KoordinatenLaden
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      KartenplatzierungExtern : in Boolean)
+   is begin
+      
+      case
+        KartenplatzierungExtern
+      is
+         when True =>
+            SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern          => KoordinatenExtern,
+                                                EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                EinheitentauschExtern      => False);
+            
+         when False =>
+            null;
+      end case;
+      
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Koordinaten := KoordinatenExtern;
+      
+   end KoordinatenLaden;
    
    
    
@@ -168,7 +193,9 @@ package body SchreibeEinheitenGebaut is
                GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte
                  := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern - Beförderungsgrenze;
                
-               Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+               Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                     AddierenSetzenExtern       => True,
+                     RangExtern                 => KampfKonstanten.LeerRang);
                
             else
                GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte :=
@@ -184,22 +211,32 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Rang
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      RangExtern : in KampfDatentypen.Rang;
+      AddierenSetzenExtern : in Boolean)
    is
       use type KampfDatentypen.Erfahrungspunkte;
    begin
       
-      if
-        GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang + 1
-        > LeseEinheitenDatenbank.MaximalerRang (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                IDExtern    => GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID)
-      then
-         null;
+      case
+        AddierenSetzenExtern
+      is
+         when True =>
+            if
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang + 1
+              > LeseEinheitenDatenbank.MaximalerRang (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                      IDExtern      => GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID)
+            then
+               null;
                            
-      else
-         GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang
-           := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang + 1;
-      end if;
+            else
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang
+                 := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang + 1;
+            end if;
+            
+         when False =>
+            GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang := RangExtern;
+      end case;
       
    end Rang;
    
@@ -294,7 +331,31 @@ package body SchreibeEinheitenGebaut is
       end case;
       
    end BeschäftigungszeitNachfolger;
+   
+   
+   
+   procedure BeschäftigungLaden
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      BeschäftigungExtern : in EinheitenRecords.ArbeitRecord;
+      BeschäftigungNachfolgerExtern : in EinheitenRecords.ArbeitRecord)
+   is begin
       
+      Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                      BeschäftigungExtern        => BeschäftigungExtern.Aufgabe);
+      
+      Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                           ZeitExtern                 => BeschäftigungExtern.Arbeitszeit,
+                           RechnenSetzenExtern        => False);
+      
+      BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                BeschäftigungExtern        => BeschäftigungNachfolgerExtern.Aufgabe);
+      
+      BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                     ZeitExtern                 => BeschäftigungNachfolgerExtern.Arbeitszeit,
+                                     RechnenSetzenExtern        => False);
+      
+   end BeschäftigungLaden;
+   
    
    
    procedure KIZielKoordinaten
@@ -386,6 +447,17 @@ package body SchreibeEinheitenGebaut is
    
    
    
+   procedure GesamteLadung
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      LadungExtern : in EinheitenRecords.TransporterArray)
+   is begin
+      
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Transportiert := LadungExtern;
+      
+   end GesamteLadung;
+   
+   
+   
    procedure WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TransporterExtern : in EinheitenDatentypen.Einheitenbereich)
@@ -408,6 +480,17 @@ package body SchreibeEinheitenGebaut is
    end Meldungen;
    
    
+   
+   procedure AlleMeldungen
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      MeldungExtern : in EinheitenRecords.EinheitMeldungenArray)
+   is begin
+   
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Meldungen := MeldungExtern;
+      
+   end AlleMeldungen;
+   
+      
       
    procedure LeerMeldungen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

@@ -55,6 +55,27 @@ package SchreibeEinheitenGebaut is
                  (if KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte)
               );
    
+   procedure KoordinatenLaden
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      KartenplatzierungExtern : in Boolean)
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+               and
+                 (if KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte then KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
+               and
+                 (if KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene)
+               and
+                 (if KoordinatenExtern.Ebene = KartenKonstanten.LeerEbene then KoordinatenExtern.Senkrechte = KartenKonstanten.LeerSenkrechte and KoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte)
+              );
+   
    procedure Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       HeimatstadtExtern : in StadtDatentypen.Städtebereich)
@@ -100,7 +121,9 @@ package SchreibeEinheitenGebaut is
               );
    
    procedure Rang
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      RangExtern : in KampfDatentypen.Rang;
+      AddierenSetzenExtern : in Boolean)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -145,6 +168,17 @@ package SchreibeEinheitenGebaut is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
       RechnenSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure BeschäftigungLaden
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      BeschäftigungExtern : in EinheitenRecords.ArbeitRecord;
+      BeschäftigungNachfolgerExtern : in EinheitenRecords.ArbeitRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -272,6 +306,17 @@ package SchreibeEinheitenGebaut is
               );
    pragma Inline (Transportiert);
    
+   procedure GesamteLadung
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      LadungExtern : in EinheitenRecords.TransporterArray)
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (GesamteLadung);
+   
    procedure WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TransporterExtern : in EinheitenDatentypen.Einheitenbereich)
@@ -294,6 +339,17 @@ package SchreibeEinheitenGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    pragma Inline (Meldungen);
+   
+   procedure AlleMeldungen
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      MeldungExtern : in EinheitenRecords.EinheitMeldungenArray)
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   pragma Inline (AlleMeldungen);
    
    procedure LeerMeldungen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

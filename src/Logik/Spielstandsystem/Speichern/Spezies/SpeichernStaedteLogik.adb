@@ -43,8 +43,8 @@ package body SpeichernStaedteLogik is
                                             VorhandeneStädte);
       
       return Städtewerte (SpeziesExtern        => SpeziesExtern,
-                          DateiSpeichernExtern => DateiSpeichernExtern,
-                          StädtebereichExtern  => VorhandeneStädte);
+                           DateiSpeichernExtern => DateiSpeichernExtern,
+                           StädtebereichExtern  => VorhandeneStädte);
       
    exception
       when StandardAdaFehler : others =>
@@ -77,34 +77,25 @@ package body SpeichernStaedteLogik is
                                                       LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          StadtRecords.EinwohnerArbeiterArray'Write (Stream (File => DateiSpeichernExtern),
-                                                    (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
-                                                                                        EinwohnerArbeiterExtern  => True),
-                                                     LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
-                                                                                        EinwohnerArbeiterExtern  => False)));
+                                                    LeseStadtGebaut.EinwohnerArbeiterSpeichern (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          ProduktionDatentypen.Stadtproduktion'Write (Stream (File => DateiSpeichernExtern),
                                                      LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          ProduktionDatentypen.Stadtproduktion'Write (Stream (File => DateiSpeichernExtern),
-                                                      LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
+                                                     LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          ProduktionDatentypen.StadtLagermenge'Write (Stream (File => DateiSpeichernExtern),
-                                                      LeseStadtGebaut.Material (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
+                                                     LeseStadtGebaut.Material (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          ProduktionDatentypen.Stadtproduktion'Write (Stream (File => DateiSpeichernExtern),
-                                                      LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
+                                                     LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          ProduktionDatentypen.Stadtproduktion'Write (Stream (File => DateiSpeichernExtern),
-                                                      LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
+                                                     LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
-         PermanenteKostenSchleife:
-         for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop
-         
-            ProduktionDatentypen.Stadtproduktion'Write (Stream (File => DateiSpeichernExtern),
-                                                        LeseStadtGebaut.PermanenteKostenPosten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
-                                                                                                WelcherPostenExtern      => PermanenteKostenSchleifenwert));
-            
-         end loop PermanenteKostenSchleife;
+         StadtRecords.PermanenteKostenArray'Write (Stream (File => DateiSpeichernExtern),
+                                                   LeseStadtGebaut.AlleKostenposten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          ProduktionDatentypen.Stadtproduktion'Write (Stream (File => DateiSpeichernExtern),
                                                      LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
@@ -112,11 +103,8 @@ package body SpeichernStaedteLogik is
          StadtRecords.BauprojektRecord'Write (Stream (File => DateiSpeichernExtern),
                                               LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
-         ProduktionDatentypen.Produktion'Write (Stream (File => DateiSpeichernExtern),
-                                                LeseStadtGebaut.Bauzeit (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
-         
-         ProduktionDatentypen.Stadtproduktion'Write (Stream (File => DateiSpeichernExtern),
-                                                     LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
+         -- ProduktionDatentypen.Produktion'Write (Stream (File => DateiSpeichernExtern),
+         --                                        LeseStadtGebaut.Bauzeit (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          ProduktionDatentypen.Stadtproduktion'Write (Stream (File => DateiSpeichernExtern),
                                                      LeseStadtGebaut.Korruption (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
@@ -182,6 +170,7 @@ package body SpeichernStaedteLogik is
          AktuelleBewirtschaftung := 1;
          VorhandeneBewirtschaftung := 0;
          
+         -- Umbauen mit BereichSchleife wie in LadenSpezienspezifischesLogik.Wichtiges? äöü
          SenkrechteBewirtschaftungZweiSchleife:
          for SenkrechteBewirtschaftungSchleifenwert in 1 .. StadtRecords.UmgebungBewirtschaftungArray'Last (1) loop
             WaagerechteBewirtschaftungZweiSchleife:
@@ -214,14 +203,8 @@ package body SpeichernStaedteLogik is
            Belegung
          is
             when SpeziesDatentypen.Mensch_Spieler_Enum =>
-               MeldungenSchleife:
-               for MeldungenSchleifenwert in StadtRecords.StadtMeldungenArray'Range loop
-            
-                  StadtDatentypen.Stadt_Meldung_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                            LeseStadtGebaut.Meldungen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
-                                                                                       WelcheMeldungExtern      => MeldungenSchleifenwert));
-            
-               end loop MeldungenSchleife;
+               StadtRecords.StadtMeldungenArray'Write (Stream (File => DateiSpeichernExtern),
+                                                       LeseStadtGebaut.AlleMeldungen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
                
             when SpeziesDatentypen.KI_Spieler_Enum =>
                KIDatentypen.Stadt_Aufgabe_Enum'Write (Stream (File => DateiSpeichernExtern),
