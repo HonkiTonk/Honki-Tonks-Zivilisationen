@@ -1,4 +1,5 @@
 with Ada.Exceptions;
+with Ada.Directories;
 
 with DateisystemvariablenHTSEB;
 with MeldungssystemHTSEB;
@@ -68,6 +69,7 @@ package body DateizugriffssystemHTSEB is
       end case;
       
    end SchließenStream;
+   
    
    
    
@@ -323,5 +325,45 @@ package body DateizugriffssystemHTSEB is
                       NameExtern     => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => NameExtern));
       
    end SchließenTextUnbounded;
+   
+   
+   
+   procedure Löschen
+     (NameExtern : in String)
+   is
+      use Ada.Directories;
+   begin
+      
+      case
+        Exists (Name => NameExtern)
+      is
+         when True =>
+            Delete_File (Name => NameExtern);
+            
+         when False =>
+            MeldungssystemHTSEB.Logik (MeldungExtern => "DateizugriffssystemHTSEB.Löschen: Nicht vorhandene Datei soll gelöscht werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => NameExtern));
+      end case;
+      
+   end Löschen;
+   
+   
+   
+   procedure LöschenWideWide
+     (NameExtern : in Wide_Wide_String)
+   is begin
+      
+      Löschen (NameExtern => UmwandlungssystemHTSEB.Encode (TextExtern => NameExtern));
+      
+   end LöschenWideWide;
+   
+   
+   
+   procedure LöschenUnbounded
+     (NameExtern : in Unbounded_Wide_Wide_String)
+   is begin
+      
+       Löschen (NameExtern => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => NameExtern));
+      
+   end LöschenUnbounded;
 
 end DateizugriffssystemHTSEB;

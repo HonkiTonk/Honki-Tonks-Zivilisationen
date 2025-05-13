@@ -172,5 +172,26 @@ package DateizugriffssystemHTSEB is
        Pre => (
                  To_Wide_Wide_String (Source => NameExtern)'Length > 0
               );
+   
+   procedure Löschen
+     (NameExtern : in String)
+     with
+       Pre => (
+                 NameExtern'Length > 0
+              );
+   
+   procedure LöschenWideWide
+     (NameExtern : in Wide_Wide_String)
+     with
+       Pre => (
+                 NameExtern'Length > 0
+              );
+   
+   procedure LöschenUnbounded
+     (NameExtern : in Unbounded_Wide_Wide_String)
+     with
+       Pre => (
+                 To_Wide_Wide_String (Source => NameExtern)'Length > 0
+              );
 
 end DateizugriffssystemHTSEB;

@@ -22,5 +22,11 @@ package SystemDatentypenHTSEB is
    subtype EigenesNatural is EigenerInteger range 0 .. EigenerInteger'Last;
    subtype EigenesPositive is EigenesNatural range 1 .. EigenesNatural'Last;
    subtype EigenesNegative is EigenerInteger range EigenerInteger'First .. -1;
+   
+   
+   
+   type EinByte is mod 2**8;
+   type ZweiByte is mod 2**16;
+   type VierByte is mod 2**32;
 
 end SystemDatentypenHTSEB;

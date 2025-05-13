@@ -106,16 +106,16 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (16.03.2025):
+   -- Version 0.06.2445 => 0.06. (16.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2420 => 0.06. (15.03.2025):
+   -- Version 0.06.2420 => 0.06.2445 (15.03.2025):
    
-   -- 
+   -- Spieleentwicklungsbibliothek aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

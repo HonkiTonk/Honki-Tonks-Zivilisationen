@@ -1,9 +1,15 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.0750 => 0.01. (.2025):
+   -- Version 0.01. => 0.01. (.2025):
    
    -- 
+   
+   
+   
+   -- Version 0.01.0750 => 0.01. (14.05.2025):
+   
+   -- Konstanten für verschiedene Verzeichnisse hinzugefügt.
    
    
    
