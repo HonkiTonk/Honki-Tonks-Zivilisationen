@@ -4,15 +4,13 @@ with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
 with KartenKonstanten;
-with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenRecordKonstanten;
-with SystemKonstanten;
-with SpeziesKonstanten;
 
 with LeseWeltkarte;
 
 with SpielstandAllgemeinesLogik;
+with SpeichernSichtbarkeitLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
@@ -34,8 +32,8 @@ package body SpeichernKarteLogik is
             for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
                
                if
-                 False = Sichtbarkeit (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                       DateiSpeichernExtern => DateiSpeichernExtern)
+                 False = SpeichernSichtbarkeitLogik.Sichtbarkeit (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                  DateiSpeichernExtern => DateiSpeichernExtern)
                then
                   return False;
                      
@@ -53,8 +51,12 @@ package body SpeichernKarteLogik is
                   Weg := LeseWeltkarte.Weg (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
-                  -- Diese beiden Werte werden gar nicht mehr gebraucht nach der Änderung! äöü
-                  Einheit := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  -- Stadt wird weiterhin gebraucht, da die Stadtbvelegung damit auch gespeichert wird.
+                  -- Aber eventuell könnte man das mit der Stadt speichern? äöü
+                  -- Wäre dann kleiner als wenn man das in der Karte speichert. äöü
+                  -- Aber dann müsste man wieder durch alle Städte gehen um zu prüfen ob das Feld von einer Stadt belegt ist. äöü
+                  -- Man könnte natürlich beides haben und nur den Stadtteil speichern. äöü
+                  -- Erhöht natürlich den AS Verbrauch, mal drüber nachdenken. äöü
                   Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                end if;
                
@@ -65,7 +67,6 @@ package body SpeichernKarteLogik is
                                                  RessourceExtern      => Ressource,
                                                  WegExtern            => Weg,
                                                  VerbesserungExtern   => Verbesserung,
-                                                 EinheitExtern        => Einheit,
                                                  StadtExtern          => Stadt,
                                                  DateiSpeichernExtern => DateiSpeichernExtern)
                then
@@ -78,7 +79,6 @@ package body SpeichernKarteLogik is
                                        RessourceExtern      => Ressource,
                                        WegExtern            => Weg,
                                        VerbesserungExtern   => Verbesserung,
-                                       EinheitExtern        => Einheit,
                                        StadtExtern          => Stadt,
                                        DateiSpeichernExtern => DateiSpeichernExtern)
                then
@@ -104,56 +104,6 @@ package body SpeichernKarteLogik is
          return False;
          
    end Karte;
-   
-   
-   
-   function Sichtbarkeit
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is
-      use type SystemDatentypen.EinByte;
-   begin
-      
-      GesamteSichtbarkeit := LeseWeltkarte.GesamteSichtbarkeit (KoordinatenExtern => KoordinatenExtern);
-      
-      BereichSchleife:
-      for BereichSchleifenwert in SpeziesKonstanten.SpeziesanfangLadenSpeichernArray'Range loop
-         
-         SichtbarkeitVorhanden := 0;
-         AktuelleSichtbarkeit := 1;
-      
-         SichtbarkeitSchleife:
-         for SichtbarkeitSchleifenwert in SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
-         
-            case
-              GesamteSichtbarkeit (SichtbarkeitSchleifenwert)
-            is
-               when True =>
-                  SichtbarkeitVorhanden := SichtbarkeitVorhanden + AktuelleSichtbarkeit;
-               
-               when False =>
-                  null;
-            end case;
-            
-            AktuelleSichtbarkeit := AktuelleSichtbarkeit * 2;
-            
-         end loop SichtbarkeitSchleife;
-      
-         SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                         SichtbarkeitVorhanden);
-         
-      end loop BereichSchleife;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Sichtbarkeit: Konnte nicht gespeichert werden: "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-      
-   end Sichtbarkeit;
    
    
    
@@ -193,26 +143,28 @@ package body SpeichernKarteLogik is
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
-      use type EinheitenRecords.SpeziesEinheitnummerRecord;
       use type StadtRecords.SpeziesStadtnummerRecord;
       use type KartenRecords.FeldeffektArray;
       use type SystemDatentypen.EinByte;
    begin
       
+      AktuellesFeldelement := 1;
+      
       case
         ZusatzgrundExtern
       is
          when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            FeldelementeVorhanden := SystemKonstanten.NichtsVorhanden;
+            FeldelementeVorhanden := 0;
                      
          when others =>
-            FeldelementeVorhanden := SystemKonstanten.ZusatzgrundVorhanden;
+            FeldelementeVorhanden := AktuellesFeldelement;
       end case;
+      
+      AktuellesFeldelement := AktuellesFeldelement * 2;
                
       if
         FeldeffekteExtern = KartenRecordKonstanten.LeerEffekte
@@ -220,8 +172,10 @@ package body SpeichernKarteLogik is
          null;
                   
       else
-         FeldelementeVorhanden := FeldelementeVorhanden + SystemKonstanten.FeldeffekteVorhanden;
+         FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
       end if;
+      
+      AktuellesFeldelement := AktuellesFeldelement * 2;
                
       case
         FlussExtern
@@ -230,8 +184,10 @@ package body SpeichernKarteLogik is
             null;
                      
          when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + SystemKonstanten.FlussVorhanden;
+            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
       end case;
+      
+      AktuellesFeldelement := AktuellesFeldelement * 2;
                
       case
         RessourceExtern
@@ -240,8 +196,10 @@ package body SpeichernKarteLogik is
             null;
                      
          when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + SystemKonstanten.RessourcenVorhanden;
+            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
       end case;
+      
+      AktuellesFeldelement := AktuellesFeldelement * 2;
                
       case
         WegExtern
@@ -250,8 +208,10 @@ package body SpeichernKarteLogik is
             null;
                      
          when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + SystemKonstanten.WegVorhanden;
+            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
       end case;
+      
+      AktuellesFeldelement := AktuellesFeldelement * 2;
                
       case
         VerbesserungExtern
@@ -260,17 +220,10 @@ package body SpeichernKarteLogik is
             null;
                      
          when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + SystemKonstanten.VerbesserungVorhanden;
+            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
       end case;
-               
-      if
-        EinheitExtern = EinheitenKonstanten.LeerEinheit
-      then
-         null;
-                  
-      else
-         FeldelementeVorhanden := FeldelementeVorhanden + SystemKonstanten.EinheitVorhanden;
-      end if;
+      
+      AktuellesFeldelement := AktuellesFeldelement * 2;
                              
       if
         StadtExtern = StadtKonstanten.LeerStadt
@@ -278,7 +231,7 @@ package body SpeichernKarteLogik is
          null;
                   
       else
-         FeldelementeVorhanden := FeldelementeVorhanden + SystemKonstanten.StadtVorhanden;
+         FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
       end if;
       
       SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
@@ -303,12 +256,10 @@ package body SpeichernKarteLogik is
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
-      use type EinheitenRecords.SpeziesEinheitnummerRecord;
       use type StadtRecords.SpeziesStadtnummerRecord;
       use type KartenRecords.FeldeffektArray;
       use type SystemDatentypen.EinByte;
@@ -322,16 +273,6 @@ package body SpeichernKarteLogik is
       else
          StadtRecords.SpeziesStadtnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
                                                                (StadtExtern.Spezies, StadtExtern.Nummer));
-      end if;
-      
-      if
-        EinheitExtern = EinheitenKonstanten.LeerEinheit
-      then
-         null;
-                  
-      else
-         EinheitenRecords.SpeziesEinheitnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                                     (EinheitExtern.Spezies, EinheitExtern.Nummer));
       end if;
       
       case

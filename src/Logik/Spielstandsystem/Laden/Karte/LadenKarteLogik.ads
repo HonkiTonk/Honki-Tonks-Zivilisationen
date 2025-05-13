@@ -28,6 +28,7 @@ private
    VorhandeneFeldeffekte : SystemDatentypen.EinByte;
    AktuellerFeldeffekt : SystemDatentypen.EinByte;
    VorhandeneFeldelemente : SystemDatentypen.EinByte;
+   AktuellesFeldelemente : SystemDatentypen.EinByte;
    
    Potenz : ZahlenDatentypen.EigenesNatural;
    

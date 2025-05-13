@@ -21,18 +21,17 @@ package body LadenKarteLogik is
       return Boolean
    is begin
       
+      KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLadenExtern),
+                                                          Karteneinstellungen);
+      
       case
         LadenPrüfenExtern
       is
          when True =>
-            KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLadenExtern),
-                                                                Karteneinstellungen);
-            
             SchreibeWeltkarteneinstellungen.GesamteEinstellungen (EinstellungenExtern => Karteneinstellungen);
             
          when False =>
-            KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLadenExtern),
-                                                                Karteneinstellungen);
+            null;
       end case;
       
       EbeneSchleife:
@@ -208,12 +207,14 @@ package body LadenKarteLogik is
       SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
                                      VorhandeneFeldelemente);
       
+      AktuellesFeldelemente := 2**6;
+      
       if
-        Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.StadtVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
+        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
       then
          StadtRecords.SpeziesStadtnummerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
                                                               Stadt);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.StadtVorhanden;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
                   
          case
            LadenPrüfenExtern
@@ -229,36 +230,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
+          
+      AktuellesFeldelemente := 2**5;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.EinheitVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
-      then
-         EinheitenRecords.SpeziesEinheitnummerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
-                                                                    Einheit);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.EinheitVorhanden;
-                  
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern          => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                                   EinheitSpeziesNummerExtern => (Einheit.Spezies, Einheit.Nummer),
-                                                   EinheitentauschExtern      => False);
-                        
-            when False =>
-               null;
-         end case;
-                  
-      else
-         null;
-      end if;
-               
-      if
-        Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.VerbesserungVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
+        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
       then
          KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                         Verbesserung);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.VerbesserungVorhanden;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
                   
          case
            LadenPrüfenExtern
@@ -274,13 +254,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
+          
+      AktuellesFeldelemente := 2**4;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.WegVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
+        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
       then
          KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                Weg);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.WegVorhanden;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
                   
          case
            LadenPrüfenExtern
@@ -296,13 +278,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
+          
+      AktuellesFeldelemente := 2**3;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.RessourcenVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
+        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
       then
          KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                Ressource);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.RessourcenVorhanden;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
                   
          case
            LadenPrüfenExtern
@@ -318,13 +302,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
+          
+      AktuellesFeldelemente := 2**2;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.FlussVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
+        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
       then
          KartenextraDatentypen.Fluss_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                           Fluss);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.FlussVorhanden;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
                   
          case
            LadenPrüfenExtern
@@ -340,13 +326,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
+          
+      AktuellesFeldelemente := 2**1;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.FeldeffekteVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
+        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
       then
          SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
                                         VorhandeneFeldeffekte);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - SystemKonstanten.FeldeffekteVorhanden;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
                   
          AktuellerFeldeffekt := 2**(KartenRecords.FeldeffektArray'Length - 1);
          
@@ -355,7 +343,7 @@ package body LadenKarteLogik is
          for FeldeffekteSchleifenwert in reverse KartenRecords.FeldeffektArray'Range loop
                      
             if
-              Natural (VorhandeneFeldeffekte) - Positive (AktuellerFeldeffekt) >= Natural (SystemKonstanten.NichtsVorhanden)
+              Natural (VorhandeneFeldeffekte) - Positive (AktuellerFeldeffekt) >= Natural (SystemKonstanten.LeerEinByte)
             then
                Feldeffekte (FeldeffekteSchleifenwert) := True;
                VorhandeneFeldeffekte := VorhandeneFeldeffekte - AktuellerFeldeffekt;
@@ -382,9 +370,11 @@ package body LadenKarteLogik is
       else
          null;
       end if;
+          
+      AktuellesFeldelemente := 2**0;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (SystemKonstanten.ZusatzgrundVorhanden) >= Natural (SystemKonstanten.NichtsVorhanden)
+        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
       then
          KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                 Zusatzgrund);

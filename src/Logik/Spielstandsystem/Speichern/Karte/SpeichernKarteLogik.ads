@@ -1,7 +1,6 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with KartenRecords;
-private with EinheitenRecords;
 private with StadtRecords;
 private with KartengrundDatentypen;
 private with KartenextraDatentypen;
@@ -23,13 +22,11 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   SichtbarkeitVorhanden : SystemDatentypen.EinByte;
-   AktuelleSichtbarkeit : SystemDatentypen.EinByte;
-   
    FeldeffekteVorhanden : SystemDatentypen.EinByte;
    AktuellerFeldeffekt : SystemDatentypen.EinByte;
    
    FeldelementeVorhanden : SystemDatentypen.EinByte;
+   AktuellesFeldelement : SystemDatentypen.EinByte;
       
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
       
@@ -42,25 +39,10 @@ private
    Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
    
    Feldeffekte : KartenRecords.FeldeffektArray;
-   
-   Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
      
    Stadt : StadtRecords.SpeziesStadtnummerRecord;
    
-   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
    
-   
-      
-   function Sichtbarkeit
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
       
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
@@ -80,7 +62,6 @@ private
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
       DateiSpeichernExtern : in File_Type)
       return Boolean;
@@ -92,7 +73,6 @@ private
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
       DateiSpeichernExtern : in File_Type)
       return Boolean;
