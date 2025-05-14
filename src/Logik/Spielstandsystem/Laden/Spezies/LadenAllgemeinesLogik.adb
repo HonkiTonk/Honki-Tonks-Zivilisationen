@@ -42,8 +42,8 @@ package body LadenAllgemeinesLogik is
       use Ada.Exceptions;
    begin
             
-      SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
-                                     GewonnenWeiterspielen);
+      SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                          GewonnenWeiterspielen);
       
       case
         GewonnenWeiterspielen
@@ -126,7 +126,7 @@ package body LadenAllgemeinesLogik is
       return Boolean
    is
       use Ada.Exceptions;
-      use type SystemDatentypen.EinByte;
+      use type SystemDatentypenHTSEB.EinByte;
    begin
       
       BereichSchleife:
@@ -139,8 +139,8 @@ package body LadenAllgemeinesLogik is
             
          end loop SpeziesbelegungSchleife;
       
-         SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
-                                        Besiegt);
+         SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                             Besiegt);
          
          SpeziesBesiegtSchleife:
          for SpeziesBesiegtSchleifenwert in reverse SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
@@ -148,7 +148,7 @@ package body LadenAllgemeinesLogik is
             Potenz := SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesBesiegtSchleifenwert) - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert));
             
             if
-              Integer (Besiegt) >= 2**Potenz
+              Besiegt >= 2**Potenz
             then
                Belegung (SpeziesBesiegtSchleifenwert).Besiegt := True;
                Besiegt := Besiegt - 2**Potenz;

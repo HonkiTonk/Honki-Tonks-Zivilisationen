@@ -66,7 +66,7 @@ package body SpeichernSpezienspezifischesLogik is
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
-      use type SystemDatentypen.VierByte;
+      use type SystemDatentypenHTSEB.VierByte;
    begin
       
       ZahlenDatentypen.EigenerInteger'Write (Stream (File => DateiSpeichernExtern),
@@ -115,7 +115,7 @@ package body SpeichernSpezienspezifischesLogik is
          
          end loop ForschungSchleife;
          
-         SystemDatentypen.VierByte'Write (Stream (File => DateiSpeichernExtern),
+         SystemDatentypenHTSEB.VierByte'Write (Stream (File => DateiSpeichernExtern),
                                           ForschungVorhanden);
          
       end loop BereichSchleife;

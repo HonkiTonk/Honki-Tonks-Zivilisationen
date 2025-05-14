@@ -73,8 +73,8 @@ package body LadenStaedteLogik is
       return Boolean
    is
       use type SpeziesDatentypen.Spieler_Enum;
-      use type SystemDatentypen.VierByte;
-      use type SystemDatentypen.EinByte;
+      use type SystemDatentypenHTSEB.VierByte;
+      use type SystemDatentypenHTSEB.EinByte;
    begin
       
       KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Read (Stream (File => DateiLadenExtern),
@@ -119,7 +119,7 @@ package body LadenStaedteLogik is
       ProduktionDatentypen.ZufriedenheitVorhanden'Read (Stream (File => DateiLadenExtern),
                                                         Zufriedenheit);
             
-      SystemDatentypen.VierByte'Read (Stream (File => DateiLadenExtern),
+      SystemDatentypenHTSEB.VierByte'Read (Stream (File => DateiLadenExtern),
                                       Gebäude);
       
       Potenz := Positive (StadtDatentypen.GebäudeIDVorhanden'Last);
@@ -131,7 +131,7 @@ package body LadenStaedteLogik is
            Integer (Gebäude) >= 2**Potenz
          then
             VorhandeneGebäude (GebäudeSchleifenwert) := True;
-            Gebäude := Gebäude - SystemDatentypen.VierByte (2**Potenz);
+            Gebäude := Gebäude - SystemDatentypenHTSEB.VierByte (2**Potenz);
                   
          else
             VorhandeneGebäude (GebäudeSchleifenwert) := False;
@@ -149,7 +149,7 @@ package body LadenStaedteLogik is
       SenkrechteBewirtschaftungSchleife:
       for SenkrechteBewirtschaftungSchleifenwert in StadtRecords.UmgebungBewirtschaftungArray'Range (1) loop
 
-         SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
+         SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
                                         Bewirtschaftung);
          
          Potenz := StadtRecords.UmgebungBewirtschaftungArray'Length (2) - 1;
@@ -161,7 +161,7 @@ package body LadenStaedteLogik is
               Integer (Bewirtschaftung) >= 2**Potenz
             then
                Bewirtschaftungsbelegung (SenkrechteBewirtschaftungSchleifenwert, WaagerechteBewirtschaftungSchleifenwert) := True;
-               Bewirtschaftung := Bewirtschaftung - SystemDatentypen.EinByte (2**Potenz);
+               Bewirtschaftung := Bewirtschaftung - SystemDatentypenHTSEB.EinByte (2**Potenz);
                   
             else
                Bewirtschaftungsbelegung (SenkrechteBewirtschaftungSchleifenwert, WaagerechteBewirtschaftungSchleifenwert) := False;

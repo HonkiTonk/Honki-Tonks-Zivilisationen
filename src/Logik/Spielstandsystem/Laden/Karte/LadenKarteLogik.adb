@@ -1,16 +1,16 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
+with MeldungssystemHTSEB;
+with UmwandlungssystemHTSEB;
+
 with KartenKonstanten;
 with SystemKonstanten;
-with SpeziesDatentypen;
-with SpeziesKonstanten;
 
 with SchreibeWeltkarte;
 with SchreibeWeltkarteneinstellungen;
 
 with LadezeitenLogik;
-with MeldungssystemHTSEB;
-with UmwandlungssystemHTSEB;
+with LadenSichtbarkeitLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenKarteLogik is
@@ -42,9 +42,9 @@ package body LadenKarteLogik is
             for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
                
                if
-                 False = Sichtbarkeit (DateiLadenExtern  => DateiLadenExtern,
-                                       KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                       LadenPrüfenExtern => LadenPrüfenExtern)
+                 False = LadenSichtbarkeitLogik.Sichtbarkeit (DateiLadenExtern  => DateiLadenExtern,
+                                                              KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                              LadenPrüfenExtern => LadenPrüfenExtern)
                then
                   return False;
                   
@@ -77,77 +77,11 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.KarteLaden: Konnte nicht geladen werden"
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.KarteLaden: Konnte nicht geladen werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end KarteLaden;
-   
-   
-   
-   -- Lässt sich das einfach Gestalten, bzw. kann ich das so bauen wie die Feldeffekte? äöü
-   function Sichtbarkeit
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-   is
-      use type SystemDatentypen.EinByte;
-   begin
-      
-      BereichSchleife:
-      for BereichSchleifenwert in SpeziesKonstanten.SpeziesanfangLadenSpeichernArray'Range loop
-         
-         SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
-                                        SichtbarkeitVorhanden);
-         
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SichtbarkeitSchleife:
-               for SichtbarkeitSchleifenwert in reverse SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
-               
-                  Potenz := SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SichtbarkeitSchleifenwert) - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert));
-                  
-                  if
-                    Natural (SichtbarkeitVorhanden) >= 2**Potenz
-                  then
-                     GesamteSichtbarkeit (SichtbarkeitSchleifenwert) := True;
-                     SichtbarkeitVorhanden := SichtbarkeitVorhanden - 2**Potenz;
-            
-                  else
-                     GesamteSichtbarkeit (SichtbarkeitSchleifenwert) := False;
-                  end if;
-         
-               end loop SichtbarkeitSchleife;
-               
-            when False =>
-               null;
-         end case;
-         
-      end loop BereichSchleife;
-      
-      case
-        LadenPrüfenExtern
-      is
-         when True =>
-            SchreibeWeltkarte.GesamteSichtbarkeit (KoordinatenExtern  => KoordinatenExtern,
-                                                   SichtbarkeitExtern => GesamteSichtbarkeit);
-            
-         when False =>
-            null;
-      end case;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.Sichtbarkeit: Konnte nicht geladen werden"
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-         
-   end Sichtbarkeit;
    
    
    
@@ -187,7 +121,7 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.BasisgrundEinlesen: Konnte nicht geladen werden"
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.BasisgrundEinlesen: Konnte nicht geladen werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
@@ -201,20 +135,20 @@ package body LadenKarteLogik is
       LadenPrüfenExtern : in Boolean)
       return Boolean
    is
-      use type SystemDatentypen.EinByte;
+      use type SystemDatentypenHTSEB.EinByte;
    begin
       
-      SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
-                                     VorhandeneFeldelemente);
+      SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                          VorhandeneFeldelemente);
       
-      AktuellesFeldelemente := 2**6;
+      AktuellesFeldelement := 2**6;
       
       if
-        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
+        VorhandeneFeldelemente >= AktuellesFeldelement
       then
          StadtRecords.SpeziesStadtnummerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
                                                               Stadt);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
                   
          case
            LadenPrüfenExtern
@@ -230,15 +164,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
-          
-      AktuellesFeldelemente := 2**5;
+      
+      AktuellesFeldelement := 2**5;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
+        VorhandeneFeldelemente >= AktuellesFeldelement
       then
          KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                         Verbesserung);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
                   
          case
            LadenPrüfenExtern
@@ -254,15 +188,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
-          
-      AktuellesFeldelemente := 2**4;
-               
+      
+      AktuellesFeldelement := 2**4;
+      
       if
-        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
+        VorhandeneFeldelemente >= AktuellesFeldelement
       then
          KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                Weg);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
                   
          case
            LadenPrüfenExtern
@@ -278,15 +212,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
-          
-      AktuellesFeldelemente := 2**3;
+      
+      AktuellesFeldelement := 2**3;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
+        VorhandeneFeldelemente >= AktuellesFeldelement
       then
          KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                Ressource);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
                   
          case
            LadenPrüfenExtern
@@ -302,15 +236,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
-          
-      AktuellesFeldelemente := 2**2;
+      
+      AktuellesFeldelement := 2**2;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
+        VorhandeneFeldelemente >= AktuellesFeldelement
       then
          KartenextraDatentypen.Fluss_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                           Fluss);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
                   
          case
            LadenPrüfenExtern
@@ -326,15 +260,15 @@ package body LadenKarteLogik is
       else
          null;
       end if;
+      
+      AktuellesFeldelement := 2**1;
           
-      AktuellesFeldelemente := 2**1;
-               
       if
-        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
+        VorhandeneFeldelemente >= AktuellesFeldelement
       then
-         SystemDatentypen.EinByte'Read (Stream (File => DateiLadenExtern),
-                                        VorhandeneFeldeffekte);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelemente;
+         SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                             VorhandeneFeldeffekte);
+         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
                   
          AktuellerFeldeffekt := 2**(KartenRecords.FeldeffektArray'Length - 1);
          
@@ -370,11 +304,11 @@ package body LadenKarteLogik is
       else
          null;
       end if;
-          
-      AktuellesFeldelemente := 2**0;
+      
+      AktuellesFeldelement := 2**0;
                
       if
-        Natural (VorhandeneFeldelemente) - Positive (AktuellesFeldelemente) >= Natural (SystemKonstanten.LeerEinByte)
+        VorhandeneFeldelemente >= AktuellesFeldelement
       then
          KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                 Zusatzgrund);
@@ -398,7 +332,7 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.Feldelemente: Konnte nicht geladen werden"
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.Feldelemente: Konnte nicht geladen werden "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       

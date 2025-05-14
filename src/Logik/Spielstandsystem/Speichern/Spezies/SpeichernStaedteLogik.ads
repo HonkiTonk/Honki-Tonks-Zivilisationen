@@ -1,9 +1,10 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
+private with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 
 private with StadtDatentypen;
-private with SystemDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -26,11 +27,11 @@ private
 
    VorhandeneStädte : StadtDatentypen.Städtebereich;
    
-   AktuelleBewirtschaftung : SystemDatentypen.EinByte;
-   VorhandeneBewirtschaftung : SystemDatentypen.EinByte;
+   AktuelleBewirtschaftung : SystemDatentypenHTSEB.EinByte;
+   VorhandeneBewirtschaftung : SystemDatentypenHTSEB.EinByte;
    
-   AktuellesGebäude : SystemDatentypen.VierByte;
-   VorhandeneGebäude : SystemDatentypen.VierByte;
+   AktuellesGebäude : SystemDatentypenHTSEB.VierByte;
+   VorhandeneGebäude : SystemDatentypenHTSEB.VierByte;
    
    
    

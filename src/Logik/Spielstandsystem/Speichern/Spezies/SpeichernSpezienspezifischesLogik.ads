@@ -1,8 +1,8 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
-with SpeziesDatentypen;
+private with SystemDatentypenHTSEB;
 
-private with SystemDatentypen;
+with SpeziesDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -21,8 +21,8 @@ package SpeichernSpezienspezifischesLogik is
 
 private
 
-   ForschungVorhanden : SystemDatentypen.VierByte;
-   AktuellerForschungswert : SystemDatentypen.VierByte;
+   ForschungVorhanden : SystemDatentypenHTSEB.VierByte;
+   AktuellerForschungswert : SystemDatentypenHTSEB.VierByte;
 
 
 

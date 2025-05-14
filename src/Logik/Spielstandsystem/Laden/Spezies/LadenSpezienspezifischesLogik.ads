@@ -1,5 +1,7 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
+private with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 
 private with SpielRecords;
@@ -8,7 +10,6 @@ private with ProduktionDatentypen;
 private with ForschungenDatentypen;
 private with StadtDatentypen;
 private with EinheitenDatentypen;
-private with SystemDatentypen;
 private with KartenRecords;
 
 package LadenSpezienspezifischesLogik is
@@ -36,7 +37,7 @@ private
    
    Forschungsprojekt : ForschungenDatentypen.ForschungID;
    
-   ForschungVorhanden : SystemDatentypen.VierByte;
+   ForschungVorhanden : SystemDatentypenHTSEB.VierByte;
    
    Potenz : ZahlenDatentypen.EigenesNatural;
    

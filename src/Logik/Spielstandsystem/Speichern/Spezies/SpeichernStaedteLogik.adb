@@ -62,8 +62,8 @@ package body SpeichernStaedteLogik is
       StädtebereichExtern : in StadtDatentypen.Städtebereich)
       return Boolean
    is
-      use type SystemDatentypen.EinByte;
-      use type SystemDatentypen.VierByte;
+      use type SystemDatentypenHTSEB.EinByte;
+      use type SystemDatentypenHTSEB.VierByte;
    begin
       
       Belegung := LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern);
@@ -134,7 +134,7 @@ package body SpeichernStaedteLogik is
             
          end loop GebäudeSchleife;
          
-         SystemDatentypen.VierByte'Write (Stream (File => DateiSpeichernExtern),
+         SystemDatentypenHTSEB.VierByte'Write (Stream (File => DateiSpeichernExtern),
                                           VorhandeneGebäude);
          
          Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
@@ -165,7 +165,7 @@ package body SpeichernStaedteLogik is
                
             end loop WaagerechteBewirtschaftungSchleife;
             
-            SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
+            SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
                                             VorhandeneBewirtschaftung);
             
          end loop SenkrechteBewirtschaftungSchleife;

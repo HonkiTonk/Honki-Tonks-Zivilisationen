@@ -1,12 +1,14 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
+private with SystemDatentypenHTSEB;
+
 private with KartenRecords;
 private with StadtRecords;
 private with KartengrundDatentypen;
 private with KartenextraDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenDatentypen;
-private with SystemDatentypen;
+private with SpeziesDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -22,11 +24,13 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   FeldeffekteVorhanden : SystemDatentypen.EinByte;
-   AktuellerFeldeffekt : SystemDatentypen.EinByte;
+   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    
-   FeldelementeVorhanden : SystemDatentypen.EinByte;
-   AktuellesFeldelement : SystemDatentypen.EinByte;
+   FeldeffekteVorhanden : SystemDatentypenHTSEB.EinByte;
+   AktuellerFeldeffekt : SystemDatentypenHTSEB.EinByte;
+   
+   FeldelementeVorhanden : SystemDatentypenHTSEB.EinByte;
+   AktuellesFeldelement : SystemDatentypenHTSEB.EinByte;
       
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
       

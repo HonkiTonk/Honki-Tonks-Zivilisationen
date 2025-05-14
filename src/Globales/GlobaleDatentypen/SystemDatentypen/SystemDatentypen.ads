@@ -43,13 +43,6 @@ package SystemDatentypen is
    
    
    
-   -- Für vorzeichenlose Datentypen mod verwenden.
-   type EinByte is mod 2**8;
-   type ZweiByte is mod 2**16;
-   type VierByte is mod 2**32;
-   
-   
-   
    type Spielstand_Enum is (
                             Manueller_Spielstand_Enum,
                             Automatischer_Spielstand_Enum

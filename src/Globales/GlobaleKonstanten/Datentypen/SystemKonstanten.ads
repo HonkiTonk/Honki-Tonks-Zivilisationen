@@ -1,4 +1,4 @@
-with SystemDatentypen;
+with SystemDatentypenHTSEB;
 with TextnummernKonstanten;
 with ZahlenDatentypen;
 
@@ -7,9 +7,9 @@ package SystemKonstanten is
       
    LeerMeldung : constant TextnummernKonstanten.Spielmeldungen := TextnummernKonstanten.Spielmeldungen'First;
    
-   LeerEinByte : constant SystemDatentypen.EinByte := 0;
-   LeerZweiByte : constant SystemDatentypen.ZweiByte := 0;
-   LeerVierByte : constant SystemDatentypen.VierByte := 0;
+   LeerEinByte : constant SystemDatentypenHTSEB.EinByte := 0;
+   LeerZweiByte : constant SystemDatentypenHTSEB.ZweiByte := 0;
+   LeerVierByte : constant SystemDatentypenHTSEB.VierByte := 0;
    
    MaximaleEingabe : constant ZahlenDatentypen.EigenesPositive := 999_999_999;
    

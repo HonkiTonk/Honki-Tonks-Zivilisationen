@@ -1,5 +1,7 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
+private with SystemDatentypenHTSEB;
+
 private with KartenRecords;
 private with KartenextraDatentypen;
 private with KartengrundDatentypen;
@@ -7,7 +9,6 @@ private with KartenverbesserungDatentypen;
 private with EinheitenRecords;
 private with StadtRecords;
 private with KartenDatentypen;
-private with SystemDatentypen;
 private with ZahlenDatentypen;
 
 private with LeseWeltkarteneinstellungen;
@@ -24,11 +25,10 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
-   SichtbarkeitVorhanden : SystemDatentypen.EinByte;
-   VorhandeneFeldeffekte : SystemDatentypen.EinByte;
-   AktuellerFeldeffekt : SystemDatentypen.EinByte;
-   VorhandeneFeldelemente : SystemDatentypen.EinByte;
-   AktuellesFeldelemente : SystemDatentypen.EinByte;
+   VorhandeneFeldeffekte : SystemDatentypenHTSEB.EinByte;
+   AktuellerFeldeffekt : SystemDatentypenHTSEB.EinByte;
+   VorhandeneFeldelemente : SystemDatentypenHTSEB.EinByte;
+   AktuellesFeldelement : SystemDatentypenHTSEB.EinByte;
    
    Potenz : ZahlenDatentypen.EigenesNatural;
    
@@ -52,24 +52,7 @@ private
      
    Stadt : StadtRecords.SpeziesStadtnummerVorhandenRecord;
    
-   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
    
-   
-      
-   function Sichtbarkeit
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-                  and
-                    KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte)
-              );
    
    function BasisgrundEinlesen
      (DateiLadenExtern : in File_Type;

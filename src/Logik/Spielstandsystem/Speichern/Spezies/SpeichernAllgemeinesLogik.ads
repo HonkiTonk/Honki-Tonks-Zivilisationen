@@ -1,6 +1,6 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
-private with SystemDatentypen;
+private with SystemDatentypenHTSEB;
 
 package SpeichernAllgemeinesLogik is
    pragma Elaborate_Body;
@@ -11,9 +11,9 @@ package SpeichernAllgemeinesLogik is
 
 private
 
-   GewonnenWeiterspielen : SystemDatentypen.EinByte;
-   BesiegtAktuell : SystemDatentypen.EinByte;
-   Besiegt : SystemDatentypen.EinByte;
+   GewonnenWeiterspielen : SystemDatentypenHTSEB.EinByte;
+   BesiegtAktuell : SystemDatentypenHTSEB.EinByte;
+   Besiegt : SystemDatentypenHTSEB.EinByte;
 
 
 

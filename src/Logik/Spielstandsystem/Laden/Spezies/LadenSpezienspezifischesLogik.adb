@@ -80,7 +80,7 @@ package body LadenSpezienspezifischesLogik is
       return Boolean
    is
       use Ada.Exceptions;
-      use type SystemDatentypen.VierByte;
+      use type SystemDatentypenHTSEB.VierByte;
    begin
       
       ZahlenDatentypen.EigenerInteger'Read (Stream (File => DateiLadenExtern),
@@ -108,7 +108,7 @@ package body LadenSpezienspezifischesLogik is
       BereichSchleife:
       for BereichSchleifenwert in ForschungKonstanten.ForschungsbereichArray'Range loop
                   
-         SystemDatentypen.VierByte'Read (Stream (File => DateiLadenExtern),
+         SystemDatentypenHTSEB.VierByte'Read (Stream (File => DateiLadenExtern),
                                          ForschungVorhanden);
          
          ForschungSchleife:
@@ -117,10 +117,10 @@ package body LadenSpezienspezifischesLogik is
             Potenz := Positive (ForschungSchleifenwert) - Positive (ForschungKonstanten.Forschunganfang (BereichSchleifenwert));
             
             if
-              ForschungVorhanden >= SystemDatentypen.VierByte (2**Potenz)
+              ForschungVorhanden >= SystemDatentypenHTSEB.VierByte (2**Potenz)
             then
                Erforscht (ForschungSchleifenwert) := True;
-               ForschungVorhanden := ForschungVorhanden - SystemDatentypen.VierByte (2**Potenz);
+               ForschungVorhanden := ForschungVorhanden - SystemDatentypenHTSEB.VierByte (2**Potenz);
                
             else
                Erforscht (ForschungSchleifenwert) := False;

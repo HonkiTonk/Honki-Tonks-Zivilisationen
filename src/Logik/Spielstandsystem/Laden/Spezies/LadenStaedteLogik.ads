@@ -1,6 +1,8 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with Ada.Strings.Wide_Wide_Unbounded;
 
+private with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 
 private with StadtRecords;
@@ -9,7 +11,6 @@ private with KartenverbesserungDatentypen;
 private with ProduktionDatentypen;
 private with KartenRecords;
 private with KIDatentypen;
-private with SystemDatentypen;
 private with StadtArrays;
 private with ZahlenDatentypen;
 
@@ -59,13 +60,13 @@ private
    
    Zufriedenheit : ProduktionDatentypen.ZufriedenheitVorhanden;
    
-   Gebäude : SystemDatentypen.VierByte;
+   Gebäude : SystemDatentypenHTSEB.VierByte;
    
    VorhandeneGebäude : StadtArrays.GebäudeArray;
    
    Stadtname : Unbounded_Wide_Wide_String;
    
-   Bewirtschaftung : SystemDatentypen.EinByte;
+   Bewirtschaftung : SystemDatentypenHTSEB.EinByte;
    
    Bewirtschaftungsbelegung : StadtRecords.UmgebungBewirtschaftungArray;
    

@@ -39,7 +39,7 @@ package body SpeichernAllgemeinesLogik is
    is
       use Ada.Strings.Wide_Wide_Unbounded;
       use Ada.Exceptions;
-      use type SystemDatentypen.EinByte;
+      use type SystemDatentypenHTSEB.EinByte;
    begin
                   
       case
@@ -62,8 +62,8 @@ package body SpeichernAllgemeinesLogik is
             GewonnenWeiterspielen := GewonnenWeiterspielen + 2;
       end case;
       
-      SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                      GewonnenWeiterspielen);
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                           GewonnenWeiterspielen);
       
       SpeziesDatentypen.Spezies_Enum'Write (Stream (File => DateiSpeichernExtern),
                                             LeseAllgemeines.SpezieszugNachLaden);
@@ -106,7 +106,7 @@ package body SpeichernAllgemeinesLogik is
       return Boolean
    is
       use Ada.Exceptions;
-      use type SystemDatentypen.EinByte;
+      use type SystemDatentypenHTSEB.EinByte;
    begin
       
       BereichSchleife:
@@ -135,8 +135,8 @@ package body SpeichernAllgemeinesLogik is
             
          end loop SpeziesSchleife;
       
-         SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                         Besiegt);
+         SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                              Besiegt);
          
       end loop BereichSchleife;
       

@@ -51,7 +51,7 @@ package body Grafik is
       TextaccesseSetzenGrafik.Texthöhe;
       
       -- DiagnosesystemZusatzinformationen.GrößenprüfungDatei;
-      -- DiagnosesystemHTSEB.Größenprüfung (DatentypgrößeExtern => StadtRecords.StadtGebautRecord'Size);
+      -- DiagnosesystemHTSEB.Zahl (2**0);
             
       Startzeit := Clock;
       

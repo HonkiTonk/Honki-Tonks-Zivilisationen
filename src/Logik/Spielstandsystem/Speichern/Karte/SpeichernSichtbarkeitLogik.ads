@@ -1,10 +1,10 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
+private with SystemDatentypenHTSEB;
+
 with KartenDatentypen;
 with KartenRecords;
-
-private with SystemDatentypen;
-private with SpeziesDatentypen;
+with SpeziesDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -23,26 +23,21 @@ package SpeichernSichtbarkeitLogik is
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
-      
-private
-   
-   SichtbarkeitVorhanden : SystemDatentypen.EinByte;
-   AktuelleSichtbarkeit : SystemDatentypen.EinByte;
-   
-   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
-   
-   
    
    function SpeziesanzahlErmitteln
      return SpeziesDatentypen.SpeziesnummernVorhanden;
+      
+private
    
-   function AchtSpezies
-     return Boolean;
+   AktuellerBereich : Positive;
    
-   function SechzehnSpezies
-     return Boolean;
+   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    
-   function AchtzehnSpezies
-     return Boolean;
+   AktuelleSichtbarkeit : SystemDatentypenHTSEB.EinByte;
+   
+   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
+   
+   type SichtbarkeitArray is array (1 .. 3) of SystemDatentypenHTSEB.EinByte;
+   SichtbarkeitVorhanden : SichtbarkeitArray;
 
 end SpeichernSichtbarkeitLogik;

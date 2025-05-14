@@ -36,7 +36,7 @@ package body SpeichernKarteLogik is
                                                                   DateiSpeichernExtern => DateiSpeichernExtern)
                then
                   return False;
-                     
+                  
                elsif
                  False = Basisgrund (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                      DateiSpeichernExtern => DateiSpeichernExtern)
@@ -149,7 +149,7 @@ package body SpeichernKarteLogik is
    is
       use type StadtRecords.SpeziesStadtnummerRecord;
       use type KartenRecords.FeldeffektArray;
-      use type SystemDatentypen.EinByte;
+      use type SystemDatentypenHTSEB.EinByte;
    begin
       
       AktuellesFeldelement := 1;
@@ -234,8 +234,8 @@ package body SpeichernKarteLogik is
          FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
       end if;
       
-      SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                      FeldelementeVorhanden);
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                           FeldelementeVorhanden);
       
       return True;
       
@@ -262,7 +262,7 @@ package body SpeichernKarteLogik is
    is
       use type StadtRecords.SpeziesStadtnummerRecord;
       use type KartenRecords.FeldeffektArray;
-      use type SystemDatentypen.EinByte;
+      use type SystemDatentypenHTSEB.EinByte;
    begin
       
       if
@@ -345,8 +345,8 @@ package body SpeichernKarteLogik is
             
          end loop FeldeffekteSchleife;
          
-         SystemDatentypen.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                         FeldeffekteVorhanden);
+         SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                              FeldeffekteVorhanden);
       end if;
       
       case

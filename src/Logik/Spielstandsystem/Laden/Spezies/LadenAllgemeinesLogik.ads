@@ -2,8 +2,9 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with Ada.Strings.Wide_Wide_Unbounded;
 
+private with SystemDatentypenHTSEB;
+
 private with SpielRecords;
-private with SystemDatentypen;
 private with SpeziesDatentypen;
 private with SpielDatentypen;
 private with ZahlenDatentypen;
@@ -22,8 +23,8 @@ private
    Gewonnen : Boolean;
    Weiterspielen : Boolean;
    
-   GewonnenWeiterspielen : SystemDatentypen.EinByte;
-   Besiegt : SystemDatentypen.EinByte;
+   GewonnenWeiterspielen : SystemDatentypenHTSEB.EinByte;
+   Besiegt : SystemDatentypenHTSEB.EinByte;
       
    SpezieszugNachLaden : SpeziesDatentypen.Spezies_Enum;
       

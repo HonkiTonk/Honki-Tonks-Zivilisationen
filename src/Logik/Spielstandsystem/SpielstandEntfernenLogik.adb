@@ -1,4 +1,4 @@
-with Ada.Directories; use Ada.Directories;
+with DateizugriffssystemHTSEB;
 
 with TextnummernKonstanten;
 
@@ -16,8 +16,8 @@ package body SpielstandEntfernenLogik is
         JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandLöschen)
       is
          when True =>
-            Delete_File (Name => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => ManuellAutoExtern,
-                                                                           SpielstandnameExtern => SpielstandnameExtern));
+            DateizugriffssystemHTSEB.Löschen (NameExtern => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => ManuellAutoExtern,
+                                                                                                       SpielstandnameExtern => SpielstandnameExtern));
             
          when False =>
             null;
