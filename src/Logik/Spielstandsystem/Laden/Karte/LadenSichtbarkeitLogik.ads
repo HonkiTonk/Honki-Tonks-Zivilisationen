@@ -4,6 +4,7 @@ private with SystemDatentypenHTSEB;
 
 with KartenRecords;
 with KartenDatentypen;
+with SpeziesDatentypen;
 
 private with ZahlenDatentypen;
 
@@ -17,6 +18,7 @@ package LadenSichtbarkeitLogik is
    function Sichtbarkeit
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.Speziesnummern;
       LadenPrüfenExtern : in Boolean)
       return Boolean
      with

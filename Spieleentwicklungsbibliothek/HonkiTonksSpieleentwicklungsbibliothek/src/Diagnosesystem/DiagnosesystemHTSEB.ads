@@ -32,11 +32,11 @@ package DiagnosesystemHTSEB is
               );
    
    procedure UngebundenerText
-     (TextExtern : in Unbounded_Wide_Wide_String)
-     with
-       Pre => (
-                 To_Wide_Wide_String (Source => TextExtern)'Length > 0
-              );
+     (TextExtern : in Unbounded_Wide_Wide_String);
+    -- with
+    --   Pre => (
+    --             To_Wide_Wide_String (Source => TextExtern)'Length > 0
+    --          );
    
    procedure KurzerText
      (TextExtern : in String)

@@ -65,7 +65,7 @@ package body LadenSpezienspezifischesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSpezienspezifischesLogik.Grenzen: Konnte nicht geladen werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSpezienspezifischesLogik.Grenzen: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
@@ -188,7 +188,7 @@ package body LadenSpezienspezifischesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSpezienspezifischesLogik.Wichtiges: Konnte nicht geladen werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSpezienspezifischesLogik.Wichtiges: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       

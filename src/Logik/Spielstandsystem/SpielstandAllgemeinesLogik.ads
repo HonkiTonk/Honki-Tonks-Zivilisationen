@@ -29,7 +29,13 @@ package SpielstandAllgemeinesLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spieler_Enum;
    
+   function SpeziesanzahlErmitteln
+     (SpeichernLadenExtern : in Boolean)
+     return SpeziesDatentypen.Speziesnummern;
+   
 private
+   
+   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    
    SpielstandName : SystemRecordsHTSEB.TextEingabeRecord;
 

@@ -14,6 +14,11 @@ with StadtRecords;
 private with WeltkarteRecords;
 private with StadtDatentypen;
 
+with SpeziesDatentypen;
+
+with SystemDatentypenHTSEB;
+
+
 package DiagnosesystemZusatzinformationen is
    pragma Elaborate_Body;
       
@@ -56,5 +61,9 @@ private
    DateiSpeichern : File_Type;
    
    Zwischenspeicher : Unbounded_Wide_Wide_String;
+   
+   Test : SpeziesDatentypen.Spezies_Enum;
+   
+   Was : SystemDatentypenHTSEB.EinByte;
 
 end DiagnosesystemZusatzinformationen;

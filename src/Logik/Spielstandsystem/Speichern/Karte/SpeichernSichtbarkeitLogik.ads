@@ -15,6 +15,7 @@ package SpeichernSichtbarkeitLogik is
 
    function Sichtbarkeit
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.Speziesnummern;
       DateiSpeichernExtern : in File_Type)
       return Boolean
      with
@@ -23,9 +24,6 @@ package SpeichernSichtbarkeitLogik is
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
-   
-   function SpeziesanzahlErmitteln
-     return SpeziesDatentypen.SpeziesnummernVorhanden;
       
 private
    

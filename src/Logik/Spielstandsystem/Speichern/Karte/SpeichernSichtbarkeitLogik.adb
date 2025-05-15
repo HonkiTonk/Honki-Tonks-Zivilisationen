@@ -10,36 +10,9 @@ with LeseSpeziesbelegung;
 
 package body SpeichernSichtbarkeitLogik is
    
-   -- Das woanders reinpacken. äöü
-   function SpeziesanzahlErmitteln
-     return SpeziesDatentypen.SpeziesnummernVorhanden
-   is begin
-      
-      VorhandeneSpezies := SpeziesKonstanten.LeerSpeziesnummer;
-      
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
-         
-         case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
-         is
-            when SpeziesDatentypen.Spieler_Belegt_Enum =>
-               VorhandeneSpezies := VorhandeneSpezies + 1;
-               
-            when SpeziesDatentypen.Leer_Spieler_Enum =>
-               null;
-         end case;
-         
-      end loop SpeziesSchleife;
-      
-      return VorhandeneSpezies;
-      
-   end SpeziesanzahlErmitteln;
-   
-   
-   
    function Sichtbarkeit
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.Speziesnummern;
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
@@ -91,16 +64,24 @@ package body SpeichernSichtbarkeitLogik is
       SpeichernSchleife:
       for SpeichernSchleifenwert in reverse SichtbarkeitArray'Range loop
          
-         case
-           SichtbarkeitVorhanden (AktuellerBereich)
-         is
-            when 0 =>
-               null;
+         if
+           VorhandeneSpeziesExtern in 1 .. 8
+           and
+             SpeichernSchleifenwert > 1
+         then
+            null;
+            
+         elsif
+           VorhandeneSpeziesExtern in 9 .. 16
+           and
+             SpeichernSchleifenwert > 2
+         then
+            null;
                
-            when others =>
-               SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                                    SichtbarkeitVorhanden (SpeichernSchleifenwert));
-         end case;
+         else
+            SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                                 SichtbarkeitVorhanden (SpeichernSchleifenwert));
+         end if;
          
       end loop SpeichernSchleife;
       

@@ -36,9 +36,11 @@ package body DiagnosesystemZusatzinformationen is
       
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
-      
-      Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichern),
-                                        Zwischenspeicher);
+            
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichern),
+                                           0);
+      SpeziesDatentypen.Spezies_Enum'Write (Stream (File => DateiSpeichern),
+                                            SpeziesDatentypen.Alary_Enum);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                  NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
@@ -46,11 +48,16 @@ package body DiagnosesystemZusatzinformationen is
       DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiSpeichern,
                                               NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
       
-      Unbounded_Wide_Wide_String'Read (Stream (File => DateiSpeichern),
-                                       Zwischenspeicher);
+      SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiSpeichern),
+                                           Was);
+      SpeziesDatentypen.Spezies_Enum'Read (Stream (File => DateiSpeichern),
+                                           Test);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                  NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
+      
+      Put_Line (Was'Wide_Wide_Image);
+      Put_Line (Test'Wide_Wide_Image);
                                               
       
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,

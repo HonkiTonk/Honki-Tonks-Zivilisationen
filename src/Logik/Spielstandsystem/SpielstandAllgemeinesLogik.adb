@@ -2,7 +2,10 @@ with Ada.Directories;
 
 with TextKonstantenHTSEB;
 
+with SpeziesKonstanten;
+
 with SchreibeGrafiktask;
+with LeseSpeziesbelegung;
 
 with TexteingabeLogik;
 with LadezeitenLogik;
@@ -85,5 +88,41 @@ package body SpielstandAllgemeinesLogik is
       return Speziesbelegung (SpeziesExtern).Belegung;
       
    end SpeziesbelegungLesen;
+   
+   
+   
+   function SpeziesanzahlErmitteln
+     (SpeichernLadenExtern : in Boolean)
+      return SpeziesDatentypen.Speziesnummern
+   is begin
+      
+      VorhandeneSpezies := SpeziesKonstanten.LeerSpeziesnummer;
+      
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
+               
+         if
+           SpeichernLadenExtern
+           and
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) in SpeziesDatentypen.Spieler_Belegt_Enum
+         then
+            VorhandeneSpezies := VorhandeneSpezies + 1;
+                  
+         elsif
+           (SpeichernLadenExtern = False)
+           and
+             SpeziesbelegungLesen (SpeziesExtern => SpeziesSchleifenwert) in SpeziesDatentypen.Spieler_Belegt_Enum
+         then
+            VorhandeneSpezies := VorhandeneSpezies + 1;
+               
+         else
+            null;
+         end if;
+         
+      end loop SpeziesSchleife;
+      
+      return VorhandeneSpezies;
+      
+   end SpeziesanzahlErmitteln;
 
 end SpielstandAllgemeinesLogik;

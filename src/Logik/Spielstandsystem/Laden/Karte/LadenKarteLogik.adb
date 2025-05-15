@@ -11,6 +11,7 @@ with SchreibeWeltkarteneinstellungen;
 
 with LadezeitenLogik;
 with LadenSichtbarkeitLogik;
+with SpielstandAllgemeinesLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenKarteLogik is
@@ -23,6 +24,8 @@ package body LadenKarteLogik is
       
       KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLadenExtern),
                                                           Karteneinstellungen);
+      
+      VorhandeneSpezies := SpielstandAllgemeinesLogik.SpeziesanzahlErmitteln (SpeichernLadenExtern => False);
       
       case
         LadenPrüfenExtern
@@ -42,9 +45,10 @@ package body LadenKarteLogik is
             for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
                
                if
-                 False = LadenSichtbarkeitLogik.Sichtbarkeit (DateiLadenExtern  => DateiLadenExtern,
-                                                              KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                              LadenPrüfenExtern => LadenPrüfenExtern)
+                 False = LadenSichtbarkeitLogik.Sichtbarkeit (DateiLadenExtern        => DateiLadenExtern,
+                                                              KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                              VorhandeneSpeziesExtern => VorhandeneSpezies,
+                                                              LadenPrüfenExtern       => LadenPrüfenExtern)
                then
                   return False;
                   
@@ -65,7 +69,7 @@ package body LadenKarteLogik is
                else
                   null;
                end if;
-                                             
+                                                            
             end loop WaagerechteSchleife;
          end loop SenkrechteSchleife;
          
@@ -77,7 +81,7 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.KarteLaden: Konnte nicht geladen werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.KarteLaden: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
@@ -121,7 +125,7 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.BasisgrundEinlesen: Konnte nicht geladen werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.BasisgrundEinlesen: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
@@ -332,7 +336,7 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.Feldelemente: Konnte nicht geladen werden "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.Feldelemente: Konnte nicht geladen werden LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       

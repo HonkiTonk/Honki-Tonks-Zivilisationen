@@ -10,6 +10,7 @@ private with EinheitenRecords;
 private with StadtRecords;
 private with KartenDatentypen;
 private with ZahlenDatentypen;
+private with SpeziesDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -24,6 +25,8 @@ package LadenKarteLogik is
 private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
+   
+   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    
    VorhandeneFeldeffekte : SystemDatentypenHTSEB.EinByte;
    AktuellerFeldeffekt : SystemDatentypenHTSEB.EinByte;

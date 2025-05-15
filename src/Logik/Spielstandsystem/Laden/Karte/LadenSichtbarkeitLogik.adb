@@ -3,8 +3,6 @@ with Ada.Exceptions; use Ada.Exceptions;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
-with SpeziesDatentypen;
-
 with SchreibeWeltkarte;
 
 with SpielstandAllgemeinesLogik;
@@ -14,11 +12,19 @@ package body LadenSichtbarkeitLogik is
    function Sichtbarkeit
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.Speziesnummern;
       LadenPrüfenExtern : in Boolean)
       return Boolean
    is
       use type SystemDatentypenHTSEB.EinByte;
    begin
+      
+      case
+        VorhandeneSpeziesExtern
+      is
+         when others =>
+            null;
+      end case;
       
       SichtbarkeitVorhanden := 0;
       GesamteSichtbarkeit := (others => False);
@@ -77,7 +83,7 @@ package body LadenSichtbarkeitLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSichtbarkeitLogik.Sichtbarkeit: Konnte nicht geladen werden"
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSichtbarkeitLogik.Sichtbarkeit: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          

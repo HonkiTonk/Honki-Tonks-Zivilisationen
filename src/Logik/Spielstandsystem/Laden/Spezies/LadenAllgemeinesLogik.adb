@@ -112,7 +112,7 @@ package body LadenAllgemeinesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenAllgemeinesLogik.Allgemeines: Konnte nicht geladen werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenAllgemeinesLogik.Allgemeines: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
@@ -174,7 +174,7 @@ package body LadenAllgemeinesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenAllgemeinesLogik.Speziesbelegung: Konnte nicht geladen werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenAllgemeinesLogik.Speziesbelegung: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
