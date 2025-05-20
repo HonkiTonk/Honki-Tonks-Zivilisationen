@@ -19,12 +19,19 @@ package body SpeichernSichtbarkeitLogik is
       use type SystemDatentypenHTSEB.EinByte;
    begin
       
-      VorhandeneSpezies := SpeziesKonstanten.LeerSpeziesnummer;
-      GesamteSichtbarkeit := LeseWeltkarte.GesamteSichtbarkeit (KoordinatenExtern => KoordinatenExtern);
+      case
+        VorhandeneSpeziesExtern
+      is
+         when 0 =>
+            return False;
+            
+         when others =>
+            VorhandeneSpezies := SpeziesKonstanten.LeerSpeziesnummer;
+            GesamteSichtbarkeit := LeseWeltkarte.GesamteSichtbarkeit (KoordinatenExtern => KoordinatenExtern);
       
-      SichtbarkeitVorhanden := (others => 0);
-      AktuelleSichtbarkeit := 1;
-      AktuellerBereich := 1;
+            SichtbarkeitVorhanden := 0;
+            AktuelleSichtbarkeit := 1;
+      end case;
       
       SichtbarkeitSchleife:
       for SichtbarkeitSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
@@ -36,54 +43,38 @@ package body SpeichernSichtbarkeitLogik is
               GesamteSichtbarkeit (SichtbarkeitSchleifenwert)
             is
                when True =>
-                  SichtbarkeitVorhanden (AktuellerBereich) := SichtbarkeitVorhanden (AktuellerBereich) + AktuelleSichtbarkeit;
+                  SichtbarkeitVorhanden := SichtbarkeitVorhanden + AktuelleSichtbarkeit;
                
                when False =>
                   null;
             end case;
             
             VorhandeneSpezies := VorhandeneSpezies + 1;
+            
+            if
+              VorhandeneSpezies = VorhandeneSpeziesExtern
+            then
+               SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                                    SichtbarkeitVorhanden);
+               exit SichtbarkeitSchleife;
          
-            case
-              VorhandeneSpezies mod 8
-            is
-               when 0 =>
-                  AktuellerBereich := AktuellerBereich + 1;
-                  AktuelleSichtbarkeit := 1;
-               
-               when others =>
-                  AktuelleSichtbarkeit := AktuelleSichtbarkeit * 2;
-            end case;
+            elsif
+              VorhandeneSpezies mod 8 = 0
+            then
+               SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                                    SichtbarkeitVorhanden);
+               SichtbarkeitVorhanden := 0;
+               AktuelleSichtbarkeit := 1;
+                  
+            else
+               AktuelleSichtbarkeit := AktuelleSichtbarkeit * 2;
+            end if;
             
          else
             null;
          end if;
          
       end loop SichtbarkeitSchleife;
-      
-      SpeichernSchleife:
-      for SpeichernSchleifenwert in reverse SichtbarkeitArray'Range loop
-         
-         if
-           VorhandeneSpeziesExtern in 1 .. 8
-           and
-             SpeichernSchleifenwert > 1
-         then
-            null;
-            
-         elsif
-           VorhandeneSpeziesExtern in 9 .. 16
-           and
-             SpeichernSchleifenwert > 2
-         then
-            null;
-               
-         else
-            SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                                 SichtbarkeitVorhanden (SpeichernSchleifenwert));
-         end if;
-         
-      end loop SpeichernSchleife;
       
       return True;
       

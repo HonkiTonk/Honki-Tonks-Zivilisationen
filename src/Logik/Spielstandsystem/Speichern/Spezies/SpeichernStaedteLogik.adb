@@ -104,8 +104,9 @@ package body SpeichernStaedteLogik is
          StadtRecords.BauprojektRecord'Write (Stream (File => DateiSpeichernExtern),
                                               LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
-         -- ProduktionDatentypen.Produktion'Write (Stream (File => DateiSpeichernExtern),
-         --                                        LeseStadtGebaut.Bauzeit (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
+         -- Theoretisch muss ich das nicht speichern und kann es einfach neu berechnen lassen. äöü
+         ProduktionDatentypen.Produktion'Write (Stream (File => DateiSpeichernExtern),
+                                                LeseStadtGebaut.Bauzeit (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          ProduktionDatentypen.Stadtproduktion'Write (Stream (File => DateiSpeichernExtern),
                                                      LeseStadtGebaut.Korruption (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
@@ -135,7 +136,7 @@ package body SpeichernStaedteLogik is
          end loop GebäudeSchleife;
          
          SystemDatentypenHTSEB.VierByte'Write (Stream (File => DateiSpeichernExtern),
-                                          VorhandeneGebäude);
+                                               VorhandeneGebäude);
          
          Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
                                            LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
@@ -166,7 +167,7 @@ package body SpeichernStaedteLogik is
             end loop WaagerechteBewirtschaftungSchleife;
             
             SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                            VorhandeneBewirtschaftung);
+                                                 VorhandeneBewirtschaftung);
             
          end loop SenkrechteBewirtschaftungSchleife;
          

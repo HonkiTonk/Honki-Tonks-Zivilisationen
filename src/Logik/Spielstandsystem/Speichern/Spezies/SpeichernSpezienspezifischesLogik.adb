@@ -116,7 +116,7 @@ package body SpeichernSpezienspezifischesLogik is
          end loop ForschungSchleife;
          
          SystemDatentypenHTSEB.VierByte'Write (Stream (File => DateiSpeichernExtern),
-                                          ForschungVorhanden);
+                                               ForschungVorhanden);
          
       end loop BereichSchleife;
       

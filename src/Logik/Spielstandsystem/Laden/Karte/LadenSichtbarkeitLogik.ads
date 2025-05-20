@@ -33,8 +33,10 @@ package LadenSichtbarkeitLogik is
    
 private
    
-   SichtbarkeitVorhanden : SystemDatentypenHTSEB.EinByte;
+   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    
+   SichtbarkeitVorhanden : SystemDatentypenHTSEB.EinByte;
+      
    Potenz : ZahlenDatentypen.EigenesNatural;
    
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;

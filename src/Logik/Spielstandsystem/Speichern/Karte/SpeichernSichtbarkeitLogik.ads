@@ -27,15 +27,11 @@ package SpeichernSichtbarkeitLogik is
       
 private
    
-   AktuellerBereich : Positive;
-   
    VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    
    AktuelleSichtbarkeit : SystemDatentypenHTSEB.EinByte;
+   SichtbarkeitVorhanden : SystemDatentypenHTSEB.EinByte;
    
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
-   
-   type SichtbarkeitArray is array (1 .. 3) of SystemDatentypenHTSEB.EinByte;
-   SichtbarkeitVorhanden : SichtbarkeitArray;
 
 end SpeichernSichtbarkeitLogik;

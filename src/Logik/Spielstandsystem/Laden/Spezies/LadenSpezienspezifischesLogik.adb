@@ -65,7 +65,7 @@ package body LadenSpezienspezifischesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSpezienspezifischesLogik.Grenzen: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSpezienspezifischesLogik.Grenzen: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
@@ -109,7 +109,7 @@ package body LadenSpezienspezifischesLogik is
       for BereichSchleifenwert in ForschungKonstanten.ForschungsbereichArray'Range loop
                   
          SystemDatentypenHTSEB.VierByte'Read (Stream (File => DateiLadenExtern),
-                                         ForschungVorhanden);
+                                              ForschungVorhanden);
          
          ForschungSchleife:
          for ForschungSchleifenwert in reverse ForschungKonstanten.Forschunganfang (BereichSchleifenwert) .. ForschungKonstanten.Forschungsende (BereichSchleifenwert) loop
@@ -188,7 +188,7 @@ package body LadenSpezienspezifischesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSpezienspezifischesLogik.Wichtiges: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSpezienspezifischesLogik.Wichtiges: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       

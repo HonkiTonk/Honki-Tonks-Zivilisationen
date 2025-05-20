@@ -9,8 +9,6 @@ with SchreibeStadtGebaut;
 
 with SpielstandAllgemeinesLogik;
 
-with DiagnosesystemHTSEB;
-
 package body LadenStaedteLogik is
 
    function Städte
@@ -56,7 +54,7 @@ package body LadenStaedteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenStaedteLogik.Städte: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenStaedteLogik.Städte: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
@@ -120,7 +118,7 @@ package body LadenStaedteLogik is
                                                         Zufriedenheit);
             
       SystemDatentypenHTSEB.VierByte'Read (Stream (File => DateiLadenExtern),
-                                      Gebäude);
+                                           Gebäude);
       
       Potenz := Positive (StadtDatentypen.GebäudeIDVorhanden'Last);
       
@@ -140,9 +138,7 @@ package body LadenStaedteLogik is
          Potenz := Potenz - 1;
          
       end loop GebäudeSchleife;
-         
-      DiagnosesystemHTSEB.Zahl (1);
-         
+                  
       Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
                                        Stadtname);
       
@@ -150,9 +146,9 @@ package body LadenStaedteLogik is
       for SenkrechteBewirtschaftungSchleifenwert in StadtRecords.UmgebungBewirtschaftungArray'Range (1) loop
 
          SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
-                                        Bewirtschaftung);
+                                             Bewirtschaftung);
          
-         Potenz := StadtRecords.UmgebungBewirtschaftungArray'Length (2) - 1;
+         Potenz := StadtRecords.UmgebungBewirtschaftungArray'Length (2);
          
          WaagerechteBewirtschaftungSchleife:
          for WaagerechteBewirtschaftungSchleifenwert in reverse StadtRecords.UmgebungBewirtschaftungArray'Range (2) loop
@@ -270,7 +266,7 @@ package body LadenStaedteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenStaedteLogik.Stadtwerte: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenStaedteLogik.Stadtwerte: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       

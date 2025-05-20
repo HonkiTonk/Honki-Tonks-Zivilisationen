@@ -18,17 +18,21 @@ package body LadenSichtbarkeitLogik is
    is
       use type SystemDatentypenHTSEB.EinByte;
    begin
-      
+            
       case
         VorhandeneSpeziesExtern
       is
+         when 0 =>
+            return False;
+            
          when others =>
-            null;
+            SichtbarkeitVorhanden := 0;
+            VorhandeneSpezies := VorhandeneSpeziesExtern;
+            GesamteSichtbarkeit := (others => False);
+            SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                                SichtbarkeitVorhanden);
       end case;
-      
-      SichtbarkeitVorhanden := 0;
-      GesamteSichtbarkeit := (others => False);
-         
+            
       SichtbarkeitSchleife:
       for SichtbarkeitSchleifenwert in reverse SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
@@ -36,17 +40,8 @@ package body LadenSichtbarkeitLogik is
            SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SichtbarkeitSchleifenwert)
          is
             when SpeziesDatentypen.Spieler_Belegt_Enum'Range =>
-               if
-                 SichtbarkeitVorhanden = 0
-               then
-                  SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
-                                                      SichtbarkeitVorhanden);
-                  
-               else
-                  null;
-               end if;
-               
                ErmittelnSchleife:
+                -- 0 .. VorhandeneSpezies mod 8? Müsste hinhauen, oder? äöü
                for ErmittelSchleifenwert in reverse 0 .. 7 loop
             
                   if
@@ -61,6 +56,25 @@ package body LadenSichtbarkeitLogik is
                   end if;
             
                end loop ErmittelnSchleife;
+               
+               VorhandeneSpezies := VorhandeneSpezies - 1;
+               
+               if
+                 VorhandeneSpezies = 0
+               then
+                  exit SichtbarkeitSchleife;
+                  
+               elsif
+                 VorhandeneSpezies = 16
+                 or
+                   VorhandeneSpezies = 8
+               then
+                  SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                                      SichtbarkeitVorhanden);
+                  
+               else
+                  null;
+               end if;
                
             when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;

@@ -4,7 +4,6 @@ with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
 with KartenKonstanten;
-with SystemKonstanten;
 
 with SchreibeWeltkarte;
 with SchreibeWeltkarteneinstellungen;
@@ -276,12 +275,11 @@ package body LadenKarteLogik is
                   
          AktuellerFeldeffekt := 2**(KartenRecords.FeldeffektArray'Length - 1);
          
-         -- Das auch noch an das geänderte Potenzsystem anpassen. äöü
          FeldeffekteSchleife:
          for FeldeffekteSchleifenwert in reverse KartenRecords.FeldeffektArray'Range loop
                      
             if
-              Natural (VorhandeneFeldeffekte) - Positive (AktuellerFeldeffekt) >= Natural (SystemKonstanten.LeerEinByte)
+              VorhandeneFeldeffekte >= AktuellerFeldeffekt
             then
                Feldeffekte (FeldeffekteSchleifenwert) := True;
                VorhandeneFeldeffekte := VorhandeneFeldeffekte - AktuellerFeldeffekt;
