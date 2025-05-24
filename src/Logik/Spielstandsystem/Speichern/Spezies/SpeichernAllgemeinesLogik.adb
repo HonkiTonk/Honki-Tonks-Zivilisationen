@@ -4,13 +4,13 @@ with Ada.Strings.Wide_Wide_Unbounded;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
-with SpeziesDatentypen;
 with SpielDatentypen;
 with ZahlenDatentypen;
-with SpeziesKonstanten;
 
 with LeseAllgemeines;
 with LeseSpeziesbelegung;
+
+with SpielstandAllgemeinesLogik;
 
 package body SpeichernAllgemeinesLogik is
    
@@ -107,38 +107,66 @@ package body SpeichernAllgemeinesLogik is
    is
       use Ada.Exceptions;
       use type SystemDatentypenHTSEB.EinByte;
+      use type SpeziesDatentypen.Spieler_Enum;
    begin
-      
-      BereichSchleife:
-      for BereichSchleifenwert in SpeziesKonstanten.SpeziesanfangLadenSpeichernArray'Range loop
          
-         BesiegtAktuell := 1;
-         Besiegt := 0;
+      BelegungSchleife:
+      for BelegungSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
-         SpeziesSchleife:
-         for SpeziesSchleifenwert in SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
-         
-            SpeziesDatentypen.Spieler_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert));
-         
-            case
-              LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert)
-            is
-               when True =>
-                  Besiegt := Besiegt + BesiegtAktuell;
-               
-               when False =>
-                  null;
-            end case;
-         
-            BesiegtAktuell := BesiegtAktuell * 2;
+         SpeziesDatentypen.Spieler_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                               LeseSpeziesbelegung.Belegung (SpeziesExtern => BelegungSchleifenwert));
             
-         end loop SpeziesSchleife;
+      end loop BelegungSchleife;
       
-         SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                              Besiegt);
+      BesiegtAktuell := 1;
+      Besiegt := 0;
+      AktuelleSpezies := 0;
+      SpeziesVorhanden := SpielstandAllgemeinesLogik.SpeziesanzahlErmitteln (SpeichernLadenExtern => True);
+      
+      BesiegtSchleife:
+      for BesiegtSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
-      end loop BereichSchleife;
+         case
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => BesiegtSchleifenwert)
+         is
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
+               null;
+               
+            when others =>
+               if
+                 LeseSpeziesbelegung.Besiegt (SpeziesExtern => BesiegtSchleifenwert) = False
+               then
+                  null;
+            
+               else
+                  Besiegt := Besiegt + BesiegtAktuell;
+               end if;
+               
+               AktuelleSpezies := AktuelleSpezies + 1;
+         
+               if
+                 AktuelleSpezies = SpeziesVorhanden
+               then
+                  SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                                       Besiegt);
+            
+                  exit BesiegtSchleife;
+            
+               elsif
+                 AktuelleSpezies mod 8 = 0
+               then
+                  SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                                       Besiegt);
+                  
+                  BesiegtAktuell := 1;
+                  Besiegt := 0;
+                  
+               else
+                  BesiegtAktuell := BesiegtAktuell * 2;
+               end if;
+         end case;
+         
+      end loop BesiegtSchleife;
       
       return True;
       

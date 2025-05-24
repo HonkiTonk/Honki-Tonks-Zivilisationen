@@ -117,10 +117,10 @@ package body LadenSpezienspezifischesLogik is
             Potenz := Positive (ForschungSchleifenwert) - Positive (ForschungKonstanten.Forschunganfang (BereichSchleifenwert));
             
             if
-              ForschungVorhanden >= SystemDatentypenHTSEB.VierByte (2**Potenz)
+              ForschungVorhanden >= 2**Potenz
             then
                Erforscht (ForschungSchleifenwert) := True;
-               ForschungVorhanden := ForschungVorhanden - SystemDatentypenHTSEB.VierByte (2**Potenz);
+               ForschungVorhanden := ForschungVorhanden - 2**Potenz;
                
             else
                Erforscht (ForschungSchleifenwert) := False;

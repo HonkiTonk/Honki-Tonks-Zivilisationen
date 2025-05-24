@@ -124,24 +124,24 @@ package body LadenStaedteLogik is
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in reverse StadtDatentypen.GebäudeIDVorhanden'Range loop
-            
+                     
+         Potenz := Potenz - 1;
+         
          if
-           Integer (Gebäude) >= 2**Potenz
+           Gebäude >= 2**Potenz
          then
             VorhandeneGebäude (GebäudeSchleifenwert) := True;
-            Gebäude := Gebäude - SystemDatentypenHTSEB.VierByte (2**Potenz);
+            Gebäude := Gebäude - 2**Potenz;
                   
          else
             VorhandeneGebäude (GebäudeSchleifenwert) := False;
          end if;
          
-         Potenz := Potenz - 1;
-         
       end loop GebäudeSchleife;
                   
       Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
                                        Stadtname);
-      
+            
       SenkrechteBewirtschaftungSchleife:
       for SenkrechteBewirtschaftungSchleifenwert in StadtRecords.UmgebungBewirtschaftungArray'Range (1) loop
 
@@ -153,17 +153,17 @@ package body LadenStaedteLogik is
          WaagerechteBewirtschaftungSchleife:
          for WaagerechteBewirtschaftungSchleifenwert in reverse StadtRecords.UmgebungBewirtschaftungArray'Range (2) loop
                
+            Potenz := Potenz - 1;
+            
             if
-              Integer (Bewirtschaftung) >= 2**Potenz
+              Bewirtschaftung >= 2**Potenz
             then
                Bewirtschaftungsbelegung (SenkrechteBewirtschaftungSchleifenwert, WaagerechteBewirtschaftungSchleifenwert) := True;
-               Bewirtschaftung := Bewirtschaftung - SystemDatentypenHTSEB.EinByte (2**Potenz);
+               Bewirtschaftung := Bewirtschaftung - 2**Potenz;
                   
             else
                Bewirtschaftungsbelegung (SenkrechteBewirtschaftungSchleifenwert, WaagerechteBewirtschaftungSchleifenwert) := False;
             end if;
-            
-            Potenz := Potenz - 1;
                
          end loop WaagerechteBewirtschaftungSchleife;
       end loop SenkrechteBewirtschaftungSchleife;
@@ -213,9 +213,9 @@ package body LadenStaedteLogik is
             SchreibeStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtExtern),
                                                GeldgewinnungExtern      => Geldgewinnung,
                                                ÄndernSetzenExtern       => False);
-         
-            StadtRecords.PermanenteKostenArray'Read (Stream (File => DateiLadenExtern),
-                                                     AlleKostenposten);
+            
+            SchreibeStadtGebaut.AlleKostenposten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtExtern),
+                                                  AlleKostenpostenExtern   => AlleKostenposten);
             
             SchreibeStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => (SpeziesExtern, StadtExtern),
                                                 ForschungsrateExtern     => Forschungsrate,

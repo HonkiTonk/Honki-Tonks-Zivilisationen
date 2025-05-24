@@ -112,7 +112,7 @@ package body LadenAllgemeinesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenAllgemeinesLogik.Allgemeines: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenAllgemeinesLogik.Allgemeines: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          
@@ -129,37 +129,91 @@ package body LadenAllgemeinesLogik is
       use type SystemDatentypenHTSEB.EinByte;
    begin
       
-      BereichSchleife:
-      for BereichSchleifenwert in SpeziesKonstanten.SpeziesanfangLadenSpeichernArray'Range loop
-         SpeziesbelegungSchleife:
-         for SpeziesbelegungSchleifenwert in SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
-              
-            SpeziesDatentypen.Spieler_Enum'Read (Stream (File => DateiLadenExtern),
-                                                 Belegung (SpeziesbelegungSchleifenwert).Belegung);
-            
-         end loop SpeziesbelegungSchleife;
+      Belegung := (others => (Belegung => SpeziesDatentypen.Leer_Spieler_Enum,
+                              Besiegt  => False));
       
-         SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
-                                             Besiegt);
+      BelegungSchleife:
+      for BelegungSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
-         SpeziesBesiegtSchleife:
-         for SpeziesBesiegtSchleifenwert in reverse SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
+         SpeziesDatentypen.Spieler_Enum'Read (Stream (File => DateiLadenExtern),
+                                              Belegung (BelegungSchleifenwert).Belegung);
+         
+      end loop BelegungSchleife;
+      
+      SpielstandAllgemeinesLogik.SpeziesbelegungSchreiben (SpeziesbelegungExtern => Belegung);
+      
+      SpeziesVorhanden := SpielstandAllgemeinesLogik.SpeziesanzahlErmitteln (SpeichernLadenExtern => False);
+      
+      SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                          Besiegt (1));
+      
+      case
+        SpeziesVorhanden
+      is
+         when 0 =>
+            return False;
             
-            Potenz := SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesBesiegtSchleifenwert) - SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert));
+         when 9 .. 16 =>
+            AktuellerArraybereich := 2;
             
-            if
-              Besiegt >= 2**Potenz
-            then
-               Belegung (SpeziesBesiegtSchleifenwert).Besiegt := True;
-               Besiegt := Besiegt - 2**Potenz;
+            SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                                Besiegt (2));
+            
+         when 17 .. SpeziesKonstanten.Speziesende =>
+            AktuellerArraybereich := 3;
+            
+            SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                                Besiegt (2));
+            SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                                Besiegt (3));
+            
+         when others =>
+            AktuellerArraybereich := 1;
+      end case;
+      
+      BesiegtSchleife:
+      for BesiegtSchleifenwert in reverse SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
+         
+         case
+           Belegung (BesiegtSchleifenwert).Belegung
+         is
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
+               null;
                
-            else
-               Belegung (SpeziesBesiegtSchleifenwert).Besiegt := False;
-            end if;
-            
-         end loop SpeziesBesiegtSchleife;
-      end loop BereichSchleife;
-            
+            when others =>
+               Potenz := (SpeziesVorhanden - 1) mod 8;
+         
+               if
+                 Besiegt (AktuellerArraybereich) >= 2**Potenz
+               then
+                  Belegung (BesiegtSchleifenwert).Besiegt := True;
+                  Besiegt (AktuellerArraybereich) := Besiegt (AktuellerArraybereich) - 2**Potenz;
+               
+               else
+                  null;
+               end if;
+               
+               SpeziesVorhanden := SpeziesVorhanden - 1;
+               
+               if
+                 SpeziesVorhanden = 0
+               then
+                  exit BesiegtSchleife;
+                  
+               elsif
+                 SpeziesVorhanden = 16
+                 or
+                   SpeziesVorhanden = 8
+               then
+                  AktuellerArraybereich := AktuellerArraybereich - 1;
+                  
+               else
+                  null;
+               end if;
+         end case;
+         
+      end loop BesiegtSchleife;
+      
       case
         LadenPrüfenExtern
       is
@@ -174,7 +228,7 @@ package body LadenAllgemeinesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenAllgemeinesLogik.Speziesbelegung: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenAllgemeinesLogik.Speziesbelegung: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       

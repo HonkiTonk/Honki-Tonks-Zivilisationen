@@ -31,8 +31,8 @@ package body StadtseitenleisteGrafik is
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => Viewfläche,
-                                                                      VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen).width,
-                                                                                            GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen).height));
+                                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen).width,
+                                                                                                               GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen),
                                             GrößeExtern          => Viewfläche,
@@ -112,7 +112,7 @@ package body StadtseitenleisteGrafik is
          AnzuzeigenderText (6) := Kampfwerte (StadtauswahlExtern => StadtauswahlExtern);
          AnzuzeigenderText (7) := Spieltexte.Zeug (TextnummernKonstanten.ZeugKorruption) & StadtauswahlExtern.Korruption'Wide_Wide_Image;
          AnzuzeigenderText (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & Vergleiche.FreieEinwohner (EinwohnerExtern => StadtauswahlExtern.EinwohnerArbeiter (1),
-                                                                                                                                           ArbeiterExtern  => StadtauswahlExtern.EinwohnerArbeiter (2))'Wide_Wide_Image;
+                                                                                                                               ArbeiterExtern  => StadtauswahlExtern.EinwohnerArbeiter (2))'Wide_Wide_Image;
          AnzuzeigenderText (9) := AktuellesBauprojekt (SpeziesExtern    => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                        BauprojektExtern => StadtauswahlExtern.Bauprojekt,
                                                        BauzeitExtern    => StadtauswahlExtern.Bauzeit);
@@ -186,7 +186,7 @@ package body StadtseitenleisteGrafik is
      (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
       return Unbounded_Wide_Wide_String
    is begin
-               
+      
       return Spieltexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => StadtauswahlExtern.ID,
                                                                                                                            KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                                            SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,

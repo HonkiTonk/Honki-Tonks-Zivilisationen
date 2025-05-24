@@ -166,6 +166,16 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   
+   procedure AlleKostenposten
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      AlleKostenpostenExtern : in StadtRecords.PermanenteKostenArray)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
       
    procedure Forschungsrate
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;

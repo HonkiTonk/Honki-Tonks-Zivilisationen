@@ -1,12 +1,11 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
-private with SystemDatentypenHTSEB;
-
 with KartenRecords;
 with KartenDatentypen;
 with SpeziesDatentypen;
 
 private with ZahlenDatentypen;
+private with SpeziesArrays;
 
 with LeseWeltkarteneinstellungen;
 
@@ -33,11 +32,13 @@ package LadenSichtbarkeitLogik is
    
 private
    
+   AktuellerArraybereich : ZahlenDatentypen.EigenesPositive;
+   
+   Potenz : ZahlenDatentypen.EigenesNatural;
+   
    VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    
-   SichtbarkeitVorhanden : SystemDatentypenHTSEB.EinByte;
-      
-   Potenz : ZahlenDatentypen.EigenesNatural;
+   SichtbarkeitVorhanden : SpeziesArrays.SpeziesByteArray;
    
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
 

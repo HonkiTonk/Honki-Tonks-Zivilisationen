@@ -47,6 +47,9 @@ package body SchreibeStadtGebaut is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
+      ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+          IDExtern                 => IDExtern);
+      
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => IDExtern);
       
@@ -352,6 +355,17 @@ package body SchreibeStadtGebaut is
       end case;
       
    end PermanenteKostenPosten;
+   
+   
+   
+   procedure AlleKostenposten
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      AlleKostenpostenExtern : in StadtRecords.PermanenteKostenArray)
+   is begin
+      
+      GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).PermanenteKostenPosten := AlleKostenpostenExtern;
+      
+   end AlleKostenposten;
    
    
       

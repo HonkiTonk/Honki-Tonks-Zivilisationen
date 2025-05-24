@@ -8,6 +8,7 @@ private with SpielRecords;
 private with SpeziesDatentypen;
 private with SpielDatentypen;
 private with ZahlenDatentypen;
+private with SpeziesArrays;
 
 package LadenAllgemeinesLogik is
    pragma Elaborate_Body;
@@ -23,8 +24,11 @@ private
    Gewonnen : Boolean;
    Weiterspielen : Boolean;
    
+   AktuellerArraybereich : ZahlenDatentypen.EigenesPositive;
+   
+   SpeziesVorhanden : SpeziesDatentypen.Speziesnummern;
+   
    GewonnenWeiterspielen : SystemDatentypenHTSEB.EinByte;
-   Besiegt : SystemDatentypenHTSEB.EinByte;
       
    SpezieszugNachLaden : SpeziesDatentypen.Spezies_Enum;
       
@@ -45,6 +49,8 @@ private
    Belegung : SpielRecords.SpeziesbelegungArray;
    
    Potenz : ZahlenDatentypen.EigenesNatural;
+   
+   Besiegt : SpeziesArrays.SpeziesByteArray;
    
    
    

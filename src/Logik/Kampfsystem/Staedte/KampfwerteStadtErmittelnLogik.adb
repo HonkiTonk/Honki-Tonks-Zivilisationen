@@ -26,7 +26,7 @@ package body KampfwerteStadtErmittelnLogik is
                                                                   KampfartExtern       => KampfDatentypen.Verteidigung_Enum,
                                                                   KampfBasiswertExtern => KampfDatentypen.Kampfwerte (EinwohnerExtern),
                                                                   StadttypExtern       => IDExtern,
-                                                                  TaskExtern    => TaskExtern);
+                                                                  TaskExtern           => TaskExtern);
       
       case
         Verteidigung (TaskExtern)
@@ -78,7 +78,7 @@ package body KampfwerteStadtErmittelnLogik is
                                                              KampfartExtern       => KampfDatentypen.Angriff_Enum,
                                                              KampfBasiswertExtern => KampfDatentypen.Kampfwerte (EinwohnerExtern),
                                                              StadttypExtern       => IDExtern,
-                                                             TaskExtern    => TaskExtern);
+                                                             TaskExtern           => TaskExtern);
       
       case
         Angriff (TaskExtern)

@@ -2,6 +2,8 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with SystemDatentypenHTSEB;
 
+private with SpeziesDatentypen;
+
 package SpeichernAllgemeinesLogik is
    pragma Elaborate_Body;
 
@@ -10,6 +12,9 @@ package SpeichernAllgemeinesLogik is
       return Boolean;
 
 private
+
+   SpeziesVorhanden : SpeziesDatentypen.Speziesnummern;
+   AktuelleSpezies : SpeziesDatentypen.Speziesnummern;
 
    GewonnenWeiterspielen : SystemDatentypenHTSEB.EinByte;
    BesiegtAktuell : SystemDatentypenHTSEB.EinByte;

@@ -2,6 +2,7 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
+with SystemDatentypenHTSEB;
 
 with SchreibeWeltkarte;
 
@@ -18,6 +19,9 @@ package body LadenSichtbarkeitLogik is
    is
       use type SystemDatentypenHTSEB.EinByte;
    begin
+      
+      SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                          SichtbarkeitVorhanden (1));
             
       case
         VorhandeneSpeziesExtern
@@ -25,13 +29,26 @@ package body LadenSichtbarkeitLogik is
          when 0 =>
             return False;
             
-         when others =>
-            SichtbarkeitVorhanden := 0;
-            VorhandeneSpezies := VorhandeneSpeziesExtern;
-            GesamteSichtbarkeit := (others => False);
+         when 9 .. 16 =>
+            AktuellerArraybereich := 2;
+            
             SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
-                                                SichtbarkeitVorhanden);
+                                                SichtbarkeitVorhanden (2));
+              
+         when 17 .. 18 =>
+            AktuellerArraybereich := 3;
+            
+            SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                                SichtbarkeitVorhanden (2));
+            SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                                SichtbarkeitVorhanden (3));
+            
+         when others =>
+            AktuellerArraybereich := 1;
       end case;
+      
+      VorhandeneSpezies := VorhandeneSpeziesExtern;
+      GesamteSichtbarkeit := (others => False);
             
       SichtbarkeitSchleife:
       for SichtbarkeitSchleifenwert in reverse SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
@@ -40,22 +57,17 @@ package body LadenSichtbarkeitLogik is
            SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SichtbarkeitSchleifenwert)
          is
             when SpeziesDatentypen.Spieler_Belegt_Enum'Range =>
-               ErmittelnSchleife:
-                -- 0 .. VorhandeneSpezies mod 8? Müsste hinhauen, oder? äöü
-               for ErmittelSchleifenwert in reverse 0 .. 7 loop
+               Potenz := (VorhandeneSpezies - 1) mod 8;
+               
+               if
+                 SichtbarkeitVorhanden (AktuellerArraybereich) >= 2**Potenz
+               then
+                  GesamteSichtbarkeit (SichtbarkeitSchleifenwert) := True;
+                  SichtbarkeitVorhanden (AktuellerArraybereich) := SichtbarkeitVorhanden (AktuellerArraybereich) - 2**Potenz;
             
-                  if
-                    SichtbarkeitVorhanden >= 2**ErmittelSchleifenwert
-                  then
-                     GesamteSichtbarkeit (SichtbarkeitSchleifenwert) := True;
-                     SichtbarkeitVorhanden := SichtbarkeitVorhanden - 2**ErmittelSchleifenwert;
-                     exit ErmittelnSchleife;
-            
-                  else
-                     null;
-                  end if;
-            
-               end loop ErmittelnSchleife;
+               else
+                  null;
+               end if;
                
                VorhandeneSpezies := VorhandeneSpezies - 1;
                
@@ -69,8 +81,7 @@ package body LadenSichtbarkeitLogik is
                  or
                    VorhandeneSpezies = 8
                then
-                  SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
-                                                      SichtbarkeitVorhanden);
+                  AktuellerArraybereich := AktuellerArraybereich - 1;
                   
                else
                   null;
@@ -97,7 +108,7 @@ package body LadenSichtbarkeitLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSichtbarkeitLogik.Sichtbarkeit: Konnte nicht geladen werden: LadenPrüfenExtern =" & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSichtbarkeitLogik.Sichtbarkeit: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
          

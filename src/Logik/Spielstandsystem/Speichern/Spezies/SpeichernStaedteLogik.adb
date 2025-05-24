@@ -42,9 +42,17 @@ package body SpeichernStaedteLogik is
       StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichernExtern),
                                             VorhandeneStädte);
       
-      return Städtewerte (SpeziesExtern        => SpeziesExtern,
-                           DateiSpeichernExtern => DateiSpeichernExtern,
-                           StädtebereichExtern  => VorhandeneStädte);
+      case
+        VorhandeneStädte
+      is
+         when 0 =>
+            return True;
+            
+         when others =>
+            return Städtewerte (SpeziesExtern        => SpeziesExtern,
+                                 DateiSpeichernExtern => DateiSpeichernExtern,
+                                 StädtebereichExtern  => VorhandeneStädte);
+      end case;
       
    exception
       when StandardAdaFehler : others =>
