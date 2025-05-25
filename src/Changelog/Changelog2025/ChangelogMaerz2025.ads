@@ -57,17 +57,16 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (23.03.2025):
+   -- Version 0.06.2690 => 0.06. (23.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2670 => 0.06. (22.03.2025):
+   -- Version 0.06.2670 => 0.06.2690 (22.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Version veröffentlicht.
    
    
 
