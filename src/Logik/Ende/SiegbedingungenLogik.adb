@@ -15,7 +15,7 @@ package body SiegbedingungenLogik is
    function Siegbedingungen
      return SystemDatentypen.Ende_Enum
    is
-      use type GrafikDatentypen.Spezieshintergrund_Enum;
+      use type GrafikDatentypen.Hintergrund_Gesamt_Enum;
    begin
       
       case
@@ -47,13 +47,16 @@ package body SiegbedingungenLogik is
          Sieg := GrafikDatentypen.Gewonnen_Enum;
             
       else
-         Sieg := GrafikDatentypen.Leer_Hintergrund_Enum;
+         Sieg := GrafikDatentypen.Leer_Enum;
       end if;
       
       case
         Sieg
-      is 
-         when GrafikDatentypen.Abspannhintergrund_Enum'Range =>
+      is
+         when GrafikDatentypen.Leer_Enum =>
+            return SystemDatentypen.Leer_Enum;
+            
+         when others =>
             -- Warum schreibe ich hier immer Ekropa? Ist das ein Platzhalter? äöü
             SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesDatentypen.Ekropa_Enum);
             AbspannLogik.Abspann (AbspannExtern => Sieg);
@@ -67,9 +70,6 @@ package body SiegbedingungenLogik is
             else
                return SystemDatentypen.Verloren_Enum;
             end if;
-            
-         when others =>
-            return SystemDatentypen.Leer_Enum;
       end case;
       
    end Siegbedingungen;

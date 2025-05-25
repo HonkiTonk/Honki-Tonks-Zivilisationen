@@ -20,6 +20,7 @@ package body TexturenfelderBerechnenGrafik is
       Speziesberechnungen;
       
       IntroBerechnen;
+      OutroBerechnen;
       AllgemeinesBerechnen;
       Kartenbefehle;
       Einheitenbefehle;
@@ -430,6 +431,41 @@ package body TexturenfelderBerechnenGrafik is
       end loop IntroSchleife;
       
    end IntroBerechnen;
+   
+   
+   
+   procedure OutroBerechnen
+   is
+      use type Sf.sfUint32;
+   begin
+      
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.PZBEndeAccess);
+      
+      Feldgröße := (Texturengröße.x / FelderanzahlOutro.x, Texturengröße.y / FelderanzahlOutro.y);
+      
+      AktuelleFeldposition := (1, 1);
+      
+      OutroSchleife:
+      for OutroSchleifenwert in TexturenfelderVariablenGrafik.OutroArray'Range loop
+         
+         TexturenfelderVariablenGrafik.Outro (OutroSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
+                                                                      Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
+                                                                      Integer (Feldgröße.x),
+                                                                      Integer (Feldgröße.y));
+         
+         if
+           AktuelleFeldposition.x < FelderanzahlOutro.x
+         then
+            AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
+            
+         else
+            AktuelleFeldposition.x := 1;
+            AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
+         end if;
+         
+      end loop OutroSchleife;
+      
+   end OutroBerechnen;
    
    
    

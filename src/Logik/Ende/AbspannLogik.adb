@@ -8,13 +8,13 @@ with TasteneingabeLogik;
 package body AbspannLogik is
 
    procedure Abspann
-     (AbspannExtern : in GrafikDatentypen.Abspannhintergrund_Enum)
+     (AbspannExtern : in GrafikDatentypen.Hintergrund_Outro_Enum)
    is begin
       
       case
         AbspannExtern
       is
-         when GrafikDatentypen.Planet_Vernichtet_Enum =>
+         when GrafikDatentypen.Planetenvernichtung_Enum =>
             SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => LeseAllgemeines.PlanetVernichtet);
             
          when others =>
@@ -40,7 +40,7 @@ package body AbspannLogik is
       end loop AbspannSchleife;
       
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
-      SchreibeGrafiktask.Abspann (AbspannExtern => GrafikDatentypen.Leer_Hintergrund_Enum);
+      SchreibeGrafiktask.Abspann (AbspannExtern => GrafikDatentypen.Leer_Enum);
       
    end Abspann;
 

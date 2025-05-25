@@ -22,6 +22,7 @@ private
    FelderanzahlGebäude : constant Sf.System.Vector2.sfVector2u := (6, 5);
    
    FelderanzahlIntro : constant Sf.System.Vector2.sfVector2u := (1, 1);
+   FelderanzahlOutro : constant Sf.System.Vector2.sfVector2u := (1, 1);
    FelderanzahlAllgemeines : constant Sf.System.Vector2.sfVector2u := (2, 2);
    FelderanzahlKartenbefehle : constant Sf.System.Vector2.sfVector2u := (3, 4);
    FelderanzahlEinheitenbefehle : constant Sf.System.Vector2.sfVector2u := (3, 5);
@@ -56,6 +57,7 @@ private
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
    
    procedure IntroBerechnen;
+   procedure OutroBerechnen;
    procedure AllgemeinesBerechnen;
    procedure Kartenbefehle;
    procedure Einheitenbefehle;

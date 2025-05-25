@@ -71,17 +71,18 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (21.03.2025):
+   -- Version 0.06.2650 => 0.06. (21.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2615 => 0.06. (20.03.2025):
+   -- Version 0.06.2615 => 0.06.2650 (20.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Fehelr korrigiert der zu einem Absturz führte wenn man das Spiel gewann/verlor.
+   -- Kleinigkeiten korrigiert/überarbeitet.
    
    
 

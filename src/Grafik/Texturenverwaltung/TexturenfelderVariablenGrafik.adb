@@ -252,7 +252,7 @@ package body TexturenfelderVariablenGrafik is
             return AllgemeinesSpezien (SpeziesExtern, HintergrundExtern);
             
          when GrafikDatentypen.Hintergrund_Outro_Enum'Range =>
-            null;
+            return Outro (HintergrundExtern);
       end case;
       
       return (1, 1, 1, 1);
@@ -286,7 +286,7 @@ package body TexturenfelderVariablenGrafik is
             return (Float (AllgemeinesSpezien (SpeziesExtern, HintergrundExtern).width), Float (AllgemeinesSpezien (SpeziesExtern, HintergrundExtern).height));
                         
          when GrafikDatentypen.Hintergrund_Outro_Enum'Range =>
-            null;
+            return (Float (Outro (HintergrundExtern).width), Float (Outro (HintergrundExtern).height));
       end case;
       
       return (1.00, 1.00);

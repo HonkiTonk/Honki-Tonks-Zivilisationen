@@ -28,7 +28,7 @@ package SchreibeGrafiktask is
      (AnpassungExtern : in GrafikDatentypen.Fenster_Anpassen_Enum);
    
    procedure Abspann
-     (AbspannExtern : in GrafikDatentypen.Spezieshintergrund_Enum);
+     (AbspannExtern : in GrafikDatentypen.Hintergrund_Outro_Enum);
    
    procedure SchriftartSetzen
      (JaNeinExtern : in Boolean);

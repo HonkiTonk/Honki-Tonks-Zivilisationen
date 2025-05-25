@@ -43,7 +43,7 @@ package body LeseGrafiktask is
    
    
    function Abspann
-     return GrafikDatentypen.Spezieshintergrund_Enum
+     return GrafikDatentypen.Hintergrund_Outro_Enum
    is begin
       
       return Grafiktask.Grafik.Abspann;

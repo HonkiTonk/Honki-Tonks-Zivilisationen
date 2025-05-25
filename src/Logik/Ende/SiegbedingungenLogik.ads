@@ -10,7 +10,7 @@ package SiegbedingungenLogik is
 
 private
 
-   Sieg : GrafikDatentypen.Spezieshintergrund_Enum;
+   Sieg : GrafikDatentypen.Hintergrund_Outro_Enum;
 
    VorhandeneSpezies : Natural;
 

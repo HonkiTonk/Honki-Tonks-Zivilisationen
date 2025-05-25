@@ -13,11 +13,20 @@ with TextaccessverwaltungssystemEinfachGrafik;
 package body AbspannGrafik is
 
    procedure Abspann
-     (AbspannExtern : in GrafikDatentypen.Abspannhintergrund_Enum;
+     (AbspannExtern : in GrafikDatentypen.Hintergrund_Outro_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeAnpassen (ViewflächeExtern => Viewfläche);
+      case
+        SpeziesExtern
+      is
+         when others =>
+            null;
+      end case;
+      
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => Viewfläche,
+                                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Sequenzbereich.width,
+                                                                                                               GrafikRecordKonstanten.Sequenzbereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.AbspannviewAccess,
                                             GrößeExtern          => Viewfläche,
@@ -26,18 +35,21 @@ package body AbspannGrafik is
       case
         AbspannExtern
       is
-         when GrafikDatentypen.Planet_Vernichtet_Enum =>
-            -- HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.PZB_Ende_Hintergrund_Enum,
-            --                                AbmessungenExtern => Viewfläche);
+         when GrafikDatentypen.Planetenvernichtung_Enum =>
+            HintergrundGrafik.Aufteilung (HintergrundExtern => AbspannExtern,
+                                          AbmessungenExtern => Viewfläche);
             
             Viewfläche.y := PlanetVernichtet (MaximaleTextbreiteExtern => Viewfläche.x);
             
          when GrafikDatentypen.Gewonnen_Enum | GrafikDatentypen.Verloren_Enum =>
-            HintergrundGrafik.Spezieshintergrund (SpeziesExtern     => SpeziesExtern,
-                                                  HintergrundExtern => AbspannExtern,
-                                                  AbmessungenExtern => Viewfläche);
+            HintergrundGrafik.Aufteilung (HintergrundExtern => AbspannExtern,
+                                          AbmessungenExtern => Viewfläche);
             
             Viewfläche.y := Gewonnen (MaximaleTextbreiteExtern => Viewfläche.x);
+            
+         when GrafikDatentypen.Leer_Enum =>
+            -- Hier noch eine Warnung einbauen? äöü
+            null;
       end case;
       
    end Abspann;

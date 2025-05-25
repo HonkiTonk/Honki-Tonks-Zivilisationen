@@ -20,7 +20,7 @@ package Grafiktask is
                                          IntroBeenden        => False,
                                          FensterEntfernen    => False,
                                          FensterAnpassen     => GrafikDatentypen.Keine_Änderung_Enum,
-                                         Abspann             => GrafikDatentypen.Leer_Hintergrund_Enum
+                                         Abspann             => GrafikDatentypen.Leer_Enum
                                         );
    
    Texteinstellungen : TaskRecords.TexteinstellungenGrafikRecord := (others => False);

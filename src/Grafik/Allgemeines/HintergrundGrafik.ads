@@ -51,18 +51,6 @@ package HintergrundGrafik is
                  PositionExtern.y >= 0.00
               );
 
-   -- Spezies kann hier nicht geprrüft werden da der Abspann eventuell ohne belegte Spezies ankommt!
-   procedure Spezieshintergrund
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
-      AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 AbmessungenExtern.x >= 0.00
-               and
-                 AbmessungenExtern.y >= 0.00
-              );
-
 private
 
    AktuelleSpezies : SpeziesDatentypen.Spezies_Enum;

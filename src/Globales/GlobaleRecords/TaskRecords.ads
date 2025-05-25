@@ -58,7 +58,7 @@ package TaskRecords is
       
       FensterAnpassen : GrafikDatentypen.Fenster_Anpassen_Enum;
    
-      Abspann : GrafikDatentypen.Spezieshintergrund_Enum;
+      Abspann : GrafikDatentypen.Hintergrund_Outro_Enum;
       
    end record;
    

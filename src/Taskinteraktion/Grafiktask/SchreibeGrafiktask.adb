@@ -43,7 +43,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Abspann
-     (AbspannExtern : in GrafikDatentypen.Spezieshintergrund_Enum)
+     (AbspannExtern : in GrafikDatentypen.Hintergrund_Outro_Enum)
    is begin
       
       Grafiktask.Grafik.Abspann := AbspannExtern;

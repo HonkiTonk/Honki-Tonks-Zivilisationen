@@ -1,7 +1,6 @@
 with Sf.Graphics;
 
 with SpeziesDatentypen;
-with GrafikDatentypen;
 
 package EingeleseneTexturenGrafik is
    pragma Elaborate_Body;
@@ -21,6 +20,7 @@ package EingeleseneTexturenGrafik is
    KartenbefehleAccess : Sf.Graphics.sfTexture_Ptr := null;
    EinheitenbefehleAccess : Sf.Graphics.sfTexture_Ptr := null;
    KartenformenAccess : Sf.Graphics.sfTexture_Ptr := null;
+   -- OutroAccess : Sf.Graphics.sfTexture_Ptr := null;
 
 
 
@@ -34,7 +34,5 @@ package EingeleseneTexturenGrafik is
 
 
 
-   type SpezieshintergrundAccessArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
-   SpezieshintergrundAccess : SpezieshintergrundAccessArray := (others => (others => null));
 
 end EingeleseneTexturenGrafik;

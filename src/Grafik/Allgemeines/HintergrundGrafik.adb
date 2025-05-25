@@ -1,3 +1,5 @@
+with MeldungssystemHTSEB;
+
 with GrafikKonstanten;
 with GrafikRecordKonstanten;
 
@@ -5,9 +7,7 @@ with LeseGrafiktask;
 
 with EingeleseneTexturenGrafik;
 with TexturenskalierungGrafik;
-with MeldungssystemHTSEB;
 with ObjekteZeichnenGrafik;
-with SpritesverwaltungssystemGrafik;
 with KartenspritesZeichnenGrafik;
 with TexturenfelderVariablenGrafik;
 
@@ -64,7 +64,11 @@ package body HintergrundGrafik is
             end if;
             
          when GrafikDatentypen.Hintergrund_Outro_Enum'Range =>
-            null;
+            Hintergrund (TexturAccessExtern  => EingeleseneTexturenGrafik.PZBEndeAccess,
+                         TexturbereichExtern => TexturenfelderVariablenGrafik.AllgemeinesRechteck (HintergrundExtern => HintergrundExtern,
+                                                                                                   SpeziesExtern     => SpeziesDatentypen.Leer_Spezies_Enum),
+                         AbmessungenExtern   => AbmessungenExtern,
+                         HintergrundExtern   => HintergrundExtern);
       end case;
       
    end Aufteilung;
@@ -132,50 +136,5 @@ package body HintergrundGrafik is
       end if;
       
    end HintergrundPositionierbar;
-   
-   
-   
-   procedure Spezieshintergrund
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
-      AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
-   is
-      use type Sf.Graphics.sfTexture_Ptr;
-   begin
-      
-      if
-        EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern) = null
-      then
-         MeldungssystemHTSEB.Grafik (MeldungExtern => "HintergrundGrafik.Spezieshintergrund: Hintergrund fehlt: " & SpeziesExtern'Wide_Wide_Image & " " & HintergrundExtern'Wide_Wide_Image);
-      
-         -- Cyan Zeichnen lassen, um zu signalisieren dass hier etwas nicht stimmt.
-         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
-                                                 PositionExtern  => GrafikRecordKonstanten.Nullposition,
-                                                 FarbeExtern     => GrafikRecordKonstanten.Fehlerfarbe);
-         
-      else
-         Skalierung := TexturenskalierungGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpezieshintergrundSpriteAccess,
-                                                                          TextureAccessExtern => EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern),
-                                                                          GrößeExtern         => AbmessungenExtern);
-         Sf.Graphics.Sprite.setScale (sprite => SpezieshintergrundSpriteAccess,
-                                      scale  => Skalierung);
-         
-         Farbe := Sf.Graphics.Sprite.getColor (sprite => SpezieshintergrundSpriteAccess);
-         
-         -- case
-         --   HintergrundExtern
-         -- is
-         --    when GrafikDatentypen.Hintergrund_Undurchsichtig_Enum =>
-         Farbe.a := GrafikKonstanten.Undurchsichtig;
-               
-         --    when GrafikDatentypen.Hintergrund_Durchsichtig_Enum =>
-         --       Farbe.a := 150;
-         -- end case;
-        
-         SpritesverwaltungssystemGrafik.FarbeZeichnen (SpriteAccessExtern => SpezieshintergrundSpriteAccess,
-                                                       FarbeExtern        => Farbe);
-      end if;
-      
-   end Spezieshintergrund;
 
 end HintergrundGrafik;

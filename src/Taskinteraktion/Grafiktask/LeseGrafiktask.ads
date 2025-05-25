@@ -28,7 +28,7 @@ package LeseGrafiktask is
      return GrafikDatentypen.Fenster_Anpassen_Enum;
    
    function Abspann
-     return GrafikDatentypen.Spezieshintergrund_Enum;
+     return GrafikDatentypen.Hintergrund_Outro_Enum;
    
    function SchriftartSetzen
      return Boolean;

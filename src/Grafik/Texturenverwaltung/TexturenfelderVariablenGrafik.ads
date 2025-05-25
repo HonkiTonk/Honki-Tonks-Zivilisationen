@@ -62,6 +62,9 @@ package TexturenfelderVariablenGrafik is
    type KartenformenArray is array (GrafikDatentypen.Hintergrund_Kartenformen_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
    Kartenformen : KartenformenArray;
    
+   type OutroArray is array (GrafikDatentypen.Hintergrund_Outro_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   Outro : OutroArray;
+   
    
    
    function BasisgrundRechteck

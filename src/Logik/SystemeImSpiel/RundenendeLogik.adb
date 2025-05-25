@@ -168,7 +168,7 @@ package body RundenendeLogik is
             Weiterspielen := LeseAllgemeines.Weiterspielen;
             
          when WichtigesKonstanten.Zusammenbruch =>
-            AbspannLogik.Abspann (AbspannExtern => GrafikDatentypen.Planet_Vernichtet_Enum);
+            AbspannLogik.Abspann (AbspannExtern => GrafikDatentypen.Planetenvernichtung_Enum);
             return False;
             
          when others =>

@@ -9,7 +9,7 @@ package AbspannGrafik is
    pragma Elaborate_Body;
 
    procedure Abspann
-     (AbspannExtern : in GrafikDatentypen.Abspannhintergrund_Enum;
+     (AbspannExtern : in GrafikDatentypen.Hintergrund_Outro_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum);
    -- Später wieder einbauen, funktioniert aktuell nicht richtig da die gewinnende Spezies nicht festgetzt wird. äöü
    --  with

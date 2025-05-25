@@ -69,7 +69,7 @@ package GrafikDatentypen is
                                     
                                     Bauen_Enum, Forschung_Enum, Forschungserfolg_Enum, Seitenleiste_Enum,
                                     
-                                    Gewonnen_Enum, Verloren_Enum, Planetenvernichtung_Enum
+                                    Gewonnen_Enum, Verloren_Enum, Planetenvernichtung_Enum, Leer_Enum
                                    );
    
    subtype Hintergrund_Intro_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'First .. Intro_Eins_Enum;
@@ -83,21 +83,6 @@ package GrafikDatentypen is
    subtype Hintergrund_Spezienspezifisch_Anzeige_Enum is Hintergrund_Gesamtanzeige_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Anzeige_Enum'Last) .. Hintergrund_Gesamtanzeige_Enum'Last;
    
    subtype Hintergrund_Outro_Enum is Hintergrund_Gesamt_Enum range Hintergrund_Gesamt_Enum'Succ (Hintergrund_Spezienspezifisch_Anzeige_Enum'Last) .. Hintergrund_Gesamt_Enum'Last;
-         
-   type Spezieshintergrund_Enum is (
-                                    Leer_Hintergrund_Enum,
-                                   
-                                                                       
-                                    -- Abspann
-                                    Gewonnen_Enum,
-                                    Verloren_Enum,
-                                   
-                                    Planet_Vernichtet_Enum
-                                   );
-   
-   subtype Spezieshintergrund_Vorhanden_Enum is Spezieshintergrund_Enum range Spezieshintergrund_Enum'Succ (Spezieshintergrund_Enum'First) .. Spezieshintergrund_Enum'Last;
-   
-   subtype Abspannhintergrund_Enum is Spezieshintergrund_Vorhanden_Enum range Gewonnen_Enum .. Spezieshintergrund_Vorhanden_Enum'Last;
    
       
       
