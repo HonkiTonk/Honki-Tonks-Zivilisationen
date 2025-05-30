@@ -29,24 +29,22 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (27.03.2025):
+   -- Version 0.06.2805 => 0.06. (27.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (26.03.2025):
+   -- Version 0.06.2785 => 0.06.2805 (26.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Version veröffentlicht.
    
    
 
-   -- Version 0.06.2765 => 0.06. (25.03.2025):
+   -- Version 0.06.2765 => 0.06.2785 (25.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Alire Version erstellt.
    
    
 
