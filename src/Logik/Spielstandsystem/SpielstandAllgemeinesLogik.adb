@@ -91,7 +91,18 @@ package body SpielstandAllgemeinesLogik is
    
    
    
-   function SpeziesanzahlErmitteln
+   function SpeziesBesiegtLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return Boolean
+   is begin
+      
+      return Speziesbelegung (SpeziesExtern).Besiegt;
+      
+   end SpeziesBesiegtLesen;
+   
+   
+   
+   function GesamteSpeziesanzahl
      (SpeichernLadenExtern : in Boolean)
       return SpeziesDatentypen.Speziesnummern
    is begin
@@ -123,6 +134,46 @@ package body SpielstandAllgemeinesLogik is
       
       return VorhandeneSpezies;
       
-   end SpeziesanzahlErmitteln;
+   end GesamteSpeziesanzahl;
+   
+   
+   
+   function VorhandeneSpeziesanzahl
+     (SpeichernLadenExtern : in Boolean)
+      return SpeziesDatentypen.Speziesnummern
+   is begin
+      
+      VorhandeneSpezies := SpeziesKonstanten.LeerSpeziesnummer;
+      
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
+               
+         if
+           SpeichernLadenExtern
+           and
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) in SpeziesDatentypen.Spieler_Belegt_Enum
+           and
+             LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert) = False
+         then
+            VorhandeneSpezies := VorhandeneSpezies + 1;
+                  
+         elsif
+           (SpeichernLadenExtern = False)
+           and
+             SpeziesbelegungLesen (SpeziesExtern => SpeziesSchleifenwert) in SpeziesDatentypen.Spieler_Belegt_Enum
+           and
+             SpeziesBesiegtLesen (SpeziesExtern => SpeziesSchleifenwert) = False
+         then
+            VorhandeneSpezies := VorhandeneSpezies + 1;
+               
+         else
+            null;
+         end if;
+         
+      end loop SpeziesSchleife;
+      
+      return VorhandeneSpezies;
+      
+   end VorhandeneSpeziesanzahl;
 
 end SpielstandAllgemeinesLogik;

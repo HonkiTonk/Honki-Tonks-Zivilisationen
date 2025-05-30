@@ -87,7 +87,7 @@ package ChangelogFebruar2025 is
 
    -- Version 0.06.1520 => 0.06.1590 (17.02.2025):
    
-   -- Fehler korrigiert der es ermögliche ungültige Spielstandnamen unter Windows einzugeben.
+   -- Fehler korrigiert der es ermöglichte ungültige Spielstandnamen unter Windows einzugeben.
    -- Fehler korrigiert der unter Windows die Eingabe von bestimmten Stadtnamen verhinderte.
    -- Die Liste der Sprachdateien kann jetzt ebenfalls mit dem Trennzeichen und Leerzeilen versehen werden ohne dass es zu Problemen kommt.
    -- Fehler korrigiert der es ermöglichte keinen Namen als Dateinamen einzugeben.

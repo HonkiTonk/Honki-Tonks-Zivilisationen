@@ -178,6 +178,11 @@ package body LadenLogik is
             null;
             
          elsif
+           SpielstandAllgemeinesLogik.SpeziesBesiegtLesen (SpeziesExtern => SpeziesSchleifenwert) = True
+         then
+            null;
+            
+         elsif
            False = LadenSpezienspezifischesLogik.Aufteilung (LadenPrüfenExtern => LadenPrüfenExtern,
                                                              SpeziesExtern     => SpeziesSchleifenwert,
                                                              DateiLadenExtern  => DateiLadenExtern)

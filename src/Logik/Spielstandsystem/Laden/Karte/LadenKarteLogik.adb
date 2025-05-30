@@ -24,7 +24,7 @@ package body LadenKarteLogik is
       KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLadenExtern),
                                                           Karteneinstellungen);
       
-      VorhandeneSpezies := SpielstandAllgemeinesLogik.SpeziesanzahlErmitteln (SpeichernLadenExtern => False);
+      VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => False);
       
       case
         LadenPrüfenExtern
@@ -44,10 +44,10 @@ package body LadenKarteLogik is
             for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
                
                if
-                 False = LadenSichtbarkeitLogik.Sichtbarkeit (DateiLadenExtern        => DateiLadenExtern,
-                                                              KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                              VorhandeneSpeziesExtern => VorhandeneSpezies,
-                                                              LadenPrüfenExtern       => LadenPrüfenExtern)
+                 False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
+                                                            KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                            VorhandeneSpeziesExtern => VorhandeneSpezies,
+                                                            LadenPrüfenExtern       => LadenPrüfenExtern)
                then
                   return False;
                   

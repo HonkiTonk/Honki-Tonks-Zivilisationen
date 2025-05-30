@@ -36,7 +36,7 @@ private
       
    Transparents : Sf.sfUint8;
    
-   Test : Natural;
+   Stadtnamenposition : Natural;
    
    Sichtbereich : KartenRecords.KartenfeldumgebungPositivRecord;
       

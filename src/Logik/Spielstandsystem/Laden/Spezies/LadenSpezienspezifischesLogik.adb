@@ -49,7 +49,7 @@ package body LadenSpezienspezifischesLogik is
       
       SpielRecords.GrenzenRecord'Read (Stream (File => DateiLadenExtern),
                                        AlleGrenzen);
-      
+            
       case
         LadenPrüfenExtern
       is

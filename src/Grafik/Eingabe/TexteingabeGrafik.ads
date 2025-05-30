@@ -15,7 +15,7 @@ private
    EingegebenesZeichen : Wide_Wide_Character;
    
    Text : Unbounded_Wide_Wide_String;
-
+   
    TextEingegeben : Sf.Window.Event.sfEvent;
    
    TextGeprüft : SystemRecordsHTSEB.TextEingabeRecord;

@@ -142,7 +142,7 @@ package body LadenAllgemeinesLogik is
       
       SpielstandAllgemeinesLogik.SpeziesbelegungSchreiben (SpeziesbelegungExtern => Belegung);
       
-      SpeziesVorhanden := SpielstandAllgemeinesLogik.SpeziesanzahlErmitteln (SpeichernLadenExtern => False);
+      SpeziesVorhanden := SpielstandAllgemeinesLogik.GesamteSpeziesanzahl (SpeichernLadenExtern => False);
       
       SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
                                           Besiegt (1));

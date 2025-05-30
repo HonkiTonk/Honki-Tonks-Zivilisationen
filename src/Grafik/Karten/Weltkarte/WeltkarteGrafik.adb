@@ -76,7 +76,7 @@ package body WeltkarteGrafik is
       is
          when KartenartDatentypen.Senkrechte_Übergangslos_Enum =>
             Feldposition := GrafikRecordKonstanten.Nullposition;
-            Test := 0;
+            Stadtnamenposition := 0;
             
          when others =>
             return;
@@ -106,7 +106,7 @@ package body WeltkarteGrafik is
               LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert) in KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range
             then
                if
-                 Test = Integer (Sichtbereich.Senkrechte + Sichtbereich.Senkrechte)
+                 Stadtnamenposition = Integer (Sichtbereich.Senkrechte + Sichtbereich.Senkrechte)
                then
                   WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
                                                                    PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
@@ -128,7 +128,7 @@ package body WeltkarteGrafik is
          
             Feldposition := (GrafikKonstanten.Nullwert, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
             
-            Test := Test + 1;
+            Stadtnamenposition := Stadtnamenposition + 1;
          
       end loop SenkrechteamenSchleife;
             

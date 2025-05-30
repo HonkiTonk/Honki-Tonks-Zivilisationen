@@ -29,9 +29,17 @@ package SpielstandAllgemeinesLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return SpeziesDatentypen.Spieler_Enum;
    
-   function SpeziesanzahlErmitteln
+   function SpeziesBesiegtLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+     return Boolean;
+   
+   function GesamteSpeziesanzahl
      (SpeichernLadenExtern : in Boolean)
-     return SpeziesDatentypen.Speziesnummern;
+      return SpeziesDatentypen.Speziesnummern;
+   
+   function VorhandeneSpeziesanzahl
+     (SpeichernLadenExtern : in Boolean)
+      return SpeziesDatentypen.Speziesnummern;
    
 private
    

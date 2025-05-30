@@ -28,5 +28,8 @@ package SystemDatentypenHTSEB is
    type EinByte is mod 2**8;
    type ZweiByte is mod 2**16;
    type VierByte is mod 2**32;
+   
+   type EinByteVorzeichen is range -128 .. 127;
+   type ZweiByteVorzeichen is range -32_768 .. 32_767;
 
 end SystemDatentypenHTSEB;

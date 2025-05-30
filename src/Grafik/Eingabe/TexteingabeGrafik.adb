@@ -63,6 +63,7 @@ package body TexteingabeGrafik is
                   is
                      when False =>
                         TextGeprüft.ErfolgreichAbbruch := True;
+                        TextGeprüft.EingegebenerText := LeseLogiktask.Texteingabe;
                         
                      when True =>
                         TextGeprüft := DateisystemtestsHTSEB.Namensprüfungen (TextExtern => LeseLogiktask.Texteingabe);

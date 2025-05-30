@@ -32,33 +32,16 @@ package body DiagnosesystemZusatzinformationen is
    procedure GrößenprüfungDatei
    is begin
       
-      Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Test");
-      
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
             
-      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichern),
-                                           0);
-      SpeziesDatentypen.Spezies_Enum'Write (Stream (File => DateiSpeichern),
-                                            SpeziesDatentypen.Alary_Enum);
+      SystemDatentypenHTSEB.EinByteVorzeichen'Write (Stream (File => DateiSpeichern),
+                                                     1);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                  NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
-      
-      DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiSpeichern,
-                                              NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
-      
-      SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiSpeichern),
-                                           Was);
-      SpeziesDatentypen.Spezies_Enum'Read (Stream (File => DateiSpeichern),
-                                           Test);
-      
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
-                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
-      
-      Put_Line (Was'Wide_Wide_Image);
-      Put_Line (Test'Wide_Wide_Image);
                                               
+      
       
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Neue Version"));

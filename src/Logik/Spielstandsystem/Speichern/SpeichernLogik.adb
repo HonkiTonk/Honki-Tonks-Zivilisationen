@@ -159,6 +159,11 @@ package body SpeichernLogik is
             null;
             
          elsif
+           LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert) = True
+         then
+            null;
+            
+         elsif
            False = SpeichernSpezienspezifischesLogik.Aufteilung (SpeziesExtern        => SpeziesSchleifenwert,
                                                                  DateiSpeichernExtern => DateiSpeichernExtern)
          then

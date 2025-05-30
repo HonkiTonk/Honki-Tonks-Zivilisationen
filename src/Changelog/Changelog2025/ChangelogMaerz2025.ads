@@ -50,17 +50,19 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (24.03.2025):
+   -- Version 0.06.2740 => 0.06. (24.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2690 => 0.06. (23.03.2025):
+   -- Version 0.06.2690 => 0.06.2740 (23.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das neue Speichersystem weiter verbessert.
+   -- Fehler korrigiert der zu fehlerhaften Stadtnamen führte.
+   -- Unnötigen Code gelöscht.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

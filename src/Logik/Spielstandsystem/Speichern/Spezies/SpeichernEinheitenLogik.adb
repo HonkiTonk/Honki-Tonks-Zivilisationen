@@ -22,7 +22,7 @@ package body SpeichernEinheitenLogik is
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is begin
-            
+      
       VorhandeneEinheiten := EinheitenKonstanten.LeerNummer;
       
       AnzahlEinheitenSchleife:

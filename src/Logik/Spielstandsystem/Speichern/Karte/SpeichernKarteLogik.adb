@@ -24,7 +24,7 @@ package body SpeichernKarteLogik is
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseWeltkarteneinstellungen.GesamteEinstellungen);
       
-      VorhandeneSpezies := SpielstandAllgemeinesLogik.SpeziesanzahlErmitteln (SpeichernLadenExtern => True);
+      VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
       
       EbeneSchleife:
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
@@ -34,9 +34,9 @@ package body SpeichernKarteLogik is
             for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
                
                if
-                 False = SpeichernSichtbarkeitLogik.Sichtbarkeit (KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                  VorhandeneSpeziesExtern => VorhandeneSpezies,
-                                                                  DateiSpeichernExtern    => DateiSpeichernExtern)
+                 False = SpeichernSichtbarkeitLogik.Aufteilung (KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                VorhandeneSpeziesExtern => VorhandeneSpezies,
+                                                                DateiSpeichernExtern    => DateiSpeichernExtern)
                then
                   return False;
                   

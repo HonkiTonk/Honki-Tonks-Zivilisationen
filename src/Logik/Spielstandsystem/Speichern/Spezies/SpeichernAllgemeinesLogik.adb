@@ -121,7 +121,7 @@ package body SpeichernAllgemeinesLogik is
       BesiegtAktuell := 1;
       Besiegt := 0;
       AktuelleSpezies := 0;
-      SpeziesVorhanden := SpielstandAllgemeinesLogik.SpeziesanzahlErmitteln (SpeichernLadenExtern => True);
+      SpeziesVorhanden := SpielstandAllgemeinesLogik.GesamteSpeziesanzahl (SpeichernLadenExtern => True);
       
       BesiegtSchleife:
       for BesiegtSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
