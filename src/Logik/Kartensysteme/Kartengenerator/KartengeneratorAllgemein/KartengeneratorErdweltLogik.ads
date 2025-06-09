@@ -1,8 +1,9 @@
+private with SystemDatentypenHTSEB;
+
 with KartenDatentypen;
 with KartenRecords;
 
 private with KartengrundDatentypen;
-private with SystemDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -24,10 +25,10 @@ private
       
    Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
    
-   GezogeneZahl : SystemDatentypen.NullBisHundert;
-   Zahlenspeicher : SystemDatentypen.NullBisHundert;
+   GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
+   Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
       
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range) of SystemDatentypen.NullBisHundert;
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Erde_Enum       => 30,
                                                                   KartengrundDatentypen.Erdgestein_Enum => 30,

@@ -1,9 +1,9 @@
 private with AllgemeineBerechnungenHTSEB;
+private with SystemDatentypenHTSEB;
 
 private with KartenDatentypen;
 private with KartengrundDatentypen;
 private with KartenRecords;
-private with SystemDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -18,8 +18,8 @@ private
 
    WelcherGrund : KartengrundDatentypen.Basisgrund_Enum;
 
-   GezogeneZahl : SystemDatentypen.NullBisHundert;
-   Zahlenspeicher : SystemDatentypen.NullBisHundert;
+   GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
+   Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
 
    YKernanfang : KartenDatentypen.SenkrechtePositiv;
    XKernanfang : KartenDatentypen.WaagerechtePositiv;
@@ -28,7 +28,7 @@ private
 
    Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
 
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypen.NullBisHundert;
+   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Ringwoodit_Enum     => 15,
                                                                   KartengrundDatentypen.Majorit_Enum        => 15,

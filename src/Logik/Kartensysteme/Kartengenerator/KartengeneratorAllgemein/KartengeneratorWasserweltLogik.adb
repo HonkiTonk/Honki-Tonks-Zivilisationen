@@ -49,7 +49,7 @@ package body KartengeneratorWasserweltLogik is
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       Zahlenspeicher := 0;

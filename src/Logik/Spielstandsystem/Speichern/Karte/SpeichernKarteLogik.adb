@@ -6,11 +6,13 @@ with UmwandlungssystemHTSEB;
 with KartenKonstanten;
 with StadtKonstanten;
 with KartenRecordKonstanten;
+with LadezeitenDatentypen;
 
 with LeseWeltkarte;
 
 with SpielstandAllgemeinesLogik;
 with SpeichernSichtbarkeitLogik;
+with LadezeitenLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
@@ -93,10 +95,22 @@ package body SpeichernKarteLogik is
                
             end loop WaagerechteSchleife;
          end loop SenkrechteSchleife;
-                  
-         SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         
+         case
+           AutospeichernExtern
+         is
+            when False =>
+               null;
+               
+            when True =>
+               LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+                                          ErhöhungExtern              => 20);
+         end case;
+         -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
          
       end loop EbeneSchleife;
+      
+      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       return True;
       

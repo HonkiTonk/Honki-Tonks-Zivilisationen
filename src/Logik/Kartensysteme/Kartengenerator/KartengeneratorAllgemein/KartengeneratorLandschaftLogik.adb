@@ -1,5 +1,8 @@
+with ZufallsgeneratorenHTSEB;
+
 with LadezeitenDatentypen;
 with KartenKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 
@@ -8,7 +11,6 @@ with KartenkoordinatenberechnungssystemLogik;
 with KartengeneratorVariablenLogik;
 with LadezeitenLogik;
 with Zusatzgrundplatzierungssystem;
-with ZufallsgeneratorenHTSEB;
 with Basisgrundplatzierungssystem;
 
 package body KartengeneratorLandschaftLogik is
@@ -65,7 +67,7 @@ package body KartengeneratorLandschaftLogik is
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       Zahlenspeicher := 0;
@@ -126,7 +128,7 @@ package body KartengeneratorLandschaftLogik is
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       Zahlenspeicher := 0;

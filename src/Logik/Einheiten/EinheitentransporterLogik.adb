@@ -1,3 +1,5 @@
+with MeldungssystemHTSEB;
+
 with KartenKonstanten;
 with SystemDatentypen;
 
@@ -11,8 +13,9 @@ with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 with BewegungspunkteBerechnenLogik;
 with BewegungsberechnungEinheitenLogik;
-with MeldungssystemHTSEB;
+with TransporterBeladenEntladenLogik;
 
+-- Das vielleicht mal mit TransporterBeladenEntladenLogik/TransporterLadungsverschiebungLogik zusammenführen? äöü
 package body EinheitentransporterLogik is
    
    -- Eventuell für Ladung und Transporter die Spezies übergeben und dann eine Sicherheitsprüfung einbauen ob es die gleiche Spezies ist und wenn nicht einen Fehler ausgeben? äöü
@@ -114,6 +117,8 @@ package body EinheitentransporterLogik is
          end case;
                
       end loop TransporterAusladenSchleife;
+      
+      TransporterBeladenEntladenLogik.LadungSortieren (TransporterExtern => TransporterExtern);
       
    end TransporterEntladen;
    
@@ -263,8 +268,6 @@ package body EinheitentransporterLogik is
          
       end loop LadungSchleife;
       
-      -- Das kann theortisch weg, aber zu Sicherheitszwischen mal drinnen lassen um besser Überprüfen zu können ob das Sortieren funktioniert. äöü
-      -- Dauerhaft drinnen lassen? äöü
       MeldungssystemHTSEB.Logik (MeldungExtern => "EinheitentransporterLogik.LadungsnummerAnpassen: Transportierte Einheit wird nicht transportiert");
       
    end LadungsnummerAnpassen;
@@ -296,21 +299,5 @@ package body EinheitentransporterLogik is
       end loop LadungSchleife;
       
    end LadungAnpassen;
-   
-   
-   
-   procedure LadungSortieren
-     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is begin
-      
-      LadungSchleife:
-      for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
-                                                                                                                        IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern)) loop
-         
-         null;
-         
-      end loop LadungSchleife;
-      
-   end LadungSortieren;
 
 end EinheitentransporterLogik;

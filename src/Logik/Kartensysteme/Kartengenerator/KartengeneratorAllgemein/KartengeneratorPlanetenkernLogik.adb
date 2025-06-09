@@ -68,7 +68,7 @@ package body KartengeneratorPlanetenkernLogik is
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       WelcherGrund := KartengrundDatentypen.Leer_Basisgrund_Enum;

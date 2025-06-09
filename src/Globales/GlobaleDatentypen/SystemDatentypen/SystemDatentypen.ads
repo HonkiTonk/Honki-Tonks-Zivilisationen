@@ -1,12 +1,14 @@
 package SystemDatentypen is
    pragma Pure;
 
+   -- Das auch mal auslagern? äöü
    type Anfang_Ende_Enum is (
                              Anfangswert_Enum, Endwert_Enum
                             );
    
    
    
+   -- Das auch mal auslagern? äöü
    type Erweiterter_Boolean_Enum is (
                                      True_Enum, Neutral_Enum, False_Enum
                                     );
@@ -21,21 +23,6 @@ package SystemDatentypen is
    
    
    
-   type Abspann_Enum is (
-                         Leer_Abspann_Enum,
-                         
-                         Abspann_Eins_Enum
-                        );
-   
-   subtype Abspann_Vorhanden_Enum is Abspann_Enum range Abspann_Enum'Succ (Abspann_Enum'First) .. Abspann_Enum'Last;
-   
-   
-   
-   type NullBisHundert is range 0 .. 100;
-   subtype EinsBisHundert is NullBisHundert range 1 .. NullBisHundert'Last;
-   
-   
-   
    type Task_Enum is (
                       Logik_Task_Enum,
                       Grafik_Task_Enum
@@ -43,15 +30,10 @@ package SystemDatentypen is
    
    
    
+   -- Das auch mal auslagern? äöü
    type Spielstand_Enum is (
                             Manueller_Spielstand_Enum,
                             Automatischer_Spielstand_Enum
                            );
-      
-   
-      
-   type Zeichenabzug_Enum is (
-                              Speichern_Enum, Text_Enum, Texturen_Enum
-                             );
    
 end SystemDatentypen;

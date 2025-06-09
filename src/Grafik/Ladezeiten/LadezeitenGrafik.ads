@@ -2,12 +2,13 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
+private with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 with GrafikDatentypen;
 with SpeziesKonstanten;
 
 private with GrafikRecordKonstanten;
-private with SystemDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -88,6 +89,6 @@ private
                   KIRechnet'Result >= 0.00
                );
    
-   function ZahlAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => SystemDatentypen.NullBisHundert);
+   function ZahlAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => SystemDatentypenHTSEB.NullBisHundert);
 
 end LadezeitenGrafik;

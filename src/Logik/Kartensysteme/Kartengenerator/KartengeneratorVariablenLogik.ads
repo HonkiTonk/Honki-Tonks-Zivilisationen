@@ -1,9 +1,10 @@
+with SystemDatentypenHTSEB;
+
 with KartenRecords;
 with KartenRecordKonstanten;
 with KartengeneratorRecordKonstanten;
 with KartengrundDatentypen;
 with KartenartDatentypen;
-with SystemDatentypen;
 with KartenextraDatentypen;
 
 package KartengeneratorVariablenLogik is
@@ -23,7 +24,7 @@ package KartengeneratorVariablenLogik is
    SchleifenanfangOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
    SchleifenendeOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
 
-   type StandardKartenressourcenWahrscheinlichkeitenArray is array (KartenartDatentypen.Kartenressourcenmenge_Enum'Range, KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range) of SystemDatentypen.EinsBisHundert;
+   type StandardKartenressourcenWahrscheinlichkeitenArray is array (KartenartDatentypen.Kartenressourcenmenge_Enum'Range, KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range) of SystemDatentypenHTSEB.EinsBisHundert;
    StandardKartenressourcenWahrscheinlichkeiten : constant StandardKartenressourcenWahrscheinlichkeitenArray := (
                                                                                                                  KartenartDatentypen.Kartenressourcen_Arm_Enum =>
                                                                                                                    (
@@ -86,7 +87,7 @@ package KartengeneratorVariablenLogik is
                                                                                                                    )
                                                                                                                 );
 
-   type KartenressourcenWahrscheinlichkeitenArray is array (StandardKartenressourcenWahrscheinlichkeitenArray'Range (2)) of SystemDatentypen.NullBisHundert;
+   type KartenressourcenWahrscheinlichkeitenArray is array (StandardKartenressourcenWahrscheinlichkeitenArray'Range (2)) of SystemDatentypenHTSEB.NullBisHundert;
    KartenressourcenWahrscheinlichkeiten : KartenressourcenWahrscheinlichkeitenArray;
 
 end KartengeneratorVariablenLogik;

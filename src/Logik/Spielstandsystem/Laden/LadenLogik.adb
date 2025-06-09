@@ -47,7 +47,7 @@ package body LadenLogik is
          
          else
             LadezeitenLogik.SpeichernLadenNullsetzen;
-            SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
+            SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Laden_Enum);
             
             DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiLaden,
                                                     NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,

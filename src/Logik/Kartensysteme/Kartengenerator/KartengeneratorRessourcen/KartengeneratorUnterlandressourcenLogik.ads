@@ -1,7 +1,8 @@
+private with SystemDatentypenHTSEB;
+
 with KartenDatentypen;
 with KartenRecords;
 
-private with SystemDatentypen;
 private with KartenextraDatentypen;
 
 with LeseWeltkarteneinstellungen;
@@ -24,8 +25,8 @@ private
 
    WelcheRessource : KartenextraDatentypen.Ressourcen_Enum;
 
-   GezogeneZahl : SystemDatentypen.NullBisHundert;
-   Zahlenspeicher : SystemDatentypen.NullBisHundert;
+   GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
+   Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
 
 
 

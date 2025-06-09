@@ -9,7 +9,7 @@ package body KartengeneratorUnterlandressourcenLogik is
    procedure KartengeneratorUnterlandressourcen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       WelcheRessource := KartenextraDatentypen.Leer_Ressource_Enum;

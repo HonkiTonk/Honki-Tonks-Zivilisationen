@@ -22,17 +22,20 @@ package ChangelogMaerz2025 is
    
    
 
-   -- Version 0.06. => 0.06. (28.03.2025):
+   -- Version 0.06.2865 => 0.06. (28.03.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2805 => 0.06. (27.03.2025):
+   -- Version 0.06.2805 => 0.06.2865 (27.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Ladung eines Transporters wird jetzt sortiert wenn eine Einheit ausgeladen wurde.
+   -- Fehler korrigiert der das Speichern fehlschlagen ließ wenn man vorher eine Einheit aus einem Transporter ausgeladen hatte.
+   -- Einige Datentypen durch die HTSEB ersetzt.
+   -- Angefangen die Anzeige des Ladefortschritt neu zu schreiben.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

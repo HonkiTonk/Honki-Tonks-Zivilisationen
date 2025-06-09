@@ -1,17 +1,21 @@
+with SystemDatentypenHTSEB;
+
 with LadezeitenDatentypen;
-with SystemDatentypen;
 
 package LadezeitenLogik is
    pragma Elaborate_Body;
    
-   FortschrittRundenende : SystemDatentypen.NullBisHundert;
-   FortschrittSpeichernLaden : SystemDatentypen.NullBisHundert;
+   FortschrittRundenende : SystemDatentypenHTSEB.NullBisHundert;
+   FortschrittSpeichernLaden : SystemDatentypenHTSEB.NullBisHundert;
       
-   type FortschrittSpielweltArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of SystemDatentypen.NullBisHundert;
+   type FortschrittSpielweltArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    FortschrittSpielwelt : FortschrittSpielweltArray;
    
-   type FortschrittKIArray is array (LadezeitenDatentypen.KI_Rechnet_Enum'Range) of SystemDatentypen.NullBisHundert;
+   type FortschrittKIArray is array (LadezeitenDatentypen.KI_Rechnet_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    FortschrittKI : FortschrittKIArray;
+   
+   type FortschrittSpeichernArray is array (LadezeitenDatentypen.Speichern_Neu_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
+   FortschrittSpeichern : FortschrittSpeichernArray;
 
    procedure SpielweltNullsetzen;
    procedure KINullsetzenFortschritt;
@@ -20,6 +24,15 @@ package LadezeitenLogik is
    procedure RundenendeSchreiben;
    procedure RundenendeMaximum;
    procedure SpeichernLadenMaximum;
+   
+   procedure SpeichernNullsetzen;
+   procedure Speichern
+     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Neu_Enum;
+      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert);
+   
+   procedure SpeichernMaximum
+     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Neu_Enum);
+   
    procedure FortschrittSpielweltSchreiben
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
    
@@ -37,9 +50,10 @@ package LadezeitenLogik is
    
 private
    
-   AnfangLadezeit : constant SystemDatentypen.NullBisHundert := SystemDatentypen.NullBisHundert'First;
+   AnfangLadezeit : constant SystemDatentypenHTSEB.NullBisHundert := SystemDatentypenHTSEB.NullBisHundert'First;
+   EndeLadezeit : constant SystemDatentypenHTSEB.NullBisHundert := SystemDatentypenHTSEB.NullBisHundert'Last;
    
-   type FortschrittSchritteArray is array (1 .. 5) of SystemDatentypen.NullBisHundert;
+   type FortschrittSchritteArray is array (1 .. 5) of SystemDatentypenHTSEB.NullBisHundert;
    FortschrittSchritte : constant FortschrittSchritteArray := (
                                                                1 => 1,
                                                                2 => 1,

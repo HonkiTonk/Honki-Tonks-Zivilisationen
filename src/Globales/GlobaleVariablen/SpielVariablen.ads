@@ -5,7 +5,8 @@ with WichtigesRecordKonstanten;
 
 package SpielVariablen is
    pragma Elaborate_Body;
-      
+   
+   -- Muss gespeichert werden
    Speziesbelegung : SpielRecords.SpeziesbelegungArray := (others => WichtigesRecordKonstanten.LeerSpeziesbelegung);
    
    Allgemeines : SpielRecords.AllgemeinesRecord := WichtigesRecordKonstanten.LeerAllgemeines;
@@ -22,5 +23,10 @@ package SpielVariablen is
    
    type DiplomatieArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of SpielRecords.DiplomatieRecord;
    Diplomatie : DiplomatieArray := (others => (others => WichtigesRecordKonstanten.LeerDiplomatie));
+   
+   
+   
+   -- Muss nicht gespeichert werden
+   
 
 end SpielVariablen;

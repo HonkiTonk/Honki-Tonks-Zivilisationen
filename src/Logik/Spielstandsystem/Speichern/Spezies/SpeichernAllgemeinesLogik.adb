@@ -6,11 +6,13 @@ with UmwandlungssystemHTSEB;
 
 with SpielDatentypen;
 with ZahlenDatentypen;
+with LadezeitenDatentypen;
 
 with LeseAllgemeines;
 with LeseSpeziesbelegung;
 
 with SpielstandAllgemeinesLogik;
+with LadezeitenLogik;
 
 package body SpeichernAllgemeinesLogik is
    
@@ -88,6 +90,9 @@ package body SpeichernAllgemeinesLogik is
       
       ZahlenDatentypen.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
                                              LeseAllgemeines.EingesetztePZB);
+      
+      LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,
+                                 ErhöhungExtern              => 33);
             
       return True;
       
@@ -122,6 +127,9 @@ package body SpeichernAllgemeinesLogik is
       Besiegt := 0;
       AktuelleSpezies := 0;
       SpeziesVorhanden := SpielstandAllgemeinesLogik.GesamteSpeziesanzahl (SpeichernLadenExtern => True);
+      
+      LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,
+                                 ErhöhungExtern              => 33);
       
       BesiegtSchleife:
       for BesiegtSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
@@ -167,6 +175,8 @@ package body SpeichernAllgemeinesLogik is
          end case;
          
       end loop BesiegtSchleife;
+      
+      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
       
       return True;
       

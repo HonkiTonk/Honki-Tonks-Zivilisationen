@@ -20,7 +20,7 @@ package body KartengeneratorErdweltLogik is
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       Basisgrund := KartengrundDatentypen.Leer_Basisgrund_Enum;

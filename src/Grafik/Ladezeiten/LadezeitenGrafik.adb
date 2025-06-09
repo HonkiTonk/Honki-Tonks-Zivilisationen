@@ -33,7 +33,10 @@ package body LadezeitenGrafik is
          when GrafikDatentypen.Rundenende_Enum =>
             Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitRundenwechsel);
             
-         when GrafikDatentypen.Speichern_Laden_Enum =>
+         when GrafikDatentypen.Speichern_Enum =>
+            Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitSpielstand);
+            
+         when GrafikDatentypen.Laden_Enum =>
             Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitSpielstand);
       end case;
       
@@ -63,7 +66,10 @@ package body LadezeitenGrafik is
          when GrafikDatentypen.Rundenende_Enum =>
             Viewfläche.y := Rundenende (MaximaleTextbreiteExtern => Viewfläche.x);
             
-         when GrafikDatentypen.Speichern_Laden_Enum =>
+         when GrafikDatentypen.Speichern_Enum =>
+            Viewfläche.y := SpeichernLaden (MaximaleTextbreiteExtern => Viewfläche.x);
+            
+         when GrafikDatentypen.Laden_Enum =>
             Viewfläche.y := SpeichernLaden (MaximaleTextbreiteExtern => Viewfläche.x);
       end case;
       
@@ -133,6 +139,26 @@ package body LadezeitenGrafik is
    
    
    
+   function SpeichernLaden
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
+   is begin
+      
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
+         
+      Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)
+                                                                                                 & TextKonstanten.Trennzeichen & MaximalerLadefortschritt,
+                                                                                                 TextpositionExtern       => Textposition,
+                                                                                                 MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                 TextAccessExtern         => TextaccessVariablen.SpeichernLadenAccess (1));
+      
+      return Textposition.y;
+      
+   end SpeichernLaden;
+   
+   
+   
    -- Die beiden Funktionen mal um eine Anzeige erweitern, was genau gerade berechnet wird. äöü
    function Rundenende
      (MaximaleTextbreiteExtern : in Float)
@@ -151,25 +177,5 @@ package body LadezeitenGrafik is
       return Textposition.y;
       
    end Rundenende;
-   
-   
-   
-   function SpeichernLaden
-     (MaximaleTextbreiteExtern : in Float)
-      return Float
-   is begin
-      
-      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-         
-      Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)
-                                                                                                 & TextKonstanten.Trennzeichen & MaximalerLadefortschritt,
-                                                                                                 TextpositionExtern       => Textposition,
-                                                                                                 MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
-                                                                                                 TextAccessExtern         => TextaccessVariablen.SpeichernLadenAccess (1));
-      
-      return Textposition.y;
-      
-   end SpeichernLaden;
 
 end LadezeitenGrafik;

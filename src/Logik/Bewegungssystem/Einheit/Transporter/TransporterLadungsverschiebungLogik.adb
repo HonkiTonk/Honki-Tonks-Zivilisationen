@@ -2,6 +2,7 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
+-- Das vielleicht mal mit EinheitentransporterLogik/TransporterBeladenEntladenLogik zusammenführen? äöü
 package body TransporterLadungsverschiebungLogik is
    
    procedure LadungVerschieben

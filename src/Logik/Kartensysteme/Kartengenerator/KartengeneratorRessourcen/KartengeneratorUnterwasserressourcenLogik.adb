@@ -11,7 +11,7 @@ package body KartengeneratorUnterwasserressourcenLogik is
    procedure KartengeneratorUnterwasserressourcen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       WelcheRessource := KartenextraDatentypen.Leer_Ressource_Enum;

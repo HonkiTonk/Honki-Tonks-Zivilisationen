@@ -1,8 +1,8 @@
 private with AllgemeineBerechnungenHTSEB;
+private with SystemDatentypenHTSEB;
 
 private with KartenDatentypen;
 private with KartenRecords;
-private with SystemDatentypen;
 private with KartenartDatentypen;
 
 private with LeseWeltkarteneinstellungen;
@@ -39,15 +39,15 @@ private
    Landmassen : LandmassenArray;
    Landabstand : LandmassenArray;
    
-   BeliebigerLandwert : SystemDatentypen.NullBisHundert;
-   Quadrantenwert : SystemDatentypen.NullBisHundert;
+   BeliebigerLandwert : SystemDatentypenHTSEB.NullBisHundert;
+   Quadrantenwert : SystemDatentypenHTSEB.NullBisHundert;
    
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
    type WahrscheinlichkeitenRecord is record
       
-      Anfangswert : SystemDatentypen.NullBisHundert;
-      Endwert : SystemDatentypen.NullBisHundert;
+      Anfangswert : SystemDatentypenHTSEB.NullBisHundert;
+      Endwert : SystemDatentypenHTSEB.NullBisHundert;
       
    end record;
    
@@ -57,11 +57,11 @@ private
    WahrscheinlichkeitLand : constant WahrscheinlichkeitenRecord := (0, 95);
    WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 95);
    
-   ZentrumWahrscheinlichkeit : constant SystemDatentypen.NullBisHundert := 100;
-   MitteWahrscheinlichkeit : constant SystemDatentypen.NullBisHundert := 55;
-   RandWahrscheinlichkeit : constant SystemDatentypen.NullBisHundert := 25;
+   ZentrumWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 100;
+   MitteWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 55;
+   RandWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 25;
    
-   type QuadrantenArray is array (KartenDatentypen.KartengeneratorQuadranten'Range) of SystemDatentypen.NullBisHundert;
+   type QuadrantenArray is array (KartenDatentypen.KartengeneratorQuadranten'Range) of SystemDatentypenHTSEB.NullBisHundert;
    Quadranten : constant QuadrantenArray := (13     => ZentrumWahrscheinlichkeit,
                                              7      => MitteWahrscheinlichkeit,
                                              8      => MitteWahrscheinlichkeit,

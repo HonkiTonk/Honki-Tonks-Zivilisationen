@@ -118,15 +118,6 @@ private
                  TranspoterKoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
-   procedure LadungSortieren
-     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-     with
-       Pre => (
-                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   
    
    
    function Entladung

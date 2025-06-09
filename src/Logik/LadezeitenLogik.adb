@@ -41,14 +41,14 @@ package body LadezeitenLogik is
    procedure FortschrittSpielweltSchreiben
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       if
-        FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1) > SystemDatentypen.NullBisHundert'Last
+        FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1) > EndeLadezeit
       then
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.FortschrittSpielweltSchreiben: " & WelcheBerechnungenExtern'Wide_Wide_Image & " > 100%");
-         FortschrittSpielwelt (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
+         FortschrittSpielwelt (WelcheBerechnungenExtern) := EndeLadezeit;
          
       else
          FortschrittSpielwelt (WelcheBerechnungenExtern) := FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1);
@@ -62,7 +62,7 @@ package body LadezeitenLogik is
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum)
    is begin
    
-      FortschrittSpielwelt (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
+      FortschrittSpielwelt (WelcheBerechnungenExtern) := EndeLadezeit;
       
    end FortschrittSpielweltMaximum;
    
@@ -71,14 +71,14 @@ package body LadezeitenLogik is
    procedure FortschrittKISchreiben
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       if
-        FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2) > SystemDatentypen.NullBisHundert'Last
+        FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2) > EndeLadezeit
       then
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.FortschrittKISchreiben: " & WelcheBerechnungenExtern'Wide_Wide_Image & " > 100%");
-         FortschrittKI (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
+         FortschrittKI (WelcheBerechnungenExtern) := EndeLadezeit;
          
       else
          FortschrittKI (WelcheBerechnungenExtern) := FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2);
@@ -92,7 +92,7 @@ package body LadezeitenLogik is
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum)
    is begin
       
-      FortschrittKI (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
+      FortschrittKI (WelcheBerechnungenExtern) := EndeLadezeit;
       
    end FortschrittKIMaximum;
    
@@ -101,14 +101,14 @@ package body LadezeitenLogik is
    -- Die folgenden Ladezeitanzeigen noch erweitern. äöü
    procedure RundenendeSchreiben
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       if
-        FortschrittRundenende + FortschrittSchritte (3) > SystemDatentypen.NullBisHundert'Last
+        FortschrittRundenende + FortschrittSchritte (3) > EndeLadezeit
       then
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.RundenendeSchreiben: Fortschritt > 100%");
-         FortschrittRundenende := SystemDatentypen.NullBisHundert'Last;
+         FortschrittRundenende := EndeLadezeit;
          
       else
          FortschrittRundenende := FortschrittRundenende + FortschrittSchritte (3);
@@ -121,7 +121,7 @@ package body LadezeitenLogik is
    procedure RundenendeMaximum
    is begin
       
-      FortschrittRundenende := SystemDatentypen.NullBisHundert'Last;
+      FortschrittRundenende := EndeLadezeit;
       
    end RundenendeMaximum;
    
@@ -130,7 +130,7 @@ package body LadezeitenLogik is
    procedure SpeichernLadenSchreiben
      (SpeichernLadenExtern : in Boolean)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       case
@@ -138,10 +138,10 @@ package body LadezeitenLogik is
       is
          when True =>
             if
-              FortschrittSpeichernLaden + FortschrittSchritte (4) > SystemDatentypen.NullBisHundert'Last
+              FortschrittSpeichernLaden + FortschrittSchritte (4) > EndeLadezeit
             then
                MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.SpeichernSchreiben: Fortschritt > 100%");
-               FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
+               FortschrittSpeichernLaden := EndeLadezeit;
          
             else
                FortschrittSpeichernLaden := FortschrittSpeichernLaden + FortschrittSchritte (4);
@@ -149,10 +149,10 @@ package body LadezeitenLogik is
             
          when False =>
             if
-              FortschrittSpeichernLaden + FortschrittSchritte (5) > SystemDatentypen.NullBisHundert'Last
+              FortschrittSpeichernLaden + FortschrittSchritte (5) > EndeLadezeit
             then
                MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.LadenSchreiben: Fortschritt > 100%");
-               FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
+               FortschrittSpeichernLaden := EndeLadezeit;
          
             else
                FortschrittSpeichernLaden := FortschrittSpeichernLaden + FortschrittSchritte (5);
@@ -166,8 +166,48 @@ package body LadezeitenLogik is
    procedure SpeichernLadenMaximum
    is begin
       
-      FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
+      FortschrittSpeichernLaden := EndeLadezeit;
       
    end SpeichernLadenMaximum;
+   
+   
+   
+   procedure SpeichernNullsetzen
+   is begin
+      
+      FortschrittSpeichern := (others => AnfangLadezeit);
+      
+   end SpeichernNullsetzen;
+   
+   
+   
+   procedure Speichern
+     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Neu_Enum;
+      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert)
+   is
+      use type SystemDatentypenHTSEB.NullBisHundert;
+   begin
+      
+      if
+        FortschrittSpeichern (WelcheBerechnungszeitExtern) + ErhöhungExtern > EndeLadezeit
+      then
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.Speichern: Fortschritt > 100%");
+         FortschrittSpeichern (WelcheBerechnungszeitExtern) := EndeLadezeit;
+         
+      else
+         FortschrittSpeichern (WelcheBerechnungszeitExtern) := FortschrittSpeichern (WelcheBerechnungszeitExtern) + ErhöhungExtern;
+      end if;
+      
+   end Speichern;
+   
+   
+   
+   procedure SpeichernMaximum
+     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Neu_Enum)
+   is begin
+      
+      FortschrittSpeichern (WelcheBerechnungszeitExtern) := EndeLadezeit;
+      
+   end SpeichernMaximum;
 
 end LadezeitenLogik;

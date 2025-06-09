@@ -1,9 +1,9 @@
 private with AllgemeineBerechnungenHTSEB;
+private with SystemDatentypenHTSEB;
 
 private with KartenDatentypen;
 private with KartengrundDatentypen;
 private with KartenRecords;
-private with SystemDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -21,13 +21,13 @@ private
    Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
    
-   GezogeneZahl : SystemDatentypen.NullBisHundert;
-   Zahlenspeicher : SystemDatentypen.NullBisHundert;
-   WelcherGrund : SystemDatentypen.NullBisHundert;
+   GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
+   Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
+   WelcherGrund : SystemDatentypenHTSEB.NullBisHundert;
          
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
-   type BasisWahrscheinlichkeitenArray is array (SystemDatentypen.EinsBisHundert'First .. 5) of SystemDatentypen.NullBisHundert;
+   type BasisWahrscheinlichkeitenArray is array (SystemDatentypenHTSEB.EinsBisHundert'First .. 5) of SystemDatentypenHTSEB.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   1 => 50,
                                                                   2 => 15,
@@ -45,7 +45,7 @@ private
                                                                  5 => KartengrundDatentypen.Gebirge_Enum
                                                                 );
    
-   type ZusatzWahrscheinlichkeitenArray is array (SystemDatentypen.EinsBisHundert'First .. 3) of SystemDatentypen.NullBisHundert;
+   type ZusatzWahrscheinlichkeitenArray is array (SystemDatentypenHTSEB.EinsBisHundert'First .. 3) of SystemDatentypenHTSEB.NullBisHundert;
    ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
                                                                     1 => 40,
                                                                     2 => 30,

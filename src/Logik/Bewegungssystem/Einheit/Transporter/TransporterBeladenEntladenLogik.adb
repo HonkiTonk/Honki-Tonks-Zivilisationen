@@ -7,6 +7,7 @@ with TransporterLadungsverschiebungLogik;
 
 -- Das Verschachteln mehrerer Transporter ineinander sollte keine Probleme mit regulären Einheiten machen.
 -- Es muss nur darauf geachtet werden dass in der EinheitenDatenbank das KannTransportieren immer kleiner ist als KannTransportiertWerden.
+-- Das vielleicht mal mit EinheitentransporterLogik/TransporterLadungsverschiebungLogik zusammenführen? äöü
 package body TransporterBeladenEntladenLogik is
    
    function IstTransporterBeladbar
@@ -110,6 +111,65 @@ package body TransporterBeladenEntladenLogik is
                
       end loop TransporterLeerenSchleife;
       
+      LadungSortieren (TransporterExtern => TransporterExtern);
+      
    end EinheitAusladen;
+   
+   
+   
+   procedure LadungSortieren
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+   is
+      use type EinheitenDatentypen.Transportplätze;
+      use type EinheitenDatentypen.Einheitenbereich;
+   begin
+            
+      LadungSchleife:
+      for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
+                                                                                                                        IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern)) loop
+         
+         case
+           LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
+                                              PlatzExtern                => LadungSchleifenwert)
+         is
+            when EinheitenKonstanten.LeerNummer =>
+               NeueLadungSchleife:
+               for NeueLadungSchleifenwert in reverse EinheitenRecords.TransporterArray'First
+                 .. LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
+                                                                IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern)) loop
+                                    
+                  if
+                    LadungSchleifenwert = NeueLadungSchleifenwert
+                  then
+                     exit LadungSchleife;
+                     
+                  elsif
+                    EinheitenKonstanten.LeerNummer = LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
+                                                                                        PlatzExtern                => NeueLadungSchleifenwert)
+                  then
+                     null;
+                     
+                  else
+                     SchreibeEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
+                                                            LadungExtern               => LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
+                                                                                                                             PlatzExtern                => NeueLadungSchleifenwert),
+                                                            LadungsplatzExtern         => LadungSchleifenwert);
+                     
+                     SchreibeEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
+                                                            LadungExtern               => EinheitenKonstanten.LeerNummer,
+                                                            LadungsplatzExtern         => NeueLadungSchleifenwert);
+                     
+                     exit NeueLadungSchleife;
+                  end if;
+                  
+               end loop NeueLadungSchleife;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop LadungSchleife;
+      
+   end LadungSortieren;
 
 end TransporterBeladenEntladenLogik;

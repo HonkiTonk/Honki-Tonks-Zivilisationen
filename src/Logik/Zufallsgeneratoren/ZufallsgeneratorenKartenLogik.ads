@@ -1,15 +1,16 @@
 private with Ada.Numerics.Discrete_Random;
 
+with SystemDatentypenHTSEB;
+
 private with KartenDatentypen;
 
 with KartenRecords;
-with SystemDatentypen;
 
 package ZufallsgeneratorenKartenLogik is
    pragma Elaborate_Body;
 
    function KartengeneratorZufallswerte
-     return SystemDatentypen.NullBisHundert;
+     return SystemDatentypenHTSEB.NullBisHundert;
 
    function KartengeneratorLandgrößen
       return KartenRecords.KartenfeldumgebungPositivRecord;
@@ -21,7 +22,7 @@ private
    Zwischenspeicher : KartenRecords.KartenfeldumgebungPositivRecord;
    Gesamtwert : KartenRecords.KartenfeldumgebungPositivRecord;
 
-   package ZufälligeZahl is new Ada.Numerics.Discrete_Random (Result_Subtype => SystemDatentypen.NullBisHundert);
+   package ZufälligeZahl is new Ada.Numerics.Discrete_Random (Result_Subtype => SystemDatentypenHTSEB.NullBisHundert);
    package ZufälligeSenkrechteLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);
    package ZufälligeWaagerechteLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.WaagerechtePositiv);
 

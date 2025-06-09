@@ -51,7 +51,6 @@ package body EinheitenErzeugenEntfernenLogik is
 
 
 
-   -- Wenn ein Transporter eine Ladung enthält, dann diese erst komplett entfernen (inklusive der Ladungsladung), dann den Transporter entfernen und anschließend erst sortieren. äöü
    procedure EinheitEntfernen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin

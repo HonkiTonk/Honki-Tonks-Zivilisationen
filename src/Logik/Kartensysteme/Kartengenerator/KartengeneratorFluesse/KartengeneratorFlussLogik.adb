@@ -13,7 +13,7 @@ package body KartengeneratorFlussLogik is
    procedure GenerierungFlüsse
    is
       use type KartenDatentypen.Senkrechte;
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte,

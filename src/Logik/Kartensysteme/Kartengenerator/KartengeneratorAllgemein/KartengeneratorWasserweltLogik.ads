@@ -1,8 +1,9 @@
+private with SystemDatentypenHTSEB;
+
 with KartenDatentypen;
 with KartenRecords;
 
 private with KartengrundDatentypen;
-private with SystemDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -24,11 +25,11 @@ private
          
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
    
-   GezogeneZahl : SystemDatentypen.NullBisHundert;
-   Zahlenspeicher : SystemDatentypen.NullBisHundert;
-   WelcherGrund : SystemDatentypen.NullBisHundert;
+   GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
+   Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
+   WelcherGrund : SystemDatentypenHTSEB.NullBisHundert;
    
-   type ZusatzWahrscheinlichkeitenArray is array (SystemDatentypen.EinsBisHundert'First .. 2) of SystemDatentypen.NullBisHundert;
+   type ZusatzWahrscheinlichkeitenArray is array (SystemDatentypenHTSEB.EinsBisHundert'First .. 2) of SystemDatentypenHTSEB.NullBisHundert;
    ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
                                                                     1 => 30,
                                                                     2 => 30

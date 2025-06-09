@@ -1,6 +1,7 @@
 with KartengrundDatentypen;
 with KartenKonstanten;
 with LadezeitenDatentypen;
+with SystemDatentypen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
@@ -48,7 +49,7 @@ package body KartengeneratorStandardLogik is
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
       WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       case
@@ -98,7 +99,7 @@ package body KartengeneratorStandardLogik is
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
       WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       LandmassenSchleife:

@@ -23,5 +23,9 @@ package LadezeitenDatentypen is
    type Speichern_Laden_Enum is (
                                  Speichern_Enum, Laden_Enum
                                 );
+   
+   type Speichern_Neu_Enum is (
+                               Allgemeines_Enum, Karte_Enum, Spezies_Enum
+                              );
 
 end LadezeitenDatentypen;

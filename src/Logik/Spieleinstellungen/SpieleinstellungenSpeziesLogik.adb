@@ -1,3 +1,6 @@
+with SystemDatentypenHTSEB;
+with MeldungssystemHTSEB;
+
 with LadezeitenDatentypen;
 with KartengrundDatentypen;
 with SystemDatentypen;
@@ -18,7 +21,6 @@ with KartenkoordinatenberechnungssystemLogik;
 with PassierbarkeitspruefungLogik;
 with EinheitenErzeugenEntfernenLogik;
 with AuswahlaufteilungLogik;
-with MeldungssystemHTSEB;
 with LadezeitenLogik;
 with UmwandlungenDatentypen;
 
@@ -137,7 +139,7 @@ package body SpieleinstellungenSpeziesLogik is
 
    procedure StartwerteErmitteln
    is
-      use type SystemDatentypen.NullBisHundert;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       SpieleranzahlWerteFestlegen:

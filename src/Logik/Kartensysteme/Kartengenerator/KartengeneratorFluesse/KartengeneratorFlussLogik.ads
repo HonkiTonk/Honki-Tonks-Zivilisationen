@@ -1,7 +1,7 @@
 private with AllgemeineBerechnungenHTSEB;
+private with SystemDatentypenHTSEB;
 
 private with KartenDatentypen;
-private with SystemDatentypen;
 private with KartenKonstanten;
 
 package KartengeneratorFlussLogik is
@@ -14,7 +14,7 @@ private
    Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
    
    -- Später vom Nutzer einstellbar machen. äöü
-   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of SystemDatentypen.NullBisHundert;
+   type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of SystemDatentypenHTSEB.NullBisHundert;
    WahrscheinlichkeitFluss : constant WahrscheinlichkeitFlussArray := (
                                                                        KartenKonstanten.PlaneteninneresKonstante => 30,
                                                                        KartenKonstanten.UnterflächeKonstante     => 30,

@@ -4,11 +4,13 @@ with DateizugriffssystemHTSEB;
 with TextKonstantenHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
+with SystemDatentypenHTSEB;
 
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
 with TextnummernKonstanten;
+with LadezeitenDatentypen;
 
 with LeseAllgemeines;
 with LeseOptionen;
@@ -17,7 +19,7 @@ with SchreibeGrafiktask;
 with LeseSpeziesbelegung;
 
 with LadezeitenLogik;
-with SpielstandAllgemeinesLogik;
+-- with SpielstandAllgemeinesLogik;
 with SpeichernKarteLogik;
 with MeldungFestlegenLogik;
 with UmwandlungenVerzeichnisse;
@@ -74,7 +76,8 @@ package body SpeichernLogik is
             
             when False =>
                LadezeitenLogik.SpeichernLadenNullsetzen;
-               SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
+               LadezeitenLogik.SpeichernNullsetzen;
+               SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Enum);
                Spielstandart := SystemDatentypen.Manueller_Spielstand_Enum;
          end case;
          
@@ -100,14 +103,15 @@ package body SpeichernLogik is
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          else
-            SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+            null;
+            -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
          end if;
             
          DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                     NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
                                                                                                                 SpielstandnameExtern => Spielstandname));
          
-         LadezeitenLogik.SpeichernLadenMaximum;
+         -- LadezeitenLogik.SpeichernLadenMaximum;
 
          case
            AutospeichernExtern
@@ -148,7 +152,9 @@ package body SpeichernLogik is
    function Spezieswerte
      (DateiSpeichernExtern : in File_Type)
       return Boolean
-   is begin
+   is
+      use type SystemDatentypenHTSEB.NullBisHundert;
+   begin
       
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
@@ -186,12 +192,17 @@ package body SpeichernLogik is
                                                         DateiSpeichernExtern => DateiSpeichernExtern)
          then
             return False;
-                  
+            
          else
             null;
          end if;
          
+         LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum,
+                                    ErhöhungExtern              => 100/18);
+         
       end loop SpeziesSchleife;
+      
+      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum);
       
       return True;
       
