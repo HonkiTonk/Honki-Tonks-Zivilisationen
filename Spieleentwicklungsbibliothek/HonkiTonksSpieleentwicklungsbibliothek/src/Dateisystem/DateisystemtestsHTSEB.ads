@@ -63,8 +63,8 @@ private
 
    LängeAktuellesVerzeichnis : constant Positive := Current_Directory'Length;
 
-   DreierText : Wide_Wide_String (1 .. 3);
-   ViererText : Wide_Wide_String (1 .. 4);
+   Zwischenspeicher : Wide_Wide_String (1 .. 3);
+
    FünferText : Wide_Wide_String (1 .. 5);
 
    Text : Unbounded_Wide_Wide_String;
@@ -82,5 +82,14 @@ private
        Post => (
                   if NamenprüfungenWindows'Result.ErfolgreichAbbruch = True then To_Wide_Wide_String (Source => NamenprüfungenWindows'Result.EingegebenerText)'Length > 0
                );
+
+   function PrüfungDrei
+     (TextExtern : in Wide_Wide_String;
+      VerbotenerTextExtern : in Wide_Wide_String)
+      return Boolean
+     with
+       Pre => (
+                 VerbotenerTextExtern'Length in 3 .. 5
+              );
 
 end DateisystemtestsHTSEB;

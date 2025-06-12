@@ -16,6 +16,9 @@ package SystemDatentypenHTSEB is
    type NullBisHundert is range 0 .. 100;
    subtype EinsBisHundert is NullBisHundert range 1 .. NullBisHundert'Last;
    
+   subtype Ladezeit is Float range 0.00 .. 100.00;
+   subtype LadezeitVorhanden is Ladezeit range 1.00 .. Ladezeit'Last;
+   
    
    
    subtype EigenerInteger is Integer range -1_000_000_000 .. 1_000_000_000;

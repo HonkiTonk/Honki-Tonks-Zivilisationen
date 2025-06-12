@@ -14,7 +14,7 @@ library project HonkiTonksSpieleentwicklungsbibliothek is
 
    package Compiler is
       for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2022", "-g", "-gnata", "-gnatn", "-O3", "-fstack-check", "-gnato", "-funroll-loops", "-gnatVacdefimoprst", 
-         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcghiklopqrtuvwxyz_c_re.u_pjfmd_qa", "-gnatyACOSaefhiklnprsxM222L8");
+         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcghiklopqrtuvwxyz_c_re.u_pjfmda_q", "-gnatyACOSaefhiklnprsxM222L8");
       for Local_Configuration_Pragmas use "Lokale Pragmas";
    end Compiler;
 
@@ -27,7 +27,7 @@ library project HonkiTonksSpieleentwicklungsbibliothek is
    end Binder;
 
    package Pretty_Printer is
-      for Default_Switches ("ada") use ("-W8");
+      for Default_Switches ("ada") use ("-W8", "-M222");
    end Pretty_Printer;
 
 end HonkiTonksSpieleentwicklungsbibliothek;

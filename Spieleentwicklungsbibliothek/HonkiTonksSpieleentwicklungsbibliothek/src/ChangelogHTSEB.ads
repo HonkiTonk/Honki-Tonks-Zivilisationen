@@ -1,13 +1,22 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.0900 => 0.01. (.2025):
+   -- Version 0.01.1100 => 0.01. (.2025):
    
    -- 
    
    
    
-   -- Version 0.01.0800 => 0.01.0900 (.2025):
+   -- Version 0.01.0900 => 0.01.1100 (12.06.2025):
+   
+   -- Namensprüfung für Windows überarbeitet.
+   -- Ladezeit Datentyp hinzugefügt.
+   -- Verzeichniskonstanten überarbeitet.
+   -- Textkonstanten überarbeitet.
+   
+   
+   
+   -- Version 0.01.0800 => 0.01.0900 (22.05.2025):
    
    -- Weitere Byte Datentypen hinzugefügt.
    -- "Check no DOS line terminators present" Prüfung entfernt, da sie mit Alire Probleme verursachte.

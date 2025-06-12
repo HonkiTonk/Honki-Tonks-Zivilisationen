@@ -7,9 +7,9 @@ package SystemRecordKonstanten is
 
    StandardNutzereinstellungen : constant SystemRecords.NutzerEinstellungenRecord := (
                                                                                       Sprache                   => TextKonstantenHTSEB.LeerUnboundedString,
-                                                                                      Texturen                  => TextKonstantenHTSEB.Standardtexturen,
-                                                                                      Musik                     => TextKonstantenHTSEB.Standardmusik,
-                                                                                      Sound                     => TextKonstantenHTSEB.Stadnardsound,
+                                                                                      Texturen                  => TextKonstantenHTSEB.Standardordner,
+                                                                                      Musik                     => TextKonstantenHTSEB.Standardordner,
+                                                                                      Sound                     => TextKonstantenHTSEB.Standardordner,
                                                                                       AnzahlAutospeichern       => 10,
                                                                                       RundenAutospeichern       => 10,
                                                                                       Dezimaltrennzeichen       => ',',

@@ -24,8 +24,7 @@ package TextKonstantenHTSEB is
    LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
    LeerzeichenUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => Leerzeichen);
    
-   Standardtexturen : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "Standard");
-   Standardmusik : constant Unbounded_Wide_Wide_String := Standardtexturen;
-   Stadnardsound : constant Unbounded_Wide_Wide_String := Standardtexturen;
+   Standardordner : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "Standard");
+   Standardverzeichnis : constant Unbounded_Wide_Wide_String := Standardordner & "/";
 
 end TextKonstantenHTSEB;

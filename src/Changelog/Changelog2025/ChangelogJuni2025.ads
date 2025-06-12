@@ -197,17 +197,16 @@ package ChangelogJuni2025 is
    
    
 
-   -- Version 0.06. => 0.06. (03.06.2025):
+   -- Version 0.06.2910 => 0.06. (03.06.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2890 => 0.06. (02.06.2025):
+   -- Version 0.06.2890 => 0.06.2910 (02.06.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Spieleentwicklungsbibliothek aktualisiert.
    
    
 
