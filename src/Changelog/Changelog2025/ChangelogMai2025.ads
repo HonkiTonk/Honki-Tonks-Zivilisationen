@@ -1,219 +1,188 @@
 package ChangelogMai2025 is
    pragma Pure;
    
-   -- Version 0.0. => 0.0. (31.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (31.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (30.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (29.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (30.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (28.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (27.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (29.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (26.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (25.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (28.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (24.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (23.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (27.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (22.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (21.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (26.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (20.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (19.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (25.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (18.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (17.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (24.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (16.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (15.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (23.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (14.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (13.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (22.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (12.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (11.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (21.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (10.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (09.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (20.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (08.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (07.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (19.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (06.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (05.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (18.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (04.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (03.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (17.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (02.05.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (01.05.2025):
+   -- Version 0.06.2865 => 0.06.2865 (16.05.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (15.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (14.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (13.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (12.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (11.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (10.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (09.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (08.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (07.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (06.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (05.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (04.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (03.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (02.05.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (01.05.2025):
+   
+   -- null.
 
 end ChangelogMai2025;

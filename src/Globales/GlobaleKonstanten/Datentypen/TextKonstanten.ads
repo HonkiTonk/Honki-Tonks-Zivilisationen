@@ -13,5 +13,5 @@ package TextKonstanten is
    UmbruchAbstand : constant Wide_Wide_String (1 .. 5) := BetriebssystemKonstantenHTSEB.LF & StandardAbstand;
    UnendlichGeklammert : constant Wide_Wide_String (1 .. 4) := " (∞)";
    Unendlich : constant Wide_Wide_String (1 .. 2) := " ∞";
-      
+   
 end TextKonstanten;

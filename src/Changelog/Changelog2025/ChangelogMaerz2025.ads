@@ -1,31 +1,27 @@
 package ChangelogMaerz2025 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (31.03.2025):
+   -- Version 0.06.2865 => 0.06.2865 (31.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (30.03.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (29.03.2025):
+   -- Version 0.06.2865 => 0.06.2865 (30.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06.2865 => 0.06. (28.03.2025):
+   -- Version 0.06.2865 => 0.06.2865 (29.03.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.2865 => 0.06.2865 (28.03.2025):
+   
+   -- null.
    
    
 
@@ -33,8 +29,8 @@ package ChangelogMaerz2025 is
    
    -- Die Ladung eines Transporters wird jetzt sortiert wenn eine Einheit ausgeladen wurde.
    -- Fehler korrigiert der das Speichern fehlschlagen ließ wenn man vorher eine Einheit aus einem Transporter ausgeladen hatte.
-   -- Einige Datentypen durch die HTSEB ersetzt.
-   -- Angefangen die Anzeige des Ladefortschritt neu zu schreiben.
+   -- Einige Datentypen durch die HTSEB Version ersetzt.
+   -- Angefangen die Anzeige des Ladefortschritts neu zu schreiben.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
