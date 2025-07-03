@@ -1,219 +1,218 @@
 package ChangelogJuli2025 is
    pragma Pure;
    
-   -- Version 0.0. => 0.0. (31.07.2025):
+   -- Version 0.06. => 0.06. (31.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (30.07.2025):
+   -- Version 0.06. => 0.06. (30.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.07.2025):
+   -- Version 0.06. => 0.06. (29.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.07.2025):
+   -- Version 0.06. => 0.06. (28.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.07.2025):
+   -- Version 0.06. => 0.06. (27.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.07.2025):
+   -- Version 0.06. => 0.06. (26.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.07.2025):
+   -- Version 0.06. => 0.06. (25.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.07.2025):
+   -- Version 0.06. => 0.06. (24.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.07.2025):
+   -- Version 0.06. => 0.06. (23.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.07.2025):
+   -- Version 0.06. => 0.06. (22.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.07.2025):
+   -- Version 0.06. => 0.06. (21.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.07.2025):
+   -- Version 0.06. => 0.06. (20.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.07.2025):
+   -- Version 0.06. => 0.06. (19.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.07.2025):
+   -- Version 0.06. => 0.06. (18.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.07.2025):
+   -- Version 0.06. => 0.06. (17.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.07.2025):
+   -- Version 0.06. => 0.06. (16.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.07.2025):
+   -- Version 0.06. => 0.06. (15.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.07.2025):
+   -- Version 0.06. => 0.06. (14.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.07.2025):
+   -- Version 0.06. => 0.06. (13.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.07.2025):
+   -- Version 0.06. => 0.06. (12.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (11.07.2025):
+   -- Version 0.06. => 0.06. (11.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (10.07.2025):
+   -- Version 0.06. => 0.06. (10.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (09.07.2025):
+   -- Version 0.06. => 0.06. (09.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (08.07.2025):
+   -- Version 0.06. => 0.06. (08.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07.07.2025):
+   -- Version 0.06. => 0.06. (07.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06.07.2025):
+   -- Version 0.06. => 0.06. (06.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (05.07.2025):
+   -- Version 0.06. => 0.06. (05.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (04.07.2025):
+   -- Version 0.06. => 0.06. (04.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (03.07.2025):
+   -- Version 0.06. => 0.06. (03.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (02.07.2025):
+   -- Version 0.06.2930 => 0.06. (02.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01.07.2025):
+   -- Version 0.06.2910 => 0.06.2930 (01.07.2025):
    
-   -- 
    -- Kleinigkeiten korrigiert.
 
 end ChangelogJuli2025;
