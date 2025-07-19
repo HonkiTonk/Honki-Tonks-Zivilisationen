@@ -1,9 +1,10 @@
 with Sf.Graphics.Text;
 
+with TextKonstantenHTSEB;
+
 with MenueKonstanten;
 with MenueDatentypen;
 with KartenKonstanten;
-with TextKonstanten;
 with TextaccessVariablen;
 with AuswahlKonstanten;
 
@@ -51,7 +52,7 @@ package body ZusatztextKartengroesseGrafik is
     
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                          str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
-                                                                                              WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & Ebenenanzahl
+                                                                                              WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstantenHTSEB.StandardAbstand & Ebenenanzahl
                                          & SenkrechteAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte) & KleinesX
                                          & WaagerechteAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte));
       
@@ -64,7 +65,7 @@ package body ZusatztextKartengroesseGrafik is
          when others =>
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                                str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
-                                                                                                    WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & Ebenenanzahl
+                                                                                                    WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstantenHTSEB.StandardAbstand & Ebenenanzahl
                                                & SenkrechteAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).Senkrechte) & KleinesX
                                                & WaagerechteAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).Waagerechte));
       end case;

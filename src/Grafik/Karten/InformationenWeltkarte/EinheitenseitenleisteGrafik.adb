@@ -3,7 +3,6 @@ with TextKonstantenHTSEB;
 with Spieltexte;
 with StadtKonstanten;
 with TextnummernKonstanten;
-with TextKonstanten;
 with Projekteinstellungen;
 with SystemDatentypen;
 with SpeziesKonstanten;
@@ -170,7 +169,7 @@ package body EinheitenseitenleisteGrafik is
    is begin
       
       return Spieltexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image
-        & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+        & TextKonstantenHTSEB.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                               IDExtern      => IDExtern));
         
    end Lebenspunkte;
@@ -184,7 +183,7 @@ package body EinheitenseitenleisteGrafik is
    is begin
       
       return Spieltexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image
-        & TextKonstanten.Trennzeichen & ZahlAlsStringBewegungspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+        & TextKonstantenHTSEB.Trennzeichen & ZahlAlsStringBewegungspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                                     IDExtern      => IDExtern));
       
    end Bewegungspunkte;
@@ -198,7 +197,7 @@ package body EinheitenseitenleisteGrafik is
    is begin
       
       return Spieltexte.Zeug (TextnummernKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image
-        & TextKonstanten.Trennzeichen & ZahlAlsStringErfahrungspunkte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+        & TextKonstantenHTSEB.Trennzeichen & ZahlAlsStringErfahrungspunkte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                                  IDExtern      => IDExtern));
       
    end Erfahrungspunkte;
@@ -211,7 +210,7 @@ package body EinheitenseitenleisteGrafik is
       return Unbounded_Wide_Wide_String
    is begin
       
-      return Spieltexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image & TextKonstanten.Trennzeichen
+      return Spieltexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image & TextKonstantenHTSEB.Trennzeichen
         & ZahlAlsStringRang (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                  IDExtern      => IDExtern));
       
@@ -230,10 +229,10 @@ package body EinheitenseitenleisteGrafik is
         Beschäftigung
       is
          when AufgabenDatentypen.Leer_Aufgabe_Enum =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & TextKonstanten.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & TextKonstantenHTSEB.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
             
          when others =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & TextKonstanten.UmbruchAbstand & EinheitenbeschreibungenGrafik.KurzbeschreibungBeschäftigung (Beschäftigung) & " (" &
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & TextKonstantenHTSEB.UmbruchAbstand & EinheitenbeschreibungenGrafik.KurzbeschreibungBeschäftigung (Beschäftigung) & " (" &
               ZahlAlsStringArbeitszeit (ZahlExtern => LeseEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)) & ")";
       end case;
       
@@ -249,7 +248,7 @@ package body EinheitenseitenleisteGrafik is
       return Spieltexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & " "
         & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                                 TaskExtern                 => SystemDatentypen.Grafik_Task_Enum))
-        & " " & TextKonstanten.TrennzeichenUnterschiedlich & " "
+        & " " & TextKonstantenHTSEB.TrennzeichenUnterschiedlich & " "
         & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                                      TaskExtern                 => SystemDatentypen.Grafik_Task_Enum));
       
@@ -269,10 +268,10 @@ package body EinheitenseitenleisteGrafik is
         Stadtnummer
       is
          when StadtKonstanten.LeerNummer =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & TextKonstanten.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & TextKonstantenHTSEB.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
                
          when others =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & TextKonstanten.UmbruchAbstand & LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Stadtnummer));
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & TextKonstantenHTSEB.UmbruchAbstand & LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Stadtnummer));
       end case;
       
    end Heimatstadt;

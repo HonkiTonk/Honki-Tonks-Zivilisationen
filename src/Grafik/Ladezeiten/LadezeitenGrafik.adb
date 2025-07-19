@@ -1,5 +1,6 @@
+with TextKonstantenHTSEB;
+
 with Spieltexte;
-with TextKonstanten;
 with Views;
 with LadezeitenDatentypen;
 with TextnummernKonstanten;
@@ -91,8 +92,8 @@ package body LadezeitenGrafik is
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
                 
-         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
-           & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
+         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
+           & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
          
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
                                                                                                     TextpositionExtern       => Textposition,
@@ -121,8 +122,8 @@ package body LadezeitenGrafik is
       KIRechnetSchleife:
       for KIRechnetSchleifenwert in LadezeitenDatentypen.KI_Rechnet_Enum'Range loop
                   
-         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
-           & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
+         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
+           & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
          
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
                                                                                                     TextpositionExtern       => Textposition,
@@ -148,7 +149,7 @@ package body LadezeitenGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
          
       Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)
-                                                                                                 & TextKonstanten.Trennzeichen & MaximalerLadefortschritt,
+                                                                                                 & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt,
                                                                                                  TextpositionExtern       => Textposition,
                                                                                                  MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                  TextAccessExtern         => TextaccessVariablen.SpeichernLadenAccess (1));
@@ -169,7 +170,7 @@ package body LadezeitenGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
          
       Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittRundenende)
-                                                                                                 & TextKonstanten.Trennzeichen & MaximalerLadefortschritt,
+                                                                                                 & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt,
                                                                                                  TextpositionExtern       => Textposition,
                                                                                                  MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                  TextAccessExtern         => TextaccessVariablen.RundenendeAccess (1));

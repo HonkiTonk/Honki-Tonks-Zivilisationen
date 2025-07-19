@@ -1,9 +1,10 @@
 with Sf.Graphics.Text;
 
+with TextKonstantenHTSEB;
+
 with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
-with TextKonstanten;
 with TastenbelegungKonstanten;
 with Menuetexte;
 with BefehleDatentypen;
@@ -250,7 +251,7 @@ package body SteuerungsmenueGrafik is
          return To_Wide_Wide_String (Source => Menuetexte.Steuerungsmenü (WelcheZeileExtern));
            
       else
-         Text := Menuetexte.Steuerungsmenü (WelcheZeileExtern) & TextKonstanten.LangerAbstand;
+         Text := Menuetexte.Steuerungsmenü (WelcheZeileExtern) & TextKonstantenHTSEB.LangerAbstand;
       end if;
                                                
       case

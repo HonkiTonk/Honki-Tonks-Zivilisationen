@@ -1,5 +1,7 @@
 with Sf.Graphics.Text;
 
+with TextKonstantenHTSEB;
+
 with ForschungKonstanten;
 with GrafikDatentypen;
 with Spieltexte;
@@ -10,7 +12,6 @@ with TextaccessVariablen;
 with Views;
 with ViewKonstanten;
 with GrafikKonstanten;
-with TextKonstanten;
 
 with LeseForschungenDatenbank;
 with LeseEinheitenDatenbank;
@@ -338,7 +339,7 @@ package body ForschungsauswahlGrafik is
         Forschungszeit
       is
          when ProduktionDatentypen.Lagermenge'Last =>
-            Text := Text & TextKonstanten.Unendlich;
+            Text := Text & TextKonstantenHTSEB.UnendlichUngeklammert;
             
          when others =>
             Text := Text & Forschungszeit'Wide_Wide_Image;

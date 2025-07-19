@@ -4,7 +4,6 @@ with Sf;
 with TextKonstantenHTSEB;
 
 with Menuetexte;
-with TextKonstanten;
 
 with LeseEinstellungenGrafik;
 with LeseEinstellungenTon;
@@ -157,7 +156,7 @@ package body MenuestringsSetzenGrafik is
               LeseEinstellungenGrafik.Bildrate
             is
                when 0 =>
-                  Zwischenspeicher := Zwischenspeicher & TextKonstanten.UnendlichGeklammert;
+                  Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.UnendlichGeklammert;
                
                when others =>
                   Zwischenspeicher := Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => Positive (LeseEinstellungenGrafik.Bildrate)) & ")";

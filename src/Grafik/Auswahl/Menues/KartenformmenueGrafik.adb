@@ -1,13 +1,14 @@
 with Sf;
 with Sf.Graphics.Text;
 
+with TextKonstantenHTSEB;
+
 with KartenartDatentypen;
 with MenueKonstanten;
 with TextaccessVariablen;
 with InteraktionAuswahl;
 with Menuetexte;
 with GrafikKonstanten;
-with TextKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with MenuestringsSetzenGrafik;
@@ -89,7 +90,7 @@ package body KartenformmenueGrafik is
                WelcherZusatztext := Übergang;
             end if;
 
-            Zusatztext := TextKonstanten.Trennstrich & Menuetexte.Kartenform (WelcherZusatztext);
+            Zusatztext := TextKonstantenHTSEB.Trennstrich & Menuetexte.Kartenform (WelcherZusatztext);
 
          when Norden =>
             if
@@ -176,7 +177,7 @@ package body KartenformmenueGrafik is
                                                                 WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum);
       end case;
 
-      Zusatztext := TextKonstanten.Trennstrich & Menuetexte.Kartenform (WelcherZusatztext);
+      Zusatztext := TextKonstantenHTSEB.Trennstrich & Menuetexte.Kartenform (WelcherZusatztext);
       
       return MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => SchleifenwertExtern,
                                                           WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum)

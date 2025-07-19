@@ -1,7 +1,5 @@
 with TextKonstantenHTSEB;
 
-with TextKonstanten;
-
 with LeseWeltkarte;
 with LeseZeiger;
 
@@ -80,7 +78,7 @@ package body AllgemeinesSeitenleisteGrafik is
             return KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => GesamtgrundExtern.Basisgrund);
          
          when others =>
-            return KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => GesamtgrundExtern.Basisgrund) & TextKonstanten.Trennzeichen
+            return KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => GesamtgrundExtern.Basisgrund) & TextKonstantenHTSEB.Trennzeichen
               & KartenbeschreibungenGrafik.KurzbeschreibungZusatzgrund (KartenGrundExtern => GesamtgrundExtern.Zusatzgrund);
       end case;
       
@@ -186,7 +184,7 @@ package body AllgemeinesSeitenleisteGrafik is
             Zwischenspeicher := KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert);
                   
          else
-            Zwischenspeicher := Zwischenspeicher & TextKonstanten.Trennzeichen & KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert);
+            Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Trennzeichen & KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert);
          end if;
          
       end loop FeldeffekteSchleife;

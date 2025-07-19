@@ -197,17 +197,17 @@ package ChangelogJuli2025 is
    
    
 
-   -- Version 0.06. => 0.06. (03.07.2025):
+   -- Version 0.06.2955 => 0.06. (03.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2930 => 0.06. (02.07.2025):
+   -- Version 0.06.2930 => 0.06.2955 (02.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- TextKonstanten völlständig ausgelagert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

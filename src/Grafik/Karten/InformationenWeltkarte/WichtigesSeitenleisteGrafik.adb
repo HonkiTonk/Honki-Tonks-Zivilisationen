@@ -2,7 +2,6 @@ with TextKonstantenHTSEB;
 
 with Spieltexte;
 with TextnummernKonstanten;
-with TextKonstanten;
 with ForschungKonstanten;
 with ProduktionKonstanten;
 with KartenKonstanten;
@@ -96,7 +95,7 @@ package body WichtigesSeitenleisteGrafik is
             Rundengrenze := LeseAllgemeines.Rundengrenze;
             
          when others =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstantenHTSEB.Trennzeichen
               & ZahlAlsStringPositive (ZahlExtern => LeseGrenzen.Speziesrundengrenze (SpeziesExtern => SpeziesExtern));
       end case;
       
@@ -107,7 +106,7 @@ package body WichtigesSeitenleisteGrafik is
             return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image;
             
          when others =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstantenHTSEB.Trennzeichen
               & ZahlAlsStringPositive (ZahlExtern => Rundengrenze);
       end case;
       
@@ -140,11 +139,11 @@ package body WichtigesSeitenleisteGrafik is
       elsif
         Geldzuwachs > ProduktionKonstanten.LeerProduktion
       then
-         return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+"
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstantenHTSEB.StandardAbstand & "+"
            & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldRundengewinn (SpeziesExtern => SpeziesExtern));
          
       else
-         return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstantenHTSEB.StandardAbstand
            & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldRundengewinn (SpeziesExtern => SpeziesExtern));
       end if;
       
@@ -163,7 +162,7 @@ package body WichtigesSeitenleisteGrafik is
         Forschungsprojekt
       is
          when ForschungKonstanten.LeerForschung =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstantenHTSEB.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
             
          when others =>
             Forschungszeit := LeseWichtiges.VerbleibendeForschungszeit (SpeziesExtern => SpeziesExtern);
@@ -173,12 +172,12 @@ package body WichtigesSeitenleisteGrafik is
         Forschungszeit
       is
          when ProduktionDatentypen.Lagermenge'Last =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => Forschungsprojekt,
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstantenHTSEB.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => Forschungsprojekt,
                                                                                                                                                                              SpeziesExtern => SpeziesExtern)
-              & TextKonstanten.UnendlichGeklammert;
+              & TextKonstantenHTSEB.UnendlichGeklammert;
             
          when others =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => Forschungsprojekt,
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstantenHTSEB.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => Forschungsprojekt,
                                                                                                                                                                              SpeziesExtern => SpeziesExtern)
               & " (" & ZahlAlsStringKostenLager (ZahlExtern => Forschungszeit) & ")";
       end case;

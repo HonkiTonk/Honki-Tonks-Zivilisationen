@@ -11,11 +11,11 @@ with LeseGrenzen;
 
 with MeldungssystemHTSEB;
 
--- Teile davon mal durch die Standardversion in der HTSEB ersetzen! äöü
+-- Teile davon mal durch die Rechnungsprüfung in der HTSEB ersetzen! äöü
 package body SchreibeWichtiges is
 
    -- Warum kann die vorhandene Geldmenge überhaupt kleiner als 0 sein? Das mal ändern. äöü
-   -- Die Berechnungen auch mal anpaasen, so dass die Ganzzahltests funktioneiren oder es entsprechend umschreiben, weil es könnten hier auch wieder Fehelr drin sein. äöü
+   -- Warum sollte die Geldmenge nicht kleiner 0 sein können? äöü
    procedure Geldmenge
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GeldZugewinnExtern : in ZahlenDatentypen.EigenerInteger;

@@ -12,7 +12,6 @@ with InteraktionAuswahl;
 with SpeziesDatentypen;
 with MenueDatentypen;
 with DiplomatieDatentypen;
-with TextKonstanten;
 with GrafikKonstanten;
 with ViewKonstanten;
 
@@ -73,7 +72,7 @@ package body DiplomatieauswahlGrafik is
          then
             Text := To_Unbounded_Wide_Wide_String (Source => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert + 1,
                                                                                                           WelchesMenüExtern => MenueDatentypen.Spezies_Menü_Enum))
-              & TextKonstanten.StandardAbstand;
+              & TextKonstantenHTSEB.StandardAbstand;
                
             case
               LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => LeseGrafiktask.AktiveSpezies,

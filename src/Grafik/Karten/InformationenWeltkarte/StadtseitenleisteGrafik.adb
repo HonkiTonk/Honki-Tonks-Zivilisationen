@@ -4,7 +4,6 @@ with EinheitenDatentypen;
 with StadtDatentypen;
 with Spieltexte;
 with TextnummernKonstanten;
-with TextKonstanten;
 with ProduktionKonstanten;
 with Projekteinstellungen;
 with SystemDatentypen;
@@ -172,10 +171,10 @@ package body StadtseitenleisteGrafik is
       elsif
         ProduktionExtern > ProduktionKonstanten.LeerProduktion
       then
-         return Spieltexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+" & ZahlAlsString (ZahlExtern => ProduktionExtern);
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstantenHTSEB.StandardAbstand & "+" & ZahlAlsString (ZahlExtern => ProduktionExtern);
          
       else
-         return Spieltexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => ProduktionExtern);
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (ZahlExtern => ProduktionExtern);
       end if;
       
    end Nahrung;
@@ -193,7 +192,7 @@ package body StadtseitenleisteGrafik is
                                                                                                                            GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
                                                                                                                            EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1),
                                                                                                                            TaskExtern        => SystemDatentypen.Grafik_Task_Enum)'Wide_Wide_Image
-        & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => StadtauswahlExtern.ID,
+        & " " & TextKonstantenHTSEB.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => StadtauswahlExtern.ID,
                                                                                                                       KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                                       SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                                                                                       GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
@@ -227,10 +226,10 @@ package body StadtseitenleisteGrafik is
                                                                                                                       SpeziesExtern => SpeziesExtern));
       
       else
-         return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstantenHTSEB.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
       end if;
       
-      return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Zwischenspeicher & StandardtexteGrafik.Bauzeit (BauzeitExtern => BauzeitExtern);
+      return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstantenHTSEB.UmbruchAbstand & Zwischenspeicher & StandardtexteGrafik.Bauzeit (BauzeitExtern => BauzeitExtern);
             
    end AktuellesBauprojekt;
    

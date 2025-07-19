@@ -16,7 +16,7 @@ package TextKonstantenHTSEB is
    LangerAbstand : constant Wide_Wide_String (1 .. 10) := "          ";
    UmbruchAbstand : constant Wide_Wide_String (1 .. 5) := BetriebssystemKonstantenHTSEB.LF & StandardAbstand;
    UnendlichGeklammert : constant Wide_Wide_String (1 .. 4) := " (∞)";
-   Unendlich : constant Wide_Wide_String (1 .. 2) := " ∞";
+   UnendlichUngeklammert : constant Wide_Wide_String (1 .. 2) := " ∞";
    Haken : constant Wide_Wide_String (1 .. 2) := " ✔";
    Kreuz : constant Wide_Wide_String (1 .. 2) := " ✘";
    

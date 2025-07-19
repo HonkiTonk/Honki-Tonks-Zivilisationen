@@ -9,6 +9,7 @@ package SystemKonstanten is
       
    LeerMeldung : constant TextnummernKonstanten.Spielmeldungen := TextnummernKonstanten.Spielmeldungen'First;
    
+   -- Das hier auch mal auslagern?
    LeerEinByte : constant SystemDatentypenHTSEB.EinByte := 0;
    LeerZweiByte : constant SystemDatentypenHTSEB.ZweiByte := 0;
    LeerVierByte : constant SystemDatentypenHTSEB.VierByte := 0;

@@ -1,4 +1,4 @@
-with TextKonstanten;
+with TextKonstantenHTSEB;
 
 package body StandardtexteGrafik is
 
@@ -11,7 +11,7 @@ package body StandardtexteGrafik is
         BauzeitExtern
       is
          when ProduktionDatentypen.Produktion'Last =>
-            return TextKonstanten.UnendlichGeklammert;
+            return TextKonstantenHTSEB.UnendlichGeklammert;
             
          when others =>
             return " (" & ProduktionAlsString (ZahlExtern => BauzeitExtern) & ")";
