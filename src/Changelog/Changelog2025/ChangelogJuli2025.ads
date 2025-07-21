@@ -190,16 +190,16 @@ package ChangelogJuli2025 is
    
    
 
-   -- Version 0.06. => 0.06. (04.07.2025):
+   -- Version 0.06.2980 => 0.06. (04.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.2955 => 0.06. (03.07.2025):
+   -- Version 0.06.2955 => 0.06.2980 (03.07.2025):
    
-   -- 
+   -- Spieleentwicklungsbibiliothek auf Version 0.01.1200 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

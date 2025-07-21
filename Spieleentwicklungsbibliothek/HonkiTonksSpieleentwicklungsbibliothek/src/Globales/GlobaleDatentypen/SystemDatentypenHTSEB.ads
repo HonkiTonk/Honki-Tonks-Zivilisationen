@@ -12,6 +12,25 @@ package SystemDatentypenHTSEB is
    subtype Spieler_Belegt_Enum is Spieler_Enum range Spieler_Enum'Succ (Spieler_Enum'First) .. Spieler_Enum'Last;
    
    
+   
+   type Anfang_Ende_Enum is (
+                             Anfang_Enum, Ende_Enum
+                            );
+   
+   
+   
+   type Erweiterter_Boolean_Enum is (
+                                     True_Enum, Neutral_Enum, False_Enum
+                                    );
+   
+   
+   
+   type Spielstand_Enum is (
+                            Manueller_Spielstand_Enum,
+                            Automatischer_Spielstand_Enum
+                           );
+   
+   
       
    type NullBisHundert is range 0 .. 100;
    subtype EinsBisHundert is NullBisHundert range 1 .. NullBisHundert'Last;

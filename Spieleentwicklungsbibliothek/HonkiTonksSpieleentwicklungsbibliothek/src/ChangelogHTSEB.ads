@@ -1,9 +1,17 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.1100 => 0.01. (.2025):
+   -- Version 0.01.1200 => 0.01. (.2025):
    
    -- 
+   
+   
+   
+   -- Version 0.01.1100 => 0.01.1200 (21.07.2025):
+   
+   -- Textkonstanten überarbeitet.
+   -- SystemDatentypen erweitert.
+   -- SystemKonstanten erweitert.
    
    
    

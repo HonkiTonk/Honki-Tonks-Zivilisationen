@@ -8,5 +8,12 @@ package SystemKonstantenHTSEB is
    
    KommazahlNullwert : constant Float := 0.00;
    KommazahlEinswert : constant Float := 1.00;
+   
+   LeerEinByte : constant SystemDatentypenHTSEB.EinByte := 0;
+   LeerZweiByte : constant SystemDatentypenHTSEB.ZweiByte := 0;
+   LeerVierByte : constant SystemDatentypenHTSEB.VierByte := 0;
+   
+   LeerEinByteVorzeichen : constant SystemDatentypenHTSEB.EinByteVorzeichen := 0;
+   LeerZweiByteVorzeichen : constant SystemDatentypenHTSEB.EinByteVorzeichen := 0;
 
 end SystemKonstantenHTSEB;
