@@ -21,10 +21,8 @@ package body KommazahltestsHTSEB is
          return Kommazahl'First;
          
       else
-         null;
+         return GrundwertExtern + ZusatzwertExtern;
       end if;
-      
-      return GrundwertExtern + ZusatzwertExtern;
       
    end Strichrechnung;
    

@@ -6,7 +6,6 @@ package BetriebssystemDatentypenHTSEB is
                                 
                                 Windows_Enum
                                );
-   subtype Betriebsystem_Zeichenabzug_Enum is Betriebssystem_Enum range Windows_Enum .. Windows_Enum;
 
    type Kodierung_Enum is (
                            UTF8_Enum, UTF16BE_Enum, UTF16LE_Enum

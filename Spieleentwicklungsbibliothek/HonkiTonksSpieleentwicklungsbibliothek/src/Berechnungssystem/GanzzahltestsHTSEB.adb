@@ -21,11 +21,9 @@ package body GanzzahltestsHTSEB is
          return GanzeZahl'First;
          
       else
-         null;
+         return GrundwertExtern + ZusatzwertExtern;
       end if;
-      
-      return GrundwertExtern + ZusatzwertExtern;
-      
+            
    end Strichrechnung;
    
    

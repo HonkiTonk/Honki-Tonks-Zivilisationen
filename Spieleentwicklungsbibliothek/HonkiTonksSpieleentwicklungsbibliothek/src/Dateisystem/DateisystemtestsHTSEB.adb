@@ -290,7 +290,7 @@ package body DateisystemtestsHTSEB is
       
       
       
-      -- Standard ist alles groß.
+      -- Am Anfang ist jeder Buchstabe groß.
       VerbotenenamenDreiSchleife:
       for VerbotenenamenDreiSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenDrei'Range loop
                                     
@@ -309,7 +309,7 @@ package body DateisystemtestsHTSEB is
       
       
       
-      -- Standard ist alles groß.
+      -- Am Anfang ist jeder Buchstabe groß.
       VerbotenenamenVierSchleife:
       for VerbotenenamenVierSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenVier'Range loop
          
@@ -328,7 +328,7 @@ package body DateisystemtestsHTSEB is
       
       
       
-      -- Standard ist alles groß.
+      -- Am Anfang ist jeder Buchstabe groß.
       VerbotenenamenFünfSchleife:
       for VerbotenenamenFünfSchleifenwert in BetriebssystemKonstantenHTSEB.VerboteneWindowsnamenFünf'Range loop
          VierSchleife:

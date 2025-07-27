@@ -153,7 +153,7 @@ package body DateizugriffssystemHTSEB is
             Close (File => DateiartExtern);
             
          when False =>
-            MeldungssystemHTSEB.Logik (MeldungExtern => "DateizugriffssystemHTSEB.SchließenStream: Ungeöffneter Stream soll geschlossen werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => NameExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "DateizugriffssystemHTSEB.SchließenText: Ungeöffneter Text soll geschlossen werden: " & UmwandlungssystemHTSEB.Decode (TextExtern => NameExtern));
       end case;
       
    end SchließenText;

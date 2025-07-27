@@ -1,7 +1,7 @@
 package ChangelogJuli2025 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (31.07.2025):
+   -- Version 0.06. => 0. (31.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -29,171 +29,149 @@ package ChangelogJuli2025 is
    
    
 
-   -- Version 0.06. => 0.06. (27.07.2025):
+   -- Version 0.06.3005 => 0.06. (27.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (26.07.2025):
+   -- Version 0.06.2980 => 0.06.3005 (26.07.2025):
    
-   -- 
+   -- Spieleentwicklungsbibiliothek auf Version 0.01.2000 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (25.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (25.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (24.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (23.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (24.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (22.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (21.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (23.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (20.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (19.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (22.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (18.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (17.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (21.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (16.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (15.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (20.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (14.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (13.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (19.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (12.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (11.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (18.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (10.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (09.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (17.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (08.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (07.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (16.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (06.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (05.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (15.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06.2980 => 0.06. (04.07.2025):
+   -- Version 0.06.2980 => 0.06.2980 (14.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (13.07.2025):
+   
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (12.07.2025):
+   
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (11.07.2025):
+   
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (10.07.2025):
+   
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (09.07.2025):
+   
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (08.07.2025):
+   
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (07.07.2025):
+   
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (06.07.2025):
+   
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (05.07.2025):
+   
+   -- null
+   
+   
+
+   -- Version 0.06.2980 => 0.06.2980 (04.07.2025):
+   
+   -- null
    
    
 

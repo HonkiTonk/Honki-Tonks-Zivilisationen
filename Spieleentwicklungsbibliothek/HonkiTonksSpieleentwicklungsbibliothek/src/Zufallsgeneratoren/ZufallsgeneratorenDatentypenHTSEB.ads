@@ -9,8 +9,8 @@ package ZufallsgeneratorenDatentypenHTSEB is
    pragma Ordered (Bewertung_Enum);
    
    subtype Fehlschlag is Bewertung_Enum range Bewertung_Eins_Enum .. Bewertung_Fünf_Enum;
-   subtype KritischerFehlschlag is Fehlschlag range Bewertung_Eins_Enum .. Bewertung_Eins_Enum;
    subtype NormalerFehlschlag is Fehlschlag range Bewertung_Zwei_Enum .. Bewertung_Fünf_Enum;
+   subtype KritischerFehlschlag is Fehlschlag range Bewertung_Eins_Enum .. Bewertung_Eins_Enum;
    
    subtype Erfolg is Bewertung_Enum range Bewertung_Sechs_Enum .. Bewertung_Zehn_Enum;
    subtype NormalerErfolg is Erfolg range Bewertung_Sechs_Enum .. Bewertung_Neun_Enum;

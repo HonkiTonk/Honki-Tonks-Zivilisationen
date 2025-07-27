@@ -16,8 +16,7 @@ package body UmwandlungsvariablenHTSEB is
          when BetriebssystemDatentypenHTSEB.UTF16LE_Enum =>
             Kodierung := Ada.Strings.UTF_Encoding.UTF_16LE;
       end case;
-      
-      
+            
    end KodierungWechseln;
    
    

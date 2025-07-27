@@ -31,8 +31,6 @@ package DateisystemtestsHTSEB is
       return Boolean
      with
        Pre => (
-                 WindowsTextExtern'Length > 0
-               and
                  WindowsTextExtern'Length >= LinuxTextExtern'Length
               );
 
@@ -58,8 +56,6 @@ package DateisystemtestsHTSEB is
 
 private
    use Ada.Directories;
-
-   Erlaubt : Boolean;
 
    LängeAktuellesVerzeichnis : constant Positive := Current_Directory'Length;
 

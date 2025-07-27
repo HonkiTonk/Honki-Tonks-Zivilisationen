@@ -1,15 +1,24 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.1200 => 0.01. (.2025):
+   -- Version 0.01.2000 => 0.01. (.2025):
    
    -- 
    
    
    
+   -- Version 0.01.1200 => 0.01.2000 (27.07.2025):
+   
+   -- Unnötige Datentypen in BetriebssystemDatentypen entfernt.
+   -- Übriggebliebene Variablen entfernt.
+   -- Kleinigkeiten angepasst.
+   -- Englische Version hinzugefügt.
+   
+   
+   
    -- Version 0.01.1100 => 0.01.1200 (21.07.2025):
    
-   -- Textkonstanten überarbeitet.
+   -- TextKonstanten überarbeitet.
    -- SystemDatentypen erweitert.
    -- SystemKonstanten erweitert.
    
@@ -19,8 +28,8 @@ package ChangelogHTSEB is
    
    -- Namensprüfung für Windows überarbeitet.
    -- Ladezeit Datentyp hinzugefügt.
-   -- Verzeichniskonstanten überarbeitet.
-   -- Textkonstanten überarbeitet.
+   -- VerzeichnisKonstanten überarbeitet.
+   -- TextKonstanten überarbeitet.
    
    
    
