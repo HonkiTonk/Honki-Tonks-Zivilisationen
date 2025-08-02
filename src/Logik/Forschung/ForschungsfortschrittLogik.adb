@@ -1,5 +1,6 @@
+with SystemDatentypenHTSEB;
+
 with ProduktionDatentypen;
-with SystemDatentypen;
 with ForschungKonstanten;
 
 with SchreibeWichtiges;
@@ -37,10 +38,10 @@ package body ForschungsfortschrittLogik is
          SchreibeWichtiges.Erforscht (SpeziesExtern => SpeziesExtern);
          
          if
-           AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Anfangswert_Enum,
+           AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypenHTSEB.Anfang_Enum,
                                                                            SpeziesExtern    => SpeziesExtern)
            or
-             AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
+             AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypenHTSEB.Ende_Enum,
                                                                              SpeziesExtern    => SpeziesExtern)
          then
             StadtumgebungFestlegenLogik.StadtumgebungFestlegenTechnologie (SpeziesExtern => SpeziesExtern);

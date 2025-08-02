@@ -65,11 +65,11 @@ package body StadtbausystemLogik is
       is
          when StadtDatentypen.Gebäudeart_Enum =>
             MöglicheGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                        ListenrichtungExtern     => SystemDatentypen.Neutral_Enum);
+                                        ListenrichtungExtern     => SystemDatentypenHTSEB.Neutral_Enum);
             
          when StadtDatentypen.Einheitenart_Enum =>
             MöglicheEinheitenErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                         ListenrichtungExtern     => SystemDatentypen.Neutral_Enum);
+                                         ListenrichtungExtern     => SystemDatentypenHTSEB.Neutral_Enum);
       end case;
       
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Bauen_Enum);
@@ -99,11 +99,11 @@ package body StadtbausystemLogik is
                   is
                      when StadtDatentypen.Gebäudeart_Enum =>
                         MöglicheGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                    ListenrichtungExtern     => SystemDatentypen.Neutral_Enum);
+                                                    ListenrichtungExtern     => SystemDatentypenHTSEB.Neutral_Enum);
             
                      when StadtDatentypen.Einheitenart_Enum =>
                         MöglicheEinheitenErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                     ListenrichtungExtern     => SystemDatentypen.Neutral_Enum);
+                                                     ListenrichtungExtern     => SystemDatentypenHTSEB.Neutral_Enum);
                   end case;
                   
                elsif
@@ -178,16 +178,16 @@ package body StadtbausystemLogik is
    
    procedure MöglicheGebäudeErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      ListenrichtungExtern : in SystemDatentypen.Erweiterter_Boolean_Enum)
+      ListenrichtungExtern : in SystemDatentypenHTSEB.Erweiterter_Boolean_Enum)
    is begin
       
       case
         ListenrichtungExtern
       is
-         when SystemDatentypen.Neutral_Enum | SystemDatentypen.False_Enum =>
+         when SystemDatentypenHTSEB.Neutral_Enum | SystemDatentypenHTSEB.False_Enum =>
             GebäudeermittlungVorwärts (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
-         when SystemDatentypen.True_Enum =>
+         when SystemDatentypenHTSEB.True_Enum =>
             GebäudeermittlungRückwärts (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       
@@ -346,16 +346,16 @@ package body StadtbausystemLogik is
    
    procedure MöglicheEinheitenErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      ListenrichtungExtern : in SystemDatentypen.Erweiterter_Boolean_Enum)
+      ListenrichtungExtern : in SystemDatentypenHTSEB.Erweiterter_Boolean_Enum)
    is begin
       
       case
         ListenrichtungExtern
       is
-         when SystemDatentypen.Neutral_Enum | SystemDatentypen.False_Enum =>
+         when SystemDatentypenHTSEB.Neutral_Enum | SystemDatentypenHTSEB.False_Enum =>
             EinheitenermittlungVorwärts (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
-         when SystemDatentypen.True_Enum =>
+         when SystemDatentypenHTSEB.True_Enum =>
             EinheitenermittlungRückwärts (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       

@@ -1,8 +1,9 @@
+with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with AufgabenDatentypen;
-with SystemDatentypen;
 with BefehleDatentypen;
 
 with LeseSpeziesbelegung;
@@ -49,7 +50,7 @@ package LeseForschungenDatenbank is
               );
 
    function Umgebung
-     (AnfangEndeExtern : in SystemDatentypen.Anfang_Ende_Enum;
+     (AnfangEndeExtern : in SystemDatentypenHTSEB.Anfang_Ende_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ForschungenDatentypen.ForschungIDUnmöglich
      with

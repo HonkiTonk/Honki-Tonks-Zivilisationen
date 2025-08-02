@@ -2,8 +2,8 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
 
 with TextKonstantenHTSEB;
+with SystemDatentypenHTSEB;
 
-with SystemDatentypen;
 with ForschungKonstanten;
 with StadtDatentypen;
 with KartenDatentypen;
@@ -81,9 +81,9 @@ package StadtKonstanten is
    
    
    -- Das auch so ändern dass es davon einen Standardwert und einen einstellbaren Wert gibt. äöü
-   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.Einwohner;
+   type StadtUmgebungWachstumArray is array (SystemDatentypenHTSEB.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.Einwohner;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
-                                                                   SystemDatentypen.Anfangswert_Enum =>
+                                                                   SystemDatentypenHTSEB.Anfang_Enum =>
                                                                      (
                                                                       SpeziesDatentypen.Menschen_Enum         => 10,
                                                                       SpeziesDatentypen.Kasrodiah_Enum        => 10,
@@ -105,7 +105,7 @@ package StadtKonstanten is
                                                                       SpeziesDatentypen.Ekropa_Enum           => 10
                                                                      ),
 
-                                                                   SystemDatentypen.Endwert_Enum =>
+                                                                   SystemDatentypenHTSEB.Ende_Enum =>
                                                                      (
                                                                       SpeziesDatentypen.Menschen_Enum         => 20,
                                                                       SpeziesDatentypen.Kasrodiah_Enum        => 20,

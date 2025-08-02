@@ -1,4 +1,4 @@
-with SystemDatentypen;
+with SystemDatentypenHTSEB;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -113,9 +113,9 @@ package body StadtbewohnerwachstumLogik is
                                                      EreignisExtern           => StadtDatentypen.Einwohner_Wachstum_Enum);
             
             if
-              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtSpeziesNummerExtern.Spezies)
+              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypenHTSEB.Anfang_Enum, StadtSpeziesNummerExtern.Spezies)
               or
-                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtSpeziesNummerExtern.Spezies)
+                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypenHTSEB.Ende_Enum, StadtSpeziesNummerExtern.Spezies)
             then
                StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
@@ -129,9 +129,9 @@ package body StadtbewohnerwachstumLogik is
                                                      EreignisExtern           => StadtDatentypen.Einwohner_Reduktion_Enum);
             
             if
-              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtSpeziesNummerExtern.Spezies) - 1
+              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypenHTSEB.Anfang_Enum, StadtSpeziesNummerExtern.Spezies) - 1
               or
-                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtSpeziesNummerExtern.Spezies) - 1
+                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypenHTSEB.Ende_Enum, StadtSpeziesNummerExtern.Spezies) - 1
             then
                StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             

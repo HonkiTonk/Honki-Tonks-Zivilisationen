@@ -1,3 +1,5 @@
+with SystemDatentypenHTSEB;
+
 with StadtDatentypen;
 with KampfDatentypen;
 with SystemDatentypen;
@@ -127,11 +129,11 @@ package body KampfsystemStadtLogik is
          if
            LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigerExtern,
                                               EinwohnerArbeiterExtern  => True)
-           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, VerteidigerExtern.Spezies) - 1
+           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypenHTSEB.Anfang_Enum, VerteidigerExtern.Spezies) - 1
            or
              LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigerExtern,
                                                 EinwohnerArbeiterExtern  => True)
-           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, VerteidigerExtern.Spezies) - 1
+           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypenHTSEB.Ende_Enum, VerteidigerExtern.Spezies) - 1
          then
             StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtSpeziesNummerExtern => VerteidigerExtern);
             

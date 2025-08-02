@@ -1,8 +1,9 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with SystemDatentypenHTSEB;
+
 private with SystemRecordsHTSEB;
 
-with SystemDatentypen;
 with SpielRecords;
 with SpeziesDatentypen;
 
@@ -22,7 +23,7 @@ package SpielstandAllgemeinesLogik is
    
    function SpielstandVorhanden
      (SpielstandnameExtern : in Unbounded_Wide_Wide_String;
-      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
+      SpielstandartExtern : in SystemDatentypenHTSEB.Spielstand_Enum)
       return Boolean;
    
    function SpeziesbelegungLesen

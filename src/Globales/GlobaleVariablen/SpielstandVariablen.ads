@@ -2,8 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with ArraysHTSEB;
 with TextKonstantenHTSEB;
-
-with SystemDatentypen;
+with SystemDatentypenHTSEB;
 
 package SpielstandVariablen is
    pragma Elaborate_Body;
@@ -15,7 +14,7 @@ package SpielstandVariablen is
       NummerExtern : in Positive);
    
    procedure SpielstandartSchreiben
-     (SpielstandartExtern : in SystemDatentypen.Spielstand_Enum);
+     (SpielstandartExtern : in SystemDatentypenHTSEB.Spielstand_Enum);
    
    
    
@@ -27,12 +26,12 @@ package SpielstandVariablen is
      return ArraysHTSEB.SetsArray;
    
    function SpielstandartLesen
-     return SystemDatentypen.Spielstand_Enum;
+     return SystemDatentypenHTSEB.Spielstand_Enum;
    
 private
       
    Spielstand : ArraysHTSEB.SetsArray := (others => TextKonstantenHTSEB.LeerUnboundedString);
    
-   Spielstandart : SystemDatentypen.Spielstand_Enum := SystemDatentypen.Manueller_Spielstand_Enum;
+   Spielstandart : SystemDatentypenHTSEB.Spielstand_Enum := SystemDatentypenHTSEB.Manueller_Spielstand_Enum;
    
 end SpielstandVariablen;

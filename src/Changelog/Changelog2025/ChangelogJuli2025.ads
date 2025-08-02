@@ -22,16 +22,16 @@ package ChangelogJuli2025 is
    
    
 
-   -- Version 0.06. => 0.06. (28.07.2025):
+   -- Version 0.06.3030 => 0.06. (28.07.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3005 => 0.06. (27.07.2025):
+   -- Version 0.06.3005 => 0.06.3030 (27.07.2025):
    
-   -- 
+   -- Konsteanten durch die HTSEB Version ersetzt.
    -- Kleinigkeiten korrigiert.
    
    

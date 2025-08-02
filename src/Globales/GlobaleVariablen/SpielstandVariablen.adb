@@ -43,7 +43,7 @@ package body SpielstandVariablen is
    
    
    procedure SpielstandartSchreiben
-     (SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
+     (SpielstandartExtern : in SystemDatentypenHTSEB.Spielstand_Enum)
    is begin
       
       Spielstandart := SpielstandartExtern;
@@ -53,7 +53,7 @@ package body SpielstandVariablen is
    
    
    function SpielstandartLesen
-     return SystemDatentypen.Spielstand_Enum
+     return SystemDatentypenHTSEB.Spielstand_Enum
    is begin
       
       return Spielstandart;

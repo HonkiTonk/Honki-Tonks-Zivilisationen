@@ -1,21 +1,22 @@
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
 
+with SystemDatentypenHTSEB;
+
 private with ArraysHTSEB;
+
+with SystemRecords;
 
 private with GrafikRecordKonstanten;
 private with AuswahlKonstanten;
 private with MenueKonstanten;
-
-with SystemDatentypen;
-with SystemRecords;
 
 package SpielstandmenueGrafik is
    pragma Elaborate_Body;
 
    procedure Spielstandmenü
      (AuswahlExtern : in SystemRecords.DoppelauswahlRecord;
-      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum;
+      SpielstandartExtern : in SystemDatentypenHTSEB.Spielstand_Enum;
       SpeichernLadenExtern : in Boolean);
    
 private
@@ -46,7 +47,7 @@ private
    
    function Spielstandaufteilung
      (AuswahlExtern : in Integer;
-      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
+      SpielstandartExtern : in SystemDatentypenHTSEB.Spielstand_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -58,7 +59,7 @@ private
    function Textanzeige
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       AuswahlExtern : in Integer;
-      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum;
+      SpielstandartExtern : in SystemDatentypenHTSEB.Spielstand_Enum;
       SpeichernLadenExtern : in Boolean)
       return Sf.System.Vector2.sfVector2f
      with
@@ -76,7 +77,7 @@ private
       
    function TextSetzen
      (TextExtern : in Wide_Wide_String;
-      SpielstandartExtern : in SystemDatentypen.Spielstand_Enum)
+      SpielstandartExtern : in SystemDatentypenHTSEB.Spielstand_Enum)
       return Wide_Wide_String;
    
 end SpielstandmenueGrafik;

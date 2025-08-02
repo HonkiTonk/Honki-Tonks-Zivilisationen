@@ -1,8 +1,9 @@
+with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 with ForschungsdatenbankRecord;
 with ForschungKonstanten;
 with AufgabenDatentypen;
-with SystemDatentypen;
 with BefehleDatentypen;
 with ForschungenDatentypen;
 with KartenextraDatentypen;
@@ -312,9 +313,9 @@ package ForschungRecordKonstanten is
                                                                                          )
                                                                                       );
       
-   type TechnologieUmgebungsgrößeArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of ForschungenDatentypen.ForschungIDUnmöglich;
+   type TechnologieUmgebungsgrößeArray is array (SystemDatentypenHTSEB.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of ForschungenDatentypen.ForschungIDUnmöglich;
    StandardtechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (
-                                                                                       SystemDatentypen.Anfangswert_Enum =>
+                                                                                       SystemDatentypenHTSEB.Anfang_Enum =>
                                                                                          (
                                                                                           SpeziesDatentypen.Menschen_Enum         => 19,
                                                                                           SpeziesDatentypen.Kasrodiah_Enum        => 19,
@@ -336,7 +337,7 @@ package ForschungRecordKonstanten is
                                                                                           SpeziesDatentypen.Talbidahr_Enum        => 19
                                                                                          ),
                                                                                
-                                                                                       SystemDatentypen.Endwert_Enum =>
+                                                                                       SystemDatentypenHTSEB.Ende_Enum =>
                                                                                          (
                                                                                           SpeziesDatentypen.Menschen_Enum         => 43,
                                                                                           SpeziesDatentypen.Kasrodiah_Enum        => 43,

@@ -1,10 +1,11 @@
+private with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 with StadtRecords;
 with StadtKonstanten;
 
 private with StadtDatentypen;
 private with EinheitenDatentypen;
-private with SystemDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -40,15 +41,15 @@ private
    GewähltesBauprojekt : StadtRecords.BauprojektRecord;
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
 
-   type AuswahlaufteilungArray is array (InteraktionAuswahl.BaulisteZurück .. InteraktionAuswahl.BaulisteWeiter) of SystemDatentypen.Erweiterter_Boolean_Enum;
+   type AuswahlaufteilungArray is array (InteraktionAuswahl.BaulisteZurück .. InteraktionAuswahl.BaulisteWeiter) of SystemDatentypenHTSEB.Erweiterter_Boolean_Enum;
    Auswahlaufteilung : constant AuswahlaufteilungArray := (
-                                                           InteraktionAuswahl.BaulisteZurück => SystemDatentypen.True_Enum,
-                                                           InteraktionAuswahl.BaulisteWeiter => SystemDatentypen.False_Enum
+                                                           InteraktionAuswahl.BaulisteZurück => SystemDatentypenHTSEB.True_Enum,
+                                                           InteraktionAuswahl.BaulisteWeiter => SystemDatentypenHTSEB.False_Enum
                                                           );
 
    procedure MöglicheGebäudeErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      ListenrichtungExtern : in SystemDatentypen.Erweiterter_Boolean_Enum)
+      ListenrichtungExtern : in SystemDatentypenHTSEB.Erweiterter_Boolean_Enum)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -76,7 +77,7 @@ private
 
    procedure MöglicheEinheitenErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      ListenrichtungExtern : in SystemDatentypen.Erweiterter_Boolean_Enum)
+      ListenrichtungExtern : in SystemDatentypenHTSEB.Erweiterter_Boolean_Enum)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

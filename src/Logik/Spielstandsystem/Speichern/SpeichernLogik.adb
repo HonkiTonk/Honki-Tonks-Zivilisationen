@@ -4,7 +4,6 @@ with DateizugriffssystemHTSEB;
 with TextKonstantenHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
-with SystemDatentypenHTSEB;
 
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
@@ -72,13 +71,13 @@ package body SpeichernLogik is
            AutospeichernExtern
          is
             when True =>
-               Spielstandart := SystemDatentypen.Automatischer_Spielstand_Enum;
+               Spielstandart := SystemDatentypenHTSEB.Automatischer_Spielstand_Enum;
             
             when False =>
                LadezeitenLogik.SpeichernLadenNullsetzen;
                LadezeitenLogik.SpeichernNullsetzen;
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Enum);
-               Spielstandart := SystemDatentypen.Manueller_Spielstand_Enum;
+               Spielstandart := SystemDatentypenHTSEB.Manueller_Spielstand_Enum;
          end case;
          
          DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,

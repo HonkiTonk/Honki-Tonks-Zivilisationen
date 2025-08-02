@@ -1,4 +1,5 @@
-with SystemDatentypen;
+with SystemDatentypenHTSEB;
+
 with SpeziesKonstanten;
 
 with SchreibeStadtGebaut;
@@ -45,19 +46,19 @@ package body StadtumgebungsbereichBerechnenLogik is
       
       elsif
         True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
-                                                          TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
+                                                          TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypenHTSEB.Ende_Enum,
                                                                                                                   SpeziesExtern    => StadtSpeziesNummerExtern.Spezies))
         and
-          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtSpeziesNummerExtern.Spezies)
+          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypenHTSEB.Ende_Enum, StadtSpeziesNummerExtern.Spezies)
       then
          Umgebung := GroßeStadt;
          
       elsif
         True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
-                                                          TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Anfangswert_Enum,
+                                                          TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypenHTSEB.Anfang_Enum,
                                                                                                                   SpeziesExtern    => StadtSpeziesNummerExtern.Spezies))
         and
-          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtSpeziesNummerExtern.Spezies)
+          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypenHTSEB.Anfang_Enum, StadtSpeziesNummerExtern.Spezies)
       then
          Umgebung := MittlereStadt;
          

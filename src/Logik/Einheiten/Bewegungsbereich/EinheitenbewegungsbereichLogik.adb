@@ -2,6 +2,7 @@ with KartenKonstanten;
 with StadtKonstanten;
 with StadtDatentypen;
 with SpeziesKonstanten;
+with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -73,13 +74,13 @@ package body EinheitenbewegungsbereichLogik is
                      NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern,
                      VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern)
       is
-         when SystemDatentypen.False_Enum =>
+         when SystemDatentypenHTSEB.False_Enum =>
             return;
 
-         when SystemDatentypen.Neutral_Enum =>
+         when SystemDatentypenHTSEB.Neutral_Enum =>
             null;
 
-         when SystemDatentypen.True_Enum =>
+         when SystemDatentypenHTSEB.True_Enum =>
             Bewegungsbereich (Kartenwert.Ebene, Kartenwert.Senkrechte, Kartenwert.Waagerechte) := True;
       end case;
 
@@ -171,7 +172,7 @@ package body EinheitenbewegungsbereichLogik is
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NotwendigeBewegungspunkteExtern : in Natural;
       VorhandeneBewegungspunkteExtern : in Positive)
-      return SystemDatentypen.Erweiterter_Boolean_Enum
+      return SystemDatentypenHTSEB.Erweiterter_Boolean_Enum
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.KartenfeldNaturalRecord;
@@ -181,13 +182,13 @@ package body EinheitenbewegungsbereichLogik is
       if
         NeueKoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte
       then
-         return SystemDatentypen.False_Enum;
+         return SystemDatentypenHTSEB.False_Enum;
          
       elsif
         False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                           NeueKoordinatenExtern      => NeueKoordinatenExtern)
       then
-         return SystemDatentypen.False_Enum;
+         return SystemDatentypenHTSEB.False_Enum;
          
       elsif
         Bewegungsbereich (NeueKoordinatenExtern.Ebene, NeueKoordinatenExtern.Senkrechte, NeueKoordinatenExtern.Waagerechte) = False
@@ -196,20 +197,20 @@ package body EinheitenbewegungsbereichLogik is
                                                                                                                                                  EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
          
       else
-         return SystemDatentypen.False_Enum;
+         return SystemDatentypenHTSEB.False_Enum;
       end if;
                
       if
         VorhandeneBewegungspunkteExtern = ZwischenrechnungBewegungspunkte
       then
-         return SystemDatentypen.False_Enum;
+         return SystemDatentypenHTSEB.False_Enum;
          
       elsif
         VorhandeneBewegungspunkteExtern < ZwischenrechnungBewegungspunkte
         and
           VorhandeneBewegungspunkteExtern - NotwendigeBewegungspunkteExtern <= Positive (EinheitenKonstanten.MinimalerBewegungspunkt)
       then
-         return SystemDatentypen.False_Enum;
+         return SystemDatentypenHTSEB.False_Enum;
          
       else
          Stadt := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
@@ -233,7 +234,7 @@ package body EinheitenbewegungsbereichLogik is
         and
           Einheit.Spezies = SpeziesKonstanten.LeerSpezies
       then
-         return SystemDatentypen.True_Enum;
+         return SystemDatentypenHTSEB.True_Enum;
          
       else
          null;
@@ -242,21 +243,21 @@ package body EinheitenbewegungsbereichLogik is
       if
         SpeziesKonstanten.LeerSpezies = Einheit.Spezies
       then
-         return SystemDatentypen.True_Enum;
+         return SystemDatentypenHTSEB.True_Enum;
          
       elsif
         Einheit.Spezies /= EinheitSpeziesNummerExtern.Spezies
       then
-         return SystemDatentypen.Neutral_Enum;
+         return SystemDatentypenHTSEB.Neutral_Enum;
          
       elsif
         False = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
                                                                 StehendeEinheitExtern  => Einheit)
       then
-         return SystemDatentypen.Neutral_Enum;
+         return SystemDatentypenHTSEB.Neutral_Enum;
          
       else
-         return SystemDatentypen.True_Enum;
+         return SystemDatentypenHTSEB.True_Enum;
       end if;
       
    end FeldPrüfen;

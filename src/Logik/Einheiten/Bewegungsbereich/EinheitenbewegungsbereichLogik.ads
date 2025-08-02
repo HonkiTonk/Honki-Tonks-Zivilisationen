@@ -1,10 +1,11 @@
+private with SystemDatentypenHTSEB;
+
 with EinheitenRecords;
 with SpeziesDatentypen;
 with EinheitenKonstanten;
 with KartenDatentypen;
 
 private with KartenRecords;
-private with SystemDatentypen;
 private with StadtRecords;
 
 with LeseGrenzen;
@@ -69,7 +70,7 @@ private
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NotwendigeBewegungspunkteExtern : in Natural;
       VorhandeneBewegungspunkteExtern : in Positive)
-      return SystemDatentypen.Erweiterter_Boolean_Enum
+      return SystemDatentypenHTSEB.Erweiterter_Boolean_Enum
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)

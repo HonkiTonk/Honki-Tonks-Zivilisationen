@@ -70,7 +70,7 @@ package body LeseForschungenDatenbank is
 
 
    function Umgebung
-     (AnfangEndeExtern : in SystemDatentypen.Anfang_Ende_Enum;
+     (AnfangEndeExtern : in SystemDatentypenHTSEB.Anfang_Ende_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ForschungenDatentypen.ForschungIDUnmöglich
    is begin

@@ -2,6 +2,7 @@ with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
 with ArraysHTSEB;
 with TextKonstantenHTSEB;
+with SystemDatentypenHTSEB;
 
 with TastenbelegungDatentypen;
 with MenueDatentypen;
@@ -10,7 +11,6 @@ with TextnummernKonstanten;
 with AuswahlKonstanten;
 with MenueKonstanten;
 with SpielstandVariablen;
-with SystemDatentypen;
 
 with LeseAllgemeines;
 with SchreibeGrafiktask;
@@ -180,14 +180,14 @@ package body SpielstandlisteLogik is
                      elsif
                        Löschauswahl = AuswahlKonstanten.ManuellerSpielstand
                      then
-                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypen.Manueller_Spielstand_Enum);
+                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypenHTSEB.Manueller_Spielstand_Enum);
                         End_Search (Search => Suche);
                         exit MittelSchleife;
                      
                      elsif
                        Löschauswahl = AuswahlKonstanten.AutomatischerSpielstand
                      then
-                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypen.Automatischer_Spielstand_Enum);
+                        SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypenHTSEB.Automatischer_Spielstand_Enum);
                         End_Search (Search => Suche);
                         exit MittelSchleife;
                         
@@ -197,12 +197,12 @@ package body SpielstandlisteLogik is
                      end if;
                      
                   when AuswahlKonstanten.ManuellerSpielstand =>
-                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypen.Manueller_Spielstand_Enum);
+                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypenHTSEB.Manueller_Spielstand_Enum);
                      End_Search (Search => Suche);
                      exit MittelSchleife;
                      
                   when AuswahlKonstanten.AutomatischerSpielstand =>
-                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypen.Automatischer_Spielstand_Enum);
+                     SpielstandVariablen.SpielstandartSchreiben (SpielstandartExtern => SystemDatentypenHTSEB.Automatischer_Spielstand_Enum);
                      End_Search (Search => Suche);
                      exit MittelSchleife;
                                        
@@ -322,7 +322,7 @@ package body SpielstandlisteLogik is
             
       elsif
         False = SpielstandAllgemeinesLogik.SpielstandVorhanden (SpielstandnameExtern => Spielstandname,
-                                                                SpielstandartExtern  => SystemDatentypen.Manueller_Spielstand_Enum)
+                                                                SpielstandartExtern  => SystemDatentypenHTSEB.Manueller_Spielstand_Enum)
       then
          null;
             
