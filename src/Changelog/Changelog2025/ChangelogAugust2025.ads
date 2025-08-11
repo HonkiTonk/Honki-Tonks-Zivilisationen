@@ -204,16 +204,16 @@ package ChangelogAugust2025 is
    
    
 
-   -- Version 0.06. => 0.06. (02.08.2025):
+   -- Version 0.06.3055 => 0.06. (02.08.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (01.08.2025):
+   -- Version 0.06.3030 => 0.06.3055 (01.08.2025):
    
-   -- 
+   -- GNAT 14 auf Version 14.3.0-5 aktualisiert.
    -- Kleinigkeiten korrigiert.
 
 end ChangelogAugust2025;

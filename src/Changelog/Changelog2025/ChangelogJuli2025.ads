@@ -1,37 +1,33 @@
 package ChangelogJuli2025 is
    pragma Pure;
    
-   -- Version 0.06. => 0. (31.07.2025):
+   -- Version 0.06.3030 => 0.3030 (31.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (30.07.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06. => 0.06. (29.07.2025):
+   -- Version 0.06.3030 => 0.06.3030 (30.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.06.3030 => 0.06. (28.07.2025):
+   -- Version 0.06.3030 => 0.06.3030 (29.07.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
+   
+   
+
+   -- Version 0.06.3030 => 0.06.3030 (28.07.2025):
+   
+   -- null
    
    
 
    -- Version 0.06.3005 => 0.06.3030 (27.07.2025):
    
-   -- Konsteanten durch die HTSEB Version ersetzt.
+   -- Konstanten durch die HTSEB Version ersetzt.
    -- Kleinigkeiten korrigiert.
    
    
