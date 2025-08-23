@@ -25,6 +25,7 @@ package StadtKonstanten is
    
    -- Wieso ist diese Recordkonstante hier und nicht bei den Recordkonstanten? äöü
    -- Weil es in RecordKonstanten auch ein LeerStadt gibt, welches aber den Stadtrecord darstellt. äöü
+   -- Das trotzdem mal verschieben und anpassen? äöü
    LeerStadt : constant StadtRecords.SpeziesStadtnummerRecord := (SpeziesKonstanten.LeerSpezies, LeerNummer);
    
    AnfangNummer : constant StadtDatentypen.StädtebereichVorhanden := StadtDatentypen.StädtebereichVorhanden'First;

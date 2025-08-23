@@ -197,16 +197,16 @@ package ChangelogAugust2025 is
    
    
 
-   -- Version 0.06. => 0.06. (03.08.2025):
+   -- Version 0.06.3080 => 0.06. (03.08.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3055 => 0.06. (02.08.2025):
+   -- Version 0.06.3055 => 0.06.3080 (02.08.2025):
    
-   -- 
+   -- Angefangen das Speichersystem erneut zu überarbeiten.
    -- Kleinigkeiten korrigiert.
    
    

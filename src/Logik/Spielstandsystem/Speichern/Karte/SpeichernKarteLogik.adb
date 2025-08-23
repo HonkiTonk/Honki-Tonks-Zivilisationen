@@ -28,6 +28,16 @@ package body SpeichernKarteLogik is
       
       VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
       
+      AnzahlFelder := 0;
+      
+      Zusatzgrund := (others => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
+      Feldeffekte := (others => KartenRecordKonstanten.LeerEffekte);
+      Fluss := (others => KartenextraDatentypen.Leer_Fluss_Enum);
+      Ressource := (others => KartenextraDatentypen.Leer_Ressource_Enum);
+      Weg := (others => KartenverbesserungDatentypen.Leer_Weg_Enum);
+      Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+      Stadt := (others => StadtKonstanten.LeerStadt);
+                
       EbeneSchleife:
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
          SenkrechteSchleife:
@@ -49,49 +59,51 @@ package body SpeichernKarteLogik is
                   return False;
                   
                else
-                  Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Feldeffekte := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Weg := LeseWeltkarte.Weg (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  Zusatzgrund (AnzahlFelder) := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  Feldeffekte (AnzahlFelder) := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  Fluss (AnzahlFelder) := LeseWeltkarte.Fluss (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  Ressource (AnzahlFelder) := LeseWeltkarte.Ressource (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  Weg (AnzahlFelder) := LeseWeltkarte.Weg (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  Verbesserung (AnzahlFelder) := LeseWeltkarte.Verbesserung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
-                  -- Stadt wird weiterhin gebraucht, da die Stadtbvelegung damit auch gespeichert wird.
+                  -- Stadt wird weiterhin gebraucht, da die Stadtbelegung damit auch gespeichert wird.
                   -- Aber eventuell könnte man das mit der Stadt speichern? äöü
                   -- Wäre dann kleiner als wenn man das in der Karte speichert. äöü
                   -- Aber dann müsste man wieder durch alle Städte gehen um zu prüfen ob das Feld von einer Stadt belegt ist. äöü
                   -- Man könnte natürlich beides haben und nur den Stadtteil speichern. äöü
                   -- Erhöht natürlich den AS Verbrauch, mal drüber nachdenken. äöü
-                  Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-               end if;
-               
-               if
-                 False = VorhandeneFeldelemente (ZusatzgrundExtern    => Zusatzgrund,
-                                                 FeldeffekteExtern    => Feldeffekte,
-                                                 FlussExtern          => Fluss,
-                                                 RessourceExtern      => Ressource,
-                                                 WegExtern            => Weg,
-                                                 VerbesserungExtern   => Verbesserung,
-                                                 StadtExtern          => Stadt,
-                                                 DateiSpeichernExtern => DateiSpeichernExtern)
-               then
-                  return False;
-               
-               elsif
-                 False = Feldelemente (ZusatzgrundExtern    => Zusatzgrund,
-                                       FeldeffekteExtern    => Feldeffekte,
-                                       FlussExtern          => Fluss,
-                                       RessourceExtern      => Ressource,
-                                       WegExtern            => Weg,
-                                       VerbesserungExtern   => Verbesserung,
-                                       StadtExtern          => Stadt,
-                                       DateiSpeichernExtern => DateiSpeichernExtern)
-               then
-                  return False;
+                  Stadt (AnzahlFelder) := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
-               else
-                  null;
+                  AnzahlFelder := AnzahlFelder + 1;
                end if;
+               
+               case
+                 AnzahlFelder
+               is
+                  when 8 =>
+                     if
+                       False = ZusatzgrundSchreiben (ZusatzgrundExtern    => Zusatzgrund,
+                                                     DateiSpeichernExtern => DateiSpeichernExtern)
+                     then
+                        return False;
+                        
+                     else
+                        null;
+                     end if;
+                     
+                     AnzahlFelder := 0;
+      
+                     Zusatzgrund := (others => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
+                     Feldeffekte := (others => KartenRecordKonstanten.LeerEffekte);
+                     Fluss := (others => KartenextraDatentypen.Leer_Fluss_Enum);
+                     Ressource := (others => KartenextraDatentypen.Leer_Ressource_Enum);
+                     Weg := (others => KartenverbesserungDatentypen.Leer_Weg_Enum);
+                     Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+                     Stadt := (others => StadtKonstanten.LeerStadt);
+                     
+                  when others =>
+                     null;
+               end case;
                
             end loop WaagerechteSchleife;
          end loop SenkrechteSchleife;
@@ -106,9 +118,20 @@ package body SpeichernKarteLogik is
                LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
                                           ErhöhungExtern              => 20);
          end case;
+         
          -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
          
       end loop EbeneSchleife;
+      
+      case
+        AnzahlFelder
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            null;
+      end case;
       
       LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
@@ -150,6 +173,150 @@ package body SpeichernKarteLogik is
          return False;
       
    end Basisgrund;
+   
+   
+   
+   function ZusatzgrundSchreiben
+     (ZusatzgrundExtern : in ZusatzgrundArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean
+   is
+      use type SystemDatentypenHTSEB.EinByte;
+   begin
+      
+      FeldelementeVorhanden := 0;
+      AktuellesFeldelement := 1;
+      
+      ZusatzgrundSchleife:
+      for ZusatzgrundSchleifenwert in ZusatzgrundExtern'Range loop
+         
+         case
+           ZusatzgrundExtern (ZusatzgrundSchleifenwert)
+         is
+            when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+               null;
+               
+            when others =>
+               FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
+         end case;
+         
+         AktuellesFeldelement := AktuellesFeldelement * 2;
+         
+      end loop ZusatzgrundSchleife;
+      
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                           FeldelementeVorhanden);
+      
+      case
+        FeldelementeVorhanden
+      is
+         when 0 =>
+            return True;
+            
+         when others =>
+            null;
+      end case;
+      
+      ZusatzgrundSpeichernSchleife:
+      for ZusatzgrundSpeichernSchleifenwert in ZusatzgrundExtern'Range loop
+         
+         case
+           ZusatzgrundExtern (ZusatzgrundSpeichernSchleifenwert)
+         is
+            when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+               null;
+               
+            when others =>
+               KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                       ZusatzgrundExtern (ZusatzgrundSpeichernSchleifenwert));
+         end case;
+         
+      end loop ZusatzgrundSpeichernSchleife;
+      
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.ZusatzgrundSchreiben: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+      
+   end ZusatzgrundSchreiben;
+   
+   
+   
+   -- function FeldeffekteSchreiben (AnzahlFelder) := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+   function FlussSchreiben
+     (FlussExtern : in FlussArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean
+   is
+      use type SystemDatentypenHTSEB.EinByte;
+   begin
+      
+      FeldelementeVorhanden := 0;
+      AktuellesFeldelement := 1;
+      
+      FlussSchleife:
+      for FlussSchleifenwert in FlussExtern'Range loop
+         
+         case
+           FlussExtern (FlussSchleifenwert)
+         is
+            when KartenextraDatentypen.Leer_Fluss_Enum =>
+               null;
+               
+            when others =>
+               FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
+         end case;
+         
+         AktuellesFeldelement := AktuellesFeldelement * 2;
+         
+      end loop FlussSchleife;
+      
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                           FeldelementeVorhanden);
+      
+      case
+        FeldelementeVorhanden
+      is
+         when 0 =>
+            return True;
+            
+         when others =>
+            null;
+      end case;
+      
+      FlussSpeichernSchleife:
+      for FlussSpeichernSchleifenwert in FlussExtern'Range loop
+         
+         case
+           FlussExtern (FlussSpeichernSchleifenwert)
+         is
+            when KartenextraDatentypen.Leer_Fluss_Enum =>
+               null;
+               
+            when others =>
+               KartenextraDatentypen.Fluss_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                       FlussExtern (FlussSpeichernSchleifenwert));
+         end case;
+         
+      end loop FlussSpeichernSchleife;
+      
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.FlussSchreiben: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+      
+   end FlussSchreiben;
+   
+   -- Ressource (AnzahlFelder) := LeseWeltkarte.Ressource (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+   -- Weg (AnzahlFelder) := LeseWeltkarte.Weg (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+   -- Verbesserung (AnzahlFelder) := LeseWeltkarte.Verbesserung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+   -- Stadt (AnzahlFelder) := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
    
    
    

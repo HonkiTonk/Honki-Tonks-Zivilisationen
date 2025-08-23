@@ -24,6 +24,8 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
+   AnzahlFelder : Natural;
+   
    VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    
    FeldeffekteVorhanden : SystemDatentypenHTSEB.EinByte;
@@ -31,22 +33,27 @@ private
    
    FeldelementeVorhanden : SystemDatentypenHTSEB.EinByte;
    AktuellesFeldelement : SystemDatentypenHTSEB.EinByte;
-      
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
-      
-   Fluss : KartenextraDatentypen.Fluss_Enum;
    
-   Ressource : KartenextraDatentypen.Ressourcen_Enum;
+   type ZusatzgrundArray is array (0 .. 7) of KartengrundDatentypen.Zusatzgrund_Enum;
+   Zusatzgrund : ZusatzgrundArray;
    
-   Weg : KartenverbesserungDatentypen.Weg_Enum;
+   type FeldeffekteArray is array (ZusatzgrundArray'Range) of KartenRecords.FeldeffektArray;
+   Feldeffekte : FeldeffekteArray;
    
-   Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
+   type FlussArray is array (ZusatzgrundArray'Range) of KartenextraDatentypen.Fluss_Enum;
+   Fluss : FlussArray;
    
-   Feldeffekte : KartenRecords.FeldeffektArray;
-     
-   Stadt : StadtRecords.SpeziesStadtnummerRecord;
+   type RessourceArray is array (ZusatzgrundArray'Range) of KartenextraDatentypen.Ressourcen_Enum;
+   Ressource : RessourceArray;
    
+   type WegArray is array (ZusatzgrundArray'Range) of KartenverbesserungDatentypen.Weg_Enum;
+   Weg : WegArray;
    
+   type VerbesserungArray is array (ZusatzgrundArray'Range) of KartenverbesserungDatentypen.Verbesserung_Enum;
+   Verbesserung : VerbesserungArray;
+   
+   type StadtArray is array (ZusatzgrundArray'Range) of StadtRecords.SpeziesStadtnummerRecord;
+   Stadt : StadtArray;
       
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
@@ -58,6 +65,16 @@ private
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
+   
+   function ZusatzgrundSchreiben
+     (ZusatzgrundExtern : in ZusatzgrundArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean;
+   
+   function FlussSchreiben
+     (FlussExtern : in FlussArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean;
    
    function VorhandeneFeldelemente
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
