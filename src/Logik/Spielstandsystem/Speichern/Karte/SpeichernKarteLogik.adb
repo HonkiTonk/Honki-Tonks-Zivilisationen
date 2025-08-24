@@ -60,7 +60,6 @@ package body SpeichernKarteLogik is
                   
                else
                   Zusatzgrund (AnzahlFelder) := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Feldeffekte (AnzahlFelder) := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   Fluss (AnzahlFelder) := LeseWeltkarte.Fluss (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   Ressource (AnzahlFelder) := LeseWeltkarte.Ressource (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   Weg (AnzahlFelder) := LeseWeltkarte.Weg (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
@@ -73,6 +72,7 @@ package body SpeichernKarteLogik is
                   -- Man könnte natürlich beides haben und nur den Stadtteil speichern. äöü
                   -- Erhöht natürlich den AS Verbrauch, mal drüber nachdenken. äöü
                   Stadt (AnzahlFelder) := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  Feldeffekte (AnzahlFelder) := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                   AnzahlFelder := AnzahlFelder + 1;
                end if;
@@ -87,19 +87,53 @@ package body SpeichernKarteLogik is
                      then
                         return False;
                         
+                     elsif
+                       False = FlussSchreiben (FlussExtern          => Fluss,
+                                               DateiSpeichernExtern => DateiSpeichernExtern)
+                     then
+                        return False;
+                        
+                     elsif
+                       False = RessourceSchreiben (RessourceExtern      => Ressource,
+                                                   DateiSpeichernExtern => DateiSpeichernExtern)
+                     then
+                        return False;
+                        
+                     elsif
+                       False = WegSchreiben (WegExtern            => Weg,
+                                             DateiSpeichernExtern => DateiSpeichernExtern)
+                     then
+                        return False;
+                        
+                     elsif
+                       False = VerbesserungSchreiben (VerbesserungExtern   => Verbesserung,
+                                                      DateiSpeichernExtern => DateiSpeichernExtern)
+                     then
+                        return False;
+                        
+                     elsif
+                       False = StadtSchreiben (StadtExtern          => Stadt,
+                                               DateiSpeichernExtern => DateiSpeichernExtern)
+                     then
+                        return False;
+                        
+                     elsif
+                       False = FeldeffekteSchreiben (FeldeffekteExtern    => Feldeffekte,
+                                                     DateiSpeichernExtern => DateiSpeichernExtern)
+                     then
+                        return False;
+                        
                      else
-                        null;
-                     end if;
-                     
-                     AnzahlFelder := 0;
+                        AnzahlFelder := 0;
       
-                     Zusatzgrund := (others => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
-                     Feldeffekte := (others => KartenRecordKonstanten.LeerEffekte);
-                     Fluss := (others => KartenextraDatentypen.Leer_Fluss_Enum);
-                     Ressource := (others => KartenextraDatentypen.Leer_Ressource_Enum);
-                     Weg := (others => KartenverbesserungDatentypen.Leer_Weg_Enum);
-                     Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
-                     Stadt := (others => StadtKonstanten.LeerStadt);
+                        Zusatzgrund := (others => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
+                        Fluss := (others => KartenextraDatentypen.Leer_Fluss_Enum);
+                        Ressource := (others => KartenextraDatentypen.Leer_Ressource_Enum);
+                        Weg := (others => KartenverbesserungDatentypen.Leer_Weg_Enum);
+                        Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+                        Stadt := (others => StadtKonstanten.LeerStadt);
+                        Feldeffekte := (others => KartenRecordKonstanten.LeerEffekte);
+                     end if;
                      
                   when others =>
                      null;
@@ -130,7 +164,51 @@ package body SpeichernKarteLogik is
             null;
             
          when others =>
-            null;
+            if
+              False = ZusatzgrundSchreiben (ZusatzgrundExtern    => Zusatzgrund,
+                                            DateiSpeichernExtern => DateiSpeichernExtern)
+            then
+               return False;
+                        
+            elsif
+              False = FlussSchreiben (FlussExtern          => Fluss,
+                                      DateiSpeichernExtern => DateiSpeichernExtern)
+            then
+               return False;
+                        
+            elsif
+              False = RessourceSchreiben (RessourceExtern      => Ressource,
+                                          DateiSpeichernExtern => DateiSpeichernExtern)
+            then
+               return False;
+                        
+            elsif
+              False = WegSchreiben (WegExtern            => Weg,
+                                    DateiSpeichernExtern => DateiSpeichernExtern)
+            then
+               return False;
+                        
+            elsif
+              False = VerbesserungSchreiben (VerbesserungExtern   => Verbesserung,
+                                             DateiSpeichernExtern => DateiSpeichernExtern)
+            then
+               return False;
+                        
+            elsif
+              False = StadtSchreiben (StadtExtern          => Stadt,
+                                      DateiSpeichernExtern => DateiSpeichernExtern)
+            then
+               return False;
+                        
+            elsif
+              False = FeldeffekteSchreiben (FeldeffekteExtern    => Feldeffekte,
+                                            DateiSpeichernExtern => DateiSpeichernExtern)
+            then
+               return False;
+                        
+            else
+               null;
+            end if;
       end case;
       
       LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
@@ -218,7 +296,7 @@ package body SpeichernKarteLogik is
       end case;
       
       ZusatzgrundSpeichernSchleife:
-      for ZusatzgrundSpeichernSchleifenwert in ZusatzgrundExtern'Range loop
+      for ZusatzgrundSpeichernSchleifenwert in reverse ZusatzgrundExtern'Range loop
          
          case
            ZusatzgrundExtern (ZusatzgrundSpeichernSchleifenwert)
@@ -245,7 +323,6 @@ package body SpeichernKarteLogik is
    
    
    
-   -- function FeldeffekteSchreiben (AnzahlFelder) := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
    function FlussSchreiben
      (FlussExtern : in FlussArray;
       DateiSpeichernExtern : in File_Type)
@@ -288,7 +365,7 @@ package body SpeichernKarteLogik is
       end case;
       
       FlussSpeichernSchleife:
-      for FlussSpeichernSchleifenwert in FlussExtern'Range loop
+      for FlussSpeichernSchleifenwert in reverse FlussExtern'Range loop
          
          case
            FlussExtern (FlussSpeichernSchleifenwert)
@@ -297,8 +374,8 @@ package body SpeichernKarteLogik is
                null;
                
             when others =>
-               KartenextraDatentypen.Fluss_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                       FlussExtern (FlussSpeichernSchleifenwert));
+               KartenextraDatentypen.Fluss_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                 FlussExtern (FlussSpeichernSchleifenwert));
          end case;
          
       end loop FlussSpeichernSchleife;
@@ -313,245 +390,367 @@ package body SpeichernKarteLogik is
       
    end FlussSchreiben;
    
-   -- Ressource (AnzahlFelder) := LeseWeltkarte.Ressource (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-   -- Weg (AnzahlFelder) := LeseWeltkarte.Weg (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-   -- Verbesserung (AnzahlFelder) := LeseWeltkarte.Verbesserung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-   -- Stadt (AnzahlFelder) := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
    
    
-   
-   function VorhandeneFeldelemente
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
+   function RessourceSchreiben
+     (RessourceExtern : in RessourceArray;
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
-      use type StadtRecords.SpeziesStadtnummerRecord;
-      use type KartenRecords.FeldeffektArray;
       use type SystemDatentypenHTSEB.EinByte;
    begin
       
+      FeldelementeVorhanden := 0;
       AktuellesFeldelement := 1;
       
-      case
-        ZusatzgrundExtern
-      is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            FeldelementeVorhanden := 0;
-                     
-         when others =>
-            FeldelementeVorhanden := AktuellesFeldelement;
-      end case;
-      
-      AktuellesFeldelement := AktuellesFeldelement * 2;
+      RessourceSchleife:
+      for RessourceSchleifenwert in RessourceExtern'Range loop
+         
+         case
+           RessourceExtern (RessourceSchleifenwert)
+         is
+            when KartenextraDatentypen.Leer_Ressource_Enum =>
+               null;
                
-      if
-        FeldeffekteExtern = KartenRecordKonstanten.LeerEffekte
-      then
-         null;
-                  
-      else
-         FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end if;
-      
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-               
-      case
-        FlussExtern
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            null;
-                     
-         when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end case;
-      
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-               
-      case
-        RessourceExtern
-      is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
-            null;
-                     
-         when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end case;
-      
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-               
-      case
-        WegExtern
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            null;
-                     
-         when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end case;
-      
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-               
-      case
-        VerbesserungExtern
-      is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            null;
-                     
-         when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end case;
-      
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-                             
-      if
-        StadtExtern = StadtKonstanten.LeerStadt
-      then
-         null;
-                  
-      else
-         FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end if;
+            when others =>
+               FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
+         end case;
+         
+         AktuellesFeldelement := AktuellesFeldelement * 2;
+         
+      end loop RessourceSchleife;
       
       SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
                                            FeldelementeVorhanden);
       
+      case
+        FeldelementeVorhanden
+      is
+         when 0 =>
+            return True;
+            
+         when others =>
+            null;
+      end case;
+      
+      RessourceSpeichernSchleife:
+      for RessourceSpeichernSchleifenwert in reverse RessourceExtern'Range loop
+         
+         case
+           RessourceExtern (RessourceSpeichernSchleifenwert)
+         is
+            when KartenextraDatentypen.Leer_Ressource_Enum =>
+               null;
+               
+            when others =>
+               KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                      RessourceExtern (RessourceSpeichernSchleifenwert));
+         end case;
+         
+      end loop RessourceSpeichernSchleife;
+      
       return True;
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelemente: Konnte nicht gespeichert werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.RessourceSchreiben: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
-   end VorhandeneFeldelemente;
+   end RessourceSchreiben;
    
    
    
-   function Feldelemente
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
+   function WegSchreiben
+     (WegExtern : in WegArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean
+   is
+      use type SystemDatentypenHTSEB.EinByte;
+   begin
+      
+      FeldelementeVorhanden := 0;
+      AktuellesFeldelement := 1;
+      
+      WegSchleife:
+      for WegSchleifenwert in WegExtern'Range loop
+         
+         case
+           WegExtern (WegSchleifenwert)
+         is
+            when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+               null;
+               
+            when others =>
+               FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
+         end case;
+         
+         AktuellesFeldelement := AktuellesFeldelement * 2;
+         
+      end loop WegSchleife;
+      
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                           FeldelementeVorhanden);
+      
+      case
+        FeldelementeVorhanden
+      is
+         when 0 =>
+            return True;
+            
+         when others =>
+            null;
+      end case;
+      
+      WegSpeichernSchleife:
+      for WegSpeichernSchleifenwert in reverse WegExtern'Range loop
+         
+         case
+           WegExtern (WegSpeichernSchleifenwert)
+         is
+            when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+               null;
+               
+            when others =>
+               KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                      WegExtern (WegSpeichernSchleifenwert));
+         end case;
+         
+      end loop WegSpeichernSchleife;
+      
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.WegSchreiben: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+         
+   end WegSchreiben;
+   
+   
+   
+   function VerbesserungSchreiben
+     (VerbesserungExtern : in VerbesserungArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean
+   is
+      use type SystemDatentypenHTSEB.EinByte;
+   begin
+      
+      FeldelementeVorhanden := 0;
+      AktuellesFeldelement := 1;
+      
+      VerbesserungSchleife:
+      for VerbesserungSchleifenwert in VerbesserungExtern'Range loop
+         
+         case
+           VerbesserungExtern (VerbesserungSchleifenwert)
+         is
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+               null;
+               
+            when others =>
+               FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
+         end case;
+         
+         AktuellesFeldelement := AktuellesFeldelement * 2;
+         
+      end loop VerbesserungSchleife;
+      
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                           FeldelementeVorhanden);
+      
+      case
+        FeldelementeVorhanden
+      is
+         when 0 =>
+            return True;
+            
+         when others =>
+            null;
+      end case;
+      
+      VerbesserungSpeichernSchleife:
+      for VerbesserungSpeichernSchleifenwert in reverse VerbesserungExtern'Range loop
+         
+         case
+           VerbesserungExtern (VerbesserungSpeichernSchleifenwert)
+         is
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+               null;
+               
+            when others =>
+               KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                               VerbesserungExtern (VerbesserungSpeichernSchleifenwert));
+         end case;
+         
+      end loop VerbesserungSpeichernSchleife;
+      
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.VerbesserungSchreiben: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+         
+   end VerbesserungSchreiben;
+   
+   
+   
+   function StadtSchreiben
+     (StadtExtern : in StadtArray;
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
       use type StadtRecords.SpeziesStadtnummerRecord;
-      use type KartenRecords.FeldeffektArray;
       use type SystemDatentypenHTSEB.EinByte;
    begin
       
-      if
-        StadtExtern = StadtKonstanten.LeerStadt
-      then
-         null;
-                  
-      else
-         StadtRecords.SpeziesStadtnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                               (StadtExtern.Spezies, StadtExtern.Nummer));
-      end if;
+      FeldelementeVorhanden := 0;
+      AktuellesFeldelement := 1;
       
-      case
-        VerbesserungExtern
-      is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            null;
-                     
-         when others =>
-            KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                            VerbesserungExtern);
-      end case;
-      
-      case
-        WegExtern
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            null;
-                     
-         when others =>
-            KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   WegExtern);
-      end case;
-      
-      case
-        RessourceExtern
-      is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
-            null;
-                     
-         when others =>
-            KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   RessourceExtern);
-      end case;
-      
-      case
-        FlussExtern
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            null;
-                     
-         when others =>
-            KartenextraDatentypen.Fluss_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                              FlussExtern);
-      end case;
-      
-      if
-        FeldeffekteExtern = KartenRecordKonstanten.LeerEffekte
-      then
-         null;
-                  
-      else
-         FeldeffekteVorhanden := 0;
-         AktuellerFeldeffekt := 1;
+      StadtSchleife:
+      for StadtSchleifenwert in StadtExtern'Range loop
          
-         FeldeffekteSchleife:
-         for FeldeffekteSchleifenwert in KartenRecords.FeldeffektArray'Range loop
-            
-            case
-              FeldeffekteExtern (FeldeffekteSchleifenwert)
-            is
-               when True =>
-                  FeldeffekteVorhanden := FeldeffekteVorhanden + AktuellerFeldeffekt;
-                  
-               when False =>
-                  null;
-            end case;
-            
-            AktuellerFeldeffekt := AktuellerFeldeffekt * 2;
-            
-         end loop FeldeffekteSchleife;
+         if
+           StadtExtern (StadtSchleifenwert) = StadtKonstanten.LeerStadt
+         then
+            null;
+               
+         else
+            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
+         end if;
          
-         SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                              FeldeffekteVorhanden);
-      end if;
+         AktuellesFeldelement := AktuellesFeldelement * 2;
+         
+      end loop StadtSchleife;
+      
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                           FeldelementeVorhanden);
       
       case
-        ZusatzgrundExtern
+        FeldelementeVorhanden
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            null;
-                     
+         when 0 =>
+            return True;
+            
          when others =>
-            KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                    ZusatzgrundExtern);
+            null;
       end case;
+      
+      StadtSpeichernSchleife:
+      for StadtSpeichernSchleifenwert in reverse StadtExtern'Range loop
+         
+         if
+           StadtExtern (StadtSpeichernSchleifenwert) = StadtKonstanten.LeerStadt
+         then
+            null;
+               
+         else
+            StadtRecords.SpeziesStadtnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                                  (StadtExtern (StadtSpeichernSchleifenwert).Spezies, StadtExtern (StadtSpeichernSchleifenwert).Nummer));
+         end if;
+         
+      end loop StadtSpeichernSchleife;
       
       return True;
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Feldelemente: Konnte nicht gespeichert werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.StadtSchreiben: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
+         
+   end StadtSchreiben;
+   
+   
+   
+   function FeldeffekteSchreiben
+     (FeldeffekteExtern : in FeldeffekteArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean
+   is
+      use type SystemDatentypenHTSEB.EinByte;
+      use type KartenRecords.FeldeffektArray;
+   begin
       
-   end Feldelemente;
+      FeldelementeVorhanden := 0;
+      AktuellesFeldelement := 1;
+      
+      FeldeffekteSchleife:
+      for FeldeffekteSchleifenwert in FeldeffekteExtern'Range loop
+         
+         if
+           FeldeffekteExtern (FeldeffekteSchleifenwert) = KartenRecordKonstanten.LeerEffekte
+         then
+            null;
+               
+         else
+            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
+         end if;
+         
+         AktuellesFeldelement := AktuellesFeldelement * 2;
+         
+      end loop FeldeffekteSchleife;
+      
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                           FeldelementeVorhanden);
+      
+      case
+        FeldelementeVorhanden
+      is
+         when 0 =>
+            return True;
+            
+         when others =>
+            null;
+      end case;
+         
+      FeldeffekteSpeichernSchleife:
+      for FeldeffekteSpeichernSchleifenwert in reverse FeldeffekteExtern'Range loop
+      
+         if
+           FeldeffekteExtern (FeldeffekteSpeichernSchleifenwert) = KartenRecordKonstanten.LeerEffekte
+         then
+            null;
+               
+         else
+            FeldeffekteVorhanden := 0;
+            AktuellerFeldeffekt := 1;
+         
+            FeldeffekteDurchgehenSchleife:
+            for FeldeffekteDurchgehenSchleifenwert in KartenRecords.FeldeffektArray'Range loop
+            
+               case
+                 FeldeffekteExtern (FeldeffekteSpeichernSchleifenwert) (FeldeffekteDurchgehenSchleifenwert)
+               is
+                  when True =>
+                     FeldeffekteVorhanden := FeldeffekteVorhanden + AktuellerFeldeffekt;
+                  
+                  when False =>
+                     null;
+               end case;
+            
+               AktuellerFeldeffekt := AktuellerFeldeffekt * 2;
+            
+            end loop FeldeffekteDurchgehenSchleife;
+         
+            SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                                 FeldeffekteVorhanden);
+         end if;
+         
+      end loop FeldeffekteSpeichernSchleife;
+      
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.FeldeffekteSchreiben: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+         
+   end FeldeffekteSchreiben;
 
 end SpeichernKarteLogik;

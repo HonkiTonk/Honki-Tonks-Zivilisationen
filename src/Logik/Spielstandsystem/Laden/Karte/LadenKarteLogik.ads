@@ -26,6 +26,8 @@ private
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
    
+   AnzahlFelder : Natural;
+   
    VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    
    VorhandeneFeldeffekte : SystemDatentypenHTSEB.EinByte;
@@ -57,6 +59,11 @@ private
    
    
    
+   type KoordinatenArray is array (0 .. 7) of KartenRecords.KartenfeldNaturalRecord;
+   Koordinaten : KoordinatenArray;
+   
+   
+   
    function BasisgrundEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
@@ -72,21 +79,46 @@ private
                     KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte)
               );
    
-   
-   
-   function Feldelemente
+   function ZusatzgrundEinlesen
      (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
+      KoordinatenExtern : in KoordinatenArray;
       LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-                  and
-                    KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte)
-              );
+      return Boolean;
+   
+   function FlussEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KoordinatenArray;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean;
+   
+   function RessourceEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KoordinatenArray;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean;
+   
+   function WegEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KoordinatenArray;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean;
+   
+   function VerbesserungEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KoordinatenArray;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean;
+   
+   function StadtEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KoordinatenArray;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean;
+   
+   function FeldeffekteEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KoordinatenArray;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean;
 
 end LadenKarteLogik;

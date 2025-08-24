@@ -37,9 +37,6 @@ private
    type ZusatzgrundArray is array (0 .. 7) of KartengrundDatentypen.Zusatzgrund_Enum;
    Zusatzgrund : ZusatzgrundArray;
    
-   type FeldeffekteArray is array (ZusatzgrundArray'Range) of KartenRecords.FeldeffektArray;
-   Feldeffekte : FeldeffekteArray;
-   
    type FlussArray is array (ZusatzgrundArray'Range) of KartenextraDatentypen.Fluss_Enum;
    Fluss : FlussArray;
    
@@ -54,6 +51,9 @@ private
    
    type StadtArray is array (ZusatzgrundArray'Range) of StadtRecords.SpeziesStadtnummerRecord;
    Stadt : StadtArray;
+   
+   type FeldeffekteArray is array (ZusatzgrundArray'Range) of KartenRecords.FeldeffektArray;
+   Feldeffekte : FeldeffekteArray;
       
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
@@ -76,25 +76,28 @@ private
       DateiSpeichernExtern : in File_Type)
       return Boolean;
    
-   function VorhandeneFeldelemente
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
+   function RessourceSchreiben
+     (RessourceExtern : in RessourceArray;
       DateiSpeichernExtern : in File_Type)
       return Boolean;
    
-   function Feldelemente
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
+   function WegSchreiben
+     (WegExtern : in WegArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean;
+   
+   function VerbesserungSchreiben
+     (VerbesserungExtern : in VerbesserungArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean;
+   
+   function StadtSchreiben
+     (StadtExtern : in StadtArray;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean;
+   
+   function FeldeffekteSchreiben
+     (FeldeffekteExtern : in FeldeffekteArray;
       DateiSpeichernExtern : in File_Type)
       return Boolean;
    
