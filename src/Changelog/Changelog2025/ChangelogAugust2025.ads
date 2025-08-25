@@ -183,30 +183,30 @@ package ChangelogAugust2025 is
    
    
 
-   -- Version 0.06. => 0.06. (05.08.2025):
+   -- Version 0.06.3130 => 0.06. (05.08.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (04.08.2025):
+   -- Version 0.06.3105 => 0.06.3130 (04.08.2025):
    
-   -- 
+   -- Spieleentwicklungsbibliothek auf Version 0.01.2050 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3080 => 0.06. (03.08.2025):
+   -- Version 0.06.3080 => 0.06.3105 (03.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Speichersystem überarbeitet, es produziert jetzt kleinere Dateien.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
 
    -- Version 0.06.3055 => 0.06.3080 (02.08.2025):
    
-   -- Angefangen das Speichersystem erneut zu überarbeiten.
+   -- Das Speichersystem überarbeiten.
    -- Kleinigkeiten korrigiert.
    
    

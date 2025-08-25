@@ -14,6 +14,7 @@ package SystemKonstantenHTSEB is
    LeerVierByte : constant SystemDatentypenHTSEB.VierByte := 0;
    
    LeerEinByteVorzeichen : constant SystemDatentypenHTSEB.EinByteVorzeichen := 0;
-   LeerZweiByteVorzeichen : constant SystemDatentypenHTSEB.EinByteVorzeichen := 0;
+   LeerZweiByteVorzeichen : constant SystemDatentypenHTSEB.ZweiByteVorzeichen := 0;
+   LeerVierByteVorzeichen : constant SystemDatentypenHTSEB.VierByteVorzeichen := 0;
 
 end SystemKonstantenHTSEB;
