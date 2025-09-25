@@ -1,192 +1,165 @@
 package ChangelogAugust2025 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (31.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (31.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (30.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (29.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (30.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (28.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (27.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (29.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (26.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (25.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (28.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (24.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (23.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (27.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (22.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (21.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (26.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (20.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (19.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (25.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (18.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (17.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (24.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (16.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (15.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (23.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (14.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (13.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (22.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (12.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (11.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (21.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (10.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (09.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (20.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (08.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (07.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (19.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (06.08.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06.3130 => 0.06. (05.08.2025):
+   -- Version 0.06.3130 => 0.06.3130 (18.08.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (17.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (16.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (15.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (14.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (13.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (12.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (11.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (10.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (09.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (08.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (07.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (06.08.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3130 => 0.06.3130 (05.08.2025):
+   
+   -- null.
    
    
 
