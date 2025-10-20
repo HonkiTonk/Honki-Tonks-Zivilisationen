@@ -1,45 +1,39 @@
 package ChangelogSeptember2025 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (30.09.2025):
+   -- Version 0.06.3155 => 0.06.3155 (30.09.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (29.09.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (28.09.2025):
+   -- Version 0.06.3155 => 0.06.3155 (29.09.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (27.09.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (26.09.2025):
+   -- Version 0.06.3155 => 0.06.3155 (28.09.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06.3155 => 0.06. (25.09.2025):
+   -- Version 0.06.3155 => 0.06.3155 (27.09.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.3155 => 0.06.3155 (26.09.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3155 => 0.06.3155 (25.09.2025):
+   
+   -- null.
    
    
 
