@@ -1,93 +1,82 @@
 package ChangelogOktober2025 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (31.10.2025):
+   -- Version 0.06.3170 => 0.06.3195 (31.10.2025):
    
-   -- 
+   -- GNAT 14 auf Version 14.3.0-10 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (30.10.2025):
+   -- Version 0.06.3170 => 0.06.3170 (30.10.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (29.10.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (28.10.2025):
+   -- Version 0.06.3170 => 0.06.3170 (29.10.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (27.10.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (26.10.2025):
+   -- Version 0.06.3170 => 0.06.3170 (28.10.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (25.10.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (24.10.2025):
+   -- Version 0.06.3170 => 0.06.3170 (27.10.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (23.10.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (22.10.2025):
+   -- Version 0.06.3170 => 0.06.3170 (26.10.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (21.10.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06.3170 => 0.06. (20.10.2025):
+   -- Version 0.06.3170 => 0.06.3170 (25.10.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.3170 => 0.06.3170 (24.10.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3170 => 0.06.3170 (23.10.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3170 => 0.06.3170 (22.10.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3170 => 0.06.3170 (21.10.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3170 => 0.06.3170 (20.10.2025):
+   
+   -- null.
    
    
 
    -- Version 0.06.3155 => 0.06.3170 (19.10.2025):
    
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
