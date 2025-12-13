@@ -1,219 +1,207 @@
 package ChangelogDezember2025 is
    pragma Pure;
    
-   -- Version 0.0. => 0.0. (31.12.2025):
+   -- Version 0.06. => 0.06. (31.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (30.12.2025):
+   -- Version 0.06. => 0.06. (30.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.12.2025):
+   -- Version 0.06. => 0.06. (29.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.12.2025):
+   -- Version 0.06. => 0.06. (28.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.12.2025):
+   -- Version 0.06. => 0.06. (27.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.12.2025):
+   -- Version 0.06. => 0.06. (26.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.12.2025):
+   -- Version 0.06. => 0.06. (25.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.12.2025):
+   -- Version 0.06. => 0.06. (24.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.12.2025):
+   -- Version 0.06. => 0.06. (23.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.12.2025):
+   -- Version 0.06. => 0.06. (22.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.12.2025):
+   -- Version 0.06. => 0.06. (21.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.12.2025):
+   -- Version 0.06. => 0.06. (20.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.12.2025):
+   -- Version 0.06. => 0.06. (19.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.12.2025):
+   -- Version 0.06. => 0.06. (18.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.12.2025):
+   -- Version 0.06. => 0.06. (17.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.12.2025):
+   -- Version 0.06. => 0.06. (16.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.12.2025):
+   -- Version 0.06. => 0.06. (15.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.12.2025):
+   -- Version 0.06. => 0.06. (14.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.12.2025):
+   -- Version 0.06.3210 => 0.06. (13.12.2025):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.12.2025):
+   -- Version 0.06.3195 => 0.06.3210 (12.12.2025):
    
-   -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (11.12.2025):
+   -- Version 0.06.3195 => 0.06.3195 (11.12.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (10.12.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (09.12.2025):
+   -- Version 0.06.3195 => 0.06.3195 (10.12.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (08.12.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (07.12.2025):
+   -- Version 0.06.3195 => 0.06.3195 (09.12.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (06.12.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (05.12.2025):
+   -- Version 0.06.3195 => 0.06.3195 (08.12.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (04.12.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (03.12.2025):
+   -- Version 0.06.3195 => 0.06.3195 (07.12.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (02.12.2025):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (01.12.2025):
+   -- Version 0.06.3195 => 0.06.3195 (06.12.2025):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.3195 => 0.06.3195 (05.12.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3195 => 0.06.3195 (04.12.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3195 => 0.06.3195 (03.12.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3195 => 0.06.3195 (02.12.2025):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3195 => 0.06.3195 (01.12.2025):
+   
+   -- null.
 
 end ChangelogDezember2025;
