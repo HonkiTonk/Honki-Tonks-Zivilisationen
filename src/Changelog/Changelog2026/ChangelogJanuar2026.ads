@@ -204,16 +204,16 @@ package ChangelogJanuar2026 is
    
    
 
-   -- Version 0.06. => 0.06. (02.01.2026):
+   -- Version 0.06.3255 => 0.06. (02.01.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3230 => 0.06. (01.01.2026):
+   -- Version 0.06.3230 => 0.06.3255 (01.01.2026):
    
-   -- 
+   -- Angefangen das Packen Skript zu überarbeiten.
    -- Kleinigkeiten korrigiert.
 
 end ChangelogJanuar2026;

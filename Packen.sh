@@ -23,6 +23,10 @@ zip -9 -r Honki_Tonks_Zivilisationen_Windows64_SFML25.zip Honki\ Tonks\ Zivilisa
 
 
 
+read -p "Warte auf Eingabe" -n1 -s
+
+
+
 # A/C/SFML 2.6.X
 # gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Windows_Release26.gpr --target=x86_64-w64-mingw32
 
