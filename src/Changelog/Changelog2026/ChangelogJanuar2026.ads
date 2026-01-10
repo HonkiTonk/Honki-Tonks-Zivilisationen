@@ -197,17 +197,17 @@ package ChangelogJanuar2026 is
    
    
 
-   -- Version 0.06. => 0.06. (03.01.2026):
+   -- Version 0.06.3280 => 0.06. (03.01.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3255 => 0.06. (02.01.2026):
+   -- Version 0.06.3255 => 0.06.3280 (02.01.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen das Spielstandsystem erneut zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

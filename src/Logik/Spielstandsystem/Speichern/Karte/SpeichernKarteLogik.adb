@@ -9,10 +9,12 @@ with KartenRecordKonstanten;
 with LadezeitenDatentypen;
 
 with LeseWeltkarte;
+with LeseWeltkarteneinstellungen;
 
 with SpielstandAllgemeinesLogik;
 with SpeichernSichtbarkeitLogik;
 with LadezeitenLogik;
+with SpeichernKartenbelegungLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
@@ -39,6 +41,7 @@ package body SpeichernKarteLogik is
       Stadt := (others => StadtKonstanten.LeerStadt);
                 
       EbeneSchleife:
+      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -53,8 +56,8 @@ package body SpeichernKarteLogik is
                   return False;
                   
                elsif
-                 False = Basisgrund (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                     DateiSpeichernExtern => DateiSpeichernExtern)
+                 False = SpeichernKartenbelegungLogik.Basisgrund (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                  DateiSpeichernExtern => DateiSpeichernExtern)
                then
                   return False;
                   
@@ -81,6 +84,15 @@ package body SpeichernKarteLogik is
                  AnzahlFelder
                is
                   when 8 =>
+                     if
+                       SpeichernKartenbelegungLogik.Aufteilung = False
+                     then
+                        return False;
+                        
+                     else
+                        null;
+                     end if;
+                     
                      if
                        False = ZusatzgrundSchreiben (ZusatzgrundExtern    => Zusatzgrund,
                                                      DateiSpeichernExtern => DateiSpeichernExtern)
@@ -222,35 +234,6 @@ package body SpeichernKarteLogik is
          return False;
          
    end Karte;
-   
-   
-   
-   function Basisgrund
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is begin
-      
-      case
-        KoordinatenExtern.Ebene
-      is
-         when KartenKonstanten.HimmelKonstante | KartenKonstanten.WeltraumKonstante =>
-            null;
-            
-         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
-      end case;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Basisgrund: Konnte nicht gespeichert werden: "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-      
-   end Basisgrund;
    
    
    

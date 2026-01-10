@@ -7,10 +7,7 @@ private with StadtRecords;
 private with KartengrundDatentypen;
 private with KartenextraDatentypen;
 private with KartenverbesserungDatentypen;
-private with KartenDatentypen;
 private with SpeziesDatentypen;
-
-private with LeseWeltkarteneinstellungen;
 
 package SpeichernKarteLogik is
    pragma Elaborate_Body;
@@ -21,8 +18,6 @@ package SpeichernKarteLogik is
       return Boolean;
       
 private
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
    
    AnzahlFelder : Natural;
    
@@ -54,17 +49,6 @@ private
    
    type FeldeffekteArray is array (ZusatzgrundArray'Range) of KartenRecords.FeldeffektArray;
    Feldeffekte : FeldeffekteArray;
-      
-   function Basisgrund
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
    
    function ZusatzgrundSchreiben
      (ZusatzgrundExtern : in ZusatzgrundArray;
