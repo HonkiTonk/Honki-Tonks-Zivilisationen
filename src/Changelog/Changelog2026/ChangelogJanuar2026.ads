@@ -183,16 +183,16 @@ package ChangelogJanuar2026 is
    
    
 
-   -- Version 0.06. => 0.06. (05.01.2026):
+   -- Version 0.06.3330 => 0.06. (05.01.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3305 => 0.06. (04.01.2026):
+   -- Version 0.06.3305 => 0.06.3330 (04.01.2026):
    
-   -- 
+   -- Das Packen Skript überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
