@@ -190,16 +190,16 @@ package ChangelogJanuar2026 is
    
    
 
-   -- Version 0.06. => 0.06. (04.01.2026):
+   -- Version 0.06.3305 => 0.06. (04.01.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3280 => 0.06. (03.01.2026):
+   -- Version 0.06.3280 => 0.06.3305 (03.01.2026):
    
-   -- 
+   -- GNAT aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
