@@ -176,16 +176,16 @@ package ChangelogJanuar2026 is
    
    
 
-   -- Version 0.06. => 0.06. (06.01.2026):
+   -- Version 0.06.3355 => 0.06. (06.01.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3330 => 0.06. (05.01.2026):
+   -- Version 0.06.3330 => 0.06.3355 (05.01.2026):
    
-   -- 
+   -- Unifont aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

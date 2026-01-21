@@ -1,4 +1,4 @@
-# Honki Tonks Zivilisationen - Version: 0.06.3330
+# Honki Tonks Zivilisationen - Version: 0.06.3355
 Der Code meines 4X-Rundenstrategiespiels.
 Geschrieben in Ada 2022 unter Verwendung der Ada Standardbibliothek, der [ASFML 2.5.4/2.6.1](https://github.com/mgrojo/ASFML), der [CSFML 2.5.1/2.6.1](https://github.com/SFML/CSFML), der [SFML 2.5.1/2.6.1](https://github.com/SFML/SFML) und meiner [Spieleentwicklungsbibliothek](https://github.com/HonkiTonk/Honki-Tonks-Spieleentwicklungsbibliothek). Nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
 
