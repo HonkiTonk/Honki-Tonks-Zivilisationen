@@ -183,17 +183,20 @@ package ChangelogMaerz2026 is
    
    
 
-   -- Version 0.06. => 0.06. (05.03.2026):
+   -- Version 0.06.3450 => 0.06. (05.03.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3395 => 0.06. (04.03.2026):
+   -- Version 0.06.3395 => 0.06.3450 (04.03.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KI Übersetzungen entfernt.
+   -- Testdateien für Sprachen eingebaut.
+   -- Zusätzliche Testsprachen eingebaut.
+   -- Verschiedene Testdateien aus Git entfernt.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
 
