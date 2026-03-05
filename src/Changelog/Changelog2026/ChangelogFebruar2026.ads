@@ -1,101 +1,87 @@
 package ChangelogFebruar2026 is
    pragma Pure;
 
-   -- Version 0.06. => 0.06. (28.02.2026):
+   -- Version 0.06.3380 => 0.06.3380 (28.02.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (27.02.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (26.02.2026):
+   -- Version 0.06.3380 => 0.06.3380 (27.02.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (25.02.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (24.02.2026):
+   -- Version 0.06.3380 => 0.06.3380 (26.02.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (23.02.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (22.02.2026):
+   -- Version 0.06.3380 => 0.06.3380 (25.02.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (21.02.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (20.02.2026):
+   -- Version 0.06.3380 => 0.06.3380 (24.02.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (19.02.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (18.02.2026):
+   -- Version 0.06.3380 => 0.06.3380 (23.02.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (17.02.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (16.02.2026):
+   -- Version 0.06.3380 => 0.06.3380 (22.02.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06.3380 => 0.06. (15.02.2026):
+   -- Version 0.06.3380 => 0.06.3380 (21.02.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.3380 => 0.06.3380 (20.02.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3380 => 0.06.3380 (19.02.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3380 => 0.06.3380 (18.02.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3380 => 0.06.3380 (17.02.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3380 => 0.06.3380 (16.02.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3380 => 0.06.3380 (15.02.2026):
+   
+   -- null.
    
    
 
