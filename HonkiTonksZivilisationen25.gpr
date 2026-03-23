@@ -12,37 +12,29 @@ project HonkiTonksZivilisationen25 is
    for Exec_Dir use "Honki Tonks Zivilisationen";
    for Create_Missing_Dirs use "True";
    for Main use ("HonkiTonksZivilisationen.adb");
+   for Runtime ("ada") use "default";
 
    case Betriebssystem is
-
       when "Linux" =>
-
          case Status is
-
             when "Entwicklung" =>
                for Object_Dir use "obj";
                for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux");
-               for Runtime ("ada") use "default";
 
             when "Veroeffentlichung" =>
                for Object_Dir use "obj";
-               for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux");
-               for Runtime ("ada") use "default";
+               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungLinux");
          end case;
 
       when "Windows" =>
-
          case Status is
-
             when "Entwicklung" =>
                for Object_Dir use "obj_windows";
-               for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux");
-               for Runtime ("ada") use "default";
+               for Source_Dirs use ("src/**", "srcBS/EntwicklungWindows");
 
             when "Veroeffentlichung" =>
                for Object_Dir use "obj_windows";
-               for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux");
-               for Runtime ("ada") use "default";
+               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungWindows");
          end case;
    end case;
 
