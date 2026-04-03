@@ -1,66 +1,57 @@
 package ChangelogMaerz2026 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (31.03.2026):
+   -- Version 0.06.3510 => 0.06.3510 (31.03.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (30.03.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (29.03.2026):
+   -- Version 0.06.3510 => 0.06.3510 (30.03.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (28.03.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (27.03.2026):
+   -- Version 0.06.3510 => 0.06.3510 (29.03.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (26.03.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (25.03.2026):
+   -- Version 0.06.3510 => 0.06.3510 (28.03.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (24.03.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06.3510 => 0.06. (23.03.2026):
+   -- Version 0.06.3510 => 0.06.3510 (27.03.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.3510 => 0.06.3510 (26.03.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3510 => 0.06.3510 (25.03.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3510 => 0.06.3510 (24.03.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3510 => 0.06.3510 (23.03.2026):
+   
+   -- null.
    
    
 
