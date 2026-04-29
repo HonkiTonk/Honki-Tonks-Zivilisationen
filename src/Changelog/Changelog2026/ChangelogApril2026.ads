@@ -1,206 +1,177 @@
 package ChangelogApril2026 is
    pragma Pure;
 
-   -- Version 0.06. => 0.06. (30.04.2026):
+   -- Version 0.06.3550 => 0.06. (30.04.2026):
    
-   -- 
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3550 (29.04.2026):
+   
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (29.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (28.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (28.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (27.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (27.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (26.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (25.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (26.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (24.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (23.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (25.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (22.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (21.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (24.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (20.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (19.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (23.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (18.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (17.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (22.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (16.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (15.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (21.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (14.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (13.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (20.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (12.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (11.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (19.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (10.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (09.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (18.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (08.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (07.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (17.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (06.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (05.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (16.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (04.04.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (03.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (15.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06.3535 => 0.06. (02.04.2026):
+   -- Version 0.06.3535 => 0.06.3535 (14.04.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (13.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (12.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (11.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (10.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (09.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (08.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (07.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (06.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (05.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (04.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (03.04.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.3535 => 0.06.3535 (02.04.2026):
+   
+   -- null.
    
    
 
