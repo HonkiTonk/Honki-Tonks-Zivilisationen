@@ -39,6 +39,8 @@ package KartengrundDatentypen is
                               
                             -- Sonstiges
                             Vernichtet_Enum
+                              
+                              -- 0, 1, 2, 3, 4, 5, 6
                            );
    pragma Ordered (Basisgrund_Enum);
       

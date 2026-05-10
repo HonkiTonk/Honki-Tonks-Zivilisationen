@@ -4,18 +4,16 @@ with Ada.Integer_Text_IO;
 
 with DateizugriffssystemHTSEB;
 
-with KartengrundDatentypen;
-
 package body DiagnosesystemZusatzinformationen is
 
    procedure GrößenprüfungKartenfeld
    is begin
       
       Put_Line ("Einzeln:");
-      Put_Line (Item => "Bits:" & Kartenfeld'Wide_Wide_Image);
-      Put_Line (Item => "Bytes:" & Integer (Kartenfeld / ByteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Kilobytes:" & Integer (Kartenfeld / KilobyteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Megabytes:" & Integer (Kartenfeld / MegabyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Bits:" & Kartengrund'Wide_Wide_Image);
+      Put_Line (Item => "Bytes:" & Integer (Kartengrund / ByteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Kilobytes:" & Integer (Kartengrund / KilobyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Megabytes:" & Integer (Kartengrund / MegabyteTeiler)'Wide_Wide_Image);
       
       New_Line;
       

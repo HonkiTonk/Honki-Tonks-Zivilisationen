@@ -50,7 +50,7 @@ package body Grafik is
       FensterGrafik.FensterErzeugen;
       TextaccesseSetzenGrafik.Texthöhe;
       
-      -- DiagnosesystemZusatzinformationen.GrößenprüfungDatei;
+      -- DiagnosesystemZusatzinformationen.GrößenprüfungKartenfeld;
       -- DiagnosesystemHTSEB.Zahl (2**0);
             
       Startzeit := Clock;

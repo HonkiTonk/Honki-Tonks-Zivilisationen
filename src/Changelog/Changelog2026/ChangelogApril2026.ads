@@ -1,9 +1,10 @@
 package ChangelogApril2026 is
    pragma Pure;
 
-   -- Version 0.06.3550 => 0.06. (30.04.2026):
+   -- Version 0.06.3550 => 0.06.3575 (30.04.2026):
    
-   -- null.
+   -- Das Speichersystem überarbeitet.
+   -- Kleinigkeiten korrigiert.
    
    
 

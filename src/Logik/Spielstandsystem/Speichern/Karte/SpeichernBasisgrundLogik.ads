@@ -5,7 +5,7 @@ with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
-package SpeichernKartenbelegungLogik is
+package SpeichernBasisgrundLogik is
    pragma Elaborate_Body;
    use type KartenDatentypen.Senkrechte;
    use type KartenDatentypen.Waagerechte;
@@ -21,13 +21,8 @@ package SpeichernKartenbelegungLogik is
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
-   function Aufteilung
-     return Boolean;
-
-   
-   
 private
    
    
 
-end SpeichernKartenbelegungLogik;
+end SpeichernBasisgrundLogik;

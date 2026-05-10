@@ -8,8 +8,9 @@ with KartengrundDatentypen;
 
 with LeseWeltkarte;
 
-package body SpeichernKartenbelegungLogik is
-      
+package body SpeichernBasisgrundLogik is
+   
+   -- Muss bei Kartengrund der Rand mitgespeichert werden? Ist der nicht auch so bekannt? äöü
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       DateiSpeichernExtern : in File_Type)
@@ -19,10 +20,18 @@ package body SpeichernKartenbelegungLogik is
       case
         KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.HimmelKonstante | KartenKonstanten.WeltraumKonstante =>
+         when KartenKonstanten.WeltraumKonstante | KartenKonstanten.HimmelKonstante =>
             null;
             
-         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
+         when KartenKonstanten.OberflächeKonstante =>
+            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
+            
+         when KartenKonstanten.UnterflächeKonstante =>
+            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
+            
+         when KartenKonstanten.PlaneteninneresKonstante =>
             KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                    LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
       end case;
@@ -36,15 +45,5 @@ package body SpeichernKartenbelegungLogik is
          return False;
       
    end Basisgrund;
-   
-   
 
-   function Aufteilung
-     return Boolean
-   is begin
-      
-      return False;
-      
-   end Aufteilung;
-
-end SpeichernKartenbelegungLogik;
+end SpeichernBasisgrundLogik;

@@ -14,7 +14,8 @@ with LeseWeltkarteneinstellungen;
 with SpielstandAllgemeinesLogik;
 with SpeichernSichtbarkeitLogik;
 with LadezeitenLogik;
-with SpeichernKartenbelegungLogik;
+with SpeichernBasisgrundLogik;
+with SpeichernZusatzgrundLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
@@ -25,6 +26,7 @@ package body SpeichernKarteLogik is
       return Boolean
    is begin
       
+      -- Wenn ich hier auch noch die Dicke und Art des Kartenrands mitspeichere, dann könnte ich das beim Speichern der Karte sparen, wäre vermutlich kleiner? äöü
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseWeltkarteneinstellungen.GesamteEinstellungen);
       
@@ -39,7 +41,7 @@ package body SpeichernKarteLogik is
       Weg := (others => KartenverbesserungDatentypen.Leer_Weg_Enum);
       Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       Stadt := (others => StadtKonstanten.LeerStadt);
-                
+      
       EbeneSchleife:
       -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
@@ -56,7 +58,7 @@ package body SpeichernKarteLogik is
                   return False;
                   
                elsif
-                 False = SpeichernKartenbelegungLogik.Basisgrund (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                 False = SpeichernBasisgrundLogik.Basisgrund (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                   DateiSpeichernExtern => DateiSpeichernExtern)
                then
                   return False;
@@ -85,7 +87,7 @@ package body SpeichernKarteLogik is
                is
                   when 8 =>
                      if
-                       SpeichernKartenbelegungLogik.Aufteilung = False
+                       SpeichernZusatzgrundLogik.Aufteilung = False
                      then
                         return False;
                         
