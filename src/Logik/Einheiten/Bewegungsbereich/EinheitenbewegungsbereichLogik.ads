@@ -31,8 +31,8 @@ package EinheitenbewegungsbereichLogik is
               );
 
 private
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
 
    ZusätzlicheBewegungspunkte : Positive;
    ZwischenrechnungBewegungspunkte : Positive;

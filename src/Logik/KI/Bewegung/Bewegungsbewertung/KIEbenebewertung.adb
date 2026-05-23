@@ -9,7 +9,7 @@ package body KIEbenebewertung is
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.SenkrechteNatural
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
       use type KartenDatentypen.Ebene;
    begin
       
@@ -71,7 +71,7 @@ package body KIEbenebewertung is
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.SenkrechteNatural
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
    begin
       
       if
@@ -92,7 +92,7 @@ package body KIEbenebewertung is
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.SenkrechteNatural
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
    begin
       
       if

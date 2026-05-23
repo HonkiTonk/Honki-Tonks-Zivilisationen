@@ -4,7 +4,7 @@ package body KartenkoordinateWaagerechteBerechnenLogik is
 
    function KartenkoordinateWaagerechteBerechnen
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechteNatural
    is begin
@@ -33,7 +33,7 @@ package body KartenkoordinateWaagerechteBerechnenLogik is
    
    function ÜbergangWesten
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechteNatural
    is begin
@@ -68,7 +68,7 @@ package body KartenkoordinateWaagerechteBerechnenLogik is
    
    function ÜbergangWestenNormal
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechtePositiv
    is begin
@@ -90,7 +90,7 @@ package body KartenkoordinateWaagerechteBerechnenLogik is
    
    function ÜbergangWestenRückwärts
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte)
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis)
       return KartenDatentypen.WaagerechteNatural
    is begin
       
@@ -109,7 +109,7 @@ package body KartenkoordinateWaagerechteBerechnenLogik is
    
    function ÜbergangOsten
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechteNatural
    is begin
@@ -144,7 +144,7 @@ package body KartenkoordinateWaagerechteBerechnenLogik is
    
    function ÜbergangOstenNormal
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechtePositiv
    is begin
@@ -166,7 +166,7 @@ package body KartenkoordinateWaagerechteBerechnenLogik is
    
    function ÜbergangOstenRückwärts
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte)
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis)
       return KartenDatentypen.WaagerechteNatural
    is begin
       

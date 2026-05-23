@@ -98,7 +98,7 @@ package body KartengeneratorWasserressourcenLogik is
    is begin
       
       if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
       then
          null;
          
@@ -119,7 +119,7 @@ package body KartengeneratorWasserressourcenLogik is
    is begin
       
       if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.Senkrechte (KoordinatenExtern.Waagerechte)
+        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
       then
          null;
          

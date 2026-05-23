@@ -9,11 +9,11 @@ with LeseWeltkarteneinstellungen;
 
 package KartenkoordinateSenkrechteBerechnenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.SenkrechteBasis;
 
    function KartenkoordinateSenkrechteBerechnen
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechteNatural
      with
@@ -48,7 +48,7 @@ private
    
    function ÜbergangNorden
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechteNatural
      with
@@ -62,7 +62,7 @@ private
    
    function ÜbergangNordenNormal
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechtePositiv
      with
@@ -76,7 +76,7 @@ private
    
    function ÜbergangNordenRückwärts
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte)
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis)
       return KartenDatentypen.SenkrechteNatural
      with
        Pre => (
@@ -89,7 +89,7 @@ private
    
    function ÜbergangSüden
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechteNatural
      with
@@ -103,7 +103,7 @@ private
    
    function ÜbergangSüdenNormal
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechtePositiv
      with
@@ -117,7 +117,7 @@ private
    
    function ÜbergangSüdenRückwärts
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte)
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis)
       return KartenDatentypen.SenkrechteNatural
      with
        Pre => (

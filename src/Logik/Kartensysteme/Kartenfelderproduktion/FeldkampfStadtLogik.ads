@@ -11,8 +11,8 @@ with LeseWeltkarteneinstellungen;
 package FeldkampfStadtLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
 
    function Feldkampf
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;

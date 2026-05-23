@@ -9,8 +9,8 @@ with LeseWeltkarteneinstellungen;
 
 package KartengeneratorWasserressourcenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
 
    procedure KartengeneratorWasserressourcen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)

@@ -4,7 +4,7 @@ with LeseWeltkarteneinstellungen;
 
 package KIWaagerechtebewertung is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.WaagerechteBasis;
 
    function WaagerechteBewerten
      (ZielpunktExtern : in KartenDatentypen.WaagerechtePositiv;

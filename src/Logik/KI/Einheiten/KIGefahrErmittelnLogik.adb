@@ -52,7 +52,7 @@ package body KIGefahrErmittelnLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenRecords.SpeziesEinheitnummerRecord
    is
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       AktuelleKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

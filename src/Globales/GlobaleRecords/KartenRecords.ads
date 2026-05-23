@@ -28,8 +28,8 @@ package KartenRecords is
    
    type KartenfeldumgebungRecord is record
       
-      Senkrechte : KartenDatentypen.Senkrechte;
-      Waagerechte : KartenDatentypen.Waagerechte;
+      Senkrechte : KartenDatentypen.SenkrechteBasis;
+      Waagerechte : KartenDatentypen.WaagerechteBasis;
       
    end record;
    
@@ -82,8 +82,8 @@ package KartenRecords is
    
    type SenkrechteAnfangEndeRecord is record
       
-      Anfang : KartenDatentypen.Senkrechte;
-      Ende : KartenDatentypen.Senkrechte;
+      Anfang : KartenDatentypen.SenkrechteBasis;
+      Ende : KartenDatentypen.SenkrechteBasis;
       
    end record;
    
@@ -91,8 +91,8 @@ package KartenRecords is
    
    type WaagerechteAnfangEndeRecord is record
       
-      Anfang : KartenDatentypen.Waagerechte;
-      Ende : KartenDatentypen.Waagerechte;
+      Anfang : KartenDatentypen.WaagerechteBasis;
+      Ende : KartenDatentypen.WaagerechteBasis;
       
    end record;
    
@@ -121,8 +121,8 @@ package KartenRecords is
    type KartenfeldRecord is record
       
       Ebene : KartenDatentypen.Ebene;
-      Senkrechte : KartenDatentypen.Senkrechte;
-      Waagerechte : KartenDatentypen.Waagerechte;
+      Senkrechte : KartenDatentypen.SenkrechteBasis;
+      Waagerechte : KartenDatentypen.WaagerechteBasis;
       
    end record;
    
@@ -131,9 +131,9 @@ package KartenRecords is
    -- Könnte man das nicht mit EffekthöheRecord zusammenführen? äöü
    type EffektbereichRecord is record
       
-      SenkrechteAnfang : KartenDatentypen.Senkrechte;
+      SenkrechteAnfang : KartenDatentypen.SenkrechteBasis;
       SenkrechteEnde : KartenDatentypen.SenkrechteNatural;
-      WaagerechteAnfang : KartenDatentypen.Waagerechte;
+      WaagerechteAnfang : KartenDatentypen.WaagerechteBasis;
       WaagerechteEnde : KartenDatentypen.WaagerechteNatural;
       
    end record;

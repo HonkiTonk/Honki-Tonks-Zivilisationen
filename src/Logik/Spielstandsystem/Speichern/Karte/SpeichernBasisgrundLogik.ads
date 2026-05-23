@@ -7,8 +7,8 @@ with LeseWeltkarteneinstellungen;
 
 package SpeichernBasisgrundLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
       
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;

@@ -4,7 +4,7 @@ with LeseWeltkarteneinstellungen;
 
 package KISenkrechtebewertung is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Senkrechte;
+   use type KartenDatentypen.SenkrechteBasis;
 
    function SenkrechteBewerten
      (ZielpunktExtern : in KartenDatentypen.SenkrechtePositiv;

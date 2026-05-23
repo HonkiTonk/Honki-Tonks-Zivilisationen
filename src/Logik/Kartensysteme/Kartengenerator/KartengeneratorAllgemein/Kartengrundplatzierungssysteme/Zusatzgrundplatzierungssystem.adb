@@ -33,7 +33,7 @@ package body Zusatzgrundplatzierungssystem is
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             if
-            abs (SenkrechteSchleifenwert) = KartenDatentypen.Senkrechte (abs (WaagerechteSchleifenwert))
+            abs (SenkrechteSchleifenwert) = KartenDatentypen.SenkrechteBasis (abs (WaagerechteSchleifenwert))
             then
                null;
                

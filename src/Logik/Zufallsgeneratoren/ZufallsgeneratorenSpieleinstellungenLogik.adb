@@ -52,8 +52,8 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    procedure ZufälligeKartenart
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       ZufälligeKartensenkrechteWählen.Reset (Gen => ZufälligeKartensenkrechteGewählt);
@@ -208,8 +208,8 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    procedure ZufälligePole
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       -- Die Pole mal in ein Array basteln? äöü

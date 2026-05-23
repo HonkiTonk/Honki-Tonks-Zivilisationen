@@ -12,7 +12,7 @@ package body KartengeneratorFlussLogik is
 
    procedure GenerierungFlüsse
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       

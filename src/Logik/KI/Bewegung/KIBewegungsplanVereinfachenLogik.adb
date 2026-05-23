@@ -41,7 +41,7 @@ package body KIBewegungsplanVereinfachenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
    is
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       AktuellePlankoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,

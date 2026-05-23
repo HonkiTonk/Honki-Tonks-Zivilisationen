@@ -16,8 +16,8 @@ package KartenaufteilungGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.Einheitenbereich;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
    
    procedure Weltkarte
      (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)

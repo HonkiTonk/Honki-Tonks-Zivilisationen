@@ -40,7 +40,7 @@ package body PZBEingesetztLogik is
       is
          when -1 =>
             if
-              LeseWeltkarteneinstellungen.Senkrechte <= KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.Waagerechte)
+              LeseWeltkarteneinstellungen.Senkrechte <= KartenDatentypen.SenkrechteBasis (LeseWeltkarteneinstellungen.Waagerechte)
             then
                Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.Senkrechte + 2 * Vernichtungsbereich.SenkrechteAnfang) / 10);
                   
@@ -52,14 +52,14 @@ package body PZBEingesetztLogik is
             EingesetztePZB := LeseAllgemeines.EingesetztePZB;
             
             if
-              LeseWeltkarteneinstellungen.Senkrechte <= KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.Waagerechte)
+              LeseWeltkarteneinstellungen.Senkrechte <= KartenDatentypen.SenkrechteBasis (LeseWeltkarteneinstellungen.Waagerechte)
               and
                 Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.Senkrechte + 2 * Vernichtungsbereich.SenkrechteAnfang) / 10) / EingesetztePZB
             then
                Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.Senkrechte + 2 * Vernichtungsbereich.SenkrechteAnfang) / 10) / EingesetztePZB;
                
             elsif
-              LeseWeltkarteneinstellungen.Senkrechte > KartenDatentypen.Senkrechte (LeseWeltkarteneinstellungen.Waagerechte)
+              LeseWeltkarteneinstellungen.Senkrechte > KartenDatentypen.SenkrechteBasis (LeseWeltkarteneinstellungen.Waagerechte)
               and
                 Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.Waagerechte + 2 * Vernichtungsbereich.WaagerechteAnfang) / 10) / EingesetztePZB
             then

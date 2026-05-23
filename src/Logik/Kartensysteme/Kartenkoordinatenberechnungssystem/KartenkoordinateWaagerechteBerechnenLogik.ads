@@ -9,11 +9,11 @@ with LeseWeltkarteneinstellungen;
 
 package KartenkoordinateWaagerechteBerechnenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.WaagerechteBasis;
 
    function KartenkoordinateWaagerechteBerechnen
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechteNatural
      with
@@ -48,7 +48,7 @@ private
    
    function ÜbergangWesten
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechteNatural
      with
@@ -62,7 +62,7 @@ private
    
    function ÜbergangWestenNormal
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechtePositiv
      with
@@ -76,7 +76,7 @@ private
    
    function ÜbergangWestenRückwärts
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte)
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis)
       return KartenDatentypen.WaagerechteNatural
      with
        Pre => (
@@ -89,7 +89,7 @@ private
    
    function ÜbergangOsten
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechteNatural
      with
@@ -103,7 +103,7 @@ private
    
    function ÜbergangOstenNormal
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte;
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.WaagerechtePositiv
      with
@@ -117,7 +117,7 @@ private
    
    function ÜbergangOstenRückwärts
      (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      ÄnderungWaagerechteExtern : in KartenDatentypen.Waagerechte)
+      ÄnderungWaagerechteExtern : in KartenDatentypen.WaagerechteBasis)
       return KartenDatentypen.WaagerechteNatural
      with
        Pre => (

@@ -4,7 +4,7 @@ package body KartenkoordinateSenkrechteBerechnenLogik is
 
    function KartenkoordinateSenkrechteBerechnen
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechteNatural
    is begin
@@ -33,7 +33,7 @@ package body KartenkoordinateSenkrechteBerechnenLogik is
    
    function ÜbergangNorden
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechteNatural
    is begin
@@ -68,7 +68,7 @@ package body KartenkoordinateSenkrechteBerechnenLogik is
    
    function ÜbergangNordenNormal
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechtePositiv
    is begin
@@ -90,7 +90,7 @@ package body KartenkoordinateSenkrechteBerechnenLogik is
    
    function ÜbergangNordenRückwärts
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte)
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis)
       return KartenDatentypen.SenkrechteNatural
    is begin
       
@@ -109,7 +109,7 @@ package body KartenkoordinateSenkrechteBerechnenLogik is
    
    function ÜbergangSüden
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechteNatural
    is begin
@@ -144,7 +144,7 @@ package body KartenkoordinateSenkrechteBerechnenLogik is
    
    function ÜbergangSüdenNormal
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte;
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.SenkrechtePositiv
    is begin
@@ -166,7 +166,7 @@ package body KartenkoordinateSenkrechteBerechnenLogik is
    
    function ÜbergangSüdenRückwärts
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      ÄnderungSenkrechteExtern : in KartenDatentypen.Senkrechte)
+      ÄnderungSenkrechteExtern : in KartenDatentypen.SenkrechteBasis)
       return KartenDatentypen.SenkrechteNatural
    is begin
       

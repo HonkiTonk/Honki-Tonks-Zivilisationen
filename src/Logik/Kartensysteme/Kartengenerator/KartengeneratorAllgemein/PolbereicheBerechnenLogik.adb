@@ -9,8 +9,8 @@ package body PolbereicheBerechnenLogik is
 
    procedure PolbereicheBerechnen
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte := KartenKonstanten.AnfangSenkrechte + KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum);

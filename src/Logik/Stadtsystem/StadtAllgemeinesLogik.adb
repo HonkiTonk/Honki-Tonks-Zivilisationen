@@ -44,8 +44,8 @@ package body StadtAllgemeinesLogik is
    is
       use type StadtDatentypen.Städtebereich;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
       use type EinheitenDatentypen.EinheitenID;
    begin
       

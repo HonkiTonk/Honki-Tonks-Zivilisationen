@@ -18,8 +18,8 @@ package body KIEinheitSuchenLogik is
       FeindExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return KartenRecords.KartenfeldNaturalRecord
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

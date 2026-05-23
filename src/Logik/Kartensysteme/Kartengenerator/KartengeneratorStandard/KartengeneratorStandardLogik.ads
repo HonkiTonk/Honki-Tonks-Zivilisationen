@@ -13,8 +13,8 @@ package KartengeneratorStandardLogik is
    procedure OberflächeGenerieren;
 
 private
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
    
    LandHöheBreite : Boolean;
    
@@ -29,11 +29,11 @@ private
    
    WaagerechteZwischenwert : KartenDatentypen.WaagerechtePositiv;
    
-   SenkrechteAnfang : KartenDatentypen.Senkrechte;
-   SenkrechteEnde : KartenDatentypen.Senkrechte;
+   SenkrechteAnfang : KartenDatentypen.SenkrechteBasis;
+   SenkrechteEnde : KartenDatentypen.SenkrechteBasis;
    
-   WaagerechteAnfang : KartenDatentypen.Waagerechte;
-   WaagerechteEnde : KartenDatentypen.Waagerechte;
+   WaagerechteAnfang : KartenDatentypen.WaagerechteBasis;
+   WaagerechteEnde : KartenDatentypen.WaagerechteBasis;
       
    type LandmassenArray is array (1 .. 2) of KartenRecords.KartenfeldumgebungPositivRecord;
    Landmassen : LandmassenArray;

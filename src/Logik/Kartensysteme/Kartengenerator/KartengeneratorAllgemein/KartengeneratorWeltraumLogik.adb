@@ -11,7 +11,7 @@ package body KartengeneratorWeltraumLogik is
 
    procedure Weltraum
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
    begin
       
       Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.Senkrechte,

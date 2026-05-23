@@ -22,10 +22,10 @@ package body SichtweitenGrafik is
    
    
    procedure ZoomstufeÄndern
-     (ÄnderungExtern : in KartenDatentypen.Senkrechte)
+     (ÄnderungExtern : in KartenDatentypen.SenkrechteBasis)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       -- Eine Möglichkeit einbauen das abzustellen? äöü
@@ -33,7 +33,7 @@ package body SichtweitenGrafik is
       if
         AktuelleSenkrechteZoomstufe + ÄnderungExtern > MaximaleSenkrechteZoomstufe
         or
-          AktuelleWaagerechteZoomstufe + KartenDatentypen.Waagerechte (ÄnderungExtern) > MaximaleWaagerechteZoomstufe
+          AktuelleWaagerechteZoomstufe + KartenDatentypen.WaagerechteBasis (ÄnderungExtern) > MaximaleWaagerechteZoomstufe
       then
          AktuelleSenkrechteZoomstufe := MinimaleSenkrechteZoomstufe;
          AktuelleWaagerechteZoomstufe := MinimaleWaagerechteZoomstufe;
@@ -42,7 +42,7 @@ package body SichtweitenGrafik is
       elsif
         AktuelleSenkrechteZoomstufe + ÄnderungExtern < MinimaleSenkrechteZoomstufe
         or
-          AktuelleWaagerechteZoomstufe + KartenDatentypen.Waagerechte (ÄnderungExtern) < MinimaleWaagerechteZoomstufe
+          AktuelleWaagerechteZoomstufe + KartenDatentypen.WaagerechteBasis (ÄnderungExtern) < MinimaleWaagerechteZoomstufe
       then
          AktuelleSenkrechteZoomstufe := MaximaleSenkrechteZoomstufe;
          AktuelleWaagerechteZoomstufe := MaximaleWaagerechteZoomstufe;
@@ -50,7 +50,7 @@ package body SichtweitenGrafik is
          
       else
          AktuelleSenkrechteZoomstufe := AktuelleSenkrechteZoomstufe + ÄnderungExtern;
-         AktuelleWaagerechteZoomstufe := AktuelleWaagerechteZoomstufe + KartenDatentypen.Waagerechte (ÄnderungExtern);
+         AktuelleWaagerechteZoomstufe := AktuelleWaagerechteZoomstufe + KartenDatentypen.WaagerechteBasis (ÄnderungExtern);
          WelcheZoomanpassung := TastenbelegungDatentypen.Auswählen_Enum;
       end if;
       
@@ -66,7 +66,7 @@ package body SichtweitenGrafik is
    function SichthöheLesen
      return KartenDatentypen.SenkrechtePositiv
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
    begin
       
       return Sichtbereich.Senkrechte / 2;
@@ -78,7 +78,7 @@ package body SichtweitenGrafik is
    function SichtbreiteLesen
      return KartenDatentypen.WaagerechtePositiv
    is
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       return Sichtbereich.Waagerechte / 2;
@@ -90,8 +90,8 @@ package body SichtweitenGrafik is
    function SichtbereichLesen
      return KartenRecords.KartenfeldumgebungPositivRecord
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       return (Sichtbereich.Senkrechte / 2, Sichtbereich.Waagerechte / 2);
@@ -103,7 +103,7 @@ package body SichtweitenGrafik is
    function BewegungshöheLesen
      return KartenDatentypen.SenkrechtePositiv
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
    begin
       
       return Bewegungsbereich.Senkrechte / 2;
@@ -115,7 +115,7 @@ package body SichtweitenGrafik is
    function BewegungsbreiteLesen
      return KartenDatentypen.WaagerechtePositiv
    is
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       return Bewegungsbereich.Waagerechte / 2;
@@ -127,8 +127,8 @@ package body SichtweitenGrafik is
    function BewegungsbereichLesen
      return KartenRecords.KartenfeldumgebungPositivRecord
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       return (Bewegungsbereich.Senkrechte / 2, Bewegungsbereich.Waagerechte / 2);
@@ -141,8 +141,8 @@ package body SichtweitenGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       Zeiger := LeseZeiger.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
@@ -164,8 +164,8 @@ package body SichtweitenGrafik is
    
    procedure KartenfelderAbmessungBerechnen
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       FensterKarte := FensterGrafik.AktuelleAuflösung;

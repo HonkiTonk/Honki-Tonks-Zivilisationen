@@ -17,8 +17,8 @@ package body SichtbarkeitsberechnungssystemLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KartenDatentypen.Ebene;
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       SichtweiteEinheit := SichtbereicheErmittelnLogik.SichtweiteErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -78,8 +78,8 @@ package body SichtbarkeitsberechnungssystemLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -114,8 +114,8 @@ package body SichtbarkeitsberechnungssystemLogik is
    procedure SichtbarkeitsprüfungFürStadt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       SichtweiteStadt := (LeseStadtGebaut.Umgebungssenkrechte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern), LeseStadtGebaut.Umgebungswaagerechte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));

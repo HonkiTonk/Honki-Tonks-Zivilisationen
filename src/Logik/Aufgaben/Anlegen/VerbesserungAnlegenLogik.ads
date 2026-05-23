@@ -8,8 +8,8 @@ with LeseWeltkarteneinstellungen;
 
 package VerbesserungAnlegenLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
 
    procedure VerbesserungAnlegen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;

@@ -6,8 +6,8 @@ with LeseWeltkarteneinstellungen;
 
 package SchreibeZeiger is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
 
    procedure KoordinatenAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;

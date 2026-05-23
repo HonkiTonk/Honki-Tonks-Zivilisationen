@@ -8,8 +8,8 @@ with LeseWeltkarteneinstellungen;
 
 package FlussplatzierungssystemLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
    
    procedure Flussplatzierung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)

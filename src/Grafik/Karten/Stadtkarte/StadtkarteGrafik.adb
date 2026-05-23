@@ -34,7 +34,7 @@ package body StadtkarteGrafik is
    procedure Stadtkarte
      (StadtauswahlExtern : in StadtGrafikRecords.StadtkarteGrafikRecord)
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
    begin
       
             ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtKarte),

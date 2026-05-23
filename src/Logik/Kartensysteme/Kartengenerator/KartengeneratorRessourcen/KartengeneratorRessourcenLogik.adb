@@ -47,7 +47,7 @@ package body KartengeneratorRessourcenLogik is
    procedure RessourcenGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet)
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
    begin
       
       Kartenzeitwert (EbeneExtern) := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte,

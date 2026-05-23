@@ -1,8 +1,8 @@
 package KartenDatentypen is
    pragma Pure;
 
-   type Senkrechte is range -1_000 .. 1_000;
-   subtype SenkrechteNatural is Senkrechte range 0 .. Senkrechte'Last;
+   type SenkrechteBasis is range -1_000 .. 1_000;
+   subtype SenkrechteNatural is SenkrechteBasis range 0 .. SenkrechteBasis'Last;
    subtype SenkrechtePositiv is SenkrechteNatural range 1 .. SenkrechteNatural'Last;
       
    -- Das hier kann vermutlich auch mal umgebaut/ersetzt/entfernt werden. äöü
@@ -10,14 +10,14 @@ package KartenDatentypen is
    -- Dafür auch mal einen subtype für die Einheitensichtweite einbauen? äöü
    subtype SenkrechteSichtweite is SenkrechteSichtweiteNatural range 1 .. SenkrechteSichtweiteNatural'Last;
    
-   subtype SenkrechteUmgebungDrei is Senkrechte range -3 .. 3;
+   subtype SenkrechteUmgebungDrei is SenkrechteBasis range -3 .. 3;
    subtype SenkrechteUmgebungZwei is SenkrechteUmgebungDrei range -2 .. 2;
    subtype SenkrechteUmgebungEins is SenkrechteUmgebungZwei range -1 .. 1;
    
    
    
-   type Waagerechte is new Senkrechte;
-   subtype WaagerechteNatural is Waagerechte range Waagerechte (SenkrechteNatural'First) .. Waagerechte (SenkrechteNatural'Last);
+   type WaagerechteBasis is new SenkrechteBasis;
+   subtype WaagerechteNatural is WaagerechteBasis range WaagerechteBasis (SenkrechteNatural'First) .. WaagerechteBasis (SenkrechteNatural'Last);
    subtype WaagerechtePositiv is WaagerechteNatural range WaagerechteNatural (SenkrechtePositiv'First) .. WaagerechteNatural (SenkrechtePositiv'Last);
       
    -- Das hier kann vermutlich auch mal umgebaut/ersetzt/entfernt werden. äöü
@@ -25,7 +25,7 @@ package KartenDatentypen is
    -- Dafür auch mal einen subtype für die Einheitensichtweite einbauen? äöü
    subtype WaagerechteSichtweite is WaagerechteSichtweiteNatural range WaagerechteSichtweiteNatural (SenkrechteSichtweite'First) .. WaagerechteSichtweiteNatural (SenkrechteSichtweite'Last);
    
-   subtype WaagerechteUmgebungDrei is Waagerechte range Waagerechte (SenkrechteUmgebungDrei'First) .. WaagerechtePositiv (SenkrechteUmgebungDrei'Last);
+   subtype WaagerechteUmgebungDrei is WaagerechteBasis range WaagerechteBasis (SenkrechteUmgebungDrei'First) .. WaagerechtePositiv (SenkrechteUmgebungDrei'Last);
    subtype WaagerechteUmgebungZwei is WaagerechteUmgebungDrei range WaagerechteUmgebungDrei (SenkrechteUmgebungZwei'First) .. WaagerechteUmgebungDrei (SenkrechteUmgebungZwei'Last);
    subtype WaagerechteUmgebungEins is WaagerechteUmgebungZwei range WaagerechteUmgebungZwei (SenkrechteUmgebungEins'First) .. WaagerechteUmgebungZwei (SenkrechteUmgebungEins'Last);
    

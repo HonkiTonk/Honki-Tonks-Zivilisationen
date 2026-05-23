@@ -56,8 +56,8 @@ package body EinheitenverschiebungLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
@@ -112,8 +112,8 @@ package body EinheitenverschiebungLogik is
      (SpeziesLandExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
       use type EinheitenDatentypen.Einheitenbereich;
    begin
       

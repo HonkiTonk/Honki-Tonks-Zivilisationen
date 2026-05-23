@@ -11,8 +11,8 @@ with DebugobjekteLogik;
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenEkropa is
    pragma Elaborate_Body;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
 
    EinheitenlisteEkropa : constant EinheitendatenbankRecord.EinheitenlisteArray := (
                                                                                     -- Siedler
@@ -812,10 +812,11 @@ package EinheitenEkropa is
                                                                                        Transportkapazität      => 0,
                                                                                        Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => True,
                                                                                                                    others                                => False),
-                                                                                       Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => (SenkrechteAnfang => KartenDatentypen.Senkrechte'First / 10,
-                                                                                                                                                             SenkrechteEnde   => KartenDatentypen.Senkrechte'Last / 10,
-                                                                                                                                                             WaagerechteAnfang => KartenDatentypen.Waagerechte'First / 10,
-                                                                                                                                                             WaagerechteEnde   => KartenDatentypen.Waagerechte'Last / 10),
+                                                                                       Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum =>
+                                                                                                                       (SenkrechteAnfang => KartenDatentypen.SenkrechteBasis'First / 10,
+                                                                                                                        SenkrechteEnde   => KartenDatentypen.SenkrechteBasis'Last / 10,
+                                                                                                                        WaagerechteAnfang => KartenDatentypen.WaagerechteBasis'First / 10,
+                                                                                                                        WaagerechteEnde   => KartenDatentypen.WaagerechteBasis'Last / 10),
                                                                                                                    others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                       ),
                                                
@@ -843,10 +844,11 @@ package EinheitenEkropa is
                                                                                        Transportkapazität      => 0,
                                                                                        Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => True,
                                                                                                                    others                                => False),
-                                                                                       Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => (SenkrechteAnfang => KartenDatentypen.Senkrechte'First / 5,
-                                                                                                                                                             SenkrechteEnde   => KartenDatentypen.Senkrechte'Last / 5,
-                                                                                                                                                             WaagerechteAnfang => KartenDatentypen.Waagerechte'First / 5,
-                                                                                                                                                             WaagerechteEnde   => KartenDatentypen.Waagerechte'Last / 5),
+                                                                                       Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum =>
+                                                                                                                       (SenkrechteAnfang => KartenDatentypen.SenkrechteBasis'First / 5,
+                                                                                                                        SenkrechteEnde   => KartenDatentypen.SenkrechteBasis'Last / 5,
+                                                                                                                        WaagerechteAnfang => KartenDatentypen.WaagerechteBasis'First / 5,
+                                                                                                                        WaagerechteEnde   => KartenDatentypen.WaagerechteBasis'Last / 5),
                                                                                                                    others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                       ),
                                                
@@ -874,10 +876,11 @@ package EinheitenEkropa is
                                                                                        Transportkapazität      => 0,
                                                                                        Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => True,
                                                                                                                    others                                => False),
-                                                                                       Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => (SenkrechteAnfang => KartenDatentypen.Senkrechte'First,
-                                                                                                                                                             SenkrechteEnde   => KartenDatentypen.Senkrechte'Last,
-                                                                                                                                                             WaagerechteAnfang => KartenDatentypen.Waagerechte'First,
-                                                                                                                                                             WaagerechteEnde   => KartenDatentypen.Waagerechte'Last),
+                                                                                       Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum =>
+                                                                                                                       (SenkrechteAnfang => KartenDatentypen.SenkrechteBasis'First,
+                                                                                                                        SenkrechteEnde   => KartenDatentypen.SenkrechteBasis'Last,
+                                                                                                                        WaagerechteAnfang => KartenDatentypen.WaagerechteBasis'First,
+                                                                                                                        WaagerechteEnde   => KartenDatentypen.WaagerechteBasis'Last),
                                                                                                                    others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                       ),
                                                

@@ -71,8 +71,8 @@ package body SichtbereicheErmittelnLogik is
       SichtweiteExtern : in KartenRecords.UmgebungDreiRecord)
       return Boolean
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
       use type KartengrundDatentypen.Basisgrund_Enum;
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin

@@ -13,8 +13,8 @@ with LeseSpeziesbelegung;
 package EinheitenbewegungLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
       
    function Einheitentausch
      (BewegendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;

@@ -19,7 +19,7 @@ package body KIEinheitFestlegenAngreifenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       WenAngreifen := ZielErmitteln (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);

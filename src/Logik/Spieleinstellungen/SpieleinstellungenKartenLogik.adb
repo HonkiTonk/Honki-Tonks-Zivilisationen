@@ -71,7 +71,7 @@ package body SpieleinstellungenKartenLogik is
    function SenkrechtePolgrößen
      return KartenDatentypen.SenkrechteNatural
    is
-      use type KartenDatentypen.Senkrechte;
+      use type KartenDatentypen.SenkrechteBasis;
    begin
       
       BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
@@ -97,7 +97,7 @@ package body SpieleinstellungenKartenLogik is
    function WaagerechtePolgrößen
      return KartenDatentypen.WaagerechteNatural
    is
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,

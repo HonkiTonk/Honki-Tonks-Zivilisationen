@@ -52,7 +52,7 @@ package body KIBewegungsbewertungLogik is
          return KartenDatentypen.SenkrechtePositiv'Last;
          
       else
-         return BewertungEbene + BewertungSenkrechte + KartenDatentypen.Senkrechte (BewertungWaagerechte);
+         return BewertungEbene + BewertungSenkrechte + KartenDatentypen.SenkrechteBasis (BewertungWaagerechte);
       end if;
       
    end PositionsbewertungKoordinaten;

@@ -14,7 +14,7 @@ package SichtweitenGrafik is
    procedure StandardSichtweiten;
    
    procedure ZoomstufeÄndern
-     (ÄnderungExtern : in KartenDatentypen.Senkrechte);
+     (ÄnderungExtern : in KartenDatentypen.SenkrechteBasis);
    
    
    

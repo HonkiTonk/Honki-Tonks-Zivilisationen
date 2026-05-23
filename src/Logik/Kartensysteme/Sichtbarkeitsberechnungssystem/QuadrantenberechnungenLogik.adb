@@ -13,8 +13,8 @@ package body QuadrantenberechnungenLogik is
       SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
       
       YQuadrantSchleife:
@@ -80,8 +80,8 @@ package body QuadrantenberechnungenLogik is
       SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
               
       KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
@@ -214,8 +214,8 @@ package body QuadrantenberechnungenLogik is
       SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
                     
       KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
@@ -348,8 +348,8 @@ package body QuadrantenberechnungenLogik is
       SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
                     
       KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
@@ -482,8 +482,8 @@ package body QuadrantenberechnungenLogik is
       SichtweiteExtern : in KartenRecords.SichtweitePositiveRecord;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Senkrechte;
-      use type KartenDatentypen.Waagerechte;
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
    begin
                     
       KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,

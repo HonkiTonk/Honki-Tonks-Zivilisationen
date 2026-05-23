@@ -4,8 +4,8 @@ with KartenartDatentypen;
 
 package KartengeneratorRecordKonstanten is
    pragma Pure;
-   use type KartenDatentypen.Senkrechte;
-   use type KartenDatentypen.Waagerechte;
+   use type KartenDatentypen.SenkrechteBasis;
+   use type KartenDatentypen.WaagerechteBasis;
    
    type SenkrechtePolregionenArray is array (KartenartDatentypen.Senkrechte_Himmelsrichtungen_Enum'Range) of KartenDatentypen.SenkrechteNatural;
    SenkrechterEisrand : constant SenkrechtePolregionenArray := (
