@@ -49,10 +49,10 @@ package KIStadtSuchenLogik is
                );
 
 private
-   use type StadtDatentypen.Städtebereich;
+   use type StadtDatentypen.StädtebereichBasis;
 
-   AktuelleStadt : StadtDatentypen.Städtebereich;
-   GefundeneStadt : StadtDatentypen.Städtebereich;
+   AktuelleStadt : StadtDatentypen.StädtebereichBasis;
+   GefundeneStadt : StadtDatentypen.StädtebereichBasis;
 
    Entfernung : Natural;
    EntfernungNeu : Natural;
@@ -64,7 +64,7 @@ private
    function StadtSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       AnfangKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return StadtDatentypen.Städtebereich
+      return StadtDatentypen.StädtebereichBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

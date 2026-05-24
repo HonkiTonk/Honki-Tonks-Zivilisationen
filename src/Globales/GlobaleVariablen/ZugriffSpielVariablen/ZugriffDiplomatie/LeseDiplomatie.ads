@@ -27,7 +27,7 @@ package LeseDiplomatie is
    function AktuelleSympathie
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return DiplomatieDatentypen.Meinung
+      return DiplomatieDatentypen.MeinungBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

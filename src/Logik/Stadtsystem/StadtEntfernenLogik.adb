@@ -75,8 +75,8 @@ package body StadtEntfernenLogik is
    procedure HeimatstädteEntfernen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type StadtDatentypen.Städtebereich;
-      use type EinheitenDatentypen.EinheitenID;
+      use type StadtDatentypen.StädtebereichBasis;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       EinheitenSchleife:
@@ -106,7 +106,7 @@ package body StadtEntfernenLogik is
    procedure NeueHauptstadtSetzen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       

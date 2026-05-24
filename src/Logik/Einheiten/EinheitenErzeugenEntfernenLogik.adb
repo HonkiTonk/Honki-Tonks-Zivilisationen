@@ -158,7 +158,7 @@ package body EinheitenErzeugenEntfernenLogik is
    procedure Einheitensortierung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       Schleifenanfang := EinheitenKonstanten.AnfangNummer;

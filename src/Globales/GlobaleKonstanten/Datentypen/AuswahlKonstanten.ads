@@ -12,11 +12,11 @@ package AuswahlKonstanten is
    StandardanzahlMenütexte : constant Positive := 15;
    StandardanzahlMenütexteFloat : constant Float := Float (StandardanzahlMenütexte);
 
-   LeerGebäudeauswahl : constant StadtDatentypen.GebäudeID := StadtDatentypen.GebäudeID'First;
+   LeerGebäudeauswahl : constant StadtDatentypen.GebäudeIDBasis := StadtDatentypen.GebäudeIDBasis'First;
 
-   LeerEinheitenauswahl : constant EinheitenDatentypen.EinheitenID := EinheitenDatentypen.EinheitenID'First;
+   LeerEinheitenauswahl : constant EinheitenDatentypen.EinheitenIDBasis := EinheitenDatentypen.EinheitenIDBasis'First;
 
-   LeerStadtEinheitAuswahl : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
+   LeerStadtEinheitAuswahl : constant EinheitenDatentypen.EinheitenbereichBasis := EinheitenDatentypen.EinheitenbereichBasis'First;
 
 
 

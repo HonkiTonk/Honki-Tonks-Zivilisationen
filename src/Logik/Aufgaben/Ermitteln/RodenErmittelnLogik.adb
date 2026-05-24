@@ -17,7 +17,7 @@ package body RodenErmittelnLogik is
       return Boolean
    is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
-      use type ProduktionDatentypen.Arbeitszeit;
+      use type ProduktionDatentypen.ArbeitszeitBasis;
    begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);

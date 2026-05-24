@@ -10,7 +10,7 @@ package body BewegungspunkteBerechnenLogik is
    function Bewegungspunkte
      (NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.Bewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteBasis
    is begin
       
       AktuelleBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -60,7 +60,7 @@ package body BewegungspunkteBerechnenLogik is
    function NotwendigeBewegungspunkteErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return EinheitenDatentypen.Bewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteBasis
    is begin
       
       case
@@ -103,7 +103,7 @@ package body BewegungspunkteBerechnenLogik is
          return EinheitenDatentypen.BewegungspunkteVorhanden'Last;
          
       else
-         return EinheitenDatentypen.Bewegungspunkte (BewegungspunkteGesamt);
+         return EinheitenDatentypen.BewegungspunkteBasis (BewegungspunkteGesamt);
       end if;
       
    end NotwendigeBewegungspunkteErmitteln;

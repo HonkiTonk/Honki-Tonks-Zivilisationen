@@ -40,7 +40,7 @@ package body SpeichernEinheitenLogik is
          
       end loop AnzahlEinheitenSchleife;
       
-      EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
+      EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
                                                   VorhandeneEinheiten);
       
       case
@@ -68,10 +68,10 @@ package body SpeichernEinheitenLogik is
    function Einheitenwerte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type;
-      EinheitenbereichExtern : in EinheitenDatentypen.Einheitenbereich)
+      EinheitenbereichExtern : in EinheitenDatentypen.EinheitenbereichBasis)
       return Boolean
    is
-      use type EinheitenDatentypen.Transportplätze;
+      use type EinheitenDatentypen.TransportplätzeBasis;
    begin
       
       Belegung := LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern);
@@ -87,7 +87,7 @@ package body SpeichernEinheitenLogik is
          KartenRecords.KartenfeldNaturalRecord'Write (Stream (File => DateiSpeichernExtern),
                                                       LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
                   
-         StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichernExtern),
+         StadtDatentypen.StädtebereichBasis'Write (Stream (File => DateiSpeichernExtern),
                                                LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
                   
          KampfDatentypen.LebenspunkteVorhanden'Write (Stream (File => DateiSpeichernExtern),
@@ -96,7 +96,7 @@ package body SpeichernEinheitenLogik is
          EinheitenDatentypen.BewegungspunkteVorhanden'Write (Stream (File => DateiSpeichernExtern),
                                                              LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
                   
-         KampfDatentypen.Erfahrungspunkte'Write (Stream (File => DateiSpeichernExtern),
+         KampfDatentypen.ErfahrungspunkteBasis'Write (Stream (File => DateiSpeichernExtern),
                                                  LeseEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
                   
          KampfDatentypen.Rang'Write (Stream (File => DateiSpeichernExtern),
@@ -159,7 +159,7 @@ package body SpeichernEinheitenLogik is
                   
                end loop TransportSchleife;
                
-               EinheitenDatentypen.Transportplätze'Write (Stream (File => DateiSpeichernExtern),
+               EinheitenDatentypen.TransportplätzeBasis'Write (Stream (File => DateiSpeichernExtern),
                                                            TransportplätzeBelegt);
                
                LadungSchleife:
@@ -191,7 +191,7 @@ package body SpeichernEinheitenLogik is
                null;
                
             when others =>
-               EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
+               EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
          end case;
          

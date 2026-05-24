@@ -45,7 +45,7 @@ package body ForschungsauswahlGrafik is
       Auswahlmöglichkeiten (AuswahlExtern => AktuelleAuswahlExtern,
                              SpeziesExtern => SpeziesExtern);
             
-      AktuelleAuswahl := ForschungenDatentypen.ForschungID (AktuelleAuswahlExtern);
+      AktuelleAuswahl := ForschungenDatentypen.ForschungIDMöglich (AktuelleAuswahlExtern);
       
       Ermöglicht (ZusatztextExtern => AktuelleAuswahl,
                    SpeziesExtern    => SpeziesExtern);
@@ -112,7 +112,7 @@ package body ForschungsauswahlGrafik is
    
    
    procedure Ermöglicht
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungID;
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMöglich;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type ForschungenDatentypen.ForschungIDUnmöglich;
@@ -240,7 +240,7 @@ package body ForschungsauswahlGrafik is
    
    
    procedure Beschreibung
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungID;
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMöglich;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       

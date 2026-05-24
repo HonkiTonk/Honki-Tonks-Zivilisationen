@@ -13,8 +13,8 @@ with LeseSpeziesbelegung;
 package UebergabeRecordErmittelnGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type EinheitenDatentypen.Einheitenbereich;
-   use type StadtDatentypen.Städtebereich;
+   use type EinheitenDatentypen.EinheitenbereichBasis;
+   use type StadtDatentypen.StädtebereichBasis;
    use type SpeziesDatentypen.Spezies_Enum;
    
    function VolleEinheit

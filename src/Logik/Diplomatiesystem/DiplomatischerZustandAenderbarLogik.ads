@@ -28,8 +28,8 @@ private
    
    AktuellerStatus : DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum;
    
-   SympathieZweiZuEins : DiplomatieDatentypen.Meinung;
-   SympathieÄnderung : DiplomatieDatentypen.Meinung;
+   SympathieZweiZuEins : DiplomatieDatentypen.MeinungBasis;
+   SympathieÄnderung : DiplomatieDatentypen.MeinungBasis;
    
    ZeitSeitÄnderung : Natural;
    

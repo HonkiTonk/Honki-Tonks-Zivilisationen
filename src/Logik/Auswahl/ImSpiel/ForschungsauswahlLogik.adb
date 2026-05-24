@@ -43,7 +43,7 @@ package body ForschungsauswahlLogik is
 
    function Forschungsmöglichkeiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ForschungenDatentypen.ForschungID
+      return ForschungenDatentypen.ForschungIDMöglich
    is begin
 
       ForschungSchleife:
@@ -61,8 +61,8 @@ package body ForschungsauswahlLogik is
    
    
    function Forschungsauswahl
-     (AktuellesForschungsprojektExtern : in ForschungenDatentypen.ForschungID)
-      return ForschungenDatentypen.ForschungID
+     (AktuellesForschungsprojektExtern : in ForschungenDatentypen.ForschungIDMöglich)
+      return ForschungenDatentypen.ForschungIDMöglich
    is
       use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin

@@ -22,7 +22,7 @@ package KIKonstanten is
    BewertungBewegungNullwert : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'First;
    BewertungBewegungZielpunkt : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'Last;
 
-   VerbindungsplanVorhanden : constant EinheitenDatentypen.Bewegungsplan := EinheitenDatentypen.Bewegungsplan'First;
+   VerbindungsplanVorhanden : constant EinheitenDatentypen.BewegungsplanBasis := EinheitenDatentypen.BewegungsplanBasis'First;
 
    -- Ist das überhaupt sinnvoll? äöü
    BewegungAngriff : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Belegt_Angriff_Enum;

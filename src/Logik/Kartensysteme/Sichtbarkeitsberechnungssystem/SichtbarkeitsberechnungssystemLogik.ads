@@ -34,7 +34,7 @@ package SichtbarkeitsberechnungssystemLogik is
 
 private
 
-   EinheitID : EinheitenDatentypen.EinheitenID;
+   EinheitID : EinheitenDatentypen.EinheitenIDBasis;
 
    SichtweiteEinheit : KartenRecords.SichtweitePositiveRecord;
    SichtweiteStadt : KartenRecords.SichtweitePositiveRecord;

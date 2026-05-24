@@ -26,8 +26,8 @@ package KIStadtLogik is
 
 private
 
-   NotfallEinheit : EinheitenDatentypen.EinheitenID;
-   AktuelleEinheit : EinheitenDatentypen.EinheitenID;
+   NotfallEinheit : EinheitenDatentypen.EinheitenIDBasis;
+   AktuelleEinheit : EinheitenDatentypen.EinheitenIDBasis;
 
    Umgebungsgröße : KartenRecords.UmgebungDreiRecord;
 
@@ -72,7 +72,7 @@ private
 
    function WelcheEinheitArt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return EinheitenDatentypen.EinheitenID
+      return EinheitenDatentypen.EinheitenIDBasis
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -82,7 +82,7 @@ private
 
    function NotfalleinheitBauen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenID;
+      AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenIDBasis;
       NächsteEinheitExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return EinheitenDatentypen.EinheitenIDVorhanden
      with

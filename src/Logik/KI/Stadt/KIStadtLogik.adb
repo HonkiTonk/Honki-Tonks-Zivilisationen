@@ -60,8 +60,8 @@ package body KIStadtLogik is
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
    is
-      use type EinheitenDatentypen.EinheitenID;
-      use type StadtDatentypen.GebäudeID;
+      use type EinheitenDatentypen.EinheitenIDBasis;
+      use type StadtDatentypen.GebäudeIDBasis;
       use type KIDatentypen.BauenBewertung;
    begin
       
@@ -145,13 +145,13 @@ package body KIStadtLogik is
       case
         NotfallEinheit
       is
-         when EinheitenDatentypen.EinheitenID'First =>
+         when EinheitenDatentypen.EinheitenIDBasis'First =>
             return False;
             
          when others =>
             NeuesBauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                              EinheitBauenExtern       => (NotfallEinheit, 1),
-                             GebäudeBauenExtern       => (StadtDatentypen.GebäudeID'First, 0),
+                             GebäudeBauenExtern       => (StadtDatentypen.GebäudeIDBasis'First, 0),
                              NotfallExtern            => True);
             return True;
       end case;
@@ -166,7 +166,7 @@ package body KIStadtLogik is
    is
       use type KartenDatentypen.SenkrechteBasis;
       use type KartenDatentypen.WaagerechteBasis;
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
@@ -229,7 +229,7 @@ package body KIStadtLogik is
    
    function WelcheEinheitArt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return EinheitenDatentypen.EinheitenID
+      return EinheitenDatentypen.EinheitenIDBasis
    is
       use type EinheitenDatentypen.Einheitart_Enum;
    begin
@@ -268,16 +268,16 @@ package body KIStadtLogik is
    -- Die Baukosten noch mit in die Bewertung einfließen lassen. äöü
    function NotfalleinheitBauen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenID;
+      AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenIDBasis;
       NächsteEinheitExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return EinheitenDatentypen.EinheitenIDVorhanden
    is
-      use type EinheitenDatentypen.EinheitenID;
-      use type KampfDatentypen.Kampfwerte;
+      use type EinheitenDatentypen.EinheitenIDBasis;
+      use type KampfDatentypen.KampfwerteBasis;
    begin
       
       if
-        AktuelleEinheitExtern = EinheitenDatentypen.EinheitenID'First
+        AktuelleEinheitExtern = EinheitenDatentypen.EinheitenIDBasis'First
       then
          return NächsteEinheitExtern;
          

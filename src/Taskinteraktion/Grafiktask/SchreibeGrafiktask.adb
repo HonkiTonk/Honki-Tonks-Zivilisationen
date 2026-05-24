@@ -163,7 +163,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Stadtnummer
-     (StadtnummerExtern : in StadtDatentypen.Städtebereich)
+     (StadtnummerExtern : in StadtDatentypen.StädtebereichBasis)
    is begin
       
       Grafiktask.Aktuell.Stadtnummer := StadtnummerExtern;
@@ -173,7 +173,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Einheitnummer
-     (EinheitnummerExtern : in EinheitenDatentypen.Einheitenbereich)
+     (EinheitnummerExtern : in EinheitenDatentypen.EinheitenbereichBasis)
    is begin
       
       Grafiktask.Aktuell.Einheitnummer := EinheitnummerExtern;
@@ -264,7 +264,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Gebäudeauswahl
-     (GebäudeExtern : in StadtDatentypen.GebäudeID)
+     (GebäudeExtern : in StadtDatentypen.GebäudeIDBasis)
    is begin
       
       Grafiktask.Auswahl.Bauauswahl.Gebäude := GebäudeExtern;
@@ -274,7 +274,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Einheitenauswahl
-     (EinheitExtern : in EinheitenDatentypen.EinheitenID)
+     (EinheitExtern : in EinheitenDatentypen.EinheitenIDBasis)
    is begin
       
       Grafiktask.Auswahl.Bauauswahl.Einheit := EinheitExtern;

@@ -29,7 +29,7 @@ package SchreibeDiplomatie is
    procedure AktuelleSympathie
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SympathieExtern : in DiplomatieDatentypen.Meinung;
+      SympathieExtern : in DiplomatieDatentypen.MeinungBasis;
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -71,6 +71,6 @@ private
    
    function EigeneZahlPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
    
-   function MeinungPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => DiplomatieDatentypen.Meinung);
+   function MeinungPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => DiplomatieDatentypen.MeinungBasis);
 
 end SchreibeDiplomatie;

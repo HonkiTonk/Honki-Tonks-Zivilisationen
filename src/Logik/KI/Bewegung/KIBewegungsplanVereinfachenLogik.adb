@@ -14,7 +14,7 @@ package body KIBewegungsplanVereinfachenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KartenRecords.KartenfeldNaturalRecord;
-      use type EinheitenDatentypen.Bewegungsplan;
+      use type EinheitenDatentypen.BewegungsplanBasis;
    begin
             
       PlanschrittSchleife:

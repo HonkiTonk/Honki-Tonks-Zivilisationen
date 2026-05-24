@@ -10,7 +10,7 @@ package LeseGrenzen is
 
    function Städtegrenzen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return StadtDatentypen.Städtebereich;
+      return StadtDatentypen.StädtebereichBasis;
    pragma Inline (Städtegrenzen);
 
    function Einheitengrenze

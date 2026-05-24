@@ -24,7 +24,7 @@ package body WeltkarteEinheitZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       EinheitSpeziesNummer := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,

@@ -13,7 +13,7 @@ package body SichtbereicheErmittelnLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KartenRecords.SichtweitePositiveRecord
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
       use type KartengrundDatentypen.Basisgrund_Enum;
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin

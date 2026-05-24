@@ -838,18 +838,18 @@ package body EinlesenTextLogik is
                         ZeilenumwandlungsabzugEinheiten := ZeilenumwandlungsabzugEinheiten + 1;
                         ZeilenumwandlungEinheiten := AktuelleZeile - Forschungen - ZeilenumwandlungsabzugEinheiten;
                         
-                        Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenID (ZeilenumwandlungEinheiten), 2)
+                        Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenIDBasis (ZeilenumwandlungEinheiten), 2)
                           := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                           EingelesenerTextExtern => Zwischenspeicher,
-                                          VorhandenerTextExtern  => Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenID (ZeilenumwandlungEinheiten), 2));
+                                          VorhandenerTextExtern  => Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenIDBasis (ZeilenumwandlungEinheiten), 2));
                         
                      when others =>
                         ZeilenumwandlungEinheiten := AktuelleZeile - Forschungen - ZeilenumwandlungsabzugEinheiten;
                         
-                        Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenID (ZeilenumwandlungEinheiten), 1)
+                        Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenIDBasis (ZeilenumwandlungEinheiten), 1)
                           := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                           EingelesenerTextExtern => Zwischenspeicher,
-                                          VorhandenerTextExtern  => Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenID (ZeilenumwandlungEinheiten), 1));
+                                          VorhandenerTextExtern  => Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenIDBasis (ZeilenumwandlungEinheiten), 1));
                   end case;
                   
                elsif

@@ -25,7 +25,7 @@ with TextaccessverwaltungssystemEinfachGrafik;
 package body BauauswahlGebaeudeGrafik is
 
    procedure Informationen
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BauenVerkaufenExtern : in Boolean)
    is begin
@@ -102,7 +102,7 @@ package body BauauswahlGebaeudeGrafik is
    -- Wird momentan verwendet für Informationen, siehe oben, und StadtkarteGrafik.Informationsfeld.
    -- Scheint zu funktionieren, bei Problemen (eventuell mit der Übergabe des Arrays) es wieder direkt einfügen.
    function Informationstexte
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ArraysHTSEB.AllgemeinesTextArray
    is begin
@@ -157,7 +157,7 @@ package body BauauswahlGebaeudeGrafik is
    
    
    procedure Gebäudebeschreibung
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BauenVerkaufenExtern : in Boolean)
    is begin

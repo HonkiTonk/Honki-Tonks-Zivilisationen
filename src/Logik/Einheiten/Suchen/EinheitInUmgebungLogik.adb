@@ -103,7 +103,7 @@ package body EinheitInUmgebungLogik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       

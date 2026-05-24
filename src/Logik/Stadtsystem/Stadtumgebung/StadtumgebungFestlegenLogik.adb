@@ -157,7 +157,7 @@ package body StadtumgebungFestlegenLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
    begin
       
       GrundBelegbar := False;
@@ -214,7 +214,7 @@ package body StadtumgebungFestlegenLogik is
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       GrößeAltExtern : in KartenRecords.UmgebungDreiRecord)
    is
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
    begin
       
       SenkrechteSchleife:

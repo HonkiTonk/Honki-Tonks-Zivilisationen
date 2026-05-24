@@ -15,7 +15,7 @@ package body KIEinheitFestlegenHeilenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KampfDatentypen.Lebenspunkte;
+      use type KampfDatentypen.LebenspunkteBasis;
    begin
       
       if

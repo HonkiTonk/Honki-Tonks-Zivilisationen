@@ -25,7 +25,7 @@ private
    
    WachstumSchrumpfung : Boolean;
    
-   VorhandeneEinwohner : StadtDatentypen.Einwohner;
+   VorhandeneEinwohner : StadtDatentypen.EinwohnerBasis;
    
    VorhandeneNahrung : ProduktionDatentypen.Stadtproduktion;
    ProduzierteNahrung : ProduktionDatentypen.Stadtproduktion;

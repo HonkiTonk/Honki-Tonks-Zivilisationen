@@ -251,8 +251,8 @@ package body StadtproduktionLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type ProduktionDatentypen.Produktion;
-      use type EinheitenDatentypen.EinheitenID;
-      use type StadtDatentypen.GebäudeID;
+      use type EinheitenDatentypen.EinheitenIDBasis;
+      use type StadtDatentypen.GebäudeIDBasis;
    begin
       
       SchreibeStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

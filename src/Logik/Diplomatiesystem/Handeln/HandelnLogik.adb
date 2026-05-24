@@ -127,13 +127,13 @@ package body HandelnLogik is
          --  then
          SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => KontaktierteSpeziesExtern,
                                                SpeziesZweiExtern   => SpeziesExtern,
-                                               SympathieExtern     => DiplomatieDatentypen.Meinung'Last,
+                                               SympathieExtern     => DiplomatieDatentypen.MeinungBasis'Last,
                                                RechnenSetzenExtern => False);
                      
          --  else
          SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => KontaktierteSpeziesExtern,
                                                SpeziesZweiExtern   => SpeziesExtern,
-                                               SympathieExtern     => DiplomatieDatentypen.Meinung (Geldmenge / 25),
+                                               SympathieExtern     => DiplomatieDatentypen.MeinungBasis (Geldmenge / 25),
                                                RechnenSetzenExtern => True);
          --   end if;
                   

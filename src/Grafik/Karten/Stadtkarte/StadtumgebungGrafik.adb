@@ -29,7 +29,7 @@ package body StadtumgebungGrafik is
    procedure Stadtumgebung
      (StadtauswahlExtern : in StadtGrafikRecords.StadtumgebungGrafikRecord)
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
    begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,

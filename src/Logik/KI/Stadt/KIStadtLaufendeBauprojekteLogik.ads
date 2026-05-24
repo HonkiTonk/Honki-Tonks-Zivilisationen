@@ -10,15 +10,15 @@ with LeseSpeziesbelegung;
 package KIStadtLaufendeBauprojekteLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type StadtDatentypen.Städtebereich;
-   use type StadtDatentypen.GebäudeID;
-   use type EinheitenDatentypen.Einheitenbereich;
-   use type EinheitenDatentypen.EinheitenID;
+   use type StadtDatentypen.StädtebereichBasis;
+   use type StadtDatentypen.GebäudeIDBasis;
+   use type EinheitenDatentypen.EinheitenbereichBasis;
+   use type EinheitenDatentypen.EinheitenIDBasis;
 
    function StadtLaufendeBauprojekte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BauprojektExtern : in StadtRecords.BauprojektRecord)
-      return StadtDatentypen.Städtebereich
+      return StadtDatentypen.StädtebereichBasis
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -37,7 +37,7 @@ package KIStadtLaufendeBauprojekteLogik is
    function GleicheEinheitArtBauprojekte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -51,7 +51,7 @@ package KIStadtLaufendeBauprojekteLogik is
    
    function EinheitenInProduktion
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
@@ -60,14 +60,14 @@ package KIStadtLaufendeBauprojekteLogik is
    -- Einen subtype für MaximaleEinheiten erstellen der nur bis MaximaleStädte geht? äöü
    -- Ist <= Städtegrenzen, da ja nicht mehr Einheiten gebaut werden kann als Städte vorhanden sind.
      Post => (
-                EinheitenInProduktion'Result <= EinheitenDatentypen.Einheitenbereich (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern))
+                EinheitenInProduktion'Result <= EinheitenDatentypen.EinheitenbereichBasis (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern))
              );
    
 private
    
-   GleichesGebäudeBauprojekt : StadtDatentypen.Städtebereich;
+   GleichesGebäudeBauprojekt : StadtDatentypen.StädtebereichBasis;
    
-   GleichesEinheitenBauprojekt : EinheitenDatentypen.Einheitenbereich;
-   EinheitenImBau : EinheitenDatentypen.Einheitenbereich;
+   GleichesEinheitenBauprojekt : EinheitenDatentypen.EinheitenbereichBasis;
+   EinheitenImBau : EinheitenDatentypen.EinheitenbereichBasis;
 
 end KIStadtLaufendeBauprojekteLogik;

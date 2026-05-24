@@ -25,19 +25,19 @@ private
    
    Belegung : SpeziesDatentypen.Spieler_Belegt_Enum;
    
-   VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
+   VorhandeneEinheiten : EinheitenDatentypen.EinheitenbereichBasis;
 
    ID : EinheitenDatentypen.EinheitenIDVorhanden;
    
    Koordinaten : KartenRecords.KartenfeldNaturalRecord;
    
-   Heimatstadt : StadtDatentypen.Städtebereich;
+   Heimatstadt : StadtDatentypen.StädtebereichBasis;
    
    Lebenspunkte : KampfDatentypen.LebenspunkteVorhanden;
    
    Bewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
    
-   Erfahrungspunkte : KampfDatentypen.Erfahrungspunkte;
+   Erfahrungspunkte : KampfDatentypen.ErfahrungspunkteBasis;
    
    Rang : KampfDatentypen.Rang;
    
@@ -57,11 +57,11 @@ private
    
    AlleMeldungen : EinheitenRecords.EinheitMeldungenArray;
    
-   TransportplätzeBelegt : EinheitenDatentypen.Transportplätze;
+   TransportplätzeBelegt : EinheitenDatentypen.TransportplätzeBasis;
    
    Ladung : EinheitenRecords.TransporterArray;
    
-   WirdTransportiert : EinheitenDatentypen.Einheitenbereich;
+   WirdTransportiert : EinheitenDatentypen.EinheitenbereichBasis;
    
    
 

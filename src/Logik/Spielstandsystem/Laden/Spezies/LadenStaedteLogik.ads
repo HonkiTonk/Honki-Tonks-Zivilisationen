@@ -30,7 +30,7 @@ private
    
    Belegung : SpeziesDatentypen.Spieler_Belegt_Enum;
 
-   VorhandeneStädte : StadtDatentypen.Städtebereich;
+   VorhandeneStädte : StadtDatentypen.StädtebereichBasis;
    
    ID : KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
    

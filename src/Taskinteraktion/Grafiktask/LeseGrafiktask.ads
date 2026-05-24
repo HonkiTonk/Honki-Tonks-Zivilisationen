@@ -64,10 +64,10 @@ package LeseGrafiktask is
      return SpeziesDatentypen.Spezies_Enum;
    
    function Stadtnummer
-     return StadtDatentypen.Städtebereich;
+     return StadtDatentypen.StädtebereichBasis;
    
    function Einheitnummer
-     return EinheitenDatentypen.Einheitenbereich;
+     return EinheitenDatentypen.EinheitenbereichBasis;
    
    function GeheZu
      return KartenRecords.KartenfeldNaturalRecord;
@@ -95,10 +95,10 @@ package LeseGrafiktask is
    
    -- Für den BauprojektRecord und seiner Erweiterung mal eine Funktion schreiben. äöü
    function Gebäudeauswahl
-     return StadtDatentypen.GebäudeID;
+     return StadtDatentypen.GebäudeIDBasis;
    
    function Einheitenauswahl
-     return EinheitenDatentypen.EinheitenID;
+     return EinheitenDatentypen.EinheitenIDBasis;
    
    function Tasteneingabe
      return Boolean;

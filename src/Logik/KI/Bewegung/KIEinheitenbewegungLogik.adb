@@ -32,7 +32,7 @@ package body KIEinheitenbewegungLogik is
       return Boolean
    is
       use type KartenRecords.KartenfeldNaturalRecord;
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
    begin
       
       Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -143,7 +143,7 @@ package body KIEinheitenbewegungLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
             
       Tauscheinheit := (EinheitSpeziesNummerExtern.Spezies, EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
@@ -182,7 +182,7 @@ package body KIEinheitenbewegungLogik is
    procedure BewegtSich
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
    begin
       
       Bewegungsschritt := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,

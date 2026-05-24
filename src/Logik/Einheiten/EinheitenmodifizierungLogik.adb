@@ -16,8 +16,8 @@ package body EinheitenmodifizierungLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      use type EinheitenDatentypen.Bewegungspunkte;
-      use type KampfDatentypen.Lebenspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
+      use type KampfDatentypen.LebenspunkteBasis;
    begin
       
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -94,7 +94,7 @@ package body EinheitenmodifizierungLogik is
       case
         Heimatstadt
       is
-         when StadtDatentypen.Städtebereich'First =>
+         when StadtDatentypen.StädtebereichBasis'First =>
             return;
             
          when others =>
@@ -131,7 +131,7 @@ package body EinheitenmodifizierungLogik is
    procedure HeimatstadtÄndern
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       

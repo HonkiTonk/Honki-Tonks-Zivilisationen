@@ -291,8 +291,8 @@ package body KIBewegungsplanBerechnenLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Einheitenbereich;
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       EinheitenSchleife:

@@ -87,7 +87,7 @@ package body SpeichernSpezienspezifischesLogik is
       ProduktionDatentypen.Lagermenge'Write (Stream (File => DateiSpeichernExtern),
                                              LeseWichtiges.VerbleibendeForschungszeit (SpeziesExtern => SpeziesExtern));
       
-      ForschungenDatentypen.ForschungID'Write (Stream (File => DateiSpeichernExtern),
+      ForschungenDatentypen.ForschungIDMöglich'Write (Stream (File => DateiSpeichernExtern),
                                                LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern));
       
       -- Solle sich die Anzahl der Forschungen nicht zu weit erhöhen könnte man das auch als 2 statt 4 Bytes speichern und noch einmal 2 Byte pro Speicherung sparen.
@@ -121,16 +121,16 @@ package body SpeichernSpezienspezifischesLogik is
       end loop BereichSchleife;
       
       -- Sind diese vier Werte für menschliche Spieler überhaupt relevant? äöü
-      StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichernExtern),
+      StadtDatentypen.StädtebereichBasis'Write (Stream (File => DateiSpeichernExtern),
                                             LeseWichtiges.AnzahlStädte (SpeziesExtern => SpeziesExtern));
       
-      EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
+      EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
                                                   LeseWichtiges.AnzahlArbeiter (SpeziesExtern => SpeziesExtern));
       
-      EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
+      EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
                                                   LeseWichtiges.AnzahlKämpfer (SpeziesExtern => SpeziesExtern));
       
-      EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
+      EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
                                                   LeseWichtiges.AnzahlSonstiges (SpeziesExtern => SpeziesExtern));
       
       case

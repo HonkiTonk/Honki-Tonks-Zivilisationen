@@ -24,7 +24,7 @@ package EinheitendatenbankRecord is
       
       MaximaleLebenspunkte : KampfDatentypen.LebenspunkteVorhanden;
       MaximaleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
-      VerbesserungZu : EinheitenDatentypen.EinheitenID;
+      VerbesserungZu : EinheitenDatentypen.EinheitenIDBasis;
 
       Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
       MaximalerRang : KampfDatentypen.Rang;
@@ -34,7 +34,7 @@ package EinheitendatenbankRecord is
 
       KannTransportieren : EinheitenDatentypen.Transport_Enum;
       KannTransportiertWerden : EinheitenDatentypen.Transport_Enum;
-      Transportkapazität : EinheitenDatentypen.Transportplätze;
+      Transportkapazität : EinheitenDatentypen.TransportplätzeBasis;
       
       Zusatzeffekt : KartenRecords.EffekteArray;
       Effektreichweite : KartenRecords.EffektbereichArray;

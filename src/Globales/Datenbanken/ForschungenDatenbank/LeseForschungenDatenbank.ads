@@ -14,7 +14,7 @@ package LeseForschungenDatenbank is
 
    function Kosten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungID)
+      IDExtern : in ForschungenDatentypen.ForschungIDMöglich)
       return ProduktionDatentypen.Lagermenge
      with
        Pre => (
@@ -23,7 +23,7 @@ package LeseForschungenDatenbank is
 
    function AnforderungForschung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungID;
+      IDExtern : in ForschungenDatentypen.ForschungIDMöglich;
       WelcheAnforderungExtern : in ForschungenDatentypen.Forschung_Anforderung_Enum)
       return ForschungenDatentypen.ForschungIDUnmöglich
      with

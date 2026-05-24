@@ -58,12 +58,12 @@ private
    
    -- KIBeschäftigung : KIDatentypen.Einheit_Aufgabe_Enum;
    
-   Heimatstadt : StadtDatentypen.Städtebereich;
+   Heimatstadt : StadtDatentypen.StädtebereichBasis;
    
    Heilungsrate : constant KampfDatentypen.LebenspunkteVorhanden := 10;
          
    NeueHeimatstadt : StadtRecords.SpeziesStadtnummerRecord;
    
-   EinheitNummer : EinheitenDatentypen.Einheitenbereich;
+   EinheitNummer : EinheitenDatentypen.EinheitenbereichBasis;
 
 end EinheitenmodifizierungLogik;

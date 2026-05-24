@@ -14,12 +14,12 @@ package TransporterSuchenLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type EinheitenDatentypen.Einheitenbereich;
+   use type EinheitenDatentypen.EinheitenbereichBasis;
 
    function KoordinatenTransporterMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -32,7 +32,7 @@ package TransporterSuchenLogik is
    function EinheitAufTransporterSuchen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
-      return EinheitenDatentypen.Transportplätze
+      return EinheitenDatentypen.TransportplätzeBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -52,7 +52,7 @@ package TransporterSuchenLogik is
    
    function FreierPlatz
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.Transportplätze
+      return EinheitenDatentypen.TransportplätzeBasis
      with
        Pre => (
                  TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
@@ -62,6 +62,6 @@ package TransporterSuchenLogik is
    
 private
    
-   Transporterkapazität : EinheitenDatentypen.Transportplätze;
+   Transporterkapazität : EinheitenDatentypen.TransportplätzeBasis;
 
 end TransporterSuchenLogik;

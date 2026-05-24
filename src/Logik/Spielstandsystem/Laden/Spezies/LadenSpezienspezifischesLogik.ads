@@ -35,7 +35,7 @@ private
    
    VerbleibendeForschungszeit : ProduktionDatentypen.Lagermenge;
    
-   Forschungsprojekt : ForschungenDatentypen.ForschungID;
+   Forschungsprojekt : ForschungenDatentypen.ForschungIDMöglich;
    
    ForschungVorhanden : SystemDatentypenHTSEB.VierByte;
    
@@ -43,13 +43,13 @@ private
    
    Erforscht : ForschungenDatentypen.ErforschtArray;
    
-   AnzahlStädte : StadtDatentypen.Städtebereich;
+   AnzahlStädte : StadtDatentypen.StädtebereichBasis;
    
-   AnzahlArbeiter : EinheitenDatentypen.Einheitenbereich;
+   AnzahlArbeiter : EinheitenDatentypen.EinheitenbereichBasis;
    
-   AnzahlKämpfer : EinheitenDatentypen.Einheitenbereich;
+   AnzahlKämpfer : EinheitenDatentypen.EinheitenbereichBasis;
    
-   AnzahlSonstiges : EinheitenDatentypen.Einheitenbereich;
+   AnzahlSonstiges : EinheitenDatentypen.EinheitenbereichBasis;
    
    Zeiger : KartenRecords.ZeigerRecord;
    

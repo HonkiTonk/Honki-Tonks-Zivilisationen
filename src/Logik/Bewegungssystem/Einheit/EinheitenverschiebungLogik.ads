@@ -43,7 +43,7 @@ private
    UmgebungPrüfen : KartenRecords.KartenfeldumgebungPositivRecord;
    BereitsGeprüft : KartenRecords.KartenfeldumgebungNaturalRecord;
    
-   EinheitNummer : EinheitenDatentypen.Einheitenbereich;
+   EinheitNummer : EinheitenDatentypen.EinheitenbereichBasis;
    
    Kartenwert : KartenRecords.KartenfeldNaturalRecord;
    KartenwertVerschieben : KartenRecords.KartenfeldNaturalRecord;

@@ -8,9 +8,9 @@ package KartenkoordinateEbeneBerechnenLogik is
 
    function KartenkoordinateEbeneBerechnen
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden;
-      ÄnderungEbeneExtern : in KartenDatentypen.Ebene;
+      ÄnderungEbeneExtern : in KartenDatentypen.EbeneBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.Ebene;
+      return KartenDatentypen.EbeneBasis;
    
 private
    
@@ -21,14 +21,14 @@ private
          
    function KartenkoordinateEbeneÜbergangUnten
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden;
-      ÄnderungEbeneExtern : in KartenDatentypen.Ebene;
+      ÄnderungEbeneExtern : in KartenDatentypen.EbeneBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.Ebene;
+      return KartenDatentypen.EbeneBasis;
    
    function KartenkoordinateEbeneÜbergangOben
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden;
-      ÄnderungEbeneExtern : in KartenDatentypen.Ebene;
+      ÄnderungEbeneExtern : in KartenDatentypen.EbeneBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.Ebene;
+      return KartenDatentypen.EbeneBasis;
 
 end KartenkoordinateEbeneBerechnenLogik;

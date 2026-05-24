@@ -163,7 +163,7 @@ package body LeseGrafiktask is
    
    
    function Stadtnummer
-     return StadtDatentypen.Städtebereich
+     return StadtDatentypen.StädtebereichBasis
    is begin
       
       return Grafiktask.Aktuell.Stadtnummer;
@@ -173,7 +173,7 @@ package body LeseGrafiktask is
    
    
    function Einheitnummer
-     return EinheitenDatentypen.Einheitenbereich
+     return EinheitenDatentypen.EinheitenbereichBasis
    is begin
       
       return Grafiktask.Aktuell.Einheitnummer;
@@ -263,7 +263,7 @@ package body LeseGrafiktask is
    
    
    function Gebäudeauswahl
-     return StadtDatentypen.GebäudeID
+     return StadtDatentypen.GebäudeIDBasis
    is begin
       
       return Grafiktask.Auswahl.Bauauswahl.Gebäude;
@@ -273,7 +273,7 @@ package body LeseGrafiktask is
    
    
    function Einheitenauswahl
-     return EinheitenDatentypen.EinheitenID
+     return EinheitenDatentypen.EinheitenIDBasis
    is begin
       
       return Grafiktask.Auswahl.Bauauswahl.Einheit;

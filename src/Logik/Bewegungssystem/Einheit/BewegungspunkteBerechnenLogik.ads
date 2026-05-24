@@ -14,12 +14,12 @@ package BewegungspunkteBerechnenLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type EinheitenDatentypen.Bewegungspunkte;
+   use type EinheitenDatentypen.BewegungspunkteBasis;
    
    function Bewegungspunkte
      (NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.Bewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -54,12 +54,12 @@ private
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
    
-   EinheitID : EinheitenDatentypen.EinheitenID;
+   EinheitID : EinheitenDatentypen.EinheitenIDBasis;
    
    AktuelleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
    
-   BenötigteBewegungspunkte : EinheitenDatentypen.Bewegungspunkte;
-   BewegungspunkteNotwendig : EinheitenDatentypen.Bewegungspunkte;
+   BenötigteBewegungspunkte : EinheitenDatentypen.BewegungspunkteBasis;
+   BewegungspunkteNotwendig : EinheitenDatentypen.BewegungspunkteBasis;
    
    BewegungspunkteGesamt : Positive;
    
@@ -68,7 +68,7 @@ private
    function NotwendigeBewegungspunkteErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return EinheitenDatentypen.Bewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)

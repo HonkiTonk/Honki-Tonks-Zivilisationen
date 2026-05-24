@@ -31,12 +31,12 @@ package NaechsteEinheitLogik is
    
 private
    
-   EinheitSchleifenbegrenzung : EinheitenDatentypen.Einheitenbereich;
-   MeldungSchleifenbegrenzung : EinheitenDatentypen.Einheitenbereich;
+   EinheitSchleifenbegrenzung : EinheitenDatentypen.EinheitenbereichBasis;
+   MeldungSchleifenbegrenzung : EinheitenDatentypen.EinheitenbereichBasis;
    
-   Bewegungspunkte : EinheitenDatentypen.Bewegungspunkte;
+   Bewegungspunkte : EinheitenDatentypen.BewegungspunkteBasis;
    
-   type AktuelleEinheitArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of EinheitenDatentypen.Einheitenbereich;
+   type AktuelleEinheitArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of EinheitenDatentypen.EinheitenbereichBasis;
    AktuelleEinheit : AktuelleEinheitArray := (others => 0);
    AktuelleEinheitMeldung : AktuelleEinheitArray := (others => 0);
 

@@ -17,6 +17,6 @@ package ForschungsfortschrittLogik is
    
 private
    
-   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungID;
+   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMöglich;
 
 end ForschungsfortschrittLogik;

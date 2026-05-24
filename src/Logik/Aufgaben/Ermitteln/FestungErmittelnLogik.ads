@@ -41,8 +41,8 @@ private
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
-   Grundzeit : ProduktionDatentypen.Arbeitszeit := 1;
+   Arbeitszeit : ProduktionDatentypen.ArbeitszeitBasis;
+   Grundzeit : ProduktionDatentypen.ArbeitszeitBasis := 1;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 
@@ -85,7 +85,7 @@ private
                  GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
               );
 
-   function ArbeitszeitPrüfen is new GanzzahltestsHTSEB.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
+   function ArbeitszeitPrüfen is new GanzzahltestsHTSEB.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.ArbeitszeitBasis);
 
    -- Später Festungen für den Kern einbauen. äöü
 

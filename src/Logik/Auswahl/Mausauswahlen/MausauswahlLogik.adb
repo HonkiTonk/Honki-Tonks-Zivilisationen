@@ -60,7 +60,7 @@ package body MausauswahlLogik is
    
    
    function Forschungsmenü
-     return ForschungenDatentypen.ForschungID
+     return ForschungenDatentypen.ForschungIDMöglich
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -457,7 +457,7 @@ package body MausauswahlLogik is
    
    
    function Verkaufsmenü
-     return StadtDatentypen.GebäudeID
+     return StadtDatentypen.GebäudeIDBasis
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -548,7 +548,7 @@ package body MausauswahlLogik is
    
    
    function StadtEinheitauswahl
-     (AnfangExtern : in EinheitenDatentypen.Transportplätze;
+     (AnfangExtern : in EinheitenDatentypen.TransportplätzeBasis;
       EndeExtern : in EinheitenDatentypen.TransportplätzeVorhanden)
       return Integer
    is begin

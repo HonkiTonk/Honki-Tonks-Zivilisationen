@@ -17,7 +17,7 @@ package WeltkarteEinheitZeichnenGrafik is
    pragma Elaborate_Body;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type EinheitenDatentypen.Einheitenbereich;
+   use type EinheitenDatentypen.EinheitenbereichBasis;
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure AnzeigeEinheit
@@ -62,7 +62,7 @@ private
    
    AusgewählteEinheitAnzeigen : Boolean := True;
    
-   FeldeinheitID : EinheitenDatentypen.EinheitenID;
+   FeldeinheitID : EinheitenDatentypen.EinheitenIDBasis;
       
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    

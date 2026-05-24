@@ -24,10 +24,10 @@ package NaechsteStadtLogik is
    
 private
 
-   StadtSchleifenbegrenzung : StadtDatentypen.Städtebereich;
-   MeldungSchleifenbegrenzung : StadtDatentypen.Städtebereich;
+   StadtSchleifenbegrenzung : StadtDatentypen.StädtebereichBasis;
+   MeldungSchleifenbegrenzung : StadtDatentypen.StädtebereichBasis;
 
-   type AktuelleStadtArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.Städtebereich;
+   type AktuelleStadtArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.StädtebereichBasis;
    AktuelleStadt : AktuelleStadtArray := (others => 0);
    AktuelleStadtMeldung : AktuelleStadtArray := (others => 0);
 

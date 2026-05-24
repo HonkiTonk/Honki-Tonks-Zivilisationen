@@ -15,7 +15,7 @@ package body FelderbewirtschaftungLogik is
      (ZuwachsSchwundExtern : in Boolean;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type StadtDatentypen.Einwohner;
+      use type StadtDatentypen.EinwohnerBasis;
    begin
       
       case

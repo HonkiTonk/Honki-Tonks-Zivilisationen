@@ -114,7 +114,7 @@ package body EinheitenverschiebungLogik is
    is
       use type KartenDatentypen.SenkrechteBasis;
       use type KartenDatentypen.WaagerechteBasis;
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       BereitsGeprüft := (0, 0);

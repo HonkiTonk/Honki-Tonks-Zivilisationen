@@ -12,7 +12,7 @@ package body EinheitHeilenLogik is
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is
-      use type KampfDatentypen.Lebenspunkte;
+      use type KampfDatentypen.LebenspunkteBasis;
    begin
       
       if

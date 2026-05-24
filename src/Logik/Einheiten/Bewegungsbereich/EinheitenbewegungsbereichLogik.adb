@@ -61,7 +61,7 @@ package body EinheitenbewegungsbereichLogik is
       NotwendigeBewegungspunkteExtern : in Natural;
       VorhandeneBewegungspunkteExtern : in Positive)
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
    begin
 
       Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
@@ -176,7 +176,7 @@ package body EinheitenbewegungsbereichLogik is
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.KartenfeldNaturalRecord;
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
    begin
       
       if

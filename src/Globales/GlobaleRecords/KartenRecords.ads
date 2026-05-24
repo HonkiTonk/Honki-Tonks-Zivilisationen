@@ -110,7 +110,7 @@ package KartenRecords is
    
    type KartenfeldNaturalRecord is record
       
-      Ebene : KartenDatentypen.Ebene;
+      Ebene : KartenDatentypen.EbeneBasis;
       Senkrechte : KartenDatentypen.SenkrechteNatural;
       Waagerechte : KartenDatentypen.WaagerechteNatural;
       
@@ -120,7 +120,7 @@ package KartenRecords is
 
    type KartenfeldRecord is record
       
-      Ebene : KartenDatentypen.Ebene;
+      Ebene : KartenDatentypen.EbeneBasis;
       Senkrechte : KartenDatentypen.SenkrechteBasis;
       Waagerechte : KartenDatentypen.WaagerechteBasis;
       

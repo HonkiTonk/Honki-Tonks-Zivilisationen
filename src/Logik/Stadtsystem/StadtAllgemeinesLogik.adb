@@ -42,11 +42,11 @@ package body StadtAllgemeinesLogik is
    procedure StädteSortieren
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
       use type KartenDatentypen.SenkrechteBasis;
       use type KartenDatentypen.WaagerechteBasis;
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       Stadtgrenze := LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern);

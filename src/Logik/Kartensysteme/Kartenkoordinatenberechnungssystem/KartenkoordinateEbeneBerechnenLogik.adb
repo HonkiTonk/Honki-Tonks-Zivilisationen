@@ -7,11 +7,11 @@ package body KartenkoordinateEbeneBerechnenLogik is
 
    function KartenkoordinateEbeneBerechnen
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden;
-      ÄnderungEbeneExtern : in KartenDatentypen.Ebene;
+      ÄnderungEbeneExtern : in KartenDatentypen.EbeneBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.Ebene
+      return KartenDatentypen.EbeneBasis
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
    begin
       
       if
@@ -38,9 +38,9 @@ package body KartenkoordinateEbeneBerechnenLogik is
    
    function KartenkoordinateEbeneÜbergangUnten
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden;
-      ÄnderungEbeneExtern : in KartenDatentypen.Ebene;
+      ÄnderungEbeneExtern : in KartenDatentypen.EbeneBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.Ebene
+      return KartenDatentypen.EbeneBasis
    is begin
       
       case
@@ -78,9 +78,9 @@ package body KartenkoordinateEbeneBerechnenLogik is
    
    function KartenkoordinateEbeneÜbergangOben
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden;
-      ÄnderungEbeneExtern : in KartenDatentypen.Ebene;
+      ÄnderungEbeneExtern : in KartenDatentypen.EbeneBasis;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KartenDatentypen.Ebene
+      return KartenDatentypen.EbeneBasis
    is begin
       
       case

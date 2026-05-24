@@ -36,7 +36,7 @@ private
 
    Feldeffekt : Boolean;
    
-   VorhandeneEinwohner : StadtDatentypen.Einwohner;
+   VorhandeneEinwohner : StadtDatentypen.EinwohnerBasis;
 
    NahrungsverbrauchEinwohnerMultiplikator : ProduktionDatentypen.Stadtproduktion;
    RessourcenverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;

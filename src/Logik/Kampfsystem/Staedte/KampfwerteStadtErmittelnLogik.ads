@@ -19,7 +19,7 @@ package KampfwerteStadtErmittelnLogik is
       GebäudeExtern : in StadtArrays.GebäudeArray;
       EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -32,7 +32,7 @@ package KampfwerteStadtErmittelnLogik is
       GebäudeExtern : in StadtArrays.GebäudeArray;
       EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -40,7 +40,7 @@ package KampfwerteStadtErmittelnLogik is
    
 private
    
-   type KampfwerteArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.Kampfwerte;
+   type KampfwerteArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.KampfwerteBasis;
    Verteidigung : KampfwerteArray;
    Angriff : KampfwerteArray;
 

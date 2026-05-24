@@ -8,10 +8,10 @@ package DiplomatischerZustandLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type SpeziesDatentypen.Spezies_Enum;
 
-   type SympathieGrenzenArray is array (DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum'Range) of DiplomatieDatentypen.Meinung;
+   type SympathieGrenzenArray is array (DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum'Range) of DiplomatieDatentypen.MeinungBasis;
    SympathieGrenzen : constant SympathieGrenzenArray := (
                                                          DiplomatieDatentypen.Neutral_Enum           => 50,
-                                                         DiplomatieDatentypen.Nichtangriffspakt_Enum => DiplomatieDatentypen.Meinung'Last,
+                                                         DiplomatieDatentypen.Nichtangriffspakt_Enum => DiplomatieDatentypen.MeinungBasis'Last,
                                                          DiplomatieDatentypen.Krieg_Enum             => 0
                                                         );
 

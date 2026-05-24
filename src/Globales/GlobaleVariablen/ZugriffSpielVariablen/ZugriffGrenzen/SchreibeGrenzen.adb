@@ -4,7 +4,7 @@ package body SchreibeGrenzen is
    
    procedure Städtegrenzen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      StädtegrenzeExtern : in StadtDatentypen.Städtebereich)
+      StädtegrenzeExtern : in StadtDatentypen.StädtebereichBasis)
    is begin
       
       SpielVariablen.Grenzen (SpeziesExtern).Städtegrenze := StädtegrenzeExtern;

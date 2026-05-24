@@ -25,22 +25,22 @@ package ForschungsauswahlLogik is
    
 private
    
-   AktuelleAuswahl : ForschungenDatentypen.ForschungID := ForschungKonstanten.LeerAnforderung;
-   NeuesForschungsprojekt : ForschungenDatentypen.ForschungID;
-   GewählteForschung : ForschungenDatentypen.ForschungID;
+   AktuelleAuswahl : ForschungenDatentypen.ForschungIDMöglich := ForschungKonstanten.LeerAnforderung;
+   NeuesForschungsprojekt : ForschungenDatentypen.ForschungIDMöglich;
+   GewählteForschung : ForschungenDatentypen.ForschungIDMöglich;
 
    Auswahl : Positive;
 
    function Forschungsmöglichkeiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ForschungenDatentypen.ForschungID
+      return ForschungenDatentypen.ForschungIDMöglich
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
    function Forschungsauswahl
-     (AktuellesForschungsprojektExtern : in ForschungenDatentypen.ForschungID)
-      return ForschungenDatentypen.ForschungID;
+     (AktuellesForschungsprojektExtern : in ForschungenDatentypen.ForschungIDMöglich)
+      return ForschungenDatentypen.ForschungIDMöglich;
 
 end ForschungsauswahlLogik;

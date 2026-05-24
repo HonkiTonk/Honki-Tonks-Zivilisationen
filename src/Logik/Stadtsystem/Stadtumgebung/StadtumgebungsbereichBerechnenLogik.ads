@@ -29,7 +29,7 @@ private
    
    Umgebung : KartenRecords.UmgebungDreiRecord;
    
-   Einwohner : StadtDatentypen.Einwohner;
+   Einwohner : StadtDatentypen.EinwohnerBasis;
    
    procedure StadtumgebungErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)

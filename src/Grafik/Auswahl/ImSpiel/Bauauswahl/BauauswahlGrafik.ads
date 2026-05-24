@@ -19,8 +19,8 @@ with InteraktionAuswahl;
 package BauauswahlGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type EinheitenDatentypen.EinheitenID;
-   use type StadtDatentypen.GebäudeID;
+   use type EinheitenDatentypen.EinheitenIDBasis;
+   use type StadtDatentypen.GebäudeIDBasis;
 
    procedure Bauauswahl
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord;
@@ -34,7 +34,7 @@ package BauauswahlGrafik is
 
 
    function Gebäude
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BauenVerkaufenExtern : in Boolean;
       BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
@@ -97,7 +97,7 @@ private
 
 
    function Einheiten
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
       return Float

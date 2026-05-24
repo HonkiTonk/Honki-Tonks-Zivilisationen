@@ -11,14 +11,14 @@ with SystemRecords;
 
 package MausauswahlLogik is
    pragma Elaborate_Body;
-   use type EinheitenDatentypen.Transportplätze;
+   use type EinheitenDatentypen.TransportplätzeBasis;
    use type StadtDatentypen.Bauprojektart_Enum;
    
    function SpeziesauswahlDiplomatie
      return Natural;
    
    function Forschungsmenü
-     return ForschungenDatentypen.ForschungID;
+     return ForschungenDatentypen.ForschungIDMöglich;
 
    function Baumenü
      return StadtRecords.BauprojektauswahlRecord
@@ -68,13 +68,13 @@ package MausauswahlLogik is
      return BefehleDatentypen.Stadtbefehle_Enum;
    
    function Verkaufsmenü
-     return StadtDatentypen.GebäudeID;
+     return StadtDatentypen.GebäudeIDBasis;
    
    function SpeichernLaden
      return Integer;
    
    function StadtEinheitauswahl
-     (AnfangExtern : in EinheitenDatentypen.Transportplätze;
+     (AnfangExtern : in EinheitenDatentypen.TransportplätzeBasis;
       EndeExtern : in EinheitenDatentypen.TransportplätzeVorhanden)
       return Integer
      with

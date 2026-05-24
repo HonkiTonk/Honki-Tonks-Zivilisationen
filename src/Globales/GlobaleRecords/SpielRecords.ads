@@ -31,15 +31,15 @@ package SpielRecords is
       GesamteForschungsrate : ProduktionDatentypen.Lagermenge;
       Forschungsmenge : ProduktionDatentypen.Lagermenge;
       VerbleibendeForschungszeit : ProduktionDatentypen.Lagermenge;
-      Forschungsprojekt : ForschungenDatentypen.ForschungID;
+      Forschungsprojekt : ForschungenDatentypen.ForschungIDMöglich;
       
       -- Wenn ich ein Record für dieses Array hier anlege, dann könnten man die bereits investierte Forschung behalten. XXX
       Erforscht : ForschungenDatentypen.ErforschtArray;
       
-      AnzahlStädte : StadtDatentypen.Städtebereich;
-      AnzahlArbeiter : EinheitenDatentypen.Einheitenbereich;
-      AnzahlKämpfer : EinheitenDatentypen.Einheitenbereich;
-      AnzahlSonstiges : EinheitenDatentypen.Einheitenbereich;
+      AnzahlStädte : StadtDatentypen.StädtebereichBasis;
+      AnzahlArbeiter : EinheitenDatentypen.EinheitenbereichBasis;
+      AnzahlKämpfer : EinheitenDatentypen.EinheitenbereichBasis;
+      AnzahlSonstiges : EinheitenDatentypen.EinheitenbereichBasis;
       
       -- Einbau sinnvoll?
       -- GesamterAngriff : ProduktionDatentypen.Produktion;
@@ -52,7 +52,7 @@ package SpielRecords is
    type DiplomatieRecord is record
       
       AktuellerZustand : DiplomatieDatentypen.Status_Untereinander_Enum;
-      AktuelleSympathieBewertung : DiplomatieDatentypen.Meinung;
+      AktuelleSympathieBewertung : DiplomatieDatentypen.MeinungBasis;
       ZeitSeitLetzterÄnderung : ZahlenDatentypen.EigenesNatural;
       
    end record;
@@ -61,7 +61,7 @@ package SpielRecords is
    
    type GrenzenRecord is record
       
-      Städtegrenze : StadtDatentypen.Städtebereich;
+      Städtegrenze : StadtDatentypen.StädtebereichBasis;
       Einheitengrenze : EinheitenDatentypen.EinheitenbereichVorhanden;
       Geldgrenze : ZahlenDatentypen.EigenesNatural;
       Forschungsgrenze : ProduktionDatentypen.Lagermenge;

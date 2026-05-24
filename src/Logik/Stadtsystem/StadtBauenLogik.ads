@@ -38,7 +38,7 @@ private
 
    WelcherWeg : AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
 
-   StadtNummer : StadtDatentypen.Städtebereich;
+   StadtNummer : StadtDatentypen.StädtebereichBasis;
 
    StadtName : SystemRecordsHTSEB.TextEingabeRecord;
 
@@ -87,7 +87,7 @@ private
 
    function StadtnummerErmitteln
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return StadtDatentypen.Städtebereich
+      return StadtDatentypen.StädtebereichBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

@@ -14,9 +14,9 @@ package ProduktionKonstanten is
 
    LeerArbeit : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
 
-   LeerArbeitszeit : constant ProduktionDatentypen.Arbeitszeit := 0;
-   UnmöglicheArbeit : constant ProduktionDatentypen.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'First;
-   MinimaleArbeitszeit : constant ProduktionDatentypen.Arbeitszeit := 1;
+   LeerArbeitszeit : constant ProduktionDatentypen.ArbeitszeitBasis := 0;
+   UnmöglicheArbeit : constant ProduktionDatentypen.ArbeitszeitBasis := ProduktionDatentypen.ArbeitszeitBasis'First;
+   MinimaleArbeitszeit : constant ProduktionDatentypen.ArbeitszeitBasis := 1;
 
    VorzeichenNegativ : constant ProduktionDatentypen.Vorzeichenwechsel := ProduktionDatentypen.Vorzeichenwechsel'First;
    VorzeichenPositiv : constant ProduktionDatentypen.Vorzeichenwechsel := ProduktionDatentypen.Vorzeichenwechsel'Last;

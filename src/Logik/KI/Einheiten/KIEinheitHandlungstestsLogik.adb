@@ -69,8 +69,8 @@ package body KIEinheitHandlungstestsLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Bewegungspunkte;
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       if

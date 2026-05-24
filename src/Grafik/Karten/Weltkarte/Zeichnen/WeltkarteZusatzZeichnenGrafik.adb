@@ -57,7 +57,7 @@ package body WeltkarteZusatzZeichnenGrafik is
       EbeneExtern : in KartenDatentypen.EbeneVorhanden;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
    begin
       
       Verbesserungsfeld := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);

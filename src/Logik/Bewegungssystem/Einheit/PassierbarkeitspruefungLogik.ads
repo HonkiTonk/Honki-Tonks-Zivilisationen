@@ -67,10 +67,10 @@ private
    
    WegVorhanden : KartenverbesserungDatentypen.Weg_Enum;
       
-   IDEinheit : EinheitenDatentypen.EinheitenID;
+   IDEinheit : EinheitenDatentypen.EinheitenIDBasis;
    
-   StadtNummer : StadtDatentypen.Städtebereich;
-   StadtVorhanden : StadtDatentypen.Städtebereich;
+   StadtNummer : StadtDatentypen.StädtebereichBasis;
+   StadtVorhanden : StadtDatentypen.StädtebereichBasis;
    
    Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    

@@ -26,7 +26,7 @@ package body PassierbarkeitspruefungLogik is
       case
         IDEinheit
       is
-         when EinheitenDatentypen.EinheitenID'First =>
+         when EinheitenDatentypen.EinheitenIDBasis'First =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer: Einheit ohne ID");
             return False;
             

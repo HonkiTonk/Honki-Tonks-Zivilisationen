@@ -16,7 +16,7 @@ package body VerkaufsauswahlGrafik is
 
    procedure Verkaufsauswahl
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AktuelleAuswahlExtern : in StadtDatentypen.GebäudeID)
+      AktuelleAuswahlExtern : in StadtDatentypen.GebäudeIDBasis)
    is begin
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageGebäudeverkauf)),
@@ -31,7 +31,7 @@ package body VerkaufsauswahlGrafik is
    
    
    procedure Gebäude
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       

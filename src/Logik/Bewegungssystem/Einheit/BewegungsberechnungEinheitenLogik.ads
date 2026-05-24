@@ -33,9 +33,9 @@ package BewegungsberechnungEinheitenLogik is
    
 private
    
-   IstLadung : EinheitenDatentypen.Einheitenbereich;
+   IstLadung : EinheitenDatentypen.EinheitenbereichBasis;
    
-   BewegungspunkteAbzug : EinheitenDatentypen.Bewegungspunkte;
+   BewegungspunkteAbzug : EinheitenDatentypen.BewegungspunkteBasis;
    
    procedure NachBewegung
      (NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;

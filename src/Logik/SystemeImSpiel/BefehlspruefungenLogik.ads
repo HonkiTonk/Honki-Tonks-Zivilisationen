@@ -56,9 +56,9 @@ private
 
    LeerRückgabewert : Boolean;
 
-   EinheitNummer : EinheitenDatentypen.Einheitenbereich;
-   TransporterNummer : EinheitenDatentypen.Einheitenbereich;
-   StadtNummer : StadtDatentypen.Städtebereich;
+   EinheitNummer : EinheitenDatentypen.EinheitenbereichBasis;
+   TransporterNummer : EinheitenDatentypen.EinheitenbereichBasis;
+   StadtNummer : StadtDatentypen.StädtebereichBasis;
    
    -- Ist Integer um mit dem aktuellen Auswahlsystem zu funktionieren.
    AusgewählteEinheit : Integer;
@@ -66,8 +66,8 @@ private
       
    procedure EinheitOderStadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      StadtNummerExtern : in StadtDatentypen.Städtebereich;
-      EinheitNummerExtern : in EinheitenDatentypen.Einheitenbereich)
+      StadtNummerExtern : in StadtDatentypen.StädtebereichBasis;
+      EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichBasis)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum

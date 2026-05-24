@@ -17,7 +17,7 @@ package body LeseDiplomatie is
    function AktuelleSympathie
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return DiplomatieDatentypen.Meinung
+      return DiplomatieDatentypen.MeinungBasis
    is begin
       
       return SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuelleSympathieBewertung;

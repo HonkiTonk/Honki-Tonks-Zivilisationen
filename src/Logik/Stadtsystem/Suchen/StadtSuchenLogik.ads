@@ -15,12 +15,12 @@ package StadtSuchenLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type StadtDatentypen.Städtebereich;
+   use type StadtDatentypen.StädtebereichBasis;
    
    function KoordinatenStadtMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return StadtDatentypen.Städtebereich
+      return StadtDatentypen.StädtebereichBasis
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

@@ -41,12 +41,12 @@ package ProduktionDatentypen is
    
    
    
-   type Arbeitszeit is range -1 .. 100;
-   subtype ArbeitszeitVorhanden is Arbeitszeit range 0 .. Arbeitszeit'Last;
+   type ArbeitszeitBasis is range -1 .. 100;
+   subtype ArbeitszeitVorhanden is ArbeitszeitBasis range 0 .. ArbeitszeitBasis'Last;
    
    
    
-   type Zufriedenheit is range -100 .. 100;
-   subtype ZufriedenheitVorhanden is Zufriedenheit range 0 .. Zufriedenheit'Last;
+   type ZufriedenheitBasis is range -100 .. 100;
+   subtype ZufriedenheitVorhanden is ZufriedenheitBasis range 0 .. ZufriedenheitBasis'Last;
 
 end ProduktionDatentypen;

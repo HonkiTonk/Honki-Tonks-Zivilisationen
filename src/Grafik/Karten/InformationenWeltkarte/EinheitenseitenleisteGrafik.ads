@@ -50,20 +50,20 @@ package EinheitenseitenleisteGrafik is
 private
    use Ada.Strings.Wide_Wide_Unbounded;
    
-   MaximaleLadung : EinheitenDatentypen.Transportplätze;
-   VorhandeneLadung : EinheitenDatentypen.Transportplätze;
+   MaximaleLadung : EinheitenDatentypen.TransportplätzeBasis;
+   VorhandeneLadung : EinheitenDatentypen.TransportplätzeBasis;
    
    Arbeit : constant Positive := 6;
    Herkunft : constant Positive := 8;
    
    Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    
-   IDEinheit : EinheitenDatentypen.EinheitenID;
+   IDEinheit : EinheitenDatentypen.EinheitenIDBasis;
    
-   Stadtnummer : StadtDatentypen.Städtebereich;
+   Stadtnummer : StadtDatentypen.StädtebereichBasis;
    
-   Angriffsbonus : KampfDatentypen.Kampfwerte;
-   Verteidigungsbonus : KampfDatentypen.Kampfwerte;
+   Angriffsbonus : KampfDatentypen.KampfwerteBasis;
+   Verteidigungsbonus : KampfDatentypen.KampfwerteBasis;
    
    Leerzeilen : Natural;
    
@@ -209,24 +209,24 @@ private
    
    
    
-   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => EinheitenDatentypen.Einheitenbereich);
+   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => EinheitenDatentypen.EinheitenbereichBasis);
    
    function ZahlAlsStringProduktionFeld is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => ProduktionDatentypen.Feldproduktion);
    
    function ZahlAlsStringGesamtproduktionStadt is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => ProduktionDatentypen.Stadtproduktion);
    
-   function ZahlAlsStringLebenspunkte is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KampfDatentypen.Lebenspunkte);
+   function ZahlAlsStringLebenspunkte is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KampfDatentypen.LebenspunkteBasis);
    
-   function ZahlAlsStringBewegungspunkte is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => EinheitenDatentypen.Bewegungspunkte);
+   function ZahlAlsStringBewegungspunkte is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => EinheitenDatentypen.BewegungspunkteBasis);
    
-   function ZahlAlsStringKampfwerte is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KampfDatentypen.Kampfwerte);
+   function ZahlAlsStringKampfwerte is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KampfDatentypen.KampfwerteBasis);
    
-   function ZahlAlsStringArbeitszeit is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
+   function ZahlAlsStringArbeitszeit is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => ProduktionDatentypen.ArbeitszeitBasis);
    
-   function ZahlAlsStringErfahrungspunkte is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KampfDatentypen.Erfahrungspunkte);
+   function ZahlAlsStringErfahrungspunkte is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KampfDatentypen.ErfahrungspunkteBasis);
    
    function ZahlAlsStringRang is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KampfDatentypen.Rang);
    
-   function ZahlAlsStringTransportplätze is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => EinheitenDatentypen.Transportplätze);
+   function ZahlAlsStringTransportplätze is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => EinheitenDatentypen.TransportplätzeBasis);
 
 end EinheitenseitenleisteGrafik;

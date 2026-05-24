@@ -20,7 +20,7 @@ package body EffektberechnungenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.Einheitart_Enum;
-      use type KampfDatentypen.Lebenspunkte;
+      use type KampfDatentypen.LebenspunkteBasis;
    begin
       
       EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

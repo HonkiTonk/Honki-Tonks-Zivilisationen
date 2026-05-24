@@ -10,7 +10,7 @@ with TextnummernKonstanten;
 package body EinheitenbeschreibungenGrafik is
 
    function Kurzbeschreibung
-     (IDExtern : in EinheitenDatentypen.EinheitenID;
+     (IDExtern : in EinheitenDatentypen.EinheitenIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin

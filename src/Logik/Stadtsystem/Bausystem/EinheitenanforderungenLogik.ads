@@ -12,7 +12,7 @@ package EinheitenanforderungenLogik is
    
    function AnforderungenErfüllt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDBasis)
       return Boolean
      with
        Pre => (

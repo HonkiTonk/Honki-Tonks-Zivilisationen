@@ -227,8 +227,8 @@ package body EingabenanzeigeGrafik is
       WelcheAuswahlExtern : in EinheitenRecords.AuswahlRecord;
       AktuelleAuswahlExtern : in Integer)
    is
-      use type EinheitenDatentypen.Transportplätze;
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.TransportplätzeBasis;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       -- Das hier dynamisch an die Auswahlmöglichkeiten anpassen? äöü

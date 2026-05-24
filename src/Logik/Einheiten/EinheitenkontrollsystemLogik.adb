@@ -18,7 +18,7 @@ package body EinheitenkontrollsystemLogik is
    procedure Einheitenkontrolle
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
    begin
       
       Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

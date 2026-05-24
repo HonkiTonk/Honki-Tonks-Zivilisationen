@@ -9,7 +9,7 @@ package KartenkoordinatenberechnungssystemLogik is
    pragma Elaborate_Body;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type KartenDatentypen.Ebene;
+   use type KartenDatentypen.EbeneBasis;
 
    function Kartenkoordinatenberechnungssystem
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;

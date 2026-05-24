@@ -17,7 +17,7 @@ package StadtRecords is
    type SpeziesStadtnummerRecord is record
       
       Spezies : SpeziesDatentypen.Spezies_Enum;
-      Nummer : StadtDatentypen.Städtebereich;
+      Nummer : StadtDatentypen.StädtebereichBasis;
       
    end record;
    
@@ -34,8 +34,8 @@ package StadtRecords is
    
    type BauprojektRecord is record
       
-      Gebäude : StadtDatentypen.GebäudeID;
-      Einheit : EinheitenDatentypen.EinheitenID;
+      Gebäude : StadtDatentypen.GebäudeIDBasis;
+      Einheit : EinheitenDatentypen.EinheitenIDBasis;
 
    end record;
    
@@ -43,8 +43,8 @@ package StadtRecords is
    
    type ErweiterterBauprojektRecord is record
       
-      Gebäude : StadtDatentypen.GebäudeID;
-      Einheit : EinheitenDatentypen.EinheitenID;
+      Gebäude : StadtDatentypen.GebäudeIDBasis;
+      Einheit : EinheitenDatentypen.EinheitenIDBasis;
       
       Bauprojektart : StadtDatentypen.Bauprojektart_Enum;
       
@@ -75,7 +75,7 @@ package StadtRecords is
 
    -- Warum ist das hier nicht Boolean'Range? äöü
    -- Oder ein eigenes Enum? äöü
-   type EinwohnerArbeiterArray is array (1 .. 2) of StadtDatentypen.Einwohner;
+   type EinwohnerArbeiterArray is array (1 .. 2) of StadtDatentypen.EinwohnerBasis;
    
    -- XXX äöü
    -- Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Ressourcen gespeichert werden und beim Wechsel des Bauprojekts bleiben die angefangenen Gebäude erhalten. äöü

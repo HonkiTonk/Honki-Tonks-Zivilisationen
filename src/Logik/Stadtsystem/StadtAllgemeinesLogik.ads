@@ -39,7 +39,7 @@ private
    
    AlterPlatz : StadtDatentypen.StädtebereichVorhanden;
    
-   Stadtgrenze : StadtDatentypen.Städtebereich;
+   Stadtgrenze : StadtDatentypen.StädtebereichBasis;
    
    NeuerName : SystemRecordsHTSEB.TextEingabeRecord;
    

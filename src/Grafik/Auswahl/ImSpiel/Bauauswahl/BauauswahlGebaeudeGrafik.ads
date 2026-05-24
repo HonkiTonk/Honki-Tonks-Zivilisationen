@@ -18,7 +18,7 @@ package BauauswahlGebaeudeGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Informationen
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BauenVerkaufenExtern : in Boolean)
      with
@@ -29,7 +29,7 @@ package BauauswahlGebaeudeGrafik is
    
    
    function Informationstexte
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ArraysHTSEB.AllgemeinesTextArray;
    
@@ -44,7 +44,7 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
 
    procedure Gebäudebeschreibung
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BauenVerkaufenExtern : in Boolean)
      with

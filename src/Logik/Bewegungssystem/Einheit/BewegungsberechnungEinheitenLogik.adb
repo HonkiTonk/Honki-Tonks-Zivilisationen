@@ -16,7 +16,7 @@ package body BewegungsberechnungEinheitenLogik is
       NeueKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitentauschExtern : in Boolean)
    is
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
    begin
       
       BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern      => NeueKoordinatenExtern,

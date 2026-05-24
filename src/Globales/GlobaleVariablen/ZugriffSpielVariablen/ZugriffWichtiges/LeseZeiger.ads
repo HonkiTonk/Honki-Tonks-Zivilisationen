@@ -28,7 +28,7 @@ package LeseZeiger is
    
    function EbeneAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenDatentypen.Ebene
+      return KartenDatentypen.EbeneBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

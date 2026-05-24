@@ -128,7 +128,7 @@ package body ChemischeWaffeEingesetztLogik is
    procedure Wasserverschmutzung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
       use type KartenextraDatentypen.Fluss_Enum;
       use type KartengrundDatentypen.Basisgrund_Enum;
    begin

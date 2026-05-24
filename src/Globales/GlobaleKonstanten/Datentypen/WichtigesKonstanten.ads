@@ -13,12 +13,12 @@ package WichtigesKonstanten is
    LeerGesamteForschungsrate : constant ProduktionDatentypen.Produktion := 0;
    LeerForschungsmenge : constant ProduktionDatentypen.Produktion := 0;
    LeerVerbleibendeForschungszeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
-   LeerForschungsprojekt : constant ForschungenDatentypen.ForschungID := ForschungenDatentypen.ForschungID'First;
+   LeerForschungsprojekt : constant ForschungenDatentypen.ForschungIDMöglich := ForschungenDatentypen.ForschungIDMöglich'First;
    LeerErforscht : constant Boolean := False;
-   LeerAnzahlStädte : constant StadtDatentypen.Städtebereich := StadtDatentypen.Städtebereich'First;
-   LeerAnzahlArbeiter : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
-   LeerAnzahlKämpfer : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
-   LeerAnzahlSonstiges : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
+   LeerAnzahlStädte : constant StadtDatentypen.StädtebereichBasis := StadtDatentypen.StädtebereichBasis'First;
+   LeerAnzahlArbeiter : constant EinheitenDatentypen.EinheitenbereichBasis := EinheitenDatentypen.EinheitenbereichBasis'First;
+   LeerAnzahlKämpfer : constant EinheitenDatentypen.EinheitenbereichBasis := EinheitenDatentypen.EinheitenbereichBasis'First;
+   LeerAnzahlSonstiges : constant EinheitenDatentypen.EinheitenbereichBasis := EinheitenDatentypen.EinheitenbereichBasis'First;
    
    
    
@@ -33,7 +33,7 @@ package WichtigesKonstanten is
    
    
    LeerAktuellerZustand : constant DiplomatieDatentypen.Status_Untereinander_Enum := DiplomatieDatentypen.Unbekannt_Enum;
-   LeerAktuelleSympathieBewertung : constant DiplomatieDatentypen.Meinung := 0;
+   LeerAktuelleSympathieBewertung : constant DiplomatieDatentypen.MeinungBasis := 0;
    LeerZeitSeitLetzterÄnderung : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
    DiplomatischerStatusÄnderungszeit : constant Positive := 10;
    

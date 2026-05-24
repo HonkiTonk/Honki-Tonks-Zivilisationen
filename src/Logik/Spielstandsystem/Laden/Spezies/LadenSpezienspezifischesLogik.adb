@@ -101,7 +101,7 @@ package body LadenSpezienspezifischesLogik is
       ProduktionDatentypen.Lagermenge'Read (Stream (File => DateiLadenExtern),
                                             VerbleibendeForschungszeit);
       
-      ForschungenDatentypen.ForschungID'Read (Stream (File => DateiLadenExtern),
+      ForschungenDatentypen.ForschungIDMöglich'Read (Stream (File => DateiLadenExtern),
                                               Forschungsprojekt);
       
       -- Solle sich die Anzahl der Forschungen nicht zu weit erhöhen könnte man das auch als 2 statt 4 Bytes speichern und noch einmal 2 Byte pro Speicherung sparen.
@@ -129,16 +129,16 @@ package body LadenSpezienspezifischesLogik is
          end loop ForschungSchleife;
       end loop BereichSchleife;
             
-      StadtDatentypen.Städtebereich'Read (Stream (File => DateiLadenExtern),
+      StadtDatentypen.StädtebereichBasis'Read (Stream (File => DateiLadenExtern),
                                            AnzahlStädte);
       
-      EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
+      EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
                                                  AnzahlArbeiter);
       
-      EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
+      EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
                                                  AnzahlKämpfer);
       
-      EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
+      EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
                                                  AnzahlSonstiges);
       
       case

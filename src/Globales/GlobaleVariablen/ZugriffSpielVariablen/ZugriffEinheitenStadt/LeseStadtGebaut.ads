@@ -23,9 +23,9 @@ package LeseStadtGebaut is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type KartenDatentypen.Ebene;
-   use type StadtDatentypen.GebäudeID;
-   use type EinheitenDatentypen.EinheitenID;
+   use type KartenDatentypen.EbeneBasis;
+   use type StadtDatentypen.GebäudeIDBasis;
+   use type EinheitenDatentypen.EinheitenIDBasis;
    
    function ID
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -64,7 +64,7 @@ package LeseStadtGebaut is
    function EinwohnerArbeiter
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
-      return StadtDatentypen.Einwohner
+      return StadtDatentypen.EinwohnerBasis
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -84,7 +84,7 @@ package LeseStadtGebaut is
    
    function Arbeitslose
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtDatentypen.Einwohner
+      return StadtDatentypen.EinwohnerBasis
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

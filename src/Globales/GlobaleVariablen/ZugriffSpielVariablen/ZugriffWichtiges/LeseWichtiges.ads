@@ -11,8 +11,8 @@ with LeseSpeziesbelegung;
 package LeseWichtiges is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type StadtDatentypen.Städtebereich;
-   use type EinheitenDatentypen.Einheitenbereich;
+   use type StadtDatentypen.StädtebereichBasis;
+   use type EinheitenDatentypen.EinheitenbereichBasis;
 
    function Geldmenge
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
@@ -61,7 +61,7 @@ package LeseWichtiges is
    
    function Forschungsprojekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ForschungenDatentypen.ForschungID
+      return ForschungenDatentypen.ForschungIDMöglich
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -80,7 +80,7 @@ package LeseWichtiges is
    
    function AnzahlStädte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return StadtDatentypen.Städtebereich
+      return StadtDatentypen.StädtebereichBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -93,7 +93,7 @@ package LeseWichtiges is
    
    function AnzahlEinheiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -106,7 +106,7 @@ package LeseWichtiges is
    
    function AnzahlArbeiter
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -119,7 +119,7 @@ package LeseWichtiges is
      
    function AnzahlKämpfer
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -132,7 +132,7 @@ package LeseWichtiges is
      
    function AnzahlSonstiges
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

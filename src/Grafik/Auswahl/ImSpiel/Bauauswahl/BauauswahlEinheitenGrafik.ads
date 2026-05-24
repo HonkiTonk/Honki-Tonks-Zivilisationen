@@ -14,7 +14,7 @@ package BauauswahlEinheitenGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Einheiteninformationen
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
@@ -25,7 +25,7 @@ private
    
    Transportgröße : EinheitenDatentypen.Transport_Enum;
 
-   Transportkapazität : EinheitenDatentypen.Transportplätze;
+   Transportkapazität : EinheitenDatentypen.TransportplätzeBasis;
    
    Einheitentexte : ArraysHTSEB.AllgemeinesTextArray (1 .. 11);
 
@@ -35,7 +35,7 @@ private
    ViewflächeBeschreibung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    
    procedure Einheitenbeschreibung
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (

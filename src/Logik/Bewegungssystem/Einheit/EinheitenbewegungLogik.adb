@@ -21,7 +21,7 @@ package body EinheitenbewegungLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.KartenfeldNaturalRecord;
    begin
@@ -185,7 +185,7 @@ package body EinheitenbewegungLogik is
       StehendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
    begin
       
       BewegendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => BewegendeEinheitExtern);

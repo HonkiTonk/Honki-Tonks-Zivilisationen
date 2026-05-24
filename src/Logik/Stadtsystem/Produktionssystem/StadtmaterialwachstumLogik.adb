@@ -16,8 +16,8 @@ package body StadtmaterialwachstumLogik is
    procedure Material
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type StadtDatentypen.GebäudeID;
-      use type EinheitenDatentypen.EinheitenID;
+      use type StadtDatentypen.GebäudeIDBasis;
+      use type EinheitenDatentypen.EinheitenIDBasis;
       use type ProduktionDatentypen.Produktion;
    begin
       

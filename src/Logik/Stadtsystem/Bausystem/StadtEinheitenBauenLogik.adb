@@ -18,7 +18,7 @@ package body StadtEinheitenBauenLogik is
    procedure EinheitFertiggestellt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       EinheitNummer := 0;

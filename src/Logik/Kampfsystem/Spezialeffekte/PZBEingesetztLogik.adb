@@ -119,7 +119,7 @@ package body PZBEingesetztLogik is
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VernichtungsbereichExtern : in KartenRecords.EffektbereichRecord)
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
    begin
       
       EbeneSchleife:

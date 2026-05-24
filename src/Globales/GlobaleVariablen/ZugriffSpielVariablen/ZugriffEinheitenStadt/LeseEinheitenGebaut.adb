@@ -10,7 +10,7 @@ package body LeseEinheitenGebaut is
 
    function ID
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.EinheitenID
+      return EinheitenDatentypen.EinheitenIDBasis
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
@@ -43,7 +43,7 @@ package body LeseEinheitenGebaut is
    
    function Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return StadtDatentypen.Städtebereich
+      return StadtDatentypen.StädtebereichBasis
    is begin
       
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Heimatstadt;
@@ -54,9 +54,9 @@ package body LeseEinheitenGebaut is
    
    function Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KampfDatentypen.Lebenspunkte
+      return KampfDatentypen.LebenspunkteBasis
    is
-      use type KampfDatentypen.Lebenspunkte;
+      use type KampfDatentypen.LebenspunkteBasis;
    begin
       
       -- Solche Prüfungen hier noch überall einbauen, da jetzt ja auch der Grafiktask hierauf zugreift. äöü
@@ -107,9 +107,9 @@ package body LeseEinheitenGebaut is
    
    function Erfahrungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KampfDatentypen.Erfahrungspunkte
+      return KampfDatentypen.ErfahrungspunkteBasis
    is
-      use type KampfDatentypen.Erfahrungspunkte;
+      use type KampfDatentypen.ErfahrungspunkteBasis;
    begin
       
       EinheitID := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID;
@@ -147,7 +147,7 @@ package body LeseEinheitenGebaut is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KampfDatentypen.Rang
    is
-      use type KampfDatentypen.Erfahrungspunkte;
+      use type KampfDatentypen.ErfahrungspunkteBasis;
    begin
       
       EinheitID := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID;
@@ -204,7 +204,7 @@ package body LeseEinheitenGebaut is
       
    function Beschäftigungszeit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return ProduktionDatentypen.Arbeitszeit
+      return ProduktionDatentypen.ArbeitszeitBasis
    is begin
       
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit;
@@ -215,7 +215,7 @@ package body LeseEinheitenGebaut is
    
    function BeschäftigungszeitNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return ProduktionDatentypen.Arbeitszeit
+      return ProduktionDatentypen.ArbeitszeitBasis
    is begin
       
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit;
@@ -315,8 +315,8 @@ package body LeseEinheitenGebaut is
       
    function Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      PlatzExtern : in EinheitenDatentypen.Transportplätze)
-      return EinheitenDatentypen.Einheitenbereich
+      PlatzExtern : in EinheitenDatentypen.TransportplätzeBasis)
+      return EinheitenDatentypen.EinheitenbereichBasis
    is begin
       
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Transportiert (PlatzExtern);
@@ -327,7 +327,7 @@ package body LeseEinheitenGebaut is
    
    function WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
    is begin
       
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).WirdTransportiert;

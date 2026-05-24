@@ -11,9 +11,9 @@ package body NaechsteEinheitLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BewegungspunkteExtern : in Bewegungspunkte_Enum)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
-      use type EinheitenDatentypen.EinheitenID;
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
+      use type EinheitenDatentypen.EinheitenIDBasis;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
    begin
       
       EinheitSchleifenbegrenzung := 0;
@@ -69,8 +69,8 @@ package body NaechsteEinheitLogik is
    procedure NächsteEinheitMeldung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       MeldungSchleifenbegrenzung := 0;

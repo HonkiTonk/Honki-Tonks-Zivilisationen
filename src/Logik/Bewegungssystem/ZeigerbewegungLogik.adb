@@ -18,7 +18,7 @@ package body ZeigerbewegungLogik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
    begin
       
       -- Ist nötig, da sonst bei schnellem Scrollen die Ebene nicht korrekt gewechselt wird.

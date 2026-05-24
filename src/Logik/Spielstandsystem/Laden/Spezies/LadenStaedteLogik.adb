@@ -18,7 +18,7 @@ package body LadenStaedteLogik is
       return Boolean
    is begin
       
-      StadtDatentypen.Städtebereich'Read (Stream (File => DateiLadenExtern),
+      StadtDatentypen.StädtebereichBasis'Read (Stream (File => DateiLadenExtern),
                                            VorhandeneStädte);
       
       case

@@ -31,7 +31,7 @@ package body KILogik is
    procedure EinheitenDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       Einheitenzeitwert := BasiszeitwertEinheiten (ZusatzwertExtern => LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern),
@@ -71,7 +71,7 @@ package body KILogik is
    procedure StädteDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
    begin
       
       Städtezeitwert := StadtDatentypen.StädtebereichVorhanden (BasiszeitwertStädte (ZusatzwertExtern => Positive (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)),

@@ -14,7 +14,7 @@ private with LeseWeltkarteneinstellungen;
 package EinheitentransporterLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type EinheitenDatentypen.Einheitenbereich;
+   use type EinheitenDatentypen.EinheitenbereichBasis;
    
    procedure TransporterEntladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -28,7 +28,7 @@ package EinheitentransporterLogik is
    procedure LadungsnummerAnpassen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungsnummerAltExtern : in EinheitenDatentypen.EinheitenbereichVorhanden;
-      LadungsnummerNeuExtern : in EinheitenDatentypen.Einheitenbereich)
+      LadungsnummerNeuExtern : in EinheitenDatentypen.EinheitenbereichBasis)
      with
        Pre => (
                  TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
@@ -52,8 +52,8 @@ package EinheitentransporterLogik is
      
    
    function TransporterGroßGenug
-     (LadungExtern : in EinheitenDatentypen.EinheitenID;
-      TransporterExtern : in EinheitenDatentypen.EinheitenID;
+     (LadungExtern : in EinheitenDatentypen.EinheitenIDBasis;
+      TransporterExtern : in EinheitenDatentypen.EinheitenIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
@@ -78,8 +78,8 @@ package EinheitentransporterLogik is
    
    function BelegtePlätze
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TransportkapazitätExtern : in EinheitenDatentypen.Transportplätze)
-      return EinheitenDatentypen.Transportplätze
+      TransportkapazitätExtern : in EinheitenDatentypen.TransportplätzeBasis)
+      return EinheitenDatentypen.TransportplätzeBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -91,13 +91,13 @@ private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    
-   Transporterkapazität : EinheitenDatentypen.Transportplätze;
-   AktuelleLadungsmenge : EinheitenDatentypen.Transportplätze;
+   Transporterkapazität : EinheitenDatentypen.TransportplätzeBasis;
+   AktuelleLadungsmenge : EinheitenDatentypen.TransportplätzeBasis;
    
-   TransporterID : EinheitenDatentypen.EinheitenID;
-   LadungID : EinheitenDatentypen.EinheitenID;
+   TransporterID : EinheitenDatentypen.EinheitenIDBasis;
+   LadungID : EinheitenDatentypen.EinheitenIDBasis;
    
-   AktuelleLadung : EinheitenDatentypen.Einheitenbereich;
+   AktuelleLadung : EinheitenDatentypen.EinheitenbereichBasis;
    
    EinheitVorhanden : EinheitenRecords.SpeziesEinheitnummerRecord;
    

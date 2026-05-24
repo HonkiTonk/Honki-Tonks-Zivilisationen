@@ -20,7 +20,7 @@ package LeseWeltkarte is
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    use type SpeziesDatentypen.Spezies_Enum;
-   use type StadtDatentypen.Städtebereich;
+   use type StadtDatentypen.StädtebereichBasis;
    
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)

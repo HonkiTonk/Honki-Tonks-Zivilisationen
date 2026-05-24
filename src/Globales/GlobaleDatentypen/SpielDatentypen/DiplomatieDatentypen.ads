@@ -13,13 +13,13 @@ package DiplomatieDatentypen is
    
    subtype Status_Untereinander_Bekannt_Enum is Status_Untereinander_Enum range Status_Untereinander_Enum'Succ (Status_Untereinander_Enum'First) .. Status_Untereinander_Enum'Last;
    
-   type Meinung is range -100 .. 100;
-   subtype MeinungPositive is Meinung range 1 .. 100;
+   type MeinungBasis is range -100 .. 100;
+   subtype MeinungPositive is MeinungBasis range 1 .. 100;
    
    -- Das hier später noch in eine eigene Datei auslagern? äöü
    -- Vielleicht generell alle Arrays aus den Datentypen und rein in die Records? äöü
    -- Beziehungsweise alle Konstanten Arrays in die Konstanten schieben. äöü
-   type MeinungsänderungFeldeffekteArray is array (KartenRecords.EffekteArray'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Meinung;
+   type MeinungsänderungFeldeffekteArray is array (KartenRecords.EffekteArray'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of MeinungBasis;
    MeinungsänderungFeldeffekte : constant MeinungsänderungFeldeffekteArray := (
                                                                                  KartenextraDatentypen.Strahlung_Enum =>
                                                                                    (
@@ -110,7 +110,7 @@ package DiplomatieDatentypen is
                                                                                    ),
                                                                                    
                                                                                  KartenextraDatentypen.Vernichtet_Enum =>
-                                                                                   (others => Meinung'First)
+                                                                                   (others => MeinungBasis'First)
                                                                                 );
 
 end DiplomatieDatentypen;

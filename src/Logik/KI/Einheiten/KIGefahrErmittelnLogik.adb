@@ -107,7 +107,7 @@ package body KIGefahrErmittelnLogik is
       AndereEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       

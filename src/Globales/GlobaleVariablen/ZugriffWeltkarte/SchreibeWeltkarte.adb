@@ -246,7 +246,7 @@ package body SchreibeWeltkarte is
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EinheitentauschExtern : in Boolean)
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
    begin
             
@@ -275,8 +275,8 @@ package body SchreibeWeltkarte is
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type KartenDatentypen.Ebene;
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type KartenDatentypen.EbeneBasis;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
    begin
       

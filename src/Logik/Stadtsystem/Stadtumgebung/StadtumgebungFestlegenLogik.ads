@@ -14,7 +14,7 @@ private with LeseWeltkarteneinstellungen;
 package StadtumgebungFestlegenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type StadtDatentypen.Einwohner;
+   use type StadtDatentypen.EinwohnerBasis;
    
    procedure StadtumgebungFestlegenTechnologie
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)

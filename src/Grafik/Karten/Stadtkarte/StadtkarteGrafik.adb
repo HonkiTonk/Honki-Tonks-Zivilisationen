@@ -122,10 +122,10 @@ package body StadtkarteGrafik is
    
    
    procedure Zusatzinformationen
-     (GebäudeIDExtern : in StadtDatentypen.GebäudeID;
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type StadtDatentypen.GebäudeID;
+      use type StadtDatentypen.GebäudeIDBasis;
    begin
       
       if

@@ -9,7 +9,7 @@ with KampfKonstanten;
 
 package WegeStandard is
    pragma Pure;
-   use type EinheitenDatentypen.Bewegungspunkte;
+   use type EinheitenDatentypen.BewegungspunkteBasis;
 
    type WegelisteArray is array (KartenverbesserungDatentypen.Straße_Enum'Range) of KartendatenbankRecord.WegelisteRecord;
    Wegeliste : constant WegelisteArray := (

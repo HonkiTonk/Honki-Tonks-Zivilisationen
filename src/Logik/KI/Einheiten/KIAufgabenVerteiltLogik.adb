@@ -11,8 +11,8 @@ package body KIAufgabenVerteiltLogik is
       return Natural
    is
       use type KIDatentypen.Einheit_Aufgabe_Enum;
-      use type EinheitenDatentypen.Einheitenbereich;
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       GleicheAufgabe := 0;
@@ -56,7 +56,7 @@ package body KIAufgabenVerteiltLogik is
    is
       use type KIDatentypen.Einheit_Aufgabe_Enum;
       use type KartenRecords.KartenfeldNaturalRecord;
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       EinheitenSchleife:
@@ -102,7 +102,7 @@ package body KIAufgabenVerteiltLogik is
       return Boolean
    is
       use type KartenRecords.KartenfeldNaturalRecord;
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       EinheitenSchleife:

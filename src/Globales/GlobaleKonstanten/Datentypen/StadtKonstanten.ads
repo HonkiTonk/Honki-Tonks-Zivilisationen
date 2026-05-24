@@ -21,7 +21,7 @@ with KIDatentypen;
 package StadtKonstanten is
    pragma Elaborate_Body;
    
-   LeerNummer : constant StadtDatentypen.Städtebereich := StadtDatentypen.Städtebereich'First;
+   LeerNummer : constant StadtDatentypen.StädtebereichBasis := StadtDatentypen.StädtebereichBasis'First;
    
    -- Wieso ist diese Recordkonstante hier und nicht bei den Recordkonstanten? äöü
    -- Weil es in RecordKonstanten auch ein LeerStadt gibt, welches aber den Stadtrecord darstellt. äöü
@@ -31,8 +31,8 @@ package StadtKonstanten is
    AnfangNummer : constant StadtDatentypen.StädtebereichVorhanden := StadtDatentypen.StädtebereichVorhanden'First;
    
    LeerID : constant KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
-   LeerEinwohner : constant StadtDatentypen.Einwohner := 0;
-   LeerArbeiter : constant StadtDatentypen.Einwohner := 0;
+   LeerEinwohner : constant StadtDatentypen.EinwohnerBasis := 0;
+   LeerArbeiter : constant StadtDatentypen.EinwohnerBasis := 0;
    LeerEinwohnerArbeiter : constant StadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);
    LeerNahrungsmittel : constant ProduktionDatentypen.StadtLagermenge := 0;
    LeerNahrungsproduktion : constant ProduktionDatentypen.Stadtproduktion := 0;
@@ -58,7 +58,7 @@ package StadtKonstanten is
 
    MaximaleBauzeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    
-   LeerGebäudeID : constant StadtDatentypen.GebäudeID := 0;
+   LeerGebäudeID : constant StadtDatentypen.GebäudeIDBasis := 0;
    LeerGebäudeBenötigt : constant Boolean := False;
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
@@ -82,7 +82,7 @@ package StadtKonstanten is
    
    
    -- Das auch so ändern dass es davon einen Standardwert und einen einstellbaren Wert gibt. äöü
-   type StadtUmgebungWachstumArray is array (SystemDatentypenHTSEB.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.Einwohner;
+   type StadtUmgebungWachstumArray is array (SystemDatentypenHTSEB.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of StadtDatentypen.EinwohnerBasis;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypenHTSEB.Anfang_Enum =>
                                                                      (

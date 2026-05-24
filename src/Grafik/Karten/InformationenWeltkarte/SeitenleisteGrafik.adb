@@ -31,8 +31,8 @@ package body SeitenleisteGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type KartenRecords.KartenfeldNaturalRecord;
-      use type StadtDatentypen.Städtebereich;
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type StadtDatentypen.StädtebereichBasis;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       Viewbereich.Viewbereich := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => Viewbereich.Viewbereich,

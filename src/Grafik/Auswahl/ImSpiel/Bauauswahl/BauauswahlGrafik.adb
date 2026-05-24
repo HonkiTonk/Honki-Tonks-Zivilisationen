@@ -159,13 +159,13 @@ package body BauauswahlGrafik is
         GebäudeEinheitExtern
       is
          when True =>
-            ViewflächeBauliste.y := Gebäude (AuswahlExtern        => StadtDatentypen.GebäudeID (AuswahlExtern),
+            ViewflächeBauliste.y := Gebäude (AuswahlExtern        => StadtDatentypen.GebäudeIDBasis (AuswahlExtern),
                                                SpeziesExtern        => SpeziesExtern,
                                                BauenVerkaufenExtern => True,
                                                BaulisteExtern       => InteraktionAuswahl.MöglicheBauoptionen);
             
          when False =>
-            ViewflächeBauliste.y := Einheiten (AuswahlExtern  => EinheitenDatentypen.EinheitenID (AuswahlExtern),
+            ViewflächeBauliste.y := Einheiten (AuswahlExtern  => EinheitenDatentypen.EinheitenIDBasis (AuswahlExtern),
                                                 SpeziesExtern  => SpeziesExtern,
                                                 BaulisteExtern => InteraktionAuswahl.MöglicheBauoptionen);
       end case;
@@ -175,7 +175,7 @@ package body BauauswahlGrafik is
    
    
    function Gebäude
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BauenVerkaufenExtern : in Boolean;
       BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
@@ -215,7 +215,7 @@ package body BauauswahlGrafik is
                                                                                                                                               AuswahlExtern    => Natural (AuswahlExtern)));
 
                Auswahlposition := Sf.Graphics.Text.getGlobalBounds
-                 (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, StadtDatentypen.GebäudeID (BaulisteExtern (GebäudeSchleifenwert))));
+                 (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, StadtDatentypen.GebäudeIDBasis (BaulisteExtern (GebäudeSchleifenwert))));
          end case;
          
          InteraktionAuswahl.PositionenBaumöglichkeiten (GebäudeSchleifenwert) := Auswahlposition;
@@ -292,7 +292,7 @@ package body BauauswahlGrafik is
    
    
    function Einheiten
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       BaulisteExtern : in InteraktionAuswahl.MöglicheBauoptionenArray)
       return Float
@@ -331,7 +331,7 @@ package body BauauswahlGrafik is
                
                -- Sollte auch mit EinheitenIDVorhanden anstelle von EinheitenID funktionieren, tut es aber nicht. Später mal herausfinden warum. äöü
                -- Das Problem existiert auch bei den Gebäuden. äöü
-               Auswahlposition := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenDatentypen.EinheitenID (BaulisteExtern (EinheitenSchleifenwert))));
+               Auswahlposition := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenDatentypen.EinheitenIDBasis (BaulisteExtern (EinheitenSchleifenwert))));
          end case;
          
          InteraktionAuswahl.PositionenBaumöglichkeiten (EinheitenSchleifenwert) := Auswahlposition;

@@ -17,7 +17,7 @@ package WeltkarteGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type EinheitenDatentypen.Einheitenbereich;
+   use type EinheitenDatentypen.EinheitenbereichBasis;
    
    procedure WeltkarteAnzeigen
      (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)

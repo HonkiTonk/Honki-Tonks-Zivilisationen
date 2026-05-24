@@ -1,25 +1,25 @@
 package KampfDatentypen is
    pragma Pure;
 
-   type Kampfwerte is range 0 .. 1_000;
-   subtype KampfwerteEinheiten is Kampfwerte range 0 .. 100;
+   type KampfwerteBasis is range 0 .. 1_000;
+   subtype KampfwerteEinheiten is KampfwerteBasis range 0 .. 100;
 
 
 
-   type Lebenspunkte is range -1_000 .. 1_000;
-   subtype LebenspunkteVorhanden is Lebenspunkte range 0 .. Lebenspunkte'Last;
+   type LebenspunkteBasis is range -1_000 .. 1_000;
+   subtype LebenspunkteVorhanden is LebenspunkteBasis range 0 .. LebenspunkteBasis'Last;
 
 
 
-   type Reichweite is range 0 .. 3;
-   subtype ReichweiteVorhanden is Reichweite range 1 .. Reichweite'Last;
+   type ReichweiteBasis is range 0 .. 3;
+   subtype ReichweiteVorhanden is ReichweiteBasis range 1 .. ReichweiteBasis'Last;
 
 
 
-   type Erfahrungspunkte is range 0 .. 100;
-   subtype ErfahrungspunkteVorhanden is Erfahrungspunkte range 1 .. Erfahrungspunkte'Last;
+   type ErfahrungspunkteBasis is range 0 .. 100;
+   subtype ErfahrungspunkteVorhanden is ErfahrungspunkteBasis range 1 .. ErfahrungspunkteBasis'Last;
 
-   subtype Rang is Erfahrungspunkte range Erfahrungspunkte'First .. 3;
+   subtype Rang is ErfahrungspunkteBasis range ErfahrungspunkteBasis'First .. 3;
 
 
 

@@ -25,11 +25,11 @@ package KIEinheitFestlegenModernisierenLogik is
               );
    
 private
-   use type EinheitenDatentypen.Einheitenbereich;
+   use type EinheitenDatentypen.EinheitenbereichBasis;
    
    Umgebung : KartenRecords.UmgebungDreiRecord;
    
-   NeueEinheitenID : EinheitenDatentypen.EinheitenID;
+   NeueEinheitenID : EinheitenDatentypen.EinheitenIDBasis;
    
    StadtKoordinaten : KartenRecords.KartenfeldNaturalRecord;
    PlatzGefunden : KartenRecords.KartenfeldNaturalRecord;

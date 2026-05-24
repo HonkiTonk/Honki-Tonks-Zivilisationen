@@ -26,7 +26,7 @@ private
    
    Ladezeit : ForschungenDatentypen.ForschungIDVorhanden;
    
-   WelchesProjekt : ForschungenDatentypen.ForschungID;
+   WelchesProjekt : ForschungenDatentypen.ForschungIDMöglich;
    
    Bewertung : KIDatentypen.AufgabenWichtigkeitKlein;
    

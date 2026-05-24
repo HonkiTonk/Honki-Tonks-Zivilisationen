@@ -3,8 +3,8 @@ package body KampfberechnungenLogik is
    -- Das direkt in den Zufallsgenerator schieben oder einzeln lassen um es später zu erweitern? äöü
    -- Beim Kampf nur den Angriffswert gegen den Verteidigungswert stellen und entsprechend der Erfolge die Lebenspunkte abziehen? äöü
    function Kampfberechnung
-     (AngriffExtern : in KampfDatentypen.Kampfwerte;
-      VerteidigungExtern : in KampfDatentypen.Kampfwerte)
+     (AngriffExtern : in KampfDatentypen.KampfwerteBasis;
+      VerteidigungExtern : in KampfDatentypen.KampfwerteBasis)
       return Integer
    is begin
       

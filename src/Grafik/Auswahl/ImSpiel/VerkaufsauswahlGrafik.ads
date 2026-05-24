@@ -13,7 +13,7 @@ package VerkaufsauswahlGrafik is
 
    procedure Verkaufsauswahl
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AktuelleAuswahlExtern : in StadtDatentypen.GebäudeID)
+      AktuelleAuswahlExtern : in StadtDatentypen.GebäudeIDBasis)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -27,7 +27,7 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
 
    procedure Gebäude
-     (AuswahlExtern : in StadtDatentypen.GebäudeID;
+     (AuswahlExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (

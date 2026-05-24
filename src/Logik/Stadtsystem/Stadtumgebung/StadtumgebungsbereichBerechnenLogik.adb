@@ -33,7 +33,7 @@ package body StadtumgebungsbereichBerechnenLogik is
    procedure StadtumgebungErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type StadtDatentypen.Einwohner;
+      use type StadtDatentypen.EinwohnerBasis;
    begin
       
       Einwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

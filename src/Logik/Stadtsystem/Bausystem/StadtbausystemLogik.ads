@@ -26,8 +26,8 @@ package StadtbausystemLogik is
               );
 
 private
-   use type StadtDatentypen.GebäudeID;
-   use type EinheitenDatentypen.EinheitenID;
+   use type StadtDatentypen.GebäudeIDBasis;
+   use type EinheitenDatentypen.EinheitenIDBasis;
 
    EinheitenAnfang : EinheitenDatentypen.EinheitenIDVorhanden;
    EinheitenEnde : EinheitenDatentypen.EinheitenIDVorhanden;

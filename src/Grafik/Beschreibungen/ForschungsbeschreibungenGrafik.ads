@@ -5,7 +5,7 @@ package ForschungsbeschreibungenGrafik is
    pragma Elaborate_Body;
 
    function Kurzbeschreibung
-     (IDExtern : in ForschungenDatentypen.ForschungID;
+     (IDExtern : in ForschungenDatentypen.ForschungIDMöglich;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String;
 

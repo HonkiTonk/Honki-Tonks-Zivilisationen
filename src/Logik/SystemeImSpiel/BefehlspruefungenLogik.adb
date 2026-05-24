@@ -29,8 +29,8 @@ package body BefehlspruefungenLogik is
    procedure WasWirdEntfernt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
-      use type StadtDatentypen.Städtebereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
+      use type StadtDatentypen.StädtebereichBasis;
    begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
@@ -40,9 +40,9 @@ package body BefehlspruefungenLogik is
                                                                         KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
       
       if
-        EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
+        EinheitNummer /= EinheitenDatentypen.EinheitenbereichBasis'First
         and
-          StadtNummer /= StadtDatentypen.Städtebereich'First
+          StadtNummer /= StadtDatentypen.StädtebereichBasis'First
       then
          case
            AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => SpeziesExtern,
@@ -64,12 +64,12 @@ package body BefehlspruefungenLogik is
          end case;
          
       elsif
-        StadtNummer /= StadtDatentypen.Städtebereich'First
+        StadtNummer /= StadtDatentypen.StädtebereichBasis'First
       then
          LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
          
       elsif
-        EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
+        EinheitNummer /= EinheitenDatentypen.EinheitenbereichBasis'First
       then
          EinheitBefehle (SpeziesExtern => SpeziesExtern,
                          BefehlExtern  => BefehleDatentypen.Auflösen_Enum);
@@ -85,8 +85,8 @@ package body BefehlspruefungenLogik is
    procedure AuswahlEinheitStadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
-      use type StadtDatentypen.Städtebereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
+      use type StadtDatentypen.StädtebereichBasis;
    begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
@@ -97,21 +97,21 @@ package body BefehlspruefungenLogik is
                                                                         KoordinatenExtern => LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
 
       if
-        EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
+        EinheitNummer /= EinheitenDatentypen.EinheitenbereichBasis'First
         and
-          StadtNummer /= StadtDatentypen.Städtebereich'First
+          StadtNummer /= StadtDatentypen.StädtebereichBasis'First
       then
          EinheitOderStadt (SpeziesExtern       => SpeziesExtern,
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
-        StadtNummer /= StadtDatentypen.Städtebereich'First
+        StadtNummer /= StadtDatentypen.StädtebereichBasis'First
       then
          StadtAktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
          
       elsif
-        EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
+        EinheitNummer /= EinheitenDatentypen.EinheitenbereichBasis'First
       then
          AuswahlEinheitTransporter (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer));
                
@@ -125,8 +125,8 @@ package body BefehlspruefungenLogik is
 
    procedure EinheitOderStadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      StadtNummerExtern : in StadtDatentypen.Städtebereich;
-      EinheitNummerExtern : in EinheitenDatentypen.Einheitenbereich)
+      StadtNummerExtern : in StadtDatentypen.StädtebereichBasis;
+      EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichBasis)
    is begin
       
       case
@@ -162,7 +162,7 @@ package body BefehlspruefungenLogik is
          when True =>
             TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
             AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                                 StadtnummerExtern   => StadtDatentypen.Städtebereich'First,
+                                                                                 StadtnummerExtern   => StadtDatentypen.StädtebereichBasis'First,
                                                                                  EinheitNummerExtern => TransporterNummer);
             
          when False =>
@@ -179,7 +179,7 @@ package body BefehlspruefungenLogik is
          when Positive (EinheitenRecords.TransporterArray'First) .. Positive (EinheitenRecords.TransporterArray'Last) =>
             AuswahlEinheitTransporter (EinheitSpeziesNummerExtern =>
                                          (EinheitSpeziesNummerExtern.Spezies, LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, TransporterNummer),
-                                                                                                                 PlatzExtern                => EinheitenDatentypen.Transportplätze (AusgewählteEinheit))));
+                                                                                                                 PlatzExtern                => EinheitenDatentypen.TransportplätzeBasis (AusgewählteEinheit))));
             
          when SystemKonstanten.AbwählenNegativ =>
             null;
@@ -195,7 +195,7 @@ package body BefehlspruefungenLogik is
    procedure EinheitSteuern
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
       

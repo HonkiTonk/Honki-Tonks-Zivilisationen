@@ -14,7 +14,7 @@ package body FehlermeldungssystemZusatzinformationen is
    
    function SpeziesID
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDBasis)
       return Wide_Wide_String
    is begin
       

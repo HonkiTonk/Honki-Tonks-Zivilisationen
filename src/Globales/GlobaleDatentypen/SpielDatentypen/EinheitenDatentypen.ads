@@ -1,13 +1,13 @@
 package EinheitenDatentypen is
    pragma Pure;
       
-   type Einheitenbereich is range 0 .. 1_000;
-   subtype EinheitenbereichVorhanden is Einheitenbereich range 1 .. Einheitenbereich'Last;
+   type EinheitenbereichBasis is range 0 .. 1_000;
+   subtype EinheitenbereichVorhanden is EinheitenbereichBasis range 1 .. EinheitenbereichBasis'Last;
    
    
 
-   type EinheitenID is range 0 .. 50;
-   subtype EinheitenIDVorhanden is EinheitenID range 1 .. EinheitenID'Last;
+   type EinheitenIDBasis is range 0 .. 50;
+   subtype EinheitenIDVorhanden is EinheitenIDBasis range 1 .. EinheitenIDBasis'Last;
    
    
 
@@ -76,8 +76,8 @@ package EinheitenDatentypen is
    
    
 
-   type Bewegungspunkte is range -100 .. 100;
-   subtype BewegungspunkteVorhanden is Bewegungspunkte range 0 .. Bewegungspunkte'Last;
+   type BewegungspunkteBasis is range -100 .. 100;
+   subtype BewegungspunkteVorhanden is BewegungspunkteBasis range 0 .. BewegungspunkteBasis'Last;
    
    
    
@@ -86,8 +86,8 @@ package EinheitenDatentypen is
    
    
    
-   type Bewegungsplan is range 0 .. BewegungspunkteVorhanden'Last;
-   subtype BewegungsplanVorhanden is Bewegungsplan range 1 .. Bewegungsplan'Last;
+   type BewegungsplanBasis is range 0 .. BewegungspunkteVorhanden'Last;
+   subtype BewegungsplanVorhanden is BewegungsplanBasis range 1 .. BewegungsplanBasis'Last;
    
    
       
@@ -104,7 +104,7 @@ package EinheitenDatentypen is
      
    -- Der Nullwert wird für die Auswahl von Städten/Einheiten benötigt, nicht entfernen.
    -- Die Auswahl von Städten/Einheiten mal überarbeiten oder ist das irrelevant? äöü
-   type Transportplätze is range 0 .. 8;
-   subtype TransportplätzeVorhanden is Transportplätze range 1 .. Transportplätze'Last;
+   type TransportplätzeBasis is range 0 .. 8;
+   subtype TransportplätzeVorhanden is TransportplätzeBasis range 1 .. TransportplätzeBasis'Last;
 
 end EinheitenDatentypen;

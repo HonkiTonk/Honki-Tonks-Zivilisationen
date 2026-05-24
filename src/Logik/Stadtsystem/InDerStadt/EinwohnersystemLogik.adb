@@ -138,7 +138,7 @@ package body EinwohnersystemLogik is
       SenkrechteExtern : in KartenDatentypen.SenkrechteBasis;
       WaagerechteExtern : in KartenDatentypen.WaagerechteBasis)
    is
-      use type StadtDatentypen.Einwohner;
+      use type StadtDatentypen.EinwohnerBasis;
    begin
       
       if

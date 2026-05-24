@@ -92,16 +92,16 @@ package body Vergleiche is
    
    
    function FreieEinwohner
-     (EinwohnerExtern : in StadtDatentypen.Einwohner;
-      ArbeiterExtern : in StadtDatentypen.Einwohner)
-      return StadtDatentypen.Einwohner
+     (EinwohnerExtern : in StadtDatentypen.EinwohnerBasis;
+      ArbeiterExtern : in StadtDatentypen.EinwohnerBasis)
+      return StadtDatentypen.EinwohnerBasis
    is begin
       
       if
         ArbeiterExtern > EinwohnerExtern
       then
          MeldungssystemHTSEB.Sonstiges (MeldungExtern => "Vergleiche.FreieEinwohner: Einwohner < Arbeiter:" & EinwohnerExtern'Wide_Wide_Image & "," & ArbeiterExtern'Wide_Wide_Image);
-         return StadtDatentypen.Einwohner'First;
+         return StadtDatentypen.EinwohnerBasis'First;
          
       else
          return EinwohnerExtern - ArbeiterExtern;

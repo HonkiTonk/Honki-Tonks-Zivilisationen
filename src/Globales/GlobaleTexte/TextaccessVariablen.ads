@@ -146,7 +146,7 @@ package TextaccessVariablen is
    type GebäudeaufteilungAccessArray is array (InteraktionAuswahl.PositionenBauaufteilung'Range) of Sf.Graphics.sfText_Ptr;
    GebäudeaufteilungAccess : constant GebäudeaufteilungAccessArray := (others => Sf.Graphics.Text.create);
       
-   type GebäudetextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
+   type GebäudetextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeIDBasis'Range) of Sf.Graphics.sfText_Ptr;
    GebäudetextAccess : constant GebäudetextAccessArray := (others => (others => Sf.Graphics.Text.create));
 
    type GebäudezusatztextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeIDVorhanden'Range) of Sf.Graphics.sfText_Ptr;
@@ -154,7 +154,7 @@ package TextaccessVariablen is
    
    
 
-   type EinheitentextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfText_Ptr;
+   type EinheitentextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenIDBasis'Range) of Sf.Graphics.sfText_Ptr;
    EinheitentextAccess : constant EinheitentextAccessArray := (others => (others => Sf.Graphics.Text.create));
 
    type EinheitenzusatztextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenIDVorhanden'Range) of Sf.Graphics.sfText_Ptr;

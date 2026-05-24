@@ -39,7 +39,7 @@ package body SpeichernStaedteLogik is
 
       end loop AnzahlStädteSchleife;
       
-      StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichernExtern),
+      StadtDatentypen.StädtebereichBasis'Write (Stream (File => DateiSpeichernExtern),
                                             VorhandeneStädte);
       
       case
@@ -67,7 +67,7 @@ package body SpeichernStaedteLogik is
    function Städtewerte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type;
-      StädtebereichExtern : in StadtDatentypen.Städtebereich)
+      StädtebereichExtern : in StadtDatentypen.StädtebereichBasis)
       return Boolean
    is
       use type SystemDatentypenHTSEB.EinByte;

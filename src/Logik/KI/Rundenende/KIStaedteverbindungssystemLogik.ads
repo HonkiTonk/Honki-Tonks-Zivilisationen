@@ -42,7 +42,7 @@ private
    Startgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    Zielgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    
-   Stadtgrenze : StadtDatentypen.Städtebereich;
+   Stadtgrenze : StadtDatentypen.StädtebereichBasis;
    
    BewertungPosition : Positive;
    

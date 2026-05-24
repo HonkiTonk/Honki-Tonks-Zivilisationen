@@ -30,7 +30,7 @@ package body LeseStadtGebaut is
    function EinwohnerArbeiter
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
-      return StadtDatentypen.Einwohner
+      return StadtDatentypen.EinwohnerBasis
    is begin
       
       case
@@ -60,9 +60,9 @@ package body LeseStadtGebaut is
    
    function Arbeitslose
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtDatentypen.Einwohner
+      return StadtDatentypen.EinwohnerBasis
    is
-      use type StadtDatentypen.Einwohner;
+      use type StadtDatentypen.EinwohnerBasis;
    begin
       
       return EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
@@ -237,7 +237,7 @@ package body LeseStadtGebaut is
       return Unbounded_Wide_Wide_String
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
    begin
       
       if

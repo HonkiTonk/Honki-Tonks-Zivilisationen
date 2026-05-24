@@ -54,10 +54,10 @@ package TransporterBeladenEntladenLogik is
    
 private
    
-   AlterTransporter : EinheitenDatentypen.Einheitenbereich;
+   AlterTransporter : EinheitenDatentypen.EinheitenbereichBasis;
    
-   FreierPlatzNummer : EinheitenDatentypen.Transportplätze;
-   Transporterkapazität : EinheitenDatentypen.Transportplätze;
+   FreierPlatzNummer : EinheitenDatentypen.TransportplätzeBasis;
+   Transporterkapazität : EinheitenDatentypen.TransportplätzeBasis;
    
    NeueKoordinaten : KartenRecords.KartenfeldNaturalRecord;
 

@@ -45,7 +45,7 @@ private
    WelcherWeg : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 
-   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+   Arbeitszeit : ProduktionDatentypen.ArbeitszeitBasis;
 
    Arbeitswerte : EinheitenRecords.ArbeitRecord;
 
@@ -116,7 +116,7 @@ private
                  GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
               );
 
-   function ArbeitszeitPrüfen is new GanzzahltestsHTSEB.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
+   function ArbeitszeitPrüfen is new GanzzahltestsHTSEB.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.ArbeitszeitBasis);
 
    -- Später Wege für den Kern einbauen? äöü
 

@@ -8,7 +8,7 @@ with TextnummernKonstanten;
 package body ForschungsbeschreibungenGrafik is
 
    function Kurzbeschreibung
-     (IDExtern : in ForschungenDatentypen.ForschungID;
+     (IDExtern : in ForschungenDatentypen.ForschungIDMöglich;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Wide_Wide_String
    is begin

@@ -16,7 +16,7 @@ package LeseGebaeudeDatenbank is
 
    function PreisGeld
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDBasis)
       return ProduktionDatentypen.Produktion
      with
        Pre => (
@@ -25,7 +25,7 @@ package LeseGebaeudeDatenbank is
    
    function Produktionskosten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDBasis)
       return ProduktionDatentypen.Produktion
      with
        Pre => (
@@ -34,7 +34,7 @@ package LeseGebaeudeDatenbank is
    
    function PermanenteKosten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Vorhanden_Enum)
       return ProduktionDatentypen.Stadtproduktion
      with
@@ -44,7 +44,7 @@ package LeseGebaeudeDatenbank is
       
    function Anforderungen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDBasis)
       return ForschungenDatentypen.ForschungIDUnmöglich
      with
        Pre => (
@@ -53,7 +53,7 @@ package LeseGebaeudeDatenbank is
    
    function Produktionsbonus
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       ProduktionsbonusExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Feldproduktion
      with
@@ -63,7 +63,7 @@ package LeseGebaeudeDatenbank is
          
    function KampfBonus
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       KampfBonusExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
      with
@@ -73,7 +73,7 @@ package LeseGebaeudeDatenbank is
       
    function BasisgrundBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Boolean
      with
@@ -83,7 +83,7 @@ package LeseGebaeudeDatenbank is
       
    function ZusatzgrundBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Boolean
      with
@@ -93,7 +93,7 @@ package LeseGebaeudeDatenbank is
       
    function FlussBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       FlussartExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Boolean
      with
@@ -103,7 +103,7 @@ package LeseGebaeudeDatenbank is
       
    function RessourceBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Boolean
      with
@@ -113,7 +113,7 @@ package LeseGebaeudeDatenbank is
    
    function VerbesserungBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
       return Boolean
      with
@@ -123,7 +123,7 @@ package LeseGebaeudeDatenbank is
    
    function WegBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
       return Boolean
      with
@@ -133,7 +133,7 @@ package LeseGebaeudeDatenbank is
    
    function GebäudeBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       WelchesGebäudeExtern : in StadtDatentypen.GebäudeIDVorhanden)
       return Boolean
      with
@@ -143,7 +143,7 @@ package LeseGebaeudeDatenbank is
    
    function FalscheEbene
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDBasis;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return Boolean
      with
@@ -153,7 +153,7 @@ package LeseGebaeudeDatenbank is
    
    function GebäudeSpezielleEigenschaft
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDBasis)
       return StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
      with
        Pre => (

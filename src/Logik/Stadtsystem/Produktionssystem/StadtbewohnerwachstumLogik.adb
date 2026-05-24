@@ -99,7 +99,7 @@ package body StadtbewohnerwachstumLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       WachstumSchrumpfungExtern : in Boolean)
    is
-      use type StadtDatentypen.Einwohner;
+      use type StadtDatentypen.EinwohnerBasis;
    begin
       
       VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

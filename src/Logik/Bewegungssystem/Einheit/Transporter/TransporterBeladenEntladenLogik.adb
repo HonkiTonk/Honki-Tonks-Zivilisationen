@@ -18,7 +18,7 @@ package body TransporterBeladenEntladenLogik is
       case
         TransporterSuchenLogik.FreierPlatz (TransporterExtern => TransporterExtern)
       is
-         when EinheitenDatentypen.Transportplätze'First =>
+         when EinheitenDatentypen.TransportplätzeBasis'First =>
             return False;
             
          when others =>
@@ -40,7 +40,7 @@ package body TransporterBeladenEntladenLogik is
       case
         FreierPlatzNummer
       is
-         when EinheitenDatentypen.Transportplätze'First =>
+         when EinheitenDatentypen.TransportplätzeBasis'First =>
             return False;
             
          when others =>
@@ -85,7 +85,7 @@ package body TransporterBeladenEntladenLogik is
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
@@ -120,8 +120,8 @@ package body TransporterBeladenEntladenLogik is
    procedure LadungSortieren
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type EinheitenDatentypen.Transportplätze;
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.TransportplätzeBasis;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
             
       LadungSchleife:

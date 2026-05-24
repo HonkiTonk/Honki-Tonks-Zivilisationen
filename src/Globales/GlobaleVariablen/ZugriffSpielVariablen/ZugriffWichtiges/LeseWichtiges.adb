@@ -59,7 +59,7 @@ package body LeseWichtiges is
    
    function Forschungsprojekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ForschungenDatentypen.ForschungID
+      return ForschungenDatentypen.ForschungIDMöglich
    is begin
 
       return SpielVariablen.Wichtiges (SpeziesExtern).Forschungsprojekt;
@@ -82,7 +82,7 @@ package body LeseWichtiges is
    
    function AnzahlStädte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return StadtDatentypen.Städtebereich
+      return StadtDatentypen.StädtebereichBasis
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte;
@@ -93,7 +93,7 @@ package body LeseWichtiges is
    
    function AnzahlEinheiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges;
@@ -104,7 +104,7 @@ package body LeseWichtiges is
      
    function AnzahlArbeiter
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter;
@@ -115,7 +115,7 @@ package body LeseWichtiges is
      
    function AnzahlKämpfer
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer;
@@ -126,7 +126,7 @@ package body LeseWichtiges is
      
    function AnzahlSonstiges
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges;

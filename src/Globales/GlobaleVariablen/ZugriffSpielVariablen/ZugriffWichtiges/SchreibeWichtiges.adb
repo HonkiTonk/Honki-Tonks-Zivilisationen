@@ -176,7 +176,7 @@ package body SchreibeWichtiges is
    begin
       
       if
-        SpielVariablen.Wichtiges (SpeziesExtern).Forschungsprojekt = ForschungenDatentypen.ForschungID'First
+        SpielVariablen.Wichtiges (SpeziesExtern).Forschungsprojekt = ForschungenDatentypen.ForschungIDMöglich'First
         or
           SpielVariablen.Wichtiges (SpeziesExtern).GesamteForschungsrate = ProduktionKonstanten.LeerProduktion
       then
@@ -203,7 +203,7 @@ package body SchreibeWichtiges is
    
    procedure Forschungsprojekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ForschungIDExtern : in ForschungenDatentypen.ForschungID)
+      ForschungIDExtern : in ForschungenDatentypen.ForschungIDMöglich)
    is begin
       
       SpielVariablen.Wichtiges (SpeziesExtern).Forschungsprojekt := ForschungIDExtern;
@@ -256,7 +256,7 @@ package body SchreibeWichtiges is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
    is
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
    begin
       
       case
@@ -274,7 +274,7 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte = StadtDatentypen.Städtebereich'First
+              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte = StadtDatentypen.StädtebereichBasis'First
             then
                MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlStädte: Minimum unterschritten");
                
@@ -291,7 +291,7 @@ package body SchreibeWichtiges is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       case
@@ -310,7 +310,7 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter = EinheitenDatentypen.Einheitenbereich'First
+              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter = EinheitenDatentypen.EinheitenbereichBasis'First
             then
                MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlArbeiter: Minimum unterschritten");
                
@@ -327,7 +327,7 @@ package body SchreibeWichtiges is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       case
@@ -346,7 +346,7 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer = EinheitenDatentypen.Einheitenbereich'First
+              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer = EinheitenDatentypen.EinheitenbereichBasis'First
             then
                MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlKämpfer: Minimum unterschritten");
                
@@ -363,7 +363,7 @@ package body SchreibeWichtiges is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       PlusMinusExtern : in Boolean)
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       case
@@ -382,7 +382,7 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges = EinheitenDatentypen.Einheitenbereich'First
+              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges = EinheitenDatentypen.EinheitenbereichBasis'First
             then
                MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWichtiges.AnzahlSonstiges: Minimum unterschritten");
                

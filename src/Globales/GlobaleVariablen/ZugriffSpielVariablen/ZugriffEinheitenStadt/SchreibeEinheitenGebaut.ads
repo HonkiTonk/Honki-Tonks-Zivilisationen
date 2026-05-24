@@ -21,11 +21,11 @@ package SchreibeEinheitenGebaut is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type KartenDatentypen.Ebene;
+   use type KartenDatentypen.EbeneBasis;
 
    procedure ID
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDBasis)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -78,7 +78,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      HeimatstadtExtern : in StadtDatentypen.Städtebereich)
+      HeimatstadtExtern : in StadtDatentypen.StädtebereichBasis)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -89,7 +89,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LebenspunkteExtern : in KampfDatentypen.Lebenspunkte;
+      LebenspunkteExtern : in KampfDatentypen.LebenspunkteBasis;
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -100,7 +100,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Bewegungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      BewegungspunkteExtern : in EinheitenDatentypen.Bewegungspunkte;
+      BewegungspunkteExtern : in EinheitenDatentypen.BewegungspunkteBasis;
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -111,7 +111,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ErfahrungspunkteExtern : in KampfDatentypen.Erfahrungspunkte;
+      ErfahrungspunkteExtern : in KampfDatentypen.ErfahrungspunkteBasis;
       AddierenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -155,7 +155,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Beschäftigungszeit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      ZeitExtern : in ProduktionDatentypen.ArbeitszeitBasis;
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -166,7 +166,7 @@ package SchreibeEinheitenGebaut is
    
    procedure BeschäftigungszeitNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      ZeitExtern : in ProduktionDatentypen.ArbeitszeitBasis;
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -296,8 +296,8 @@ package SchreibeEinheitenGebaut is
       
    procedure Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungExtern : in EinheitenDatentypen.Einheitenbereich;
-      LadungsplatzExtern : in EinheitenDatentypen.Transportplätze)
+      LadungExtern : in EinheitenDatentypen.EinheitenbereichBasis;
+      LadungsplatzExtern : in EinheitenDatentypen.TransportplätzeBasis)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -319,7 +319,7 @@ package SchreibeEinheitenGebaut is
    
    procedure WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TransporterExtern : in EinheitenDatentypen.Einheitenbereich)
+      TransporterExtern : in EinheitenDatentypen.EinheitenbereichBasis)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -374,7 +374,7 @@ package SchreibeEinheitenGebaut is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      StadtNummerExtern : in StadtDatentypen.Städtebereich)
+      StadtNummerExtern : in StadtDatentypen.StädtebereichBasis)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)

@@ -14,7 +14,7 @@ package EinheitenRecords is
    type SpeziesEinheitnummerRecord is record
       
       Spezies : SpeziesDatentypen.Spezies_Enum;
-      Nummer : EinheitenDatentypen.Einheitenbereich;
+      Nummer : EinheitenDatentypen.EinheitenbereichBasis;
       
    end record;
    
@@ -32,7 +32,7 @@ package EinheitenRecords is
    type SpeziesIDRecord is record
       
       Spezies : SpeziesDatentypen.Spezies_Enum;
-      ID : EinheitenDatentypen.EinheitenID;
+      ID : EinheitenDatentypen.EinheitenIDBasis;
       
    end record;
    
@@ -41,7 +41,7 @@ package EinheitenRecords is
    type ArbeitRecord is record
       
       Aufgabe : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+      Arbeitszeit : ProduktionDatentypen.ArbeitszeitBasis;
       
    end record;
    
@@ -50,7 +50,7 @@ package EinheitenRecords is
    type ArbeitVorleistungRecord is record
       
       Aufgabe : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+      Arbeitszeit : ProduktionDatentypen.ArbeitszeitBasis;
      
       Vorarbeit : Boolean;
    
@@ -59,18 +59,18 @@ package EinheitenRecords is
    
    
    type KIBewegungPlanArray is array (EinheitenDatentypen.BewegungsplanVorhanden'Range) of KartenRecords.KartenfeldNaturalRecord;
-   type TransporterArray is array (EinheitenDatentypen.TransportplätzeVorhanden'Range) of EinheitenDatentypen.Einheitenbereich;
+   type TransporterArray is array (EinheitenDatentypen.TransportplätzeVorhanden'Range) of EinheitenDatentypen.EinheitenbereichBasis;
    type EinheitMeldungenArray is array (EinheitenDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitenDatentypen.Einheit_Meldung_Enum;
 
    type EinheitenGebautRecord is record
       
-      ID : EinheitenDatentypen.EinheitenID;
+      ID : EinheitenDatentypen.EinheitenIDBasis;
       Koordinaten : KartenRecords.KartenfeldNaturalRecord;
-      Heimatstadt : StadtDatentypen.Städtebereich;
+      Heimatstadt : StadtDatentypen.StädtebereichBasis;
       
       Lebenspunkte : KampfDatentypen.LebenspunkteVorhanden;
       Bewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
-      Erfahrungspunkte : KampfDatentypen.Erfahrungspunkte;
+      Erfahrungspunkte : KampfDatentypen.ErfahrungspunkteBasis;
       Rang : KampfDatentypen.Rang;
       
       Beschäftigung : ArbeitRecord;
@@ -83,7 +83,7 @@ package EinheitenRecords is
       KIVerbesserung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       
       Transportiert : TransporterArray;
-      WirdTransportiert : EinheitenDatentypen.Einheitenbereich;
+      WirdTransportiert : EinheitenDatentypen.EinheitenbereichBasis;
       
       Meldungen : EinheitMeldungenArray;
       
@@ -91,7 +91,7 @@ package EinheitenRecords is
    
    
    
-   type MöglicheAuswahlenArray is array (0 .. TransporterArray'Last) of EinheitenDatentypen.Einheitenbereich;
+   type MöglicheAuswahlenArray is array (0 .. TransporterArray'Last) of EinheitenDatentypen.EinheitenbereichBasis;
    
    type AuswahlRecord is record
       

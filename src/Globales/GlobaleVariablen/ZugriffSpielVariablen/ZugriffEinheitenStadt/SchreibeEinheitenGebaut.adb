@@ -11,7 +11,7 @@ package body SchreibeEinheitenGebaut is
 
    procedure ID
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDBasis)
    is begin
       
       GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID := IDExtern;
@@ -73,7 +73,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      HeimatstadtExtern : in StadtDatentypen.Städtebereich)
+      HeimatstadtExtern : in StadtDatentypen.StädtebereichBasis)
    is begin
       
       GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Heimatstadt := HeimatstadtExtern;
@@ -84,10 +84,10 @@ package body SchreibeEinheitenGebaut is
    
    procedure Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LebenspunkteExtern : in KampfDatentypen.Lebenspunkte;
+      LebenspunkteExtern : in KampfDatentypen.LebenspunkteBasis;
       RechnenSetzenExtern : in Boolean)
    is
-      use type KampfDatentypen.Lebenspunkte;
+      use type KampfDatentypen.LebenspunkteBasis;
    begin
       
       case
@@ -136,10 +136,10 @@ package body SchreibeEinheitenGebaut is
    
    procedure Bewegungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      BewegungspunkteExtern : in EinheitenDatentypen.Bewegungspunkte;
+      BewegungspunkteExtern : in EinheitenDatentypen.BewegungspunkteBasis;
       RechnenSetzenExtern : in Boolean)
    is
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
    begin
       
       case
@@ -174,10 +174,10 @@ package body SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ErfahrungspunkteExtern : in KampfDatentypen.Erfahrungspunkte;
+      ErfahrungspunkteExtern : in KampfDatentypen.ErfahrungspunkteBasis;
       AddierenSetzenExtern : in Boolean)
    is
-      use type KampfDatentypen.Erfahrungspunkte;
+      use type KampfDatentypen.ErfahrungspunkteBasis;
    begin
       
       case
@@ -215,7 +215,7 @@ package body SchreibeEinheitenGebaut is
       RangExtern : in KampfDatentypen.Rang;
       AddierenSetzenExtern : in Boolean)
    is
-      use type KampfDatentypen.Erfahrungspunkte;
+      use type KampfDatentypen.ErfahrungspunkteBasis;
    begin
       
       case
@@ -266,10 +266,10 @@ package body SchreibeEinheitenGebaut is
    
    procedure Beschäftigungszeit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      ZeitExtern : in ProduktionDatentypen.ArbeitszeitBasis;
       RechnenSetzenExtern : in Boolean)
    is
-      use type ProduktionDatentypen.Arbeitszeit;
+      use type ProduktionDatentypen.ArbeitszeitBasis;
    begin
       
       case
@@ -277,9 +277,9 @@ package body SchreibeEinheitenGebaut is
       is
          when True =>
             if
-              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.ArbeitszeitBasis'Last
             then
-               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'Last;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit := ProduktionDatentypen.ArbeitszeitBasis'Last;
                
             elsif
               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
@@ -301,10 +301,10 @@ package body SchreibeEinheitenGebaut is
    
    procedure BeschäftigungszeitNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
+      ZeitExtern : in ProduktionDatentypen.ArbeitszeitBasis;
       RechnenSetzenExtern : in Boolean)
    is
-      use type ProduktionDatentypen.Arbeitszeit;
+      use type ProduktionDatentypen.ArbeitszeitBasis;
    begin
       
       case
@@ -312,9 +312,9 @@ package body SchreibeEinheitenGebaut is
       is
          when True =>
             if
-              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.ArbeitszeitBasis'Last
             then
-               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'Last;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := ProduktionDatentypen.ArbeitszeitBasis'Last;
                
             elsif
               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
@@ -437,8 +437,8 @@ package body SchreibeEinheitenGebaut is
    
    procedure Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungExtern : in EinheitenDatentypen.Einheitenbereich;
-      LadungsplatzExtern : in EinheitenDatentypen.Transportplätze)
+      LadungExtern : in EinheitenDatentypen.EinheitenbereichBasis;
+      LadungsplatzExtern : in EinheitenDatentypen.TransportplätzeBasis)
    is begin
       
       GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Transportiert (LadungsplatzExtern) := LadungExtern;
@@ -460,7 +460,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TransporterExtern : in EinheitenDatentypen.Einheitenbereich)
+      TransporterExtern : in EinheitenDatentypen.EinheitenbereichBasis)
    is begin
       
       GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).WirdTransportiert := TransporterExtern;
@@ -519,7 +519,7 @@ package body SchreibeEinheitenGebaut is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      StadtNummerExtern : in StadtDatentypen.Städtebereich)
+      StadtNummerExtern : in StadtDatentypen.StädtebereichBasis)
    is begin
       
       Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

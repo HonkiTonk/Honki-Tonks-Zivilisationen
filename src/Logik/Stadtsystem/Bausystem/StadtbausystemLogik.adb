@@ -213,7 +213,7 @@ package body StadtbausystemLogik is
                   exit AnfangSchleife;
 
                elsif
-                 StadtDatentypen.GebäudeIDVorhanden'Last = StadtDatentypen.GebäudeID (InteraktionAuswahl.MöglicheBauoptionen (AnfangSchleifenwert))
+                 StadtDatentypen.GebäudeIDVorhanden'Last = StadtDatentypen.GebäudeIDBasis (InteraktionAuswahl.MöglicheBauoptionen (AnfangSchleifenwert))
                then
                   GebäudeAnfang := StadtDatentypen.GebäudeIDVorhanden'First;
                   exit AnfangSchleife;
@@ -282,7 +282,7 @@ package body StadtbausystemLogik is
                   exit EndeSchleife;
 
                elsif
-                 StadtDatentypen.GebäudeIDVorhanden'First = StadtDatentypen.GebäudeID (InteraktionAuswahl.MöglicheBauoptionen (AnfangSchleifenwert))
+                 StadtDatentypen.GebäudeIDVorhanden'First = StadtDatentypen.GebäudeIDBasis (InteraktionAuswahl.MöglicheBauoptionen (AnfangSchleifenwert))
                then
                   GebäudeEnde := StadtDatentypen.GebäudeIDVorhanden'Last;
                   exit EndeSchleife;
@@ -381,7 +381,7 @@ package body StadtbausystemLogik is
                   exit AnfangSchleife;
 
                elsif
-                 EinheitenDatentypen.EinheitenIDVorhanden'Last = EinheitenDatentypen.EinheitenID (InteraktionAuswahl.MöglicheBauoptionen (AnfangSchleifenwert))
+                 EinheitenDatentypen.EinheitenIDVorhanden'Last = EinheitenDatentypen.EinheitenIDBasis (InteraktionAuswahl.MöglicheBauoptionen (AnfangSchleifenwert))
                then
                   EinheitenAnfang := EinheitenDatentypen.EinheitenIDVorhanden'First;
                   exit AnfangSchleife;
@@ -450,7 +450,7 @@ package body StadtbausystemLogik is
                   exit EndeSchleife;
 
                elsif
-                 EinheitenDatentypen.EinheitenIDVorhanden'First = EinheitenDatentypen.EinheitenID (InteraktionAuswahl.MöglicheBauoptionen (AnfangSchleifenwert))
+                 EinheitenDatentypen.EinheitenIDVorhanden'First = EinheitenDatentypen.EinheitenIDBasis (InteraktionAuswahl.MöglicheBauoptionen (AnfangSchleifenwert))
                then
                   EinheitenEnde := EinheitenDatentypen.EinheitenIDVorhanden'Last;
                   exit EndeSchleife;

@@ -10,7 +10,7 @@ package KartendatenbankRecord is
 
    type BewertungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of ZufallsgeneratorenDatentypenHTSEB.Bewertung_Enum;
    type ProduktionArray is array (ProduktionDatentypen.Produktion_Enum'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
-   type BewegungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of EinheitenDatentypen.Bewegungspunkte;
+   type BewegungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of EinheitenDatentypen.BewegungspunkteBasis;
    
    type BewertungsbonusArray is array (BewertungArray'Range) of Boolean;
    type WirtschaftsbonusArray is array (ProduktionArray'Range (1), ProduktionArray'Range (2)) of ProduktionDatentypen.Produktionsbonus;

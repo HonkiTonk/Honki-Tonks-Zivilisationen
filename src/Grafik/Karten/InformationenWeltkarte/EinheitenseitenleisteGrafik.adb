@@ -283,8 +283,8 @@ package body EinheitenseitenleisteGrafik is
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return Unbounded_Wide_Wide_String
    is
-      use type EinheitenDatentypen.Einheitenbereich;
-      use type EinheitenDatentypen.Transportplätze;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
+      use type EinheitenDatentypen.TransportplätzeBasis;
    begin
       
       case

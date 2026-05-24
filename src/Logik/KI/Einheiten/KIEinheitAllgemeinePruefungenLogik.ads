@@ -40,7 +40,7 @@ private
    
    TransportMöglich : EinheitenDatentypen.Transport_Enum;
    
-   TransporterID : EinheitenDatentypen.EinheitenID;
+   TransporterID : EinheitenDatentypen.EinheitenIDBasis;
    
    BlockierteFelder : KartenDatentypen.SenkrechteNatural;
    

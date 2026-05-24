@@ -65,7 +65,7 @@ package body SchreibeStadtGebaut is
       EinwohnerArbeiterExtern : in Boolean;
       WachsenSchrumpfenExtern : in Boolean)
    is
-      use type StadtDatentypen.Einwohner;
+      use type StadtDatentypen.EinwohnerBasis;
    begin
       
       case
@@ -77,9 +77,9 @@ package body SchreibeStadtGebaut is
             if
               WachsenSchrumpfenExtern
               and
-                AktuelleEinwohner + 1 >= StadtDatentypen.Einwohner'Last
+                AktuelleEinwohner + 1 >= StadtDatentypen.EinwohnerBasis'Last
             then
-               AktuelleEinwohner := StadtDatentypen.Einwohner'Last;
+               AktuelleEinwohner := StadtDatentypen.EinwohnerBasis'Last;
                
             elsif
               WachsenSchrumpfenExtern
@@ -105,9 +105,9 @@ package body SchreibeStadtGebaut is
             if
               WachsenSchrumpfenExtern
               and
-                AktuelleArbeiter + 1 >= StadtDatentypen.Einwohner'Last
+                AktuelleArbeiter + 1 >= StadtDatentypen.EinwohnerBasis'Last
             then
-               AktuelleArbeiter := StadtDatentypen.Einwohner'Last;
+               AktuelleArbeiter := StadtDatentypen.EinwohnerBasis'Last;
                
             elsif
               WachsenSchrumpfenExtern
@@ -492,10 +492,10 @@ package body SchreibeStadtGebaut is
    
    procedure Zufriedenheit
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      ZufriedenheitExtern : in ProduktionDatentypen.Zufriedenheit;
+      ZufriedenheitExtern : in ProduktionDatentypen.ZufriedenheitBasis;
       ÄndernSetzenExtern : in Boolean)
    is
-      use type ProduktionDatentypen.Zufriedenheit;
+      use type ProduktionDatentypen.ZufriedenheitBasis;
    begin
       
       case

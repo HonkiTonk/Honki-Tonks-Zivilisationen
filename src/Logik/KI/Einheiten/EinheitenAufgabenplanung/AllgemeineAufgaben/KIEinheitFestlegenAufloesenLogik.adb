@@ -39,7 +39,7 @@ package body KIEinheitFestlegenAufloesenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
    begin
       
       VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);

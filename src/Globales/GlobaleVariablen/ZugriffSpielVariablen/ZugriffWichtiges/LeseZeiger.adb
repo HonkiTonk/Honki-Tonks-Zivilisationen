@@ -15,7 +15,7 @@ package body LeseZeiger is
    
    function EbeneAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenDatentypen.Ebene
+      return KartenDatentypen.EbeneBasis
    is begin
       
       return SpielVariablen.Spielzeiger (SpeziesExtern).KoordinatenAktuell.Ebene;

@@ -6,8 +6,8 @@ package KampfberechnungenLogik is
    pragma Elaborate_Body;
    
    function Kampfberechnung
-     (AngriffExtern : in KampfDatentypen.Kampfwerte;
-      VerteidigungExtern : in KampfDatentypen.Kampfwerte)
+     (AngriffExtern : in KampfDatentypen.KampfwerteBasis;
+      VerteidigungExtern : in KampfDatentypen.KampfwerteBasis)
       return Integer;
    
 private
@@ -17,6 +17,6 @@ private
    
    
    
-   function Kampferfolge is new ZufallsgeneratorenHTSEB.ErreichteErfolge (GanzeZahl => KampfDatentypen.Kampfwerte);
+   function Kampferfolge is new ZufallsgeneratorenHTSEB.ErreichteErfolge (GanzeZahl => KampfDatentypen.KampfwerteBasis);
    
 end KampfberechnungenLogik;

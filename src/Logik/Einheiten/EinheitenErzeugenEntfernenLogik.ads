@@ -41,11 +41,11 @@ package EinheitenErzeugenEntfernenLogik is
 
 private
 
-   Transporterkapazität : EinheitenDatentypen.Transportplätze;
+   Transporterkapazität : EinheitenDatentypen.TransportplätzeBasis;
 
-   Schleifenanfang : EinheitenDatentypen.Einheitenbereich;
-   Schleifenende : EinheitenDatentypen.Einheitenbereich;
-   Einheitennummer : EinheitenDatentypen.Einheitenbereich;
+   Schleifenanfang : EinheitenDatentypen.EinheitenbereichBasis;
+   Schleifenende : EinheitenDatentypen.EinheitenbereichBasis;
+   Einheitennummer : EinheitenDatentypen.EinheitenbereichBasis;
 
    procedure Ladungsentfernung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

@@ -25,7 +25,7 @@ private
    
    Belegung : SpeziesDatentypen.Spieler_Belegt_Enum;
 
-   VorhandeneStädte : StadtDatentypen.Städtebereich;
+   VorhandeneStädte : StadtDatentypen.StädtebereichBasis;
    
    AktuelleBewirtschaftung : SystemDatentypenHTSEB.EinByte;
    VorhandeneBewirtschaftung : SystemDatentypenHTSEB.EinByte;
@@ -38,7 +38,7 @@ private
    function Städtewerte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type;
-      StädtebereichExtern : in StadtDatentypen.Städtebereich)
+      StädtebereichExtern : in StadtDatentypen.StädtebereichBasis)
       return Boolean
      with
        Pre => (

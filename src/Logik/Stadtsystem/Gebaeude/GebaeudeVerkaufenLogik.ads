@@ -35,7 +35,7 @@ private
 
    VerkaufenMöglich : Boolean;
 
-   AktuelleAuswahl : StadtDatentypen.GebäudeID;
+   AktuelleAuswahl : StadtDatentypen.GebäudeIDBasis;
 
    Auswahl : Natural;
 

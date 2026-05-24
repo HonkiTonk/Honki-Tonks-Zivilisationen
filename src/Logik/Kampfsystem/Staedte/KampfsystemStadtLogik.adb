@@ -28,8 +28,8 @@ package body KampfsystemStadtLogik is
       VerteidigerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is
-      use type KampfDatentypen.Kampfwerte;
-      use type KampfDatentypen.Lebenspunkte;
+      use type KampfDatentypen.KampfwerteBasis;
+      use type KampfDatentypen.LebenspunkteBasis;
    begin
       
       if
@@ -93,8 +93,8 @@ package body KampfsystemStadtLogik is
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
    is
-      use type StadtDatentypen.Einwohner;
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type StadtDatentypen.EinwohnerBasis;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
    begin
       
       case
@@ -159,7 +159,7 @@ package body KampfsystemStadtLogik is
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
    is
-      use type KampfDatentypen.Lebenspunkte;
+      use type KampfDatentypen.LebenspunkteBasis;
    begin
       
       GesundheitStadt := Positive (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigerExtern,
@@ -177,7 +177,7 @@ package body KampfsystemStadtLogik is
            Kampfergebnis < KampfKonstanten.KampfverlaufUnentschieden
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                  LebenspunkteExtern         => KampfDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  LebenspunkteExtern         => KampfDatentypen.LebenspunkteBasis (Kampfergebnis),
                                                   RechnenSetzenExtern        => True);
             
          elsif
@@ -218,7 +218,7 @@ package body KampfsystemStadtLogik is
            Kampfergebnis < KampfKonstanten.KampfverlaufUnentschieden
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                  LebenspunkteExtern         => KampfDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  LebenspunkteExtern         => KampfDatentypen.LebenspunkteBasis (Kampfergebnis),
                                                   RechnenSetzenExtern        => True);
             
          elsif

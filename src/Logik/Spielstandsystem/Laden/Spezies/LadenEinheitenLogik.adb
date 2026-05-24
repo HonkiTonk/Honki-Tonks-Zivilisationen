@@ -19,7 +19,7 @@ package body LadenEinheitenLogik is
       return Boolean
    is begin
       
-      EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
+      EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
                                                  VorhandeneEinheiten);
       
       case
@@ -71,7 +71,7 @@ package body LadenEinheitenLogik is
       EinheitExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return Boolean
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
       use type SpeziesDatentypen.Spieler_Enum;
    begin
       
@@ -81,7 +81,7 @@ package body LadenEinheitenLogik is
       KartenRecords.KartenfeldNaturalRecord'Read (Stream (File => DateiLadenExtern),
                                                   Koordinaten);
       
-      StadtDatentypen.Städtebereich'Read (Stream (File => DateiLadenExtern),
+      StadtDatentypen.StädtebereichBasis'Read (Stream (File => DateiLadenExtern),
                                            Heimatstadt);
       
       KampfDatentypen.LebenspunkteVorhanden'Read (Stream (File => DateiLadenExtern),
@@ -90,7 +90,7 @@ package body LadenEinheitenLogik is
       EinheitenDatentypen.BewegungspunkteVorhanden'Read (Stream (File => DateiLadenExtern),
                                                          Bewegungspunkte);
                   
-      KampfDatentypen.Erfahrungspunkte'Read (Stream (File => DateiLadenExtern),
+      KampfDatentypen.ErfahrungspunkteBasis'Read (Stream (File => DateiLadenExtern),
                                              Erfahrungspunkte);
       
       KampfDatentypen.Rang'Read (Stream (File => DateiLadenExtern),
@@ -135,7 +135,7 @@ package body LadenEinheitenLogik is
             Ladung (Ladung'First) := 0;
             
          when others =>
-            EinheitenDatentypen.Transportplätze'Read (Stream (File => DateiLadenExtern),
+            EinheitenDatentypen.TransportplätzeBasis'Read (Stream (File => DateiLadenExtern),
                                                        TransportplätzeBelegt);
             
             Ladung := (others => 0);
@@ -157,7 +157,7 @@ package body LadenEinheitenLogik is
             WirdTransportiert := EinheitenKonstanten.LeerWirdTransportiert;
                
          when others =>
-            EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
+            EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
                                                        WirdTransportiert);
       end case;
       

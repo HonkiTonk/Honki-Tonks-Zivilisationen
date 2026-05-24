@@ -32,8 +32,8 @@ package KartenDatentypen is
    
    
    -- Rückgabewert, Planeteninneres, Unterfläche, Oberfläche, Himmel, Weltraum
-   type Ebene is new SenkrechteUmgebungDrei range -3 .. 2;
-   subtype EbeneVorhanden is Ebene range -2 .. Ebene'Last;
+   type EbeneBasis is new SenkrechteUmgebungDrei range -3 .. 2;
+   subtype EbeneVorhanden is EbeneBasis range -2 .. EbeneBasis'Last;
    subtype EbenePlanet is EbeneVorhanden range EbeneVorhanden'First .. 0;
    subtype EbeneUnterflächeOberfläche is EbenePlanet range -1 .. 0;
    subtype EbeneOberfläche is EbeneVorhanden range 0 .. EbeneVorhanden'Last;

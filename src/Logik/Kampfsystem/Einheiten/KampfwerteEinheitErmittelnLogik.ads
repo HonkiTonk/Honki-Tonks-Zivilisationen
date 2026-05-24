@@ -11,12 +11,12 @@ package KampfwerteEinheitErmittelnLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spezies_Enum;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KampfDatentypen.Kampfwerte;
+   use type KampfDatentypen.KampfwerteBasis;
    
    function Gesamtverteidigung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -31,7 +31,7 @@ package KampfwerteEinheitErmittelnLogik is
    function Gesamtangriff
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -49,7 +49,7 @@ private
    
    FehlendeHeimatstadtMalus : constant KampfDatentypen.KampfwerteEinheiten := 2;
    
-   type GesamtArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.Kampfwerte;
+   type GesamtArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.KampfwerteBasis;
    Verteidigung : GesamtArray;
    Angriff : GesamtArray;
 

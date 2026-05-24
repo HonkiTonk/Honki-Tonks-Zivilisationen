@@ -33,8 +33,8 @@ package AufgabeFestlegenLogik is
    
 private
    
-   Arbeitszeit : ProduktionDatentypen.Arbeitszeit;
+   Arbeitszeit : ProduktionDatentypen.ArbeitszeitBasis;
       
-   function ArbeitszeitPrüfen is new GanzzahltestsHTSEB.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
+   function ArbeitszeitPrüfen is new GanzzahltestsHTSEB.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.ArbeitszeitBasis);
 
 end AufgabeFestlegenLogik;

@@ -55,7 +55,7 @@ package SchreibeWichtiges is
    
    procedure Forschungsprojekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ForschungIDExtern : in ForschungenDatentypen.ForschungID)
+      ForschungIDExtern : in ForschungenDatentypen.ForschungIDMöglich)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

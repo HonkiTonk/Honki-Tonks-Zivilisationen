@@ -2,18 +2,18 @@ package body Kampfgrenzen is
 
    -- Das heir auch durch die Grenzests ersetzen. äöü
    function KampfwertKampfbonus
-     (KampfwertExtern : in KampfDatentypen.Kampfwerte;
+     (KampfwertExtern : in KampfDatentypen.KampfwerteBasis;
       KampfbonusExtern : in KampfDatentypen.Kampfbonus)
-     return KampfDatentypen.Kampfwerte
+     return KampfDatentypen.KampfwerteBasis
    is begin
       
       if
-        Float (KampfwertExtern) * Float (KampfbonusExtern) >= Float (KampfDatentypen.Kampfwerte'Last)
+        Float (KampfwertExtern) * Float (KampfbonusExtern) >= Float (KampfDatentypen.KampfwerteBasis'Last)
       then
-         return KampfDatentypen.Kampfwerte'Last;
+         return KampfDatentypen.KampfwerteBasis'Last;
          
       else
-         return KampfDatentypen.Kampfwerte (Float (KampfwertExtern) * Float (KampfbonusExtern));
+         return KampfDatentypen.KampfwerteBasis (Float (KampfwertExtern) * Float (KampfbonusExtern));
       end if;
       
    end KampfwertKampfbonus;

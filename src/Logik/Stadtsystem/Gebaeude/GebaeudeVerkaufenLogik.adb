@@ -71,7 +71,7 @@ package body GebaeudeVerkaufenLogik is
    procedure GebäudeVerkaufen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type StadtDatentypen.GebäudeID;
+      use type StadtDatentypen.GebäudeIDBasis;
    begin
       
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Verkaufen_Enum);

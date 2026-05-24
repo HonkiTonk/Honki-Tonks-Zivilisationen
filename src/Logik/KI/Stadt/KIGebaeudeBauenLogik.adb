@@ -18,7 +18,7 @@ package body KIGebaeudeBauenLogik is
       return KIRecords.GebäudeIDBewertungRecord
    is
       use type KIDatentypen.BauenBewertung;
-      use type StadtDatentypen.GebäudeID;
+      use type StadtDatentypen.GebäudeIDBasis;
    begin
       
       GebäudeBewertet := KIKonstanten.LeerGebäudebewertung;

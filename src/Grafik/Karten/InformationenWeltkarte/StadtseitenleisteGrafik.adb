@@ -209,8 +209,8 @@ package body StadtseitenleisteGrafik is
       BauzeitExtern : in ProduktionDatentypen.Produktion)
       return Unbounded_Wide_Wide_String
    is
-      use type StadtDatentypen.GebäudeID;
-      use type EinheitenDatentypen.EinheitenID;
+      use type StadtDatentypen.GebäudeIDBasis;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       if

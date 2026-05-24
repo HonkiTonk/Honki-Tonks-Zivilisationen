@@ -16,7 +16,7 @@ package body SichtbarkeitsberechnungssystemLogik is
    procedure SichtbarkeitsprüfungFürEinheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
       use type KartenDatentypen.SenkrechteBasis;
       use type KartenDatentypen.WaagerechteBasis;
    begin

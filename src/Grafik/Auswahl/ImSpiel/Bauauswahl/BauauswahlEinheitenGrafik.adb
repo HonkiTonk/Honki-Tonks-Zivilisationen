@@ -24,11 +24,11 @@ with TextaccessverwaltungssystemErweitertGrafik;
 package body BauauswahlEinheitenGrafik is
 
    procedure Einheiteninformationen
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type EinheitenDatentypen.Transport_Enum;
-      use type EinheitenDatentypen.Transportplätze;
+      use type EinheitenDatentypen.TransportplätzeBasis;
    begin
       
       ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => ViewflächeInformationen,
@@ -130,7 +130,7 @@ package body BauauswahlEinheitenGrafik is
    
    
    procedure Einheitenbeschreibung
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       

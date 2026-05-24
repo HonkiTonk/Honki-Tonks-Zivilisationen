@@ -32,8 +32,8 @@ package TransporterLadungsverschiebungLogik is
    
 private
    
-   Transporterkapazität : EinheitenDatentypen.Transportplätze;
+   Transporterkapazität : EinheitenDatentypen.TransportplätzeBasis;
    
-   Ladungsnummer : EinheitenDatentypen.Einheitenbereich;
+   Ladungsnummer : EinheitenDatentypen.EinheitenbereichBasis;
 
 end TransporterLadungsverschiebungLogik;

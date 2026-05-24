@@ -18,7 +18,7 @@ package body SchreibeDiplomatie is
    procedure AktuelleSympathie
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SympathieExtern : in DiplomatieDatentypen.Meinung;
+      SympathieExtern : in DiplomatieDatentypen.MeinungBasis;
       RechnenSetzenExtern : in Boolean)
    is begin
       

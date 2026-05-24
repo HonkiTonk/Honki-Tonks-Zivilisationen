@@ -36,7 +36,7 @@ private
    ÜbernächsterSchritt : constant EinheitenDatentypen.BewegungsplanVorhanden := 2;
    Zusatzschritt : EinheitenDatentypen.BewegungsplanVorhanden;
    
-   Planschritt : EinheitenDatentypen.Bewegungsplan;
+   Planschritt : EinheitenDatentypen.BewegungsplanBasis;
       
    KartenwertVereinfachung : KartenRecords.KartenfeldNaturalRecord;
    AktuellePlankoordinaten : KartenRecords.KartenfeldNaturalRecord;

@@ -5,11 +5,11 @@ with KartenartDatentypen;
 
 package KartenKonstanten is
    pragma Pure;
-   use type KartenDatentypen.Ebene;
+   use type KartenDatentypen.EbeneBasis;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    
-   LeerEbene : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
+   LeerEbene : constant KartenDatentypen.EbeneBasis := KartenDatentypen.EbeneBasis'First;
    LeerSenkrechte : constant KartenDatentypen.SenkrechteNatural := KartenDatentypen.SenkrechteNatural'First;
    LeerWaagerechte : constant KartenDatentypen.WaagerechteNatural := KartenDatentypen.WaagerechteNatural'First;
    

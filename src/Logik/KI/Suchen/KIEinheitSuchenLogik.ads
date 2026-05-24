@@ -31,7 +31,7 @@ package KIEinheitSuchenLogik is
    
 private
    
-   FeindlicheEinheit : EinheitenDatentypen.Einheitenbereich;
+   FeindlicheEinheit : EinheitenDatentypen.EinheitenbereichBasis;
    
    SenkrechtePrüfen : KartenDatentypen.SenkrechtePositiv;
    SenkrechteGeprüft : KartenDatentypen.SenkrechteNatural;

@@ -20,8 +20,8 @@ package body EinheitentransporterLogik is
    
    -- Eventuell für Ladung und Transporter die Spezies übergeben und dann eine Sicherheitsprüfung einbauen ob es die gleiche Spezies ist und wenn nicht einen Fehler ausgeben? äöü
    function TransporterGroßGenug
-     (LadungExtern : in EinheitenDatentypen.EinheitenID;
-      TransporterExtern : in EinheitenDatentypen.EinheitenID;
+     (LadungExtern : in EinheitenDatentypen.EinheitenIDBasis;
+      TransporterExtern : in EinheitenDatentypen.EinheitenIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
@@ -175,7 +175,7 @@ package body EinheitentransporterLogik is
       LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
    begin
       
       EinheitVorhanden := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
@@ -213,10 +213,10 @@ package body EinheitentransporterLogik is
    
    function BelegtePlätze
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TransportkapazitätExtern : in EinheitenDatentypen.Transportplätze)
-      return EinheitenDatentypen.Transportplätze
+      TransportkapazitätExtern : in EinheitenDatentypen.TransportplätzeBasis)
+      return EinheitenDatentypen.TransportplätzeBasis
    is
-      use type EinheitenDatentypen.Transportplätze;
+      use type EinheitenDatentypen.TransportplätzeBasis;
    begin
       
       AktuelleLadungsmenge := EinheitenKonstanten.LeerTransportkapazität;
@@ -246,7 +246,7 @@ package body EinheitentransporterLogik is
    procedure LadungsnummerAnpassen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungsnummerAltExtern : in EinheitenDatentypen.EinheitenbereichVorhanden;
-      LadungsnummerNeuExtern : in EinheitenDatentypen.Einheitenbereich)
+      LadungsnummerNeuExtern : in EinheitenDatentypen.EinheitenbereichBasis)
    is begin
       
       LadungSchleife:

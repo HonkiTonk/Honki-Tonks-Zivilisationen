@@ -30,7 +30,7 @@ package body KIStaedteverbindungssystemLogik is
    procedure Stadtverbindung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       
@@ -91,7 +91,7 @@ package body KIStaedteverbindungssystemLogik is
       ZielkoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
       use type KartengrundDatentypen.Basisgrund_Enum;
      -- use type SpeziesDatentypen.Spezies_Enum;
    begin

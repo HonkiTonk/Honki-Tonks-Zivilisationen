@@ -18,7 +18,7 @@ package LeseVerbesserungenDatenbank is
    function BewegungWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return EinheitenDatentypen.Bewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

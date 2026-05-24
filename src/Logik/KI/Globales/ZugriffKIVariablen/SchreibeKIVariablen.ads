@@ -17,7 +17,7 @@ package SchreibeKIVariablen is
 
    procedure Stadtverbindung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-      AbschnittExtern : in EinheitenDatentypen.Bewegungsplan;
+      AbschnittExtern : in EinheitenDatentypen.BewegungsplanBasis;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (

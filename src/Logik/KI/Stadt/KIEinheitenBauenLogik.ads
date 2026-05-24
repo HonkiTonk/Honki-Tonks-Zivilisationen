@@ -31,13 +31,13 @@ private
    Einheitwertung : KIDatentypen.BauenBewertung;
    AnzahlPassierbarkeiten : KIDatentypen.BauenBewertung;
    
-   MengeVorhanden : EinheitenDatentypen.Einheitenbereich;
-   MengeImBau : EinheitenDatentypen.Einheitenbereich;
+   MengeVorhanden : EinheitenDatentypen.EinheitenbereichBasis;
+   MengeImBau : EinheitenDatentypen.EinheitenbereichBasis;
    
    MinimaleSiedlerMenge : constant EinheitenDatentypen.EinheitenbereichVorhanden := 2;
    AnzahlStädte : EinheitenDatentypen.EinheitenbereichVorhanden;
    
-   VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
+   VorhandeneEinheiten : EinheitenDatentypen.EinheitenbereichBasis;
    
    EinheitBewertet : KIRecords.EinheitIDBewertungRecord;
    

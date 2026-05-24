@@ -10,7 +10,7 @@ package body KIEbenebewertung is
       return KartenDatentypen.SenkrechteNatural
    is
       use type KartenDatentypen.SenkrechteBasis;
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
    begin
       
       if

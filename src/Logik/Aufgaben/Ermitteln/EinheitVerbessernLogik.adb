@@ -18,7 +18,7 @@ package body EinheitVerbessernLogik is
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
       
       NeueEinheitenID := EinheitVerbesserbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -69,9 +69,9 @@ package body EinheitVerbessernLogik is
    
    function EinheitVerbesserbar
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.EinheitenID
+      return EinheitenDatentypen.EinheitenIDBasis
    is
-      use type EinheitenDatentypen.EinheitenID;
+      use type EinheitenDatentypen.EinheitenIDBasis;
    begin
    
       EinheitenIDVerbesserbar := LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
@@ -119,7 +119,7 @@ package body EinheitVerbessernLogik is
    
    function WeiterhinTransportierbar
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueIDExtern : in EinheitenDatentypen.EinheitenID)
+      NeueIDExtern : in EinheitenDatentypen.EinheitenIDBasis)
       return Boolean
    is begin
             
@@ -143,10 +143,10 @@ package body EinheitVerbessernLogik is
    
    function LaderaumAusreichend
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueIDExtern : in EinheitenDatentypen.EinheitenID)
+      NeueIDExtern : in EinheitenDatentypen.EinheitenIDBasis)
       return Boolean
    is
-      use type EinheitenDatentypen.Transportplätze;
+      use type EinheitenDatentypen.TransportplätzeBasis;
    begin
       
       -- Hier muss die aktuelle ID geprüft werden um die aktuelle Transportkapazität zu bekommen, auf keinen Fall die Neue einsetzen!

@@ -3,8 +3,8 @@ package StadtDatentypen is
 
    -- Für Gebäude
    -- Hier mal auf GebäudeID und GebäudeIDVorhanden umschreiben. äöü
-   type GebäudeID is range 0 .. 27;
-   subtype GebäudeIDVorhanden is GebäudeID range 1 .. GebäudeID'Last;
+   type GebäudeIDBasis is range 0 .. 27;
+   subtype GebäudeIDVorhanden is GebäudeIDBasis range 1 .. GebäudeIDBasis'Last;
    
    
 
@@ -21,8 +21,8 @@ package StadtDatentypen is
 
 
    -- Für Stadt
-   type Städtebereich is range 0 .. 100;
-   subtype StädtebereichVorhanden is Städtebereich range 1 .. Städtebereich'Last;
+   type StädtebereichBasis is range 0 .. 100;
+   subtype StädtebereichVorhanden is StädtebereichBasis range 1 .. StädtebereichBasis'Last;
    
    
 
@@ -42,8 +42,8 @@ package StadtDatentypen is
    
    
    
-   type Einwohner is range 0 .. 100;
-   subtype EinwohnerVorhanden is Einwohner range 1 .. Einwohner'Last;
+   type EinwohnerBasis is range 0 .. 100;
+   subtype EinwohnerVorhanden is EinwohnerBasis range 1 .. EinwohnerBasis'Last;
    -- Für Stadt
    
    

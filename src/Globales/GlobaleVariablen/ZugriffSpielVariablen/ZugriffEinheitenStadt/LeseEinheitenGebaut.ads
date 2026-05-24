@@ -21,12 +21,12 @@ package LeseEinheitenGebaut is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type KartenDatentypen.Ebene;
-   use type EinheitenDatentypen.Einheitenbereich;
+   use type KartenDatentypen.EbeneBasis;
+   use type EinheitenDatentypen.EinheitenbereichBasis;
 
    function ID
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.EinheitenID;
+      return EinheitenDatentypen.EinheitenIDBasis;
    --  with
     --   Pre => (
     --            EinheitSpeziesNummerExtern.Nummer in LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -59,7 +59,7 @@ package LeseEinheitenGebaut is
    
    function Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return StadtDatentypen.Städtebereich
+      return StadtDatentypen.StädtebereichBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -70,7 +70,7 @@ package LeseEinheitenGebaut is
       
    function Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KampfDatentypen.Lebenspunkte
+      return KampfDatentypen.LebenspunkteBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -91,7 +91,7 @@ package LeseEinheitenGebaut is
    
    function Erfahrungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return KampfDatentypen.Erfahrungspunkte
+      return KampfDatentypen.ErfahrungspunkteBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -133,7 +133,7 @@ package LeseEinheitenGebaut is
       
    function Beschäftigungszeit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return ProduktionDatentypen.Arbeitszeit
+      return ProduktionDatentypen.ArbeitszeitBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -144,7 +144,7 @@ package LeseEinheitenGebaut is
    
    function BeschäftigungszeitNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return ProduktionDatentypen.Arbeitszeit
+      return ProduktionDatentypen.ArbeitszeitBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -290,8 +290,8 @@ package LeseEinheitenGebaut is
       
    function Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      PlatzExtern : in EinheitenDatentypen.Transportplätze)
-      return EinheitenDatentypen.Einheitenbereich
+      PlatzExtern : in EinheitenDatentypen.TransportplätzeBasis)
+      return EinheitenDatentypen.EinheitenbereichBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -302,7 +302,7 @@ package LeseEinheitenGebaut is
    
    function WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.Einheitenbereich
+      return EinheitenDatentypen.EinheitenbereichBasis
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -347,9 +347,9 @@ package LeseEinheitenGebaut is
    
 private
    
-   EinheitID : EinheitenDatentypen.EinheitenID;
+   EinheitID : EinheitenDatentypen.EinheitenIDBasis;
    
-   Beförderungsgrenze : KampfDatentypen.Erfahrungspunkte;
+   Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteBasis;
    MaximalerRang : KampfDatentypen.Rang;
    
    ErlaubteLebenspunkte : KampfDatentypen.LebenspunkteVorhanden;

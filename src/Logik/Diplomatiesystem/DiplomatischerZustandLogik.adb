@@ -13,7 +13,7 @@ package body DiplomatischerZustandLogik is
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
    is
-      use type DiplomatieDatentypen.Meinung;
+      use type DiplomatieDatentypen.MeinungBasis;
    begin
       
       SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesEinsExtern,

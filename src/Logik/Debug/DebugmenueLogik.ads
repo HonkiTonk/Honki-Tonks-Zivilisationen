@@ -27,7 +27,7 @@ private
 
    RückgabeDebugmenü : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
-   Einheitennummer : EinheitenDatentypen.Einheitenbereich;
+   Einheitennummer : EinheitenDatentypen.EinheitenbereichBasis;
 
    Einheitenauswahl : SystemRecordsHTSEB.ZahlenEingabeRecord;
 

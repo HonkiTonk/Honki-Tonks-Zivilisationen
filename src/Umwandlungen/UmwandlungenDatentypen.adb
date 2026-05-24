@@ -71,10 +71,10 @@ package body UmwandlungenDatentypen is
         Grafiktask.WelchesBaumenü
       is
          when StadtDatentypen.Gebäudeart_Enum =>
-            return (StadtDatentypen.GebäudeID (AuswahlExtern), EinheitenDatentypen.EinheitenID (AuswahlKonstanten.LeerAuswahl));
+            return (StadtDatentypen.GebäudeIDBasis (AuswahlExtern), EinheitenDatentypen.EinheitenIDBasis (AuswahlKonstanten.LeerAuswahl));
                
          when StadtDatentypen.Einheitenart_Enum =>
-            return (StadtDatentypen.GebäudeID (AuswahlKonstanten.LeerAuswahl), EinheitenDatentypen.EinheitenID (AuswahlExtern));
+            return (StadtDatentypen.GebäudeIDBasis (AuswahlKonstanten.LeerAuswahl), EinheitenDatentypen.EinheitenIDBasis (AuswahlExtern));
       end case;
       
    end AuswahlBauprojekt;

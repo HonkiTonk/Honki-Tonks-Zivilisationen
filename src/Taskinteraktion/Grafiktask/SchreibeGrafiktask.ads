@@ -64,10 +64,10 @@ package SchreibeGrafiktask is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum);
    
    procedure Stadtnummer
-     (StadtnummerExtern : in StadtDatentypen.Städtebereich);
+     (StadtnummerExtern : in StadtDatentypen.StädtebereichBasis);
    
    procedure Einheitnummer
-     (EinheitnummerExtern : in EinheitenDatentypen.Einheitenbereich);
+     (EinheitnummerExtern : in EinheitenDatentypen.EinheitenbereichBasis);
    
    procedure GeheZu
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord);
@@ -94,10 +94,10 @@ package SchreibeGrafiktask is
      (AuswahlExtern : in EinheitenRecords.AuswahlRecord);
    
    procedure Gebäudeauswahl
-     (GebäudeExtern : in StadtDatentypen.GebäudeID);
+     (GebäudeExtern : in StadtDatentypen.GebäudeIDBasis);
    
    procedure Einheitenauswahl
-     (EinheitExtern : in EinheitenDatentypen.EinheitenID);
+     (EinheitExtern : in EinheitenDatentypen.EinheitenIDBasis);
    
    procedure Bauauswahl
      (AuswahlExtern : in StadtRecords.BauprojektRecord);

@@ -25,8 +25,8 @@ package ForschungsauswahlGrafik is
 private
    use Ada.Strings.Wide_Wide_Unbounded;
    
-   AktuelleAuswahl : ForschungenDatentypen.ForschungID;
-   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungID;
+   AktuelleAuswahl : ForschungenDatentypen.ForschungIDMöglich;
+   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMöglich;
    
    Forschungswert : ForschungenDatentypen.ForschungIDUnmöglich;
    
@@ -50,7 +50,7 @@ private
               );
    
    procedure Beschreibung
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungID;
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMöglich;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (
@@ -58,7 +58,7 @@ private
               );
    
    procedure Ermöglicht
-     (ZusatztextExtern : in ForschungenDatentypen.ForschungID;
+     (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMöglich;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (

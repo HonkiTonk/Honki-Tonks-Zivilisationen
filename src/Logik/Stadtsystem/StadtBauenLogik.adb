@@ -42,7 +42,7 @@ package body StadtBauenLogik is
       case
         StadtNummer
       is
-         when StadtDatentypen.Städtebereich'First =>
+         when StadtDatentypen.StädtebereichBasis'First =>
             return False;
             
          when others =>
@@ -91,7 +91,7 @@ package body StadtBauenLogik is
       return Boolean
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type KartenDatentypen.Ebene;
+      use type KartenDatentypen.EbeneBasis;
    begin
       
       case
@@ -136,7 +136,7 @@ package body StadtBauenLogik is
    
    function StadtnummerErmitteln
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return StadtDatentypen.Städtebereich
+      return StadtDatentypen.StädtebereichBasis
    is begin
       
       StadtSchleife:
@@ -164,7 +164,7 @@ package body StadtBauenLogik is
             null;
       end case;
       
-      return StadtDatentypen.Städtebereich'First;
+      return StadtDatentypen.StädtebereichBasis'First;
       
    end StadtnummerErmitteln;
    

@@ -52,7 +52,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenbereichBasis;
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
       use type SpeziesDatentypen.Spezies_Enum;
    begin

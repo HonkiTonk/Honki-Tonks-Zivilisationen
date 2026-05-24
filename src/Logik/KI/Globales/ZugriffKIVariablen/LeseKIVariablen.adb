@@ -14,7 +14,7 @@ package body LeseKIVariablen is
    
    function Stadtverbindung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      AbschnittExtern : in EinheitenDatentypen.Bewegungsplan)
+      AbschnittExtern : in EinheitenDatentypen.BewegungsplanBasis)
       return KartenRecords.KartenfeldNaturalRecord
    is begin
       

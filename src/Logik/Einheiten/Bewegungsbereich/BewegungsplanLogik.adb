@@ -67,9 +67,9 @@ package body BewegungsplanLogik is
       return Boolean
    is
       use type KartenRecords.KartenfeldNaturalRecord;
-      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.BewegungspunkteBasis;
       use type SpeziesDatentypen.Spezies_Enum;
-      use type KampfDatentypen.Lebenspunkte;
+      use type KampfDatentypen.LebenspunkteBasis;
    begin
       
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -219,7 +219,7 @@ package body BewegungsplanLogik is
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type StadtDatentypen.Städtebereich;
+      use type StadtDatentypen.StädtebereichBasis;
    begin
       
       if

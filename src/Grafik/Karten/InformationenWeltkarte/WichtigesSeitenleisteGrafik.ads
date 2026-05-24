@@ -50,7 +50,7 @@ package WichtigesSeitenleisteGrafik is
 private
    use Ada.Strings.Wide_Wide_Unbounded;
    
-   Forschungsprojekt : ForschungenDatentypen.ForschungID;
+   Forschungsprojekt : ForschungenDatentypen.ForschungIDMöglich;
    
    Forschungszeit : ProduktionDatentypen.Lagermenge;
    

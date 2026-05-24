@@ -21,7 +21,7 @@ package FeldkampfStadtLogik is
       KampfBasiswertExtern : in KampfDatentypen.KampfwerteEinheiten;
       StadttypExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.Kampfwerte
+      return KampfDatentypen.KampfwerteBasis
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -33,7 +33,7 @@ package FeldkampfStadtLogik is
    
 private
    
-   type KampfArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.Kampfwerte;
+   type KampfArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.KampfwerteBasis;
    Gesamtwert : KampfArray;
 
 end FeldkampfStadtLogik;

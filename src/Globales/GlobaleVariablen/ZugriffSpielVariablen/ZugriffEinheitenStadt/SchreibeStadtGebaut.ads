@@ -23,9 +23,9 @@ package SchreibeStadtGebaut is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   use type KartenDatentypen.Ebene;
-   use type StadtDatentypen.GebäudeID;
-   use type EinheitenDatentypen.EinheitenID;
+   use type KartenDatentypen.EbeneBasis;
+   use type StadtDatentypen.GebäudeIDBasis;
+   use type EinheitenDatentypen.EinheitenIDBasis;
 
    procedure ID
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -224,7 +224,7 @@ package SchreibeStadtGebaut is
    
    procedure Zufriedenheit
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      ZufriedenheitExtern : in ProduktionDatentypen.Zufriedenheit;
+      ZufriedenheitExtern : in ProduktionDatentypen.ZufriedenheitBasis;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre => (
@@ -406,8 +406,8 @@ package SchreibeStadtGebaut is
    
 private
    
-   AktuelleEinwohner : StadtDatentypen.Einwohner;
-   AktuelleArbeiter : StadtDatentypen.Einwohner;
+   AktuelleEinwohner : StadtDatentypen.EinwohnerBasis;
+   AktuelleArbeiter : StadtDatentypen.EinwohnerBasis;
    
    Stadtkoordinaten : KartenRecords.KartenfeldNaturalRecord;
 

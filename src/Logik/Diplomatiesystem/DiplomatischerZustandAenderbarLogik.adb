@@ -71,7 +71,7 @@ package body DiplomatischerZustandAenderbarLogik is
       return Boolean
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
-      use type DiplomatieDatentypen.Meinung;
+      use type DiplomatieDatentypen.MeinungBasis;
    begin
       
       if
@@ -103,7 +103,7 @@ package body DiplomatischerZustandAenderbarLogik is
       return Boolean
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
-      use type DiplomatieDatentypen.Meinung;
+      use type DiplomatieDatentypen.MeinungBasis;
    begin
       
       if

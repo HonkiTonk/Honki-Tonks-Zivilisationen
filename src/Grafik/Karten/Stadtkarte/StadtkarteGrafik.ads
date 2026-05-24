@@ -34,8 +34,8 @@ private
 
    GebäudeID : StadtDatentypen.GebäudeIDVorhanden;
 
-   AlteID : StadtDatentypen.GebäudeID := StadtKonstanten.LeerGebäudeID;
-   GebäudeZusatzinformationen : StadtDatentypen.GebäudeID;
+   AlteID : StadtDatentypen.GebäudeIDBasis := StadtKonstanten.LeerGebäudeID;
+   GebäudeZusatzinformationen : StadtDatentypen.GebäudeIDBasis;
 
    Anzeigezeit : Time := Clock;
 
@@ -56,7 +56,7 @@ private
      (GrundExtern : in KartenRecords.KartengrundRecord);
 
    procedure Zusatzinformationen
-     (GebäudeIDExtern : in StadtDatentypen.GebäudeID;
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeIDBasis;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
      with
        Pre => (

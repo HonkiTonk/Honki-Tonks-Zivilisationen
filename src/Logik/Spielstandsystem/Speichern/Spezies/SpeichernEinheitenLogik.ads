@@ -25,17 +25,17 @@ private
 
    ID : EinheitenDatentypen.EinheitenIDVorhanden;
    
-   TransportplätzeBelegt : EinheitenDatentypen.Transportplätze;
+   TransportplätzeBelegt : EinheitenDatentypen.TransportplätzeBasis;
    
-   VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
-   GeladeneEinheit : EinheitenDatentypen.Einheitenbereich;
+   VorhandeneEinheiten : EinheitenDatentypen.EinheitenbereichBasis;
+   GeladeneEinheit : EinheitenDatentypen.EinheitenbereichBasis;
    
    
    
    function Einheitenwerte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       DateiSpeichernExtern : in File_Type;
-      EinheitenbereichExtern : in EinheitenDatentypen.Einheitenbereich)
+      EinheitenbereichExtern : in EinheitenDatentypen.EinheitenbereichBasis)
       return Boolean
      with
        Pre => (
