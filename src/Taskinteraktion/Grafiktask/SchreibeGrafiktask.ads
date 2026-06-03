@@ -1,12 +1,13 @@
 with Ada.Calendar; use Ada.Calendar;
 
+with SystemDatentypenHTSEB;
+
 with GrafikDatentypen;
 with MenueDatentypen;
 with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with KartenRecords;
-with ZahlenDatentypen;
 with TextnummernKonstanten;
 with EinheitenRecords;
 with StadtRecords;
@@ -79,16 +80,16 @@ package SchreibeGrafiktask is
      (JaNeinExtern : in Boolean);
    
    procedure Endauswahl
-     (AuswahlExtern : in ZahlenDatentypen.EigenesNatural);
+     (AuswahlExtern : in SystemDatentypenHTSEB.EigenesNatural);
    
    procedure Gesamtauswahl
      (AuswahlExtern : in SystemRecords.DoppelauswahlRecord);
    
    procedure Erstauswahl
-     (AuswahlExtern : in ZahlenDatentypen.EigenerInteger);
+     (AuswahlExtern : in SystemDatentypenHTSEB.EigenerInteger);
    
    procedure Zweitauswahl
-     (AuswahlExtern : in ZahlenDatentypen.EigenerInteger);
+     (AuswahlExtern : in SystemDatentypenHTSEB.EigenerInteger);
    
    procedure StadtEinheitAuswahl
      (AuswahlExtern : in EinheitenRecords.AuswahlRecord);
@@ -115,7 +116,7 @@ package SchreibeGrafiktask is
      (EingabeartExtern : in GrafikDatentypen.Eingabe_Enum);
    
    procedure Zahleneingabe
-     (ZahlExtern : in ZahlenDatentypen.EigenesNatural);
+     (ZahlExtern : in SystemDatentypenHTSEB.EigenesNatural);
    
    procedure MaustasteGehalten
      (JaNeinExtern : in Boolean);
@@ -130,7 +131,7 @@ package SchreibeGrafiktask is
      (ZeitExtern : in Time);
    
    procedure Fragenanzeige
-     (FrageExtern : in ZahlenDatentypen.EigenesNatural);
+     (FrageExtern : in SystemDatentypenHTSEB.EigenesNatural);
    
    procedure Einheitenbewegung
      (JaNeinExtern : in Boolean);

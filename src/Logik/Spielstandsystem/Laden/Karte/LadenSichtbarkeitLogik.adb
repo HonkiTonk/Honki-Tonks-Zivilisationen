@@ -17,6 +17,7 @@ package body LadenSichtbarkeitLogik is
       return Boolean
    is begin
       
+      -- Das Speichern/Laden vonn Spezienzusammenfassung auf Felderzusammenfassung ändern. äöü
       case
         VorhandeneSpeziesExtern
       is

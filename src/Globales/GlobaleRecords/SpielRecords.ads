@@ -1,10 +1,11 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with SystemDatentypenHTSEB;
+
 with StadtDatentypen;
 with EinheitenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
-with ZahlenDatentypen;
 with SpeziesDatentypen;
 with SpielDatentypen;
 with DiplomatieDatentypen;
@@ -25,7 +26,7 @@ package SpielRecords is
 
    type WichtigesRecord is record
       
-      Geldmenge : ZahlenDatentypen.EigenerInteger;
+      Geldmenge : SystemDatentypenHTSEB.EigenerInteger;
       GeldRundengewinn : ProduktionDatentypen.Produktion;
 
       GesamteForschungsrate : ProduktionDatentypen.Lagermenge;
@@ -53,7 +54,7 @@ package SpielRecords is
       
       AktuellerZustand : DiplomatieDatentypen.Status_Untereinander_Enum;
       AktuelleSympathieBewertung : DiplomatieDatentypen.MeinungBasis;
-      ZeitSeitLetzterÄnderung : ZahlenDatentypen.EigenesNatural;
+      ZeitSeitLetzterÄnderung : SystemDatentypenHTSEB.EigenesNatural;
       
    end record;
    
@@ -63,11 +64,11 @@ package SpielRecords is
       
       Städtegrenze : StadtDatentypen.StädtebereichBasis;
       Einheitengrenze : EinheitenDatentypen.EinheitenbereichVorhanden;
-      Geldgrenze : ZahlenDatentypen.EigenesNatural;
+      Geldgrenze : SystemDatentypenHTSEB.EigenesNatural;
       Forschungsgrenze : ProduktionDatentypen.Lagermenge;
       Geldgewinngrenze : ProduktionDatentypen.Lagermenge;
       ForschungGewinngrenze : ProduktionDatentypen.Lagermenge;
-      SpeziesRundengrenze : ZahlenDatentypen.EigenesNatural;
+      SpeziesRundengrenze : SystemDatentypenHTSEB.EigenesNatural;
       
    end record;
    
@@ -79,12 +80,12 @@ package SpielRecords is
       Weiterspielen : Boolean;
       SpezieszugNachLaden : SpeziesDatentypen.Spezies_Enum;
       Schwierigkeitsgrad : SpielDatentypen.Schwierigkeitsgrad_Enum;
-      Rundenanzahl : ZahlenDatentypen.EigenesPositive;
-      Rundengrenze : ZahlenDatentypen.EigenesNatural;   
+      Rundenanzahl : SystemDatentypenHTSEB.EigenesPositive;
+      Rundengrenze : SystemDatentypenHTSEB.EigenesNatural;   
       IronmanName : Unbounded_Wide_Wide_String;
       PlanetVernichtet : SpeziesDatentypen.Spezies_Enum;
-      Zusammenbruchszeit : ZahlenDatentypen.EigenerInteger;
-      EingesetztePZB : ZahlenDatentypen.EigenesNatural;
+      Zusammenbruchszeit : SystemDatentypenHTSEB.EigenerInteger;
+      EingesetztePZB : SystemDatentypenHTSEB.EigenesNatural;
       
    end record;
    

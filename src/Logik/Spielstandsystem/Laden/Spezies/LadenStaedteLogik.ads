@@ -12,7 +12,6 @@ private with ProduktionDatentypen;
 private with KartenRecords;
 private with KIDatentypen;
 private with StadtArrays;
-private with ZahlenDatentypen;
 
 package LadenStaedteLogik is
    pragma Elaborate_Body;
@@ -76,7 +75,7 @@ private
    
    KIBeschäftigung : KIDatentypen.Stadt_Aufgabe_Enum;
    
-   Potenz : ZahlenDatentypen.EigenesNatural;
+   Potenz : SystemDatentypenHTSEB.EigenesNatural;
    
    
    

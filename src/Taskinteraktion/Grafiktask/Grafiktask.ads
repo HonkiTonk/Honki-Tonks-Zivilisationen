@@ -1,10 +1,11 @@
 with Ada.Calendar; use Ada.Calendar;
 
+with SystemDatentypenHTSEB;
+
 with GrafikDatentypen;
 with MenueDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with ZahlenDatentypen;
 with KartenRecordKonstanten;
 with SpeziesKonstanten;
 with AuswahlKonstanten;
@@ -51,7 +52,7 @@ package Grafiktask is
                                                  Texteingabe           => False,
                                                  Vorzeicheneingabe     => False,
                                                  Eingabeart            => GrafikDatentypen.Keine_Eingabe_Enum,
-                                                 Zahleneingabe         => ZahlenDatentypen.EigenesNatural'First,
+                                                 Zahleneingabe         => SystemDatentypenHTSEB.EigenesNatural'First,
                                                  MaustasteGehalten     => False,
                                                  TastaturtasteGehalten => False
                                                  
@@ -60,7 +61,7 @@ package Grafiktask is
    Meldung : TaskRecords.MeldungGrafikRecord := (
                                                  Spielmeldung      => SystemKonstanten.LeerMeldung,
                                                  Spielmeldungszeit => Clock,
-                                                 Fragenanzeige     => ZahlenDatentypen.EigenesNatural'First
+                                                 Fragenanzeige     => SystemDatentypenHTSEB.EigenesNatural'First
                                                 );
    
    WelchesBaumenü : StadtDatentypen.Bauprojektart_Vorhanden_Enum := StadtDatentypen.Gebäudeart_Enum;

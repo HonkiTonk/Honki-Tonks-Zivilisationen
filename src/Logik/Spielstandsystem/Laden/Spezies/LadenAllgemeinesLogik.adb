@@ -71,10 +71,10 @@ package body LadenAllgemeinesLogik is
       SpielDatentypen.Schwierigkeitsgrad_Enum'Read (Stream (File => DateiLadenExtern),
                                                     Schwierigkeitsgrad);
       
-      ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
+      SystemDatentypenHTSEB.EigenesPositive'Read (Stream (File => DateiLadenExtern),
                                              Rundenanzahl);
       
-      ZahlenDatentypen.EigenesNatural'Read (Stream (File => DateiLadenExtern),
+      SystemDatentypenHTSEB.EigenesNatural'Read (Stream (File => DateiLadenExtern),
                                             Rundengrenze);
       
       Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
@@ -83,10 +83,10 @@ package body LadenAllgemeinesLogik is
       SpeziesDatentypen.Spezies_Enum'Read (Stream (File => DateiLadenExtern),
                                            PlanetVernichtet);
       
-      ZahlenDatentypen.EigenerInteger'Read (Stream (File => DateiLadenExtern),
+      SystemDatentypenHTSEB.EigenerInteger'Read (Stream (File => DateiLadenExtern),
                                             Zusammenbruchszeit);
       
-      ZahlenDatentypen.EigenesNatural'Read (Stream (File => DateiLadenExtern),
+      SystemDatentypenHTSEB.EigenesNatural'Read (Stream (File => DateiLadenExtern),
                                             EingesetztePZB);
       
       case

@@ -1,11 +1,11 @@
 with TextKonstantenHTSEB;
+with SystemDatentypenHTSEB;
 
 with GrafikDatentypen;
 with TextnummernKonstanten;
 with MenueDatentypen;
 with ZeitKonstanten;
 with GrafikKonstanten;
-with ZahlenDatentypen;
 with VerzeichnisKonstanten;
 
 with SchreibeEinstellungenGrafik;
@@ -107,8 +107,8 @@ package body OptionenGrafikLogik is
      return Boolean
    is begin
       
-      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleAuflösungsbreite),
-                                                             ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleAuflösungsbreite),
+      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => SystemDatentypenHTSEB.EigenesPositive (GrafikKonstanten.MinimaleAuflösungsbreite),
+                                                             ZahlenMaximumExtern => SystemDatentypenHTSEB.EigenesPositive (GrafikKonstanten.MaximaleAuflösungsbreite),
                                                              WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
       
       case
@@ -120,8 +120,8 @@ package body OptionenGrafikLogik is
          when True =>
             NeueAuflösung.x := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
       
-            EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleAuflösunghöhe),
-                                                                   ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleAuflösungshöhe),
+            EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => SystemDatentypenHTSEB.EigenesPositive (GrafikKonstanten.MinimaleAuflösunghöhe),
+                                                                   ZahlenMaximumExtern => SystemDatentypenHTSEB.EigenesPositive (GrafikKonstanten.MaximaleAuflösungshöhe),
                                                                    WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
       end case;
       
@@ -159,8 +159,8 @@ package body OptionenGrafikLogik is
       use type GrafikDatentypen.Fenster_Anpassen_Enum;
    begin
       
-      EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesNatural (GrafikKonstanten.MinimaleBildrate),
-                                                           ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleBildrate),
+      EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => SystemDatentypenHTSEB.EigenesNatural (GrafikKonstanten.MinimaleBildrate),
+                                                           ZahlenMaximumExtern => SystemDatentypenHTSEB.EigenesPositive (GrafikKonstanten.MaximaleBildrate),
                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageBildrate);
       
       case

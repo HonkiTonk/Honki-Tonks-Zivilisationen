@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with ZahlenDatentypen;
+with SystemDatentypenHTSEB;
 
 package LeseOptionen is
    pragma Elaborate_Body;
@@ -22,11 +22,11 @@ package LeseOptionen is
    pragma Inline (Sound);
    
    function AnzahlAutospeichern
-     return ZahlenDatentypen.EigenesNatural;
+     return SystemDatentypenHTSEB.EigenesNatural;
    pragma Inline (AnzahlAutospeichern);
    
    function RundenAutospeichern
-     return ZahlenDatentypen.EigenesPositive;
+     return SystemDatentypenHTSEB.EigenesPositive;
    pragma Inline (RundenAutospeichern);
    
    function Dezimaltrennzeichen
@@ -38,7 +38,7 @@ package LeseOptionen is
    pragma Inline (SicherheitsfragenAnzeigen);
    
    function AktuellerAutospeichernwert
-     return ZahlenDatentypen.EigenesPositive;
+     return SystemDatentypenHTSEB.EigenesPositive;
    pragma Inline (AktuellerAutospeichernwert);
 
 end LeseOptionen;

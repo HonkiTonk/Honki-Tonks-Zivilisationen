@@ -1,4 +1,5 @@
 -- private with GanzzahltestsHTSEB;
+private with SystemDatentypenHTSEB;
 
 with SpeziesDatentypen;
 with EinheitenRecords;
@@ -7,7 +8,6 @@ with EinheitenKonstanten;
 private with KartenRecords;
 private with StadtRecords;
 private with KartenDatentypen;
-private with ZahlenDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -31,10 +31,10 @@ private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
 
-   Verbleibendezeit : ZahlenDatentypen.EigenesNatural;
-   EingesetztePZB : ZahlenDatentypen.EigenesNatural;
+   Verbleibendezeit : SystemDatentypenHTSEB.EigenesNatural;
+   EingesetztePZB : SystemDatentypenHTSEB.EigenesNatural;
 
-   Zusammenbruchszeit : ZahlenDatentypen.EigenerInteger;
+   Zusammenbruchszeit : SystemDatentypenHTSEB.EigenerInteger;
 
    Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
 
@@ -65,6 +65,6 @@ private
 
 
 
-   -- function GanzeZahlPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
+   -- function GanzeZahlPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => SystemDatentypenHTSEB.EigenesNatural);
 
 end PZBEingesetztLogik;

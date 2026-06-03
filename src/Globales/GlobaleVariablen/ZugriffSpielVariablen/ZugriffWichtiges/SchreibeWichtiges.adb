@@ -18,7 +18,7 @@ package body SchreibeWichtiges is
    -- Warum sollte die Geldmenge nicht kleiner 0 sein können? äöü
    procedure Geldmenge
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      GeldZugewinnExtern : in ZahlenDatentypen.EigenerInteger;
+      GeldZugewinnExtern : in SystemDatentypenHTSEB.EigenerInteger;
       RechnenSetzenExtern : in Boolean)
    is begin
          
@@ -32,9 +32,9 @@ package body SchreibeWichtiges is
                SpielVariablen.Wichtiges (SpeziesExtern).Geldmenge := LeseGrenzen.Geldgrenze (SpeziesExtern => SpeziesExtern);
             
             elsif
-              SpielVariablen.Wichtiges (SpeziesExtern).Geldmenge + GeldZugewinnExtern <= ZahlenDatentypen.EigenerInteger'First
+              SpielVariablen.Wichtiges (SpeziesExtern).Geldmenge + GeldZugewinnExtern <= SystemDatentypenHTSEB.EigenerInteger'First
             then
-               SpielVariablen.Wichtiges (SpeziesExtern).Geldmenge := ZahlenDatentypen.EigenerInteger'First;
+               SpielVariablen.Wichtiges (SpeziesExtern).Geldmenge := SystemDatentypenHTSEB.EigenerInteger'First;
             
             else
                SpielVariablen.Wichtiges (SpeziesExtern).Geldmenge := SpielVariablen.Wichtiges (SpeziesExtern).Geldmenge + GeldZugewinnExtern;

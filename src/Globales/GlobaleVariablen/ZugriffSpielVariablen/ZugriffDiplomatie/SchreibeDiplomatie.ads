@@ -1,8 +1,9 @@
+with SystemDatentypenHTSEB;
+
 private with GanzzahltestsHTSEB;
 
 with SpeziesDatentypen;
 with DiplomatieDatentypen;
-with ZahlenDatentypen;
 with SpielRecords;
 
 with LeseSpeziesbelegung;
@@ -43,7 +44,7 @@ package SchreibeDiplomatie is
    procedure ZeitSeitÄnderung
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ÄnderungExtern : in ZahlenDatentypen.EigenesNatural;
+      ÄnderungExtern : in SystemDatentypenHTSEB.EigenesNatural;
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -69,7 +70,7 @@ package SchreibeDiplomatie is
    
 private
    
-   function EigeneZahlPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
+   function EigeneZahlPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => SystemDatentypenHTSEB.EigenesNatural);
    
    function MeinungPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => DiplomatieDatentypen.MeinungBasis);
 

@@ -54,5 +54,10 @@ package SystemDatentypenHTSEB is
    type EinByteVorzeichen is range -2**7 .. (2**7) - 1; -- -128 .. 127
    type ZweiByteVorzeichen is range -2**15 .. (2**15) - 1; -- -32_768 .. 32_767
    type VierByteVorzeichen is range -2**31 .. (2**31) - 1; -- -2_147_483_648 .. 2_147_483_647
+   
+   subtype VierundsechzigElemente is EigenesPositive range EigenesPositive'First .. 64;
+   subtype ZweiundreißigElemente is VierundsechzigElemente range VierundsechzigElemente'First .. 32;
+   subtype SechzehnElemente is ZweiundreißigElemente range ZweiundreißigElemente'First .. 16;
+   subtype AchtElemente is SechzehnElemente range SechzehnElemente'First .. 8;
 
 end SystemDatentypenHTSEB;

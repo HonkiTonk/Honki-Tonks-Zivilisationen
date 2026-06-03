@@ -26,7 +26,7 @@ package body LeseGrenzen is
    
    function Geldgrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ZahlenDatentypen.EigenesNatural
+      return SystemDatentypenHTSEB.EigenesNatural
    is begin
       
       return SpielVariablen.Grenzen (SpeziesExtern).Geldgrenze;
@@ -70,7 +70,7 @@ package body LeseGrenzen is
    
    function Speziesrundengrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ZahlenDatentypen.EigenesNatural
+      return SystemDatentypenHTSEB.EigenesNatural
    is begin
       
       return SpielVariablen.Grenzen (SpeziesExtern).SpeziesRundengrenze;

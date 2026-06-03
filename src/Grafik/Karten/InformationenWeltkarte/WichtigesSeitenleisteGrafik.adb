@@ -91,7 +91,7 @@ package body WichtigesSeitenleisteGrafik is
       case
         LeseGrenzen.Speziesrundengrenze (SpeziesExtern => SpeziesExtern)
       is
-         when ZahlenDatentypen.EigenesNatural'First =>
+         when SystemDatentypenHTSEB.EigenesNatural'First =>
             Rundengrenze := LeseAllgemeines.Rundengrenze;
             
          when others =>
@@ -102,7 +102,7 @@ package body WichtigesSeitenleisteGrafik is
       case
         Rundengrenze
       is
-         when ZahlenDatentypen.EigenesNatural'First =>
+         when SystemDatentypenHTSEB.EigenesNatural'First =>
             return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image;
             
          when others =>

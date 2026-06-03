@@ -10,10 +10,10 @@ package body DiagnosesystemZusatzinformationen is
    is begin
       
       Put_Line ("Einzeln:");
-      Put_Line (Item => "Bits:" & Kartengrund'Wide_Wide_Image);
-      Put_Line (Item => "Bytes:" & Integer (Kartengrund / ByteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Kilobytes:" & Integer (Kartengrund / KilobyteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Megabytes:" & Integer (Kartengrund / MegabyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Bits:" & ZuPrüfendeGröße'Wide_Wide_Image);
+      Put_Line (Item => "Bytes:" & Integer (ZuPrüfendeGröße / ByteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Kilobytes:" & Integer (ZuPrüfendeGröße / KilobyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Megabytes:" & Integer (ZuPrüfendeGröße / MegabyteTeiler)'Wide_Wide_Image);
       
       New_Line;
       
@@ -23,6 +23,8 @@ package body DiagnosesystemZusatzinformationen is
       Put_Line (Item => "Kilobytes:" & Integer (5 * Kartenfeld * 1_000_000 / KilobyteTeiler)'Wide_Wide_Image);
       Put_Line (Item => "Megabytes:" & Integer (5 * Kartenfeld * 1_000_000 / MegabyteTeiler)'Wide_Wide_Image);
       
+      GrößenprüfungDatei;
+      
    end GrößenprüfungKartenfeld;
    
    
@@ -31,24 +33,24 @@ package body DiagnosesystemZusatzinformationen is
    is begin
       
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
-                                                NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
+                                                NameExtern     => ("Spielstand/Manuell/Z" & "Version 1"));
             
       SystemDatentypenHTSEB.EinByteVorzeichen'Write (Stream (File => DateiSpeichern),
                                                      1);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
-                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Alte Version"));
+                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Version 1"));
                                               
       
       
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
-                                                NameExtern     => ("Spielstand/Manuell/Z" & "Neue Version"));
+                                                NameExtern     => ("Spielstand/Manuell/Z" & "Version 2"));
       
       KartengrundDatentypen.Basisgrund_Enum'Write (Stream (File => DateiSpeichern),
                                                    KartengrundDatentypen.Flachland_Enum);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
-                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Neue Version"));
+                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Version 2"));
       
    end GrößenprüfungDatei;
    

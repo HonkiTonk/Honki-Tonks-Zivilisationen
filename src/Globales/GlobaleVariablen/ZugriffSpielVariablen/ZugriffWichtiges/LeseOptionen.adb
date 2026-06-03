@@ -43,7 +43,7 @@ package body LeseOptionen is
    
    
    function AnzahlAutospeichern
-     return ZahlenDatentypen.EigenesNatural
+     return SystemDatentypenHTSEB.EigenesNatural
    is begin
       
       return OptionenVariablen.NutzerEinstellungen.AnzahlAutospeichern;
@@ -53,7 +53,7 @@ package body LeseOptionen is
    
    
    function RundenAutospeichern
-     return ZahlenDatentypen.EigenesPositive
+     return SystemDatentypenHTSEB.EigenesPositive
    is begin
       
       return OptionenVariablen.NutzerEinstellungen.RundenAutospeichern;
@@ -83,7 +83,7 @@ package body LeseOptionen is
    
    
    function AktuellerAutospeichernwert
-     return ZahlenDatentypen.EigenesPositive
+     return SystemDatentypenHTSEB.EigenesPositive
    is begin
       
       return OptionenVariablen.SpielendeEinstellungen.AktuellerAutospeichernwert;

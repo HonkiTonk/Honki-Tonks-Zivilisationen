@@ -29,7 +29,7 @@ package body LeseDiplomatie is
    function ZeitSeitÄnderung
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ZahlenDatentypen.EigenesNatural
+      return SystemDatentypenHTSEB.EigenesNatural
    is begin
       
       return SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).ZeitSeitLetzterÄnderung;

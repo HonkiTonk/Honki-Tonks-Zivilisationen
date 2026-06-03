@@ -20,9 +20,5 @@ package SpeichernBasisgrundLogik is
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
-   
-private
-   
-   
 
 end SpeichernBasisgrundLogik;

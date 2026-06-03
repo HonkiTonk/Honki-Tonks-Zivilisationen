@@ -41,7 +41,7 @@ package body SchreibeDiplomatie is
    procedure ZeitSeitÄnderung
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      ÄnderungExtern : in ZahlenDatentypen.EigenesNatural;
+      ÄnderungExtern : in SystemDatentypenHTSEB.EigenesNatural;
       RechnenSetzenExtern : in Boolean)
    is begin
       

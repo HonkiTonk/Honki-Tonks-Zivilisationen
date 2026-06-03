@@ -1,7 +1,8 @@
+with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
-with ZahlenDatentypen;
 with ProduktionDatentypen;
 with SpielRecords;
 
@@ -20,7 +21,7 @@ package SchreibeGrenzen is
    
    procedure Geldgrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      GeldgrenzeExtern : in ZahlenDatentypen.EigenesNatural);
+      GeldgrenzeExtern : in SystemDatentypenHTSEB.EigenesNatural);
    pragma Inline (Geldgrenze);
    
    procedure Forschungsgrenze
@@ -40,7 +41,7 @@ package SchreibeGrenzen is
    
    procedure Speziesrundengrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SpeziesrundengrenzeExtern : in ZahlenDatentypen.EigenesNatural);
+      SpeziesrundengrenzeExtern : in SystemDatentypenHTSEB.EigenesNatural);
    pragma Inline (Speziesrundengrenze);
    
    procedure GanzerEintrag

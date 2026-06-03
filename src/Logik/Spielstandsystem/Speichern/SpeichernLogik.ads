@@ -4,7 +4,6 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 private with SystemDatentypenHTSEB;
 
 private with SpeziesDatentypen;
-private with ZahlenDatentypen;
 
 package SpeichernLogik is
    pragma Elaborate_Body;
@@ -26,7 +25,7 @@ private
 
    Spielstandart : SystemDatentypenHTSEB.Spielstand_Enum;
 
-   AktuellerAutospeichernwert : ZahlenDatentypen.EigenesPositive;
+   AktuellerAutospeichernwert : SystemDatentypenHTSEB.EigenesPositive;
 
 
    MaximalerAutospeichernwert : Natural;

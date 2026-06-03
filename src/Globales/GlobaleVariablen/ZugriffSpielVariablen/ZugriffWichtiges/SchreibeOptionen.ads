@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemRecords;
-with ZahlenDatentypen;
+with SystemDatentypenHTSEB;
 
 package SchreibeOptionen is
    pragma Elaborate_Body;
@@ -39,11 +39,11 @@ package SchreibeOptionen is
    pragma Inline (Sound);
    
    procedure AnzahlAutospeichern
-     (AutospeicheranzahlExtern : in ZahlenDatentypen.EigenesNatural);
+     (AutospeicheranzahlExtern : in SystemDatentypenHTSEB.EigenesNatural);
    pragma Inline (AnzahlAutospeichern);
    
    procedure RundenAutospeichern
-     (RundenanzahlExtern : in ZahlenDatentypen.EigenesPositive);
+     (RundenanzahlExtern : in SystemDatentypenHTSEB.EigenesPositive);
    pragma Inline (RundenAutospeichern);
    
    procedure Dezimaltrennzeichen
@@ -59,7 +59,7 @@ package SchreibeOptionen is
    pragma Inline (GanzeSpieleinstellungen);
    
    procedure AktuellerAutospeichernwert
-     (AutospeichernwertExtern : in ZahlenDatentypen.EigenesPositive);
+     (AutospeichernwertExtern : in SystemDatentypenHTSEB.EigenesPositive);
    pragma Inline (AktuellerAutospeichernwert);
    
    procedure GanzeSpielendeEinstellungen

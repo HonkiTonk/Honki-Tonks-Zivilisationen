@@ -1,8 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with BetriebssystemDatentypenHTSEB;
-
-with ZahlenDatentypen;
+with SystemDatentypenHTSEB;
 
 package SystemRecords is
    pragma Preelaborate;
@@ -14,8 +13,8 @@ package SystemRecords is
       Musik : Unbounded_Wide_Wide_String;
       Sound : Unbounded_Wide_Wide_String;
       
-      AnzahlAutospeichern : ZahlenDatentypen.EigenesNatural;
-      RundenAutospeichern : ZahlenDatentypen.EigenesPositive;
+      AnzahlAutospeichern : SystemDatentypenHTSEB.EigenesNatural;
+      RundenAutospeichern : SystemDatentypenHTSEB.EigenesPositive;
       
       Dezimaltrennzeichen : Wide_Wide_Character;
       
@@ -29,7 +28,7 @@ package SystemRecords is
    -- Oder das dann lieber temporär speichern und nach Spielende wegwerfen? äöü
    type SpielendeEinstellungenRecord is record
       
-      AktuellerAutospeichernwert : ZahlenDatentypen.EigenesPositive;
+      AktuellerAutospeichernwert : SystemDatentypenHTSEB.EigenesPositive;
       
    end record;
    

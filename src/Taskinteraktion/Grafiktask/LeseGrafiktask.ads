@@ -1,12 +1,13 @@
 with Ada.Calendar; use Ada.Calendar;
 
+with SystemDatentypenHTSEB;
+
 with GrafikDatentypen;
 with MenueDatentypen;
 with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with KartenRecords;
-with ZahlenDatentypen;
 with TextnummernKonstanten;
 with EinheitenRecords;
 with SystemRecords;
@@ -79,16 +80,16 @@ package LeseGrafiktask is
      return Boolean;
    
    function Endauswahl
-     return ZahlenDatentypen.EigenesNatural;
+     return SystemDatentypenHTSEB.EigenesNatural;
    
    function Gesamtauswahl
      return SystemRecords.DoppelauswahlRecord;
    
    function Erstauswahl
-     return ZahlenDatentypen.EigenerInteger;
+     return SystemDatentypenHTSEB.EigenerInteger;
    
    function Zweitauswahl
-     return ZahlenDatentypen.EigenerInteger;
+     return SystemDatentypenHTSEB.EigenerInteger;
    
    function StadtEinheitAuswahl
      return EinheitenRecords.AuswahlRecord;
@@ -113,7 +114,7 @@ package LeseGrafiktask is
      return GrafikDatentypen.Eingabe_Enum;
    
    function Zahleneingabe
-     return ZahlenDatentypen.EigenesNatural;
+     return SystemDatentypenHTSEB.EigenesNatural;
    
    function MaustasteGehalten
      return Boolean;
@@ -128,7 +129,7 @@ package LeseGrafiktask is
      return Time;
    
    function Fragenanzeige
-     return ZahlenDatentypen.EigenesNatural;
+     return SystemDatentypenHTSEB.EigenesNatural;
    
    function Einheitenbewegung
      return Boolean;

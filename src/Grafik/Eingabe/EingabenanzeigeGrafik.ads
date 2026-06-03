@@ -3,7 +3,8 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 private with Sf.System.Vector2;
 private with Sf.Graphics.Rect;
 
-with ZahlenDatentypen;
+with SystemDatentypenHTSEB;
+
 with GrafikDatentypen;
 with StadtRecords;
 with SpeziesDatentypen;
@@ -23,7 +24,7 @@ package EingabenanzeigeGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
    
    procedure Fragenaufteilung
-     (FrageExtern : in ZahlenDatentypen.EigenesPositive;
+     (FrageExtern : in SystemDatentypenHTSEB.EigenesPositive;
       EingabeExtern : in GrafikDatentypen.Eingabe_Fragen_Enum);
    
    procedure AnzeigeEinheitenStadt

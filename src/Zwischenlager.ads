@@ -891,7 +891,7 @@ private
    VorhandeneFeldelemente : SystemDatentypenHTSEB.EinByte;
    AktuellesFeldelement : SystemDatentypenHTSEB.EinByte;
 
-   Potenz : ZahlenDatentypen.EigenesNatural;
+   Potenz : SystemDatentypenHTSEB.EigenesNatural;
 
    Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
 

@@ -1,7 +1,8 @@
+with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 with DiplomatieDatentypen;
 with SpielRecords;
-with ZahlenDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -41,7 +42,7 @@ package LeseDiplomatie is
    function ZeitSeitÄnderung
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ZahlenDatentypen.EigenesNatural
+      return SystemDatentypenHTSEB.EigenesNatural
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

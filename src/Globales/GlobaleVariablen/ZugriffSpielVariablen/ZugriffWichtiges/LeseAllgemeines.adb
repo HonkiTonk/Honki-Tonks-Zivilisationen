@@ -43,7 +43,7 @@ package body LeseAllgemeines is
    
    
    function Rundenanzahl
-     return ZahlenDatentypen.EigenesPositive
+     return SystemDatentypenHTSEB.EigenesPositive
    is begin
       
       return SpielVariablen.Allgemeines.Rundenanzahl;
@@ -53,7 +53,7 @@ package body LeseAllgemeines is
    
    
    function Rundengrenze
-     return ZahlenDatentypen.EigenesNatural
+     return SystemDatentypenHTSEB.EigenesNatural
    is begin
       
       return SpielVariablen.Allgemeines.Rundengrenze;
@@ -83,7 +83,7 @@ package body LeseAllgemeines is
    
    
    function EingesetztePZB
-     return ZahlenDatentypen.EigenesNatural
+     return SystemDatentypenHTSEB.EigenesNatural
    is begin
       
       return SpielVariablen.Allgemeines.EingesetztePZB;
@@ -93,7 +93,7 @@ package body LeseAllgemeines is
    
    
    function Zusammenbruchszeit
-     return ZahlenDatentypen.EigenerInteger
+     return SystemDatentypenHTSEB.EigenerInteger
    is begin
       
       return SpielVariablen.Allgemeines.Zusammenbruchszeit;

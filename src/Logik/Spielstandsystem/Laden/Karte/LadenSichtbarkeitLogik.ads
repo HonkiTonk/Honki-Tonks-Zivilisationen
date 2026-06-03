@@ -6,7 +6,6 @@ with KartenRecords;
 with KartenDatentypen;
 with SpeziesDatentypen;
 
-private with ZahlenDatentypen;
 private with SpeziesArrays;
 private with SystemKonstanten;
 
@@ -35,9 +34,9 @@ package LadenSichtbarkeitLogik is
    
 private
    
-   AktuellerArraybereich : ZahlenDatentypen.EigenesPositive;
+   AktuellerArraybereich : SystemDatentypenHTSEB.EigenesPositive;
    
-   Potenz : ZahlenDatentypen.EigenerInteger;
+   Potenz : SystemDatentypenHTSEB.EigenerInteger;
    
    VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
    

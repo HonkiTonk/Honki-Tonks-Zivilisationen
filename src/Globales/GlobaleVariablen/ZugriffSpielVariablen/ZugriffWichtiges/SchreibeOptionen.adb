@@ -43,7 +43,7 @@ package body SchreibeOptionen is
    
    
    procedure AnzahlAutospeichern
-     (AutospeicheranzahlExtern : in ZahlenDatentypen.EigenesNatural)
+     (AutospeicheranzahlExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       OptionenVariablen.NutzerEinstellungen.AnzahlAutospeichern := AutospeicheranzahlExtern;
@@ -53,7 +53,7 @@ package body SchreibeOptionen is
    
    
    procedure RundenAutospeichern
-     (RundenanzahlExtern : in ZahlenDatentypen.EigenesPositive)
+     (RundenanzahlExtern : in SystemDatentypenHTSEB.EigenesPositive)
    is begin
       
       OptionenVariablen.NutzerEinstellungen.RundenAutospeichern := RundenanzahlExtern;
@@ -93,7 +93,7 @@ package body SchreibeOptionen is
    
    
    procedure AktuellerAutospeichernwert
-     (AutospeichernwertExtern : in ZahlenDatentypen.EigenesPositive)
+     (AutospeichernwertExtern : in SystemDatentypenHTSEB.EigenesPositive)
    is begin
       
       OptionenVariablen.SpielendeEinstellungen.AktuellerAutospeichernwert := AutospeichernwertExtern;

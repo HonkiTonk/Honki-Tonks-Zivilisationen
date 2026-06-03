@@ -5,7 +5,6 @@ private with SystemDatentypenHTSEB;
 with SpeziesDatentypen;
 
 private with SpielRecords;
-private with ZahlenDatentypen;
 private with ProduktionDatentypen;
 private with ForschungenDatentypen;
 private with StadtDatentypen;
@@ -25,7 +24,7 @@ private
    
    AlleGrenzen : SpielRecords.GrenzenRecord;
    
-   Geldmenge : ZahlenDatentypen.EigenerInteger;
+   Geldmenge : SystemDatentypenHTSEB.EigenerInteger;
    
    GeldRundengewinn : ProduktionDatentypen.Produktion;
    
@@ -39,7 +38,7 @@ private
    
    ForschungVorhanden : SystemDatentypenHTSEB.VierByte;
    
-   Potenz : ZahlenDatentypen.EigenesNatural;
+   Potenz : SystemDatentypenHTSEB.EigenesNatural;
    
    Erforscht : ForschungenDatentypen.ErforschtArray;
    

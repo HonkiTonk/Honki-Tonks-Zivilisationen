@@ -5,7 +5,6 @@ with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
 with SpielDatentypen;
-with ZahlenDatentypen;
 with LadezeitenDatentypen;
 
 with LeseAllgemeines;
@@ -73,10 +72,10 @@ package body SpeichernAllgemeinesLogik is
       SpielDatentypen.Schwierigkeitsgrad_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                      LeseAllgemeines.Schwierigkeitsgrad);
       
-      ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiSpeichernExtern),
+      SystemDatentypenHTSEB.EigenesPositive'Write (Stream (File => DateiSpeichernExtern),
                                               LeseAllgemeines.Rundenanzahl);
       
-      ZahlenDatentypen.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
+      SystemDatentypenHTSEB.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
                                              LeseAllgemeines.Rundengrenze);
       
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
@@ -85,10 +84,10 @@ package body SpeichernAllgemeinesLogik is
       SpeziesDatentypen.Spezies_Enum'Write (Stream (File => DateiSpeichernExtern),
                                             LeseAllgemeines.PlanetVernichtet);
       
-      ZahlenDatentypen.EigenerInteger'Write (Stream (File => DateiSpeichernExtern),
+      SystemDatentypenHTSEB.EigenerInteger'Write (Stream (File => DateiSpeichernExtern),
                                              LeseAllgemeines.Zusammenbruchszeit);
       
-      ZahlenDatentypen.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
+      SystemDatentypenHTSEB.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
                                              LeseAllgemeines.EingesetztePZB);
       
       LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,

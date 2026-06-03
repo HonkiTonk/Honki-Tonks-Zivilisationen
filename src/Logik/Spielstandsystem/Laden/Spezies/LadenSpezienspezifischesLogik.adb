@@ -83,7 +83,7 @@ package body LadenSpezienspezifischesLogik is
       use type SystemDatentypenHTSEB.VierByte;
    begin
       
-      ZahlenDatentypen.EigenerInteger'Read (Stream (File => DateiLadenExtern),
+      SystemDatentypenHTSEB.EigenerInteger'Read (Stream (File => DateiLadenExtern),
                                             Geldmenge);
       
       -- Das hier, und eventuell auch andere Sachen, weglassen und einfach neu berechnen nach dem Laden? äöü

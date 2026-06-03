@@ -17,7 +17,12 @@ package KartengrundDatentypen is
                               
                             -- Oberfläche
                             Eis_Enum,
-                            Wasser_Enum, Küstengewässer_Enum,
+                            Wasser_Enum,
+                            
+                            -- Wasser zu Küstengewässer in alle Richtungen einzeln und mehrfach. äöü
+                            -- Wäre aber auch halt komplett übertrieben, will ich das? äöü
+                            
+                            Küstengewässer_Enum,
                             Flachland_Enum, Wüste_Enum, Tundra_Enum,
                             
                             Hügelkreuzung_Vier_Enum, Hügel_Waagrecht_Enum, Hügel_Senkrecht_Enum, Hügelkurve_Unten_Rechts_Enum, Hügelkurve_Unten_Links_Enum, Hügelkurve_Oben_Rechts_Enum, Hügelkurve_Oben_Links_Enum,

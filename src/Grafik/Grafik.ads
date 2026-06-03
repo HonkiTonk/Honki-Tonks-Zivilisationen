@@ -1,8 +1,9 @@
 private with Ada.Calendar;
 
+private with SystemDatentypenHTSEB;
+
 private with GrafikDatentypen;
 private with TextnummernKonstanten;
-private with ZahlenDatentypen;
 
 package Grafik is
    pragma Elaborate_Body;
@@ -22,7 +23,7 @@ private
 
    procedure AnzeigeEingaben
      (EingabeExtern : in GrafikDatentypen.Eingabe_Enum;
-      FrageExtern : in ZahlenDatentypen.EigenesNatural);
+      FrageExtern : in SystemDatentypenHTSEB.EigenesNatural);
 
    procedure AnzeigeSpielmeldungen
      (AktuelleDarstellungExtern : in GrafikDatentypen.Aktuelle_Anzeige_Enum;

@@ -1,7 +1,8 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
-with ZahlenDatentypen;
 with SpielDatentypen;
 with SpielRecords;
 
@@ -25,11 +26,11 @@ package LeseAllgemeines is
    pragma Inline (Schwierigkeitsgrad);
    
    function Rundenanzahl
-     return ZahlenDatentypen.EigenesPositive;
+     return SystemDatentypenHTSEB.EigenesPositive;
    pragma Inline (Rundenanzahl);
    
    function Rundengrenze
-     return ZahlenDatentypen.EigenesNatural;
+     return SystemDatentypenHTSEB.EigenesNatural;
    pragma Inline (Rundengrenze);
    
    function Ironman
@@ -41,11 +42,11 @@ package LeseAllgemeines is
    pragma Inline (PlanetVernichtet);
    
    function Zusammenbruchszeit
-     return ZahlenDatentypen.EigenerInteger;
+     return SystemDatentypenHTSEB.EigenerInteger;
    pragma Inline (Zusammenbruchszeit);
    
    function EingesetztePZB
-     return ZahlenDatentypen.EigenesNatural;
+     return SystemDatentypenHTSEB.EigenesNatural;
    pragma Inline (EingesetztePZB);
    
    function GanzerEintrag

@@ -1,7 +1,6 @@
 with SystemDatentypenHTSEB;
 
 with TextnummernKonstanten;
-with ZahlenDatentypen;
 
 package SystemKonstanten is
    pragma Pure;
@@ -13,9 +12,9 @@ package SystemKonstanten is
    AllesSichtbar : constant SystemDatentypenHTSEB.EinByteVorzeichen := -1;
    AllesUnsichtbar : constant SystemDatentypenHTSEB.EinByteVorzeichen := -2;
    
-   MaximaleEingabe : constant ZahlenDatentypen.EigenesPositive := 999_999_999;
+   MaximaleEingabe : constant SystemDatentypenHTSEB.EigenesPositive := 999_999_999;
    
-   MinimaleEingabe : constant ZahlenDatentypen.EigenerInteger := -999_999_999;
+   MinimaleEingabe : constant SystemDatentypenHTSEB.EigenerInteger := -999_999_999;
    
    Abwählen : constant Natural := 0;
    

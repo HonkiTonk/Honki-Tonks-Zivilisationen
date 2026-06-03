@@ -12,7 +12,7 @@ with EinheitenRecords;
 with StadtRecords;
 
 private with WeltkarteRecords;
-private with StadtDatentypen;
+-- private with StadtDatentypen;
 private with KartengrundDatentypen;
 
 with SpeziesDatentypen;
@@ -57,10 +57,8 @@ private
    MegabyteTeiler : constant Positive := KilobyteTeiler * 1_024;
    
    Kartenfeld : constant Positive := WeltkarteRecords.WeltkarteRecord'Size;
-   ZuPrüfendeGröße : constant Positive := StadtDatentypen.Städtebereich'Size;
+   ZuPrüfendeGröße : constant Positive := KartengrundDatentypen.Basisgrund_Enum'Size;
    
-   Kartengrund : constant Positive := KartengrundDatentypen.Basisgrund_Enum'Size;
-         
    DateiSpeichern : File_Type;
    
    Zwischenspeicher : Unbounded_Wide_Wide_String;

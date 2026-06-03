@@ -347,7 +347,7 @@ package body Grafik is
    
    procedure AnzeigeEingaben
      (EingabeExtern : in GrafikDatentypen.Eingabe_Enum;
-      FrageExtern : in ZahlenDatentypen.EigenesNatural)
+      FrageExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       case

@@ -7,7 +7,6 @@ private with SystemDatentypenHTSEB;
 private with SpielRecords;
 private with SpeziesDatentypen;
 private with SpielDatentypen;
-private with ZahlenDatentypen;
 private with SpeziesArrays;
 
 package LadenAllgemeinesLogik is
@@ -24,7 +23,7 @@ private
    Gewonnen : Boolean;
    Weiterspielen : Boolean;
    
-   AktuellerArraybereich : ZahlenDatentypen.EigenesPositive;
+   AktuellerArraybereich : SystemDatentypenHTSEB.EigenesPositive;
    
    SpeziesVorhanden : SpeziesDatentypen.Speziesnummern;
    
@@ -34,21 +33,21 @@ private
       
    Schwierigkeitsgrad : SpielDatentypen.Schwierigkeitsgrad_Enum;
       
-   Rundenanzahl : ZahlenDatentypen.EigenesPositive;
+   Rundenanzahl : SystemDatentypenHTSEB.EigenesPositive;
       
-   Rundengrenze : ZahlenDatentypen.EigenesNatural;
+   Rundengrenze : SystemDatentypenHTSEB.EigenesNatural;
       
    Ironman : Unbounded_Wide_Wide_String;
       
    PlanetVernichtet : SpeziesDatentypen.Spezies_Enum;
       
-   Zusammenbruchszeit : ZahlenDatentypen.EigenerInteger;
+   Zusammenbruchszeit : SystemDatentypenHTSEB.EigenerInteger;
       
-   EingesetztePZB : ZahlenDatentypen.EigenesNatural;
+   EingesetztePZB : SystemDatentypenHTSEB.EigenesNatural;
 
    Belegung : SpielRecords.SpeziesbelegungArray;
    
-   Potenz : ZahlenDatentypen.EigenesNatural;
+   Potenz : SystemDatentypenHTSEB.EigenesNatural;
    
    Besiegt : SpeziesArrays.SpeziesByteArray;
    

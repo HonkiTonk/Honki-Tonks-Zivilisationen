@@ -4,9 +4,9 @@ with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
 
 with SystemRecordsHTSEB;
+with SystemDatentypenHTSEB;
 
 with GrafikDatentypen;
-with ZahlenDatentypen;
 with EinheitenRecords;
 with StadtRecords;
 with MenueDatentypen;
@@ -102,7 +102,7 @@ package TaskRecords is
       Seitenauswahl : Boolean;
       Löschauswahl : Boolean;
       
-      Endauswahl : ZahlenDatentypen.EigenesNatural;
+      Endauswahl : SystemDatentypenHTSEB.EigenesNatural;
       
       Gesamtauswahl : SystemRecords.DoppelauswahlRecord;
       
@@ -122,7 +122,7 @@ package TaskRecords is
       
       Eingabeart : GrafikDatentypen.Eingabe_Enum;
    
-      Zahleneingabe : ZahlenDatentypen.EigenesNatural;
+      Zahleneingabe : SystemDatentypenHTSEB.EigenesNatural;
       
       MaustasteGehalten : Boolean;
       TastaturtasteGehalten : Boolean;
@@ -137,7 +137,7 @@ package TaskRecords is
       
       Spielmeldungszeit : Time;
       
-      Fragenanzeige : ZahlenDatentypen.EigenesNatural;
+      Fragenanzeige : SystemDatentypenHTSEB.EigenesNatural;
       
    end record;
    

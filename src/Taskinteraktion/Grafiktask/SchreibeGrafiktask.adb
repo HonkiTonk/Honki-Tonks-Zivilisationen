@@ -213,7 +213,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Endauswahl
-     (AuswahlExtern : in ZahlenDatentypen.EigenesNatural)
+     (AuswahlExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       Grafiktask.Auswahl.Endauswahl := AuswahlExtern;
@@ -234,7 +234,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Erstauswahl
-     (AuswahlExtern : in ZahlenDatentypen.EigenerInteger)
+     (AuswahlExtern : in SystemDatentypenHTSEB.EigenerInteger)
    is begin
       
       Grafiktask.Auswahl.Gesamtauswahl.Erstauswahl := AuswahlExtern;
@@ -244,7 +244,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Zweitauswahl
-     (AuswahlExtern : in ZahlenDatentypen.EigenerInteger)
+     (AuswahlExtern : in SystemDatentypenHTSEB.EigenerInteger)
    is begin
       
       Grafiktask.Auswahl.Gesamtauswahl.Zweitauswahl := AuswahlExtern;
@@ -335,7 +335,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Zahleneingabe
-     (ZahlExtern : in ZahlenDatentypen.EigenesNatural)
+     (ZahlExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       Grafiktask.Eingabe.Zahleneingabe := ZahlExtern;
@@ -385,7 +385,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Fragenanzeige
-     (FrageExtern : in ZahlenDatentypen.EigenesNatural)
+     (FrageExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       Grafiktask.Meldung.Fragenanzeige := FrageExtern;

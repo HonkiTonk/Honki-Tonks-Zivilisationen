@@ -1,16 +1,16 @@
 private with Sf.Window.Keyboard;
 
 with SystemRecordsHTSEB;
+with SystemDatentypenHTSEB;
 
-with ZahlenDatentypen;
 with Spieltexte;
 
 package ZahleneingabeLogik is
    pragma Elaborate_Body;
 
    function Zahleneingabe
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger;
       WelcheFrageExtern : in Positive)
       return SystemRecordsHTSEB.ZahlenEingabeRecord
      with
@@ -54,16 +54,16 @@ private
 
    procedure ZahlHinzufügen
      (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode;
-      ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
+      ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger)
      with
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
               );
 
    procedure ZahlBeschränken
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger)
      with
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
@@ -74,8 +74,8 @@ private
 
 
    function MinimumMaximumSetzen
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger)
       return Boolean
      with
        Pre => (
@@ -83,8 +83,8 @@ private
               );
 
    function ZahlSchleife
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger)
       return SystemRecordsHTSEB.ZahlenEingabeRecord
      with
        Pre => (
@@ -96,8 +96,8 @@ private
       return Zahl_Prüfung_Enum;
 
    function VorzeichenAnpassen
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger;
       PlusMinusExtern : in Boolean)
       return Boolean
      with
@@ -106,7 +106,7 @@ private
               );
 
    function ZahlenstringLimitieren
-     (ZahlExtern : in ZahlenDatentypen.EigenerInteger)
+     (ZahlExtern : in SystemDatentypenHTSEB.EigenerInteger)
       return Boolean;
 
 end ZahleneingabeLogik;

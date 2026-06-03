@@ -1,8 +1,9 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with SystemDatentypenHTSEB;
+
 private with GanzzahltestsHTSEB;
 
-with ZahlenDatentypen;
 with SpeziesDatentypen;
 with SpielDatentypen;
 with SpielRecords;
@@ -29,7 +30,7 @@ package SchreibeAllgemeines is
    pragma Inline (Rundenanzahl);
    
    procedure Rundengrenze
-     (RundengrenzeExtern : in ZahlenDatentypen.EigenesNatural);
+     (RundengrenzeExtern : in SystemDatentypenHTSEB.EigenesNatural);
    pragma Inline (Rundengrenze);
    
    procedure Ironman
@@ -41,7 +42,7 @@ package SchreibeAllgemeines is
    pragma Inline (PlanetVernichtet);
    
    procedure Zusammenbruchszeit
-     (ZeitExtern : in ZahlenDatentypen.EigenerInteger;
+     (ZeitExtern : in SystemDatentypenHTSEB.EigenerInteger;
       RechnenSetzenExtern : in Boolean);
    
    procedure EingesetztePZB;
@@ -56,6 +57,6 @@ package SchreibeAllgemeines is
    
 private
       
-   function EigeneZahlPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => ZahlenDatentypen.EigenerInteger);
+   function EigeneZahlPrüfen is new GanzzahltestsHTSEB.Strichrechnung (GanzeZahl => SystemDatentypenHTSEB.EigenerInteger);
 
 end SchreibeAllgemeines;

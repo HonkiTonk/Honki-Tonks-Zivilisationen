@@ -74,7 +74,7 @@ package body EinlesenSpielendeEinstellungenLogik is
                return False;
             
             when False =>
-               ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
+               SystemDatentypenHTSEB.EigenesPositive'Read (Stream (File => DateiLadenExtern),
                                                       Autospeichernwert);
          end case;
          

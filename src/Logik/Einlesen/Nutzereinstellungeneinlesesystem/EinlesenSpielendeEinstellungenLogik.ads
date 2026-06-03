@@ -1,6 +1,6 @@
 private with Ada.Streams.Stream_IO;
 
-private with ZahlenDatentypen;
+private with SystemDatentypenHTSEB;
 
 package EinlesenSpielendeEinstellungenLogik is
    pragma Elaborate_Body;
@@ -14,7 +14,7 @@ private
       
    DateiSonstigeEinstellungen : File_Type;
    
-   Autospeichernwert : ZahlenDatentypen.EigenesPositive;
+   Autospeichernwert : SystemDatentypenHTSEB.EigenesPositive;
    
    
    

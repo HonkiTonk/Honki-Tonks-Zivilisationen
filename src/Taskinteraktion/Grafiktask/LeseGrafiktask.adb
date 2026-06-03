@@ -213,7 +213,7 @@ package body LeseGrafiktask is
    
    
    function Endauswahl
-     return ZahlenDatentypen.EigenesNatural
+     return SystemDatentypenHTSEB.EigenesNatural
    is begin
       
       return Grafiktask.Auswahl.Endauswahl;
@@ -233,7 +233,7 @@ package body LeseGrafiktask is
    
    
    function Erstauswahl
-     return ZahlenDatentypen.EigenerInteger
+     return SystemDatentypenHTSEB.EigenerInteger
    is begin
       
       return Grafiktask.Auswahl.Gesamtauswahl.Erstauswahl;
@@ -243,7 +243,7 @@ package body LeseGrafiktask is
    
    
    function Zweitauswahl
-     return ZahlenDatentypen.EigenerInteger
+     return SystemDatentypenHTSEB.EigenerInteger
    is begin
       
       return Grafiktask.Auswahl.Gesamtauswahl.Zweitauswahl;
@@ -323,7 +323,7 @@ package body LeseGrafiktask is
    
    
    function Zahleneingabe
-     return ZahlenDatentypen.EigenesNatural
+     return SystemDatentypenHTSEB.EigenesNatural
    is begin
       
       return Grafiktask.Eingabe.Zahleneingabe;
@@ -373,7 +373,7 @@ package body LeseGrafiktask is
    
    
    function Fragenanzeige
-     return ZahlenDatentypen.EigenesNatural
+     return SystemDatentypenHTSEB.EigenesNatural
    is begin
       
       return Grafiktask.Meldung.Fragenanzeige;

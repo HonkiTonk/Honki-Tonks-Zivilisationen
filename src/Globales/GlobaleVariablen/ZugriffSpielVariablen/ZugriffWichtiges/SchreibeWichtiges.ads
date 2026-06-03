@@ -1,5 +1,6 @@
+with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
-with ZahlenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with SpielRecords;
@@ -12,7 +13,7 @@ package SchreibeWichtiges is
 
    procedure Geldmenge
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      GeldZugewinnExtern : in ZahlenDatentypen.EigenerInteger;
+      GeldZugewinnExtern : in SystemDatentypenHTSEB.EigenerInteger;
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (

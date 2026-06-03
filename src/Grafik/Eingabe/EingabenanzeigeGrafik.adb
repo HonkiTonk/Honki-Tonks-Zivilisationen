@@ -27,7 +27,7 @@ with TextskalierungGrafik;
 package body EingabenanzeigeGrafik is
    
    procedure Fragenaufteilung
-     (FrageExtern : in ZahlenDatentypen.EigenesPositive;
+     (FrageExtern : in SystemDatentypenHTSEB.EigenesPositive;
       EingabeExtern : in GrafikDatentypen.Eingabe_Fragen_Enum)
    is begin
       

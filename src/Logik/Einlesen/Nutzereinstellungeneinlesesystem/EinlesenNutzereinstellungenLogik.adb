@@ -86,7 +86,7 @@ package body EinlesenNutzereinstellungenLogik is
                AnzahlAutospeichern := SystemRecordKonstanten.StandardNutzereinstellungen.AnzahlAutospeichern;
             
             when False =>
-               ZahlenDatentypen.EigenesNatural'Read (Stream (File => DateiLadenExtern),
+               SystemDatentypenHTSEB.EigenesNatural'Read (Stream (File => DateiLadenExtern),
                                                      AnzahlAutospeichern);
          end case;
       
@@ -97,7 +97,7 @@ package body EinlesenNutzereinstellungenLogik is
                RundenAutospeichern := SystemRecordKonstanten.StandardNutzereinstellungen.RundenAutospeichern;
             
             when False =>
-               ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
+               SystemDatentypenHTSEB.EigenesPositive'Read (Stream (File => DateiLadenExtern),
                                                       RundenAutospeichern);
          end case;
          

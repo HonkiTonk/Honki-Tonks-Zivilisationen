@@ -13,8 +13,8 @@ with EingabeAllgemeinLogik;
 package body ZahleneingabeLogik is
    
    function Zahleneingabe
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger;
       WelcheFrageExtern : in Positive)
       return SystemRecordsHTSEB.ZahlenEingabeRecord
    is begin
@@ -43,8 +43,8 @@ package body ZahleneingabeLogik is
    
    
    function ZahlSchleife
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger)
       return SystemRecordsHTSEB.ZahlenEingabeRecord
    is begin
                   
@@ -128,8 +128,8 @@ package body ZahleneingabeLogik is
    
    
    function VorzeichenAnpassen
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger;
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger;
       PlusMinusExtern : in Boolean)
       return Boolean
    is begin
@@ -188,8 +188,8 @@ package body ZahleneingabeLogik is
    
    procedure ZahlHinzufügen
      (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode;
-      ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
+      ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger)
    is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
@@ -225,7 +225,7 @@ package body ZahleneingabeLogik is
       if
         ZahlenString (1) /= '0'
       then
-         ZahlenString := Trim (Source => ZahlenDatentypen.EigenesPositive'Last'Wide_Wide_Image,
+         ZahlenString := Trim (Source => SystemDatentypenHTSEB.EigenesPositive'Last'Wide_Wide_Image,
                                Side   => Ada.Strings.Left);
          
       else
@@ -238,8 +238,8 @@ package body ZahleneingabeLogik is
    
    
    procedure ZahlBeschränken
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger)
    is begin
       
       StringNachZahl := Natural'Wide_Wide_Value (ZahlenString);
@@ -289,8 +289,8 @@ package body ZahleneingabeLogik is
    
    
    function MinimumMaximumSetzen
-     (ZahlenMinimumExtern : in ZahlenDatentypen.EigenerInteger;
-      ZahlenMaximumExtern : in ZahlenDatentypen.EigenerInteger)
+     (ZahlenMinimumExtern : in SystemDatentypenHTSEB.EigenerInteger;
+      ZahlenMaximumExtern : in SystemDatentypenHTSEB.EigenerInteger)
       return Boolean
    is begin
       
@@ -391,16 +391,16 @@ package body ZahleneingabeLogik is
    
    
    function ZahlenstringLimitieren
-     (ZahlExtern : in ZahlenDatentypen.EigenerInteger)
+     (ZahlExtern : in SystemDatentypenHTSEB.EigenerInteger)
       return Boolean
    is begin
       
-      AktuelleZahl := Trim (Source => ZahlenDatentypen.EigenerInteger'Wide_Wide_Image (ZahlExtern),
+      AktuelleZahl := Trim (Source => SystemDatentypenHTSEB.EigenerInteger'Wide_Wide_Image (ZahlExtern),
                             Side   => Ada.Strings.Left)'Length;
          
       ZahlenString := ZahlenStringLeer;
          
-      ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Trim (Source => ZahlenDatentypen.EigenerInteger'Wide_Wide_Image (ZahlExtern),
+      ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Trim (Source => SystemDatentypenHTSEB.EigenerInteger'Wide_Wide_Image (ZahlExtern),
                                                                                         Side   => Ada.Strings.Left);
       
       return False;

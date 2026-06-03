@@ -1,7 +1,8 @@
+with SystemDatentypenHTSEB;
+
 with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
-with ZahlenDatentypen;
 with ProduktionDatentypen;
 with SpielRecords;
 
@@ -20,7 +21,7 @@ package LeseGrenzen is
 
    function Geldgrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ZahlenDatentypen.EigenesNatural;
+      return SystemDatentypenHTSEB.EigenesNatural;
    pragma Inline (Geldgrenze);
 
    function Forschungsgrenze
@@ -40,7 +41,7 @@ package LeseGrenzen is
 
    function Speziesrundengrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return ZahlenDatentypen.EigenesNatural;
+      return SystemDatentypenHTSEB.EigenesNatural;
    pragma Inline (Speziesrundengrenze);
 
    function GanzerEintrag

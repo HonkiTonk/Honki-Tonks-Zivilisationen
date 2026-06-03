@@ -4,6 +4,7 @@ with Ada.Exceptions; use Ada.Exceptions;
 with DateizugriffssystemHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
+with SystemDatentypenHTSEB;
 
 with Sf.Window.Window;
 with Sf.System.Vector2;
@@ -12,7 +13,6 @@ with Sf.Window.Keyboard;
 with Sf.Graphics.Text;
 
 with VerzeichnisKonstanten;
-with ZahlenDatentypen;
 with TextDatentypen;
 with SpeziesDatentypen;
 with TastenbelegungDatentypen;
@@ -39,10 +39,10 @@ package body SchreibenEinstellungenLogik is
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiNutzereinstellungen),
                                         LeseOptionen.Sprache);
       
-      ZahlenDatentypen.EigenesNatural'Write (Stream (File => DateiNutzereinstellungen),
+      SystemDatentypenHTSEB.EigenesNatural'Write (Stream (File => DateiNutzereinstellungen),
                                              LeseOptionen.AnzahlAutospeichern);
       
-      ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiNutzereinstellungen),
+      SystemDatentypenHTSEB.EigenesPositive'Write (Stream (File => DateiNutzereinstellungen),
                                               LeseOptionen.RundenAutospeichern);
       
       Wide_Wide_Character'Write (Stream (File => DateiNutzereinstellungen),
@@ -409,7 +409,7 @@ package body SchreibenEinstellungenLogik is
                                                 NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
       
       -- SystemRecords.SpielendeEinstellungenRecord
-      ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiSpielendeEinstellungen),
+      SystemDatentypenHTSEB.EigenesPositive'Write (Stream (File => DateiSpielendeEinstellungen),
                                               LeseOptionen.AktuellerAutospeichernwert);
       -- SystemRecords.SpielendeEinstellungenRecord
       

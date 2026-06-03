@@ -1,18 +1,7 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
-private with SystemDatentypenHTSEB;
-
 private with KartenRecords;
-private with KartenextraDatentypen;
-private with KartengrundDatentypen;
-private with KartenverbesserungDatentypen;
-private with EinheitenRecords;
-private with StadtRecords;
-private with KartenDatentypen;
-private with ZahlenDatentypen;
 private with SpeziesDatentypen;
-
-private with LeseWeltkarteneinstellungen;
 
 package LadenKarteLogik is
    pragma Elaborate_Body;
@@ -23,102 +12,11 @@ package LadenKarteLogik is
       return Boolean;
    
 private
-   use type KartenDatentypen.SenkrechteBasis;
-   use type KartenDatentypen.WaagerechteBasis;
    
    AnzahlFelder : Natural;
    
    VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
-   
-   VorhandeneFeldeffekte : SystemDatentypenHTSEB.EinByte;
-   AktuellerFeldeffekt : SystemDatentypenHTSEB.EinByte;
-   VorhandeneFeldelemente : SystemDatentypenHTSEB.EinByte;
-   AktuellesFeldelement : SystemDatentypenHTSEB.EinByte;
-   
-   Potenz : ZahlenDatentypen.EigenesNatural;
-   
-   Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
-   
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
-   
-   Feldeffekte : KartenRecords.FeldeffektArray;
-   
-   Fluss : KartenextraDatentypen.Fluss_Vorhanden_Enum;
-   
-   Ressource : KartenextraDatentypen.Ressourcen_Vorhanden_Enum;
-   
-   Weg : KartenverbesserungDatentypen.Weg_Vorhanden_Enum;
-   
-   Verbesserung : KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
-   
-   Einheit : EinheitenRecords.SpeziesEinheitnummerVorhandenRecord;
-     
-   Stadt : StadtRecords.SpeziesStadtnummerVorhandenRecord;
-   
-   
-   
-   type KoordinatenArray is array (0 .. 7) of KartenRecords.KartenfeldNaturalRecord;
-   Koordinaten : KoordinatenArray;
-   
-   
-   
-   function BasisgrundEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-                  and
-                    KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte)
-              );
-   
-   function ZusatzgrundEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean;
-   
-   function FlussEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean;
-   
-   function RessourceEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean;
-   
-   function WegEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean;
-   
-   function VerbesserungEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean;
-   
-   function StadtEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean;
-   
-   function FeldeffekteEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean;
 
 end LadenKarteLogik;

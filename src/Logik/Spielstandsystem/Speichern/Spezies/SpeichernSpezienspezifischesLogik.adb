@@ -5,7 +5,6 @@ with UmwandlungssystemHTSEB;
 
 with KartenRecords;
 with SpielRecords;
-with ZahlenDatentypen;
 with ProduktionDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
@@ -69,7 +68,7 @@ package body SpeichernSpezienspezifischesLogik is
       use type SystemDatentypenHTSEB.VierByte;
    begin
       
-      ZahlenDatentypen.EigenerInteger'Write (Stream (File => DateiSpeichernExtern),
+      SystemDatentypenHTSEB.EigenerInteger'Write (Stream (File => DateiSpeichernExtern),
                                              LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern));
       
       -- Das hier, und eventuell auch andere Sachen, weglassen und einfach neu berechnen nach dem Laden? äöü

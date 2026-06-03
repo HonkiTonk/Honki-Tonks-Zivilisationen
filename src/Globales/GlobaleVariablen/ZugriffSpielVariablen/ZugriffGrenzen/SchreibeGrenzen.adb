@@ -26,7 +26,7 @@ package body SchreibeGrenzen is
    
    procedure Geldgrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      GeldgrenzeExtern : in ZahlenDatentypen.EigenesNatural)
+      GeldgrenzeExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       SpielVariablen.Grenzen (SpeziesExtern).Geldgrenze := GeldgrenzeExtern;
@@ -70,7 +70,7 @@ package body SchreibeGrenzen is
    
    procedure Speziesrundengrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      SpeziesrundengrenzeExtern : in ZahlenDatentypen.EigenesNatural)
+      SpeziesrundengrenzeExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       SpielVariablen.Grenzen (SpeziesExtern).SpeziesRundengrenze := SpeziesrundengrenzeExtern;

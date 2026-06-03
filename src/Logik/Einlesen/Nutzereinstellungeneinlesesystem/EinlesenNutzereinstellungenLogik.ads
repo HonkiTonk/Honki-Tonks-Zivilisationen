@@ -1,7 +1,7 @@
 private with Ada.Strings.Wide_Wide_Unbounded;
 private with Ada.Streams.Stream_IO;
 
-private with ZahlenDatentypen;
+private with SystemDatentypenHTSEB;
 
 package EinlesenNutzereinstellungenLogik is
    pragma Elaborate_Body;
@@ -18,9 +18,9 @@ private
    
    Dezimaltrennzeichen : Wide_Wide_Character;
    
-   AnzahlAutospeichern : ZahlenDatentypen.EigenesNatural;
+   AnzahlAutospeichern : SystemDatentypenHTSEB.EigenesNatural;
    
-   RundenAutospeichern : ZahlenDatentypen.EigenesPositive;
+   RundenAutospeichern : SystemDatentypenHTSEB.EigenesPositive;
    
    Sprache : Unbounded_Wide_Wide_String;
    Texturen : Unbounded_Wide_Wide_String;

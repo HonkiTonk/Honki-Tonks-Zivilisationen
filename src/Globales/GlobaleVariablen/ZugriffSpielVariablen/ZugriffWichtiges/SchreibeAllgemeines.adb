@@ -55,7 +55,7 @@ package body SchreibeAllgemeines is
    
       
    procedure Rundengrenze
-     (RundengrenzeExtern : in ZahlenDatentypen.EigenesNatural)
+     (RundengrenzeExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       SpielVariablen.Allgemeines.Rundengrenze := RundengrenzeExtern;
@@ -85,7 +85,7 @@ package body SchreibeAllgemeines is
       
    
    procedure Zusammenbruchszeit
-     (ZeitExtern : in ZahlenDatentypen.EigenerInteger;
+     (ZeitExtern : in SystemDatentypenHTSEB.EigenerInteger;
       RechnenSetzenExtern : in Boolean)
    is begin
       

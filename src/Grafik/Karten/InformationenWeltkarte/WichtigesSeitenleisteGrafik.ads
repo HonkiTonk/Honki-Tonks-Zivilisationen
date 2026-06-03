@@ -3,6 +3,7 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 with Sf.System.Vector2;
 
 private with ArraysHTSEB;
+private with SystemDatentypenHTSEB;
 
 with SpeziesDatentypen;
 with KartenDatentypen;
@@ -11,7 +12,6 @@ with KartenRecords;
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
 private with ForschungenDatentypen;
-private with ZahlenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
@@ -56,9 +56,9 @@ private
    
    Geldzuwachs : ProduktionDatentypen.Produktion;
    
-   AktuelleRundenanzahl : ZahlenDatentypen.EigenesPositive;
+   AktuelleRundenanzahl : SystemDatentypenHTSEB.EigenesPositive;
    
-   Rundengrenze : ZahlenDatentypen.EigenesNatural;
+   Rundengrenze : SystemDatentypenHTSEB.EigenesNatural;
    
    Leerzeilen : Natural;
       
