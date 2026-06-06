@@ -176,16 +176,16 @@ package ChangelogMai2026 is
    
    
 
-   -- Version 0.06. => 0.06. (06.05.2026):
+   -- Version 0.06.3715 => 0.06. (06.05.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3690 => 0.06. (05.05.2026):
+   -- Version 0.06.3690 => 0.06.3715 (05.05.2026):
    
-   -- 
+   -- Spieleentwicklungsbibliothek von Version 0.01.2050 auf Version 0.01.2100 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
@@ -193,7 +193,7 @@ package ChangelogMai2026 is
    -- Version 0.06.3650 => 0.06.3690 (04.05.2026):
    
    -- Speichersystem überarbeitet.
-   -- Einige Datentypen durch die Entwicklungsbibliothekversion ersetzt.
+   -- Einige Datentypen durch die Entwicklungsbibliothekversionen ersetzt.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
