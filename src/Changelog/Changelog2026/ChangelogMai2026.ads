@@ -169,16 +169,16 @@ package ChangelogMai2026 is
    
    
 
-   -- Version 0.06. => 0.06. (07.05.2026):
+   -- Version 0.06.3740 => 0.06. (07.05.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3715 => 0.06. (06.05.2026):
+   -- Version 0.06.3715 => 0.06.3740 (06.05.2026):
    
-   -- 
+   -- Benennung von Unifont angepasst um weniger Änderungen vornehmen zu müssen wenn eine neue Version veröffentlicht wird.
    -- Kleinigkeiten korrigiert.
    
    
