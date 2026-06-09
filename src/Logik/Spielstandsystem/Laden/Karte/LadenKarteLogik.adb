@@ -38,7 +38,7 @@ package body LadenKarteLogik is
       end case;
       
       AnzahlFelder := SystemDatentypenHTSEB.AchtElemente'First;
-      -- Ich muss das doch jedes Mal fauf null setzen, oder? äöü
+      -- Ich muss das doch jedes Mal auf null setzen, oder? äöü
       -- Und auch beim Schreiben muss ich aufpassen dass ich nur die richtigen Werte setze und vorher auf null setzen. äöü
       LadenZusatzbelegungLogik.Leersetzung;
       

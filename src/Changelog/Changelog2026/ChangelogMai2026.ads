@@ -162,17 +162,17 @@ package ChangelogMai2026 is
    
    
 
-   -- Version 0.06. => 0.06. (08.05.2026):
+   -- Version 0.06.3770 => 0.06. (08.05.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3740 => 0.06. (07.05.2026):
+   -- Version 0.06.3740 => 0.06.3770 (07.05.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am Speichersystem gearbeitet.
+   -- Kommentare, Contracts und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

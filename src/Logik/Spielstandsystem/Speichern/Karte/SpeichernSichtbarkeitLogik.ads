@@ -13,69 +13,41 @@ package SpeichernSichtbarkeitLogik is
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    
-   function Aufteilung
+   procedure Leersetzung;
+   
+   procedure Sichtbarkeitsbelegung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      VorhandeneSpeziesExtern : in SpeziesDatentypen.Speziesnummern;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
+      FelderanzahlExtern : in Positive)
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
+   
+   
+   
+   function Aufteilung
+     (DateiSpeichernExtern : in File_Type)
+      return Boolean;
       
 private
    
-   SichtbarSpezies : SpeziesDatentypen.Speziesnummern;
-   UnsichtbarSpezies : SpeziesDatentypen.Speziesnummern;
-   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
+   type SichtbarkeitGesamtArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, SystemDatentypenHTSEB.AchtElemente) of Boolean;
+   SichtbarkeitGesamt : SichtbarkeitGesamtArray;
    
+   -- type SichtbarkeitArray is array (SystemDatentypenHTSEB.AchtElemente) of Boolean;
+   -- Sichtbarkeit : SichtbarkeitArray;
+      
    AktuelleSichtbarkeit : SystemDatentypenHTSEB.EinByte;
    SichtbarkeitVorhanden : SystemDatentypenHTSEB.EinByte;
    
-   AktuelleSichtbarkeitVorzeichen : SystemDatentypenHTSEB.EinByteVorzeichen;
-   SichtbarkeitVorhandenVorzeichen : SystemDatentypenHTSEB.EinByteVorzeichen;
-   
-   AktuelleSichtbarkeitZweiByte : SystemDatentypenHTSEB.ZweiByte;
-   SichtbarkeitVorhandenZweiByte : SystemDatentypenHTSEB.ZweiByte;
-   
-   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
    
    
-   
-   function SichtbarkeitEinByte
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-
-   function SichtbarkeitZweiByte
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   function SichtbarkeitVorzeichen
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernVorhanden;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+   function SichtbarkeitSchreiben
+     (DateiSpeichernExtern : in File_Type;
+      SichtbarkeitExtern : in SichtbarkeitGesamtArray;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+      return Boolean;
 
 end SpeichernSichtbarkeitLogik;

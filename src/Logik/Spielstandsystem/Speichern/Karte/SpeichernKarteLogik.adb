@@ -33,6 +33,7 @@ package body SpeichernKarteLogik is
       
       AnzahlFelder := SystemDatentypenHTSEB.AchtElemente'First;
       SpeichernZusatzbelegungLogik.Leersetzung;
+      SpeichernSichtbarkeitLogik.Leersetzung;
       
       EbeneSchleife:
       -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
@@ -42,25 +43,21 @@ package body SpeichernKarteLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
                
-               if
-                 False = SpeichernSichtbarkeitLogik.Aufteilung (KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                VorhandeneSpeziesExtern => VorhandeneSpezies,
-                                                                DateiSpeichernExtern    => DateiSpeichernExtern)
-               then
-                  return False;
-                  
-               elsif
-                 False = SpeichernBasisgrundLogik.Basisgrund (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                              DateiSpeichernExtern => DateiSpeichernExtern)
-               then
-                  return False;
-                  
-               else
-                  SpeichernZusatzbelegungLogik.ZusätzeAbfragen (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                 FelderanzahlExtern => AnzahlFelder);
-                  
-                  AnzahlFelder := AnzahlFelder + 1;
-               end if;
+               case
+                 SpeichernBasisgrundLogik.Basisgrund (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                      DateiSpeichernExtern => DateiSpeichernExtern)
+               is
+                  when False =>
+                     return False;
+                     
+                  when True =>
+                     SpeichernZusatzbelegungLogik.ZusätzeAbfragen (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                    FelderanzahlExtern => AnzahlFelder);
+                     SpeichernSichtbarkeitLogik.Sichtbarkeitsbelegung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                       FelderanzahlExtern => AnzahlFelder);
+                     
+                     AnzahlFelder := AnzahlFelder + 1;
+               end case;
                
                case
                  AnzahlFelder
@@ -71,9 +68,15 @@ package body SpeichernKarteLogik is
                      then
                         return False;
                         
+                     elsif
+                       SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+                     then
+                        return False;
+                        
                      else
                         AnzahlFelder := SystemDatentypenHTSEB.AchtElemente'First;
                         SpeichernZusatzbelegungLogik.Leersetzung;
+                        SpeichernSichtbarkeitLogik.Leersetzung;
                      end if;
                      
                   when others =>
@@ -107,6 +110,11 @@ package body SpeichernKarteLogik is
          when others =>
             if
               SpeichernZusatzbelegungLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+            then
+               return False;
+                        
+            elsif
+              SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
             then
                return False;
                         

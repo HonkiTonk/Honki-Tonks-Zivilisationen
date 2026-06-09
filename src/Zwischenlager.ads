@@ -2,17 +2,19 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
+with SystemDatentypenHTSEB;
 
 with KartenKonstanten;
-with StadtKonstanten;
-with KartenRecordKonstanten;
 with LadezeitenDatentypen;
+with KartenRecords;
 
-with LeseWeltkarte;
+with LeseWeltkarteneinstellungen;
 
 with SpielstandAllgemeinesLogik;
 with SpeichernSichtbarkeitLogik;
 with LadezeitenLogik;
+with SpeichernBasisgrundLogik;
+with SpeichernZusatzbelegungLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
@@ -23,14 +25,17 @@ package body SpeichernKarteLogik is
       return Boolean
    is begin
 
+      -- Wenn ich hier auch noch die Dicke und Art des Kartenrands mitspeichere, dann könnte ich das beim Speichern der Karte sparen, wäre vermutlich kleiner? äöü
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseWeltkarteneinstellungen.GesamteEinstellungen);
 
       VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
 
-      AnzahlFelder := 0;
+      AnzahlFelder := SystemDatentypenHTSEB.AchtElemente'First;
+      SpeichernZusatzbelegungLogik.Leersetzung;
 
       EbeneSchleife:
+      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -45,61 +50,31 @@ package body SpeichernKarteLogik is
                   return False;
 
                elsif
-                 False = Basisgrund (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                     DateiSpeichernExtern => DateiSpeichernExtern)
+                 False = SpeichernBasisgrundLogik.Basisgrund (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                              DateiSpeichernExtern => DateiSpeichernExtern)
                then
                   return False;
 
                else
-                  Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Feldeffekte := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Weg := LeseWeltkarte.Weg (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  SpeichernZusatzbelegungLogik.ZusätzeAbfragen (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                 FelderanzahlExtern => AnzahlFelder);
 
-                  -- Stadt wird weiterhin gebraucht, da die Stadtbvelegung damit auch gespeichert wird.
-                  -- Aber eventuell könnte man das mit der Stadt speichern? äöü
-                  -- Wäre dann kleiner als wenn man das in der Karte speichert. äöü
-                  -- Aber dann müsste man wieder durch alle Städte gehen um zu prüfen ob das Feld von einer Stadt belegt ist. äöü
-                  -- Man könnte natürlich beides haben und nur den Stadtteil speichern. äöü
-                  -- Erhöht natürlich den AS Verbrauch, mal drüber nachdenken. äöü
-                  Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-               end if;
-
-               if
-                 False = VorhandeneFeldelemente (ZusatzgrundExtern    => Zusatzgrund,
-                                                 FeldeffekteExtern    => Feldeffekte,
-                                                 FlussExtern          => Fluss,
-                                                 RessourceExtern      => Ressource,
-                                                 WegExtern            => Weg,
-                                                 VerbesserungExtern   => Verbesserung,
-                                                 StadtExtern          => Stadt,
-                                                 DateiSpeichernExtern => DateiSpeichernExtern)
-               then
-                  return False;
-
-               elsif
-                 False = Feldelemente (ZusatzgrundExtern    => Zusatzgrund,
-                                       FeldeffekteExtern    => Feldeffekte,
-                                       FlussExtern          => Fluss,
-                                       RessourceExtern      => Ressource,
-                                       WegExtern            => Weg,
-                                       VerbesserungExtern   => Verbesserung,
-                                       StadtExtern          => Stadt,
-                                       DateiSpeichernExtern => DateiSpeichernExtern)
-               then
-                  return False;
-
-               else
                   AnzahlFelder := AnzahlFelder + 1;
                end if;
 
                case
                  AnzahlFelder
                is
-                  when 8 =>
-                     AnzahlFelder := 0;
+                  when SystemDatentypenHTSEB.AchtElemente'Last + 1 =>
+                     if
+                       SpeichernZusatzbelegungLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+                     then
+                        return False;
+
+                     else
+                        AnzahlFelder := SystemDatentypenHTSEB.AchtElemente'First;
+                        SpeichernZusatzbelegungLogik.Leersetzung;
+                     end if;
 
                   when others =>
                      null;
@@ -119,19 +94,27 @@ package body SpeichernKarteLogik is
                                           ErhöhungExtern              => 20);
          end case;
 
-         -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
 
       end loop EbeneSchleife;
 
       case
         AnzahlFelder
       is
-         when 0 =>
+         when SystemDatentypenHTSEB.AchtElemente'First =>
             null;
 
          when others =>
-            null;
+            if
+              SpeichernZusatzbelegungLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+            then
+               return False;
+
+            else
+               null;
+            end if;
       end case;
+
       LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
 
       return True;
@@ -144,367 +127,12 @@ package body SpeichernKarteLogik is
 
    end Karte;
 
-
-
-   function Basisgrund
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is begin
-
-      case
-        KoordinatenExtern.Ebene
-      is
-         when KartenKonstanten.HimmelKonstante | KartenKonstanten.WeltraumKonstante =>
-            null;
-
-         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
-      end case;
-
-      return True;
-
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Basisgrund: Konnte nicht gespeichert werden: "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-
-   end Basisgrund;
-
-
-
-   function VorhandeneFeldelemente
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is
-      use type StadtRecords.SpeziesStadtnummerRecord;
-      use type KartenRecords.FeldeffektArray;
-      use type SystemDatentypenHTSEB.EinByte;
-   begin
-
-      AktuellesFeldelement := 1;
-
-      case
-        ZusatzgrundExtern
-      is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            FeldelementeVorhanden := 0;
-
-         when others =>
-            FeldelementeVorhanden := AktuellesFeldelement;
-      end case;
-
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-
-      if
-        FeldeffekteExtern = KartenRecordKonstanten.LeerEffekte
-      then
-         null;
-
-      else
-         FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end if;
-
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-
-      case
-        FlussExtern
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            null;
-
-         when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end case;
-
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-
-      case
-        RessourceExtern
-      is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
-            null;
-
-         when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end case;
-
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-
-      case
-        WegExtern
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            null;
-
-         when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end case;
-
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-
-      case
-        VerbesserungExtern
-      is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            null;
-
-         when others =>
-            FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end case;
-
-      AktuellesFeldelement := AktuellesFeldelement * 2;
-
-      if
-        StadtExtern = StadtKonstanten.LeerStadt
-      then
-         null;
-
-      else
-         FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-      end if;
-
-      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                           FeldelementeVorhanden);
-
-      return True;
-
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelemente: Konnte nicht gespeichert werden: "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-
-   end VorhandeneFeldelemente;
-
-
-
-   function Feldelemente
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is
-      use type StadtRecords.SpeziesStadtnummerRecord;
-      use type KartenRecords.FeldeffektArray;
-      use type SystemDatentypenHTSEB.EinByte;
-   begin
-
-      if
-        StadtExtern = StadtKonstanten.LeerStadt
-      then
-         null;
-
-      else
-         StadtRecords.SpeziesStadtnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                               (StadtExtern.Spezies, StadtExtern.Nummer));
-      end if;
-
-      case
-        VerbesserungExtern
-      is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            null;
-
-         when others =>
-            KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                            VerbesserungExtern);
-      end case;
-
-      case
-        WegExtern
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            null;
-
-         when others =>
-            KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   WegExtern);
-      end case;
-
-      case
-        RessourceExtern
-      is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
-            null;
-
-         when others =>
-            KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   RessourceExtern);
-      end case;
-
-      case
-        FlussExtern
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            null;
-
-         when others =>
-            KartenextraDatentypen.Fluss_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                              FlussExtern);
-      end case;
-
-      if
-        FeldeffekteExtern = KartenRecordKonstanten.LeerEffekte
-      then
-         null;
-
-      else
-         FeldeffekteVorhanden := 0;
-         AktuellerFeldeffekt := 1;
-
-         FeldeffekteSchleife:
-         for FeldeffekteSchleifenwert in KartenRecords.FeldeffektArray'Range loop
-
-            case
-              FeldeffekteExtern (FeldeffekteSchleifenwert)
-            is
-               when True =>
-                  FeldeffekteVorhanden := FeldeffekteVorhanden + AktuellerFeldeffekt;
-
-               when False =>
-                  null;
-            end case;
-
-            AktuellerFeldeffekt := AktuellerFeldeffekt * 2;
-
-         end loop FeldeffekteSchleife;
-
-         SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                              FeldeffekteVorhanden);
-      end if;
-
-      case
-        ZusatzgrundExtern
-      is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            null;
-
-         when others =>
-            KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                    ZusatzgrundExtern);
-      end case;
-
-      return True;
-
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Feldelemente: Konnte nicht gespeichert werden: "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-
-   end Feldelemente;
-
 end SpeichernKarteLogik;
 
 
 
 
 
-
-
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
-
-private with SystemDatentypenHTSEB;
-
-private with KartenRecords;
-private with StadtRecords;
-private with KartengrundDatentypen;
-private with KartenextraDatentypen;
-private with KartenverbesserungDatentypen;
-private with KartenDatentypen;
-private with SpeziesDatentypen;
-
-private with LeseWeltkarteneinstellungen;
-
-package SpeichernKarteLogik is
-   pragma Elaborate_Body;
-
-   function Karte
-     (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean)
-      return Boolean;
-
-private
-   use type KartenDatentypen.SenkrechteBasis;
-   use type KartenDatentypen.WaagerechteBasis;
-
-   AnzahlFelder : Natural;
-
-   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
-
-   FeldeffekteVorhanden : SystemDatentypenHTSEB.EinByte;
-   AktuellerFeldeffekt : SystemDatentypenHTSEB.EinByte;
-
-   FeldelementeVorhanden : SystemDatentypenHTSEB.EinByte;
-   AktuellesFeldelement : SystemDatentypenHTSEB.EinByte;
-
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
-
-   Fluss : KartenextraDatentypen.Fluss_Enum;
-
-   Ressource : KartenextraDatentypen.Ressourcen_Enum;
-
-   Weg : KartenverbesserungDatentypen.Weg_Enum;
-
-   Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
-
-   Feldeffekte : KartenRecords.FeldeffektArray;
-
-   Stadt : StadtRecords.SpeziesStadtnummerRecord;
-
-   type ZusatzgrundArray is array (0 .. 7) of KartengrundDatentypen.Zusatzgrund_Enum;
-
-
-
-   function Basisgrund
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-
-   function VorhandeneFeldelemente
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean;
-
-   function Feldelemente
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean;
-
-end SpeichernKarteLogik;
 
 
 
@@ -514,437 +142,256 @@ with Ada.Exceptions; use Ada.Exceptions;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
-with KartenKonstanten;
+with SpeziesKonstanten;
+with SystemKonstanten;
 
-with SchreibeWeltkarte;
-with SchreibeWeltkarteneinstellungen;
+with LeseWeltkarte;
+with LeseSpeziesbelegung;
 
-with LadezeitenLogik;
-with LadenSichtbarkeitLogik;
-with SpielstandAllgemeinesLogik;
+package body SpeichernSichtbarkeitLogik is
 
--- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
-package body LadenKarteLogik is
-
-   function KarteLaden
-     (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
-      return Boolean
-   is begin
-
-      KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLadenExtern),
-                                                          Karteneinstellungen);
-
-      VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => False);
-
-      case
-        LadenPrüfenExtern
-      is
-         when True =>
-            SchreibeWeltkarteneinstellungen.GesamteEinstellungen (EinstellungenExtern => Karteneinstellungen);
-
-         when False =>
-            null;
-      end case;
-
-      EbeneSchleife:
-      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
-         SenkrechteSchleife:
-         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
-            WaagerechteSchleife:
-            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
-
-               if
-                 False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
-                                                            KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                            VorhandeneSpeziesExtern => VorhandeneSpezies,
-                                                            LadenPrüfenExtern       => LadenPrüfenExtern)
-               then
-                  return False;
-
-               elsif
-                 False = BasisgrundEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                                             KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                             LadenPrüfenExtern => LadenPrüfenExtern)
-               then
-                  return False;
-
-               elsif
-                 False = Feldelemente (DateiLadenExtern  => DateiLadenExtern,
-                                       KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                       LadenPrüfenExtern => LadenPrüfenExtern)
-               then
-                  return False;
-
-               else
-                  null;
-               end if;
-
-            end loop WaagerechteSchleife;
-         end loop SenkrechteSchleife;
-
-         LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-
-      end loop EbeneSchleife;
-
-      return True;
-
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.KarteLaden: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-
-   end KarteLaden;
-
-
-
-   function BasisgrundEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      LadenPrüfenExtern : in Boolean)
+   function Aufteilung
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.Speziesnummern;
+      DateiSpeichernExtern : in File_Type)
       return Boolean
    is begin
 
       case
-        KoordinatenExtern.Ebene
+        VorhandeneSpeziesExtern
       is
-         when KartenKonstanten.HimmelKonstante =>
-            Basisgrund := KartengrundDatentypen.Wolken_Enum;
+         when 1 .. 8 =>
+            return SichtbarkeitEinByte (KoordinatenExtern    => KoordinatenExtern,
+                                        DateiSpeichernExtern => DateiSpeichernExtern);
 
-         when KartenKonstanten.WeltraumKonstante =>
-            Basisgrund := KartengrundDatentypen.Weltraum_Enum;
+         when 15 .. 16 =>
+            return SichtbarkeitZweiByte (KoordinatenExtern       => KoordinatenExtern,
+                                         DateiSpeichernExtern    => DateiSpeichernExtern);
 
-         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                  Basisgrund);
+         when 9 .. 14 | 17 .. 18 =>
+            return SichtbarkeitVorzeichen (KoordinatenExtern       => KoordinatenExtern,
+                                           VorhandeneSpeziesExtern => VorhandeneSpeziesExtern,
+                                           DateiSpeichernExtern    => DateiSpeichernExtern);
+
+         when others =>
+            return False;
       end case;
 
-      case
-        LadenPrüfenExtern
-      is
-         when True =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => Basisgrund);
-
-         when False =>
-            null;
-      end case;
-
-      return True;
-
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.BasisgrundEinlesen: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-
-   end BasisgrundEinlesen;
+   end Aufteilung;
 
 
 
-   function Feldelemente
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      LadenPrüfenExtern : in Boolean)
+   function SichtbarkeitEinByte
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      DateiSpeichernExtern : in File_Type)
       return Boolean
    is
       use type SystemDatentypenHTSEB.EinByte;
    begin
 
-      SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
-                                          VorhandeneFeldelemente);
+      GesamteSichtbarkeit := LeseWeltkarte.GesamteSichtbarkeit (KoordinatenExtern => KoordinatenExtern);
 
-      AktuellesFeldelement := 2**6;
+      SichtbarkeitVorhanden := 0;
+      AktuelleSichtbarkeit := 1;
 
-      if
-        VorhandeneFeldelemente >= AktuellesFeldelement
-      then
-         StadtRecords.SpeziesStadtnummerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
-                                                              Stadt);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
+      SichtbarkeitSchleife:
+      for SichtbarkeitSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
 
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                                BelegterGrundExtern => (Stadt.Spezies, Stadt.Nummer));
+         if
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SichtbarkeitSchleifenwert) in SpeziesDatentypen.Spieler_Belegt_Enum'Range
+         then
+            case
+              GesamteSichtbarkeit (SichtbarkeitSchleifenwert)
+            is
+               when True =>
+                  SichtbarkeitVorhanden := SichtbarkeitVorhanden + AktuelleSichtbarkeit;
 
-            when False =>
-               null;
-         end case;
+               when False =>
+                  null;
+            end case;
 
-      else
-         null;
-      end if;
+            AktuelleSichtbarkeit := AktuelleSichtbarkeit * 2;
 
-      AktuellesFeldelement := 2**5;
+         else
+            null;
+         end if;
 
-      if
-        VorhandeneFeldelemente >= AktuellesFeldelement
-      then
-         KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                        Verbesserung);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
+      end loop SichtbarkeitSchleife;
 
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                               VerbesserungExtern => Verbesserung);
-
-            when False =>
-               null;
-         end case;
-
-      else
-         null;
-      end if;
-
-      AktuellesFeldelement := 2**4;
-
-      if
-        VorhandeneFeldelemente >= AktuellesFeldelement
-      then
-         KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                               Weg);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
-
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeWeltkarte.Weg (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                      WegExtern         => Weg);
-
-            when False =>
-               null;
-         end case;
-
-      else
-         null;
-      end if;
-
-      AktuellesFeldelement := 2**3;
-
-      if
-        VorhandeneFeldelemente >= AktuellesFeldelement
-      then
-         KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                               Ressource);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
-
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                            RessourceExtern   => Ressource);
-
-            when False =>
-               null;
-         end case;
-
-      else
-         null;
-      end if;
-
-      AktuellesFeldelement := 2**2;
-
-      if
-        VorhandeneFeldelemente >= AktuellesFeldelement
-      then
-         KartenextraDatentypen.Fluss_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                          Fluss);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
-
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeWeltkarte.Fluss (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                        FlussExtern       => Fluss);
-
-            when False =>
-               null;
-         end case;
-
-      else
-         null;
-      end if;
-
-      AktuellesFeldelement := 2**1;
-
-      if
-        VorhandeneFeldelemente >= AktuellesFeldelement
-      then
-         SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
-                                             VorhandeneFeldeffekte);
-         VorhandeneFeldelemente := VorhandeneFeldelemente - AktuellesFeldelement;
-
-         AktuellerFeldeffekt := 2**(KartenRecords.FeldeffektArray'Length - 1);
-
-         FeldeffekteSchleife:
-         for FeldeffekteSchleifenwert in reverse KartenRecords.FeldeffektArray'Range loop
-
-            if
-              VorhandeneFeldeffekte >= AktuellerFeldeffekt
-            then
-               Feldeffekte (FeldeffekteSchleifenwert) := True;
-               VorhandeneFeldeffekte := VorhandeneFeldeffekte - AktuellerFeldeffekt;
-
-            else
-               Feldeffekte (FeldeffekteSchleifenwert) := False;
-            end if;
-
-            AktuellerFeldeffekt := AktuellerFeldeffekt / 2;
-
-         end loop FeldeffekteSchleife;
-
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeWeltkarte.AlleFeldeffekte (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                                  FeldeffekteExtern => Feldeffekte);
-
-            when False =>
-               null;
-         end case;
-
-      else
-         null;
-      end if;
-
-      AktuellesFeldelement := 2**0;
-
-      if
-        VorhandeneFeldelemente >= AktuellesFeldelement
-      then
-         KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                Zusatzgrund);
-
-         case
-           LadenPrüfenExtern
-         is
-            when True =>
-               SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                              GrundExtern       => Zusatzgrund);
-
-            when False =>
-               null;
-         end case;
-
-      else
-         null;
-      end if;
+      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                           SichtbarkeitVorhanden);
 
       return True;
 
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.Feldelemente: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernSichtbarkeitLogik.SichtbarkeitEinByte: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
 
-   end Feldelemente;
-
-end LadenKarteLogik;
+   end SichtbarkeitEinByte;
 
 
 
-
-with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
-
-private with SystemDatentypenHTSEB;
-
-private with KartenRecords;
-private with KartenextraDatentypen;
-private with KartengrundDatentypen;
-private with KartenverbesserungDatentypen;
-private with EinheitenRecords;
-private with StadtRecords;
-private with KartenDatentypen;
-private with ZahlenDatentypen;
-private with SpeziesDatentypen;
-
-private with LeseWeltkarteneinstellungen;
-
-package LadenKarteLogik is
-   pragma Elaborate_Body;
-
-   function KarteLaden
-     (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
-      return Boolean;
-
-private
-   use type KartenDatentypen.SenkrechteBasis;
-   use type KartenDatentypen.WaagerechteBasis;
-
-   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
-
-   VorhandeneFeldeffekte : SystemDatentypenHTSEB.EinByte;
-   AktuellerFeldeffekt : SystemDatentypenHTSEB.EinByte;
-   VorhandeneFeldelemente : SystemDatentypenHTSEB.EinByte;
-   AktuellesFeldelement : SystemDatentypenHTSEB.EinByte;
-
-   Potenz : SystemDatentypenHTSEB.EigenesNatural;
-
-   Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
-
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
-
-   Feldeffekte : KartenRecords.FeldeffektArray;
-
-   Fluss : KartenextraDatentypen.Fluss_Vorhanden_Enum;
-
-   Ressource : KartenextraDatentypen.Ressourcen_Vorhanden_Enum;
-
-   Weg : KartenverbesserungDatentypen.Weg_Vorhanden_Enum;
-
-   Verbesserung : KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum;
-
-   Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
-
-   Einheit : EinheitenRecords.SpeziesEinheitnummerVorhandenRecord;
-
-   Stadt : StadtRecords.SpeziesStadtnummerVorhandenRecord;
-
-
-
-   function BasisgrundEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      LadenPrüfenExtern : in Boolean)
+   function SichtbarkeitZweiByte
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      DateiSpeichernExtern : in File_Type)
       return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-                  and
-                    KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte)
-              );
+   is
+      use type SystemDatentypenHTSEB.ZweiByte;
+   begin
+
+      GesamteSichtbarkeit := LeseWeltkarte.GesamteSichtbarkeit (KoordinatenExtern => KoordinatenExtern);
+
+      SichtbarkeitVorhandenZweiByte := 0;
+      AktuelleSichtbarkeitZweiByte := 1;
+
+      SichtbarkeitSchleife:
+      for SichtbarkeitSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
+
+         if
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SichtbarkeitSchleifenwert) in SpeziesDatentypen.Spieler_Belegt_Enum'Range
+         then
+            case
+              GesamteSichtbarkeit (SichtbarkeitSchleifenwert)
+            is
+               when True =>
+                  SichtbarkeitVorhandenZweiByte := SichtbarkeitVorhandenZweiByte + AktuelleSichtbarkeitZweiByte;
+
+               when False =>
+                  null;
+            end case;
+
+            AktuelleSichtbarkeitZweiByte := AktuelleSichtbarkeitZweiByte * 2;
+
+         else
+            null;
+         end if;
+
+      end loop SichtbarkeitSchleife;
+
+      SystemDatentypenHTSEB.ZweiByte'Write (Stream (File => DateiSpeichernExtern),
+                                            SichtbarkeitVorhandenZweiByte);
+
+      return True;
+
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernSichtbarkeitLogik.SichtbarkeitZweiByte: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+
+   end SichtbarkeitZweiByte;
 
 
 
-   function Feldelemente
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      LadenPrüfenExtern : in Boolean)
+   function SichtbarkeitVorzeichen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernVorhanden;
+      DateiSpeichernExtern : in File_Type)
       return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-                  and
-                    KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte)
-              );
+   is
+      use type SystemDatentypenHTSEB.EinByteVorzeichen;
+   begin
 
-end LadenKarteLogik;
+      SichtbarSpezies := SpeziesKonstanten.LeerSpeziesnummer;
+      UnsichtbarSpezies := SpeziesKonstanten.LeerSpeziesnummer;
+      GesamteSichtbarkeit := LeseWeltkarte.GesamteSichtbarkeit (KoordinatenExtern => KoordinatenExtern);
+
+      SichtbarkeitPrüfenSchleife:
+      for SichtbarkeitPrüfenSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
+
+         if
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SichtbarkeitPrüfenSchleifenwert) in SpeziesDatentypen.Spieler_Belegt_Enum'Range
+         then
+            case
+              GesamteSichtbarkeit (SichtbarkeitPrüfenSchleifenwert)
+            is
+               when True =>
+                  SichtbarSpezies := SichtbarSpezies + 1;
+
+               when False =>
+                  UnsichtbarSpezies := UnsichtbarSpezies + 1;
+            end case;
+
+         else
+            null;
+         end if;
+
+      end loop SichtbarkeitPrüfenSchleife;
+
+      if
+        SichtbarSpezies = VorhandeneSpeziesExtern
+      then
+         SystemDatentypenHTSEB.EinByteVorzeichen'Write (Stream (File => DateiSpeichernExtern),
+                                                        SystemKonstanten.AllesSichtbar);
+         return True;
+
+      elsif
+        UnsichtbarSpezies = VorhandeneSpeziesExtern
+      then
+         SystemDatentypenHTSEB.EinByteVorzeichen'Write (Stream (File => DateiSpeichernExtern),
+                                                        SystemKonstanten.AllesUnsichtbar);
+         return True;
+
+      else
+         VorhandeneSpezies := SpeziesKonstanten.LeerSpeziesnummer;
+
+         SichtbarkeitVorhandenVorzeichen := 0;
+         AktuelleSichtbarkeitVorzeichen := 1;
+      end if;
+
+      SichtbarkeitSchleife:
+      for SichtbarkeitSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
+
+         if
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SichtbarkeitSchleifenwert) in SpeziesDatentypen.Spieler_Belegt_Enum'Range
+         then
+            case
+              GesamteSichtbarkeit (SichtbarkeitSchleifenwert)
+            is
+               when True =>
+                  SichtbarkeitVorhandenVorzeichen := SichtbarkeitVorhandenVorzeichen + AktuelleSichtbarkeitVorzeichen;
+
+               when False =>
+                  null;
+            end case;
+
+            VorhandeneSpezies := VorhandeneSpezies + 1;
+
+            if
+              VorhandeneSpezies = VorhandeneSpeziesExtern
+            then
+               SystemDatentypenHTSEB.EinByteVorzeichen'Write (Stream (File => DateiSpeichernExtern),
+                                                              SichtbarkeitVorhandenVorzeichen);
+               exit SichtbarkeitSchleife;
+
+            elsif
+              VorhandeneSpezies mod 7 = 0
+            then
+               SystemDatentypenHTSEB.EinByteVorzeichen'Write (Stream (File => DateiSpeichernExtern),
+                                                              SichtbarkeitVorhandenVorzeichen);
+               SichtbarkeitVorhandenVorzeichen := 0;
+               AktuelleSichtbarkeitVorzeichen := 1;
+
+            else
+               AktuelleSichtbarkeitVorzeichen := AktuelleSichtbarkeitVorzeichen * 2;
+            end if;
+
+         else
+            null;
+         end if;
+
+      end loop SichtbarkeitSchleife;
+
+      return True;
+
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernSichtbarkeitLogik.SichtbarkeitVorzeichen: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+
+   end SichtbarkeitVorzeichen;
+
+end SpeichernSichtbarkeitLogik;
