@@ -1,9 +1,15 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.2100 => 0.01.1 (..2026):
+   -- Version 0.01.2150 => 0.01.1 (..2026):
    
    -- 
+   
+   
+   
+   -- Version 0.01.2100 => 0.01.2150 (12.06.2026):
+   
+   -- Einige Datentypen hinzugefügt.
    
    
    

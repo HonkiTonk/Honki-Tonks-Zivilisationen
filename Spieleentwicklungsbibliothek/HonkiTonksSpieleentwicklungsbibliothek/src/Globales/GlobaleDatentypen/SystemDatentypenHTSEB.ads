@@ -56,8 +56,15 @@ package SystemDatentypenHTSEB is
    type VierByteVorzeichen is range -2**31 .. (2**31) - 1; -- -2_147_483_648 .. 2_147_483_647
    
    subtype VierundsechzigElemente is EigenesPositive range EigenesPositive'First .. 64;
-   subtype ZweiundreißigElemente is VierundsechzigElemente range VierundsechzigElemente'First .. 32;
-   subtype SechzehnElemente is ZweiundreißigElemente range ZweiundreißigElemente'First .. 16;
-   subtype AchtElemente is SechzehnElemente range SechzehnElemente'First .. 8;
+   subtype ZweiundreißigElemente is VierundsechzigElemente range VierundsechzigElemente'First .. VierundsechzigElemente'Last / 2;
+   subtype SechzehnElemente is ZweiundreißigElemente range ZweiundreißigElemente'First .. ZweiundreißigElemente'Last / 2;
+   subtype AchtElemente is SechzehnElemente range SechzehnElemente'First .. SechzehnElemente'Last / 2;
+   
+   
+   
+   type Durchläufe10000 is range 1 .. 10_000;
+   subtype Durchläufe1000 is Durchläufe10000 range Durchläufe10000'First .. Durchläufe10000'Last / 10;
+   subtype Durchläufe100 is Durchläufe1000 range Durchläufe1000'First .. Durchläufe1000'Last / 10;
+   subtype Durchläufe10 is Durchläufe100 range Durchläufe100'First .. Durchläufe100'Last / 10;
 
 end SystemDatentypenHTSEB;
