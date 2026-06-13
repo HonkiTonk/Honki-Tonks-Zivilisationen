@@ -148,17 +148,19 @@ package ChangelogMai2026 is
    
    
 
-   -- Version 0.06. => 0.06. (10.05.2026):
+   -- Version 0.06.3840 => 0.06. (10.05.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3795 => 0.06. (09.05.2026):
+   -- Version 0.06.3795 => 0.06.3840 (09.05.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am Speichersystem gearbeitet.
+   -- Interne Benennung überarbeitet.
+   -- Einige Datentypen durch die Entwicklungsbibliotheksversionen ersetzt.
+   -- Contracts und Kleinigkeiten korrigiert/angepasst.
    
    
 
@@ -193,7 +195,7 @@ package ChangelogMai2026 is
    -- Version 0.06.3650 => 0.06.3690 (04.05.2026):
    
    -- Speichersystem überarbeitet.
-   -- Einige Datentypen durch die Entwicklungsbibliothekversionen ersetzt.
+   -- Einige Datentypen durch die Entwicklungsbibliotheksversionen ersetzt.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    

@@ -104,7 +104,7 @@ package body SpielstandAllgemeinesLogik is
    
    function GesamteSpeziesanzahl
      (SpeichernLadenExtern : in Boolean)
-      return SpeziesDatentypen.Speziesnummern
+      return SpeziesDatentypen.SpeziesnummernBasis
    is begin
       
       VorhandeneSpezies := SpeziesKonstanten.LeerSpeziesnummer;
@@ -140,7 +140,7 @@ package body SpielstandAllgemeinesLogik is
    
    function VorhandeneSpeziesanzahl
      (SpeichernLadenExtern : in Boolean)
-      return SpeziesDatentypen.Speziesnummern
+      return SpeziesDatentypen.SpeziesnummernBasis
    is begin
       
       VorhandeneSpezies := SpeziesKonstanten.LeerSpeziesnummer;

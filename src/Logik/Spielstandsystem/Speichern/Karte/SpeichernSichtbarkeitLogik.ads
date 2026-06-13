@@ -30,17 +30,50 @@ package SpeichernSichtbarkeitLogik is
    function Aufteilung
      (DateiSpeichernExtern : in File_Type)
       return Boolean;
+   
+   function SpeicherverbrauchErmitteln
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernVorhanden)
+      return Positive
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   function SichtbarkeitVorzeichen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernVorhanden;
+      DateiSpeichernExtern : in File_Type)
+      return Boolean
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
       
 private
+   
+   Speicherverbrauch : Natural;
+   
+   SichtbarSpezies : SpeziesDatentypen.SpeziesnummernBasis;
+   UnsichtbarSpezies : SpeziesDatentypen.SpeziesnummernBasis;
+   VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernBasis;
    
    type SichtbarkeitGesamtArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, SystemDatentypenHTSEB.AchtElemente) of Boolean;
    SichtbarkeitGesamt : SichtbarkeitGesamtArray;
    
    -- type SichtbarkeitArray is array (SystemDatentypenHTSEB.AchtElemente) of Boolean;
    -- Sichtbarkeit : SichtbarkeitArray;
+   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
       
    AktuelleSichtbarkeit : SystemDatentypenHTSEB.EinByte;
    SichtbarkeitVorhanden : SystemDatentypenHTSEB.EinByte;
+   
+   AktuelleSichtbarkeitVorzeichen : SystemDatentypenHTSEB.EinByteVorzeichen;
+   SichtbarkeitVorhandenVorzeichen : SystemDatentypenHTSEB.EinByteVorzeichen;
    
    
    

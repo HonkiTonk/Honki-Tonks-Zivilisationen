@@ -12,7 +12,7 @@ package body LadenSichtbarkeitLogik is
    function Aufteilung
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      VorhandeneSpeziesExtern : in SpeziesDatentypen.Speziesnummern;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernBasis;
       LadenPrüfenExtern : in Boolean)
       return Boolean
    is begin

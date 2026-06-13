@@ -13,8 +13,8 @@ package SpeichernAllgemeinesLogik is
 
 private
 
-   SpeziesVorhanden : SpeziesDatentypen.Speziesnummern;
-   AktuelleSpezies : SpeziesDatentypen.Speziesnummern;
+   SpeziesVorhanden : SpeziesDatentypen.SpeziesnummernBasis;
+   AktuelleSpezies : SpeziesDatentypen.SpeziesnummernBasis;
 
    GewonnenWeiterspielen : SystemDatentypenHTSEB.EinByte;
    BesiegtAktuell : SystemDatentypenHTSEB.EinByte;

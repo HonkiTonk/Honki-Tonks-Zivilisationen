@@ -36,15 +36,15 @@ package SpielstandAllgemeinesLogik is
    
    function GesamteSpeziesanzahl
      (SpeichernLadenExtern : in Boolean)
-      return SpeziesDatentypen.Speziesnummern;
+      return SpeziesDatentypen.SpeziesnummernBasis;
    
    function VorhandeneSpeziesanzahl
      (SpeichernLadenExtern : in Boolean)
-      return SpeziesDatentypen.Speziesnummern;
+      return SpeziesDatentypen.SpeziesnummernBasis;
    
 private
    
-   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
+   VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernBasis;
    
    SpielstandName : SystemRecordsHTSEB.TextEingabeRecord;
 

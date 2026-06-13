@@ -29,11 +29,13 @@ package body SpeichernKarteLogik is
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseWeltkarteneinstellungen.GesamteEinstellungen);
       
-      VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
-      
-      AnzahlFelder := SystemDatentypenHTSEB.AchtElemente'First;
+      FelderanzahlZusatzgrund := SystemDatentypenHTSEB.AchtElemente'First;
       SpeichernZusatzbelegungLogik.Leersetzung;
+      
+      VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
+      FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
       SpeichernSichtbarkeitLogik.Leersetzung;
+      GesamtgrößeSpezieszusammenfassung := 0;
       
       EbeneSchleife:
       -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
@@ -52,21 +54,38 @@ package body SpeichernKarteLogik is
                      
                   when True =>
                      SpeichernZusatzbelegungLogik.ZusätzeAbfragen (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                    FelderanzahlExtern => AnzahlFelder);
-                     SpeichernSichtbarkeitLogik.Sichtbarkeitsbelegung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                       FelderanzahlExtern => AnzahlFelder);
+                                                                    FelderanzahlExtern => FelderanzahlZusatzgrund);
                      
-                     AnzahlFelder := AnzahlFelder + 1;
+                     FelderanzahlZusatzgrund := FelderanzahlZusatzgrund + 1;
                end case;
                
+               if
+                 FelderanzahlZusatzgrund < SystemDatentypenHTSEB.AchtElemente'Last + 1
+               then
+                  null;
+                  
+               elsif
+                 SpeichernZusatzbelegungLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+               then
+                  return False;
+                        
+               else
+                  FelderanzahlZusatzgrund := SystemDatentypenHTSEB.AchtElemente'First;
+                  SpeichernZusatzbelegungLogik.Leersetzung;
+               end if;
+               
                case
-                 AnzahlFelder
+                 VorhandeneSpezies
                is
-                  when SystemDatentypenHTSEB.AchtElemente'Last + 1 =>
+                  when 1 .. 8 =>
+                     SpeichernSichtbarkeitLogik.Sichtbarkeitsbelegung (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                       FelderanzahlExtern => FelderanzahlSichtbarkeit);
+                     FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
+                     
                      if
-                       SpeichernZusatzbelegungLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+                       FelderanzahlSichtbarkeit < SystemDatentypenHTSEB.AchtElemente'Last + 1
                      then
-                        return False;
+                        null;
                         
                      elsif
                        SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
@@ -74,12 +93,207 @@ package body SpeichernKarteLogik is
                         return False;
                         
                      else
-                        AnzahlFelder := SystemDatentypenHTSEB.AchtElemente'First;
-                        SpeichernZusatzbelegungLogik.Leersetzung;
+                        FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
                         SpeichernSichtbarkeitLogik.Leersetzung;
                      end if;
                      
-                  when others =>
+                  when 9 .. 18 =>
+                     GesamtgrößeSpezieszusammenfassung := GesamtgrößeSpezieszusammenfassung
+                       + SpeichernSichtbarkeitLogik.SpeicherverbrauchErmitteln (KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                VorhandeneSpeziesExtern => VorhandeneSpezies);
+               end case;
+               
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+         
+         case
+           AutospeichernExtern
+         is
+            when False =>
+               null;
+               
+            when True =>
+               null;
+               -- LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+               --                            ErhöhungExtern              => 20);
+         end case;
+         
+         -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         
+      end loop EbeneSchleife;
+      
+      if
+        FelderanzahlZusatzgrund = SystemDatentypenHTSEB.AchtElemente'First
+      then
+         null;
+            
+      elsif
+        SpeichernZusatzbelegungLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+      then
+         return False;
+                        
+      else
+         null;
+      end if;
+      
+      case
+        VorhandeneSpezies
+      is
+         when 1 .. 8 =>
+            if
+              FelderanzahlSichtbarkeit = SystemDatentypenHTSEB.AchtElemente'First
+            then
+               null;
+            
+            elsif
+              SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+            then
+               return False;
+                        
+            else
+               null;
+            end if;
+            
+            LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+      
+            return True;
+            
+         when 9 .. 18 =>
+            GesamteFelderanzahl := 5 * Positive (LeseWeltkarteneinstellungen.Senkrechte) * Positive (LeseWeltkarteneinstellungen.Waagerechte);
+            ByteanzahlSiebenFelderzusammenfassung := Float'Ceiling (Float (GesamteFelderanzahl) / 7.00) * Float (VorhandeneSpezies);
+      end case;
+      
+      if
+        Positive (ByteanzahlSiebenFelderzusammenfassung) < GesamtgrößeSpezieszusammenfassung
+      then
+         SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                              1);
+         return SiebenFelderzusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
+                                             AutospeichernExtern  => AutospeichernExtern);
+                  
+      else
+         SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
+                                              0);
+         return Spezieszusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
+                                        AutospeichernExtern  => AutospeichernExtern);
+      end if;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Karte: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+         
+   end Karte;
+   
+   
+   
+   function SiebenFelderzusammenfassung
+     (DateiSpeichernExtern : in File_Type;
+      AutospeichernExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
+      SpeichernSichtbarkeitLogik.Leersetzung;
+      
+      EbeneSchleife:
+      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
+               
+               SpeichernSichtbarkeitLogik.Sichtbarkeitsbelegung (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                 FelderanzahlExtern => FelderanzahlSichtbarkeit);
+               FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
+                     
+               if
+                 FelderanzahlSichtbarkeit < SystemDatentypenHTSEB.AchtElemente'Last
+               then
+                  null;
+                        
+               elsif
+                 SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+               then
+                  return False;
+                        
+               else
+                  FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
+                  SpeichernSichtbarkeitLogik.Leersetzung;
+               end if;
+               
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+         
+         case
+           AutospeichernExtern
+         is
+            when False =>
+               null;
+               
+            when True =>
+               null;
+               -- LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+               --                             ErhöhungExtern              => 20);
+         end case;
+         
+         -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         
+      end loop EbeneSchleife;
+      
+      if
+        FelderanzahlSichtbarkeit = SystemDatentypenHTSEB.AchtElemente'First
+      then
+         null;
+            
+      elsif
+        SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+      then
+         return False;
+                        
+      else
+         null;
+      end if;
+            
+      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+      
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.SiebenFelderzusammenfassung: Konnte nicht gespeichert werden: "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+      
+   end SiebenFelderzusammenfassung;
+   
+   
+   
+   function Spezieszusammenfassung
+     (DateiSpeichernExtern : in File_Type;
+      AutospeichernExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      EbeneSchleife:
+      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
+               
+               case
+                 SpeichernSichtbarkeitLogik.SichtbarkeitVorzeichen (KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                    VorhandeneSpeziesExtern => VorhandeneSpezies,
+                                                                    DateiSpeichernExtern    => DateiSpeichernExtern)
+               is
+                  when False =>
+                     return False;
+                     
+                  when True =>
                      null;
                end case;
                
@@ -93,46 +307,25 @@ package body SpeichernKarteLogik is
                null;
                
             when True =>
-               LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
-                                          ErhöhungExtern              => 20);
+               null;
+               --      LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+               --                                  ErhöhungExtern              => 20);
          end case;
          
-         SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
          
       end loop EbeneSchleife;
-      
-      case
-        AnzahlFelder
-      is
-         when SystemDatentypenHTSEB.AchtElemente'First =>
-            null;
             
-         when others =>
-            if
-              SpeichernZusatzbelegungLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
-            then
-               return False;
-                        
-            elsif
-              SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
-            then
-               return False;
-                        
-            else
-               null;
-            end if;
-      end case;
-      
       LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       return True;
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Karte: Konnte nicht gespeichert werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Spezieszusammenfassung: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
-         
-   end Karte;
+      
+   end Spezieszusammenfassung;
 
 end SpeichernKarteLogik;

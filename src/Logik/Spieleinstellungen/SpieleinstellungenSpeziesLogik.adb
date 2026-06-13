@@ -1,4 +1,3 @@
-with SystemDatentypenHTSEB;
 with MeldungssystemHTSEB;
 
 with LadezeitenDatentypen;
@@ -153,7 +152,7 @@ package body SpieleinstellungenSpeziesLogik is
                
             when others =>
                StartwerteFestlegenSchleife:
-               for NotAusSchleifenwert in ZahlenDatentypen.NotAus'Range loop
+               for NotAusSchleifenwert in SystemDatentypenHTSEB.Durchläufe100'Range loop
                                     
                   case
                     StartpunktPrüfen (SpeziesExtern => SpeziesSchleifenwert,
@@ -169,7 +168,7 @@ package body SpieleinstellungenSpeziesLogik is
                   case
                     NotAusSchleifenwert
                   is
-                     when ZahlenDatentypen.NotAus'Last =>
+                     when SystemDatentypenHTSEB.Durchläufe100'Last =>
                         -- Hier wieder eine Meldung einbauen für den Fall dass die Spezies nicht platziert werden konnte? Scheint sinnvoll. äöü
                         SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesSchleifenwert,
                                                           BelegungExtern => SpeziesDatentypen.Leer_Spieler_Enum);
@@ -193,7 +192,7 @@ package body SpieleinstellungenSpeziesLogik is
 
    function StartpunktPrüfen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      NotAusExtern : in ZahlenDatentypen.NotAus)
+      NotAusExtern : in SystemDatentypenHTSEB.Durchläufe100)
       return Boolean
    is begin
       
@@ -253,11 +252,11 @@ package body SpieleinstellungenSpeziesLogik is
    function ZusatzfeldBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      NotAusExtern : in ZahlenDatentypen.NotAus)
+      NotAusExtern : in SystemDatentypenHTSEB.Durchläufe100)
       return KartenRecords.KartenfeldNaturalRecord
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
-      use type ZahlenDatentypen.NotAus;
+      use type SystemDatentypenHTSEB.Durchläufe100;
    begin
             
       FreieFelder := 0;
@@ -326,14 +325,14 @@ package body SpieleinstellungenSpeziesLogik is
          null;
          
       elsif
-        NotAusExtern > ZahlenDatentypen.NotAus'Last - 10
+        NotAusExtern > SystemDatentypenHTSEB.Durchläufe100'Last - 10
         and
           FreieFelder >= 2
       then
          null;
          
       elsif
-        NotAusExtern = ZahlenDatentypen.NotAus'Last
+        NotAusExtern = SystemDatentypenHTSEB.Durchläufe100'Last
         and
           FreieFelder >= 1
       then

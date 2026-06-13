@@ -25,7 +25,7 @@ private
    
    AktuellerArraybereich : SystemDatentypenHTSEB.EigenesPositive;
    
-   SpeziesVorhanden : SpeziesDatentypen.Speziesnummern;
+   SpeziesVorhanden : SpeziesDatentypen.SpeziesnummernBasis;
    
    GewonnenWeiterspielen : SystemDatentypenHTSEB.EinByte;
       

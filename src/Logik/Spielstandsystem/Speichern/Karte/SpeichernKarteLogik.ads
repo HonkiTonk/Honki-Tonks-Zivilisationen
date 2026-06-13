@@ -12,8 +12,26 @@ package SpeichernKarteLogik is
       
 private
    
-   AnzahlFelder : Natural;
+   FelderanzahlZusatzgrund : Positive;
+   FelderanzahlSichtbarkeit : Positive;
+   GesamteFelderanzahl : Positive;
    
-   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
+   GesamtgrößeSpezieszusammenfassung : Natural;
+   
+   VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernVorhanden;
+   
+   ByteanzahlSiebenFelderzusammenfassung : Float;
+   
+   
+   
+   function SiebenFelderzusammenfassung
+     (DateiSpeichernExtern : in File_Type;
+      AutospeichernExtern : in Boolean)
+      return Boolean;
+   
+   function Spezieszusammenfassung
+     (DateiSpeichernExtern : in File_Type;
+      AutospeichernExtern : in Boolean)
+      return Boolean;
    
 end SpeichernKarteLogik;

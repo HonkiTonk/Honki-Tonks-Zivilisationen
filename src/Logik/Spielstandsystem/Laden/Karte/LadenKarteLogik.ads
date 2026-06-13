@@ -15,7 +15,7 @@ private
    
    AnzahlFelder : Natural;
    
-   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
+   VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernBasis;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
 

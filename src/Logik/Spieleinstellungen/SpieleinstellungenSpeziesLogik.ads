@@ -1,8 +1,10 @@
+private with SystemDatentypenHTSEB;
+
+
 private with KartenDatentypen;
 private with SpeziesDatentypen;
 private with RueckgabeDatentypen;
 private with KartenRecords;
-private with ZahlenDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -60,13 +62,13 @@ private
 
    function StartpunktPrüfen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      NotAusExtern : in ZahlenDatentypen.NotAus)
+      NotAusExtern : in SystemDatentypenHTSEB.Durchläufe100)
       return Boolean;
    
    function ZusatzfeldBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      NotAusExtern : in ZahlenDatentypen.NotAus)
+      NotAusExtern : in SystemDatentypenHTSEB.Durchläufe100)
       return KartenRecords.KartenfeldNaturalRecord
      with
        Pre => (

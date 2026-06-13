@@ -19,7 +19,7 @@ package LadenSichtbarkeitLogik is
    function Aufteilung
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      VorhandeneSpeziesExtern : in SpeziesDatentypen.Speziesnummern;
+      VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernBasis;
       LadenPrüfenExtern : in Boolean)
       return Boolean
      with
@@ -38,7 +38,7 @@ private
    
    Potenz : SystemDatentypenHTSEB.EigenerInteger;
    
-   VorhandeneSpezies : SpeziesDatentypen.Speziesnummern;
+   VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernBasis;
    
    SichtbarkeitVorhanden : SystemDatentypenHTSEB.EinByte;
    
