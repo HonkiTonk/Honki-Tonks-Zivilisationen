@@ -141,16 +141,16 @@ package ChangelogMai2026 is
    
    
 
-   -- Version 0.06. => 0.06. (11.05.2026):
+   -- Version 0.06.3865 => 0.06. (11.05.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3840 => 0.06. (10.05.2026):
+   -- Version 0.06.3840 => 0.06.3865 (10.05.2026):
    
-   -- 
+   -- GNAT 14.3.0-14 auf GNAT 14.3.0-15 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
