@@ -3,6 +3,8 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with KartenRecords;
 with KartenDatentypen;
 
+private with KartengrundDatentypen;
+
 with LeseWeltkarteneinstellungen;
 
 package SpeichernBasisgrundLogik is
@@ -20,5 +22,9 @@ package SpeichernBasisgrundLogik is
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
+   
+private
+   
+   Kerngrund : KartengrundDatentypen.Basisgrund_Kernfläche_Enum;
 
 end SpeichernBasisgrundLogik;

@@ -6,6 +6,8 @@ with KartenDatentypen;
 with KartenRecords;
 with SpeziesDatentypen;
 
+private with KartenArrays;
+
 with LeseWeltkarteneinstellungen;
 
 package SpeichernSichtbarkeitLogik is
@@ -62,11 +64,8 @@ private
    UnsichtbarSpezies : SpeziesDatentypen.SpeziesnummernBasis;
    VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernBasis;
    
-   type SichtbarkeitGesamtArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range, SystemDatentypenHTSEB.AchtElemente) of Boolean;
-   SichtbarkeitGesamt : SichtbarkeitGesamtArray;
+   SichtbarkeitGesamt : KartenArrays.SichtbarkeitGesamtArray;
    
-   -- type SichtbarkeitArray is array (SystemDatentypenHTSEB.AchtElemente) of Boolean;
-   -- Sichtbarkeit : SichtbarkeitArray;
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
       
    AktuelleSichtbarkeit : SystemDatentypenHTSEB.EinByte;
@@ -79,7 +78,7 @@ private
    
    function SichtbarkeitSchreiben
      (DateiSpeichernExtern : in File_Type;
-      SichtbarkeitExtern : in SichtbarkeitGesamtArray;
+      SichtbarkeitExtern : in KartenArrays.SichtbarkeitGesamtArray;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean;
 

@@ -26,6 +26,7 @@ package body SpeichernKarteLogik is
    is begin
       
       -- Wenn ich hier auch noch die Dicke und Art des Kartenrands mitspeichere, dann könnte ich das beim Speichern der Karte sparen, wäre vermutlich kleiner? äöü
+      -- Wobei ich ja immer noch den Zusaztscheiß speichern muss, da der ja änderbar ist, bringt dass denn viel? äöü
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseWeltkarteneinstellungen.GesamteEinstellungen);
       
@@ -83,7 +84,7 @@ package body SpeichernKarteLogik is
                      FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
                      
                      if
-                       FelderanzahlSichtbarkeit < SystemDatentypenHTSEB.AchtElemente'Last + 1
+                       FelderanzahlSichtbarkeit <= SystemDatentypenHTSEB.AchtElemente'Last
                      then
                         null;
                         
@@ -160,16 +161,16 @@ package body SpeichernKarteLogik is
             
          when 9 .. 18 =>
             GesamteFelderanzahl := 5 * Positive (LeseWeltkarteneinstellungen.Senkrechte) * Positive (LeseWeltkarteneinstellungen.Waagerechte);
-            ByteanzahlSiebenFelderzusammenfassung := Float'Ceiling (Float (GesamteFelderanzahl) / 7.00) * Float (VorhandeneSpezies);
+            ByteanzahlAchtFelderzusammenfassung := Float'Ceiling (Float (GesamteFelderanzahl) / 8.00) * Float (VorhandeneSpezies);
       end case;
       
       if
-        Positive (ByteanzahlSiebenFelderzusammenfassung) < GesamtgrößeSpezieszusammenfassung
+        Positive (ByteanzahlAchtFelderzusammenfassung) < GesamtgrößeSpezieszusammenfassung
       then
          SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
                                               1);
-         return SiebenFelderzusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
-                                             AutospeichernExtern  => AutospeichernExtern);
+         return AchtFelderzusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
+                                           AutospeichernExtern  => AutospeichernExtern);
                   
       else
          SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
@@ -188,7 +189,7 @@ package body SpeichernKarteLogik is
    
    
    
-   function SiebenFelderzusammenfassung
+   function AchtFelderzusammenfassung
      (DateiSpeichernExtern : in File_Type;
       AutospeichernExtern : in Boolean)
       return Boolean
@@ -210,7 +211,7 @@ package body SpeichernKarteLogik is
                FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
                      
                if
-                 FelderanzahlSichtbarkeit < SystemDatentypenHTSEB.AchtElemente'Last
+                 FelderanzahlSichtbarkeit <= SystemDatentypenHTSEB.AchtElemente'Last
                then
                   null;
                         
@@ -263,11 +264,11 @@ package body SpeichernKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.SiebenFelderzusammenfassung: Konnte nicht gespeichert werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.AchtFelderzusammenfassung: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
-   end SiebenFelderzusammenfassung;
+   end AchtFelderzusammenfassung;
    
    
    

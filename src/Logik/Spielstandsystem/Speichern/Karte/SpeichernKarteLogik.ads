@@ -20,11 +20,11 @@ private
    
    VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernVorhanden;
    
-   ByteanzahlSiebenFelderzusammenfassung : Float;
+   ByteanzahlAchtFelderzusammenfassung : Float;
    
    
    
-   function SiebenFelderzusammenfassung
+   function AchtFelderzusammenfassung
      (DateiSpeichernExtern : in File_Type;
       AutospeichernExtern : in Boolean)
       return Boolean;

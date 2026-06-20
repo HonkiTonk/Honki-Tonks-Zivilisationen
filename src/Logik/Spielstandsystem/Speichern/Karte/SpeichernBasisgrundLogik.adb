@@ -4,18 +4,18 @@ with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
 with KartenKonstanten;
-with KartengrundDatentypen;
 
 with LeseWeltkarte;
 
 package body SpeichernBasisgrundLogik is
    
-   -- Muss bei Kartengrund der Rand mitgespeichert werden? Ist der nicht auch so bekannt? äöü
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       DateiSpeichernExtern : in File_Type)
       return Boolean
-   is begin
+   is
+        use type KartengrundDatentypen.Basisgrund_Kernfläche_Enum;
+   begin
       
       case
         KoordinatenExtern.Ebene
@@ -32,8 +32,19 @@ package body SpeichernBasisgrundLogik is
                                                                    LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
             
          when KartenKonstanten.PlaneteninneresKonstante =>
-            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
+            Kerngrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
+            -- Der Kern basiert doch auf der Kartengröße, kann ich den dann nicht einfach überspringen und beim Laden mit Kern auffüllen? äöü
+            -- Das hier lieber direkt in die Koordinatenschleife packen? äöü
+            
+            if
+              Kerngrund = KartengrundDatentypen.Planetenkern_Enum
+            then
+               null;
+               
+            else
+               KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                      Kerngrund);
+            end if;
       end case;
       
       return True;

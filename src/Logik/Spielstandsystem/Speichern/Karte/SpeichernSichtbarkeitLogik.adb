@@ -71,7 +71,7 @@ package body SpeichernSichtbarkeitLogik is
    
    function SichtbarkeitSchreiben
      (DateiSpeichernExtern : in File_Type;
-      SichtbarkeitExtern : in SichtbarkeitGesamtArray;
+      SichtbarkeitExtern : in KartenArrays.SichtbarkeitGesamtArray;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
