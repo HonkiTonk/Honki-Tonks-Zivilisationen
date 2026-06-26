@@ -120,16 +120,16 @@ package ChangelogMai2026 is
    
    
 
-   -- Version 0.06. => 0.06. (14.05.2026):
+   -- Version 0.06.3945 => 0.06. (14.05.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3920 => 0.06. (13.05.2026):
+   -- Version 0.06.3920 => 0.06.3945 (13.05.2026):
    
-   -- 
+   -- Lokale Pragmas überarbeitet und erweitert.
    -- Kleinigkeiten korrigiert.
    
    
@@ -137,7 +137,7 @@ package ChangelogMai2026 is
    -- Version 0.06.3890 => 0.06.3920 (12.05.2026):
    
    -- Speichersystem weiter überarbeitet.
-   -- Komentare und Kleinigkeiten korrigiert/angepasst/entfernt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt.
    
    
 

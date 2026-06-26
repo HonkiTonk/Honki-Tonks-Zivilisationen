@@ -10,7 +10,7 @@ pragma Task_Dispatching_Policy (FIFO_Within_Priorities);
 pragma Locking_Policy (Ceiling_Locking);
 -- Eventuell langsamer.
 pragma Check_Float_Overflow;
--- Gibt es ein Argument für Off?
+-- Gibt es ein Argument für On/Off?
 pragma Extensions_Allowed (Off);
 pragma Assertion_Policy (Check);
 pragma Implicit_Packing;
@@ -56,7 +56,6 @@ pragma Restrictions (No_Implementation_Units);
 pragma Restrictions (No_Obsolescent_Features);
 pragma Restrictions (No_Implementation_Aspect_Specifications);
 pragma Restrictions (No_Implementation_Attributes);
-pragma Restrictions (No_Implicit_Aliasing);
 
 pragma Restrictions (Max_Protected_Entries => 0);
 pragma Restrictions (Max_Select_Alternatives => 0);
@@ -111,7 +110,6 @@ pragma Restrictions (No_Long_Long_Integers);
 -- pragma Reviewable;
 -- pragma Short_Circuit_And_Or;
 -- pragma Short_Descriptors;
--- Kann ich bei meinem Spiel nicht verwenden.
 -- pragma Restrictions (No_Implicit_Loops);
 -- Ist eine entspanntere Version von pragma Restrictions (Simple_Barriers), welches verwendet wird, sollte also nicht nötig sein.
 -- pragma Restrictions (Pure_Barriers);
