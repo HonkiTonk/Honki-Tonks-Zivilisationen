@@ -99,16 +99,16 @@ package ChangelogMai2026 is
    
    
 
-   -- Version 0.06. => 0.06. (17.05.2026):
+   -- Version 0.06.4020 => 0.06. (17.05.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.3995 => 0.06. (16.05.2026):
+   -- Version 0.06.3995 => 0.06.4020 (16.05.2026):
    
-   -- 
+   -- Unifont von Version 17.0.04 auf Version 17.0.05 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
