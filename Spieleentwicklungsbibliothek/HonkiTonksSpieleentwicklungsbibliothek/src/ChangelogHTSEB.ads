@@ -1,9 +1,15 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.2150 => 0.01.1 (..2026):
+   -- Version 0.01.2200 => 0.01.2 (..2026):
    
    -- 
+   
+   
+   
+   -- Version 0.01.2150 => 0.01.2200 (30.06.2026):
+   
+   -- Lokale Pragmas überarbeitet.
    
    
    
