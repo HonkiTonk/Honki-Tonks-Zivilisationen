@@ -85,16 +85,16 @@ package ChangelogMai2026 is
    
    
 
-   -- Version 0.06. => 0.06. (19.05.2026):
+   -- Version 0.06.4080 => 0.06. (19.05.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4055 => 0.06. (18.05.2026):
+   -- Version 0.06.4055 => 0.06.4080 (18.05.2026):
    
-   -- 
+   -- Changelog Vorlagen für 2027 eingefügt.
    -- Kleinigkeiten korrigiert.
    
    
