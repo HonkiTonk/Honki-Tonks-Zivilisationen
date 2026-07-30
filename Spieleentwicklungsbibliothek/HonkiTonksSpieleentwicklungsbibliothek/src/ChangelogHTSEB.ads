@@ -1,9 +1,17 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.2200 => 0.01.2 (..2026):
+   -- Version 0.01.2400 => 0.01.2 (..2026):
    
    -- 
+   
+   
+   
+   -- Version 0.01.2200 => 0.01.2400 (30.07.2026):
+   
+   -- MeldungSchreibenHTSEB um protected erweitert, um mehrfachen, gleichzeitigen Dateizugriff zu verhindern.
+   -- Englische Übersetzung überarbeitet.
+   -- Lokale Pragmas überarbeitet.
    
    
    

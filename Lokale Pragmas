@@ -34,7 +34,6 @@ pragma Restrictions (No_Initialize_Scalars);
 pragma Restrictions (No_Local_Timing_Events);
 pragma Restrictions (No_Local_Protected_Objects);
 pragma Restrictions (No_Protected_Type_Allocators);
-pragma Restrictions (No_Protected_Types);
 pragma Restrictions (No_Requeue_Statements);
 pragma Restrictions (No_Select_Statements);
 pragma Restrictions (No_Specific_Termination_Handlers);
@@ -62,7 +61,7 @@ pragma Restrictions (Max_Protected_Entries => 0);
 pragma Restrictions (Max_Select_Alternatives => 0);
 pragma Restrictions (Max_Task_Entries => 0);
 pragma Restrictions (Max_Asynchronous_Select_Nesting => 0);
-pragma Restrictions (Max_Entry_Queue_Length => 0);
+pragma Restrictions (Max_Entry_Queue_Length => 1);
 
 pragma Restrictions (No_Dependence => Ada.Asynchronous_Task_Control);
 pragma Restrictions (No_Dependence => Ada.Execution_Time.Group_Budget);
@@ -90,6 +89,7 @@ pragma Restrictions (No_Long_Long_Integers);
 -- pragma Normalize_Scalars;
 -- Damit ist pragma Ordered nicht verwendbar.
 -- pragma Restrictions (No_Implementation_Pragmas);
+-- pragma Restrictions (No_Protected_Types);
 
 
 

@@ -92,16 +92,17 @@ package ChangelogMai2026 is
    
    
 
-   -- Version 0.06. => 0.06. (18.05.2026):
+   -- Version 0.06.4055 => 0.06. (18.05.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4020 => 0.06. (17.05.2026):
+   -- Version 0.06.4020 => 0.06.4055 (17.05.2026):
    
-   -- 
+   -- Spieleentwicklungsbibliothek von Version 0.01.2200 auf Version 0.01.2400 aktualisiert.
+   -- Lokale Pragmas angepasst, damit es keine Probleme mit den Änderungen in der Spieleentwicklungsbibliothek gibt.
    -- Kleinigkeiten korrigiert.
    
    

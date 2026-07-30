@@ -32,6 +32,7 @@ with SetauswahlGrafik;
 
 -- with DiagnosesystemZusatzinformationen;
 -- with DiagnosesystemHTSEB;
+-- with MeldungssystemHTSEB;
 
 package body Grafik is
    
@@ -79,6 +80,9 @@ package body Grafik is
             when False =>
                exit GrafikSchleife;
          end case;
+         
+         -- Für Testzwecke:
+         -- MeldungssystemHTSEB.Grafik (MeldungExtern => "Grafikstoptest");
          
       end loop GrafikSchleife;
       

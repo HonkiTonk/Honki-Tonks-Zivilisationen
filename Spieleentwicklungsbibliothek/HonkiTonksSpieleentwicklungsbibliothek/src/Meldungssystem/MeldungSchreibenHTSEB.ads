@@ -2,8 +2,8 @@ private with Ada.Wide_Wide_Text_IO;
 
 package MeldungSchreibenHTSEB is
    pragma Elaborate_Body;
-
-   procedure Meldung
+   
+   procedure MeldungUTF
      (MeldungExtern : in Wide_Wide_String)
      with
        Pre => (
@@ -24,8 +24,21 @@ private
    -- Dann müsste man aber auch prüfen ob das gültige Angaben sind, eventuell später einbauen. äöü
    Meldungen : constant String (1 .. 9) := "Meldungen";
    
-   Wartezeit : constant Duration := 0.002;
+   
+
+   protected Schreiben is
+      
+      procedure Meldung
+        (MeldungExtern : in Wide_Wide_String)
+        with
+          Pre => (
+                    MeldungExtern'Length > 0
+                 );
+      
+   private
          
-   DateiMeldung : File_Type;
+      DateiMeldung : File_Type;
+      
+   end Schreiben;
 
 end MeldungSchreibenHTSEB;

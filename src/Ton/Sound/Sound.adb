@@ -8,6 +8,8 @@ with LeseGesamttask;
 with StartEndeSound;
 with EinstellungenSound;
 
+-- with MeldungssystemHTSEB;
+
 package body Sound is
 
    -- Sound wird direkt parallel aufgerufen. Steht auch im SFML Tutorial und der Beschreibung der ASFML.
@@ -62,6 +64,9 @@ package body Sound is
                StartEndeSound.Stoppen (SoundExtern => LeseSoundtask.SoundStoppen);
                SchreibeSoundtask.SoundStoppen (SoundExtern => TonDatentypen.Sound_Pause_Enum);
          end case;
+         
+         -- Für Testzwecke:
+         -- MeldungssystemHTSEB.Sound (MeldungExtern => "Soundstoptest");
          
       end loop SoundSchleife;
       

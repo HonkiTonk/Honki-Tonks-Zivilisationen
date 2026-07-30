@@ -14,6 +14,8 @@ with StartEndeMusik;
 with EinstellungenMusik;
 with EingeleseneMusik;
 
+-- with MeldungssystemHTSEB;
+
 -- Musik muss immer gestoppt werden, sonst wird sie nicht erneut abgespielt!
 -- Musik wird direkt parallel aufgerufen. Steht auch im SFML Tutorial, allerdings unter Sound, und der Beschreibung der ASFML.
 package body Musik is
@@ -52,6 +54,9 @@ package body Musik is
             when TonDatentypen.Musik_Ende_Enum =>
                exit MusikSchleife;
          end case;
+         
+         -- Für Testzwecke:
+         -- MeldungssystemHTSEB.Musik (MeldungExtern => "Musikstoptest");
          
       end loop MusikSchleife;
       

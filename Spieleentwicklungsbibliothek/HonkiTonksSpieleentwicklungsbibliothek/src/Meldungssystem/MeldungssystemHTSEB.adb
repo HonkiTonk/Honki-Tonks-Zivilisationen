@@ -9,7 +9,7 @@ package body MeldungssystemHTSEB is
      (MeldungExtern : in Wide_Wide_String)
    is begin
       
-      MeldungSchreibenHTSEB.Meldung (MeldungExtern => Logikfehler & MeldungExtern);
+      MeldungSchreibenHTSEB.MeldungUTF (MeldungExtern => Logikfehler & MeldungExtern);
       
       case
         MeldungsvariablenHTSEB.FehlerMeldungAbfragen
@@ -30,7 +30,7 @@ package body MeldungssystemHTSEB is
      (MeldungExtern : in Wide_Wide_String)
    is begin
          
-      MeldungSchreibenHTSEB.Meldung (MeldungExtern => Grafikfehler & MeldungExtern);
+      MeldungSchreibenHTSEB.MeldungUTF (MeldungExtern => Grafikfehler & MeldungExtern);
       
       case
         MeldungsvariablenHTSEB.FehlerMeldungAbfragen
@@ -51,7 +51,7 @@ package body MeldungssystemHTSEB is
      (MeldungExtern : in Wide_Wide_String)
    is begin
       
-      MeldungSchreibenHTSEB.Meldung (MeldungExtern => Musikfehler & MeldungExtern);
+      MeldungSchreibenHTSEB.MeldungUTF (MeldungExtern => Musikfehler & MeldungExtern);
       
       case
         MeldungsvariablenHTSEB.FehlerMeldungAbfragen
@@ -72,7 +72,7 @@ package body MeldungssystemHTSEB is
      (MeldungExtern : in Wide_Wide_String)
    is begin
       
-      MeldungSchreibenHTSEB.Meldung (MeldungExtern => Soundfehler & MeldungExtern);
+      MeldungSchreibenHTSEB.MeldungUTF (MeldungExtern => Soundfehler & MeldungExtern);
       
       case
         MeldungsvariablenHTSEB.FehlerMeldungAbfragen
@@ -93,7 +93,7 @@ package body MeldungssystemHTSEB is
      (MeldungExtern : in Wide_Wide_String)
    is begin
       
-      MeldungSchreibenHTSEB.Meldung (MeldungExtern => SonstigeFehler & MeldungExtern);
+      MeldungSchreibenHTSEB.MeldungUTF (MeldungExtern => SonstigeFehler & MeldungExtern);
       
       case
         MeldungsvariablenHTSEB.FehlerMeldungAbfragen
