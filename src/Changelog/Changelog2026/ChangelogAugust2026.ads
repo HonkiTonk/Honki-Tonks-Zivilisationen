@@ -1,219 +1,196 @@
 package ChangelogAugust2026 is
    pragma Pure;
    
-   -- Version 0.0. => 0.0. (31.08.2026):
+   -- Version 0.06. => 0.06. (31.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (30.08.2026):
+   -- Version 0.06. => 0.06. (30.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.08.2026):
+   -- Version 0.06. => 0.06. (29.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.08.2026):
+   -- Version 0.06. => 0.06. (28.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.08.2026):
+   -- Version 0.06. => 0.06. (27.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.08.2026):
+   -- Version 0.06. => 0.06. (26.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.08.2026):
+   -- Version 0.06. => 0.06. (25.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.08.2026):
+   -- Version 0.06.4100 => 0.06. (24.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.08.2026):
+   -- Version 0.06.4080 => 0.06.4100 (23.08.2026):
    
-   -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (22.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (21.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (20.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (21.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (19.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (18.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (20.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (17.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (16.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (19.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (15.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (14.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (18.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (13.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (12.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (17.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (11.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (10.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (16.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (09.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (08.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (15.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (07.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (06.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (14.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (05.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (04.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (13.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (03.08.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (02.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (12.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.0. => 0.0. (01.08.2026):
+   -- Version 0.06.4080 => 0.06.4080 (11.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (10.08.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (09.08.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (08.08.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (07.08.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (06.08.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (05.08.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (04.08.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (03.08.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (02.08.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (01.08.2026):
+   
+   -- null.
 
 end ChangelogAugust2026;

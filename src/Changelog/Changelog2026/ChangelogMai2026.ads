@@ -1,94 +1,81 @@
 package ChangelogMai2026 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (31.05.2026):
+   -- Version 0.06.4080 => 0.06.4080 (31.05.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (30.05.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (29.05.2026):
+   -- Version 0.06.4080 => 0.06.4080 (30.05.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (28.05.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (27.05.2026):
+   -- Version 0.06.4080 => 0.06.4080 (29.05.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (26.05.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (25.05.2026):
+   -- Version 0.06.4080 => 0.06.4080 (28.05.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (24.05.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (23.05.2026):
+   -- Version 0.06.4080 => 0.06.4080 (27.05.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (22.05.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06. => 0.06. (21.05.2026):
+   -- Version 0.06.4080 => 0.06.4080 (26.05.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.06. => 0.06. (20.05.2026):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.06.4080 => 0.06. (19.05.2026):
+   -- Version 0.06.4080 => 0.06.4080 (25.05.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (24.05.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (23.05.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (22.05.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (21.05.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (20.05.2026):
+   
+   -- null.
+   
+   
+
+   -- Version 0.06.4080 => 0.06.4080 (19.05.2026):
+   
+   -- null.
    
    
 
