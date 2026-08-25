@@ -126,12 +126,12 @@ package body LadenZusatzbelegungLogik is
                
             when others =>
                if
-                 VorhandeneFeldelemente >= 2**ZusatzgrundSchleifenwert
+                 VorhandeneFeldelemente >= 2**(ZusatzgrundSchleifenwert - 1)
                then
                   KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                          Zusatzgrund);
             
-                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**ZusatzgrundSchleifenwert;
+                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(ZusatzgrundSchleifenwert - 1);
             
                   case
                     LadenPrüfenExtern
@@ -196,12 +196,12 @@ package body LadenZusatzbelegungLogik is
                
             when others =>
                if
-                 VorhandeneFeldelemente >= 2**FlussSchleifenwert
+                 VorhandeneFeldelemente >= 2**(FlussSchleifenwert - 1)
                then
                   KartenextraDatentypen.Fluss_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                    Fluss);
             
-                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**FlussSchleifenwert;
+                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(FlussSchleifenwert - 1);
             
                   case
                     LadenPrüfenExtern
@@ -266,12 +266,12 @@ package body LadenZusatzbelegungLogik is
                
             when others =>
                if
-                 VorhandeneFeldelemente >= 2**RessourceSchleifenwert
+                 VorhandeneFeldelemente >= 2**(RessourceSchleifenwert - 1)
                then
                   KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                         Ressource);
             
-                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**RessourceSchleifenwert;
+                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(RessourceSchleifenwert - 1);
             
                   case
                     LadenPrüfenExtern
@@ -336,12 +336,12 @@ package body LadenZusatzbelegungLogik is
                
             when others =>
                if
-                 VorhandeneFeldelemente >= 2**WegSchleifenwert
+                 VorhandeneFeldelemente >= 2**(WegSchleifenwert - 1)
                then
                   KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                         Weg);
             
-                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**WegSchleifenwert;
+                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(WegSchleifenwert - 1);
             
                   case
                     LadenPrüfenExtern
@@ -406,12 +406,12 @@ package body LadenZusatzbelegungLogik is
                
             when others =>
                if
-                 VorhandeneFeldelemente >= 2**VerbesserungSchleifenwert
+                 VorhandeneFeldelemente >= 2**(VerbesserungSchleifenwert - 1)
                then
                   KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                                  Verbesserung);
             
-                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**VerbesserungSchleifenwert;
+                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(VerbesserungSchleifenwert - 1);
             
                   case
                     LadenPrüfenExtern
@@ -476,12 +476,12 @@ package body LadenZusatzbelegungLogik is
                
             when others =>
                if
-                 VorhandeneFeldelemente >= 2**StadtSchleifenwert
+                 VorhandeneFeldelemente >= 2**(StadtSchleifenwert - 1)
                then
                   StadtRecords.SpeziesStadtnummerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
                                                                        Stadt);
             
-                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**StadtSchleifenwert;
+                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(StadtSchleifenwert - 1);
             
                   case
                     LadenPrüfenExtern
@@ -546,12 +546,12 @@ package body LadenZusatzbelegungLogik is
                
             when others =>
                if
-                 VorhandeneFeldelemente >= 2**FeldeffekteSchleifenwert
+                 VorhandeneFeldelemente >= 2**(FeldeffekteSchleifenwert - 1)
                then
                   SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
                                                       VorhandeneFeldeffekte);
                   
-                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**FeldeffekteSchleifenwert;
+                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(FeldeffekteSchleifenwert - 1);
                   
                   FeldeffekteErmittelnSchleife:
                   for FeldeffekteErmittelnSchleifenwert in reverse KartenRecords.FeldeffektArray'Range loop

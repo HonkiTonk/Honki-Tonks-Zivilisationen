@@ -41,7 +41,7 @@ package body SpeichernEinheitenLogik is
       end loop AnzahlEinheitenSchleife;
       
       EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
-                                                  VorhandeneEinheiten);
+                                                       VorhandeneEinheiten);
       
       case
         VorhandeneEinheiten
@@ -88,7 +88,7 @@ package body SpeichernEinheitenLogik is
                                                       LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
                   
          StadtDatentypen.StädtebereichBasis'Write (Stream (File => DateiSpeichernExtern),
-                                               LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
+                                                    LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
                   
          KampfDatentypen.LebenspunkteVorhanden'Write (Stream (File => DateiSpeichernExtern),
                                                       LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
@@ -97,7 +97,7 @@ package body SpeichernEinheitenLogik is
                                                              LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
                   
          KampfDatentypen.ErfahrungspunkteBasis'Write (Stream (File => DateiSpeichernExtern),
-                                                 LeseEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
+                                                      LeseEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
                   
          KampfDatentypen.Rang'Write (Stream (File => DateiSpeichernExtern),
                                      LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
@@ -160,7 +160,7 @@ package body SpeichernEinheitenLogik is
                end loop TransportSchleife;
                
                EinheitenDatentypen.TransportplätzeBasis'Write (Stream (File => DateiSpeichernExtern),
-                                                           TransportplätzeBelegt);
+                                                                TransportplätzeBelegt);
                
                LadungSchleife:
                for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. TransportplätzeBelegt loop
@@ -192,7 +192,7 @@ package body SpeichernEinheitenLogik is
                
             when others =>
                EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
-                                                           LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
+                                                                LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
          end case;
          
       end loop EinheitenSchleife;

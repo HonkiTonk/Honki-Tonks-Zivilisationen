@@ -101,10 +101,9 @@ package body LadenSichtbarkeitLogik is
            LadenPrüfenExtern
          is
             when True =>
-               SchreibeWeltkarte.Sichtbar
-                 (KoordinatenExtern => KoordinatenExtern (SichtbarkeitSchleifenwert),
-                  SpeziesExtern     => SpeziesExtern,
-                  SichtbarExtern    => Sichtbarkeit);
+               SchreibeWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern (SichtbarkeitSchleifenwert),
+                                           SpeziesExtern     => SpeziesExtern,
+                                           SichtbarExtern    => Sichtbarkeit);
             
             when False =>
                null;

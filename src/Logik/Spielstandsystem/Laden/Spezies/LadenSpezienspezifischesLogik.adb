@@ -84,7 +84,7 @@ package body LadenSpezienspezifischesLogik is
    begin
       
       SystemDatentypenHTSEB.EigenerInteger'Read (Stream (File => DateiLadenExtern),
-                                            Geldmenge);
+                                                 Geldmenge);
       
       -- Das hier, und eventuell auch andere Sachen, weglassen und einfach neu berechnen nach dem Laden? äöü
       ProduktionDatentypen.Produktion'Read (Stream (File => DateiLadenExtern),
@@ -102,7 +102,7 @@ package body LadenSpezienspezifischesLogik is
                                             VerbleibendeForschungszeit);
       
       ForschungenDatentypen.ForschungIDMöglich'Read (Stream (File => DateiLadenExtern),
-                                              Forschungsprojekt);
+                                                      Forschungsprojekt);
       
       -- Solle sich die Anzahl der Forschungen nicht zu weit erhöhen könnte man das auch als 2 statt 4 Bytes speichern und noch einmal 2 Byte pro Speicherung sparen.
       BereichSchleife:
@@ -130,16 +130,16 @@ package body LadenSpezienspezifischesLogik is
       end loop BereichSchleife;
             
       StadtDatentypen.StädtebereichBasis'Read (Stream (File => DateiLadenExtern),
-                                           AnzahlStädte);
+                                                AnzahlStädte);
       
       EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
-                                                 AnzahlArbeiter);
+                                                      AnzahlArbeiter);
       
       EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
-                                                 AnzahlKämpfer);
+                                                      AnzahlKämpfer);
       
       EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
-                                                 AnzahlSonstiges);
+                                                      AnzahlSonstiges);
       
       case
         SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesExtern)

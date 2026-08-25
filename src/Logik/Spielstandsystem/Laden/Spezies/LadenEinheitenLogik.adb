@@ -20,7 +20,7 @@ package body LadenEinheitenLogik is
    is begin
       
       EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
-                                                 VorhandeneEinheiten);
+                                                      VorhandeneEinheiten);
       
       case
         VorhandeneEinheiten
@@ -82,7 +82,7 @@ package body LadenEinheitenLogik is
                                                   Koordinaten);
       
       StadtDatentypen.StädtebereichBasis'Read (Stream (File => DateiLadenExtern),
-                                           Heimatstadt);
+                                                Heimatstadt);
       
       KampfDatentypen.LebenspunkteVorhanden'Read (Stream (File => DateiLadenExtern),
                                                   Lebenspunkte);
@@ -91,7 +91,7 @@ package body LadenEinheitenLogik is
                                                          Bewegungspunkte);
                   
       KampfDatentypen.ErfahrungspunkteBasis'Read (Stream (File => DateiLadenExtern),
-                                             Erfahrungspunkte);
+                                                  Erfahrungspunkte);
       
       KampfDatentypen.Rang'Read (Stream (File => DateiLadenExtern),
                                  Rang);
@@ -136,7 +136,7 @@ package body LadenEinheitenLogik is
             
          when others =>
             EinheitenDatentypen.TransportplätzeBasis'Read (Stream (File => DateiLadenExtern),
-                                                       TransportplätzeBelegt);
+                                                            TransportplätzeBelegt);
             
             Ladung := (others => 0);
             
@@ -158,7 +158,7 @@ package body LadenEinheitenLogik is
                
          when others =>
             EinheitenDatentypen.EinheitenbereichBasis'Read (Stream (File => DateiLadenExtern),
-                                                       WirdTransportiert);
+                                                            WirdTransportiert);
       end case;
       
       case

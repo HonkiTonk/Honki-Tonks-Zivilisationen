@@ -33,9 +33,10 @@ package body SpeichernKarteLogik is
       FelderanzahlZusatzgrund := SystemDatentypenHTSEB.AchtElemente'First;
       SpeichernZusatzbelegungLogik.Leersetzung;
       
-      VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
       FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
       SpeichernSichtbarkeitLogik.Leersetzung;
+      
+      VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
       GesamtgrößeSpezieszusammenfassung := 0;
       
       EbeneSchleife:
@@ -61,7 +62,7 @@ package body SpeichernKarteLogik is
                end case;
                
                if
-                 FelderanzahlZusatzgrund < SystemDatentypenHTSEB.AchtElemente'Last + 1
+                 FelderanzahlZusatzgrund <= SystemDatentypenHTSEB.AchtElemente'Last
                then
                   null;
                   

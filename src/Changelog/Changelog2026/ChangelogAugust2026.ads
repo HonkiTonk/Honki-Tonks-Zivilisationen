@@ -36,17 +36,17 @@ package ChangelogAugust2026 is
    
    
 
-   -- Version 0.06. => 0.06. (26.08.2026):
+   -- Version 0.06.4160 => 0.06. (26.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4130 => 0.06. (25.08.2026):
+   -- Version 0.06.4130 => 0.06.4160 (25.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das neue Speichersystem fertig gestellt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

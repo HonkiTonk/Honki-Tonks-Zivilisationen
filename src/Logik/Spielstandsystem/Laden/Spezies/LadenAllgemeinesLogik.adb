@@ -133,6 +133,7 @@ package body LadenAllgemeinesLogik is
       Belegung := (others => (Belegung => SpeziesDatentypen.Leer_Spieler_Enum,
                               Besiegt  => False));
       
+      -- Theoretisch könnte man das auch als Zahlenwert speichern und noch ein paar Bytes spare. äöü
       BelegungSchleife:
       for BelegungSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          

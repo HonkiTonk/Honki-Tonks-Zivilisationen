@@ -69,7 +69,7 @@ package body SpeichernSpezienspezifischesLogik is
    begin
       
       SystemDatentypenHTSEB.EigenerInteger'Write (Stream (File => DateiSpeichernExtern),
-                                             LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern));
+                                                  LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern));
       
       -- Das hier, und eventuell auch andere Sachen, weglassen und einfach neu berechnen nach dem Laden? äöü
       ProduktionDatentypen.Produktion'Write (Stream (File => DateiSpeichernExtern),
@@ -87,7 +87,7 @@ package body SpeichernSpezienspezifischesLogik is
                                              LeseWichtiges.VerbleibendeForschungszeit (SpeziesExtern => SpeziesExtern));
       
       ForschungenDatentypen.ForschungIDMöglich'Write (Stream (File => DateiSpeichernExtern),
-                                               LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern));
+                                                       LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern));
       
       -- Solle sich die Anzahl der Forschungen nicht zu weit erhöhen könnte man das auch als 2 statt 4 Bytes speichern und noch einmal 2 Byte pro Speicherung sparen.
       BereichSchleife:
@@ -121,16 +121,16 @@ package body SpeichernSpezienspezifischesLogik is
       
       -- Sind diese vier Werte für menschliche Spieler überhaupt relevant? äöü
       StadtDatentypen.StädtebereichBasis'Write (Stream (File => DateiSpeichernExtern),
-                                            LeseWichtiges.AnzahlStädte (SpeziesExtern => SpeziesExtern));
+                                                 LeseWichtiges.AnzahlStädte (SpeziesExtern => SpeziesExtern));
       
       EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
-                                                  LeseWichtiges.AnzahlArbeiter (SpeziesExtern => SpeziesExtern));
+                                                       LeseWichtiges.AnzahlArbeiter (SpeziesExtern => SpeziesExtern));
       
       EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
-                                                  LeseWichtiges.AnzahlKämpfer (SpeziesExtern => SpeziesExtern));
+                                                       LeseWichtiges.AnzahlKämpfer (SpeziesExtern => SpeziesExtern));
       
       EinheitenDatentypen.EinheitenbereichBasis'Write (Stream (File => DateiSpeichernExtern),
-                                                  LeseWichtiges.AnzahlSonstiges (SpeziesExtern => SpeziesExtern));
+                                                       LeseWichtiges.AnzahlSonstiges (SpeziesExtern => SpeziesExtern));
       
       case
         LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)

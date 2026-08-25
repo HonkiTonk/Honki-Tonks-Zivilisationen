@@ -6,7 +6,7 @@ with UmwandlungssystemHTSEB;
 with KartenKonstanten;
 with SchreibeWeltkarteneinstellungen;
 
-with LadezeitenLogik;
+-- with LadezeitenLogik;
 with LadenSichtbarkeitLogik;
 with SpielstandAllgemeinesLogik;
 with LadenBasisgrundLogik;
@@ -65,24 +65,21 @@ package body LadenKarteLogik is
                      FelderanzahlZusatzgrund := FelderanzahlZusatzgrund + 1;
                end case;
                
-               case
-                 FelderanzahlZusatzgrund
-               is
-                  when SystemDatentypenHTSEB.AchtElemente'Last + 1 =>
-                     if
-                       False = LadenZusatzbelegungLogik.Aufteilung (DateiLadenExtern  => DateiLadenExtern,
-                                                                    LadenPrüfenExtern => LadenPrüfenExtern)
-                     then
-                        return False;
-                                               
-                     else
-                        FelderanzahlZusatzgrund := SystemDatentypenHTSEB.AchtElemente'First;
-                        LadenZusatzbelegungLogik.Leersetzung;
-                     end if;
-                     
-                  when others =>
-                     null;
-               end case;
+               if
+                 FelderanzahlZusatzgrund <= SystemDatentypenHTSEB.AchtElemente'Last
+               then
+                  null;
+                  
+               elsif
+                 False = LadenZusatzbelegungLogik.Aufteilung (DateiLadenExtern  => DateiLadenExtern,
+                                                              LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                        
+               else
+                  FelderanzahlZusatzgrund := SystemDatentypenHTSEB.AchtElemente'First;
+                  LadenZusatzbelegungLogik.Leersetzung;
+               end if;
                
                case
                  VorhandeneSpezies
@@ -93,21 +90,19 @@ package body LadenKarteLogik is
                      FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
                      
                      if
-                       FelderanzahlSichtbarkeit = SystemDatentypenHTSEB.AchtElemente'Last + 1
+                       FelderanzahlSichtbarkeit <= SystemDatentypenHTSEB.AchtElemente'Last
                      then
-                        if
-                          False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
-                                                                     LadenPrüfenExtern       => LadenPrüfenExtern)
-                        then
-                           return False;
-                           
-                        else
-                           FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
-                           LadenSichtbarkeitLogik.Leersetzung;
-                        end if;
-                        
-                     else
                         null;
+                        
+                     elsif
+                       False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
+                                                                  LadenPrüfenExtern       => LadenPrüfenExtern)
+                     then
+                        return False;
+                           
+                     else
+                        FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
+                        LadenSichtbarkeitLogik.Leersetzung;
                      end if;
                      
                   when others =>
@@ -117,32 +112,44 @@ package body LadenKarteLogik is
             end loop WaagerechteSchleife;
          end loop SenkrechteSchleife;
          
-         LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+         -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
          
       end loop EbeneSchleife;
       
-      case
-        FelderanzahlZusatzgrund
-      is
-         when SystemDatentypenHTSEB.AchtElemente'First =>
-            null;
-            
-         when others =>
-            if
-              False = LadenZusatzbelegungLogik.Aufteilung (DateiLadenExtern  => DateiLadenExtern,
-                                                           LadenPrüfenExtern => LadenPrüfenExtern)
-            then
-               return False;
+      if
+        FelderanzahlZusatzgrund = SystemDatentypenHTSEB.AchtElemente'First
+      then
+         null;
+         
+      elsif
+        False = LadenZusatzbelegungLogik.Aufteilung (DateiLadenExtern  => DateiLadenExtern,
+                                                     LadenPrüfenExtern => LadenPrüfenExtern)
+      then
+         return False;
                                                
-            else
-               null;
-            end if;
-      end case;
+      else
+         null;
+      end if;
       
       case
         VorhandeneSpezies
       is
          when 1 .. 8 =>
+            if
+              FelderanzahlSichtbarkeit = SystemDatentypenHTSEB.AchtElemente'First
+            then
+               null;
+               
+            elsif
+              False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
+                                                         LadenPrüfenExtern       => LadenPrüfenExtern)
+            then
+               return False;
+                           
+            else
+               null;
+            end if;
+            
             return True;
             
          when others =>
@@ -180,7 +187,57 @@ package body LadenKarteLogik is
             end loop ZweiteEbeneSchleife;
             
          when 1 =>
-            null;
+            FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
+            LadenSichtbarkeitLogik.Leersetzung;
+            
+            DritteEbeneSchleife:
+            -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+            for DritteEbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+               DritteSenkrechteSchleife:
+               for DritteSenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
+                  DritteWaagerechteSchleife:
+                  for DritteWaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
+               
+                     LadenSichtbarkeitLogik.KoordinatenSetzen (KoordinatenExtern  => (DritteEbeneSchleifenwert, DritteSenkrechteSchleifenwert, DritteWaagerechteSchleifenwert),
+                                                               FelderanzahlExtern => FelderanzahlSichtbarkeit);
+                     FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
+                     
+                     if
+                       FelderanzahlSichtbarkeit <= SystemDatentypenHTSEB.AchtElemente'Last
+                     then
+                        null;
+                        
+                     elsif
+                       False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
+                                                                  LadenPrüfenExtern       => LadenPrüfenExtern)
+                     then
+                        return False;
+                           
+                     else
+                        FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
+                        LadenSichtbarkeitLogik.Leersetzung;
+                     end if;
+               
+                  end loop DritteWaagerechteSchleife;
+               end loop DritteSenkrechteSchleife;
+            end loop DritteEbeneSchleife;
+            
+            if
+              FelderanzahlSichtbarkeit = SystemDatentypenHTSEB.AchtElemente'First
+            then
+               null;
+               
+            elsif
+              False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
+                                                         LadenPrüfenExtern       => LadenPrüfenExtern)
+            then
+               return False;
+                           
+            else
+               null;
+            end if;
+            
+            return True;
             
          when others =>
             return False;

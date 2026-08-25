@@ -84,6 +84,7 @@ package body SpeichernAllgemeinesLogik is
       SpeziesDatentypen.Spezies_Enum'Write (Stream (File => DateiSpeichernExtern),
                                             LeseAllgemeines.PlanetVernichtet);
       
+      -- Diese beiden Werte eventuell in kleinere Datentypen packen? Würde ich das überall tun würde ich vermutlich ein paar Byte sparen, ist das sinnvoll? äöü
       SystemDatentypenHTSEB.EigenerInteger'Write (Stream (File => DateiSpeichernExtern),
                                              LeseAllgemeines.Zusammenbruchszeit);
       
@@ -113,7 +114,8 @@ package body SpeichernAllgemeinesLogik is
       use type SystemDatentypenHTSEB.EinByte;
       use type SpeziesDatentypen.Spieler_Enum;
    begin
-         
+      
+      -- Theoretisch könnte man das auch als Zahlenwert speichern und noch ein paar Bytes spare. äöü
       BelegungSchleife:
       for BelegungSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
