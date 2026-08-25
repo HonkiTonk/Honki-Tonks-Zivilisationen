@@ -3,13 +3,128 @@ with Ada.Exceptions; use Ada.Exceptions;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
+with KartenRecordKonstanten;
+
 with SchreibeWeltkarte;
 
 with SpielstandAllgemeinesLogik;
 
 package body LadenSichtbarkeitLogik is
+
+   procedure Leersetzung
+   is begin
+            
+      Koordinaten := (others => KartenRecordKonstanten.LeerKoordinate);
+      
+   end Leersetzung;
+   
+   
+   
+   procedure KoordinatenSetzen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      FelderanzahlExtern : in Positive)
+   is begin
+      
+      Koordinaten (FelderanzahlExtern) := KoordinatenExtern;
+      
+   end KoordinatenSetzen;
+   
+   
    
    function Aufteilung
+     (DateiLadenExtern : in File_Type;
+      LadenPrüfenExtern : in Boolean)
+     return Boolean
+   is begin
+      
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
+         
+         if
+           SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesSchleifenwert) not in SpeziesDatentypen.Spieler_Belegt_Enum'Range
+         then
+            null;
+            
+         elsif
+           False = Test (DateiLadenExtern  => DateiLadenExtern,
+                         KoordinatenExtern => Koordinaten,
+                         SpeziesExtern     => SpeziesSchleifenwert,
+                         LadenPrüfenExtern => LadenPrüfenExtern)
+         then
+            return False;
+            
+         else
+            null;
+         end if;
+         
+      end loop SpeziesSchleife;
+      
+      return True;
+      
+      
+   end Aufteilung;
+   
+   
+   
+   function Test
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KoordinatenArray;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      LadenPrüfenExtern : in Boolean)
+     return Boolean
+   is
+      use type SystemDatentypenHTSEB.EinByte;
+   begin
+      
+      GesamteSichtbarkeit := (others => False);
+      Potenz := (KoordinatenExtern'Last - 1);
+      
+      SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                          SichtbarkeitVorhanden);
+      
+      SichtbarkeitSchleife:
+      for SichtbarkeitSchleifenwert in reverse KoordinatenExtern'Range loop
+         
+         if
+           SichtbarkeitVorhanden >= 2**Potenz
+         then
+            Sichtbarkeit := True;
+            SichtbarkeitVorhanden := SichtbarkeitVorhanden - 2**Potenz;
+            
+         else
+            Sichtbarkeit := False;
+         end if;
+               
+         Potenz := Potenz - 1;
+         
+         case
+           LadenPrüfenExtern
+         is
+            when True =>
+               SchreibeWeltkarte.Sichtbar
+                 (KoordinatenExtern => KoordinatenExtern (SichtbarkeitSchleifenwert),
+                  SpeziesExtern     => SpeziesExtern,
+                  SichtbarExtern    => Sichtbarkeit);
+            
+            when False =>
+               null;
+         end case;
+         
+      end loop SichtbarkeitSchleife;
+      
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSichtbarkeitLogik.Test: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+      
+   end Test;
+   
+   
+   
+   function AufteilungSpezienzusammenfassung
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernBasis;
@@ -17,7 +132,6 @@ package body LadenSichtbarkeitLogik is
       return Boolean
    is begin
       
-      -- Das Speichern/Laden vonn Spezienzusammenfassung auf Felderzusammenfassung ändern. äöü
       case
         VorhandeneSpeziesExtern
       is
@@ -43,7 +157,7 @@ package body LadenSichtbarkeitLogik is
             return False;
       end case;
       
-   end Aufteilung;
+   end AufteilungSpezienzusammenfassung;
    
    
    

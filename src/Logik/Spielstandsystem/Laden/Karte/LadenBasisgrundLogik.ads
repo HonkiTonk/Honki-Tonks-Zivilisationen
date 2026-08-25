@@ -15,6 +15,7 @@ package LadenBasisgrundLogik is
    function BasisgrundEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
+      KartenfeldExtern : in KartenRecords.KartenfeldumgebungPositivRecord;
       LadenPrüfenExtern : in Boolean)
       return Boolean
      with

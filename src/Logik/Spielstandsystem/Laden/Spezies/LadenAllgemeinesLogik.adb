@@ -83,6 +83,7 @@ package body LadenAllgemeinesLogik is
       SpeziesDatentypen.Spezies_Enum'Read (Stream (File => DateiLadenExtern),
                                            PlanetVernichtet);
       
+      -- Diese beiden Werte eventuell in kleinere Datentypen packen? Würde ich das überall tun würde ich vermutlich ein paar Byte sparen, ist das sinnvoll? äöü
       SystemDatentypenHTSEB.EigenerInteger'Read (Stream (File => DateiLadenExtern),
                                             Zusammenbruchszeit);
       

@@ -2,7 +2,6 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
-with SystemDatentypenHTSEB;
 
 with KartenKonstanten;
 with SchreibeWeltkarteneinstellungen;
@@ -37,10 +36,12 @@ package body LadenKarteLogik is
             null;
       end case;
       
-      AnzahlFelder := SystemDatentypenHTSEB.AchtElemente'First;
+      FelderanzahlZusatzgrund := SystemDatentypenHTSEB.AchtElemente'First;
+      FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
       -- Ich muss das doch jedes Mal auf null setzen, oder? äöü
       -- Und auch beim Schreiben muss ich aufpassen dass ich nur die richtigen Werte setze und vorher auf null setzen. äöü
       LadenZusatzbelegungLogik.Leersetzung;
+      LadenSichtbarkeitLogik.Leersetzung;
       
       EbeneSchleife:
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
@@ -49,29 +50,23 @@ package body LadenKarteLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
                
-               if
-                 False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
-                                                            KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                            VorhandeneSpeziesExtern => VorhandeneSpezies,
-                                                            LadenPrüfenExtern       => LadenPrüfenExtern)
-               then
-                  return False;
-                  
-               elsif
-                 False = LadenBasisgrundLogik.BasisgrundEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                                                                  KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                  LadenPrüfenExtern => LadenPrüfenExtern)
-               then
-                  return False;
-                  
-               else
-                  LadenZusatzbelegungLogik.KoordinatenSetzen (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                              FelderanzahlExtern => AnzahlFelder);
-                  AnzahlFelder := AnzahlFelder + 1;
-               end if;
+               case
+                 LadenBasisgrundLogik.BasisgrundEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                                          KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                          KartenfeldExtern  => Karteneinstellungen.Kartengröße,
+                                                          LadenPrüfenExtern => LadenPrüfenExtern)
+               is
+                  when False =>
+                     return False;
+                     
+                  when True =>
+                     LadenZusatzbelegungLogik.KoordinatenSetzen (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                 FelderanzahlExtern => FelderanzahlZusatzgrund);
+                     FelderanzahlZusatzgrund := FelderanzahlZusatzgrund + 1;
+               end case;
                
                case
-                 AnzahlFelder
+                 FelderanzahlZusatzgrund
                is
                   when SystemDatentypenHTSEB.AchtElemente'Last + 1 =>
                      if
@@ -81,8 +76,38 @@ package body LadenKarteLogik is
                         return False;
                                                
                      else
-                        AnzahlFelder := SystemDatentypenHTSEB.AchtElemente'First;
+                        FelderanzahlZusatzgrund := SystemDatentypenHTSEB.AchtElemente'First;
                         LadenZusatzbelegungLogik.Leersetzung;
+                     end if;
+                     
+                  when others =>
+                     null;
+               end case;
+               
+               case
+                 VorhandeneSpezies
+               is
+                  when 1 .. 8 =>
+                     LadenSichtbarkeitLogik.KoordinatenSetzen (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                               FelderanzahlExtern => FelderanzahlSichtbarkeit);
+                     FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
+                     
+                     if
+                       FelderanzahlSichtbarkeit = SystemDatentypenHTSEB.AchtElemente'Last + 1
+                     then
+                        if
+                          False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
+                                                                     LadenPrüfenExtern       => LadenPrüfenExtern)
+                        then
+                           return False;
+                           
+                        else
+                           FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
+                           LadenSichtbarkeitLogik.Leersetzung;
+                        end if;
+                        
+                     else
+                        null;
                      end if;
                      
                   when others =>
@@ -97,7 +122,7 @@ package body LadenKarteLogik is
       end loop EbeneSchleife;
       
       case
-        AnzahlFelder
+        FelderanzahlZusatzgrund
       is
          when SystemDatentypenHTSEB.AchtElemente'First =>
             null;
@@ -112,6 +137,53 @@ package body LadenKarteLogik is
             else
                null;
             end if;
+      end case;
+      
+      case
+        VorhandeneSpezies
+      is
+         when 1 .. 8 =>
+            return True;
+            
+         when others =>
+            SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
+                                                SichtbarkeitLadeaufteilung);
+      end case;
+      
+      case
+        SichtbarkeitLadeaufteilung
+      is
+         when 0 =>
+            ZweiteEbeneSchleife:
+            -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+            for ZweiteEbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+               ZweiteSenkrechteSchleife:
+               for ZweiteSenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
+                  ZweiteWaagerechteSchleife:
+                  for ZweiteWaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
+               
+                     case
+                       LadenSichtbarkeitLogik.AufteilungSpezienzusammenfassung (DateiLadenExtern        => DateiLadenExtern,
+                                                                                KoordinatenExtern       => (ZweiteEbeneSchleifenwert, ZweiteSenkrechteSchleifenwert, ZweiteWaagerechteSchleifenwert),
+                                                                                VorhandeneSpeziesExtern => VorhandeneSpezies,
+                                                                                LadenPrüfenExtern       => LadenPrüfenExtern)
+                     is
+                        when False =>
+                           return False;
+                     
+                        when True =>
+                           null;
+                     end case;
+               
+                  end loop ZweiteWaagerechteSchleife;
+               end loop ZweiteSenkrechteSchleife;
+            end loop ZweiteEbeneSchleife;
+            
+         when 1 =>
+            null;
+            
+         when others =>
+            return False;
       end case;
             
       return True;

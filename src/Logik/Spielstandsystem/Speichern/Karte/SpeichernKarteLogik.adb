@@ -26,7 +26,7 @@ package body SpeichernKarteLogik is
    is begin
       
       -- Wenn ich hier auch noch die Dicke und Art des Kartenrands mitspeichere, dann könnte ich das beim Speichern der Karte sparen, wäre vermutlich kleiner? äöü
-      -- Wobei ich ja immer noch den Zusaztscheiß speichern muss, da der ja änderbar ist, bringt dass denn viel? äöü
+      -- Wobei ich ja immer noch den Zusatzscheiß speichern muss, da der ja änderbar ist, bringt dass denn viel? äöü
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseWeltkarteneinstellungen.GesamteEinstellungen);
       

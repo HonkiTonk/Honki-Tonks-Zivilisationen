@@ -14,9 +14,10 @@ package body SpeichernBasisgrundLogik is
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
-        use type KartengrundDatentypen.Basisgrund_Kernfläche_Enum;
+      use type KartengrundDatentypen.Basisgrund_Kernfläche_Enum;
    begin
       
+      -- Man kann das teilweise zusammenfassen, aber mal getrennt lassen für spätere, potentielle Verbesserungen.
       case
         KoordinatenExtern.Ebene
       is

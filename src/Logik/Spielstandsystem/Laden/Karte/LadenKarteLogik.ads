@@ -1,5 +1,7 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
+private with SystemDatentypenHTSEB;
+
 private with KartenRecords;
 private with SpeziesDatentypen;
 
@@ -13,9 +15,14 @@ package LadenKarteLogik is
    
 private
    
-   AnzahlFelder : Natural;
+   FelderanzahlZusatzgrund : Positive;
+   FelderanzahlSichtbarkeit : Positive;
+   
+   SichtbarkeitLadeaufteilung : SystemDatentypenHTSEB.EinByte;
    
    VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernBasis;
+   
+   Speziesbelegung : SpeziesDatentypen.Spezies_Vorhanden_Enum;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
 

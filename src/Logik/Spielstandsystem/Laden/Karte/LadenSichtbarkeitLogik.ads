@@ -16,7 +16,20 @@ package LadenSichtbarkeitLogik is
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    
+   procedure Leersetzung;
+   
+   procedure KoordinatenSetzen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      FelderanzahlExtern : in Positive);
+   
+   
+   
    function Aufteilung
+     (DateiLadenExtern : in File_Type;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean;
+   
+   function AufteilungSpezienzusammenfassung
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernBasis;
@@ -34,6 +47,8 @@ package LadenSichtbarkeitLogik is
    
 private
    
+   Sichtbarkeit : Boolean;
+   
    AktuellerArraybereich : SystemDatentypenHTSEB.EigenesPositive;
    
    Potenz : SystemDatentypenHTSEB.EigenerInteger;
@@ -48,6 +63,9 @@ private
    
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
    
+   type KoordinatenArray is array (SystemDatentypenHTSEB.AchtElemente'Range) of KartenRecords.KartenfeldNaturalRecord;
+   Koordinaten : KoordinatenArray;
+   
    type SichtbarkeitGleichArray is array (SystemKonstanten.AllesUnsichtbar .. SystemKonstanten.AllesSichtbar) of Boolean;
    SichtbarkeitGleich : constant SichtbarkeitGleichArray := (
                                                              SystemKonstanten.AllesUnsichtbar => False,
@@ -55,6 +73,13 @@ private
                                                             );
    
    
+   
+   function Test
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KoordinatenArray;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
+      LadenPrüfenExtern : in Boolean)
+     return Boolean;
    
    function SichtbarkeitEinByte
      (DateiLadenExtern : in File_Type;
