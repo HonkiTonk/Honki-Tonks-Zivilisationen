@@ -1,4 +1,5 @@
 with Ada.Calendar; use Ada.Calendar;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypenHTSEB;
 
@@ -69,6 +70,10 @@ package Grafiktask is
    Einheitenbewegung : TaskRecords.EinheitenbewegungGrafikRecord := (others => False);
    
    Spielstand : TaskRecords.SpielstandGrafikRecord := (others => False);
+   
+   
+   
+   Dateiname : Unbounded_Wide_Wide_String;
    
    
    

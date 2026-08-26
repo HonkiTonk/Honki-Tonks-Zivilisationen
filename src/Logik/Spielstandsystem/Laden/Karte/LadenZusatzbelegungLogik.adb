@@ -554,7 +554,7 @@ package body LadenZusatzbelegungLogik is
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(FeldeffekteSchleifenwert - 1);
                   
                   FeldeffekteErmittelnSchleife:
-                  for FeldeffekteErmittelnSchleifenwert in reverse KartenRecords.FeldeffektArray'Range loop
+                  for FeldeffekteErmittelnSchleifenwert in reverse KartenArrays.FeldeffektArray'Range loop
 
                      if
                        VorhandeneFeldeffekte >= AktuellerFeldeffekt

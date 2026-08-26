@@ -1,6 +1,7 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with SpeziesDatentypen;
+private with KartenArrays;
 
 package SpeichernKarteLogik is
    pragma Elaborate_Body;
@@ -22,9 +23,11 @@ private
    
    ByteanzahlAchtFelderzusammenfassung : Float;
    
+   SichtbarkeitFelderreiheFestgelegt : KartenArrays.SichtbarkeitGesamtArray;
    
    
-   function AchtFelderzusammenfassung
+      
+   function Felderzusammenfassung
      (DateiSpeichernExtern : in File_Type;
       AutospeichernExtern : in Boolean)
       return Boolean;

@@ -46,7 +46,7 @@ package body LadenLogik is
             return False;
          
          else
-            LadezeitenLogik.SpeichernLadenNullsetzen;
+            LadezeitenLogik.LadenNullsetzen;
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Laden_Enum);
             
             DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiLaden,
@@ -109,7 +109,8 @@ package body LadenLogik is
             return False;
             
          when True =>
-            LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+            null;
+           -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       end case;
       
       case
@@ -131,7 +132,7 @@ package body LadenLogik is
             return False;
             
          when True =>
-            LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+            -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
             return True;
       end case;
       
@@ -145,17 +146,16 @@ package body LadenLogik is
                
       Leerwert := LadenAllgemeinesLogik.Aufteilung (LadenPrüfenExtern => True,
                                                     DateiLadenExtern  => DateiLadenExtern);
-      LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
                
       Leerwert := LadenKarteLogik.KarteLaden (LadenPrüfenExtern => True,
                                               DateiLadenExtern  => DateiLadenExtern);
       
       Leerwert := SpezieswerteLaden (LadenPrüfenExtern => True,
                                      DateiLadenExtern  => DateiLadenExtern);
-      LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       SchreibeEinheitenGebaut.Standardbewegungsplan;
-      LadezeitenLogik.SpeichernLadenMaximum;
       
    end Ladevorgang;
    

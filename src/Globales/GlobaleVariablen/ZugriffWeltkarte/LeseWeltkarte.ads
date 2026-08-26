@@ -9,6 +9,7 @@ with WeltkarteRecords;
 with StadtKonstanten;
 with KartenextraDatentypen;
 with StadtDatentypen;
+with KartenArrays;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -65,7 +66,7 @@ package LeseWeltkarte is
    
    function Feldeffekte
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenRecords.FeldeffektArray
+      return KartenArrays.FeldeffektArray
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

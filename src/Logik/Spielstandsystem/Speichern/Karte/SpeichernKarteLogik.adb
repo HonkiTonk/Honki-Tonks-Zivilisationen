@@ -5,14 +5,14 @@ with UmwandlungssystemHTSEB;
 with SystemDatentypenHTSEB;
 
 with KartenKonstanten;
-with LadezeitenDatentypen;
+-- with LadezeitenDatentypen;
 with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
 
 with SpielstandAllgemeinesLogik;
 with SpeichernSichtbarkeitLogik;
-with LadezeitenLogik;
+-- with LadezeitenLogik;
 with SpeichernBasisgrundLogik;
 with SpeichernZusatzbelegungLogik;
 
@@ -34,7 +34,7 @@ package body SpeichernKarteLogik is
       SpeichernZusatzbelegungLogik.Leersetzung;
       
       FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
-      SpeichernSichtbarkeitLogik.Leersetzung;
+      SichtbarkeitFelderreiheFestgelegt := (others => (others => False));
       
       VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
       GesamtgrößeSpezieszusammenfassung := 0;
@@ -80,8 +80,10 @@ package body SpeichernKarteLogik is
                  VorhandeneSpezies
                is
                   when 1 .. 8 =>
-                     SpeichernSichtbarkeitLogik.Sichtbarkeitsbelegung (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                       FelderanzahlExtern => FelderanzahlSichtbarkeit);
+                     SichtbarkeitFelderreiheFestgelegt
+                       := SpeichernSichtbarkeitLogik.SichtbarkeitsbelegungFelderreihe (AktuelleSichtbarkeitFelderbelegungExtern => SichtbarkeitFelderreiheFestgelegt,
+                                                                                       KoordinatenExtern                        => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                       FelderanzahlExtern                       => FelderanzahlSichtbarkeit);
                      FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
                      
                      if
@@ -90,13 +92,14 @@ package body SpeichernKarteLogik is
                         null;
                         
                      elsif
-                       SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+                       False = SpeichernSichtbarkeitLogik.Felderreihe (DateiSpeichernExtern => DateiSpeichernExtern,
+                                                                       SichtbarkeitExtern   => SichtbarkeitFelderreiheFestgelegt)
                      then
                         return False;
                         
                      else
                         FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
-                        SpeichernSichtbarkeitLogik.Leersetzung;
+                        SichtbarkeitFelderreiheFestgelegt := (others => (others => False));
                      end if;
                      
                   when 9 .. 18 =>
@@ -148,7 +151,8 @@ package body SpeichernKarteLogik is
                null;
             
             elsif
-              SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+              False = SpeichernSichtbarkeitLogik.Felderreihe (DateiSpeichernExtern => DateiSpeichernExtern,
+                                                              SichtbarkeitExtern   => SichtbarkeitFelderreiheFestgelegt)
             then
                return False;
                         
@@ -156,7 +160,7 @@ package body SpeichernKarteLogik is
                null;
             end if;
             
-            LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+            -- LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
             return True;
             
@@ -165,17 +169,18 @@ package body SpeichernKarteLogik is
             ByteanzahlAchtFelderzusammenfassung := Float'Ceiling (Float (GesamteFelderanzahl) / 8.00) * Float (VorhandeneSpezies);
       end case;
       
+      -- Die 0/1 in ein Enum umbasteln? äöü
       if
         Positive (ByteanzahlAchtFelderzusammenfassung) < GesamtgrößeSpezieszusammenfassung
       then
          SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                              1);
-         return AchtFelderzusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
-                                           AutospeichernExtern  => AutospeichernExtern);
+                                              0);
+         return Felderzusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
+                                       AutospeichernExtern  => AutospeichernExtern);
                   
       else
          SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                              0);
+                                              1);
          return Spezieszusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
                                         AutospeichernExtern  => AutospeichernExtern);
       end if;
@@ -190,14 +195,14 @@ package body SpeichernKarteLogik is
    
    
    
-   function AchtFelderzusammenfassung
+   function Felderzusammenfassung
      (DateiSpeichernExtern : in File_Type;
       AutospeichernExtern : in Boolean)
       return Boolean
    is begin
       
       FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
-      SpeichernSichtbarkeitLogik.Leersetzung;
+      SichtbarkeitFelderreiheFestgelegt := (others => (others => False));
       
       EbeneSchleife:
       -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
@@ -207,8 +212,10 @@ package body SpeichernKarteLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
                
-               SpeichernSichtbarkeitLogik.Sichtbarkeitsbelegung (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                 FelderanzahlExtern => FelderanzahlSichtbarkeit);
+               SichtbarkeitFelderreiheFestgelegt
+                 := SpeichernSichtbarkeitLogik.SichtbarkeitsbelegungFelderreihe (AktuelleSichtbarkeitFelderbelegungExtern => SichtbarkeitFelderreiheFestgelegt,
+                                                                                 KoordinatenExtern                        => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                 FelderanzahlExtern                       => FelderanzahlSichtbarkeit);
                FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
                      
                if
@@ -217,13 +224,14 @@ package body SpeichernKarteLogik is
                   null;
                         
                elsif
-                 SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+                 False = SpeichernSichtbarkeitLogik.Felderreihe (DateiSpeichernExtern => DateiSpeichernExtern,
+                                                                 SichtbarkeitExtern   => SichtbarkeitFelderreiheFestgelegt)
                then
                   return False;
-                        
+                  
                else
                   FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
-                  SpeichernSichtbarkeitLogik.Leersetzung;
+                  SichtbarkeitFelderreiheFestgelegt := (others => (others => False));
                end if;
                
             end loop WaagerechteSchleife;
@@ -251,7 +259,8 @@ package body SpeichernKarteLogik is
          null;
             
       elsif
-        SpeichernSichtbarkeitLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichernExtern) = False
+        False = SpeichernSichtbarkeitLogik.Felderreihe (DateiSpeichernExtern => DateiSpeichernExtern,
+                                                        SichtbarkeitExtern   => SichtbarkeitFelderreiheFestgelegt)
       then
          return False;
                         
@@ -259,17 +268,17 @@ package body SpeichernKarteLogik is
          null;
       end if;
             
-      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+      -- LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       return True;
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.AchtFelderzusammenfassung: Konnte nicht gespeichert werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernKarteLogik.Felderzusammenfassung: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
-   end AchtFelderzusammenfassung;
+   end Felderzusammenfassung;
    
    
    
@@ -288,9 +297,9 @@ package body SpeichernKarteLogik is
             for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
                
                case
-                 SpeichernSichtbarkeitLogik.SichtbarkeitVorzeichen (KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                    VorhandeneSpeziesExtern => VorhandeneSpezies,
-                                                                    DateiSpeichernExtern    => DateiSpeichernExtern)
+                 SpeichernSichtbarkeitLogik.Spezieszeile (KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                          VorhandeneSpeziesExtern => VorhandeneSpezies,
+                                                          DateiSpeichernExtern    => DateiSpeichernExtern)
                is
                   when False =>
                      return False;
@@ -318,7 +327,7 @@ package body SpeichernKarteLogik is
          
       end loop EbeneSchleife;
             
-      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+      -- LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       return True;
       

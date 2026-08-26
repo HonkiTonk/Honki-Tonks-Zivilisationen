@@ -14,24 +14,31 @@ package LadezeitenLogik is
    type FortschrittKIArray is array (LadezeitenDatentypen.KI_Rechnet_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    FortschrittKI : FortschrittKIArray;
    
-   type FortschrittSpeichernArray is array (LadezeitenDatentypen.Speichern_Neu_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
-   FortschrittSpeichern : FortschrittSpeichernArray;
+   type FortschrittSpeichernLadenArray is array (LadezeitenDatentypen.Speichern_Laden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
+   FortschrittSpeichern : FortschrittSpeichernLadenArray;
+   FortschrittLaden : FortschrittSpeichernLadenArray;
 
    procedure SpielweltNullsetzen;
    procedure KINullsetzenFortschritt;
    procedure RundenendeNullsetzen;
-   procedure SpeichernLadenNullsetzen;
    procedure RundenendeSchreiben;
    procedure RundenendeMaximum;
-   procedure SpeichernLadenMaximum;
    
    procedure SpeichernNullsetzen;
    procedure Speichern
-     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Neu_Enum;
+     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
       ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert);
    
    procedure SpeichernMaximum
-     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Neu_Enum);
+     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum);
+   
+   procedure LadenNullsetzen;
+   procedure Laden
+     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
+      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert);
+   
+   procedure LadenMaximum
+     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum);
    
    procedure FortschrittSpielweltSchreiben
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
@@ -44,9 +51,6 @@ package LadezeitenLogik is
    
    procedure FortschrittKIMaximum
      (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum);
-   
-   procedure SpeichernLadenSchreiben
-     (SpeichernLadenExtern : in Boolean);
    
 private
    

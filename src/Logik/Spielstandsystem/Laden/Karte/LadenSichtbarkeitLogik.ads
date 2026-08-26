@@ -5,6 +5,7 @@ private with SystemDatentypenHTSEB;
 with KartenRecords;
 with KartenDatentypen;
 with SpeziesDatentypen;
+with KartenArrays;
 
 private with SpeziesArrays;
 private with SystemKonstanten;
@@ -16,20 +17,13 @@ package LadenSichtbarkeitLogik is
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    
-   procedure Leersetzung;
-   
-   procedure KoordinatenSetzen
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      FelderanzahlExtern : in Positive);
-   
-   
-   
-   function Aufteilung
+   function Felderreihe
      (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenArrays.SichtbarkeitKoordinatenArray;
       LadenPrüfenExtern : in Boolean)
       return Boolean;
    
-   function AufteilungSpezienzusammenfassung
+   function AufteilungSpezieszeile
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernBasis;
@@ -63,9 +57,6 @@ private
    
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
    
-   type KoordinatenArray is array (SystemDatentypenHTSEB.AchtElemente'Range) of KartenRecords.KartenfeldNaturalRecord;
-   Koordinaten : KoordinatenArray;
-   
    type SichtbarkeitGleichArray is array (SystemKonstanten.AllesUnsichtbar .. SystemKonstanten.AllesSichtbar) of Boolean;
    SichtbarkeitGleich : constant SichtbarkeitGleichArray := (
                                                              SystemKonstanten.AllesUnsichtbar => False,
@@ -74,30 +65,12 @@ private
    
    
    
-   function Test
+   function FelderreiheLesen
      (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
+      KoordinatenExtern : in KartenArrays.SichtbarkeitKoordinatenArray;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       LadenPrüfenExtern : in Boolean)
-     return Boolean;
-   
-   function SichtbarkeitEinByte
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernVorhanden;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 VorhandeneSpeziesExtern <= 8
-               and
-                 (if
-                        LadenPrüfenExtern
-                          then
-                    (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-                     and
-                       KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte))
-              );
+      return Boolean;
    
    function SichtbarkeitZweiByte
      (DateiLadenExtern : in File_Type;

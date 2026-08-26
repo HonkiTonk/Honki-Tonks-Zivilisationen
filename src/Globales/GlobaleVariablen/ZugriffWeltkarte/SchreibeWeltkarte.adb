@@ -90,7 +90,7 @@ package body SchreibeWeltkarte is
    
    procedure AlleFeldeffekte
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      FeldeffekteExtern : in KartenRecords.FeldeffektArray)
+      FeldeffekteExtern : in KartenArrays.FeldeffektArray)
    is begin
       
       case

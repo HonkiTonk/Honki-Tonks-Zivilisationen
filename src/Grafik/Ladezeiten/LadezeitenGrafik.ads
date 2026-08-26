@@ -65,7 +65,7 @@ private
                   Rundenende'Result >= 0.00
                );
    
-   function SpeichernLaden
+   function Speichern
      (MaximaleTextbreiteExtern : in Float)
       return Float
      with
@@ -74,7 +74,19 @@ private
               ),
            
        Post => (
-                  SpeichernLaden'Result >= 0.00
+                  Speichern'Result >= 0.00
+               );
+   
+   function Laden
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 MaximaleTextbreiteExtern >= 0.00
+              ),
+           
+       Post => (
+                  Laden'Result >= 0.00
                );
    
    function KIRechnet

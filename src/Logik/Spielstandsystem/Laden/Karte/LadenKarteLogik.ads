@@ -4,6 +4,7 @@ private with SystemDatentypenHTSEB;
 
 private with KartenRecords;
 private with SpeziesDatentypen;
+private with KartenArrays;
 
 package LadenKarteLogik is
    pragma Elaborate_Body;
@@ -25,5 +26,20 @@ private
    Speziesbelegung : SpeziesDatentypen.Spezies_Vorhanden_Enum;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
+         
+   KoordinatenFestgelegt : KartenArrays.SichtbarkeitKoordinatenArray;
+   KoordinatenBestimmen : KartenArrays.SichtbarkeitKoordinatenArray;
+   
+   
+   
+   function Felderzusammenfassung
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean;
+   
+   function Spezieszusammenfassung
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean;
 
 end LadenKarteLogik;

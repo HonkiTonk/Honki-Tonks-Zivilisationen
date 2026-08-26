@@ -1,4 +1,5 @@
 with Ada.Calendar; use Ada.Calendar;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypenHTSEB;
 
@@ -145,6 +146,9 @@ package LeseGrafiktask is
    
    function SpeichernLaden
      return Boolean;
+   
+   function Dateiname
+     return Unbounded_Wide_Wide_String;
    
    function Editorart
      return GrafikDatentypen.Editor_Enum;

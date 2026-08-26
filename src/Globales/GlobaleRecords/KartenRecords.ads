@@ -2,7 +2,6 @@ with KartenDatentypen;
 with KartengrundDatentypen;
 with SpeziesDatentypen;
 with KartenartDatentypen;
-with ZufallsgeneratorenDatentypenHTSEB;
 with KartenextraDatentypen;
 
 package KartenRecords is
@@ -149,13 +148,11 @@ package KartenRecords is
    
    
    
+   -- Kann nicht nach KartenArrays verschoben werden, da KartenArrays auf KartenRecords zugreift.
+   -- Später mal eine bessere Lösung für finden. äöü
    type EffekteArray is array (KartenextraDatentypen.Effekt_Vorhanden_Enum'Range) of Boolean;
    type EffektbereichArray is array (EffekteArray'Range) of EffektbereichRecord;
-   type FeldeffektArray is array (KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of Boolean;
    
-   
-   
-   type FelderwertungArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of ZufallsgeneratorenDatentypenHTSEB.Bewertung_Enum;
    type SichtbarkeitArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Boolean;
    -- Mehr davon einbauen um den Arbeitsspeicherverbrauch zu reduzieren? äöü
    for SichtbarkeitArray'Component_Size use 1;

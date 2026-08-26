@@ -64,7 +64,7 @@ package body SpeichernLogik is
             return;
       
          else
-            null;
+            SchreibeGrafiktask.Dateiname (DateinameExtern => Spielstandname);
          end if;
 
          case
@@ -74,7 +74,6 @@ package body SpeichernLogik is
                Spielstandart := SystemDatentypenHTSEB.Automatischer_Spielstand_Enum;
             
             when False =>
-               LadezeitenLogik.SpeichernLadenNullsetzen;
                LadezeitenLogik.SpeichernNullsetzen;
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Enum);
                Spielstandart := SystemDatentypenHTSEB.Manueller_Spielstand_Enum;
@@ -196,12 +195,12 @@ package body SpeichernLogik is
             null;
          end if;
          
-         LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum,
+         LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum,
                                     ErhöhungExtern              => 100/18);
          
       end loop SpeziesSchleife;
       
-      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum);
+      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum);
       
       return True;
       

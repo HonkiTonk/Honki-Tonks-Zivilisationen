@@ -523,7 +523,7 @@ package body SpeichernZusatzbelegungLogik is
       return Boolean
    is
       use type SystemDatentypenHTSEB.EinByte;
-      use type KartenRecords.FeldeffektArray;
+      use type KartenArrays.FeldeffektArray;
    begin
       
       FeldelementeVorhanden := 0;
@@ -571,7 +571,7 @@ package body SpeichernZusatzbelegungLogik is
             AktuellerFeldeffekt := 1;
          
             FeldeffekteDurchgehenSchleife:
-            for FeldeffekteDurchgehenSchleifenwert in KartenRecords.FeldeffektArray'Range loop
+            for FeldeffekteDurchgehenSchleifenwert in KartenArrays.FeldeffektArray'Range loop
             
                case
                  FeldeffekteExtern (FeldeffekteSpeichernSchleifenwert) (FeldeffekteDurchgehenSchleifenwert)

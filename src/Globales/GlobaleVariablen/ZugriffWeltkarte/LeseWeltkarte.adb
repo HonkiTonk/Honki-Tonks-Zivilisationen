@@ -88,7 +88,7 @@ package body LeseWeltkarte is
    
    function Feldeffekte
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenRecords.FeldeffektArray
+      return KartenArrays.FeldeffektArray
    is begin
       
       case

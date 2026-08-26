@@ -4,6 +4,8 @@ with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
 with KartenKonstanten;
+with KartenRecordKonstanten;
+
 with SchreibeWeltkarteneinstellungen;
 
 -- with LadezeitenLogik;
@@ -37,11 +39,10 @@ package body LadenKarteLogik is
       end case;
       
       FelderanzahlZusatzgrund := SystemDatentypenHTSEB.AchtElemente'First;
-      FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
-      -- Ich muss das doch jedes Mal auf null setzen, oder? äöü
-      -- Und auch beim Schreiben muss ich aufpassen dass ich nur die richtigen Werte setze und vorher auf null setzen. äöü
       LadenZusatzbelegungLogik.Leersetzung;
-      LadenSichtbarkeitLogik.Leersetzung;
+      
+      FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
+      KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
       
       EbeneSchleife:
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
@@ -85,8 +86,8 @@ package body LadenKarteLogik is
                  VorhandeneSpezies
                is
                   when 1 .. 8 =>
-                     LadenSichtbarkeitLogik.KoordinatenSetzen (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                               FelderanzahlExtern => FelderanzahlSichtbarkeit);
+                     KoordinatenFestgelegt (FelderanzahlSichtbarkeit) := (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert);
+                     
                      FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
                      
                      if
@@ -95,14 +96,15 @@ package body LadenKarteLogik is
                         null;
                         
                      elsif
-                       False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
-                                                                  LadenPrüfenExtern       => LadenPrüfenExtern)
+                       False = LadenSichtbarkeitLogik.Felderreihe (DateiLadenExtern  => DateiLadenExtern,
+                                                                   KoordinatenExtern => KoordinatenFestgelegt,
+                                                                   LadenPrüfenExtern => LadenPrüfenExtern)
                      then
                         return False;
                            
                      else
                         FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
-                        LadenSichtbarkeitLogik.Leersetzung;
+                        KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
                      end if;
                      
                   when others =>
@@ -141,8 +143,9 @@ package body LadenKarteLogik is
                null;
                
             elsif
-              False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
-                                                         LadenPrüfenExtern       => LadenPrüfenExtern)
+              False = LadenSichtbarkeitLogik.Felderreihe (DateiLadenExtern  => DateiLadenExtern,
+                                                          KoordinatenExtern => KoordinatenFestgelegt,
+                                                          LadenPrüfenExtern => LadenPrüfenExtern)
             then
                return False;
                            
@@ -157,93 +160,21 @@ package body LadenKarteLogik is
                                                 SichtbarkeitLadeaufteilung);
       end case;
       
+      -- Die 0/1 in ein Enum umbasteln? äöü
       case
         SichtbarkeitLadeaufteilung
       is
          when 0 =>
-            ZweiteEbeneSchleife:
-            -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
-            for ZweiteEbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
-               ZweiteSenkrechteSchleife:
-               for ZweiteSenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
-                  ZweiteWaagerechteSchleife:
-                  for ZweiteWaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
-               
-                     case
-                       LadenSichtbarkeitLogik.AufteilungSpezienzusammenfassung (DateiLadenExtern        => DateiLadenExtern,
-                                                                                KoordinatenExtern       => (ZweiteEbeneSchleifenwert, ZweiteSenkrechteSchleifenwert, ZweiteWaagerechteSchleifenwert),
-                                                                                VorhandeneSpeziesExtern => VorhandeneSpezies,
-                                                                                LadenPrüfenExtern       => LadenPrüfenExtern)
-                     is
-                        when False =>
-                           return False;
-                     
-                        when True =>
-                           null;
-                     end case;
-               
-                  end loop ZweiteWaagerechteSchleife;
-               end loop ZweiteSenkrechteSchleife;
-            end loop ZweiteEbeneSchleife;
+            return Felderzusammenfassung (LadenPrüfenExtern => LadenPrüfenExtern,
+                                          DateiLadenExtern  => DateiLadenExtern);
             
          when 1 =>
-            FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
-            LadenSichtbarkeitLogik.Leersetzung;
-            
-            DritteEbeneSchleife:
-            -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
-            for DritteEbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
-               DritteSenkrechteSchleife:
-               for DritteSenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
-                  DritteWaagerechteSchleife:
-                  for DritteWaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
-               
-                     LadenSichtbarkeitLogik.KoordinatenSetzen (KoordinatenExtern  => (DritteEbeneSchleifenwert, DritteSenkrechteSchleifenwert, DritteWaagerechteSchleifenwert),
-                                                               FelderanzahlExtern => FelderanzahlSichtbarkeit);
-                     FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
-                     
-                     if
-                       FelderanzahlSichtbarkeit <= SystemDatentypenHTSEB.AchtElemente'Last
-                     then
-                        null;
-                        
-                     elsif
-                       False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
-                                                                  LadenPrüfenExtern       => LadenPrüfenExtern)
-                     then
-                        return False;
-                           
-                     else
-                        FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
-                        LadenSichtbarkeitLogik.Leersetzung;
-                     end if;
-               
-                  end loop DritteWaagerechteSchleife;
-               end loop DritteSenkrechteSchleife;
-            end loop DritteEbeneSchleife;
-            
-            if
-              FelderanzahlSichtbarkeit = SystemDatentypenHTSEB.AchtElemente'First
-            then
-               null;
-               
-            elsif
-              False = LadenSichtbarkeitLogik.Aufteilung (DateiLadenExtern        => DateiLadenExtern,
-                                                         LadenPrüfenExtern       => LadenPrüfenExtern)
-            then
-               return False;
-                           
-            else
-               null;
-            end if;
-            
-            return True;
+            return Spezieszusammenfassung (LadenPrüfenExtern => LadenPrüfenExtern,
+                                           DateiLadenExtern  => DateiLadenExtern);
             
          when others =>
             return False;
       end case;
-            
-      return True;
       
    exception
       when StandardAdaFehler : others =>
@@ -252,5 +183,118 @@ package body LadenKarteLogik is
          return False;
       
    end KarteLaden;
+   
+   
+   
+   function Felderzusammenfassung
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean
+   is begin
+      
+      FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
+      KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
+            
+      EbeneSchleife:
+      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
+               
+               KoordinatenFestgelegt (FelderanzahlSichtbarkeit) := (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert);
+                     
+               FelderanzahlSichtbarkeit := FelderanzahlSichtbarkeit + 1;
+                     
+               if
+                 FelderanzahlSichtbarkeit <= SystemDatentypenHTSEB.AchtElemente'Last
+               then
+                  null;
+                        
+               elsif
+                 False = LadenSichtbarkeitLogik.Felderreihe (DateiLadenExtern  => DateiLadenExtern,
+                                                             KoordinatenExtern => KoordinatenFestgelegt,
+                                                             LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                           
+               else
+                  FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
+                  KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
+               end if;
+               
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
+            
+      if
+        FelderanzahlSichtbarkeit = SystemDatentypenHTSEB.AchtElemente'First
+      then
+         null;
+               
+      elsif
+        False = LadenSichtbarkeitLogik.Felderreihe (DateiLadenExtern  => DateiLadenExtern,
+                                                    KoordinatenExtern => KoordinatenFestgelegt,
+                                                    LadenPrüfenExtern => LadenPrüfenExtern)
+      then
+         return False;
+                           
+      else
+         null;
+      end if;
+            
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.Felderzusammenfassung: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+      
+   end Felderzusammenfassung;
+   
+   
+   
+   function Spezieszusammenfassung
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean
+   is begin
+      
+      EbeneSchleife:
+      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+         SenkrechteSchleife:
+         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
+            WaagerechteSchleife:
+            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
+               
+               case
+                 LadenSichtbarkeitLogik.AufteilungSpezieszeile (DateiLadenExtern        => DateiLadenExtern,
+                                                                KoordinatenExtern       => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                VorhandeneSpeziesExtern => VorhandeneSpezies,
+                                                                LadenPrüfenExtern       => LadenPrüfenExtern)
+               is
+                  when False =>
+                     return False;
+                     
+                  when True =>
+                     null;
+               end case;
+                     
+            end loop WaagerechteSchleife;
+         end loop SenkrechteSchleife;
+      end loop EbeneSchleife;
+      
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenKarteLogik.Spezieszusammenfassung: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+         return False;
+      
+   end Spezieszusammenfassung;
 
 end LadenKarteLogik;

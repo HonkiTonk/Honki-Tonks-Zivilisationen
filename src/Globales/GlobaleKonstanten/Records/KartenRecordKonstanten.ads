@@ -4,6 +4,7 @@ with StadtDatentypen;
 with StadtRecords;
 with KartenartDatentypen;
 with SpeziesKonstanten;
+with KartenArrays;
 
 package KartenRecordKonstanten is
    pragma Elaborate_Body;
@@ -35,7 +36,7 @@ package KartenRecordKonstanten is
                                                                       WaagerechteEnde   => KartenKonstanten.LeerWaagerechte
                                                                      );
    
-   LeerEffekte : constant KartenRecords.FeldeffektArray := (others => False);
+   LeerEffekte : constant KartenArrays.FeldeffektArray := (others => False);
    
    LeerSichtbarkeit : constant KartenRecords.SichtbarkeitArray := (others => False);
    

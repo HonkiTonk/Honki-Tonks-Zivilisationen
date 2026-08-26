@@ -8,7 +8,7 @@ with SchreibeGrafiktask;
 with LeseSpeziesbelegung;
 
 with TexteingabeLogik;
-with LadezeitenLogik;
+-- with LadezeitenLogik;
 with UmwandlungenVerzeichnisse;
 
 package body SpielstandAllgemeinesLogik is
@@ -60,7 +60,8 @@ package body SpielstandAllgemeinesLogik is
         AutospeichernExtern
       is
          when False =>
-            LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+            null;
+            -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
             
          when True =>
             null;

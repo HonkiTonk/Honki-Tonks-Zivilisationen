@@ -9,6 +9,7 @@ private with KartengrundDatentypen;
 private with KartenextraDatentypen;
 private with KartenverbesserungDatentypen;
 private with StadtRecords;
+private with KartenArrays;
 
 with LeseWeltkarteneinstellungen;
 
@@ -41,7 +42,7 @@ private
    FeldelementeVorhanden : SystemDatentypenHTSEB.EinByte;
    AktuellesFeldelement : SystemDatentypenHTSEB.EinByte;
    
-   type ZusatzgrundArray is array (SystemDatentypenHTSEB.AchtElemente) of KartengrundDatentypen.Zusatzgrund_Enum;
+   type ZusatzgrundArray is array (SystemDatentypenHTSEB.AchtElemente'Range) of KartengrundDatentypen.Zusatzgrund_Enum;
    Zusatzgrund : ZusatzgrundArray;
    
    type FlussArray is array (ZusatzgrundArray'Range) of KartenextraDatentypen.Fluss_Enum;
@@ -59,7 +60,7 @@ private
    type StadtArray is array (ZusatzgrundArray'Range) of StadtRecords.SpeziesStadtnummerRecord;
    Stadt : StadtArray;
    
-   type FeldeffekteArray is array (ZusatzgrundArray'Range) of KartenRecords.FeldeffektArray;
+   type FeldeffekteArray is array (ZusatzgrundArray'Range) of KartenArrays.FeldeffektArray;
    Feldeffekte : FeldeffekteArray;
    
    

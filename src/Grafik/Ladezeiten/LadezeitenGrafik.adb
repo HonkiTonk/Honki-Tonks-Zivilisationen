@@ -4,6 +4,7 @@ with Spieltexte;
 with Views;
 with LadezeitenDatentypen;
 with TextnummernKonstanten;
+with LeseGrafiktask;
 
 with HintergrundGrafik;
 with TextberechnungenHoeheGrafik;
@@ -35,10 +36,10 @@ package body LadezeitenGrafik is
             Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitRundenwechsel);
             
          when GrafikDatentypen.Speichern_Enum =>
-            Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitSpielstand);
+            Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Speichern) & " " & LeseGrafiktask.Dateiname;
             
          when GrafikDatentypen.Laden_Enum =>
-            Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitSpielstand);
+            Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Laden);
       end case;
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),
@@ -68,10 +69,10 @@ package body LadezeitenGrafik is
             Viewfläche.y := Rundenende (MaximaleTextbreiteExtern => Viewfläche.x);
             
          when GrafikDatentypen.Speichern_Enum =>
-            Viewfläche.y := SpeichernLaden (MaximaleTextbreiteExtern => Viewfläche.x);
+            Viewfläche.y := Speichern (MaximaleTextbreiteExtern => Viewfläche.x);
             
          when GrafikDatentypen.Laden_Enum =>
-            Viewfläche.y := SpeichernLaden (MaximaleTextbreiteExtern => Viewfläche.x);
+            Viewfläche.y := Laden (MaximaleTextbreiteExtern => Viewfläche.x);
       end case;
       
       Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
@@ -140,7 +141,37 @@ package body LadezeitenGrafik is
    
    
    
-   function SpeichernLaden
+   function Speichern
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
+   is begin
+      
+      WelcheZeit := TextaccessVariablen.SpeichernAccess'First;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
+      
+      SpeichernSchleife:
+      for SpeichernSchleifenwert in LadezeitenDatentypen.Speichern_Laden_Enum'Range loop
+         
+         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichern (SpeichernSchleifenwert))
+           & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
+         
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
+                                                                                                    TextpositionExtern       => Textposition,
+                                                                                                    MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                    TextAccessExtern         => TextaccessVariablen.SpeichernAccess (WelcheZeit));
+         
+         WelcheZeit := WelcheZeit + 1;
+         
+      end loop SpeichernSchleife;
+      
+      return Textposition.y;
+      
+   end Speichern;
+   
+   
+   
+   function Laden
      (MaximaleTextbreiteExtern : in Float)
       return Float
    is begin
@@ -152,11 +183,11 @@ package body LadezeitenGrafik is
                                                                                                  & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt,
                                                                                                  TextpositionExtern       => Textposition,
                                                                                                  MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
-                                                                                                 TextAccessExtern         => TextaccessVariablen.SpeichernLadenAccess (1));
+                                                                                                 TextAccessExtern         => TextaccessVariablen.LadenAccess (1));
       
       return Textposition.y;
       
-   end SpeichernLaden;
+   end Laden;
    
    
    

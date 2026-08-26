@@ -3,36 +3,15 @@ with Ada.Exceptions; use Ada.Exceptions;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
-with KartenRecordKonstanten;
-
 with SchreibeWeltkarte;
 
 with SpielstandAllgemeinesLogik;
 
 package body LadenSichtbarkeitLogik is
-
-   procedure Leersetzung
-   is begin
-            
-      Koordinaten := (others => KartenRecordKonstanten.LeerKoordinate);
-      
-   end Leersetzung;
    
-   
-   
-   procedure KoordinatenSetzen
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      FelderanzahlExtern : in Positive)
-   is begin
-      
-      Koordinaten (FelderanzahlExtern) := KoordinatenExtern;
-      
-   end KoordinatenSetzen;
-   
-   
-   
-   function Aufteilung
+   function Felderreihe
      (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenArrays.SichtbarkeitKoordinatenArray;
       LadenPrüfenExtern : in Boolean)
      return Boolean
    is begin
@@ -46,10 +25,10 @@ package body LadenSichtbarkeitLogik is
             null;
             
          elsif
-           False = Test (DateiLadenExtern  => DateiLadenExtern,
-                         KoordinatenExtern => Koordinaten,
-                         SpeziesExtern     => SpeziesSchleifenwert,
-                         LadenPrüfenExtern => LadenPrüfenExtern)
+           False = FelderreiheLesen (DateiLadenExtern  => DateiLadenExtern,
+                                     KoordinatenExtern => KoordinatenExtern,
+                                     SpeziesExtern     => SpeziesSchleifenwert,
+                                     LadenPrüfenExtern => LadenPrüfenExtern)
          then
             return False;
             
@@ -61,26 +40,24 @@ package body LadenSichtbarkeitLogik is
       
       return True;
       
-      
-   end Aufteilung;
+   end Felderreihe;
    
    
    
-   function Test
+   function FelderreiheLesen
      (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
+      KoordinatenExtern : in KartenArrays.SichtbarkeitKoordinatenArray;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       LadenPrüfenExtern : in Boolean)
      return Boolean
    is
       use type SystemDatentypenHTSEB.EinByte;
    begin
-      
-      GesamteSichtbarkeit := (others => False);
-      Potenz := (KoordinatenExtern'Last - 1);
-      
+            
       SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
                                           SichtbarkeitVorhanden);
+      
+      Potenz := (KoordinatenExtern'Last - 1);
       
       SichtbarkeitSchleife:
       for SichtbarkeitSchleifenwert in reverse KoordinatenExtern'Range loop
@@ -115,15 +92,15 @@ package body LadenSichtbarkeitLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSichtbarkeitLogik.Test: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSichtbarkeitLogik.FelderreiheLesen: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
-   end Test;
+   end FelderreiheLesen;
    
    
    
-   function AufteilungSpezienzusammenfassung
+   function AufteilungSpezieszeile
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernBasis;
@@ -131,15 +108,10 @@ package body LadenSichtbarkeitLogik is
       return Boolean
    is begin
       
+      -- VorhandeneSpeziesExtern 1 .. 8 braucht nicht abgefragt werden, weil da da beim Speicherverbrauch immer gilt: Reihe <= Spezeis.
       case
         VorhandeneSpeziesExtern
       is
-         when 1 .. 8 =>
-            return SichtbarkeitEinByte (DateiLadenExtern        => DateiLadenExtern,
-                                        KoordinatenExtern       => KoordinatenExtern,
-                                        VorhandeneSpeziesExtern => VorhandeneSpeziesExtern,
-                                        LadenPrüfenExtern       => LadenPrüfenExtern);
-              
          when 15 .. 16 =>
             return SichtbarkeitZweiByte (DateiLadenExtern        => DateiLadenExtern,
                                          KoordinatenExtern       => KoordinatenExtern,
@@ -156,71 +128,7 @@ package body LadenSichtbarkeitLogik is
             return False;
       end case;
       
-   end AufteilungSpezienzusammenfassung;
-   
-   
-   
-   function SichtbarkeitEinByte
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernVorhanden;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-   is
-      use type SystemDatentypenHTSEB.EinByte;
-   begin
-      
-      GesamteSichtbarkeit := (others => False);
-      Potenz := (VorhandeneSpeziesExtern - 1);
-      
-      SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
-                                          SichtbarkeitVorhanden);
-      
-      SichtbarkeitSchleife:
-      for SichtbarkeitSchleifenwert in reverse SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
-         
-         case
-           SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SichtbarkeitSchleifenwert)
-         is
-            when SpeziesDatentypen.Spieler_Belegt_Enum'Range =>
-               if
-                 SichtbarkeitVorhanden >= 2**Potenz
-               then
-                  GesamteSichtbarkeit (SichtbarkeitSchleifenwert) := True;
-                  SichtbarkeitVorhanden := SichtbarkeitVorhanden - 2**Potenz;
-            
-               else
-                  null;
-               end if;
-               
-               Potenz := Potenz - 1;
-               
-            when SpeziesDatentypen.Leer_Spieler_Enum =>
-               null;
-         end case;
-         
-      end loop SichtbarkeitSchleife;
-      
-      case
-        LadenPrüfenExtern
-      is
-         when True =>
-            SchreibeWeltkarte.GesamteSichtbarkeit (KoordinatenExtern  => KoordinatenExtern,
-                                                   SichtbarkeitExtern => GesamteSichtbarkeit);
-            
-         when False =>
-            null;
-      end case;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenSichtbarkeitLogik.SichtbarkeitEinByte: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-      
-   end SichtbarkeitEinByte;
+   end AufteilungSpezieszeile;
    
    
    

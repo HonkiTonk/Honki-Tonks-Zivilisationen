@@ -2,6 +2,7 @@ with AufgabenDatentypen;
 with ForschungRecordKonstanten;
 with ForschungenDatentypen;
 with ForschungKonstanten;
+with KartenArrays;
 
 with LeseWeltkarte;
 with LeseWichtiges;
@@ -22,7 +23,7 @@ package body FeldeffektErmittelnLogik is
       FeldeffektEntfernbar := False;
       
       FeldeffekteSchleife:
-      for FeldeffektSchleifenwert in KartenRecords.FeldeffektArray'Range loop
+      for FeldeffektSchleifenwert in KartenArrays.FeldeffektArray'Range loop
          
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

@@ -444,6 +444,16 @@ package body SchreibeGrafiktask is
    
    
    
+   procedure Dateiname
+     (DateinameExtern : in Unbounded_Wide_Wide_String)
+   is begin
+      
+      Grafiktask.Dateiname := DateinameExtern;
+      
+   end Dateiname;
+   
+   
+   
    procedure Editorart
      (EditorartExtern : in GrafikDatentypen.Editor_Enum)
    is begin

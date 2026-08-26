@@ -1,4 +1,5 @@
 with Ada.Calendar; use Ada.Calendar;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypenHTSEB;
 
@@ -147,6 +148,9 @@ package SchreibeGrafiktask is
    
    procedure SpeichernLaden
      (JaNeinExtern : in Boolean);
+   
+   procedure Dateiname
+     (DateinameExtern : in Unbounded_Wide_Wide_String);
    
    procedure Editorart
      (EditorartExtern : in GrafikDatentypen.Editor_Enum);

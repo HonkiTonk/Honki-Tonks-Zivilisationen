@@ -9,6 +9,7 @@ private with EinheitenRecords;
 private with StadtRecords;
 private with KartengrundDatentypen;
 private with KartenextraDatentypen;
+private with KartenArrays;
 
 package LadenZusatzbelegungLogik is
    pragma Elaborate_Body;
@@ -37,7 +38,7 @@ private
    
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
    
-   Feldeffekte : KartenRecords.FeldeffektArray;
+   Feldeffekte : KartenArrays.FeldeffektArray;
    
    Fluss : KartenextraDatentypen.Fluss_Vorhanden_Enum;
    

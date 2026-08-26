@@ -1,4 +1,5 @@
 with ProduktionKonstanten;
+with KartenArrays;
 
 with LeseEffekteDatenbank;
 with LeseWeltkarte;
@@ -74,7 +75,7 @@ package body FeldproduktionLogik is
       end if;
       
       EffekteSchleife:
-      for EffekteSchleifenwert in KartenRecords.FeldeffektArray'Range loop
+      for EffekteSchleifenwert in KartenArrays.FeldeffektArray'Range loop
          
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

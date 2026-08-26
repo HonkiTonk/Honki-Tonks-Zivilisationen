@@ -1,4 +1,5 @@
 with KartengrundDatentypen;
+with KartenArrays;
 
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
@@ -61,7 +62,7 @@ package body FeldkampfStadtLogik is
       end case;
       
       EffekteSchleife:
-      for EffekteSchleifenwert in KartenRecords.FeldeffektArray'Range loop
+      for EffekteSchleifenwert in KartenArrays.FeldeffektArray'Range loop
          
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

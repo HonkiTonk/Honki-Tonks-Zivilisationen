@@ -1,3 +1,5 @@
+with KartenArrays;
+
 with LeseWeltkarte;
 
 package body KartenfeldereffekteLogik is
@@ -8,7 +10,7 @@ package body KartenfeldereffekteLogik is
    is begin
       
       FeldeffekteSchleife:
-      for FeldeffektSchleifenwert in KartenRecords.FeldeffektArray'Range loop
+      for FeldeffektSchleifenwert in KartenArrays.FeldeffektArray'Range loop
                   
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

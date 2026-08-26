@@ -12,6 +12,7 @@ with Kartentexte;
 with Menuetexte;
 
 with InteraktionAuswahl;
+with TextnummernKonstanten;
 
 -- Auch mal thematisch aufteilen? äöü
 package TextaccessVariablen is
@@ -233,10 +234,8 @@ package TextaccessVariablen is
    
    KIZeitenAccess : constant TextaccessArray (LadezeitenAccess'Last + 1 .. 13) := (others => Sf.Graphics.Text.create);
    
-   -- Speichern : constant TextaccessArray
-   -- Laden : constant TextaccessArray
-   
-   SpeichernLadenAccess : constant TextaccessArray (1 .. 1) := (others => Sf.Graphics.Text.create);
+   SpeichernAccess : constant TextaccessArray (TextnummernKonstanten.SpeichernAllgemeines .. TextnummernKonstanten.SpeichernEinheiten) := (others => Sf.Graphics.Text.create);
+   LadenAccess : constant TextaccessArray (1 .. 1) := (others => Sf.Graphics.Text.create);
    
    RundenendeAccess : constant TextaccessArray (1 .. 1) := (others => Sf.Graphics.Text.create);
    -- Ladezeiten

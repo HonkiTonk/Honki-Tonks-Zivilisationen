@@ -29,17 +29,18 @@ package ChangelogAugust2026 is
    
    
 
-   -- Version 0.06. => 0.06. (27.08.2026):
+   -- Version 0.06.4200 => 0.06. (27.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4160 => 0.06. (26.08.2026):
+   -- Version 0.06.4160 => 0.06.4200 (26.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das neue Spielstandsystem leicht überarbeitet.
+   -- Angefangen die grafische Anzeige für das Speichern/Laden an das neue Spielstandsystem anzupassen.
+   -- Kommentare, Contracts und Kleinigkeiten korrigiert/angepasst.
    
    
 

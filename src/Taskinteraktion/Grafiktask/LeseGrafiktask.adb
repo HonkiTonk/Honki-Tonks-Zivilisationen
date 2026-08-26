@@ -432,6 +432,17 @@ package body LeseGrafiktask is
    
    
    
+   function Dateiname
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      return Grafiktask.Dateiname;
+      
+   end Dateiname;
+     
+   
+   
+   
    function Editorart
      return GrafikDatentypen.Editor_Enum
    is begin

@@ -6,6 +6,7 @@ with EinheitenRecords;
 with EinheitenKonstanten;
 with StadtRecords;
 with KartenextraDatentypen;
+with KartenArrays;
 
 package WeltkarteRecords is
    pragma Elaborate_Body;
@@ -16,7 +17,7 @@ package WeltkarteRecords is
       Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
       Sichtbar : KartenRecords.SichtbarkeitArray;
       
-      Effekte : KartenRecords.FeldeffektArray;
+      Effekte : KartenArrays.FeldeffektArray;
       
       Fluss : KartenextraDatentypen.Fluss_Enum;
       Ressource : KartenextraDatentypen.Ressourcen_Enum;

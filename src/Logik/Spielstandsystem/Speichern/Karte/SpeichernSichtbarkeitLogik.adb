@@ -7,38 +7,35 @@ with SpeziesKonstanten;
 with SystemKonstanten;
 
 with LeseWeltkarte;
-with LeseSpeziesbelegung;
 
 package body SpeichernSichtbarkeitLogik is
    
-   procedure Leersetzung
-   is begin
-      
-      SichtbarkeitGesamt := (others => (others => False));
-      
-   end Leersetzung;
-   
-   
-   
-   procedure Sichtbarkeitsbelegung
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+   function SichtbarkeitsbelegungFelderreihe
+     (AktuelleSichtbarkeitFelderbelegungExtern : in KartenArrays.SichtbarkeitGesamtArray;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FelderanzahlExtern : in Positive)
+      return KartenArrays.SichtbarkeitGesamtArray
    is begin
+      
+      SichtbarkeitFelderreiheBelegen := AktuelleSichtbarkeitFelderbelegungExtern;
       
       SichtbarkeitSchleife:
       for SichtbarkeitSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
-         SichtbarkeitGesamt (SichtbarkeitSchleifenwert, FelderanzahlExtern) := LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
-                                                                                                       SpeziesExtern     => SichtbarkeitSchleifenwert);
+         SichtbarkeitFelderreiheBelegen (SichtbarkeitSchleifenwert, FelderanzahlExtern) := LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                   SpeziesExtern     => SichtbarkeitSchleifenwert);
          
       end loop SichtbarkeitSchleife;
       
-   end Sichtbarkeitsbelegung;
+      return SichtbarkeitFelderreiheBelegen;
+      
+   end SichtbarkeitsbelegungFelderreihe;
    
    
    
-   function Aufteilung
-     (DateiSpeichernExtern : in File_Type)
+   function Felderreihe
+     (DateiSpeichernExtern : in File_Type;
+      SichtbarkeitExtern : in KartenArrays.SichtbarkeitGesamtArray)
       return Boolean
    is begin
       
@@ -51,9 +48,9 @@ package body SpeichernSichtbarkeitLogik is
             null;
             
          elsif
-           False = SichtbarkeitSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                          SichtbarkeitExtern   => SichtbarkeitGesamt,
-                                          SpeziesExtern        => SpeziesSchleifenwert)
+           False = FelderreiheSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
+                                         SichtbarkeitExtern   => SichtbarkeitExtern,
+                                         SpeziesExtern        => SpeziesSchleifenwert)
          then
             return False;
             
@@ -65,11 +62,11 @@ package body SpeichernSichtbarkeitLogik is
       
       return True;
       
-   end Aufteilung;
+   end Felderreihe;
    
    
    
-   function SichtbarkeitSchreiben
+   function FelderreiheSchreiben
      (DateiSpeichernExtern : in File_Type;
       SichtbarkeitExtern : in KartenArrays.SichtbarkeitGesamtArray;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
@@ -105,11 +102,11 @@ package body SpeichernSichtbarkeitLogik is
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernSichtbarkeitLogik.SichtbarkeitSchreiben: Konnte nicht gespeichert werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernSichtbarkeitLogik.FelderreiheSchreiben: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
-   end SichtbarkeitSchreiben;
+   end FelderreiheSchreiben;
    
    
    
@@ -215,7 +212,7 @@ package body SpeichernSichtbarkeitLogik is
 
 
 
-   function SichtbarkeitVorzeichen
+   function Spezieszeile
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernVorhanden;
       DateiSpeichernExtern : in File_Type)
@@ -318,10 +315,10 @@ package body SpeichernSichtbarkeitLogik is
 
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernSichtbarkeitLogik.SichtbarkeitVorzeichen: Konnte nicht gespeichert werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernSichtbarkeitLogik.Spezieszeile: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
 
-   end SichtbarkeitVorzeichen;
+   end Spezieszeile;
 
 end SpeichernSichtbarkeitLogik;

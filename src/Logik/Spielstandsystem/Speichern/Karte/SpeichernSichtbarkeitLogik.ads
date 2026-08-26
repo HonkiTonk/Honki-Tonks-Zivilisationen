@@ -5,21 +5,22 @@ private with SystemDatentypenHTSEB;
 with KartenDatentypen;
 with KartenRecords;
 with SpeziesDatentypen;
-
-private with KartenArrays;
+with KartenArrays;
 
 with LeseWeltkarteneinstellungen;
+
+private with LeseSpeziesbelegung;
 
 package SpeichernSichtbarkeitLogik is
    pragma Elaborate_Body;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    
-   procedure Leersetzung;
-   
-   procedure Sichtbarkeitsbelegung
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+   function SichtbarkeitsbelegungFelderreihe
+     (AktuelleSichtbarkeitFelderbelegungExtern : in KartenArrays.SichtbarkeitGesamtArray;
+      KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FelderanzahlExtern : in Positive)
+      return KartenArrays.SichtbarkeitGesamtArray
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -27,10 +28,9 @@ package SpeichernSichtbarkeitLogik is
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
-   
-   
-   function Aufteilung
-     (DateiSpeichernExtern : in File_Type)
+   function Felderreihe
+     (DateiSpeichernExtern : in File_Type;
+      SichtbarkeitExtern : in KartenArrays.SichtbarkeitGesamtArray)
       return Boolean;
    
    function SpeicherverbrauchErmitteln
@@ -44,7 +44,7 @@ package SpeichernSichtbarkeitLogik is
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
-   function SichtbarkeitVorzeichen
+   function Spezieszeile
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       VorhandeneSpeziesExtern : in SpeziesDatentypen.SpeziesnummernVorhanden;
       DateiSpeichernExtern : in File_Type)
@@ -64,8 +64,7 @@ private
    UnsichtbarSpezies : SpeziesDatentypen.SpeziesnummernBasis;
    VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernBasis;
    
-   SichtbarkeitGesamt : KartenArrays.SichtbarkeitGesamtArray;
-   
+   SichtbarkeitFelderreiheBelegen : KartenArrays.SichtbarkeitGesamtArray;
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
       
    AktuelleSichtbarkeit : SystemDatentypenHTSEB.EinByte;
@@ -76,10 +75,14 @@ private
    
    
    
-   function SichtbarkeitSchreiben
+   function FelderreiheSchreiben
      (DateiSpeichernExtern : in File_Type;
       SichtbarkeitExtern : in KartenArrays.SichtbarkeitGesamtArray;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return Boolean;
+      return Boolean
+     with
+       Pre => (
+                LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) in SpeziesDatentypen.Spieler_Belegt_Enum'Range 
+              );
 
 end SpeichernSichtbarkeitLogik;
