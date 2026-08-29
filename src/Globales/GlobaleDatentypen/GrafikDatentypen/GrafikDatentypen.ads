@@ -6,7 +6,7 @@ package GrafikDatentypen is
                                   
                                   Pause_Enum,
                                   
-                                  Generierungszeit_Enum, KI_Rechenzeit_Enum, Rundenende_Enum, Speichern_Enum, Laden_Enum,
+                                  Generierungszeit_Enum, KI_Rechenzeit_Enum, Rundenende_Enum, Speichern_Enum, Prüfen_Enum, Laden_Enum,
                                   
                                   Menüs_Enum, Sprache_Enum, Set_Enum,
                                   

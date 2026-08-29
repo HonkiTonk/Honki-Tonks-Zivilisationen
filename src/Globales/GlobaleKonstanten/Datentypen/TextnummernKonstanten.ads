@@ -160,8 +160,8 @@ package TextnummernKonstanten is
    SpeichernSpeziesAllgemeines : constant Positive := SpeichernSichtbarkeit + 1;
    SpeichernStädte : constant Positive := SpeichernSpeziesAllgemeines + 1;
    SpeichernEinheiten : constant Positive := SpeichernStädte + 1;
-   Prüfe : constant Positive := SpeichernEinheiten;
-   Laden : constant Positive := Prüfe + 1;
+   Prüfen : constant Positive := SpeichernEinheiten + 1;
+   Laden : constant Positive := Prüfen + 1;
    LadenAllgemeines : constant Positive := Laden + 1;
    LadenKartengrund : constant Positive := LadenAllgemeines + 1;
    LadenKartenzusätze : constant Positive := LadenKartengrund + 1;

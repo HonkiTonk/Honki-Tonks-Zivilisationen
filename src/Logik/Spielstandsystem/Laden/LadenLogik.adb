@@ -47,7 +47,8 @@ package body LadenLogik is
          
          else
             LadezeitenLogik.LadenNullsetzen;
-            SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Laden_Enum);
+            SchreibeGrafiktask.Dateiname (DateinameExtern => Spielstandname);
+            SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Prüfen_Enum);
             
             DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiLaden,
                                                     NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => SpielstandVariablen.SpielstandartLesen,
@@ -64,6 +65,7 @@ package body LadenLogik is
                                                                                                                       SpielstandnameExtern => Spielstandname));
                
             when True =>
+               SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Laden_Enum);
                StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => True);
                
                Set_Index (File => DateiLaden,

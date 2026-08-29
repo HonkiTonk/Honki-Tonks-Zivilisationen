@@ -38,8 +38,11 @@ package body LadezeitenGrafik is
          when GrafikDatentypen.Speichern_Enum =>
             Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Speichern) & " " & LeseGrafiktask.Dateiname;
             
+            when GrafikDatentypen.Prüfen_Enum =>
+            Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Prüfen) & " " & LeseGrafiktask.Dateiname;
+            
          when GrafikDatentypen.Laden_Enum =>
-            Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Laden);
+            Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Laden) & " " & LeseGrafiktask.Dateiname;
       end case;
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),
@@ -71,7 +74,7 @@ package body LadezeitenGrafik is
          when GrafikDatentypen.Speichern_Enum =>
             Viewfläche.y := Speichern (MaximaleTextbreiteExtern => Viewfläche.x);
             
-         when GrafikDatentypen.Laden_Enum =>
+         when GrafikDatentypen.Prüfen_Enum | GrafikDatentypen.Laden_Enum =>
             Viewfläche.y := Laden (MaximaleTextbreiteExtern => Viewfläche.x);
       end case;
       
