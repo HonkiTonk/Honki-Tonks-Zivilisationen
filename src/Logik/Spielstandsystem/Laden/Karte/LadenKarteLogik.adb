@@ -1,14 +1,15 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
+with LadezeitenLogik;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
 with KartenKonstanten;
 with KartenRecordKonstanten;
+with LadezeitenDatentypen;
 
 with SchreibeWeltkarteneinstellungen;
 
--- with LadezeitenLogik;
 with LadenSichtbarkeitLogik;
 with SpielstandAllgemeinesLogik;
 with LadenBasisgrundLogik;
@@ -29,6 +30,17 @@ package body LadenKarteLogik is
       VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => False);
       
       case
+        VorhandeneSpezies
+      is
+         when 1 .. 8 =>
+            LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
+            LadezeitSichtbarkeit := LadezeitSichtbarkeitBasiswert;
+            
+         when others =>
+            null;
+      end case;
+      
+      case
         LadenPrüfenExtern
       is
          when True =>
@@ -43,6 +55,9 @@ package body LadenKarteLogik is
       
       FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
       KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
+      
+      LadezeitKarteBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
+      LadezeitKarte := LadezeitKarteBasiswert;
       
       EbeneSchleife:
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
@@ -112,11 +127,49 @@ package body LadenKarteLogik is
                end case;
                                                             
             end loop WaagerechteSchleife;
+         
+            LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+                                   ErhöhungExtern              => SystemDatentypenHTSEB.NullBisHundert (LadezeitKarte),
+                                   SetzenExtern                => True);
+            
+            LadezeitKarte := LadezeitKarte + LadezeitKarteBasiswert;
+            
+            if
+              LadezeitKarte > 100.00
+            then
+               LadezeitKarte := 100.00;
+               
+            else
+               null;
+            end if;
+      
+            case
+              VorhandeneSpezies
+            is
+               when 1 .. 8 =>
+                  LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                         ErhöhungExtern              => SystemDatentypenHTSEB.NullBisHundert (LadezeitSichtbarkeit),
+                                         SetzenExtern                => True);
+            
+                  LadezeitSichtbarkeit := LadezeitSichtbarkeit + LadezeitSichtbarkeitBasiswert;
+            
+                  if
+                    LadezeitSichtbarkeit > 100.00
+                  then
+                     LadezeitSichtbarkeit := 100.00;
+               
+                  else
+                     null;
+                  end if;
+            
+               when others =>
+                  null;
+            end case;
+            
          end loop SenkrechteSchleife;
-         
-         -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-         
       end loop EbeneSchleife;
+            
+      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       if
         FelderanzahlZusatzgrund = SystemDatentypenHTSEB.AchtElemente'First

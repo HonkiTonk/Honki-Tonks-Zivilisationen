@@ -71,9 +71,7 @@ package Grafiktask is
    
    Spielstand : TaskRecords.SpielstandGrafikRecord := (others => False);
    
-   
-   
-   Dateiname : Unbounded_Wide_Wide_String;
+   Spielstandname : Unbounded_Wide_Wide_String;
    
    
    

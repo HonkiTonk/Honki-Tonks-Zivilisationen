@@ -766,9 +766,16 @@ package body TextaccesseSchriftgroesseGrafik is
                                             size => StandardExtern);
          
       end loop SpeichernSchleife;
+      
+      
+      
+      LadenSchleife:
+      for LadenSchleifenwert in TextaccessVariablen.LadenAccess'Range loop
                
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.LadenAccess (1),
-                                         size => StandardExtern);
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.LadenAccess (LadenSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop LadenSchleife;
       
    end Ladezeiten;
    

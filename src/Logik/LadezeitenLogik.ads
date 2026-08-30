@@ -6,7 +6,6 @@ package LadezeitenLogik is
    pragma Elaborate_Body;
    
    FortschrittRundenende : SystemDatentypenHTSEB.NullBisHundert;
-   FortschrittSpeichernLaden : SystemDatentypenHTSEB.NullBisHundert;
       
    type FortschrittSpielweltArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    FortschrittSpielwelt : FortschrittSpielweltArray;
@@ -27,7 +26,8 @@ package LadezeitenLogik is
    procedure SpeichernNullsetzen;
    procedure Speichern
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
-      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert);
+      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert;
+      SetzenExtern : in Boolean);
    
    procedure SpeichernMaximum
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum);
@@ -35,7 +35,8 @@ package LadezeitenLogik is
    procedure LadenNullsetzen;
    procedure Laden
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
-      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert);
+      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert;
+      SetzenExtern : in Boolean);
    
    procedure LadenMaximum
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum);
@@ -57,6 +58,8 @@ private
    AnfangLadezeit : constant SystemDatentypenHTSEB.NullBisHundert := SystemDatentypenHTSEB.NullBisHundert'First;
    EndeLadezeit : constant SystemDatentypenHTSEB.NullBisHundert := SystemDatentypenHTSEB.NullBisHundert'Last;
    
+   -- Das heir mal komplett rauswerfen und durch lokale Werte ersetzen? äöü
+   -- Vermutlich sinnvoll da ich die ja eh lokal Durchrechnen muss. äöü
    type FortschrittSchritteArray is array (1 .. 5) of SystemDatentypenHTSEB.NullBisHundert;
    FortschrittSchritte : constant FortschrittSchritteArray := (
                                                                1 => 1,

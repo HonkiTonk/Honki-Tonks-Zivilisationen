@@ -24,6 +24,11 @@ private
    VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernBasis;
    
    Speziesbelegung : SpeziesDatentypen.Spezies_Vorhanden_Enum;
+   
+   LadezeitKarteBasiswert : Float;
+   LadezeitKarte : Float;
+   LadezeitSichtbarkeitBasiswert : Float;
+   LadezeitSichtbarkeit : Float;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
          

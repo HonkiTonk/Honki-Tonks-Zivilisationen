@@ -741,9 +741,16 @@ package body TextaccesseSchriftfarbeGrafik is
                                     color => StandardExtern);
          
       end loop SpeichernSchleife;
+      
+      
+      
+      LadenSchleife:
+      for LadenSchleifenwert in TextaccessVariablen.LadenAccess'Range loop
                
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.LadenAccess (1),
-                                 color => StandardExtern);
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.LadenAccess (LadenSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop LadenSchleife;
       
    end Ladezeiten;
    

@@ -78,7 +78,8 @@ private
                );
    
    function Laden
-     (MaximaleTextbreiteExtern : in Float)
+     (MaximaleTextbreiteExtern : in Float;
+      PrüfenLadenExtern : in GrafikDatentypen.Prüfen_Laden_Enum)
       return Float
      with
        Pre => (

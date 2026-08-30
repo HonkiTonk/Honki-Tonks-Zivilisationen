@@ -1,5 +1,7 @@
 with Ada.Exceptions;
 
+with LadezeitenDatentypen;
+with LadezeitenLogik;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
@@ -108,6 +110,10 @@ package body LadenAllgemeinesLogik is
          when False =>
             null;
       end case;
+      
+      LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,
+                             ErhöhungExtern              => 50,
+                             SetzenExtern                => False);
       
       return True;
       

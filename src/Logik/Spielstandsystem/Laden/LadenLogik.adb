@@ -1,9 +1,11 @@
 with Ada.Exceptions;
 
 with DateizugriffssystemHTSEB;
+with LadezeitenDatentypen;
 with TextKonstantenHTSEB;
 with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
+with SystemDatentypenHTSEB;
 
 with GrafikDatentypen;
 with TextnummernKonstanten;
@@ -65,6 +67,7 @@ package body LadenLogik is
                                                                                                                       SpielstandnameExtern => Spielstandname));
                
             when True =>
+               LadezeitenLogik.LadenNullsetzen;
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Laden_Enum);
                StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => True);
                
@@ -111,8 +114,7 @@ package body LadenLogik is
             return False;
             
          when True =>
-            null;
-           -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+            LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
       end case;
       
       case
@@ -134,7 +136,6 @@ package body LadenLogik is
             return False;
             
          when True =>
-            -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
             return True;
       end case;
       
@@ -148,14 +149,13 @@ package body LadenLogik is
                
       Leerwert := LadenAllgemeinesLogik.Aufteilung (LadenPrüfenExtern => True,
                                                     DateiLadenExtern  => DateiLadenExtern);
-      -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
                
       Leerwert := LadenKarteLogik.KarteLaden (LadenPrüfenExtern => True,
                                               DateiLadenExtern  => DateiLadenExtern);
       
       Leerwert := SpezieswerteLaden (LadenPrüfenExtern => True,
                                      DateiLadenExtern  => DateiLadenExtern);
-      -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       SchreibeEinheitenGebaut.Standardbewegungsplan;
       
@@ -169,6 +169,7 @@ package body LadenLogik is
       return Boolean
    is
       use type SpeziesDatentypen.Spieler_Enum;
+      use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       SpeziesSchleife:
@@ -216,7 +217,24 @@ package body LadenLogik is
             null;
          end if;
          
+         -- Funktioniert nur bei 18 Spezien, nochmal anpassen. äöü
+         LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum,
+                                ErhöhungExtern              => 100/18,
+                                SetzenExtern                => False);
+         
+         LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Städte_Enum,
+                                ErhöhungExtern              => 100/18,
+                                SetzenExtern                => False);
+         
+         LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Einheiten_Enum,
+                                ErhöhungExtern              => 100/18,
+                                SetzenExtern                => False);
+         
       end loop SpeziesSchleife;
+      
+      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum);
+      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Städte_Enum);
+      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Einheiten_Enum);
       
       return True;
       

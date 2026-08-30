@@ -89,11 +89,12 @@ package body SpeichernAllgemeinesLogik is
                                              LeseAllgemeines.Zusammenbruchszeit);
       
       SystemDatentypenHTSEB.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
-                                             LeseAllgemeines.EingesetztePZB);
+                                                  LeseAllgemeines.EingesetztePZB);
       
       LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,
-                                 ErhöhungExtern              => 33);
-            
+                                 ErhöhungExtern              => 50,
+                                 SetzenExtern                => False);
+      
       return True;
       
    exception
@@ -128,9 +129,6 @@ package body SpeichernAllgemeinesLogik is
       Besiegt := 0;
       AktuelleSpezies := 0;
       SpeziesVorhanden := SpielstandAllgemeinesLogik.GesamteSpeziesanzahl (SpeichernLadenExtern => True);
-      
-      LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,
-                                 ErhöhungExtern              => 33);
       
       BesiegtSchleife:
       for BesiegtSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop

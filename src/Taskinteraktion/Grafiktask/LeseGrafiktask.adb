@@ -436,7 +436,7 @@ package body LeseGrafiktask is
      return Unbounded_Wide_Wide_String
    is begin
       
-      return Grafiktask.Dateiname;
+      return Grafiktask.Spielstandname;
       
    end Dateiname;
      

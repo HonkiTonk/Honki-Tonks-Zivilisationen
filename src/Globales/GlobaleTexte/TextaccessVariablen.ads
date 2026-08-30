@@ -235,7 +235,7 @@ package TextaccessVariablen is
    KIZeitenAccess : constant TextaccessArray (LadezeitenAccess'Last + 1 .. 13) := (others => Sf.Graphics.Text.create);
    
    SpeichernAccess : constant TextaccessArray (TextnummernKonstanten.SpeichernAllgemeines .. TextnummernKonstanten.SpeichernEinheiten) := (others => Sf.Graphics.Text.create);
-   LadenAccess : constant TextaccessArray (1 .. 1) := (others => Sf.Graphics.Text.create);
+   LadenAccess : constant TextaccessArray (TextnummernKonstanten.LadenAllgemeines .. TextnummernKonstanten.LadenEinheiten) := (others => Sf.Graphics.Text.create);
    
    RundenendeAccess : constant TextaccessArray (1 .. 1) := (others => Sf.Graphics.Text.create);
    -- Ladezeiten

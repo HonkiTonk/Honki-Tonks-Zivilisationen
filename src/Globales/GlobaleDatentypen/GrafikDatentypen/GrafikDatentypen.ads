@@ -6,7 +6,8 @@ package GrafikDatentypen is
                                   
                                   Pause_Enum,
                                   
-                                  Generierungszeit_Enum, KI_Rechenzeit_Enum, Rundenende_Enum, Speichern_Enum, Prüfen_Enum, Laden_Enum,
+                                  Generierungszeit_Enum, KI_Rechenzeit_Enum, Rundenende_Enum, Speichern_Enum,
+                                  Prüfen_Enum, Laden_Enum,
                                   
                                   Menüs_Enum, Sprache_Enum, Set_Enum,
                                   
@@ -24,6 +25,7 @@ package GrafikDatentypen is
                                  );
    
    subtype Ladezeiten_Enum is Aktuelle_Anzeige_Enum range Generierungszeit_Enum .. Laden_Enum;
+   subtype Prüfen_Laden_Enum is Ladezeiten_Enum range Prüfen_Enum .. Ladezeiten_Enum'Last;
    -- Eventuell kann ich das nach der Zusammenfassung als ein Eintrag, anstelle von mehreren behandeln. äöü
    subtype Stadt_Enum is Aktuelle_Anzeige_Enum range Stadtumgebung_Enum .. Stadtkarte_Enum;
    

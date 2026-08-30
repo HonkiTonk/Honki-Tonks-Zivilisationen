@@ -129,12 +129,18 @@ package body LadezeitenLogik is
    
    procedure Speichern
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
-      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert)
+      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert;
+      SetzenExtern : in Boolean)
    is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       if
+        SetzenExtern
+      then
+         FortschrittSpeichern (WelcheBerechnungszeitExtern) := ErhöhungExtern;
+         
+      elsif
         FortschrittSpeichern (WelcheBerechnungszeitExtern) + ErhöhungExtern > EndeLadezeit
       then
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.Speichern: Fortschritt > 100%");
@@ -169,12 +175,18 @@ package body LadezeitenLogik is
    
    procedure Laden
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
-      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert)
+      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert;
+      SetzenExtern : in Boolean)
    is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       if
+        SetzenExtern
+      then
+         FortschrittLaden (WelcheBerechnungszeitExtern) := ErhöhungExtern;
+         
+      elsif
         FortschrittLaden (WelcheBerechnungszeitExtern) + ErhöhungExtern > EndeLadezeit
       then
          MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.Laden: Fortschritt > 100%");

@@ -7,8 +7,7 @@ package SpeichernKarteLogik is
    pragma Elaborate_Body;
 
    function Karte
-     (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean)
+     (DateiSpeichernExtern : in File_Type)
       return Boolean;
       
 private
@@ -22,19 +21,19 @@ private
    VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernVorhanden;
    
    ByteanzahlAchtFelderzusammenfassung : Float;
+   SpeicherzeitKarteBasiswert : Float;
+   SpeicherzeitKarte : Float;
    
    SichtbarkeitFelderreiheFestgelegt : KartenArrays.SichtbarkeitGesamtArray;
    
    
       
    function Felderzusammenfassung
-     (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean)
+     (DateiSpeichernExtern : in File_Type)
       return Boolean;
    
    function Spezieszusammenfassung
-     (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean)
+     (DateiSpeichernExtern : in File_Type)
       return Boolean;
    
 end SpeichernKarteLogik;

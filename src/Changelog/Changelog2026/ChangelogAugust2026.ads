@@ -15,16 +15,16 @@ package ChangelogAugust2026 is
    
    
 
-   -- Version 0.06. => 0.06. (29.08.2026):
+   -- Version 0.06.4250 => 0.06. (29.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4225 => 0.06. (28.08.2026):
+   -- Version 0.06.4225 => 0.06.4250 (28.08.2026):
    
-   -- 
+   -- Weiter an der neuen Ladeanzeige gearbeitet.
    -- Kleinigkeiten korrigiert.
    
    

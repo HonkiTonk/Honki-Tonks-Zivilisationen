@@ -141,21 +141,19 @@ Berechne Diplomatie:
 Berechnungen zwischen den Runden
 Speichere
 Speichere Allgemeines:
-Speichere Kartengrund:
-Speichere Kartenzusätze:
+Speichere Karte:
 Speichere Sichtbarkeit:
 Speichere Spezies Allgemeines:
 Speichere Städte:
 Speichere Einheiten:
 Prüfe
 Lade
-Lade Allgemeines:
-Lade Kartengrund:
-Lade Kartenzusätze:
-Lade Sichtbarkeit:
-Lade Spezies Allgemeines:
-Lade Städte:
-Lade Einheiten:
+Allgemeines:
+Karte:
+Sichtbarkeit:
+Spezies Allgemeines:
+Städte:
+Einheiten:
 ################################# Beschäftigungen
 Unbeschäftigt
 a

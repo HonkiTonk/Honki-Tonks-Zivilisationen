@@ -448,7 +448,7 @@ package body SchreibeGrafiktask is
      (DateinameExtern : in Unbounded_Wide_Wide_String)
    is begin
       
-      Grafiktask.Dateiname := DateinameExtern;
+      Grafiktask.Spielstandname := DateinameExtern;
       
    end Dateiname;
    

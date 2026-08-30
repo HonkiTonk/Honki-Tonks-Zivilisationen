@@ -52,25 +52,6 @@ package body SpielstandAllgemeinesLogik is
    
    
    
-   procedure FortschrittErhöhen
-     (AutospeichernExtern : in Boolean)
-   is begin
-      
-      case
-        AutospeichernExtern
-      is
-         when False =>
-            null;
-            -- LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
-            
-         when True =>
-            null;
-      end case;
-      
-   end FortschrittErhöhen;
-   
-   
-   
    procedure SpeziesbelegungSchreiben
      (SpeziesbelegungExtern : in SpielRecords.SpeziesbelegungArray)
    is begin

@@ -5,23 +5,24 @@ with UmwandlungssystemHTSEB;
 with SystemDatentypenHTSEB;
 
 with KartenKonstanten;
--- with LadezeitenDatentypen;
+with LadezeitenDatentypen;
 with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
 
 with SpielstandAllgemeinesLogik;
 with SpeichernSichtbarkeitLogik;
--- with LadezeitenLogik;
+with LadezeitenLogik;
 with SpeichernBasisgrundLogik;
 with SpeichernZusatzbelegungLogik;
+
+-- with DiagnosesystemHTSEB;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
 
    function Karte
-     (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean)
+     (DateiSpeichernExtern : in File_Type)
       return Boolean
    is begin
       
@@ -38,6 +39,9 @@ package body SpeichernKarteLogik is
       
       VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
       GesamtgrößeSpezieszusammenfassung := 0;
+      
+      SpeicherzeitKarteBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
+      SpeicherzeitKarte := SpeicherzeitKarteBasiswert;
       
       EbeneSchleife:
       -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
@@ -109,23 +113,26 @@ package body SpeichernKarteLogik is
                end case;
                
             end loop WaagerechteSchleife;
-         end loop SenkrechteSchleife;
          
-         case
-           AutospeichernExtern
-         is
-            when False =>
-               null;
+            LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+                                       ErhöhungExtern              => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitKarte),
+                                       SetzenExtern                => True);
+            
+            SpeicherzeitKarte := SpeicherzeitKarte + SpeicherzeitKarteBasiswert;
+            
+            if
+              SpeicherzeitKarte > 100.00
+            then
+               SpeicherzeitKarte := 100.00;
                
-            when True =>
+            else
                null;
-               -- LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
-               --                            ErhöhungExtern              => 20);
-         end case;
-         
-         -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
-         
+            end if;
+            
+         end loop SenkrechteSchleife;
       end loop EbeneSchleife;
+            
+      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       if
         FelderanzahlZusatzgrund = SystemDatentypenHTSEB.AchtElemente'First
@@ -159,8 +166,6 @@ package body SpeichernKarteLogik is
             else
                null;
             end if;
-            
-            -- LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
             return True;
             
@@ -175,14 +180,12 @@ package body SpeichernKarteLogik is
       then
          SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
                                               0);
-         return Felderzusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
-                                       AutospeichernExtern  => AutospeichernExtern);
+         return Felderzusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern);
                   
       else
          SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
                                               1);
-         return Spezieszusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
-                                        AutospeichernExtern  => AutospeichernExtern);
+         return Spezieszusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern);
       end if;
       
    exception
@@ -196,8 +199,7 @@ package body SpeichernKarteLogik is
    
    
    function Felderzusammenfassung
-     (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean)
+     (DateiSpeichernExtern : in File_Type)
       return Boolean
    is begin
       
@@ -237,20 +239,6 @@ package body SpeichernKarteLogik is
             end loop WaagerechteSchleife;
          end loop SenkrechteSchleife;
          
-         case
-           AutospeichernExtern
-         is
-            when False =>
-               null;
-               
-            when True =>
-               null;
-               -- LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
-               --                             ErhöhungExtern              => 20);
-         end case;
-         
-         -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
-         
       end loop EbeneSchleife;
       
       if
@@ -267,8 +255,6 @@ package body SpeichernKarteLogik is
       else
          null;
       end if;
-            
-      -- LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       return True;
       
@@ -283,8 +269,7 @@ package body SpeichernKarteLogik is
    
    
    function Spezieszusammenfassung
-     (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean)
+     (DateiSpeichernExtern : in File_Type)
       return Boolean
    is begin
       
@@ -311,23 +296,7 @@ package body SpeichernKarteLogik is
             end loop WaagerechteSchleife;
          end loop SenkrechteSchleife;
          
-         case
-           AutospeichernExtern
-         is
-            when False =>
-               null;
-               
-            when True =>
-               null;
-               --      LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
-               --                                  ErhöhungExtern              => 20);
-         end case;
-         
-         -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
-         
       end loop EbeneSchleife;
-            
-      -- LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       return True;
       

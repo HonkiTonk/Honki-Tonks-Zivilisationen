@@ -21,7 +21,7 @@ package LadezeitenDatentypen is
    
    
    type Speichern_Laden_Enum is (
-                                 Allgemeines_Enum, Kartengrund_Enum, Kartenzusätze_Enum, Sichtbarkeit_Enum, Spezies_Allgemeines_Enum, Städte_Enum, Einheiten_Enum
+                                 Allgemeines_Enum, Karte_Enum, Sichtbarkeit_Enum, Spezies_Allgemeines_Enum, Städte_Enum, Einheiten_Enum
                                 );
 
 end LadezeitenDatentypen;

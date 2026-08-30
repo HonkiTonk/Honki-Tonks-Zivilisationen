@@ -38,7 +38,7 @@ package body LadezeitenGrafik is
          when GrafikDatentypen.Speichern_Enum =>
             Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Speichern) & " " & LeseGrafiktask.Dateiname;
             
-            when GrafikDatentypen.Prüfen_Enum =>
+         when GrafikDatentypen.Prüfen_Enum =>
             Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Prüfen) & " " & LeseGrafiktask.Dateiname;
             
          when GrafikDatentypen.Laden_Enum =>
@@ -74,8 +74,9 @@ package body LadezeitenGrafik is
          when GrafikDatentypen.Speichern_Enum =>
             Viewfläche.y := Speichern (MaximaleTextbreiteExtern => Viewfläche.x);
             
-         when GrafikDatentypen.Prüfen_Enum | GrafikDatentypen.Laden_Enum =>
-            Viewfläche.y := Laden (MaximaleTextbreiteExtern => Viewfläche.x);
+         when GrafikDatentypen.Prüfen_Laden_Enum'Range =>
+            Viewfläche.y := Laden (MaximaleTextbreiteExtern => Viewfläche.x,
+                                   PrüfenLadenExtern        => WelcheLadeanzeigeExtern);
       end case;
       
       Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
@@ -175,18 +176,39 @@ package body LadezeitenGrafik is
    
    
    function Laden
-     (MaximaleTextbreiteExtern : in Float)
+     (MaximaleTextbreiteExtern : in Float;
+      PrüfenLadenExtern : in GrafikDatentypen.Prüfen_Laden_Enum)
       return Float
    is begin
       
+      WelcheZeit := TextaccessVariablen.LadenAccess'First;
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
+      
+      SpeichernSchleife:
+      for SpeichernSchleifenwert in LadezeitenDatentypen.Speichern_Laden_Enum'Range loop
          
-      Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)
-                                                                                                 & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt,
-                                                                                                 TextpositionExtern       => Textposition,
-                                                                                                 MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
-                                                                                                 TextAccessExtern         => TextaccessVariablen.LadenAccess (1));
+         case
+           PrüfenLadenExtern
+         is
+            when GrafikDatentypen.Prüfen_Enum =>
+               Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Prüfen) & " ";
+               
+            when GrafikDatentypen.Laden_Enum =>
+               Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Laden) & " ";
+         end case;
+         
+         Text := Text & Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittLaden (SpeichernSchleifenwert))
+           & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
+         
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
+                                                                                                    TextpositionExtern       => Textposition,
+                                                                                                    MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                    TextAccessExtern         => TextaccessVariablen.LadenAccess (WelcheZeit));
+         
+         WelcheZeit := WelcheZeit + 1;
+         
+      end loop SpeichernSchleife;
       
       return Textposition.y;
       

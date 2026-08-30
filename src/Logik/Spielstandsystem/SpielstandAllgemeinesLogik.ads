@@ -9,9 +9,6 @@ with SpeziesDatentypen;
 
 package SpielstandAllgemeinesLogik is
    pragma Elaborate_Body;
-      
-   procedure FortschrittErhöhen
-     (AutospeichernExtern : in Boolean);
    
    procedure SpeziesbelegungSchreiben
      (SpeziesbelegungExtern : in SpielRecords.SpeziesbelegungArray);

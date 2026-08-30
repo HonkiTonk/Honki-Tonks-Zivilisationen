@@ -90,8 +90,7 @@ package body SpeichernLogik is
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          elsif
-           False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
-                                              AutospeichernExtern  => AutospeichernExtern)
+           False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern)
          then
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
@@ -195,12 +194,24 @@ package body SpeichernLogik is
             null;
          end if;
          
+         -- Funktioniert nur bei 18 Spezien, nochmal anpassen. äöü
          LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum,
-                                    ErhöhungExtern              => 100/18);
+                                    ErhöhungExtern              => 100/18,
+                                    SetzenExtern                => False);
+         
+         LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Städte_Enum,
+                                    ErhöhungExtern              => 100/18,
+                                    SetzenExtern                => False);
+         
+         LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Einheiten_Enum,
+                                    ErhöhungExtern              => 100/18,
+                                    SetzenExtern                => False);
          
       end loop SpeziesSchleife;
       
       LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum);
+      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Städte_Enum);
+      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Einheiten_Enum);
       
       return True;
       
