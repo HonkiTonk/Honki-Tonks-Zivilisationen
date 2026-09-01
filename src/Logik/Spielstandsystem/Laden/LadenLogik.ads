@@ -27,9 +27,4 @@ private
      (DateiLadenExtern : in File_Type)
       return Boolean;
 
-   function SpezieswerteLaden
-     (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
-      return Boolean;
-
 end LadenLogik;

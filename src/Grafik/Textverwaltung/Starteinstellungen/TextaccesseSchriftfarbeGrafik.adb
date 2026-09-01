@@ -734,23 +734,13 @@ package body TextaccesseSchriftfarbeGrafik is
       
       
       
-      SpeichernSchleife:
-      for SpeichernSchleifenwert in TextaccessVariablen.SpeichernAccess'Range loop
+      SpielstandSchleife:
+      for SpielstandSchleifenwert in TextaccessVariablen.SpielstandzeitAccess'Range loop
                
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeichernAccess (SpeichernSchleifenwert),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpielstandzeitAccess (SpielstandSchleifenwert),
                                     color => StandardExtern);
          
-      end loop SpeichernSchleife;
-      
-      
-      
-      LadenSchleife:
-      for LadenSchleifenwert in TextaccessVariablen.LadenAccess'Range loop
-               
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.LadenAccess (LadenSchleifenwert),
-                                    color => StandardExtern);
-         
-      end loop LadenSchleife;
+      end loop SpielstandSchleife;
       
    end Ladezeiten;
    

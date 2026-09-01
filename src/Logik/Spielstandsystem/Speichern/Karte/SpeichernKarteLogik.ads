@@ -12,17 +12,20 @@ package SpeichernKarteLogik is
       
 private
    
+   VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernVorhanden;
+   
    FelderanzahlZusatzgrund : Positive;
    FelderanzahlSichtbarkeit : Positive;
    GesamteFelderanzahl : Positive;
    
    GesamtgrößeSpezieszusammenfassung : Natural;
    
-   VorhandeneSpezies : SpeziesDatentypen.SpeziesnummernVorhanden;
-   
    ByteanzahlAchtFelderzusammenfassung : Float;
    SpeicherzeitKarteBasiswert : Float;
    SpeicherzeitKarte : Float;
+   
+   SpeicherzeitSichtbarkeitBasiswert : Float;
+   SpeicherzeitSichtbarkeit : Float;
    
    SichtbarkeitFelderreiheFestgelegt : KartenArrays.SichtbarkeitGesamtArray;
    

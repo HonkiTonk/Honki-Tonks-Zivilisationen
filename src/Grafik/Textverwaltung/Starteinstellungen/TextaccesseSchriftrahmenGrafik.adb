@@ -715,23 +715,13 @@ package body TextaccesseSchriftrahmenGrafik is
       
       
       
-      SpeichernSchleife:
-      for SpeichernSchleifenwert in TextaccessVariablen.SpeichernAccess'Range loop
+      SpielstandSchleife:
+      for SpielstandSchleifenwert in TextaccessVariablen.SpielstandzeitAccess'Range loop
          
-         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.SpeichernAccess (SpeichernSchleifenwert),
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.SpielstandzeitAccess (SpielstandSchleifenwert),
                                                thickness => RahmendickeExtern);
          
-      end loop SpeichernSchleife;
-      
-      
-      
-      LadenSchleife:
-      for LadenSchleifenwert in TextaccessVariablen.LadenAccess'Range loop
-               
-         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.LadenAccess (LadenSchleifenwert),
-                                               thickness => RahmendickeExtern);
-         
-      end loop LadenSchleife;
+      end loop SpielstandSchleife;
       
    end Ladezeiten;
    

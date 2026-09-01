@@ -725,23 +725,13 @@ package body TextaccesseSchriftartGrafik is
       
       
       
-      SpeichernSchleife:
-      for SpeichernSchleifenwert in TextaccessVariablen.SpeichernAccess'Range loop
+      SpielstandSchleife:
+      for SpielstandSchleifenwert in TextaccessVariablen.SpielstandzeitAccess'Range loop
          
-         Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpeichernAccess (SpeichernSchleifenwert),
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpielstandzeitAccess (SpielstandSchleifenwert),
                                    font => SchriftaccessExtern);
          
-      end loop SpeichernSchleife;
-      
-      
-      
-      LadenSchleife:
-      for LadenSchleifenwert in TextaccessVariablen.LadenAccess'Range loop
-         
-         Sf.Graphics.Text.setFont (text => TextaccessVariablen.LadenAccess (LadenSchleifenwert),
-                                   font => SchriftaccessExtern);
-         
-      end loop LadenSchleife;
+      end loop SpielstandSchleife;
       
    end Ladezeiten;
    

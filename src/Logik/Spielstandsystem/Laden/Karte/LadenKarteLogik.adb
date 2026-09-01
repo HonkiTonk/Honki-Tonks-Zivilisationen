@@ -128,39 +128,21 @@ package body LadenKarteLogik is
                                                             
             end loop WaagerechteSchleife;
          
-            LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
-                                   ErhöhungExtern              => SystemDatentypenHTSEB.NullBisHundert (LadezeitKarte),
-                                   SetzenExtern                => True);
+            LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+                                            ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (LadezeitKarte));
             
-            LadezeitKarte := LadezeitKarte + LadezeitKarteBasiswert;
+            LadezeitKarte := Ladezeittest (BasiswertExtern  => LadezeitKarte,
+                                           ZusatzwertExtern => LadezeitKarteBasiswert);
             
-            if
-              LadezeitKarte > 100.00
-            then
-               LadezeitKarte := 100.00;
-               
-            else
-               null;
-            end if;
-      
             case
               VorhandeneSpezies
             is
                when 1 .. 8 =>
-                  LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                         ErhöhungExtern              => SystemDatentypenHTSEB.NullBisHundert (LadezeitSichtbarkeit),
-                                         SetzenExtern                => True);
+                  LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                                  ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (LadezeitSichtbarkeit));
             
-                  LadezeitSichtbarkeit := LadezeitSichtbarkeit + LadezeitSichtbarkeitBasiswert;
-            
-                  if
-                    LadezeitSichtbarkeit > 100.00
-                  then
-                     LadezeitSichtbarkeit := 100.00;
-               
-                  else
-                     null;
-                  end if;
+                  LadezeitSichtbarkeit := Ladezeittest (BasiswertExtern  => LadezeitSichtbarkeit,
+                                                        ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
             
                when others =>
                   null;
@@ -169,7 +151,7 @@ package body LadenKarteLogik is
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
             
-      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       if
         FelderanzahlZusatzgrund = SystemDatentypenHTSEB.AchtElemente'First
@@ -205,6 +187,8 @@ package body LadenKarteLogik is
             else
                null;
             end if;
+            
+            LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
             
             return True;
             
@@ -247,9 +231,12 @@ package body LadenKarteLogik is
       
       FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
       KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
+      
+      LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
+      LadezeitSichtbarkeit := LadezeitSichtbarkeitBasiswert;
             
       EbeneSchleife:
-      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
@@ -278,6 +265,13 @@ package body LadenKarteLogik is
                end if;
                
             end loop WaagerechteSchleife;
+            
+            LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                            ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (LadezeitSichtbarkeit));
+            
+            LadezeitSichtbarkeit := Ladezeittest (BasiswertExtern  => LadezeitSichtbarkeit,
+                                                  ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
+            
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
             
@@ -297,6 +291,8 @@ package body LadenKarteLogik is
          null;
       end if;
             
+      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+            
       return True;
       
    exception
@@ -315,8 +311,11 @@ package body LadenKarteLogik is
       return Boolean
    is begin
       
+      LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
+      LadezeitSichtbarkeit := LadezeitSichtbarkeitBasiswert;
+      
       EbeneSchleife:
-      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
@@ -337,8 +336,17 @@ package body LadenKarteLogik is
                end case;
                      
             end loop WaagerechteSchleife;
+            
+            LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                   ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (LadezeitSichtbarkeit));
+            
+            LadezeitSichtbarkeit := Ladezeittest (BasiswertExtern  => LadezeitSichtbarkeit,
+                                                  ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
+            
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
+            
+      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
       return True;
       
@@ -349,5 +357,25 @@ package body LadenKarteLogik is
          return False;
       
    end Spezieszusammenfassung;
+   
+   
+   
+   function Ladezeittest
+     (BasiswertExtern : in Float;
+      ZusatzwertExtern : in Float)
+      return Float
+   is begin
+      
+      if
+        BasiswertExtern + ZusatzwertExtern > 100.00
+      then
+         return 100.00;
+               
+      else
+         return BasiswertExtern + ZusatzwertExtern;
+      end if;
+      
+   end Ladezeittest;
+   
 
 end LadenKarteLogik;

@@ -8,17 +8,20 @@ package ChangelogAugust2026 is
    
    
 
-   -- Version 0.06. => 0.06. (30.08.2026):
+   -- Version 0.06.4310 => 0.06. (30.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4250 => 0.06. (29.08.2026):
+   -- Version 0.06.4250 => 0.06.4310 (29.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die neue Ladeanzeige fertig gestellt.
+   -- Übersetzungen an die neue Ladeanzeige angepasst.
+   -- Code zusammengefasst.
+   -- Unnützen Code entfernt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -79,7 +79,7 @@ package body RundenendeLogik is
            Belegung
          is
             when SpeziesDatentypen.Mensch_Spieler_Enum =>
-               -- Ich schreibe Meldungen nur für Menschen, reicht dann die Leerung auch nicht bei nur Menschen? äöü
+               -- Ich schreibe Meldungen nur für Menschen, reicht dann die Leerung nicht auch bei nur Menschen? äöü
                EinheitInUmgebungLogik.EinheitInUmgebung (SpeziesExtern => SpeziesSchleifenwert);
                
             when SpeziesDatentypen.KI_Spieler_Enum =>
@@ -94,11 +94,10 @@ package body RundenendeLogik is
       end loop SpeziesSchleife;
       
       SchreibeAllgemeines.Rundenanzahl;
-      LadezeitenLogik.RundenendeSchreiben;
+      LadezeitenLogik.RundenendeMaximum;
       
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.
       SpeichernLogik.AutoSpeichern;
-      LadezeitenLogik.RundenendeMaximum;
       
       return True;
       

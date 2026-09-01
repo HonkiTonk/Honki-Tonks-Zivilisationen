@@ -732,23 +732,13 @@ package body TextaccesseSchriftstilGrafik is
       
       
       
-      SpeichernSchleife:
-      for SpeichernSchleifenwert in TextaccessVariablen.SpeichernAccess'Range loop
+      SpielstandSchleife:
+      for SpielstandSchleifenwert in TextaccessVariablen.SpielstandzeitAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SpeichernAccess (SpeichernSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.SpielstandzeitAccess (SpielstandSchleifenwert),
                                     style => StilExtern);
          
-      end loop SpeichernSchleife;
-      
-      
-      
-      LadenSchleife:
-      for LadenSchleifenwert in TextaccessVariablen.LadenAccess'Range loop
-         
-         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.LadenAccess (LadenSchleifenwert),
-                                    style => StilExtern);
-         
-      end loop LadenSchleife;
+      end loop SpielstandSchleife;
          
    end Ladezeiten;
    

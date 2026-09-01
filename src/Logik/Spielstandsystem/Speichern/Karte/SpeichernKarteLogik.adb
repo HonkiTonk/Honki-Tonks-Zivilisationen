@@ -43,8 +43,19 @@ package body SpeichernKarteLogik is
       SpeicherzeitKarteBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
       SpeicherzeitKarte := SpeicherzeitKarteBasiswert;
       
+      case
+        VorhandeneSpezies
+      is
+         when 1 .. 8 =>
+            SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
+            SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeitBasiswert;
+              
+         when others =>
+            null;
+      end case;
+      
       EbeneSchleife:
-      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -114,9 +125,8 @@ package body SpeichernKarteLogik is
                
             end loop WaagerechteSchleife;
          
-            LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
-                                       ErhöhungExtern              => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitKarte),
-                                       SetzenExtern                => True);
+            LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+                                            ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitKarte));
             
             SpeicherzeitKarte := SpeicherzeitKarte + SpeicherzeitKarteBasiswert;
             
@@ -129,10 +139,32 @@ package body SpeichernKarteLogik is
                null;
             end if;
             
+            case
+              VorhandeneSpezies
+            is
+               when 1 .. 8 =>
+                  LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                                  ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitSichtbarkeit));
+            
+                  SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeit + SpeicherzeitSichtbarkeitBasiswert;
+            
+                  if
+                    SpeicherzeitSichtbarkeit > 100.00
+                  then
+                     SpeicherzeitSichtbarkeit := 100.00;
+               
+                  else
+                     null;
+                  end if;
+                  
+               when others =>
+                  null;
+            end case;
+            
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
             
-      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       if
         FelderanzahlZusatzgrund = SystemDatentypenHTSEB.AchtElemente'First
@@ -166,6 +198,8 @@ package body SpeichernKarteLogik is
             else
                null;
             end if;
+            
+            LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
             return True;
             
@@ -206,8 +240,11 @@ package body SpeichernKarteLogik is
       FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
       SichtbarkeitFelderreiheFestgelegt := (others => (others => False));
       
+      SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
+      SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeitBasiswert;
+      
       EbeneSchleife:
-      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -237,8 +274,22 @@ package body SpeichernKarteLogik is
                end if;
                
             end loop WaagerechteSchleife;
+            
+            LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                            ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitSichtbarkeit));
+            
+            SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeit + SpeicherzeitSichtbarkeitBasiswert;
+            
+            if
+              SpeicherzeitSichtbarkeit > 100.00
+            then
+               SpeicherzeitSichtbarkeit := 100.00;
+               
+            else
+               null;
+            end if;
+            
          end loop SenkrechteSchleife;
-         
       end loop EbeneSchleife;
       
       if
@@ -255,6 +306,8 @@ package body SpeichernKarteLogik is
       else
          null;
       end if;
+            
+      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
       return True;
       
@@ -273,8 +326,11 @@ package body SpeichernKarteLogik is
       return Boolean
    is begin
       
+      SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
+      SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeitBasiswert;
+      
       EbeneSchleife:
-      -- Warum loope ich da nicht diekt über EbeneVorhanden'Range? äöü
+      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -294,9 +350,25 @@ package body SpeichernKarteLogik is
                end case;
                
             end loop WaagerechteSchleife;
+            
+            LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                            ZeitExtern          => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitSichtbarkeit));
+            
+            SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeit + SpeicherzeitSichtbarkeitBasiswert;
+            
+            if
+              SpeicherzeitSichtbarkeit > 100.00
+            then
+               SpeicherzeitSichtbarkeit := 100.00;
+               
+            else
+               null;
+            end if;
+            
          end loop SenkrechteSchleife;
-         
       end loop EbeneSchleife;
+            
+      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
       return True;
       

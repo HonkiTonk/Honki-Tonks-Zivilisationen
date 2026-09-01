@@ -118,94 +118,32 @@ package body LadezeitenLogik is
    
    
    
-   procedure SpeichernNullsetzen
+   procedure SpeichernLadenNullsetzen
    is begin
       
-      FortschrittSpeichern := (others => AnfangLadezeit);
+      FortschrittSpeichernLaden := (others => AnfangLadezeit);
       
-   end SpeichernNullsetzen;
+   end SpeichernLadenNullsetzen;
    
    
    
-   procedure Speichern
+   procedure SpeichernLaden
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
-      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert;
-      SetzenExtern : in Boolean)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+      ZeitExtern : in SystemDatentypenHTSEB.NullBisHundert)
+   is begin
       
-      if
-        SetzenExtern
-      then
-         FortschrittSpeichern (WelcheBerechnungszeitExtern) := ErhöhungExtern;
-         
-      elsif
-        FortschrittSpeichern (WelcheBerechnungszeitExtern) + ErhöhungExtern > EndeLadezeit
-      then
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.Speichern: Fortschritt > 100%");
-         FortschrittSpeichern (WelcheBerechnungszeitExtern) := EndeLadezeit;
-         
-      else
-         FortschrittSpeichern (WelcheBerechnungszeitExtern) := FortschrittSpeichern (WelcheBerechnungszeitExtern) + ErhöhungExtern;
-      end if;
+      FortschrittSpeichernLaden (WelcheBerechnungszeitExtern) := ZeitExtern;
       
-   end Speichern;
+   end SpeichernLaden;
    
    
    
-   procedure SpeichernMaximum
+   procedure SpeichernLadenMaximum
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum)
    is begin
       
-      FortschrittSpeichern (WelcheBerechnungszeitExtern) := EndeLadezeit;
+      FortschrittSpeichernLaden (WelcheBerechnungszeitExtern) := EndeLadezeit;
       
-   end SpeichernMaximum;
-   
-   
-   
-   procedure LadenNullsetzen
-   is begin
-      
-      FortschrittLaden := (others => AnfangLadezeit);
-      
-   end LadenNullsetzen;
-   
-   
-   
-   procedure Laden
-     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
-      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert;
-      SetzenExtern : in Boolean)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
-      
-      if
-        SetzenExtern
-      then
-         FortschrittLaden (WelcheBerechnungszeitExtern) := ErhöhungExtern;
-         
-      elsif
-        FortschrittLaden (WelcheBerechnungszeitExtern) + ErhöhungExtern > EndeLadezeit
-      then
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.Laden: Fortschritt > 100%");
-         FortschrittLaden (WelcheBerechnungszeitExtern) := EndeLadezeit;
-         
-      else
-         FortschrittLaden (WelcheBerechnungszeitExtern) := FortschrittLaden (WelcheBerechnungszeitExtern) + ErhöhungExtern;
-      end if;
-      
-   end Laden;
-   
-   
-   
-   procedure LadenMaximum
-     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum)
-   is begin
-      
-      FortschrittLaden (WelcheBerechnungszeitExtern) := EndeLadezeit;
-      
-   end LadenMaximum;
+   end SpeichernLadenMaximum;
 
 end LadezeitenLogik;

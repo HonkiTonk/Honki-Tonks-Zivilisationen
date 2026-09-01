@@ -5,12 +5,10 @@ with LadezeitenDatentypen;
 with TextKonstantenHTSEB;
 with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
-with SystemDatentypenHTSEB;
 
 with GrafikDatentypen;
 with TextnummernKonstanten;
 with SpielstandVariablen;
-with SpeziesDatentypen;
 
 with SchreibeEinheitenGebaut;
 with SchreibeGrafiktask;
@@ -22,11 +20,7 @@ with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
 with UmwandlungenVerzeichnisse;
 with LadenAllgemeinesLogik;
-with SpielstandAllgemeinesLogik;
-with LadenSpezienspezifischesLogik;
-with LadenDiplomatieLogik;
-with LadenEinheitenLogik;
-with LadenStaedteLogik;
+with LadenSpeziesLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenLogik is
@@ -48,7 +42,7 @@ package body LadenLogik is
             return False;
          
          else
-            LadezeitenLogik.LadenNullsetzen;
+            LadezeitenLogik.SpeichernLadenNullsetzen;
             SchreibeGrafiktask.Dateiname (DateinameExtern => Spielstandname);
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Prüfen_Enum);
             
@@ -67,7 +61,7 @@ package body LadenLogik is
                                                                                                                       SpielstandnameExtern => Spielstandname));
                
             when True =>
-               LadezeitenLogik.LadenNullsetzen;
+               LadezeitenLogik.SpeichernLadenNullsetzen;
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Laden_Enum);
                StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => True);
                
@@ -114,7 +108,7 @@ package body LadenLogik is
             return False;
             
          when True =>
-            LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
+            LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
       end case;
       
       case
@@ -129,8 +123,8 @@ package body LadenLogik is
       end case;
       
       case
-        SpezieswerteLaden (LadenPrüfenExtern => False,
-                           DateiLadenExtern  => DateiLadenExtern)
+        LadenSpeziesLogik.SpezieswerteLaden (LadenPrüfenExtern => False,
+                                             DateiLadenExtern  => DateiLadenExtern)
       is
          when False =>
             return False;
@@ -149,95 +143,15 @@ package body LadenLogik is
                
       Leerwert := LadenAllgemeinesLogik.Aufteilung (LadenPrüfenExtern => True,
                                                     DateiLadenExtern  => DateiLadenExtern);
-      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
                
       Leerwert := LadenKarteLogik.KarteLaden (LadenPrüfenExtern => True,
                                               DateiLadenExtern  => DateiLadenExtern);
       
-      Leerwert := SpezieswerteLaden (LadenPrüfenExtern => True,
-                                     DateiLadenExtern  => DateiLadenExtern);
+      Leerwert := LadenSpeziesLogik.SpezieswerteLaden (LadenPrüfenExtern => True,
+                                                       DateiLadenExtern  => DateiLadenExtern);
       
       SchreibeEinheitenGebaut.Standardbewegungsplan;
       
    end Ladevorgang;
-   
-      
-   
-   function SpezieswerteLaden
-     (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
-      return Boolean
-   is
-      use type SpeziesDatentypen.Spieler_Enum;
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
-      
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
-         
-         if
-           SpielstandAllgemeinesLogik.SpeziesbelegungLesen (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
-         then
-            null;
-            
-         elsif
-           SpielstandAllgemeinesLogik.SpeziesBesiegtLesen (SpeziesExtern => SpeziesSchleifenwert) = True
-         then
-            null;
-            
-         elsif
-           False = LadenSpezienspezifischesLogik.Aufteilung (LadenPrüfenExtern => LadenPrüfenExtern,
-                                                             SpeziesExtern     => SpeziesSchleifenwert,
-                                                             DateiLadenExtern  => DateiLadenExtern)
-         then
-            return False;
-            
-         elsif
-           False = LadenEinheitenLogik.Einheiten (LadenPrüfenExtern => LadenPrüfenExtern,
-                                                  SpeziesExtern     => SpeziesSchleifenwert,
-                                                  DateiLadenExtern  => DateiLadenExtern)
-         then
-            return False;
-            
-         elsif
-           False = LadenStaedteLogik.Städte (LadenPrüfenExtern => LadenPrüfenExtern,
-                                              SpeziesExtern     => SpeziesSchleifenwert,
-                                              DateiLadenExtern  => DateiLadenExtern)
-         then
-            return False;
-            
-         elsif
-           False = LadenDiplomatieLogik.Diplomatie (LadenPrüfenExtern => LadenPrüfenExtern,
-                                                    SpeziesExtern     => SpeziesSchleifenwert,
-                                                    DateiLadenExtern  => DateiLadenExtern)
-         then
-            return False;
-            
-         else
-            null;
-         end if;
-         
-         -- Funktioniert nur bei 18 Spezien, nochmal anpassen. äöü
-         LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum,
-                                ErhöhungExtern              => 100/18,
-                                SetzenExtern                => False);
-         
-         LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Städte_Enum,
-                                ErhöhungExtern              => 100/18,
-                                SetzenExtern                => False);
-         
-         LadezeitenLogik.Laden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Einheiten_Enum,
-                                ErhöhungExtern              => 100/18,
-                                SetzenExtern                => False);
-         
-      end loop SpeziesSchleife;
-      
-      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum);
-      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Städte_Enum);
-      LadezeitenLogik.LadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Einheiten_Enum);
-      
-      return True;
-      
-   end SpezieswerteLaden;
 
 end LadenLogik;

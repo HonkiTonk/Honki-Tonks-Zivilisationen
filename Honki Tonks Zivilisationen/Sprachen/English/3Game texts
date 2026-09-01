@@ -140,22 +140,12 @@ Calculate research:
 Calculate diplomacy:
 Calculate between rounds
 Save
-Save general settings:
-Save map ground:
-Save map extras:
-Save visibility:
-Save species general settings:
-Save cities:
-Save units:
 Check
 Load
-Load general settings:
-Load map ground:
-Load map extras:
-Load visibility:
-Load species general settings:
-Load cities:
-Load units:
+general settings:
+map:
+visibility:
+species:
 ################################# Occupations
 Unemployed
 a

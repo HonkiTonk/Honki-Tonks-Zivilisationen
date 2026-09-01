@@ -46,5 +46,20 @@ private
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean;
+   
+   function Ladezeittest
+     (BasiswertExtern : in Float;
+      ZusatzwertExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 BasiswertExtern in 0.00 .. 100.00
+               and
+                 ZusatzwertExtern in 0.00 .. 100.00
+              ),
+         
+       Post => (
+                  Ladezeittest'Result in 0.00 .. 100.00
+               );
 
 end LadenKarteLogik;

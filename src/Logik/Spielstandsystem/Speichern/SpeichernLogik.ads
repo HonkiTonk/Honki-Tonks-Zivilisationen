@@ -3,8 +3,6 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with SystemDatentypenHTSEB;
 
-private with SpeziesDatentypen;
-
 package SpeichernLogik is
    pragma Elaborate_Body;
 
@@ -21,12 +19,12 @@ package SpeichernLogik is
 private
    use Ada.Streams.Stream_IO;
    use Ada.Strings.Wide_Wide_Unbounded;
-   use type SpeziesDatentypen.Spieler_Enum;
+
+   FehlerAufgetreten : Boolean;
 
    Spielstandart : SystemDatentypenHTSEB.Spielstand_Enum;
 
    AktuellerAutospeichernwert : SystemDatentypenHTSEB.EigenesPositive;
-
 
    MaximalerAutospeichernwert : Natural;
 
@@ -36,10 +34,6 @@ private
    Autospeichernname : Unbounded_Wide_Wide_String;
 
 
-
-   function Spezieswerte
-     (DateiSpeichernExtern : in File_Type)
-      return Boolean;
 
    function NameAutoSpeichern
      return Unbounded_Wide_Wide_String;

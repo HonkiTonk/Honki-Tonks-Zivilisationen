@@ -14,8 +14,7 @@ package LadezeitenLogik is
    FortschrittKI : FortschrittKIArray;
    
    type FortschrittSpeichernLadenArray is array (LadezeitenDatentypen.Speichern_Laden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
-   FortschrittSpeichern : FortschrittSpeichernLadenArray;
-   FortschrittLaden : FortschrittSpeichernLadenArray;
+   FortschrittSpeichernLaden : FortschrittSpeichernLadenArray;
 
    procedure SpielweltNullsetzen;
    procedure KINullsetzenFortschritt;
@@ -23,22 +22,12 @@ package LadezeitenLogik is
    procedure RundenendeSchreiben;
    procedure RundenendeMaximum;
    
-   procedure SpeichernNullsetzen;
-   procedure Speichern
+   procedure SpeichernLadenNullsetzen;
+   procedure SpeichernLaden
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
-      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert;
-      SetzenExtern : in Boolean);
+      ZeitExtern : in SystemDatentypenHTSEB.NullBisHundert);
    
-   procedure SpeichernMaximum
-     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum);
-   
-   procedure LadenNullsetzen;
-   procedure Laden
-     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
-      ErhöhungExtern : in SystemDatentypenHTSEB.NullBisHundert;
-      SetzenExtern : in Boolean);
-   
-   procedure LadenMaximum
+   procedure SpeichernLadenMaximum
      (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum);
    
    procedure FortschrittSpielweltSchreiben

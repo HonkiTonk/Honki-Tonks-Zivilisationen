@@ -153,24 +153,16 @@ package TextnummernKonstanten is
    LadezeitDiplomatie : constant Positive := LadezeitForschung + 1;
    LadezeitRundenwechsel : constant Positive := LadezeitDiplomatie + 1;
    Speichern : constant Positive := LadezeitRundenwechsel + 1;
-   SpeichernAllgemeines : constant Positive := Speichern + 1;
-   SpeichernKarte : constant Positive := SpeichernAllgemeines + 1;
-   SpeichernSichtbarkeit : constant Positive := SpeichernKarte + 1;
-   SpeichernSpeziesAllgemeines : constant Positive := SpeichernSichtbarkeit + 1;
-   SpeichernStädte : constant Positive := SpeichernSpeziesAllgemeines + 1;
-   SpeichernEinheiten : constant Positive := SpeichernStädte + 1;
-   Prüfen : constant Positive := SpeichernEinheiten + 1;
+   Prüfen : constant Positive := Speichern + 1;
    Laden : constant Positive := Prüfen + 1;
-   LadenAllgemeines : constant Positive := Laden + 1;
-   LadenKarte : constant Positive := LadenAllgemeines + 1;
-   LadenSichtbarkeit : constant Positive := LadenKarte + 1;
-   LadenSpeziesAllgemeines : constant Positive := LadenSichtbarkeit + 1;
-   LadenStädte : constant Positive := LadenSpeziesAllgemeines + 1;
-   LadenEinheiten : constant Positive := LadenStädte + 1;
+   SpielstandAllgemeines : constant Positive := Laden + 1;
+   SpielstandKarte : constant Positive := SpielstandAllgemeines + 1;
+   SpielstandSichtbarkeit : constant Positive := SpielstandKarte + 1;
+   SpielstandSpezies : constant Positive := SpielstandSichtbarkeit + 1;
    
    
    AnfangLadezeit : constant Positive := 1;
-   EndeLadezeit : constant Positive := LadenEinheiten;
+   EndeLadezeit : constant Positive := SpielstandSpezies;
    
    KurzeBeschreibung : constant Positive := 1;
    LangeBeschreibung : constant Positive := 2;

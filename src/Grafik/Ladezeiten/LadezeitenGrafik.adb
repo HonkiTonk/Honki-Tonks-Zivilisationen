@@ -71,12 +71,9 @@ package body LadezeitenGrafik is
          when GrafikDatentypen.Rundenende_Enum =>
             Viewfläche.y := Rundenende (MaximaleTextbreiteExtern => Viewfläche.x);
             
-         when GrafikDatentypen.Speichern_Enum =>
-            Viewfläche.y := Speichern (MaximaleTextbreiteExtern => Viewfläche.x);
-            
-         when GrafikDatentypen.Prüfen_Laden_Enum'Range =>
-            Viewfläche.y := Laden (MaximaleTextbreiteExtern => Viewfläche.x,
-                                   PrüfenLadenExtern        => WelcheLadeanzeigeExtern);
+         when GrafikDatentypen.Spielstand_Enum'Range =>
+            Viewfläche.y := Spielstand (MaximaleTextbreiteExtern => Viewfläche.x,
+                                        SpielstandExtern         => WelcheLadeanzeigeExtern);
       end case;
       
       Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
@@ -145,43 +142,13 @@ package body LadezeitenGrafik is
    
    
    
-   function Speichern
-     (MaximaleTextbreiteExtern : in Float)
-      return Float
-   is begin
-      
-      WelcheZeit := TextaccessVariablen.SpeichernAccess'First;
-      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-      
-      SpeichernSchleife:
-      for SpeichernSchleifenwert in LadezeitenDatentypen.Speichern_Laden_Enum'Range loop
-         
-         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichern (SpeichernSchleifenwert))
-           & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
-         
-         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
-                                                                                                    TextpositionExtern       => Textposition,
-                                                                                                    MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
-                                                                                                    TextAccessExtern         => TextaccessVariablen.SpeichernAccess (WelcheZeit));
-         
-         WelcheZeit := WelcheZeit + 1;
-         
-      end loop SpeichernSchleife;
-      
-      return Textposition.y;
-      
-   end Speichern;
-   
-   
-   
-   function Laden
+   function Spielstand
      (MaximaleTextbreiteExtern : in Float;
-      PrüfenLadenExtern : in GrafikDatentypen.Prüfen_Laden_Enum)
+      SpielstandExtern : in GrafikDatentypen.Spielstand_Enum)
       return Float
    is begin
       
-      WelcheZeit := TextaccessVariablen.LadenAccess'First;
+      WelcheZeit := TextaccessVariablen.SpielstandzeitAccess'First;
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       
@@ -189,8 +156,11 @@ package body LadezeitenGrafik is
       for SpeichernSchleifenwert in LadezeitenDatentypen.Speichern_Laden_Enum'Range loop
          
          case
-           PrüfenLadenExtern
+           SpielstandExtern
          is
+            when GrafikDatentypen.Speichern_Enum =>
+               Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Speichern) & " ";
+               
             when GrafikDatentypen.Prüfen_Enum =>
                Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Prüfen) & " ";
                
@@ -198,13 +168,13 @@ package body LadezeitenGrafik is
                Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Laden) & " ";
          end case;
          
-         Text := Text & Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittLaden (SpeichernSchleifenwert))
+         Text := Text & Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden (SpeichernSchleifenwert))
            & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
          
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
                                                                                                     TextpositionExtern       => Textposition,
                                                                                                     MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
-                                                                                                    TextAccessExtern         => TextaccessVariablen.LadenAccess (WelcheZeit));
+                                                                                                    TextAccessExtern         => TextaccessVariablen.SpielstandzeitAccess (WelcheZeit));
          
          WelcheZeit := WelcheZeit + 1;
          
@@ -212,7 +182,7 @@ package body LadezeitenGrafik is
       
       return Textposition.y;
       
-   end Laden;
+   end Spielstand;
    
    
    

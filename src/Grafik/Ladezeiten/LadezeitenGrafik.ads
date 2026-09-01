@@ -65,21 +65,9 @@ private
                   Rundenende'Result >= 0.00
                );
    
-   function Speichern
-     (MaximaleTextbreiteExtern : in Float)
-      return Float
-     with
-       Pre => (
-                 MaximaleTextbreiteExtern >= 0.00
-              ),
-           
-       Post => (
-                  Speichern'Result >= 0.00
-               );
-   
-   function Laden
+   function Spielstand
      (MaximaleTextbreiteExtern : in Float;
-      PrüfenLadenExtern : in GrafikDatentypen.Prüfen_Laden_Enum)
+      SpielstandExtern : in GrafikDatentypen.Spielstand_Enum)
       return Float
      with
        Pre => (
@@ -87,7 +75,7 @@ private
               ),
            
        Post => (
-                  Laden'Result >= 0.00
+                  Spielstand'Result >= 0.00
                );
    
    function KIRechnet

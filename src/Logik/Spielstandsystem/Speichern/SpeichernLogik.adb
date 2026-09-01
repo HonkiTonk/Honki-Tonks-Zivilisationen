@@ -9,24 +9,18 @@ with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
 with TextnummernKonstanten;
-with LadezeitenDatentypen;
 
 with LeseAllgemeines;
 with LeseOptionen;
 with SchreibeOptionen;
 with SchreibeGrafiktask;
-with LeseSpeziesbelegung;
 
 with LadezeitenLogik;
--- with SpielstandAllgemeinesLogik;
 with SpeichernKarteLogik;
 with MeldungFestlegenLogik;
 with UmwandlungenVerzeichnisse;
-with SpeichernStaedteLogik;
-with SpeichernEinheitenLogik;
-with SpeichernDiplomatieLogik;
-with SpeichernSpezienspezifischesLogik;
 with SpeichernAllgemeinesLogik;
+with SpeichernSpeziesLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -74,41 +68,52 @@ package body SpeichernLogik is
                Spielstandart := SystemDatentypenHTSEB.Automatischer_Spielstand_Enum;
             
             when False =>
-               LadezeitenLogik.SpeichernNullsetzen;
-               SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Enum);
                Spielstandart := SystemDatentypenHTSEB.Manueller_Spielstand_Enum;
          end case;
+         
+         LadezeitenLogik.SpeichernLadenNullsetzen;
+         SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Enum);
          
          DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                    NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
                                                                                                                SpielstandnameExtern => Spielstandname));
          
-         -- Wenn hier ein False auftritt auch die Datei löschen? äöü
          if
            False = SpeichernAllgemeinesLogik.Aufteilung (DateiSpeichernExtern => DateiSpeichern)
          then
+            FehlerAufgetreten := True;
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          elsif
            False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern)
          then
+            FehlerAufgetreten := True;
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          elsif
-           False = Spezieswerte (DateiSpeichernExtern => DateiSpeichern)
+           False = SpeichernSpeziesLogik.Spezieswerte (DateiSpeichernExtern => DateiSpeichern)
          then
+            FehlerAufgetreten := True;
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          else
-            null;
-            -- SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+            FehlerAufgetreten := False;
          end if;
             
          DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                     NameExtern     => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
                                                                                                                 SpielstandnameExtern => Spielstandname));
          
-         -- LadezeitenLogik.SpeichernLadenMaximum;
+         case
+           FehlerAufgetreten
+         is
+            when True =>
+               DateizugriffssystemHTSEB.Löschen (NameExtern => UmwandlungenVerzeichnisse.Spielstandpfad (SpielstandarteExtern => Spielstandart,
+                                                                                                          SpielstandnameExtern => Spielstandname));
+               
+            when False =>
+               null;
+         end case;
 
          case
            AutospeichernExtern
@@ -117,7 +122,7 @@ package body SpeichernLogik is
                return;
             
             when False =>
-               SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
+               null;
          end case;
          
       end loop SpeichernSchleife;
@@ -143,79 +148,6 @@ package body SpeichernLogik is
          end case;
          
    end Speichern;
-   
-   
-   
-   function Spezieswerte
-     (DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
-      
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
-         
-         if
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
-         then
-            null;
-            
-         elsif
-           LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert) = True
-         then
-            null;
-            
-         elsif
-           False = SpeichernSpezienspezifischesLogik.Aufteilung (SpeziesExtern        => SpeziesSchleifenwert,
-                                                                 DateiSpeichernExtern => DateiSpeichernExtern)
-         then
-            return False;
-            
-         elsif
-           False = SpeichernEinheitenLogik.Einheiten (SpeziesExtern        => SpeziesSchleifenwert,
-                                                      DateiSpeichernExtern => DateiSpeichernExtern)
-         then
-            return False;
-            
-         elsif
-           False = SpeichernStaedteLogik.Städte (SpeziesExtern        => SpeziesSchleifenwert,
-                                                  DateiSpeichernExtern => DateiSpeichernExtern)
-         then
-            return False;
-           
-         elsif
-           False = SpeichernDiplomatieLogik.Diplomatie (SpeziesExtern        => SpeziesSchleifenwert,
-                                                        DateiSpeichernExtern => DateiSpeichernExtern)
-         then
-            return False;
-            
-         else
-            null;
-         end if;
-         
-         -- Funktioniert nur bei 18 Spezien, nochmal anpassen. äöü
-         LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum,
-                                    ErhöhungExtern              => 100/18,
-                                    SetzenExtern                => False);
-         
-         LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Städte_Enum,
-                                    ErhöhungExtern              => 100/18,
-                                    SetzenExtern                => False);
-         
-         LadezeitenLogik.Speichern (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Einheiten_Enum,
-                                    ErhöhungExtern              => 100/18,
-                                    SetzenExtern                => False);
-         
-      end loop SpeziesSchleife;
-      
-      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Allgemeines_Enum);
-      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Städte_Enum);
-      LadezeitenLogik.SpeichernMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Einheiten_Enum);
-      
-      return True;
-      
-   end Spezieswerte;
    
    
    
