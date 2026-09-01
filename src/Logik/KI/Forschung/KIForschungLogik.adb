@@ -25,7 +25,7 @@ package body KIForschungLogik is
             null;
       end case;
       
-      LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
+      LadezeitenLogik.KIMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
       
    end Forschung;
    
@@ -41,7 +41,7 @@ package body KIForschungLogik is
    begin
       
       Ladezeit := ForschungenDatentypen.ForschungIDVorhanden (Basiszeitwert (ZusatzwertExtern => Positive (ForschungenDatenbank.ForschungslisteArray'Last (2)),
-                                                                    TeilerExtern     => 100));
+                                                                             TeilerExtern     => 100));
       WelchesProjekt := ForschungKonstanten.LeerForschung;
       
       ForschungenSchleife:
@@ -77,7 +77,8 @@ package body KIForschungLogik is
            ForschungSchleifenwert mod Ladezeit
          is
             when 0 =>
-               LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Forschung_Enum);
+               LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Forschung_Enum,
+                                            ZeitExtern            => 1.00);
                
             when others =>
                null;

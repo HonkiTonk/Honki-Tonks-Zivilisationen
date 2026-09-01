@@ -18,15 +18,15 @@ package body KIDiplomatieLogik is
         SpeziesExtern
       is
          when SpeziesDatentypen.Ekropa_Enum =>
-            LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
+            LadezeitenLogik.KIMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
             return;
             
          when others =>
             null;
       end case;
       
-      LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
-      LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
+      -- LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
+      LadezeitenLogik.KIMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
             
    end Diplomatie;
    

@@ -152,7 +152,8 @@ package TextnummernKonstanten is
    LadezeitForschung : constant Positive := LadezeitStädte + 1;
    LadezeitDiplomatie : constant Positive := LadezeitForschung + 1;
    LadezeitRundenwechsel : constant Positive := LadezeitDiplomatie + 1;
-   Speichern : constant Positive := LadezeitRundenwechsel + 1;
+   LadezeitBerechne : constant Positive := LadezeitRundenwechsel + 1;
+   Speichern : constant Positive := LadezeitBerechne + 1;
    Prüfen : constant Positive := Speichern + 1;
    Laden : constant Positive := Prüfen + 1;
    SpielstandAllgemeines : constant Positive := Laden + 1;

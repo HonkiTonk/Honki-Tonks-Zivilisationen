@@ -194,9 +194,11 @@ package body LadezeitenGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
+      
+      Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitBerechne) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittRundenende)
+        & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
          
-      Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittRundenende)
-                                                                                                 & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt,
+      Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
                                                                                                  TextpositionExtern       => Textposition,
                                                                                                  MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                  TextAccessExtern         => TextaccessVariablen.RundenendeAccess (1));

@@ -1,5 +1,3 @@
-with SystemDatentypenHTSEB;
-
 with SpeziesDatentypen;
 with LadezeitenDatentypen;
 
@@ -70,8 +68,8 @@ package body LadenSpeziesLogik is
                   null;
                end if;
          
-               LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum,
-                                               ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (Ladezeit));
+               LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum,
+                                               ZeitExtern            => Ladezeit);
          
                Ladezeit := Ladezeit + LadezeitBasis;
          
@@ -87,7 +85,7 @@ package body LadenSpeziesLogik is
          
       end loop SpeziesSchleife;
       
-      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum);
+      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum);
       
       return True;
       

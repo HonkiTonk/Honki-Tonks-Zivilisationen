@@ -50,7 +50,7 @@ package body KartengeneratorFlussLogik is
               SenkrechteSchleifenwert mod Kartenzeitwert
             is
                when 0 =>
-                  LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
+                  LadezeitenLogik.FortschrittSpielweltSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
                
                when others =>
                   null;

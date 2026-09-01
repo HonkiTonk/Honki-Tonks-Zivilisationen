@@ -29,6 +29,7 @@ with AbspannLogik;
 with GlobalesWachstumLogik;
 with StadtbewohnerwachstumLogik;
 with DiplomatieLogik;
+with SpielstandAllgemeinesLogik;
 
 with KIRundenende;
 
@@ -43,6 +44,9 @@ package body RundenendeLogik is
       is
          when True =>
             LadezeitenLogik.RundenendeNullsetzen;
+            LadezeitBasis := 100.00 / Float (SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True));
+            Ladezeit := LadezeitBasis;
+            
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Rundenende_Enum);
             
          when False =>
@@ -89,7 +93,26 @@ package body RundenendeLogik is
                null;
          end case;
          
-         LadezeitenLogik.RundenendeSchreiben;
+         case
+           Belegung
+         is
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
+               null;
+               
+            when others =>
+               LadezeitenLogik.RundenendeSchreiben (ZeitExtern => Ladezeit);
+               
+               Ladezeit := Ladezeit + LadezeitBasis;
+         
+               if
+                 Ladezeit > 100.00
+               then
+                  Ladezeit := 100.00;
+            
+               else
+                  null;
+               end if;
+         end case;
          
       end loop SpeziesSchleife;
       

@@ -1,17 +1,19 @@
 package ChangelogAugust2026 is
    pragma Pure;
    
-   -- Version 0.06. => 0.06. (31.08.2026):
+   -- Version 0.06.4360 => 0.06. (31.08.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4310 => 0.06. (30.08.2026):
+   -- Version 0.06.4310 => 0.06.4360 (30.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler im neuen Spielstandsystem korrigiert der unter bestimmten Umständen das Laden eines validen Spielstandes verhinderte.
+   -- Angefangen alle Ladeanzeigesysteme zu überarbeitet.
+   -- Interne Benennung überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

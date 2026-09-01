@@ -38,7 +38,7 @@ package body KartengeneratorKuesteLogik is
            SenkrechteSchleifenwert mod Kartenzeitwert
          is
             when 0 =>
-               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
+               LadezeitenLogik.FortschrittSpielweltSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
                
             when others =>
                null;

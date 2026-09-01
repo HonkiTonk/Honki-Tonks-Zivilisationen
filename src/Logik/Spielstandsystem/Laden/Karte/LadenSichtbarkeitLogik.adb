@@ -1,5 +1,6 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
+with KartenKonstanten;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
@@ -52,6 +53,7 @@ package body LadenSichtbarkeitLogik is
      return Boolean
    is
       use type SystemDatentypenHTSEB.EinByte;
+      use type KartenDatentypen.EbeneBasis;
    begin
             
       SystemDatentypenHTSEB.EinByte'Read (Stream (File => DateiLadenExtern),
@@ -78,9 +80,16 @@ package body LadenSichtbarkeitLogik is
            LadenPrüfenExtern
          is
             when True =>
-               SchreibeWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern (SichtbarkeitSchleifenwert),
-                                           SpeziesExtern     => SpeziesExtern,
-                                           SichtbarExtern    => Sichtbarkeit);
+               if
+                 KoordinatenExtern (SichtbarkeitSchleifenwert).Ebene = KartenKonstanten.LeerEbene
+               then
+                  null;
+                  
+               else
+                  SchreibeWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern (SichtbarkeitSchleifenwert),
+                                              SpeziesExtern     => SpeziesExtern,
+                                              SichtbarExtern    => Sichtbarkeit);
+               end if;
             
             when False =>
                null;

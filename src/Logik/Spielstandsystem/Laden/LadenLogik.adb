@@ -108,7 +108,7 @@ package body LadenLogik is
             return False;
             
          when True =>
-            LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
+            LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
       end case;
       
       case

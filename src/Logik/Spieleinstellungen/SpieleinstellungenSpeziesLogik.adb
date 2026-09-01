@@ -184,7 +184,7 @@ package body SpieleinstellungenSpeziesLogik is
          
       end loop SpieleranzahlWerteFestlegen;
       
-      LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Platziere_Spezies_Enum);
+      LadezeitenLogik.FortschrittSpielweltMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Platziere_Spezies_Enum);
       
    end StartwerteErmitteln;
 

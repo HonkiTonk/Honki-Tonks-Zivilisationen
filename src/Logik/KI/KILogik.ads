@@ -22,7 +22,11 @@ private
 
    Städtezeitwert : StadtDatentypen.StädtebereichVorhanden;
 
-   Einheitenzeitwert : EinheitenDatentypen.EinheitenbereichVorhanden;
+   GesamteEinheiten : EinheitenDatentypen.EinheitenbereichBasis;
+   AktuelleEinheiten : EinheitenDatentypen.EinheitenbereichBasis;
+
+   LadezeitBasis : Float;
+   Ladezeit : Float;
 
    procedure EinheitenDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
@@ -39,8 +43,6 @@ private
               );
 
 
-
-   function BasiszeitwertEinheiten is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => EinheitenDatentypen.EinheitenbereichVorhanden);
 
    function BasiszeitwertStädte is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => Positive);
 

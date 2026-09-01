@@ -43,7 +43,7 @@ package body EinheitenErzeugenEntfernenLogik is
       end case;
       
       EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern),
-                                                          VorzeichenwechselExtern    => ProduktionKonstanten.VorzeichenPositiv);
+                                                           VorzeichenwechselExtern    => ProduktionKonstanten.VorzeichenPositiv);
       
       SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürEinheit (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern));
       

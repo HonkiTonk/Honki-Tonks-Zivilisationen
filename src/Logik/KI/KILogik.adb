@@ -5,6 +5,7 @@ with StadtKonstanten;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with LeseGrenzen;
+with LeseWichtiges;
 
 with LadezeitenLogik;
 
@@ -30,13 +31,39 @@ package body KILogik is
    
    procedure EinheitenDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-   is
-      use type EinheitenDatentypen.EinheitenbereichBasis;
-   begin
+   is begin
       
-      Einheitenzeitwert := BasiszeitwertEinheiten (ZusatzwertExtern => LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern),
-                                                   TeilerExtern     => 100);
+      GesamteEinheiten := LeseWichtiges.AnzahlEinheiten (SpeziesExtern => SpeziesExtern);
       
+      case
+        GesamteEinheiten
+      is
+         when 0 =>
+            LadezeitenLogik.KIMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
+            return;
+            
+         when others =>
+            AktuelleEinheiten := 0;
+      
+            LadezeitBasis := 100.00 / Float (GesamteEinheiten);
+            Ladezeit := LadezeitBasis;
+      end case;
+      
+      EinheitenSchleifeNeu:
+      loop
+         
+         case
+           GesamteEinheiten
+         is
+            when others =>
+               exit EinheitenSchleifeNeu;
+         end case;
+         
+      end loop EinheitenSchleifeNeu;
+      
+      -- Die Sortierung verschiebt die Einheiten und wenn die erste Einheit ein Siedler ist, welcher eine Stadt baut, dann wird die nächste Einheit auf Platz eins geschoben und der zweite Platz ist dann leer. äöü
+      -- Das mal Ändern. äöü
+      -- Kann theoretisch auch bei den Städten passieren. äöü
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
          
@@ -49,20 +76,24 @@ package body KILogik is
             when others =>
                KIEinheitLogik.Einheit (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitenSchleifenwert));
          end case;
+         
+         LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum,
+                                      ZeitExtern            => Ladezeit);
+         
+         Ladezeit := Ladezeit + LadezeitBasis;
+         
+         if
+           Ladezeit > 100.00
+         then
+            Ladezeit := 100.00;
             
-         case
-           EinheitenSchleifenwert mod Einheitenzeitwert
-         is
-            when 0 =>
-               LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
-               
-            when others =>
-               null;
-         end case;
-            
+         else
+            null;
+         end if;
+                  
       end loop EinheitenSchleife;
       
-      LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
+      LadezeitenLogik.KIMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
       
    end EinheitenDurchgehen;
    
@@ -94,7 +125,8 @@ package body KILogik is
            StadtSchleifenwert mod Städtezeitwert
          is
             when 0 =>
-               LadezeitenLogik.FortschrittKISchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Städte_Enum);
+               LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Städte_Enum,
+                                            ZeitExtern            => 1.00);
                
             when others =>
                null;
@@ -102,7 +134,7 @@ package body KILogik is
          
       end loop StadtSchleife;
       
-      LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Städte_Enum);
+      LadezeitenLogik.KIMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Städte_Enum);
       
    end StädteDurchgehen;
 

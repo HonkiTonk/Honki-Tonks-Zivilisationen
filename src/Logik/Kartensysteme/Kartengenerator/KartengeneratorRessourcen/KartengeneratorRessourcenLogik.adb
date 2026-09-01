@@ -94,7 +94,7 @@ package body KartengeneratorRessourcenLogik is
            SenkrechteSchleifenwert mod Kartenzeitwert (EbeneExtern)
          is
             when 0 =>
-               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
+               LadezeitenLogik.FortschrittSpielweltSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
                
             when others =>
                null;

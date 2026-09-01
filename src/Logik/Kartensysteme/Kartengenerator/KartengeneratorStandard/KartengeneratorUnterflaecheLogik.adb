@@ -44,7 +44,7 @@ package body KartengeneratorUnterflaecheLogik is
            SenkrechteSchleifenwert mod Kartenzeitwert
          is
             when 0 =>
-               LadezeitenLogik.FortschrittSpielweltSchreiben (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Unterfläche_Enum);
+               LadezeitenLogik.FortschrittSpielweltSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Unterfläche_Enum);
                
             when others =>
                null;

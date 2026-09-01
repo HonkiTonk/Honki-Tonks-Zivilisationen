@@ -125,8 +125,8 @@ package body SpeichernKarteLogik is
                
             end loop WaagerechteSchleife;
          
-            LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
-                                            ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitKarte));
+            LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+                                            ZeitExtern            => SpeicherzeitKarte);
             
             SpeicherzeitKarte := SpeicherzeitKarte + SpeicherzeitKarteBasiswert;
             
@@ -143,8 +143,8 @@ package body SpeichernKarteLogik is
               VorhandeneSpezies
             is
                when 1 .. 8 =>
-                  LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                                  ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitSichtbarkeit));
+                  LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                                  ZeitExtern            => SpeicherzeitSichtbarkeit);
             
                   SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeit + SpeicherzeitSichtbarkeitBasiswert;
             
@@ -164,7 +164,7 @@ package body SpeichernKarteLogik is
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
             
-      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       if
         FelderanzahlZusatzgrund = SystemDatentypenHTSEB.AchtElemente'First
@@ -199,7 +199,7 @@ package body SpeichernKarteLogik is
                null;
             end if;
             
-            LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+            LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
             return True;
             
@@ -275,8 +275,8 @@ package body SpeichernKarteLogik is
                
             end loop WaagerechteSchleife;
             
-            LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                            ZeitExtern                  => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitSichtbarkeit));
+            LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                            ZeitExtern            => SpeicherzeitSichtbarkeit);
             
             SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeit + SpeicherzeitSichtbarkeitBasiswert;
             
@@ -307,7 +307,7 @@ package body SpeichernKarteLogik is
          null;
       end if;
             
-      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
       return True;
       
@@ -351,8 +351,8 @@ package body SpeichernKarteLogik is
                
             end loop WaagerechteSchleife;
             
-            LadezeitenLogik.SpeichernLaden (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                            ZeitExtern          => SystemDatentypenHTSEB.NullBisHundert (SpeicherzeitSichtbarkeit));
+            LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                            ZeitExtern            => SpeicherzeitSichtbarkeit);
             
             SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeit + SpeicherzeitSichtbarkeitBasiswert;
             
@@ -368,7 +368,7 @@ package body SpeichernKarteLogik is
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
             
-      LadezeitenLogik.SpeichernLadenMaximum (WelcheBerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
       return True;
       

@@ -15,32 +15,47 @@ package LadezeitenLogik is
    
    type FortschrittSpeichernLadenArray is array (LadezeitenDatentypen.Speichern_Laden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    FortschrittSpeichernLaden : FortschrittSpeichernLadenArray;
-
-   procedure SpielweltNullsetzen;
-   procedure KINullsetzenFortschritt;
+   
    procedure RundenendeNullsetzen;
-   procedure RundenendeSchreiben;
+   procedure RundenendeSchreiben
+     (ZeitExtern : in Float)
+     with
+       Pre => (
+                 ZeitExtern in 0.00 .. 100.00
+              );
+   
    procedure RundenendeMaximum;
    
    procedure SpeichernLadenNullsetzen;
    procedure SpeichernLaden
-     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
-      ZeitExtern : in SystemDatentypenHTSEB.NullBisHundert);
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
+      ZeitExtern : in Float)
+     with
+       Pre => (
+                 ZeitExtern in 0.00 .. 100.00
+              );
    
    procedure SpeichernLadenMaximum
-     (WelcheBerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum);
-   
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum);
+
+   procedure SpielweltNullsetzen;
    procedure FortschrittSpielweltSchreiben
-     (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
    
    procedure FortschrittSpielweltMaximum
-     (WelcheBerechnungenExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
    
-   procedure FortschrittKISchreiben
-     (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum);
+   procedure KINullsetzenFortschritt;
+   procedure KISchreiben
+     (BerechnungszeitExtern : in LadezeitenDatentypen.KI_Rechnet_Enum;
+      ZeitExtern : in Float)
+     with
+       Pre => (
+                 ZeitExtern in 0.00 .. 100.00
+              );
    
-   procedure FortschrittKIMaximum
-     (WelcheBerechnungenExtern : in LadezeitenDatentypen.KI_Rechnet_Enum);
+   procedure KIMaximum
+     (BerechnungszeitExtern : in LadezeitenDatentypen.KI_Rechnet_Enum);
    
 private
    
@@ -49,13 +64,9 @@ private
    
    -- Das heir mal komplett rauswerfen und durch lokale Werte ersetzen? äöü
    -- Vermutlich sinnvoll da ich die ja eh lokal Durchrechnen muss. äöü
-   type FortschrittSchritteArray is array (1 .. 5) of SystemDatentypenHTSEB.NullBisHundert;
+   type FortschrittSchritteArray is array (1 .. 1) of SystemDatentypenHTSEB.NullBisHundert;
    FortschrittSchritte : constant FortschrittSchritteArray := (
-                                                               1 => 1,
-                                                               2 => 1,
-                                                               3 => 5,
-                                                               4 => 14,
-                                                               5 => 7
+                                                               1 => 1
                                                               );
 
 end LadezeitenLogik;
