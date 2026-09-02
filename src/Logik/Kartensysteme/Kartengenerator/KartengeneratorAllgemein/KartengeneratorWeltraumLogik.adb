@@ -1,21 +1,19 @@
 with KartengrundDatentypen;
-with LadezeitenDatentypen;
+-- with LadezeitenDatentypen;
 with KartenKonstanten;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
 
-with LadezeitenLogik;
+-- with LadezeitenLogik;
 
 package body KartengeneratorWeltraumLogik is
 
    procedure Weltraum
-   is
-      use type KartenDatentypen.SenkrechteBasis;
-   begin
+   is begin
       
-      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.Senkrechte,
-                                       TeilerExtern     => 25);
+    --  Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.Senkrechte,
+     --                                  TeilerExtern     => 25);
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -27,15 +25,15 @@ package body KartengeneratorWeltraumLogik is
             
          end loop WaagerechteSchleife;
             
-         case
-           SenkrechteSchleifenwert mod Kartenzeitwert
-         is
-            when 0 =>
-               LadezeitenLogik.FortschrittSpielweltSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
+        -- case
+        --   SenkrechteSchleifenwert mod Kartenzeitwert
+        -- is
+         --   when 0 =>
+        --       LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
                
-            when others =>
-               null;
-         end case;
+         --   when others =>
+         --      null;
+       --  end case;
          
       end loop SenkrechteSchleife;
       

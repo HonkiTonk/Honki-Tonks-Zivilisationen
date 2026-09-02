@@ -1,5 +1,6 @@
-private with AllgemeineBerechnungenHTSEB;
 private with SystemDatentypenHTSEB;
+
+private with KommazahltestsHTSEB;
 
 private with KartenDatentypen;
 private with KartenKonstanten;
@@ -11,7 +12,8 @@ package KartengeneratorFlussLogik is
 
 private
          
-   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
+   LadezeitBasis : Float;
+   Ladezeit : Float;
    
    -- Später vom Nutzer einstellbar machen. äöü
    type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of SystemDatentypenHTSEB.NullBisHundert;
@@ -23,6 +25,6 @@ private
    
    
    
-   function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KartengeneratorFlussLogik;

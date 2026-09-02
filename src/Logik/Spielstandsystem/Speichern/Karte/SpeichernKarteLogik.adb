@@ -2,7 +2,6 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
-with SystemDatentypenHTSEB;
 
 with KartenKonstanten;
 with LadezeitenDatentypen;
@@ -40,6 +39,7 @@ package body SpeichernKarteLogik is
       VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
       GesamtgrößeSpezieszusammenfassung := 0;
       
+      -- Hier und auch beim Laden/Kartengenerator nehme ich die Ebene einfach als gegeben hin, mal anpassen wenn ich die Ebenenanzahl einstellbar mache. äöü
       SpeicherzeitKarteBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
       SpeicherzeitKarte := SpeicherzeitKarteBasiswert;
       
@@ -127,17 +127,9 @@ package body SpeichernKarteLogik is
          
             LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
                                             ZeitExtern            => SpeicherzeitKarte);
-            
-            SpeicherzeitKarte := SpeicherzeitKarte + SpeicherzeitKarteBasiswert;
-            
-            if
-              SpeicherzeitKarte > 100.00
-            then
-               SpeicherzeitKarte := 100.00;
-               
-            else
-               null;
-            end if;
+         
+            SpeicherzeitKarte := LadezeitTesten (GrundwertExtern  => SpeicherzeitKarte,
+                                                 ZusatzwertExtern => SpeicherzeitKarteBasiswert);
             
             case
               VorhandeneSpezies
@@ -145,17 +137,9 @@ package body SpeichernKarteLogik is
                when 1 .. 8 =>
                   LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
                                                   ZeitExtern            => SpeicherzeitSichtbarkeit);
-            
-                  SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeit + SpeicherzeitSichtbarkeitBasiswert;
-            
-                  if
-                    SpeicherzeitSichtbarkeit > 100.00
-                  then
-                     SpeicherzeitSichtbarkeit := 100.00;
-               
-                  else
-                     null;
-                  end if;
+         
+                  SpeicherzeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => SpeicherzeitSichtbarkeit,
+                                                              ZusatzwertExtern => SpeicherzeitSichtbarkeitBasiswert);
                   
                when others =>
                   null;
@@ -277,17 +261,9 @@ package body SpeichernKarteLogik is
             
             LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
                                             ZeitExtern            => SpeicherzeitSichtbarkeit);
-            
-            SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeit + SpeicherzeitSichtbarkeitBasiswert;
-            
-            if
-              SpeicherzeitSichtbarkeit > 100.00
-            then
-               SpeicherzeitSichtbarkeit := 100.00;
-               
-            else
-               null;
-            end if;
+         
+            SpeicherzeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => SpeicherzeitSichtbarkeit,
+                                                        ZusatzwertExtern => SpeicherzeitSichtbarkeitBasiswert);
             
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
@@ -353,17 +329,9 @@ package body SpeichernKarteLogik is
             
             LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
                                             ZeitExtern            => SpeicherzeitSichtbarkeit);
-            
-            SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeit + SpeicherzeitSichtbarkeitBasiswert;
-            
-            if
-              SpeicherzeitSichtbarkeit > 100.00
-            then
-               SpeicherzeitSichtbarkeit := 100.00;
-               
-            else
-               null;
-            end if;
+         
+            SpeicherzeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => SpeicherzeitSichtbarkeit,
+                                                        ZusatzwertExtern => SpeicherzeitSichtbarkeitBasiswert);
             
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;

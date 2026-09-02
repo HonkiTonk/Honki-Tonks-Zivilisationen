@@ -113,7 +113,7 @@ package body SpieleinstellungenLogik is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      LadezeitenLogik.SpielweltNullsetzen;
+      LadezeitenLogik.KartengeneratorNullsetzen;
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Generierungszeit_Enum);
       
       -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.

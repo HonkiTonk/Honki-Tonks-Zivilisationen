@@ -14,8 +14,8 @@ package body KartengeneratorPlanetenkernLogik is
    procedure Planetenkern
    is begin
       
-      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.Senkrechte,
-                                       TeilerExtern     => 25);
+      LadezeitBasis := 100.00 / Float (LeseWeltkarteneinstellungen.Senkrechte);
+      Ladezeit := LadezeitBasis;
       
       YKernanfang := LeseWeltkarteneinstellungen.Senkrechte / 2 - LeseWeltkarteneinstellungen.Senkrechte / 10;
       XKernanfang := LeseWeltkarteneinstellungen.Waagerechte / 2 - LeseWeltkarteneinstellungen.Waagerechte / 10;
@@ -48,16 +48,12 @@ package body KartengeneratorPlanetenkernLogik is
             end if;
                
          end loop WaagerechteSchleife;
-            
-         case
-           SenkrechteSchleifenwert mod Kartenzeitwert
-         is
-            when 0 =>
-               LadezeitenLogik.FortschrittSpielweltSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
+         
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum,
+                                                   ZeitExtern            => Ladezeit);
                
-            when others =>
-               null;
-         end case;
+         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
+                                     ZusatzwertExtern => LadezeitBasis);
          
       end loop SenkrechteSchleife;
                

@@ -2,8 +2,6 @@ with EinheitenKonstanten;
 with LadezeitenDatentypen;
 with StadtKonstanten;
 
-with LeseEinheitenGebaut;
-with LeseStadtGebaut;
 with LeseGrenzen;
 with LeseWichtiges;
 
@@ -31,67 +29,66 @@ package body KILogik is
    
    procedure EinheitenDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-   is begin
+   is
+      use type EinheitenDatentypen.EinheitenbereichBasis;
+   begin
       
-      GesamteEinheiten := LeseWichtiges.AnzahlEinheiten (SpeziesExtern => SpeziesExtern);
+      Anfangseinheiten := LeseWichtiges.AnzahlEinheiten (SpeziesExtern => SpeziesExtern);
       
       case
-        GesamteEinheiten
+        Anfangseinheiten
       is
          when 0 =>
             LadezeitenLogik.KIMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
             return;
             
          when others =>
-            AktuelleEinheiten := 0;
-      
-            LadezeitBasis := 100.00 / Float (GesamteEinheiten);
-            Ladezeit := LadezeitBasis;
+            LetzteEinheit := LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern);
       end case;
       
-      EinheitenSchleifeNeu:
+      AußenSchleife:
       loop
          
-         case
-           GesamteEinheiten
-         is
-            when others =>
-               exit EinheitenSchleifeNeu;
-         end case;
-         
-      end loop EinheitenSchleifeNeu;
-      
-      -- Die Sortierung verschiebt die Einheiten und wenn die erste Einheit ein Siedler ist, welcher eine Stadt baut, dann wird die nächste Einheit auf Platz eins geschoben und der zweite Platz ist dann leer. äöü
-      -- Das mal Ändern. äöü
-      -- Kann theoretisch auch bei den Städten passieren. äöü
-      EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
-         
-         case
-           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitenSchleifenwert))
-         is
-            when EinheitenKonstanten.LeerID =>
-               exit EinheitenSchleife;
-            
-            when others =>
-               KIEinheitLogik.Einheit (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitenSchleifenwert));
-         end case;
-         
          LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum,
-                                      ZeitExtern            => Ladezeit);
+                                      ZeitExtern            => 0.00);
+      
+         LadezeitBasis := 100.00 / Float (Anfangseinheiten);
+         Ladezeit := LadezeitBasis;
          
-         Ladezeit := Ladezeit + LadezeitBasis;
+         EinheitenSchleife:
+         for EinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. Anfangseinheiten loop
+            
+            KIEinheitLogik.Einheit (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitenSchleifenwert));
+            
+            if
+              EinheitenSchleifenwert = LetzteEinheit
+            then
+               exit AußenSchleife;
+               
+            else
+               LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum,
+                                            ZeitExtern            => Ladezeit);
+               
+               Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
+                                           ZusatzwertExtern => LadezeitBasis);
+            end if;
+                  
+         end loop EinheitenSchleife;
+         
+         AktuelleEinheiten := LeseWichtiges.AnzahlEinheiten (SpeziesExtern => SpeziesExtern);
          
          if
-           Ladezeit > 100.00
+           AktuelleEinheiten = 0
+           or
+             AktuelleEinheiten = Anfangseinheiten
          then
-            Ladezeit := 100.00;
+            exit AußenSchleife;
             
          else
-            null;
+            Anfangseinheiten := AktuelleEinheiten;
          end if;
-                  
-      end loop EinheitenSchleife;
+         
+      end loop AußenSchleife;
       
       LadezeitenLogik.KIMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
       
@@ -99,38 +96,38 @@ package body KILogik is
    
    
    
+   -- Die Sortierung verschiebt die Städte und wenn die Stadt aufgelöst wird, dann wird die nächste Stadt eins weiter vorgeschoben. äöü
+   -- Ist aktuell nicht relevant weil die KI Städte nicht auflöst, aber wenn ich das mal hinzufüge dann muss das heir angepasst werden. äöü
    procedure StädteDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type StadtDatentypen.StädtebereichBasis;
    begin
       
-      Städtezeitwert := StadtDatentypen.StädtebereichVorhanden (BasiszeitwertStädte (ZusatzwertExtern => Positive (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)),
-                                                                                        TeilerExtern     => 100));
+      StädteVorhanden := LeseWichtiges.AnzahlStädte (SpeziesExtern => SpeziesExtern);
+      
+      -- Nicht entfernen sonst wird durch 0 geteilt.
+      case
+        StädteVorhanden
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            LadezeitBasis := 100.00 / Float (StädteVorhanden);
+            Ladezeit := LadezeitBasis;
+      end case;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
-            
-         case
-           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
-         is
-            when StadtKonstanten.LeerID =>
-               exit StadtSchleife;
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. StädteVorhanden loop
+         
+         KIStadtLogik.KIStadt (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
+         
+         LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Städte_Enum,
+                                      ZeitExtern            => Ladezeit);
                
-            when others =>
-               KIStadtLogik.KIStadt (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
-         end case;
-            
-         case
-           StadtSchleifenwert mod Städtezeitwert
-         is
-            when 0 =>
-               LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Städte_Enum,
-                                            ZeitExtern            => 1.00);
-               
-            when others =>
-               null;
-         end case;
+         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
+                                     ZusatzwertExtern => LadezeitBasis);
          
       end loop StadtSchleife;
       

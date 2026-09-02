@@ -130,9 +130,9 @@ package body LadenKarteLogik is
          
             LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
                                             ZeitExtern            => LadezeitKarte);
-            
-            LadezeitKarte := Ladezeittest (BasiswertExtern  => LadezeitKarte,
-                                           ZusatzwertExtern => LadezeitKarteBasiswert);
+         
+            LadezeitKarte := LadezeitTesten (GrundwertExtern  => LadezeitKarte,
+                                             ZusatzwertExtern => LadezeitKarteBasiswert);
             
             case
               VorhandeneSpezies
@@ -140,9 +140,9 @@ package body LadenKarteLogik is
                when 1 .. 8 =>
                   LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
                                                   ZeitExtern            => LadezeitSichtbarkeit);
-            
-                  LadezeitSichtbarkeit := Ladezeittest (BasiswertExtern  => LadezeitSichtbarkeit,
-                                                        ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
+         
+                  LadezeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => LadezeitSichtbarkeit,
+                                                          ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
             
                when others =>
                   null;
@@ -268,9 +268,9 @@ package body LadenKarteLogik is
             
             LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
                                             ZeitExtern            => LadezeitSichtbarkeit);
-            
-            LadezeitSichtbarkeit := Ladezeittest (BasiswertExtern  => LadezeitSichtbarkeit,
-                                                  ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
+         
+            LadezeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => LadezeitSichtbarkeit,
+                                                    ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
             
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
@@ -339,9 +339,9 @@ package body LadenKarteLogik is
             
             LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
                                             ZeitExtern            => LadezeitSichtbarkeit);
-            
-            LadezeitSichtbarkeit := Ladezeittest (BasiswertExtern  => LadezeitSichtbarkeit,
-                                                  ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
+         
+            LadezeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => LadezeitSichtbarkeit,
+                                                    ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
             
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
@@ -357,25 +357,5 @@ package body LadenKarteLogik is
          return False;
       
    end Spezieszusammenfassung;
-   
-   
-   
-   function Ladezeittest
-     (BasiswertExtern : in Float;
-      ZusatzwertExtern : in Float)
-      return Float
-   is begin
-      
-      if
-        BasiswertExtern + ZusatzwertExtern > 100.00
-      then
-         return 100.00;
-               
-      else
-         return BasiswertExtern + ZusatzwertExtern;
-      end if;
-      
-   end Ladezeittest;
-   
 
 end LadenKarteLogik;

@@ -1,5 +1,6 @@
-private with AllgemeineBerechnungenHTSEB;
 private with SystemDatentypenHTSEB;
+
+private with KommazahltestsHTSEB;
 
 private with KartenDatentypen;
 private with KartengrundDatentypen;
@@ -26,7 +27,8 @@ private
    YKernende : KartenDatentypen.SenkrechtePositiv;
    XKernende : KartenDatentypen.WaagerechtePositiv;
 
-   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
+   LadezeitBasis : Float;
+   Ladezeit : Float;
 
    type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
@@ -102,6 +104,6 @@ private
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-   function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KartengeneratorPlanetenkernLogik;

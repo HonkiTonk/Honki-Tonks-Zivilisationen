@@ -1,6 +1,6 @@
-private with AllgemeineBerechnungenHTSEB;
+private with SystemDatentypenHTSEB;
 
-private with KartenDatentypen;
+private with KommazahltestsHTSEB;
 
 package KartengeneratorUnterflaecheLogik is
    pragma Elaborate_Body;
@@ -9,10 +9,11 @@ package KartengeneratorUnterflaecheLogik is
 
 private
 
-   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
+   LadezeitBasis : Float;
+   Ladezeit : Float;
 
 
 
-   function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KartengeneratorUnterflaecheLogik;

@@ -17,22 +17,22 @@ package body KartengeneratorLogik is
       PrüfeEinstellungen;
       
       KartengeneratorAllgemeinesLogik.GenerierungAllgemeines;
-      LadezeitenLogik.FortschrittSpielweltMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
       
       KartengeneratorKuesteLogik.GenerierungKüstenSeeGewässer;
-      LadezeitenLogik.FortschrittSpielweltMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
       
       KartengeneratorLandschaftLogik.GenerierungLandschaft;
-      LadezeitenLogik.FortschrittSpielweltMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum);
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum);
       
       KartengeneratorUnterflaecheLogik.GenerierungLandschaft;
-      LadezeitenLogik.FortschrittSpielweltMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Unterfläche_Enum);
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Unterfläche_Enum);
       
       KartengeneratorFlussLogik.GenerierungFlüsse;
-      LadezeitenLogik.FortschrittSpielweltMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
       
       KartengeneratorRessourcenLogik.GenerierungRessourcen;
-      LadezeitenLogik.FortschrittSpielweltMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
       
    end Kartengenerator;
    

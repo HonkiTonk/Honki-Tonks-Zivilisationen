@@ -7,8 +7,8 @@ package LadezeitenLogik is
    
    FortschrittRundenende : SystemDatentypenHTSEB.NullBisHundert;
       
-   type FortschrittSpielweltArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
-   FortschrittSpielwelt : FortschrittSpielweltArray;
+   type FortschrittKartengeneratorArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
+   FortschrittKartengenerator : FortschrittKartengeneratorArray;
    
    type FortschrittKIArray is array (LadezeitenDatentypen.KI_Rechnet_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    FortschrittKI : FortschrittKIArray;
@@ -38,11 +38,16 @@ package LadezeitenLogik is
    procedure SpeichernLadenMaximum
      (BerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum);
 
-   procedure SpielweltNullsetzen;
-   procedure FortschrittSpielweltSchreiben
-     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
+   procedure KartengeneratorNullsetzen;
+   procedure KartengeneratorSchreiben
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum;
+      ZeitExtern : in Float)
+     with
+       Pre => (
+                 ZeitExtern in 0.00 .. 100.00
+              );
    
-   procedure FortschrittSpielweltMaximum
+   procedure KartengeneratorMaximum
      (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum);
    
    procedure KINullsetzenFortschritt;
@@ -61,12 +66,5 @@ private
    
    AnfangLadezeit : constant SystemDatentypenHTSEB.NullBisHundert := SystemDatentypenHTSEB.NullBisHundert'First;
    EndeLadezeit : constant SystemDatentypenHTSEB.NullBisHundert := SystemDatentypenHTSEB.NullBisHundert'Last;
-   
-   -- Das heir mal komplett rauswerfen und durch lokale Werte ersetzen? äöü
-   -- Vermutlich sinnvoll da ich die ja eh lokal Durchrechnen muss. äöü
-   type FortschrittSchritteArray is array (1 .. 1) of SystemDatentypenHTSEB.NullBisHundert;
-   FortschrittSchritte : constant FortschrittSchritteArray := (
-                                                               1 => 1
-                                                              );
 
 end LadezeitenLogik;

@@ -32,7 +32,6 @@ package body KIForschungLogik is
    
    
    -- Das muss durch eine bessere Berechnung ersetzt werden. äöü
-   -- Bei Erweiterung der Forschungsliste muss die Ladezeitberechnung angepasst werden. äöü
    procedure NeuesForschungsprojekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
@@ -40,8 +39,9 @@ package body KIForschungLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      Ladezeit := ForschungenDatentypen.ForschungIDVorhanden (Basiszeitwert (ZusatzwertExtern => Positive (ForschungenDatenbank.ForschungslisteArray'Last (2)),
-                                                                             TeilerExtern     => 100));
+      LadezeitBasis := 100.00 / Float (ForschungenDatenbank.ForschungslisteArray'Last (2));
+      Ladezeit := LadezeitBasis;
+      
       WelchesProjekt := ForschungKonstanten.LeerForschung;
       
       ForschungenSchleife:
@@ -73,16 +73,11 @@ package body KIForschungLogik is
                null;
          end case;
          
-         case
-           ForschungSchleifenwert mod Ladezeit
-         is
-            when 0 =>
-               LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Forschung_Enum,
-                                            ZeitExtern            => 1.00);
+         LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Forschung_Enum,
+                                      ZeitExtern            => Ladezeit);
                
-            when others =>
-               null;
-         end case;
+         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
+                                     ZusatzwertExtern => LadezeitBasis);
                
       end loop ForschungenSchleife;
       

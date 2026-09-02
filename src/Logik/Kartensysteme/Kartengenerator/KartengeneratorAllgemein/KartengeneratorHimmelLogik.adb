@@ -10,12 +10,10 @@ with LadezeitenLogik;
 package body KartengeneratorHimmelLogik is
 
    procedure Himmel
-   is
-      use type KartenDatentypen.SenkrechteBasis;
-   begin
+   is begin
       
-      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.Senkrechte,
-                                       TeilerExtern     => 25);
+      LadezeitBasis := 100.00 / Float (LeseWeltkarteneinstellungen.Senkrechte);
+      Ladezeit := LadezeitBasis;
                
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -27,18 +25,14 @@ package body KartengeneratorHimmelLogik is
                
          end loop WaagerechteSchleife;
          
-         case
-           SenkrechteSchleifenwert mod Kartenzeitwert
-         is
-            when 0 =>
-               LadezeitenLogik.FortschrittSpielweltSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum,
+                                                   ZeitExtern            => Ladezeit);
                
-            when others =>
-               null;
-         end case;
+         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
+                                     ZusatzwertExtern => LadezeitBasis);
          
       end loop SenkrechteSchleife;
-         
+      
    end Himmel;
 
 end KartengeneratorHimmelLogik;

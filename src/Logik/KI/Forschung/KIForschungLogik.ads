@@ -1,4 +1,6 @@
-private with AllgemeineBerechnungenHTSEB;
+private with SystemDatentypenHTSEB;
+
+private with KommazahltestsHTSEB;
 
 with SpeziesDatentypen;
 
@@ -24,11 +26,12 @@ private
    
    ForschungMöglich : Boolean;
    
-   Ladezeit : ForschungenDatentypen.ForschungIDVorhanden;
-   
    WelchesProjekt : ForschungenDatentypen.ForschungIDMöglich;
    
    Bewertung : KIDatentypen.AufgabenWichtigkeitKlein;
+
+   LadezeitBasis : Float;
+   Ladezeit : Float;
    
    type MöglicheForschungenArray is array (ForschungenDatenbank.ForschungslisteArray'Range (2)) of KIDatentypen.AufgabenWichtigkeitKlein;
    MöglicheForschungen : MöglicheForschungenArray;
@@ -39,9 +42,9 @@ private
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
-   
-   
-   
-   function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => Positive);
+
+
+
+   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KIForschungLogik;

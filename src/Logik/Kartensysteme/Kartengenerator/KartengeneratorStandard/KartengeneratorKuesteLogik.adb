@@ -14,8 +14,8 @@ package body KartengeneratorKuesteLogik is
    procedure GenerierungKüstenSeeGewässer
    is begin
       
-      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.Senkrechte,
-                                       TeilerExtern     => 100);
+      LadezeitBasis := 100.00 / Float (LeseWeltkarteneinstellungen.Senkrechte);
+      Ladezeit := LadezeitBasis;
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -33,16 +33,12 @@ package body KartengeneratorKuesteLogik is
             end case;
             
          end loop WaagerechteSchleife;
-            
-         case
-           SenkrechteSchleifenwert mod Kartenzeitwert
-         is
-            when 0 =>
-               LadezeitenLogik.FortschrittSpielweltSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
+         
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum,
+                                                   ZeitExtern            => Ladezeit);
                
-            when others =>
-               null;
-         end case;
+         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
+                                     ZusatzwertExtern => LadezeitBasis);
          
       end loop SenkrechteSchleife;
       

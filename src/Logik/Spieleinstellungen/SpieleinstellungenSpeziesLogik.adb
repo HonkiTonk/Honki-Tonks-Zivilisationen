@@ -137,9 +137,10 @@ package body SpieleinstellungenSpeziesLogik is
 
 
    procedure StartwerteErmitteln
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+   is begin
+      
+      LadezeitBasis := 100.00 / 18.00; -- Float ();
+      Ladezeit := LadezeitBasis;
       
       SpieleranzahlWerteFestlegen:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
@@ -180,11 +181,15 @@ package body SpieleinstellungenSpeziesLogik is
                end loop StartwerteFestlegenSchleife;
          end case;
          
-         LadezeitenLogik.FortschrittSpielwelt (LadezeitenDatentypen.Platziere_Spezies_Enum) := SpeziesDatentypen.Spezies_Vorhanden_Enum'Pos (SpeziesSchleifenwert) * 5;
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Platziere_Spezies_Enum,
+                                                   ZeitExtern            => Ladezeit);
+               
+         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
+                                     ZusatzwertExtern => LadezeitBasis);
          
       end loop SpieleranzahlWerteFestlegen;
       
-      LadezeitenLogik.FortschrittSpielweltMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Platziere_Spezies_Enum);
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Platziere_Spezies_Enum);
       
    end StartwerteErmitteln;
 

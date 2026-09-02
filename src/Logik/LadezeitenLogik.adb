@@ -1,43 +1,32 @@
-with MeldungssystemHTSEB;
-
 package body LadezeitenLogik is
    
-   procedure SpielweltNullsetzen
+   procedure KartengeneratorNullsetzen
    is begin
       
-      FortschrittSpielwelt := (others => AnfangLadezeit);
+      FortschrittKartengenerator := (others => AnfangLadezeit);
       
-   end SpielweltNullsetzen;
+   end KartengeneratorNullsetzen;
    
    
    
-   procedure FortschrittSpielweltSchreiben
-     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+   procedure KartengeneratorSchreiben
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum;
+      ZeitExtern : in Float)
+   is begin
       
-      if
-        FortschrittSpielwelt (BerechnungszeitExtern) + FortschrittSchritte (1) > EndeLadezeit
-      then
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadezeitenLogik.FortschrittSpielweltSchreiben: " & BerechnungszeitExtern'Wide_Wide_Image & " > 100%");
-         FortschrittSpielwelt (BerechnungszeitExtern) := EndeLadezeit;
-         
-      else
-         FortschrittSpielwelt (BerechnungszeitExtern) := FortschrittSpielwelt (BerechnungszeitExtern) + FortschrittSchritte (1);
-      end if;
+      FortschrittKartengenerator (BerechnungszeitExtern) := SystemDatentypenHTSEB.NullBisHundert (ZeitExtern);
       
-   end FortschrittSpielweltSchreiben;
+   end KartengeneratorSchreiben;
    
    
    
-   procedure FortschrittSpielweltMaximum
+   procedure KartengeneratorMaximum
      (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum)
    is begin
    
-      FortschrittSpielwelt (BerechnungszeitExtern) := EndeLadezeit;
+      FortschrittKartengenerator (BerechnungszeitExtern) := EndeLadezeit;
       
-   end FortschrittSpielweltMaximum;
+   end KartengeneratorMaximum;
    
    
    

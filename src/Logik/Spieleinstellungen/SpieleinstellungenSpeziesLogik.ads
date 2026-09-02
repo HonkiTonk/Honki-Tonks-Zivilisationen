@@ -1,5 +1,6 @@
 private with SystemDatentypenHTSEB;
 
+private with KommazahltestsHTSEB;
 
 private with KartenDatentypen;
 private with SpeziesDatentypen;
@@ -32,6 +33,9 @@ private
    
    SpeziesMenschSchnellstart : SpeziesDatentypen.Spezies_Vorhanden_Enum;
    SpeziesKISchnellstart : SpeziesDatentypen.Spezies_Vorhanden_Enum;
+         
+   LadezeitBasis : Float;
+   Ladezeit : Float;
    
    GezogeneKoordinate : KartenRecords.KartenfeldNaturalRecord;
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
@@ -82,5 +86,7 @@ private
                 and
                   ZusatzfeldBestimmen'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
                );
+   
+   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end SpieleinstellungenSpeziesLogik;

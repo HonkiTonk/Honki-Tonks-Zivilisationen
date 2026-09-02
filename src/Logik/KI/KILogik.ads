@@ -1,4 +1,6 @@
-private with AllgemeineBerechnungenHTSEB;
+private with SystemDatentypenHTSEB;
+
+private with KommazahltestsHTSEB;
 
 with SpeziesDatentypen;
 
@@ -20,10 +22,11 @@ package KILogik is
 
 private
 
-   Städtezeitwert : StadtDatentypen.StädtebereichVorhanden;
+   StädteVorhanden : StadtDatentypen.StädtebereichBasis;
 
-   GesamteEinheiten : EinheitenDatentypen.EinheitenbereichBasis;
+   Anfangseinheiten : EinheitenDatentypen.EinheitenbereichBasis;
    AktuelleEinheiten : EinheitenDatentypen.EinheitenbereichBasis;
+   LetzteEinheit : EinheitenDatentypen.EinheitenbereichBasis;
 
    LadezeitBasis : Float;
    Ladezeit : Float;
@@ -44,6 +47,6 @@ private
 
 
 
-   function BasiszeitwertStädte is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => Positive);
+   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KILogik;

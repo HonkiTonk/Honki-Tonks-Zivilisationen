@@ -16,8 +16,10 @@ package body KartengeneratorFlussLogik is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
-      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte,
-                                       TeilerExtern     => 33);
+      -- Die Ebenenverwendung mal in eine Kosntante packen, auch bei der Karte der Fall. äöü
+      -- Eventuell die Ebenenmenge auch endlich mal anpassbar machen. äöü
+      LadezeitBasis := 100.00 / Float (3 * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
+      Ladezeit := LadezeitBasis;
       
       EbeneSchleife:
       for EbeneSchleifenwert in KartenDatentypen.EbenePlanet'Range loop
@@ -46,15 +48,11 @@ package body KartengeneratorFlussLogik is
          
             end loop WaagerechteSchleife;
          
-            case
-              SenkrechteSchleifenwert mod Kartenzeitwert
-            is
-               when 0 =>
-                  LadezeitenLogik.FortschrittSpielweltSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
+            LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum,
+                                                      ZeitExtern            => Ladezeit);
                
-               when others =>
-                  null;
-            end case;
+            Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
+                                        ZusatzwertExtern => LadezeitBasis);
          
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;

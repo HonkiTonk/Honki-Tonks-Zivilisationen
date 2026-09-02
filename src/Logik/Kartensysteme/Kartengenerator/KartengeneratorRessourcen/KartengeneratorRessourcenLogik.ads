@@ -1,5 +1,3 @@
-private with AllgemeineBerechnungenHTSEB;
-
 private with KartenDatentypen;
 
 package KartengeneratorRessourcenLogik is
@@ -9,14 +7,14 @@ package KartengeneratorRessourcenLogik is
 
 private
    
-   type KartenzeitwertArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.SenkrechtePositiv;
-   Kartenzeitwert : KartenzeitwertArray;
+   -- type KartenzeitwertArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.SenkrechtePositiv;
+   -- Kartenzeitwert : KartenzeitwertArray;
          
    procedure RessourcenGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet);
    
    
    
-   function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+   -- function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorRessourcenLogik;

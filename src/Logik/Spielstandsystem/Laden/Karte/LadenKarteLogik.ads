@@ -2,6 +2,8 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with SystemDatentypenHTSEB;
 
+private with KommazahltestsHTSEB;
+
 private with KartenRecords;
 private with SpeziesDatentypen;
 private with KartenArrays;
@@ -47,19 +49,6 @@ private
       DateiLadenExtern : in File_Type)
       return Boolean;
    
-   function Ladezeittest
-     (BasiswertExtern : in Float;
-      ZusatzwertExtern : in Float)
-      return Float
-     with
-       Pre => (
-                 BasiswertExtern in 0.00 .. 100.00
-               and
-                 ZusatzwertExtern in 0.00 .. 100.00
-              ),
-         
-       Post => (
-                  Ladezeittest'Result in 0.00 .. 100.00
-               );
+   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end LadenKarteLogik;

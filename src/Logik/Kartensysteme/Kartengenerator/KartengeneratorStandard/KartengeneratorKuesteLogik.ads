@@ -1,4 +1,6 @@
-private with AllgemeineBerechnungenHTSEB;
+private with SystemDatentypenHTSEB;
+
+private with KommazahltestsHTSEB;
 
 private with KartenDatentypen;
 private with KartenRecords;
@@ -14,9 +16,10 @@ private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    
-   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
-   
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
+
+   LadezeitBasis : Float;
+   Ladezeit : Float;
    
    procedure GewässerFestlegen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
@@ -26,9 +29,9 @@ private
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
-   
-   
-   
-   function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+
+
+
+   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KartengeneratorKuesteLogik;

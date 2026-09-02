@@ -1,10 +1,12 @@
 package ChangelogAugust2026 is
    pragma Pure;
    
-   -- Version 0.06.4360 => 0.06. (31.08.2026):
+   -- Version 0.06.4360 => 0.06.4410 (31.08.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der dazu führte dass die KI manche Einheiten in einer Runde nicht verwendete.
+   -- Weiter das Ladezeitanzeigesysteme überarbeitet.
+   -- Teile des Codes durch die HTSEB Versionen ersetzt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
@@ -12,7 +14,7 @@ package ChangelogAugust2026 is
    
    -- Fehler im neuen Spielstandsystem korrigiert der unter bestimmten Umständen das Laden eines validen Spielstandes verhinderte.
    -- Angefangen alle Ladeanzeigesysteme zu überarbeitet.
-   -- Interne Benennung überarbeitet.
+   -- Interne Benennung Ladezeitanzeigesysteme.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    

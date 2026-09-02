@@ -66,16 +66,8 @@ package body SpeichernSpeziesLogik is
                LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum,
                                                ZeitExtern            => Ladezeit);
          
-               Ladezeit := Ladezeit + LadezeitBasis;
-         
-               if
-                 Ladezeit > 100.00
-               then
-                  Ladezeit := 100.00;
-            
-               else
-                  null;
-               end if;
+               Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
+                                           ZusatzwertExtern => LadezeitBasis);
          end case;
          
       end loop SpeziesSchleife;

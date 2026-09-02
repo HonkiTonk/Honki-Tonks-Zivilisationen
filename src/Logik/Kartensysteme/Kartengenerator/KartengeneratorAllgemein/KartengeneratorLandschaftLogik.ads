@@ -1,5 +1,6 @@
-private with AllgemeineBerechnungenHTSEB;
 private with SystemDatentypenHTSEB;
+
+private with KommazahltestsHTSEB;
 
 private with KartenDatentypen;
 private with KartengrundDatentypen;
@@ -15,8 +16,6 @@ package KartengeneratorLandschaftLogik is
 private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   
-   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
       
    Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
@@ -24,6 +23,9 @@ private
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
    Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
    WelcherGrund : SystemDatentypenHTSEB.NullBisHundert;
+
+   LadezeitBasis : Float;
+   Ladezeit : Float;
          
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
@@ -189,7 +191,7 @@ private
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
-   
-   function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+
+   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KartengeneratorLandschaftLogik;
