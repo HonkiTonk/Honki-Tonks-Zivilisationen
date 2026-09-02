@@ -91,8 +91,8 @@ package body SpeichernAllgemeinesLogik is
       SystemDatentypenHTSEB.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
                                                   LeseAllgemeines.EingesetztePZB);
       
-      LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,
-                                      ZeitExtern            => 50.00);
+      LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,
+                                           ZeitExtern            => SystemDatentypenHTSEB.LadezeitBasis'Last / 2.00);
       
       return True;
       
@@ -174,7 +174,7 @@ package body SpeichernAllgemeinesLogik is
          
       end loop BesiegtSchleife;
       
-      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
+      LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
       
       return True;
       

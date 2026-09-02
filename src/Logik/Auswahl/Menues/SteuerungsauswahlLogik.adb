@@ -102,7 +102,6 @@ package body SteuerungsauswahlLogik is
          elsif
            AktuelleAuswahl.Zweitauswahl /= AuswahlKonstanten.LeerAuswahl
          then
-            
             case
               AllgemeineAuswahl
             is
@@ -117,7 +116,7 @@ package body SteuerungsauswahlLogik is
          else
             SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
          end if;
-            
+         
       end loop AuswahlSchleife;
       
    end Auswahl;

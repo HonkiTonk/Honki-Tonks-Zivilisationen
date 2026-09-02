@@ -103,5 +103,7 @@ package body TexteingabeLogik is
       return LeseLogiktask.KompletteTexteingabe;
       
    end NameEingeben;
+   
+   -- Texteingabe mit Begrenzung auf ein Zeichen einbauen, dann kann ich theoretisch alls Zeichen erlauben und nicht nur die die die SFML zulässt? äöü
 
 end TexteingabeLogik;

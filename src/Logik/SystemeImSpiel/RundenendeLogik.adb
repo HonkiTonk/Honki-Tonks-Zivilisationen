@@ -45,7 +45,6 @@ package body RundenendeLogik is
          when True =>
             LadezeitenLogik.RundenendeNullsetzen;
             LadezeitBasis := 100.00 / Float (SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True));
-            Ladezeit := LadezeitBasis;
             
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Rundenende_Enum);
             
@@ -100,18 +99,7 @@ package body RundenendeLogik is
                null;
                
             when others =>
-               LadezeitenLogik.RundenendeSchreiben (ZeitExtern => Ladezeit);
-               
-               Ladezeit := Ladezeit + LadezeitBasis;
-         
-               if
-                 Ladezeit > 100.00
-               then
-                  Ladezeit := 100.00;
-            
-               else
-                  null;
-               end if;
+               LadezeitenLogik.RundenendeSchreiben (ZeitExtern => LadezeitBasis);
          end case;
          
       end loop SpeziesSchleife;

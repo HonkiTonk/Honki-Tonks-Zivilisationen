@@ -1,5 +1,5 @@
 with KartengrundDatentypen;
--- with LadezeitenDatentypen;
+with LadezeitenDatentypen;
 with KartenKonstanten;
 
 with LeseWeltkarte;
@@ -9,9 +9,8 @@ with KartengeneratorLandressourcenLogik;
 with KartengeneratorWasserressourcenLogik;
 with KartengeneratorUnterlandressourcenLogik;
 with KartengeneratorUnterwasserressourcenLogik;
--- with LadezeitenLogik;
+with LadezeitenLogik;
 
--- Parallelisierung stinkt.
 package body KartengeneratorRessourcenLogik is
 
    procedure GenerierungRessourcen
@@ -24,7 +23,8 @@ package body KartengeneratorRessourcenLogik is
       task body RessourcenUnterfläche
       is begin
          
-         RessourcenGenerierung (EbeneExtern => KartenKonstanten.UnterflächeKonstante);
+         RessourcenGenerierung (EbeneExtern         => KartenKonstanten.UnterflächeKonstante,
+                                LadezeitbasisExtern => 100.00 / (3.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
          
       end RessourcenUnterfläche;
       
@@ -33,40 +33,30 @@ package body KartengeneratorRessourcenLogik is
       task body RessourcenKern
       is begin
          
-         RessourcenGenerierung (EbeneExtern => KartenKonstanten.PlaneteninneresKonstante);
+         RessourcenGenerierung (EbeneExtern         => KartenKonstanten.PlaneteninneresKonstante,
+                                LadezeitbasisExtern => 100.00 / (3.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
          
       end RessourcenKern;
    
    begin
 
-      RessourcenGenerierung (EbeneExtern => KartenKonstanten.OberflächeKonstante);
+      RessourcenGenerierung (EbeneExtern         => KartenKonstanten.OberflächeKonstante,
+                             LadezeitbasisExtern => 100.00 / (3.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
       
    end GenerierungRessourcen;
    
    
    
+   -- Warum generiere ich keine Ressourcen an den Polen? Mal anpassen. äöü
    procedure RessourcenGenerierung
-     (EbeneExtern : in KartenDatentypen.EbenePlanet)
+     (EbeneExtern : in KartenDatentypen.EbenePlanet;
+      LadezeitbasisExtern : in Float)
    is begin
-      
-     -- Kartenzeitwert (EbeneExtern) := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte,
-     --                                                TeilerExtern     => 33);
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte loop
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte loop
-            
-            -- Ist aktuell nur vorhanden, da noch keine Ressourcen für den Kern vorhanden sind aber Werte für die Ladezeiten benötigt werden.
-            case
-              EbeneExtern
-            is
-               when KartenKonstanten.PlaneteninneresKonstante =>
-                  exit WaagerechteSchleife;
-                  
-               when others =>
-                  null;
-            end case;
             
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
@@ -88,16 +78,9 @@ package body KartengeneratorRessourcenLogik is
             end case;
             
          end loop WaagerechteSchleife;
-            
-        -- case
-        --   SenkrechteSchleifenwert mod Kartenzeitwert (EbeneExtern)
-        -- is
-        --    when 0 =>
-        --       LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
-               
-        --    when others =>
-        --       null;
-        -- end case;
+         
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum,
+                                                   ZeitExtern            => LadezeitbasisExtern);
          
       end loop SenkrechteSchleife;
       

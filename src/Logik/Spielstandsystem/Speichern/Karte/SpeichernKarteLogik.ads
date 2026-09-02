@@ -1,9 +1,5 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
-private with SystemDatentypenHTSEB;
-
-private with KommazahltestsHTSEB;
-
 private with SpeziesDatentypen;
 private with KartenArrays;
 
@@ -26,10 +22,7 @@ private
    
    ByteanzahlAchtFelderzusammenfassung : Float;
    SpeicherzeitKarteBasiswert : Float;
-   SpeicherzeitKarte : Float;
-   
    SpeicherzeitSichtbarkeitBasiswert : Float;
-   SpeicherzeitSichtbarkeit : Float;
    
    SichtbarkeitFelderreiheFestgelegt : KartenArrays.SichtbarkeitGesamtArray;
    
@@ -42,7 +35,5 @@ private
    function Spezieszusammenfassung
      (DateiSpeichernExtern : in File_Type)
       return Boolean;
-   
-   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
    
 end SpeichernKarteLogik;

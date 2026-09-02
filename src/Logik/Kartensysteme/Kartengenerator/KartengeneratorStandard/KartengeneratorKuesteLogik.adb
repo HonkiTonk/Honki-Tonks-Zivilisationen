@@ -15,7 +15,6 @@ package body KartengeneratorKuesteLogik is
    is begin
       
       LadezeitBasis := 100.00 / Float (LeseWeltkarteneinstellungen.Senkrechte);
-      Ladezeit := LadezeitBasis;
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -35,10 +34,7 @@ package body KartengeneratorKuesteLogik is
          end loop WaagerechteSchleife;
          
          LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum,
-                                                   ZeitExtern            => Ladezeit);
-               
-         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
-                                     ZusatzwertExtern => LadezeitBasis);
+                                                   ZeitExtern            => LadezeitBasis);
          
       end loop SenkrechteSchleife;
       

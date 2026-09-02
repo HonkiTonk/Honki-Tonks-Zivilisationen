@@ -1,7 +1,3 @@
-private with SystemDatentypenHTSEB;
-
-private with KommazahltestsHTSEB;
-
 with SpeziesDatentypen;
 
 private with EinheitenDatentypen;
@@ -29,7 +25,6 @@ private
    LetzteEinheit : EinheitenDatentypen.EinheitenbereichBasis;
 
    LadezeitBasis : Float;
-   Ladezeit : Float;
 
    procedure EinheitenDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
@@ -44,9 +39,5 @@ private
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
-
-
-
-   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KILogik;

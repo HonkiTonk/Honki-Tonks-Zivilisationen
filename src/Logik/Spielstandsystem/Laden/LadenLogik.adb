@@ -42,7 +42,7 @@ package body LadenLogik is
             return False;
          
          else
-            LadezeitenLogik.SpeichernLadenNullsetzen;
+            LadezeitenLogik.SpielstandNullsetzen;
             SchreibeGrafiktask.Dateiname (DateinameExtern => Spielstandname);
             SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Prüfen_Enum);
             
@@ -61,7 +61,7 @@ package body LadenLogik is
                                                                                                                       SpielstandnameExtern => Spielstandname));
                
             when True =>
-               LadezeitenLogik.SpeichernLadenNullsetzen;
+               LadezeitenLogik.SpielstandNullsetzen;
                SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Laden_Enum);
                StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => True);
                
@@ -108,7 +108,7 @@ package body LadenLogik is
             return False;
             
          when True =>
-            LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
+            LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
       end case;
       
       case

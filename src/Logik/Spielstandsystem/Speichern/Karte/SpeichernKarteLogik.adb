@@ -1,5 +1,7 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
+with SystemDatentypenHTSEB;
+
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
@@ -26,7 +28,7 @@ package body SpeichernKarteLogik is
    is begin
       
       -- Wenn ich hier auch noch die Dicke und Art des Kartenrands mitspeichere, dann könnte ich das beim Speichern der Karte sparen, wäre vermutlich kleiner? äöü
-      -- Wobei ich ja immer noch den Zusatzscheiß speichern muss, da der ja änderbar ist, bringt dass denn viel? äöü
+      -- Wobei ich ja immer noch den Zusatz und die Sichtbarkeit speichern muss, bringt dass denn viel? äöü
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseWeltkarteneinstellungen.GesamteEinstellungen);
       
@@ -41,14 +43,12 @@ package body SpeichernKarteLogik is
       
       -- Hier und auch beim Laden/Kartengenerator nehme ich die Ebene einfach als gegeben hin, mal anpassen wenn ich die Ebenenanzahl einstellbar mache. äöü
       SpeicherzeitKarteBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
-      SpeicherzeitKarte := SpeicherzeitKarteBasiswert;
       
       case
         VorhandeneSpezies
       is
          when 1 .. 8 =>
             SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
-            SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeitBasiswert;
               
          when others =>
             null;
@@ -125,21 +125,15 @@ package body SpeichernKarteLogik is
                
             end loop WaagerechteSchleife;
          
-            LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
-                                            ZeitExtern            => SpeicherzeitKarte);
-         
-            SpeicherzeitKarte := LadezeitTesten (GrundwertExtern  => SpeicherzeitKarte,
-                                                 ZusatzwertExtern => SpeicherzeitKarteBasiswert);
+            LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+                                                 ZeitExtern            => SpeicherzeitKarteBasiswert);
             
             case
               VorhandeneSpezies
             is
                when 1 .. 8 =>
-                  LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                                  ZeitExtern            => SpeicherzeitSichtbarkeit);
-         
-                  SpeicherzeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => SpeicherzeitSichtbarkeit,
-                                                              ZusatzwertExtern => SpeicherzeitSichtbarkeitBasiswert);
+                  LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                                       ZeitExtern            => SpeicherzeitSichtbarkeitBasiswert);
                   
                when others =>
                   null;
@@ -148,7 +142,7 @@ package body SpeichernKarteLogik is
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
             
-      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+      LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       if
         FelderanzahlZusatzgrund = SystemDatentypenHTSEB.AchtElemente'First
@@ -183,7 +177,7 @@ package body SpeichernKarteLogik is
                null;
             end if;
             
-            LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+            LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
             return True;
             
@@ -225,7 +219,6 @@ package body SpeichernKarteLogik is
       SichtbarkeitFelderreiheFestgelegt := (others => (others => False));
       
       SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
-      SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeitBasiswert;
       
       EbeneSchleife:
       -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
@@ -259,11 +252,8 @@ package body SpeichernKarteLogik is
                
             end loop WaagerechteSchleife;
             
-            LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                            ZeitExtern            => SpeicherzeitSichtbarkeit);
-         
-            SpeicherzeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => SpeicherzeitSichtbarkeit,
-                                                        ZusatzwertExtern => SpeicherzeitSichtbarkeitBasiswert);
+            LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                                 ZeitExtern            => SpeicherzeitSichtbarkeitBasiswert);
             
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
@@ -283,7 +273,7 @@ package body SpeichernKarteLogik is
          null;
       end if;
             
-      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+      LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
       return True;
       
@@ -303,7 +293,6 @@ package body SpeichernKarteLogik is
    is begin
       
       SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
-      SpeicherzeitSichtbarkeit := SpeicherzeitSichtbarkeitBasiswert;
       
       EbeneSchleife:
       -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
@@ -327,16 +316,13 @@ package body SpeichernKarteLogik is
                
             end loop WaagerechteSchleife;
             
-            LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                            ZeitExtern            => SpeicherzeitSichtbarkeit);
-         
-            SpeicherzeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => SpeicherzeitSichtbarkeit,
-                                                        ZusatzwertExtern => SpeicherzeitSichtbarkeitBasiswert);
+            LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                                 ZeitExtern            => SpeicherzeitSichtbarkeitBasiswert);
             
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
             
-      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+      LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
       return True;
       

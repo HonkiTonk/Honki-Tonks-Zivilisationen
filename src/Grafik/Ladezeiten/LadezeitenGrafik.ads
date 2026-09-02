@@ -2,7 +2,7 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-private with SystemDatentypenHTSEB;
+private with UmwandlungssystemHTSEB;
 
 with SpeziesDatentypen;
 with GrafikDatentypen;
@@ -11,8 +11,6 @@ with SpeziesKonstanten;
 private with GrafikRecordKonstanten;
 
 with LeseSpeziesbelegung;
-
-private with UmwandlungssystemHTSEB;
 
 package LadezeitenGrafik is
    pragma Elaborate_Body;
@@ -32,7 +30,7 @@ private
    
    WelcheZeit : Positive;
    
-   MaximalerLadefortschritt : constant Wide_Wide_String (1 .. 3) := "100";
+   MaximalerLadefortschritt : Wide_Wide_String (1 .. 6);
    
    Text : Unbounded_Wide_Wide_String;
          
@@ -41,7 +39,7 @@ private
    
    
    
-   function SpielweltErstellen
+   function Kartengenerator
      (MaximaleTextbreiteExtern : in Float)
       return Float
      with
@@ -50,7 +48,7 @@ private
               ),
            
        Post => (
-                  SpielweltErstellen'Result >= 0.00
+                  Kartengenerator'Result >= 0.00
                );
    
    function Rundenende
@@ -78,7 +76,7 @@ private
                   Spielstand'Result >= 0.00
                );
    
-   function KIRechnet
+   function KI
      (MaximaleTextbreiteExtern : in Float)
       return Float
      with
@@ -87,9 +85,9 @@ private
               ),
            
        Post => (
-                  KIRechnet'Result >= 0.00
+                  KI'Result >= 0.00
                );
    
-   function ZahlAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => SystemDatentypenHTSEB.NullBisHundert);
+   function ZahlAlsString is new UmwandlungssystemHTSEB.Kommazahlenstring (Kommazahl => Float);
 
 end LadezeitenGrafik;

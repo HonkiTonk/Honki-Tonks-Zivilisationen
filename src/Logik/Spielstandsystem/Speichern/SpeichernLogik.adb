@@ -71,7 +71,7 @@ package body SpeichernLogik is
                Spielstandart := SystemDatentypenHTSEB.Manueller_Spielstand_Enum;
          end case;
          
-         LadezeitenLogik.SpeichernLadenNullsetzen;
+         LadezeitenLogik.SpielstandNullsetzen;
          SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Enum);
          
          DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,

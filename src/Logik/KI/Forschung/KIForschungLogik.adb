@@ -40,7 +40,6 @@ package body KIForschungLogik is
    begin
       
       LadezeitBasis := 100.00 / Float (ForschungenDatenbank.ForschungslisteArray'Last (2));
-      Ladezeit := LadezeitBasis;
       
       WelchesProjekt := ForschungKonstanten.LeerForschung;
       
@@ -74,10 +73,7 @@ package body KIForschungLogik is
          end case;
          
          LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Forschung_Enum,
-                                      ZeitExtern            => Ladezeit);
-               
-         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
-                                     ZusatzwertExtern => LadezeitBasis);
+                                      ZeitExtern            => LadezeitBasis);
                
       end loop ForschungenSchleife;
       

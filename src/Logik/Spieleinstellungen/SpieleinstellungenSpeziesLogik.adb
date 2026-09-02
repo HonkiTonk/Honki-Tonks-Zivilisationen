@@ -22,6 +22,7 @@ with EinheitenErzeugenEntfernenLogik;
 with AuswahlaufteilungLogik;
 with LadezeitenLogik;
 with UmwandlungenDatentypen;
+with SpielstandAllgemeinesLogik;
 
 package body SpieleinstellungenSpeziesLogik is
    
@@ -139,8 +140,7 @@ package body SpieleinstellungenSpeziesLogik is
    procedure StartwerteErmitteln
    is begin
       
-      LadezeitBasis := 100.00 / 18.00; -- Float ();
-      Ladezeit := LadezeitBasis;
+      LadezeitBasis := 100.00 / Float (SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True));
       
       SpieleranzahlWerteFestlegen:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
@@ -182,10 +182,7 @@ package body SpieleinstellungenSpeziesLogik is
          end case;
          
          LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Platziere_Spezies_Enum,
-                                                   ZeitExtern            => Ladezeit);
-               
-         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
-                                     ZusatzwertExtern => LadezeitBasis);
+                                                   ZeitExtern            => LadezeitBasis);
          
       end loop SpieleranzahlWerteFestlegen;
       

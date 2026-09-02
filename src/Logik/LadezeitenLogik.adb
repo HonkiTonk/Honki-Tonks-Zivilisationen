@@ -3,58 +3,70 @@ package body LadezeitenLogik is
    procedure KartengeneratorNullsetzen
    is begin
       
-      FortschrittKartengenerator := (others => AnfangLadezeit);
+      Kartengenerator := (others => AnfangLadezeit);
       
    end KartengeneratorNullsetzen;
    
    
    
    procedure KartengeneratorSchreiben
-     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum;
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Kartengenerator_Enum;
       ZeitExtern : in Float)
    is begin
       
-      FortschrittKartengenerator (BerechnungszeitExtern) := SystemDatentypenHTSEB.NullBisHundert (ZeitExtern);
+      Kartengenerator (BerechnungszeitExtern) := LadezeitTesten (GrundwertExtern  => Kartengenerator (BerechnungszeitExtern),
+                                                                 ZusatzwertExtern => ZeitExtern);
       
    end KartengeneratorSchreiben;
    
    
    
    procedure KartengeneratorMaximum
-     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielwelt_Erstellen_Enum)
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Kartengenerator_Enum)
    is begin
    
-      FortschrittKartengenerator (BerechnungszeitExtern) := EndeLadezeit;
+      Kartengenerator (BerechnungszeitExtern) := EndeLadezeit;
       
    end KartengeneratorMaximum;
    
    
    
-   procedure KINullsetzenFortschritt
+   procedure KINullsetzen
    is begin
       
-      FortschrittKI := (others => AnfangLadezeit);
+      KI := (others => AnfangLadezeit);
       
-   end KINullsetzenFortschritt;
+   end KINullsetzen;
+   
+   
+   
+   procedure KIEinzelnNullsetzen
+     (BerechnungszeitExtern : in LadezeitenDatentypen.KI_Enum)
+   is begin
+      
+      KI (BerechnungszeitExtern) := AnfangLadezeit;
+      
+   end KIEinzelnNullsetzen;
    
    
    
    procedure KISchreiben
-     (BerechnungszeitExtern : in LadezeitenDatentypen.KI_Rechnet_Enum;
+     (BerechnungszeitExtern : in LadezeitenDatentypen.KI_Enum;
       ZeitExtern : in Float)
    is begin
       
-      FortschrittKI (BerechnungszeitExtern) := SystemDatentypenHTSEB.NullBisHundert (ZeitExtern);
+      KI (BerechnungszeitExtern) := LadezeitTesten (GrundwertExtern  => KI (BerechnungszeitExtern),
+                                                    ZusatzwertExtern => ZeitExtern);
       
    end KISchreiben;
    
    
    
    procedure KIMaximum
-     (BerechnungszeitExtern : in LadezeitenDatentypen.KI_Rechnet_Enum)
+     (BerechnungszeitExtern : in LadezeitenDatentypen.KI_Enum)
    is begin
       
-      FortschrittKI (BerechnungszeitExtern) := EndeLadezeit;
+      KI (BerechnungszeitExtern) := EndeLadezeit;
       
    end KIMaximum;
    
@@ -63,17 +75,18 @@ package body LadezeitenLogik is
    procedure RundenendeNullsetzen
    is begin
       
-      FortschrittRundenende := AnfangLadezeit;
+      Rundenende := AnfangLadezeit;
       
    end RundenendeNullsetzen;
    
    
    
    procedure RundenendeSchreiben
-      (ZeitExtern : in Float)
+     (ZeitExtern : in Float)
    is begin
       
-      FortschrittRundenende := SystemDatentypenHTSEB.NullBisHundert (ZeitExtern);
+      Rundenende := LadezeitTesten (GrundwertExtern  => Rundenende,
+                                    ZusatzwertExtern => ZeitExtern);
       
    end RundenendeSchreiben;
    
@@ -82,38 +95,39 @@ package body LadezeitenLogik is
    procedure RundenendeMaximum
    is begin
       
-      FortschrittRundenende := EndeLadezeit;
+      Rundenende := EndeLadezeit;
       
    end RundenendeMaximum;
    
    
    
-   procedure SpeichernLadenNullsetzen
+   procedure SpielstandNullsetzen
    is begin
       
-      FortschrittSpeichernLaden := (others => AnfangLadezeit);
+      Spielstand := (others => AnfangLadezeit);
       
-   end SpeichernLadenNullsetzen;
+   end SpielstandNullsetzen;
    
    
    
-   procedure SpeichernLaden
-     (BerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum;
+   procedure SpielstandSchreiben
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielstand_Enum;
       ZeitExtern : in Float)
    is begin
+            
+      Spielstand (BerechnungszeitExtern) := LadezeitTesten (GrundwertExtern  => Spielstand (BerechnungszeitExtern),
+                                                            ZusatzwertExtern => ZeitExtern);
       
-      FortschrittSpeichernLaden (BerechnungszeitExtern) := SystemDatentypenHTSEB.NullBisHundert (ZeitExtern);
-      
-   end SpeichernLaden;
+   end SpielstandSchreiben;
    
    
    
-   procedure SpeichernLadenMaximum
-     (BerechnungszeitExtern : in LadezeitenDatentypen.Speichern_Laden_Enum)
+   procedure SpielstandMaximum
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielstand_Enum)
    is begin
       
-      FortschrittSpeichernLaden (BerechnungszeitExtern) := EndeLadezeit;
+      Spielstand (BerechnungszeitExtern) := EndeLadezeit;
       
-   end SpeichernLadenMaximum;
+   end SpielstandMaximum;
 
 end LadezeitenLogik;

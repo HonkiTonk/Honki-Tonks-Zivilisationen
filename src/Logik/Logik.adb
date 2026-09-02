@@ -13,6 +13,7 @@ with LeseLogiktask;
 with SchreibeGrafiktask;
 with SchreibeGesamttask;
 with SchreibeMusiktask;
+with LeseOptionen;
 
 with SchreibenVerzeichnisseLogik;
 with EinlesenEinstellungenLogik;
@@ -36,6 +37,8 @@ package body Logik is
       
       EinlesenLogik.EinlesenOhneAnzeige;
       SchreibeGesamttask.EinstellungenEingelesen (JaNeinExtern => True);
+      
+      UmwandlungsvariablenHTSEB.TrennzeichenWechseln (TrennzeichenExtern => LeseOptionen.Dezimaltrennzeichen);
       
       TonSchleife:
       loop

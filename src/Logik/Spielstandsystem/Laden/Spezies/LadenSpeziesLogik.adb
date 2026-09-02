@@ -19,7 +19,6 @@ package body LadenSpeziesLogik is
    begin
       
       LadezeitBasis := 100.00 / Float (SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => False));
-      Ladezeit := LadezeitBasis;
       
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
@@ -68,16 +67,13 @@ package body LadenSpeziesLogik is
                   null;
                end if;
          
-               LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum,
-                                               ZeitExtern            => Ladezeit);
-         
-               Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
-                                           ZusatzwertExtern => LadezeitBasis);
+               LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum,
+                                                    ZeitExtern            => LadezeitBasis);
          end case;
          
       end loop SpeziesSchleife;
       
-      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum);
+      LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Spezies_Enum);
       
       return True;
       

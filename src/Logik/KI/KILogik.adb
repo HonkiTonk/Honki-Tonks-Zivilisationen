@@ -49,11 +49,9 @@ package body KILogik is
       AußenSchleife:
       loop
          
-         LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum,
-                                      ZeitExtern            => 0.00);
+         LadezeitenLogik.KIEinzelnNullsetzen (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum);
       
          LadezeitBasis := 100.00 / Float (Anfangseinheiten);
-         Ladezeit := LadezeitBasis;
          
          EinheitenSchleife:
          for EinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. Anfangseinheiten loop
@@ -67,10 +65,7 @@ package body KILogik is
                
             else
                LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Einheiten_Enum,
-                                            ZeitExtern            => Ladezeit);
-               
-               Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
-                                           ZusatzwertExtern => LadezeitBasis);
+                                            ZeitExtern            => LadezeitBasis);
             end if;
                   
          end loop EinheitenSchleife;
@@ -115,7 +110,6 @@ package body KILogik is
             
          when others =>
             LadezeitBasis := 100.00 / Float (StädteVorhanden);
-            Ladezeit := LadezeitBasis;
       end case;
       
       StadtSchleife:
@@ -124,10 +118,7 @@ package body KILogik is
          KIStadtLogik.KIStadt (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
          
          LadezeitenLogik.KISchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Berechne_Städte_Enum,
-                                      ZeitExtern            => Ladezeit);
-               
-         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
-                                     ZusatzwertExtern => LadezeitBasis);
+                                      ZeitExtern            => LadezeitBasis);
          
       end loop StadtSchleife;
       

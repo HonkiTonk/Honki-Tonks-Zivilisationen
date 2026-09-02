@@ -1,6 +1,6 @@
 with KartengrundDatentypen;
 with KartenKonstanten;
--- with LadezeitenDatentypen;
+with LadezeitenDatentypen;
 with SystemDatentypen;
 
 with SchreibeWeltkarte;
@@ -9,16 +9,14 @@ with LeseWeltkarte;
 with ZufallsgeneratorenKartenLogik;
 with KartenkoordinatenberechnungssystemLogik;
 with KartengeneratorVariablenLogik;
--- with LadezeitenLogik;
+with LadezeitenLogik;
 
 package body KartengeneratorStandardLogik is
    
    procedure OberflächeGenerieren
+     (LadezeitbasisExtern : in Float)
    is begin
-      
-     -- Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte,
-     --                                  TeilerExtern     => 25);
-      
+            
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte loop
          WaagerechteSchleife:
@@ -28,16 +26,9 @@ package body KartengeneratorStandardLogik is
                            WaagerechteExtern => WaagerechteSchleifenwert);
             
          end loop WaagerechteSchleife;
-            
-       --  case
-       --    SenkrechteSchleifenwert mod Kartenzeitwert
-       --  is
-        --    when 0 =>
-       --       LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
-               
-        --    when others =>
-        --       null;
-        -- end case;
+         
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum,
+                                                   ZeitExtern            => LadezeitbasisExtern);
          
       end loop SenkrechteSchleife;
       

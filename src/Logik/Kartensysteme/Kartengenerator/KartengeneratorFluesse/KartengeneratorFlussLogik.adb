@@ -19,7 +19,6 @@ package body KartengeneratorFlussLogik is
       -- Die Ebenenverwendung mal in eine Kosntante packen, auch bei der Karte der Fall. äöü
       -- Eventuell die Ebenenmenge auch endlich mal anpassbar machen. äöü
       LadezeitBasis := 100.00 / Float (3 * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
-      Ladezeit := LadezeitBasis;
       
       EbeneSchleife:
       for EbeneSchleifenwert in KartenDatentypen.EbenePlanet'Range loop
@@ -49,10 +48,7 @@ package body KartengeneratorFlussLogik is
             end loop WaagerechteSchleife;
          
             LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum,
-                                                      ZeitExtern            => Ladezeit);
-               
-            Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
-                                        ZusatzwertExtern => LadezeitBasis);
+                                                      ZeitExtern            => LadezeitBasis);
          
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;

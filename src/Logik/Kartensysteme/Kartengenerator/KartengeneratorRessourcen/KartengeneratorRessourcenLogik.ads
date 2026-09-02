@@ -6,15 +6,15 @@ package KartengeneratorRessourcenLogik is
    procedure GenerierungRessourcen;
 
 private
-   
-   -- type KartenzeitwertArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.SenkrechtePositiv;
-   -- Kartenzeitwert : KartenzeitwertArray;
-         
+            
    procedure RessourcenGenerierung
-     (EbeneExtern : in KartenDatentypen.EbenePlanet);
-   
-   
-   
-   -- function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
+     (EbeneExtern : in KartenDatentypen.EbenePlanet;
+      LadezeitbasisExtern : in Float)
+     with
+       Pre => (
+                 LadezeitbasisExtern > 0.00
+               and
+                 LadezeitbasisExtern <= 100.00
+              );
 
 end KartengeneratorRessourcenLogik;

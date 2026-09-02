@@ -1,3 +1,5 @@
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with TextKonstantenHTSEB;
 
 with MenueDatentypen;
@@ -38,6 +40,9 @@ package body OptionenSonstigesLogik is
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                SpracheWechseln;
+               
+            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+               Dezimaltrennzeichen;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                SchreibenEinstellungenLogik.Nutzereinstellungen;
@@ -128,5 +133,16 @@ package body OptionenSonstigesLogik is
       end case;
       
    end SpracheWechseln;
+   
+   
+   
+   procedure Dezimaltrennzeichen
+   is begin
+      
+      Get_Immediate (Eingabe);
+      
+      SchreibeOptionen.Dezimaltrennzeichen (ZeichenExtern => Eingabe);
+      
+   end Dezimaltrennzeichen;
 
 end OptionenSonstigesLogik;

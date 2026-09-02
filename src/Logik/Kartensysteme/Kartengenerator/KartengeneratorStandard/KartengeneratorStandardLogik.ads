@@ -1,4 +1,3 @@
-private with AllgemeineBerechnungenHTSEB;
 private with SystemDatentypenHTSEB;
 
 private with KartenDatentypen;
@@ -10,7 +9,14 @@ private with LeseWeltkarteneinstellungen;
 package KartengeneratorStandardLogik is
    pragma Elaborate_Body;
 
-   procedure OberflächeGenerieren;
+   procedure OberflächeGenerieren
+     (LadezeitbasisExtern : in Float)
+     with
+       Pre => (
+                 LadezeitbasisExtern > 0.00
+               and
+                 LadezeitbasisExtern <= 100.00
+              );
 
 private
    use type KartenDatentypen.SenkrechteBasis;
@@ -134,7 +140,5 @@ private
        Pre => (
                  WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
               );
-   
-   function Basiszeitwert is new AllgemeineBerechnungenHTSEB.Basiszeitwert (GanzeZahl => KartenDatentypen.SenkrechtePositiv);
 
 end KartengeneratorStandardLogik;

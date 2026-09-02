@@ -1,7 +1,3 @@
-private with SystemDatentypenHTSEB;
-
-private with KommazahltestsHTSEB;
-
 private with KartenDatentypen;
 private with KartenRecords;
 
@@ -29,9 +25,5 @@ private
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
-
-
-
-   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KartengeneratorKuesteLogik;

@@ -1,19 +1,17 @@
 with KartengrundDatentypen;
--- with LadezeitenDatentypen;
+with LadezeitenDatentypen;
 with KartenKonstanten;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
 
--- with LadezeitenLogik;
+with LadezeitenLogik;
 
 package body KartengeneratorWeltraumLogik is
 
    procedure Weltraum
+     (LadezeitbasisExtern : in Float)
    is begin
-      
-    --  Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.Senkrechte,
-     --                                  TeilerExtern     => 25);
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
@@ -24,16 +22,9 @@ package body KartengeneratorWeltraumLogik is
                                           GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
             
          end loop WaagerechteSchleife;
-            
-        -- case
-        --   SenkrechteSchleifenwert mod Kartenzeitwert
-        -- is
-         --   when 0 =>
-        --       LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
-               
-         --   when others =>
-         --      null;
-       --  end case;
+         
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum,
+                                                   ZeitExtern            => LadezeitbasisExtern);
          
       end loop SenkrechteSchleife;
       

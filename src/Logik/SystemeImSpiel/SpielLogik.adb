@@ -168,7 +168,7 @@ package body SpielLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is begin
       
-      LadezeitenLogik.KINullsetzenFortschritt;
+      LadezeitenLogik.KINullsetzen;
       
       SchreibeGrafiktask.KIRechnet (SpeziesExtern => SpeziesExtern);
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.KI_Rechenzeit_Enum);

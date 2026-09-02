@@ -2,8 +2,6 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with SystemDatentypenHTSEB;
 
-private with KommazahltestsHTSEB;
-
 private with KartenRecords;
 private with SpeziesDatentypen;
 private with KartenArrays;
@@ -28,9 +26,7 @@ private
    Speziesbelegung : SpeziesDatentypen.Spezies_Vorhanden_Enum;
    
    LadezeitKarteBasiswert : Float;
-   LadezeitKarte : Float;
    LadezeitSichtbarkeitBasiswert : Float;
-   LadezeitSichtbarkeit : Float;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
          
@@ -48,7 +44,5 @@ private
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean;
-   
-   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end LadenKarteLogik;

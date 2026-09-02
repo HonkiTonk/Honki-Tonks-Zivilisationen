@@ -15,6 +15,8 @@ private
    
    Erfolgreich : Boolean;
    
+   Eingabe : Wide_Wide_Character;
+   
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
    GewählteSprache : Unbounded_Wide_Wide_String;
@@ -24,5 +26,6 @@ private
    procedure AnzahlAutomatischerSpielstände;
    procedure RundenBisAutospeichern;
    procedure SpracheWechseln;
+   procedure Dezimaltrennzeichen;
 
 end OptionenSonstigesLogik;

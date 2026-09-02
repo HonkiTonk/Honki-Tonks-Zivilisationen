@@ -12,11 +12,9 @@ with ZufallsgeneratorenHTSEB;
 package body KartengeneratorPlanetenkernLogik is
 
    procedure Planetenkern
+     (LadezeitbasisExtern : in Float)
    is begin
-      
-      LadezeitBasis := 100.00 / Float (LeseWeltkarteneinstellungen.Senkrechte);
-      Ladezeit := LadezeitBasis;
-      
+            
       YKernanfang := LeseWeltkarteneinstellungen.Senkrechte / 2 - LeseWeltkarteneinstellungen.Senkrechte / 10;
       XKernanfang := LeseWeltkarteneinstellungen.Waagerechte / 2 - LeseWeltkarteneinstellungen.Waagerechte / 10;
       YKernende := LeseWeltkarteneinstellungen.Senkrechte / 2 + LeseWeltkarteneinstellungen.Senkrechte / 10;
@@ -50,10 +48,7 @@ package body KartengeneratorPlanetenkernLogik is
          end loop WaagerechteSchleife;
          
          LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum,
-                                                   ZeitExtern            => Ladezeit);
-               
-         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
-                                     ZusatzwertExtern => LadezeitBasis);
+                                                   ZeitExtern            => LadezeitbasisExtern);
          
       end loop SenkrechteSchleife;
                

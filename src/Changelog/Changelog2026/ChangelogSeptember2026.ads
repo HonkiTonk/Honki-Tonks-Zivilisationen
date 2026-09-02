@@ -197,16 +197,19 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (02.09.2026):
+   -- Version 0.06.4470 => 0.06. (02.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4410 => 0.06. (01.09.2026):
+   -- Version 0.06.4410 => 0.06.4470 (01.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das neue Ladezeitanzeigesysteme fertiggestellt.
+   -- Interne Benennung überarbeitet.
+   -- Code zusammengefasst.
+   -- Angefangen eine Einstellungsmöglichkeit für das Dezimaltrennsymbol einzubauen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
 
 end ChangelogSeptember2026;

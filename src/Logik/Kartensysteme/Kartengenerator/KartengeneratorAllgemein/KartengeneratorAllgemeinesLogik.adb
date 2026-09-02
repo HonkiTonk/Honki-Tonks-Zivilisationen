@@ -4,6 +4,7 @@ with KartengeneratorPlanetenkernLogik;
 with KartengeneratorPolregionLogik;
 with KartengeneratorStandardLogik;
 with PolbereicheBerechnenLogik;
+with KartengeneratorVariablenLogik;
 
 package body KartengeneratorAllgemeinesLogik is
    
@@ -27,7 +28,7 @@ package body KartengeneratorAllgemeinesLogik is
       task body Himmel
       is begin
          
-         KartengeneratorHimmelLogik.Himmel;
+         KartengeneratorHimmelLogik.Himmel (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
          
       end Himmel;
       
@@ -36,7 +37,7 @@ package body KartengeneratorAllgemeinesLogik is
       task body Weltraum
       is begin
 
-         KartengeneratorWeltraumLogik.Weltraum;
+         KartengeneratorWeltraumLogik.Weltraum (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
          
       end Weltraum;
       
@@ -46,15 +47,15 @@ package body KartengeneratorAllgemeinesLogik is
       is begin
          
          -- Sollte ich in dieser Prozedur später weitere Berechnungen durchführen die Zugriff auf die Kartenkoordinatenberechnung vornehmen, äöü
-         -- dann muss ich das hier wegverschieben da der Zugriff ebenfall in KartengeneratorStandardLogik.OberflächeGenerieren erfolgt. äöü
-         KartengeneratorPlanetenkernLogik.Planetenkern;
+         -- dann muss ich das hier wegverschieben da der Zugriff ebenfalls in KartengeneratorStandardLogik.OberflächeGenerieren erfolgt. äöü
+         KartengeneratorPlanetenkernLogik.Planetenkern (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
          
       end Planeteninneres;
    
    begin
       
       KartengeneratorPolregionLogik.PolregionGenerieren;
-      KartengeneratorStandardLogik.OberflächeGenerieren;
+      KartengeneratorStandardLogik.OberflächeGenerieren (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
       
    end GenerierungGrundlagen;
 

@@ -1,7 +1,5 @@
 private with SystemDatentypenHTSEB;
 
-private with KommazahltestsHTSEB;
-
 private with KartenDatentypen;
 private with KartengrundDatentypen;
 private with KartenRecords;
@@ -11,7 +9,14 @@ private with LeseWeltkarteneinstellungen;
 package KartengeneratorPlanetenkernLogik is
    pragma Elaborate_Body;
 
-   procedure Planetenkern;
+   procedure Planetenkern
+     (LadezeitbasisExtern : in Float)
+     with
+       Pre => (
+                 LadezeitbasisExtern > 0.00
+               and
+                 LadezeitbasisExtern <= 100.00
+              );
 
 private
    use type KartenDatentypen.SenkrechteBasis;
@@ -26,9 +31,6 @@ private
    XKernanfang : KartenDatentypen.WaagerechtePositiv;
    YKernende : KartenDatentypen.SenkrechtePositiv;
    XKernende : KartenDatentypen.WaagerechtePositiv;
-
-   LadezeitBasis : Float;
-   Ladezeit : Float;
 
    type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
@@ -103,7 +105,5 @@ private
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
-
-   function LadezeitTesten is new KommazahltestsHTSEB.StrichrechnungNatural (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end KartengeneratorPlanetenkernLogik;

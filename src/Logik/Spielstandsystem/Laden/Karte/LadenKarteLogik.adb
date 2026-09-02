@@ -34,7 +34,6 @@ package body LadenKarteLogik is
       is
          when 1 .. 8 =>
             LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
-            LadezeitSichtbarkeit := LadezeitSichtbarkeitBasiswert;
             
          when others =>
             null;
@@ -57,7 +56,6 @@ package body LadenKarteLogik is
       KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
       
       LadezeitKarteBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
-      LadezeitKarte := LadezeitKarteBasiswert;
       
       EbeneSchleife:
       for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
@@ -128,21 +126,15 @@ package body LadenKarteLogik is
                                                             
             end loop WaagerechteSchleife;
          
-            LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
-                                            ZeitExtern            => LadezeitKarte);
-         
-            LadezeitKarte := LadezeitTesten (GrundwertExtern  => LadezeitKarte,
-                                             ZusatzwertExtern => LadezeitKarteBasiswert);
+            LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum,
+                                                 ZeitExtern            => LadezeitKarteBasiswert);
             
             case
               VorhandeneSpezies
             is
                when 1 .. 8 =>
-                  LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                                  ZeitExtern            => LadezeitSichtbarkeit);
-         
-                  LadezeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => LadezeitSichtbarkeit,
-                                                          ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
+                  LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                                       ZeitExtern            => LadezeitSichtbarkeitBasiswert);
             
                when others =>
                   null;
@@ -151,7 +143,7 @@ package body LadenKarteLogik is
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
             
-      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
+      LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Karte_Enum);
       
       if
         FelderanzahlZusatzgrund = SystemDatentypenHTSEB.AchtElemente'First
@@ -188,7 +180,7 @@ package body LadenKarteLogik is
                null;
             end if;
             
-            LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+            LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
             
             return True;
             
@@ -233,7 +225,6 @@ package body LadenKarteLogik is
       KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
       
       LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
-      LadezeitSichtbarkeit := LadezeitSichtbarkeitBasiswert;
             
       EbeneSchleife:
       -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
@@ -266,11 +257,8 @@ package body LadenKarteLogik is
                
             end loop WaagerechteSchleife;
             
-            LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                            ZeitExtern            => LadezeitSichtbarkeit);
-         
-            LadezeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => LadezeitSichtbarkeit,
-                                                    ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
+            LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                                 ZeitExtern            => LadezeitSichtbarkeitBasiswert);
             
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
@@ -291,7 +279,7 @@ package body LadenKarteLogik is
          null;
       end if;
             
-      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+      LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
             
       return True;
       
@@ -312,7 +300,6 @@ package body LadenKarteLogik is
    is begin
       
       LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
-      LadezeitSichtbarkeit := LadezeitSichtbarkeitBasiswert;
       
       EbeneSchleife:
       -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
@@ -337,16 +324,13 @@ package body LadenKarteLogik is
                      
             end loop WaagerechteSchleife;
             
-            LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
-                                            ZeitExtern            => LadezeitSichtbarkeit);
-         
-            LadezeitSichtbarkeit := LadezeitTesten (GrundwertExtern  => LadezeitSichtbarkeit,
-                                                    ZusatzwertExtern => LadezeitSichtbarkeitBasiswert);
+            LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum,
+                                                 ZeitExtern            => LadezeitSichtbarkeitBasiswert);
             
          end loop SenkrechteSchleife;
       end loop EbeneSchleife;
             
-      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
+      LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Sichtbarkeit_Enum);
       
       return True;
       

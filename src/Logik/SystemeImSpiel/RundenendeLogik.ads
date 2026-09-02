@@ -15,7 +15,6 @@ private
    Belegung : SpeziesDatentypen.Spieler_Enum;
 
    LadezeitBasis : Float;
-   Ladezeit : Float;
 
    procedure BerechnungenEinheiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)

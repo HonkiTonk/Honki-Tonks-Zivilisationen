@@ -111,8 +111,8 @@ package body LadenAllgemeinesLogik is
             null;
       end case;
       
-      LadezeitenLogik.SpeichernLaden (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,
-                                      ZeitExtern            => 50.00);
+      LadezeitenLogik.SpielstandSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum,
+                                           ZeitExtern            => SystemDatentypenHTSEB.LadezeitBasis'Last / 2.00);
       
       return True;
       
@@ -231,7 +231,7 @@ package body LadenAllgemeinesLogik is
             SpielstandAllgemeinesLogik.SpeziesbelegungSchreiben (SpeziesbelegungExtern => Belegung);
       end case;
       
-      LadezeitenLogik.SpeichernLadenMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
+      LadezeitenLogik.SpielstandMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Allgemeines_Enum);
       
       return True;
       

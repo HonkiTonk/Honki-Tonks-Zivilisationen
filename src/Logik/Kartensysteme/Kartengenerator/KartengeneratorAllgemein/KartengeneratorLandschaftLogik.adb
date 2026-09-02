@@ -19,7 +19,6 @@ package body KartengeneratorLandschaftLogik is
    is begin
       
       LadezeitBasis := 100.00 / Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
-      Ladezeit := LadezeitBasis;
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte loop
@@ -49,10 +48,7 @@ package body KartengeneratorLandschaftLogik is
          end loop WaagerechteSchleife;
          
          LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum,
-                                                   ZeitExtern            => Ladezeit);
-               
-         Ladezeit := LadezeitTesten (GrundwertExtern  => Ladezeit,
-                                     ZusatzwertExtern => LadezeitBasis);
+                                                   ZeitExtern            => LadezeitBasis);
          
       end loop SenkrechteSchleife;
       
