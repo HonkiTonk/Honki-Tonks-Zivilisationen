@@ -190,16 +190,16 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (03.09.2026):
+   -- Version 0.06.4495 => 0.06. (03.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4470 => 0.06. (02.09.2026):
+   -- Version 0.06.4470 => 0.06.4495 (02.09.2026):
    
-   -- 
+   -- GNAT 14.4.0-1 auf Version 14.4.0-2 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
