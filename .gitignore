@@ -17,6 +17,8 @@ ASFML25/lib/libasfml.a
 ASFML25/lib/*.ali
 ASFML26/lib/libasfml.a
 ASFML26/lib/*.ali
+ASFML30/lib/libasfml.a
+ASFML30/lib/*.ali
 alire/
 config/
 share/
@@ -25,6 +27,7 @@ obj_alire/
 obj_windows/
 obj_sfml25/
 obj_sfml26/
+obj_sfml30/
 Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek/lib/
 Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek/obj/
 DLL/
