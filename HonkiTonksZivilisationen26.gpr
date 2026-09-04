@@ -1,48 +1,15 @@
 with "asfml26.gpr";
-
 with "Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek.gpr";
 
 project HonkiTonksZivilisationen26 is
 
-   type Betriebssystem_Type is
-      ("Linux", "Windows");
-   Betriebssystem : Betriebssystem_Type := external ("Betriebssystem", "Linux");
-   type Status_Type is
-      ("Entwicklung", "Veroeffentlichung");
-   Status : Status_Type := external ("Status", "Entwicklung");
    for Exec_Dir use "Honki Tonks Zivilisationen";
    for Create_Missing_Dirs use "True";
    for Main use ("HonkiTonksZivilisationen.adb");
    for Runtime ("ada") use "default";
 
-   case Betriebssystem is
-
-      when "Linux" =>
-
-         case Status is
-
-            when "Entwicklung" =>
-               for Object_Dir use "obj";
-               for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux");
-
-            when "Veroeffentlichung" =>
-               for Object_Dir use "obj";
-               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungLinux");
-         end case;
-
-      when "Windows" =>
-
-         case Status is
-
-            when "Entwicklung" =>
-               for Object_Dir use "obj_windows";
-               for Source_Dirs use ("src/**", "srcBS/EntwicklungWindows");
-
-            when "Veroeffentlichung" =>
-               for Object_Dir use "obj_windows";
-               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungWindows");
-         end case;
-   end case;
+   for Object_Dir use "obj";
+   for Source_Dirs use ("src/**", "srcSystem/Entwicklung/**", "srcSystem/SFML2526/**");
 
    package Naming is
       for Casing use "MixedCase";
@@ -50,7 +17,7 @@ project HonkiTonksZivilisationen26 is
 
    package Compiler is
       for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2022", "-gnato", "-fstack-check", "-g", "-gnata", "-gnatVacdefimoprst", 
-         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L7");
+         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf_q", "-gnatyACOSadefhiklnprsxM222L8");
       for Local_Configuration_Pragmas use "Lokale Pragmas";
    end Compiler;
 
@@ -64,7 +31,7 @@ project HonkiTonksZivilisationen26 is
    end Binder;
 
    package Pretty_Printer is
-      for Default_Switches ("ada") use ("-W8");
+      for Default_Switches ("ada") use ("-W8", "-M222");
    end Pretty_Printer;
 
    package Prove is

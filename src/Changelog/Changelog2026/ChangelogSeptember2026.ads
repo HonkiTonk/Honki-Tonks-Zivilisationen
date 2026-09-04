@@ -186,7 +186,9 @@ package ChangelogSeptember2026 is
    -- Version 0.06.4520 => 0.06.4545 (04.09.2026):
    
    -- Weiter mit der A/C/SFML 3.0 herumgebastelt.
-   -- Kleinigkeiten korrigiert.
+   -- gpr Dateien überarbeitet damit sie übersichtlicher und besser an verschiedene A/C/SFML Versionen angepasst sind.
+   -- Benennung und Ordnerstruktur angepasst um eine bessere Unterscheidung zwischen den SFML Versionen zu haben.
+   -- Contracts und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

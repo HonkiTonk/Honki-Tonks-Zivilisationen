@@ -18,19 +18,19 @@ project Honki_Tonks_Zivilisationen is
       when "Linux" =>
          case Status is
             when "Entwicklung" =>
-               for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux", "config");
+               for Source_Dirs use ("src/**", "srcSystem/Entwicklung", "srcSystem/SFML2526/**", "config");
 
             when "Veroeffentlichung" =>
-               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungLinux", "config");
+               for Source_Dirs use ("src/**", "srcSystem/Veroeffentlichung/**", "srcSystem/SFML2526/**", "config");
          end case;
 
       when "Windows" =>
          case Status is
             when "Entwicklung" =>
-               for Source_Dirs use ("src/**", "srcBS/EntwicklungWindows", "config");
+               for Source_Dirs use ("src/**", "srcSystem/EntwicklungWindows", "srcSystem/SFML2526/**", "config");
 
             when "Veroeffentlichung" =>
-               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungWindows", "config");
+               for Source_Dirs use ("src/**", "srcSystem/VeroeffentlichungWindows", "srcSystem/SFML2526/**", "config");
          end case;
    end case;
 
@@ -50,7 +50,7 @@ project Honki_Tonks_Zivilisationen is
    end Binder;
 
    package Pretty_Printer is
-      for Default_Switches ("ada") use ("-W8");
+      for Default_Switches ("ada") use ("-W8, "-M222");
    end Pretty_Printer;
 
    package Install is
