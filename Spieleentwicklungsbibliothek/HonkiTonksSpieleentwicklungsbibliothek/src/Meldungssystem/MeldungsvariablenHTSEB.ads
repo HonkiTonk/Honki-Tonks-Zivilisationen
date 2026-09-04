@@ -9,7 +9,7 @@ package MeldungsvariablenHTSEB is
      (VersionsnummerExtern : in Wide_Wide_String)
      with
        Pre => (
-                 VersionsnummerExtern'Length = 9
+                 VersionsnummerExtern'Length = 22
               );
    pragma Inline (VersionsnummerWechseln);
    
@@ -23,14 +23,13 @@ package MeldungsvariablenHTSEB is
      return Wide_Wide_String
      with
        Post => (
-                  VersionsnummerAbfragen'Result'Length = 9
+                  VersionsnummerAbfragen'Result'Length = 22
                );
    pragma Inline (VersionsnummerAbfragen);
    
 private
    
    FehlerMeldung : Boolean := True;
-   
-   Versionsnummer : Wide_Wide_String (1 .. 9) := "0.00.0000";
+   Versionsnummer : Wide_Wide_String (1 .. 20) := "0.00.0000 | SFML 2.5";
 
 end MeldungsvariablenHTSEB;

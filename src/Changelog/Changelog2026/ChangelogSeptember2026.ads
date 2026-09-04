@@ -183,17 +183,16 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (04.09.2026):
+   -- Version 0.06.4520 => 0.06.4545 (04.09.2026):
    
-   -- 
+   -- Weiter mit der A/C/SFML 3.0 herumgebastelt.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4495 => 0.06. (03.09.2026):
+   -- Version 0.06.4495 => 0.06.4520 (03.09.2026):
    
    -- Angefangen eine Version für die A/C/SFML 3.0 einzubauen.
-   -- 
    -- Kleinigkeiten korrigiert.
    
    

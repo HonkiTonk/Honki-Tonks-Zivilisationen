@@ -19,22 +19,22 @@ project HonkiTonksZivilisationen_Release30 is
          case Status is
             when "Entwicklung" =>
                for Object_Dir use "obj";
-               for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux");
+               for Source_Dirs use ("src30/**", "srcBS/EntwicklungLinux");
 
             when "Veroeffentlichung" =>
                for Object_Dir use "obj";
-               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungLinux");
+               for Source_Dirs use ("src30/**", "srcBS/VereoffentlichungLinux");
          end case;
 
       when "Windows" =>
          case Status is
             when "Entwicklung" =>
                for Object_Dir use "obj_windows";
-               for Source_Dirs use ("src/**", "srcBS/EntwicklungWindows");
+               for Source_Dirs use ("src30/**", "srcBS/EntwicklungWindows");
 
             when "Veroeffentlichung" =>
                for Object_Dir use "obj_windows";
-               for Source_Dirs use ("src/**", "srcBS/VereoffentlichungWindows");
+               for Source_Dirs use ("src30/**", "srcBS/VereoffentlichungWindows");
          end case;
    end case;
 

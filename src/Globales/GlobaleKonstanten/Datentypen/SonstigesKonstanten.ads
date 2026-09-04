@@ -3,7 +3,7 @@ package SonstigesKonstanten is
 
    Spielname : constant Wide_Wide_String (1 .. 26) := "Honki Tonks Zivilisationen";
 
-   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.06.4520";
+   Versionsnummer : constant Wide_Wide_String (1 .. 20) := "0.06.4545 | SFML 2.5";
 
    Entwickler : constant Wide_Wide_String (1 .. 10) := "Honki Tonk";
 
