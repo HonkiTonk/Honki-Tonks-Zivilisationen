@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+-- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with TextKonstantenHTSEB;
 
@@ -139,9 +139,11 @@ package body OptionenSonstigesLogik is
    procedure Dezimaltrennzeichen
    is begin
       
-      Get_Immediate (Eingabe);
+      null;
       
-      SchreibeOptionen.Dezimaltrennzeichen (ZeichenExtern => Eingabe);
+      -- Get_Immediate (Eingabe);
+      
+      -- SchreibeOptionen.Dezimaltrennzeichen (ZeichenExtern => Eingabe);
       
    end Dezimaltrennzeichen;
 

@@ -2,6 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
 
+with SFMLKonstanten;
 with TextaccessVariablen;
 with Spieltexte;
 with TextnummernKonstanten;
@@ -60,7 +61,7 @@ package body TextaccesseTextGrafik is
    is begin
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.VersionsnummerAccess,
-                                         str  => "Version: " & SonstigesKonstanten.Versionsnummer);
+                                         str  => "Version: " & SonstigesKonstanten.Versionsnummer & SFMLKonstanten.SFMLVersion);
       
       
       

@@ -8,6 +8,7 @@ with TastenbelegungDatentypen;
 with Projekteinstellungen;
 with TonDatentypen;
 with SonstigesKonstanten;
+with SFMLKonstanten;
 
 with LeseLogiktask;
 with SchreibeGrafiktask;
@@ -27,7 +28,7 @@ package body Logik is
    is begin
       
       MeldungsvariablenHTSEB.FehlerMeldungWechseln (FehlerMeldungExtern => Projekteinstellungen.Einstellungen.FehlerWarnung);
-      MeldungsvariablenHTSEB.VersionsnummerWechseln (VersionsnummerExtern => SonstigesKonstanten.Versionsnummer);
+      MeldungsvariablenHTSEB.VersionsnummerWechseln (VersionsnummerExtern => SonstigesKonstanten.Versionsnummer & SFMLKonstanten.SFMLVersion);
       UmwandlungsvariablenHTSEB.KodierungWechseln (KodierungExtern => Projekteinstellungen.Einstellungen.Stringkodierung);
       DateisystemvariablenHTSEB.DateiformWechseln (DateiformExtern => Projekteinstellungen.Einstellungen.Dateiform);
       DateisystemvariablenHTSEB.BetriebssystemWechseln (BetriebssystemExtern => Projekteinstellungen.Einstellungen.Betriebssystem);

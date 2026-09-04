@@ -6,6 +6,7 @@ with Sf.Graphics.Color;
 
 with SonstigesKonstanten;
 with GrafikKonstanten;
+with SFMLKonstanten;
 
 with LeseEinstellungenGrafik;
 with SchreibeGrafiktask;
@@ -65,7 +66,7 @@ package body FensterGrafik is
                                                                height       => Startauflösung.y,
                                                                bitsPerPixel => LeseEinstellungenGrafik.Farbtiefe
                                                               ),
-                                                     title => SonstigesKonstanten.Spielname & " - " & SonstigesKonstanten.Versionsnummer,
+                                                     title => SonstigesKonstanten.Spielname & " - " & SonstigesKonstanten.Versionsnummer & SFMLKonstanten.SFMLVersion,
                                                      style => Fenstermodus);
       
    end FensterErzeugenErweitert;
