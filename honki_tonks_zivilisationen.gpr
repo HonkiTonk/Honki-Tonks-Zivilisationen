@@ -18,19 +18,19 @@ project Honki_Tonks_Zivilisationen is
       when "Linux" =>
          case Status is
             when "Entwicklung" =>
-               for Source_Dirs use ("src/**", "srcSystem/Entwicklung", "srcSystem/SFML2526/**", "config");
+               for Source_Dirs use ("src/**", "srcSystem/Entwicklung", "srcSystem/SFML26/**", "config");
 
             when "Veroeffentlichung" =>
-               for Source_Dirs use ("src/**", "srcSystem/Veroeffentlichung/**", "srcSystem/SFML2526/**", "config");
+               for Source_Dirs use ("src/**", "srcSystem/Veroeffentlichung/**", "srcSystem/SFML26/**", "config");
          end case;
 
       when "Windows" =>
          case Status is
             when "Entwicklung" =>
-               for Source_Dirs use ("src/**", "srcSystem/EntwicklungWindows", "srcSystem/SFML2526/**", "config");
+               for Source_Dirs use ("src/**", "srcSystem/EntwicklungWindows", "srcSystem/SFML26/**", "config");
 
             when "Veroeffentlichung" =>
-               for Source_Dirs use ("src/**", "srcSystem/VeroeffentlichungWindows", "srcSystem/SFML2526/**", "config");
+               for Source_Dirs use ("src/**", "srcSystem/VeroeffentlichungWindows", "srcSystem/SFML26/**", "config");
          end case;
    end case;
 
