@@ -302,6 +302,16 @@ package body LeseGrafiktask is
    
    
    
+   function Zeichenanzahl
+     return SystemDatentypenHTSEB.EigenesNatural
+   is begin
+      
+      return Grafiktask.Eingabe.Zeichenanzahl;
+      
+   end Zeichenanzahl;
+   
+   
+   
    function Vorzeicheneingabe
      return Boolean
    is begin

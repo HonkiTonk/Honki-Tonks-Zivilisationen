@@ -54,6 +54,7 @@ package Grafiktask is
                                                  Vorzeicheneingabe     => False,
                                                  Eingabeart            => GrafikDatentypen.Keine_Eingabe_Enum,
                                                  Zahleneingabe         => SystemDatentypenHTSEB.EigenesNatural'First,
+                                                 Zeichenanzahl         => 0,
                                                  MaustasteGehalten     => False,
                                                  TastaturtasteGehalten => False
                                                  

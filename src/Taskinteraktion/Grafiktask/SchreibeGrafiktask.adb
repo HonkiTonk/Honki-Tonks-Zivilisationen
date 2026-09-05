@@ -304,11 +304,14 @@ package body SchreibeGrafiktask is
    
    
    
+   -- ZeichenanzahlExtern = 0 ist beliebig viele Zeichen, > 0 ist die Anzahl an erlaubten Zeichen.
    procedure Texteingabe
-     (JaNeinExtern : in Boolean)
+     (JaNeinExtern : in Boolean;
+      ZeichenanzahlExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       Grafiktask.Eingabe.Texteingabe := JaNeinExtern;
+      Grafiktask.Eingabe.Zeichenanzahl := ZeichenanzahlExtern;
       
    end Texteingabe;
    

@@ -23,6 +23,10 @@ package TexteingabeLogik is
    function SpielstandName
      return SystemRecordsHTSEB.TextEingabeRecord;
    
+   function ZeichenEingeben
+     (FrageExtern : in Positive)
+      return SystemRecordsHTSEB.ZeichenEingabeRecord;
+   
 private
    
    Frage : Positive;
@@ -32,7 +36,7 @@ private
    
    
    function NameEingeben
-     (WelcheFrageExtern : in Positive)
+     (FrageExtern : in Positive)
       return SystemRecordsHTSEB.TextEingabeRecord;
 
 end TexteingabeLogik;

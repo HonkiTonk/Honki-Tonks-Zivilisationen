@@ -124,6 +124,8 @@ package TaskRecords is
    
       Zahleneingabe : SystemDatentypenHTSEB.EigenesNatural;
       
+      Zeichenanzahl : SystemDatentypenHTSEB.EigenesNatural;
+      
       MaustasteGehalten : Boolean;
       TastaturtasteGehalten : Boolean;
       

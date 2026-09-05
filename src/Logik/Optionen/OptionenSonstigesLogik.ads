@@ -23,6 +23,8 @@ private
    
    EingegebeneZahl : SystemRecordsHTSEB.ZahlenEingabeRecord;
    
+   EingegebenesZeichen : SystemRecordsHTSEB.ZeichenEingabeRecord;
+   
    procedure AnzahlAutomatischerSpielstände;
    procedure RundenBisAutospeichern;
    procedure SpracheWechseln;

@@ -20,5 +20,14 @@ package SystemRecordsHTSEB is
       EingegebenerText : Unbounded_Wide_Wide_String;
       
    end record;
+   
+   
+
+   type ZeichenEingabeRecord is record
+      
+      ErfolgreichAbbruch : Boolean;
+      EingegebenesZeichen : Wide_Wide_Character;
+      
+   end record;
 
 end SystemRecordsHTSEB;

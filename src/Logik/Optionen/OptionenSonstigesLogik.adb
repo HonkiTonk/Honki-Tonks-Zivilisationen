@@ -1,6 +1,5 @@
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with TextKonstantenHTSEB;
+with UmwandlungsvariablenHTSEB;
 
 with MenueDatentypen;
 with TextnummernKonstanten;
@@ -17,6 +16,7 @@ with ZahleneingabeLogik;
 with AuswahlaufteilungLogik;
 with MeldungssystemHTSEB;
 with EinlesenSetsLogik;
+with TexteingabeLogik;
 
 package body OptionenSonstigesLogik is
 
@@ -139,11 +139,18 @@ package body OptionenSonstigesLogik is
    procedure Dezimaltrennzeichen
    is begin
       
-      null;
+      EingegebenesZeichen := TexteingabeLogik.ZeichenEingeben (FrageExtern => 1);
       
-      -- Get_Immediate (Eingabe);
-      
-      -- SchreibeOptionen.Dezimaltrennzeichen (ZeichenExtern => Eingabe);
+      case
+        EingegebenesZeichen.ErfolgreichAbbruch
+      is
+         when True =>
+            SchreibeOptionen.Dezimaltrennzeichen (ZeichenExtern => EingegebenesZeichen.EingegebenesZeichen);
+            UmwandlungsvariablenHTSEB.TrennzeichenWechseln (TrennzeichenExtern => EingegebenesZeichen.EingegebenesZeichen);
+            
+         when False =>
+            null;
+      end case;
       
    end Dezimaltrennzeichen;
 

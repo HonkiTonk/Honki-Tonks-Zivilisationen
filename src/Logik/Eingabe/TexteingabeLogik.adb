@@ -39,7 +39,7 @@ package body TexteingabeLogik is
          SchreibeLogiktask.Texteingabe (TextExtern => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
       end if;
                                             
-      return NameEingeben (WelcheFrageExtern => Frage);
+      return NameEingeben (FrageExtern => Frage);
       
    end StadtName;
    
@@ -49,7 +49,7 @@ package body TexteingabeLogik is
      return SystemRecordsHTSEB.TextEingabeRecord
    is begin
       
-      Name := NameEingeben (WelcheFrageExtern => TextnummernKonstanten.FrageSpielstandname);
+      Name := NameEingeben (FrageExtern => TextnummernKonstanten.FrageSpielstandname);
       
       case
         Name.ErfolgreichAbbruch
@@ -76,12 +76,12 @@ package body TexteingabeLogik is
    
    
    function NameEingeben
-     (WelcheFrageExtern : in Positive)
+     (FrageExtern : in Positive)
       return SystemRecordsHTSEB.TextEingabeRecord
    is begin
             
       case
-        WelcheFrageExtern
+        FrageExtern
       is
          when TextnummernKonstanten.FrageStadtname =>
             null;
@@ -90,11 +90,12 @@ package body TexteingabeLogik is
             SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordsKonstantenHTSEB.LeerTexteingabe);
       end case;
       
-      SchreibeGrafiktask.Fragenanzeige (FrageExtern => WelcheFrageExtern);
+      SchreibeGrafiktask.Fragenanzeige (FrageExtern => FrageExtern);
       SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Text_Eingabe_Enum);
       
       SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
-      SchreibeGrafiktask.Texteingabe (JaNeinExtern => True);
+      SchreibeGrafiktask.Texteingabe (JaNeinExtern        => True,
+                                      ZeichenanzahlExtern => 0);
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
@@ -104,6 +105,28 @@ package body TexteingabeLogik is
       
    end NameEingeben;
    
-   -- Texteingabe mit Begrenzung auf ein Zeichen einbauen, dann kann ich theoretisch alls Zeichen erlauben und nicht nur die die die SFML zulässt? äöü
+   
+   
+   function ZeichenEingeben
+     (FrageExtern : in Positive)
+      return SystemRecordsHTSEB.ZeichenEingabeRecord
+   is begin
+      
+      SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordsKonstantenHTSEB.LeerTexteingabe);
+      
+      SchreibeGrafiktask.Fragenanzeige (FrageExtern => FrageExtern);
+      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Text_Eingabe_Enum);
+      
+      SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
+      SchreibeGrafiktask.Texteingabe (JaNeinExtern        => True,
+                                      ZeichenanzahlExtern => 1);
+      
+      EingabeAllgemeinLogik.EingabeAbwarten;
+      
+      EingabeAllgemeinLogik.LeerEingabeartFrage;
+      
+      return (LeseLogiktask.ErfolgTexteingabe, To_Wide_Wide_String (Source => LeseLogiktask.Texteingabe) (1));
+      
+   end ZeichenEingeben;
 
 end TexteingabeLogik;

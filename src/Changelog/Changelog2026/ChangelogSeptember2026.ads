@@ -169,17 +169,18 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (06.09.2026):
+   -- Version 0.06.4625 => 0.06. (06.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4590 => 0.06. (05.09.2026):
+   -- Version 0.06.4590 => 0.06.4625 (05.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Funktion eingebaut mit der man sein Dezimaltrennzeichen selbst bestimmen kann.
+   -- Funktion eingebaut mit der man nur ein einzelnes, beliebiges Zeichen eingeben kann.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

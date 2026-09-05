@@ -108,6 +108,9 @@ package LeseGrafiktask is
    function Texteingabe
      return Boolean;
    
+   function Zeichenanzahl
+     return SystemDatentypenHTSEB.EigenesNatural;
+   
    function Vorzeicheneingabe
      return Boolean;
    

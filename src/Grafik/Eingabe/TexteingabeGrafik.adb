@@ -20,11 +20,19 @@ with FensterGrafik;
 package body TexteingabeGrafik is
 
    procedure Texteingabe
+     (ZeichenanzahlExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is
       use type Sf.sfBool;
       use type Sf.Window.Keyboard.sfKeyCode;
       use type Sf.Window.Mouse.sfMouseButton;
    begin
+      
+      case
+        ZeichenanzahlExtern
+      is
+         when others =>
+            null;
+      end case;
       
       TextSchleife:
       while
@@ -76,7 +84,8 @@ package body TexteingabeGrafik is
                         SchreibeLogiktask.Texteingabe (TextExtern => TextGeprüft.EingegebenerText);
                         
                         SchreibeLogiktask.ErfolgTexteingabe (ErfolgExtern => True);
-                        SchreibeGrafiktask.Texteingabe (JaNeinExtern => False);
+                        SchreibeGrafiktask.Texteingabe (JaNeinExtern        => False,
+                                                        ZeichenanzahlExtern => 0);
                         SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
                         
                      when False =>
@@ -116,7 +125,8 @@ package body TexteingabeGrafik is
    is begin
       
       SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordsKonstantenHTSEB.LeerTexteingabe);
-      SchreibeGrafiktask.Texteingabe (JaNeinExtern => False);
+      SchreibeGrafiktask.Texteingabe (JaNeinExtern => False,
+                                      ZeichenanzahlExtern => 0);
       SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
       
    end Abbruch;

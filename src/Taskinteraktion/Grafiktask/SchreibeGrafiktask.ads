@@ -108,7 +108,8 @@ package SchreibeGrafiktask is
      (JaNeinExtern : in Boolean);
    
    procedure Texteingabe
-     (JaNeinExtern : in Boolean);
+     (JaNeinExtern : in Boolean;
+      ZeichenanzahlExtern : in SystemDatentypenHTSEB.EigenesNatural);
    
    procedure Vorzeicheneingabe
      (JaNeinExtern : in Boolean);

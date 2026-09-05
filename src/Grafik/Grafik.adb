@@ -190,7 +190,7 @@ package body Grafik is
         LeseGrafiktask.Texteingabe
       is
          when True =>
-            TexteingabeGrafik.Texteingabe;
+            TexteingabeGrafik.Texteingabe (ZeichenanzahlExtern => LeseGrafiktask.Zeichenanzahl);
                
          when False =>
             null;

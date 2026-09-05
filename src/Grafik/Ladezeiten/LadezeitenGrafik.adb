@@ -92,7 +92,6 @@ package body LadezeitenGrafik is
       WelcheZeit := TextaccessVariablen.LadezeitenAccess'First;
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-      MaximalerLadefortschritt := "100" & LeseOptionen.Dezimaltrennzeichen & "00";
                      
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Kartengenerator_Enum'Range loop
@@ -123,7 +122,6 @@ package body LadezeitenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
-      MaximalerLadefortschritt := "100" & LeseOptionen.Dezimaltrennzeichen & "00";
       
       KIRechnetSchleife:
       for KIRechnetSchleifenwert in LadezeitenDatentypen.KI_Enum'Range loop
@@ -155,7 +153,6 @@ package body LadezeitenGrafik is
       WelcheZeit := TextaccessVariablen.SpielstandzeitAccess'First;
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-      MaximalerLadefortschritt := "100" & LeseOptionen.Dezimaltrennzeichen & "00";
       
       SpeichernSchleife:
       for SpeichernSchleifenwert in LadezeitenDatentypen.Spielstand_Enum'Range loop
@@ -200,7 +197,6 @@ package body LadezeitenGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-      MaximalerLadefortschritt := "100" & LeseOptionen.Dezimaltrennzeichen & "00";
       
       Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitBerechne) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (KommazahlExtern => LadezeitenLogik.Rundenende)
         & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
@@ -213,5 +209,15 @@ package body LadezeitenGrafik is
       return Textposition.y;
       
    end Rundenende;
+   
+   
+   
+   function MaximalerLadefortschritt
+     return Wide_Wide_String
+   is begin
+      
+      return "100" & LeseOptionen.Dezimaltrennzeichen & "00";
+      
+   end MaximalerLadefortschritt;
 
 end LadezeitenGrafik;

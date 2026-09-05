@@ -2,12 +2,15 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.Window.Event;
 
+with SystemDatentypenHTSEB;
+
 private with SystemRecordsHTSEB;
 
 package TexteingabeGrafik is
    pragma Elaborate_Body;
 
-   procedure Texteingabe;
+   procedure Texteingabe
+     (ZeichenanzahlExtern : in SystemDatentypenHTSEB.EigenesNatural);
 
 private
    use Ada.Strings.Wide_Wide_Unbounded;

@@ -30,8 +30,6 @@ private
    
    WelcheZeit : Positive;
    
-   MaximalerLadefortschritt : Wide_Wide_String (1 .. 6);
-   
    Text : Unbounded_Wide_Wide_String;
          
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
@@ -86,6 +84,13 @@ private
            
        Post => (
                   KI'Result >= 0.00
+               );
+   
+   function MaximalerLadefortschritt
+     return Wide_Wide_String
+     with
+       Post => (
+                  MaximalerLadefortschritt'Result'Length = 6
                );
    
    function ZahlAlsString is new UmwandlungssystemHTSEB.Kommazahlenstring (Kommazahl => Float);
