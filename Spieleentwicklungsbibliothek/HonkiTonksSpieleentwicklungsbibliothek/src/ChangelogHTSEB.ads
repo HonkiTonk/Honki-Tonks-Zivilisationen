@@ -1,9 +1,16 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.2400 => 0.01.2 (..2026):
+   -- Version 0.01.2450 => 0.01.2 (..2026):
    
    -- 
+   
+   
+   
+   -- Version 0.01.2400 => 0.01.2450 (06.09.2026):
+   
+   -- SystemRecordsHTSEB um ZeichenEingabeRecord erweitert.
+   -- Versionsnummerangabe um die SFML version erweitert.
    
    
    

@@ -162,16 +162,17 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (07.09.2026):
+   -- Version 0.06.4660 => 0.06. (07.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4625 => 0.06. (06.09.2026):
+   -- Version 0.06.4625 => 0.06.4660 (06.09.2026):
    
-   -- 
+   -- Spieleentwicklungsbibliothek auf Version 0.01.2450 aktualisiert.
+   -- Packen.sh überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    

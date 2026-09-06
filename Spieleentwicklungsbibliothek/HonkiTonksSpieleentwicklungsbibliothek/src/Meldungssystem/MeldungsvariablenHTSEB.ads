@@ -30,6 +30,7 @@ package MeldungsvariablenHTSEB is
 private
    
    FehlerMeldung : Boolean := True;
+   
    Versionsnummer : Wide_Wide_String (1 .. 18) := "0.00.0000|SFML X.Y";
 
 end MeldungsvariablenHTSEB;

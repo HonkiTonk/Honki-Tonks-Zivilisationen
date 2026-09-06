@@ -1,6 +1,6 @@
-rm /mnt/Programme/Ada/GitHub/ -r
-mkdir /mnt/Programme/Ada/GitHub
-cd /mnt/Programme/Ada/GitHub/
+rm /mnt/Programme/Ada/GitHub/Neu/ -r
+mkdir /mnt/Programme/Ada/GitHub/Neu
+cd /mnt/Programme/Ada/GitHub/Neu
 mkdir Honki\ Tonks\ Zivilisationen\ Linux
 mkdir Honki\ Tonks\ Zivilisationen\ Windows
 
@@ -34,6 +34,18 @@ tar cfv Honki_Tonks_Zivilisationen_Linux64_SFML26.tar Honki\ Tonks\ Zivilisation
 bzip2 -9 Honki_Tonks_Zivilisationen_Linux64_SFML26.tar
 
 read -p "Linux26 fertig." -n1 -s
+
+
+
+# A/C/SFML 3.0.X
+# gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Release30.gpr
+
+# cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Honki\ Tonks\ Zivilisationen Honki\ Tonks\ Zivilisationen\ Linux/
+
+# tar cfv Honki_Tonks_Zivilisationen_Linux64_SFML30.tar Honki\ Tonks\ Zivilisationen\ Linux/
+# bzip2 -9 Honki_Tonks_Zivilisationen_Linux64_SFML30.tar
+
+# read -p "Linux30 fertig." -n1 -s
 
 
 
@@ -74,4 +86,15 @@ read -p "Windows26 fertig." -n1 -s
 
 
 
-gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen25.gpr
+# A/C/SFML 3.0.X
+# gprbuild -d -f -P /mnt/Programme/Ada/Zivilisationen/HonkiTonksZivilisationen_Windows_Release30.gpr --target=x86_64-w64-mingw32
+
+# cp /mnt/Programme/Ada/Zivilisationen/DLL/CSFML2.6.1_SFML2.6.2/. Honki\ Tonks\ Zivilisationen\ Windows -r
+
+# read -p "Windows30 kompilieren." -n1 -s
+
+# cp /mnt/Programme/Ada/Zivilisationen/Honki\ Tonks\ Zivilisationen/Honki\ Tonks\ Zivilisationen.exe Honki\ Tonks\ Zivilisationen\ Windows/
+
+# zip -9 -r Honki_Tonks_Zivilisationen_Windows64_SFML26.zip Honki\ Tonks\ Zivilisationen\ Windows/
+
+# read -p "Windows30 fertig." -n1 -s
