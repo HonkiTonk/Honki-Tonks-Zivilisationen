@@ -193,6 +193,38 @@ package body SpieleinstellungenKartenLogik is
       return (Senkrechte, Waagerechte);
       
    end GrößeSelbstBestimmen;
+   
+   
+   
+   procedure KartenebeneWählen
+   is begin
+      
+      KartenebeneSchleife:
+      loop
+         
+         KartenebeneAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum);
+         
+         case
+           KartenebeneAuswahl
+         is
+            -- Standard
+            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenebene := KartenRecordKonstanten.StandardKartenebenen;
+               
+               -- Zufall
+            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+               null;
+               
+            when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
+               exit KartenebeneSchleife;
+               
+            when others =>
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenebeneWählen: Falsche Auswahl: " & KartenebeneAuswahl'Wide_Wide_Image);
+         end case;
+         
+      end loop KartenebeneSchleife;
+      
+   end KartenebeneWählen;
 
 
 
@@ -496,7 +528,7 @@ package body SpieleinstellungenKartenLogik is
             when RueckgabeDatentypen.Kartenressourcen_Enum'Range =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen := UmwandlungenDatentypen.KartenressourcenrückgabeNachKartenressource (RückgabeExtern => KartenressourcenAuswahl);
                
-            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+            when RueckgabeDatentypen.Auswahl_Acht_Enum =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenressourcen;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>

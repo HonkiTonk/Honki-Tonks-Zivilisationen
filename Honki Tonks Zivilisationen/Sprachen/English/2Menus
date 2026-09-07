@@ -108,7 +108,7 @@ Exit
 ~2~
 ~3~
 #################################
-Game settings
+Various settings
 Numbers of autosaves
 Rounds to autosave
 Change language
@@ -217,9 +217,10 @@ Exit menu
 Current Opinion:
 Current state:
 #################################
-Settings
+Game Settings
 Map poles
 Map size
+Map planes
 Map type
 Map shape
 Map temperature

@@ -36,7 +36,8 @@ private
    Steuerungsmenü : constant Positive := Soundmenü + Menuetexte.Steuerungsmenü'Last;
    Sonstigesmenü : constant Positive := Steuerungsmenü + Menuetexte.Spieleinstellungsmenü'Last;
    Kartengröße : constant Positive := Sonstigesmenü + Menuetexte.Kartengröße'Last;
-   Kartenart : constant Positive := Kartengröße + Menuetexte.Kartenart'Last;
+   Kartenebene : constant Positive := Kartengröße + Menuetexte.Kartenebene'Last;
+   Kartenart : constant Positive := Kartenebene + Menuetexte.Kartenart'Last;
    Kartentemperatur : constant Positive := Kartenart + Menuetexte.Kartentemperatur'Last;
    Speziesauswahl : constant Positive := Kartentemperatur + Menuetexte.Speziesauswahl'Last;
    Schwierigkeitsgrad : constant Positive := Speziesauswahl + Menuetexte.Schwierigkeitsgrad'Last;
@@ -107,7 +108,7 @@ private
    Dateiname : Unbounded_Wide_Wide_String;
    GesamterPfad : Unbounded_Wide_Wide_String;
    
-   type ErsetzungenEingelesenArray is array (1 .. 6) of Unbounded_Wide_Wide_String;
+   type ErsetzungenEingelesenArray is array (1 .. 7) of Unbounded_Wide_Wide_String;
    ErsetzungenEingelesen : ErsetzungenEingelesenArray := (others => TextKonstantenHTSEB.FehlenderText);
    
    procedure Debugmenü;

@@ -16,6 +16,8 @@ with MausauswahlLogik;
 with OftVerwendeterSound;
 with EingabeAllgemeinLogik;
 
+-- Belegung auf einzelnen Charakter statt Taste umschreiben? äöü
+-- Dann kann ich natürlich keine Systemtasten mehr benutzen. äöü
 package body SteuerungsauswahlLogik is
       
    function Auswahl

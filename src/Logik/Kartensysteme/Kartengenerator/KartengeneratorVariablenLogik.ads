@@ -24,8 +24,13 @@ package KartengeneratorVariablenLogik is
    SchleifenanfangOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
    SchleifenendeOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
 
-   type StandardKartenressourcenWahrscheinlichkeitenArray is array (KartenartDatentypen.Kartenressourcenmenge_Enum'Range, KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range) of SystemDatentypenHTSEB.EinsBisHundert;
+   type StandardKartenressourcenWahrscheinlichkeitenArray is array (KartenartDatentypen.Kartenressourcenmenge_Enum'Range, KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    StandardKartenressourcenWahrscheinlichkeiten : constant StandardKartenressourcenWahrscheinlichkeitenArray := (
+                                                                                                                 KartenartDatentypen.Kartenressourcen_Keine_Enum =>
+                                                                                                                   (
+                                                                                                                    others => 0
+                                                                                                                   ),
+
                                                                                                                  KartenartDatentypen.Kartenressourcen_Arm_Enum =>
                                                                                                                    (
                                                                                                                     KartenextraDatentypen.Fisch_Enum              => 1,
@@ -84,6 +89,11 @@ package KartengeneratorVariablenLogik is
                                                                                                                     KartenextraDatentypen.Öl_Enum                 => 6,
                                                                                                                     KartenextraDatentypen.Hochwertiger_Boden_Enum => 6,
                                                                                                                     KartenextraDatentypen.Gold_Enum               => 6
+                                                                                                                   ),
+
+                                                                                                                 KartenartDatentypen.Kartenressourcen_Überall_Enum =>
+                                                                                                                   (
+                                                                                                                    others => 100
                                                                                                                    )
                                                                                                                 );
 

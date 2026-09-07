@@ -31,7 +31,7 @@ private
                  RahmendickeExtern >= 0.00
               );
 
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (RahmendickeExtern : in Float)
      with
        Pre => (

@@ -108,7 +108,7 @@ Verlassen
 ~2~
 ~3~
 #################################
-Spieleinstellungen
+Sonstige Einstellungen
 Anzahl automatischer Spielstände
 Runden bis Autospeichern
 Sprache ändern
@@ -127,18 +127,28 @@ Groß
 Riesig
 Gigantisch
 Absurd
-Benutzerdefiniert
+~7~
 Zufällige vordefinierte Größe
 Zufällige nicht vordefinierte Größe
 ~5~
 Aktuelle Größe:
 Neue Größe:
 #################################
+Kartenebene wählen:
+Planetenkern
+Untergrund/Unterwasser (2 von 18 Spezies starten hier)
+Oberfläche (16 von 18 Spezies starten hier)
+Himmel
+Weltraum
+~4~
+~6~
+~5~
+#################################
 Kartenart wählen:
 Inseln
 Kontinente
 Pangäa
-Benutzerdefiniert
+~7~
 Zufällige vordefinierte Kartenart
 Zufällige nicht vordefinierte Kartenart
 ~4~
@@ -198,11 +208,13 @@ Verschobener rückwärts Übergang
 Verschobener Übergang
 #################################
 Vorhandene Ressourcenmenge wählen:
+Keine
 Arm
 Wenig
 Mittel
 Viel
 Überfluss
+Überall
 ~6~
 ~5~
 #################################
@@ -217,9 +229,10 @@ Menü verlassen
 Aktuelle Meinung:
 Aktueller Zustand:
 #################################
-Einstellungen
+Spieleinstellungen
 Kartenpole
 Kartengröße
+Kartenebenen
 Kartenart
 Kartenform
 Kartentemperatur

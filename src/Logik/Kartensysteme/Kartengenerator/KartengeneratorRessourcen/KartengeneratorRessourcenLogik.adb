@@ -17,6 +17,7 @@ package body KartengeneratorRessourcenLogik is
    is
    
       -- Später noch Ressourcen für weitere Ebenen einbauen. äöü
+      -- Nach Einbau einer freien Auswahl, die ganzen Ressourcengeneratoren überarbeiten.
       task RessourcenUnterfläche;
       task RessourcenKern;
       

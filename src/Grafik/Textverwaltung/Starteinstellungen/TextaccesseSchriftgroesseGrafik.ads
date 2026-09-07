@@ -27,7 +27,7 @@ private
      (ÜberschriftExtern : in Sf.sfUint32;
       StandardExtern : in Sf.sfUint32);
 
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (StandardExtern : in Sf.sfUint32);
 
    procedure Sprachauswahl

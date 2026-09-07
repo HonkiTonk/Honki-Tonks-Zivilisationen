@@ -155,17 +155,19 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (08.09.2026):
+   -- Version 0.06.4710 => 0.06. (08.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4660 => 0.06. (07.09.2026):
+   -- Version 0.06.4660 => 0.06.4710 (07.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Zeicheneingabesystem überarbeitet.
+   -- Es ist jetzt möglich Ressourcen Überall oder Nirgends erscheinen zu lassen.
+   -- Angefangen ein System einzubauen um die vorhandenen Ebenen einstellen zu können.
+   -- Contacts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

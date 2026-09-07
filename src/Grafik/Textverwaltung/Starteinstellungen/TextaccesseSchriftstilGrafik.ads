@@ -41,7 +41,7 @@ private
                  StilExtern <= 8
               );
 
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (StilExtern : in Sf.Graphics.Text.sfTextStyle)
      with
        Pre => (

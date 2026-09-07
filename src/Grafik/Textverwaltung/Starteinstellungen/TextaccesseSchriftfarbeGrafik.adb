@@ -19,7 +19,7 @@ package body TextaccesseSchriftfarbeGrafik is
       Spezies (ÜberschriftExtern => ÜberschriftExtern,
                StandardExtern    => StandardExtern);
       
-      ZusatztextKartengröße (StandardExtern => StandardExtern);
+      ZusatztextKarteneinstellungen (StandardExtern => StandardExtern);
       
       Sprachauswahl (StandardExtern => StandardExtern);
       
@@ -501,7 +501,7 @@ package body TextaccesseSchriftfarbeGrafik is
       
       
    
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (StandardExtern : in Sf.Graphics.Color.sfColor)
    is begin
             
@@ -513,7 +513,17 @@ package body TextaccesseSchriftfarbeGrafik is
          
       end loop ZusatztextKartengrößeSchleife;
       
-   end ZusatztextKartengröße;
+      
+      
+      ZusatztextKartenebenenSchleife:
+      for ZusatztextKartenebenenSchleifechleifenwert in TextaccessVariablen.ZusatztextKartenebenenAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZusatztextKartenebenenAccess (ZusatztextKartenebenenSchleifechleifenwert),
+                                    color => StandardExtern);
+         
+      end loop ZusatztextKartenebenenSchleife;
+      
+   end ZusatztextKarteneinstellungen;
    
    
    

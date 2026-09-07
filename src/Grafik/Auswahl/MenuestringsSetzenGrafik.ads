@@ -64,7 +64,7 @@ private
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 WelcheZeileExtern <= MenueKonstanten.EndeMenü (MenueDatentypen.Spieleinstellungen_Menü_Enum)
+                 WelcheZeileExtern <= MenueKonstanten.EndeMenü (MenueDatentypen.Sonstige_Einstellungen_Menü_Enum)
               );
    
    function ZahlAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => Natural);

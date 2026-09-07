@@ -10,7 +10,7 @@ package body TextaccesseSchriftstilGrafik is
       Allgemeines (StilExtern => StilExtern);
       Menüs (StilExtern => StilExtern);
       Spezies (StilExtern => StilExtern);
-      ZusatztextKartengröße (StilExtern => StilExtern);
+      ZusatztextKarteneinstellungen (StilExtern => StilExtern);
       Sprachauswahl (StilExtern => StilExtern);
       StadtInformationen (StilExtern => StilExtern);
       EinheitenInformationen (StilExtern => StilExtern);
@@ -494,7 +494,7 @@ package body TextaccesseSchriftstilGrafik is
       
       
    
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (StilExtern : in Sf.Graphics.Text.sfTextStyle)
    is begin
       
@@ -506,7 +506,17 @@ package body TextaccesseSchriftstilGrafik is
          
       end loop ZusatztextKartengrößeSchleife;
       
-   end ZusatztextKartengröße;
+      
+      
+      ZusatztextKartenebenenSchleife:
+      for ZusatztextKartenebenenSchleifechleifenwert in TextaccessVariablen.ZusatztextKartenebenenAccess'Range loop
+         
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.ZusatztextKartenebenenAccess (ZusatztextKartenebenenSchleifechleifenwert),
+                                    style => StilExtern);
+         
+      end loop ZusatztextKartenebenenSchleife;
+      
+   end ZusatztextKarteneinstellungen;
    
       
    

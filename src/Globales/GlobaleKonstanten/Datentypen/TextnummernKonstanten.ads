@@ -110,9 +110,10 @@ package TextnummernKonstanten is
    FrageMusiklautstärke : constant Positive := FrageSoundlautstärke + 1;
    FrageBauprojektWechseln : constant Positive := FrageMusiklautstärke + 1;
    FrageForschungsprojektWechseln : constant Positive := FrageBauprojektWechseln + 1;
+   FrageDezimaltrennzeichen : constant Positive := FrageForschungsprojektWechseln + 1;
    
    AnfangFrage : constant Positive := 1;
-   EndeFrage : constant Positive := FrageForschungsprojektWechseln;
+   EndeFrage : constant Positive := FrageDezimaltrennzeichen;
    
    
    

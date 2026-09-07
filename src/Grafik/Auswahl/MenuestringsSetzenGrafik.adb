@@ -47,6 +47,9 @@ package body MenuestringsSetzenGrafik is
          when MenueDatentypen.Kartengröße_Menü_Enum =>
             AktuellerText := Menuetexte.Kartengröße (WelcheZeileExtern);
             
+            when MenueDatentypen.Kartenebene_Menü_Enum =>
+            AktuellerText := Menuetexte.Kartenebene (WelcheZeileExtern);
+            
          when MenueDatentypen.Kartenart_Menü_Enum =>
             AktuellerText := Menuetexte.Kartenart (WelcheZeileExtern);
             
@@ -71,7 +74,7 @@ package body MenuestringsSetzenGrafik is
          when MenueDatentypen.Sound_Menü_Enum =>
             AktuellerText := Soundmenü (WelcheZeileExtern => WelcheZeileExtern);
             
-         when MenueDatentypen.Spieleinstellungen_Menü_Enum =>
+         when MenueDatentypen.Sonstige_Einstellungen_Menü_Enum =>
             AktuellerText := Spieleinstellungen (WelcheZeileExtern => WelcheZeileExtern);
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
@@ -80,7 +83,7 @@ package body MenuestringsSetzenGrafik is
          when MenueDatentypen.Editoren_Menü_Enum =>
             AktuellerText := Menuetexte.Editorenmenü (WelcheZeileExtern);
             
-         when MenueDatentypen.Einstellungen_Menü_Enum =>
+         when MenueDatentypen.Spieleinstellungen_Menü_Enum =>
             AktuellerText := Menuetexte.Einstellungsmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Debug_Menü_Enum =>

@@ -370,11 +370,18 @@ package body EinlesenTextLogik is
                                                                                             VorhandenerTextExtern  => Menuetexte.Kartengröße (AktuelleZeile - Sonstigesmenü));
                   
                elsif
-                 AktuelleZeile in Kartengröße + 1 .. Kartenart
+                 AktuelleZeile in Kartengröße + 1 .. Kartenebene
                then
-                  Menuetexte.Kartenart (AktuelleZeile - Kartengröße) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                  Menuetexte.Kartenebene (AktuelleZeile - Kartengröße) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                            EingelesenerTextExtern => Zwischenspeicher,
+                                                                                            VorhandenerTextExtern  => Menuetexte.Kartenebene (AktuelleZeile - Kartengröße));
+                  
+               elsif
+                 AktuelleZeile in Kartenebene + 1 .. Kartenart
+               then
+                  Menuetexte.Kartenart (AktuelleZeile - Kartenebene) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                                                                        EingelesenerTextExtern => Zwischenspeicher,
-                                                                                       VorhandenerTextExtern  => Menuetexte.Kartenart (AktuelleZeile - Kartengröße));
+                                                                                       VorhandenerTextExtern  => Menuetexte.Kartenart (AktuelleZeile - Kartenebene));
                   
                elsif
                  AktuelleZeile in Kartenart + 1 .. Kartentemperatur

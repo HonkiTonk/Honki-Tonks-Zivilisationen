@@ -25,6 +25,12 @@ package body KartengeneratorLandressourcenLogik is
          GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
+           KartengeneratorVariablenLogik.KartenressourcenWahrscheinlichkeiten (ZufallszahlSchleifenwert) = 100
+         then
+            Zahlenspeicher := GezogeneZahl;
+            WelcheRessource := ZufallszahlSchleifenwert;
+            
+         elsif
            GezogeneZahl > KartengeneratorVariablenLogik.KartenressourcenWahrscheinlichkeiten (ZufallszahlSchleifenwert)
            or
              GezogeneZahl = 0

@@ -22,7 +22,7 @@ private
      (ÜberschriftExtern : in Sf.Graphics.Color.sfColor;
       StandardExtern : in Sf.Graphics.Color.sfColor);
 
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (StandardExtern : in Sf.Graphics.Color.sfColor);
 
    procedure Sprachauswahl

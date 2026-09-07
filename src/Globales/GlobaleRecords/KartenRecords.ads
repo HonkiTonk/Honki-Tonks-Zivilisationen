@@ -242,9 +242,14 @@ package KartenRecords is
    
    
    
+   type KartenebenenVorhandenRecord is new EffekthöheRecord;
+   
+   
+   
    type PermanenteKartenparameterRecord is record
       
       Kartengröße : KartenfeldumgebungPositivRecord;
+      Kartenebene : KartenebenenVorhandenRecord;
       Kartenform : KartenformRecord;
       
    end record;
@@ -254,6 +259,7 @@ package KartenRecords is
    type TemporäreKartenparameterRecord is record
       
       Kartengröße : KartenfeldumgebungPositivRecord;
+      Kartenebene : KartenebenenVorhandenRecord;
       Kartenform : KartenformRecord;
             
       Kartenart : KartenartDatentypen.Kartenart_Enum;

@@ -10,35 +10,36 @@ package MenueKonstanten is
    EndeMenü : constant EndeMenüArray := (
                                            -- Einfache Menüs.
                                            -- Ohne Überschrift.
-                                           MenueDatentypen.Haupt_Menü_Enum              => 8,
-                                           MenueDatentypen.Spiel_Menü_Enum              => 7,
+                                           MenueDatentypen.Haupt_Menü_Enum                  => 8,
+                                           MenueDatentypen.Spiel_Menü_Enum                  => 7,
 
                                            -- Mit Überschrift.
-                                           MenueDatentypen.Optionen_Menü_Enum           => 8,
-                                           MenueDatentypen.Einstellungen_Menü_Enum      => 12,
-                                           MenueDatentypen.Editoren_Menü_Enum           => 10,
-                                           MenueDatentypen.Spieleinstellungen_Menü_Enum => 8,
-                                           MenueDatentypen.Grafik_Menü_Enum             => 11,
-                                           MenueDatentypen.Sound_Menü_Enum              => 8,
-                                           MenueDatentypen.Debug_Menü_Enum              => 11,
-                                           MenueDatentypen.Kartenart_Menü_Enum          => 9,
-                                           MenueDatentypen.Kartentemperatur_Menü_Enum   => 8,
-                                           MenueDatentypen.Kartenressourcen_Menü_Enum   => 8,
-                                           MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => 6,
-                                           MenueDatentypen.Kartengröße_Menü_Enum        => 16,
-                                           MenueDatentypen.Diplomatie_Menü_Enum         => 10,
-                                           MenueDatentypen.Handel_Menü_Enum             => 10,
-                                           MenueDatentypen.Kartenpole_Menü_Enum         => 8,
+                                           MenueDatentypen.Optionen_Menü_Enum               => 8,
+                                           MenueDatentypen.Spieleinstellungen_Menü_Enum     => 13,
+                                           MenueDatentypen.Editoren_Menü_Enum               => 10,
+                                           MenueDatentypen.Sonstige_Einstellungen_Menü_Enum => 8,
+                                           MenueDatentypen.Grafik_Menü_Enum                 => 11,
+                                           MenueDatentypen.Sound_Menü_Enum                  => 8,
+                                           MenueDatentypen.Debug_Menü_Enum                  => 11,
+                                           MenueDatentypen.Kartenart_Menü_Enum              => 9,
+                                           MenueDatentypen.Kartentemperatur_Menü_Enum       => 8,
+                                           MenueDatentypen.Kartenressourcen_Menü_Enum       => 10,
+                                           MenueDatentypen.Schwierigkeitsgrad_Menü_Enum     => 6,
+                                           MenueDatentypen.Kartengröße_Menü_Enum            => 16,
+                                           MenueDatentypen.Kartenebene_Menü_Enum            => 11,
+                                           MenueDatentypen.Diplomatie_Menü_Enum             => 10,
+                                           MenueDatentypen.Handel_Menü_Enum                 => 10,
+                                           MenueDatentypen.Kartenpole_Menü_Enum             => 8,
 
                                            -- Doppelte Menüs.
-                                           MenueDatentypen.Spezies_Menü_Enum            => 21,
-                                           MenueDatentypen.Kartenform_Menü_Enum         => 14,
+                                           MenueDatentypen.Spezies_Menü_Enum                => 21,
+                                           MenueDatentypen.Kartenform_Menü_Enum             => 14,
 
                                            -- Steuerungsmenü.
-                                           MenueDatentypen.Steuerung_Menü_Enum          => 62,
+                                           MenueDatentypen.Steuerung_Menü_Enum              => 62,
 
                                            -- Spielstandmenü
-                                           MenueDatentypen.Spielstand_Menü_Enum         => 18
+                                           MenueDatentypen.Spielstand_Menü_Enum             => 18
                                           );
 
    -- Theoretich kann man hier noch -1 machen um die Überschrift abzuziehen, wird in den Positionen/Textaccessen nicht mehr benötigt. äöü
@@ -50,36 +51,38 @@ package MenueKonstanten is
    EndeAbzugGrafik : constant EndeAbzugArray := (
                                                  -- Einfache Menüs.
                                                  -- Ohne Überschrift.
-                                                 MenueDatentypen.Haupt_Menü_Enum              => EndeMenü (MenueDatentypen.Haupt_Menü_Enum),
-                                                 MenueDatentypen.Spiel_Menü_Enum              => EndeMenü (MenueDatentypen.Spiel_Menü_Enum),
+                                                 MenueDatentypen.Haupt_Menü_Enum                  => EndeMenü (MenueDatentypen.Haupt_Menü_Enum),
+                                                 MenueDatentypen.Spiel_Menü_Enum                  => EndeMenü (MenueDatentypen.Spiel_Menü_Enum),
 
                                                  -- Mit Überschrift.
-                                                 MenueDatentypen.Optionen_Menü_Enum           => EndeMenü (MenueDatentypen.Optionen_Menü_Enum),
-                                                 MenueDatentypen.Einstellungen_Menü_Enum      => EndeMenü (MenueDatentypen.Einstellungen_Menü_Enum),
-                                                 MenueDatentypen.Editoren_Menü_Enum           => EndeMenü (MenueDatentypen.Editoren_Menü_Enum),
-                                                 MenueDatentypen.Spieleinstellungen_Menü_Enum => EndeMenü (MenueDatentypen.Spieleinstellungen_Menü_Enum),
-                                                 MenueDatentypen.Grafik_Menü_Enum             => EndeMenü (MenueDatentypen.Grafik_Menü_Enum),
-                                                 MenueDatentypen.Sound_Menü_Enum              => EndeMenü (MenueDatentypen.Sound_Menü_Enum),
-                                                 MenueDatentypen.Debug_Menü_Enum              => EndeMenü (MenueDatentypen.Debug_Menü_Enum),
+                                                 MenueDatentypen.Optionen_Menü_Enum               => EndeMenü (MenueDatentypen.Optionen_Menü_Enum),
+                                                 MenueDatentypen.Spieleinstellungen_Menü_Enum     => EndeMenü (MenueDatentypen.Spieleinstellungen_Menü_Enum),
+                                                 MenueDatentypen.Editoren_Menü_Enum               => EndeMenü (MenueDatentypen.Editoren_Menü_Enum),
+                                                 MenueDatentypen.Sonstige_Einstellungen_Menü_Enum => EndeMenü (MenueDatentypen.Sonstige_Einstellungen_Menü_Enum),
+                                                 MenueDatentypen.Grafik_Menü_Enum                 => EndeMenü (MenueDatentypen.Grafik_Menü_Enum),
+                                                 MenueDatentypen.Sound_Menü_Enum                  => EndeMenü (MenueDatentypen.Sound_Menü_Enum),
+                                                 MenueDatentypen.Debug_Menü_Enum                  => EndeMenü (MenueDatentypen.Debug_Menü_Enum),
 
-                                                 MenueDatentypen.Kartenart_Menü_Enum          => EndeMenü (MenueDatentypen.Kartenart_Menü_Enum),
-                                                 MenueDatentypen.Kartentemperatur_Menü_Enum   => EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum),
-                                                 MenueDatentypen.Kartenressourcen_Menü_Enum   => EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum),
-                                                 MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum),
-                                                 MenueDatentypen.Kartengröße_Menü_Enum        => EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 2,
-                                                 MenueDatentypen.Diplomatie_Menü_Enum         => EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum) - 2,
-                                                 MenueDatentypen.Handel_Menü_Enum             => EndeMenü (MenueDatentypen.Handel_Menü_Enum),
-                                                 MenueDatentypen.Kartenpole_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum),
+                                                 MenueDatentypen.Kartenart_Menü_Enum              => EndeMenü (MenueDatentypen.Kartenart_Menü_Enum),
+                                                 MenueDatentypen.Kartentemperatur_Menü_Enum       => EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum),
+                                                 MenueDatentypen.Kartenressourcen_Menü_Enum       => EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum),
+                                                 MenueDatentypen.Schwierigkeitsgrad_Menü_Enum     => EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum),
+                                                 -- Die -2 kommen von der zusätzlichen Textanzeige (bsw. aktuelle Kartengröße).
+                                                 MenueDatentypen.Kartengröße_Menü_Enum            => EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 2,
+                                                 MenueDatentypen.Kartenebene_Menü_Enum            => EndeMenü (MenueDatentypen.Kartenebene_Menü_Enum) - 6,
+                                                 MenueDatentypen.Diplomatie_Menü_Enum             => EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum) - 2,
+                                                 MenueDatentypen.Handel_Menü_Enum                 => EndeMenü (MenueDatentypen.Handel_Menü_Enum),
+                                                 MenueDatentypen.Kartenpole_Menü_Enum             => EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum),
 
                                                  -- Doppelte Menüs.
-                                                 MenueDatentypen.Spezies_Menü_Enum            => EndeMenü (MenueDatentypen.Spezies_Menü_Enum),
-                                                 MenueDatentypen.Kartenform_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) - 4,
+                                                 MenueDatentypen.Spezies_Menü_Enum                => EndeMenü (MenueDatentypen.Spezies_Menü_Enum),
+                                                 MenueDatentypen.Kartenform_Menü_Enum             => EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) - 4,
 
                                                  -- Steuerungsmenü.
-                                                 MenueDatentypen.Steuerung_Menü_Enum          => EndeMenü (MenueDatentypen.Steuerung_Menü_Enum),
+                                                 MenueDatentypen.Steuerung_Menü_Enum              => EndeMenü (MenueDatentypen.Steuerung_Menü_Enum),
 
                                                  -- Spielstandmenü.
-                                                 MenueDatentypen.Spielstand_Menü_Enum         => EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)
+                                                 MenueDatentypen.Spielstand_Menü_Enum             => EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)
                                                 );
 
    -- Steuerung

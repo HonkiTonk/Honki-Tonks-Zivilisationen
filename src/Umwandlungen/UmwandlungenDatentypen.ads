@@ -75,11 +75,13 @@ private
    
    type KartenressourcenrückgabeKartenressourceArray is array (RueckgabeDatentypen.Kartenressourcen_Enum'Range) of KartenartDatentypen.Kartenressourcenmenge_Enum;
    KartenressourcenrückgabeKartenressource : constant KartenressourcenrückgabeKartenressourceArray := (
-                                                                                                         RueckgabeDatentypen.Auswahl_Eins_Enum => KartenartDatentypen.Kartenressourcen_Arm_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenartDatentypen.Kartenressourcen_Wenig_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Drei_Enum => KartenartDatentypen.Kartenressourcen_Mittel_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Vier_Enum => KartenartDatentypen.Kartenressourcen_Viel_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenartDatentypen.Kartenressourcen_Überfluss_Enum
+                                                                                                         RueckgabeDatentypen.Auswahl_Eins_Enum   => KartenartDatentypen.Kartenressourcen_Keine_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Zwei_Enum   => KartenartDatentypen.Kartenressourcen_Arm_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Drei_Enum   => KartenartDatentypen.Kartenressourcen_Wenig_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Vier_Enum   => KartenartDatentypen.Kartenressourcen_Mittel_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Fünf_Enum   => KartenartDatentypen.Kartenressourcen_Viel_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Sechs_Enum  => KartenartDatentypen.Kartenressourcen_Überfluss_Enum,
+                                                                                                         RueckgabeDatentypen.Auswahl_Sieben_Enum => KartenartDatentypen.Kartenressourcen_Überall_Enum
                                                                                                         );
    
    type RückgabeSchwierigkeitsgradArray is array (RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range) of SpielDatentypen.Schwierigkeitsgrad_Enum;

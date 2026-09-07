@@ -24,7 +24,7 @@ package body TextaccesseSchriftgroesseGrafik is
       Spezies (ÜberschriftExtern => StandardExtern,
                StandardExtern    => StandardExtern);
       
-      ZusatztextKartengröße (StandardExtern => StandardExtern);
+      ZusatztextKarteneinstellungen (StandardExtern => StandardExtern);
       
       Sprachauswahl (StandardExtern => StandardExtern);
       
@@ -524,7 +524,7 @@ package body TextaccesseSchriftgroesseGrafik is
       
       
    
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (StandardExtern : in Sf.sfUint32)
    is begin
       
@@ -536,7 +536,17 @@ package body TextaccesseSchriftgroesseGrafik is
          
       end loop ZusatztextKartengrößeSchleife;
       
-   end ZusatztextKartengröße;
+      
+      
+      ZusatztextKartenebenenSchleife:
+      for ZusatztextKartenebenenSchleifechleifenwert in TextaccessVariablen.ZusatztextKartenebenenAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZusatztextKartenebenenAccess (ZusatztextKartenebenenSchleifechleifenwert),
+                                            size => StandardExtern);
+         
+      end loop ZusatztextKartenebenenSchleife;
+      
+   end ZusatztextKarteneinstellungen;
             
       
    
@@ -751,11 +761,16 @@ package body TextaccesseSchriftgroesseGrafik is
                                             size => StandardExtern);
          
       end loop KIZeitenSchleife;
-               
-            
+      
+      
+      
+      RundenendeSchleife:
+      for RundenendeSchleifenwert in TextaccessVariablen.RundenendeAccess'Range loop
          
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RundenendeAccess (1),
-                                         size => StandardExtern);
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RundenendeAccess (RundenendeSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop RundenendeSchleife;
       
       
       

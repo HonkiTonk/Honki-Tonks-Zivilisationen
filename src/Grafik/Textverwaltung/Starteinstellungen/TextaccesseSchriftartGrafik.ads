@@ -34,7 +34,7 @@ private
                  SchriftaccessExtern /= null
               );
 
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
      with
        Pre => (

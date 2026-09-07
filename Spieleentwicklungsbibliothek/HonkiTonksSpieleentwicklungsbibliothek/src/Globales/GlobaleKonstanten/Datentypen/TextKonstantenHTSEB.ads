@@ -26,5 +26,7 @@ package TextKonstantenHTSEB is
    
    Standardordner : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "Standard");
    Standardverzeichnis : constant Unbounded_Wide_Wide_String := Standardordner & "/";
+   
+   KeineZeichenbegrenzung : constant Natural := 0;
 
 end TextKonstantenHTSEB;

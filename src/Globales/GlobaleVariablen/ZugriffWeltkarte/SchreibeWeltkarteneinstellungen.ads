@@ -7,6 +7,10 @@ package SchreibeWeltkarteneinstellungen is
      (AchsenExtern : in KartenRecords.KartenfeldumgebungPositivRecord);
    pragma Inline (Fläche);
    
+   procedure Ebenen
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord);
+   pragma Inline (Ebenen);
+   
    procedure Kartenform
      (KartenformExtern : in KartenRecords.KartenformRecord);
    pragma Inline (Kartenform);

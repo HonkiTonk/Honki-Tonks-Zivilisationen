@@ -7,6 +7,7 @@ with SystemRecordsKonstantenHTSEB;
 with UmwandlungssystemHTSEB;
 with DateisystemtestsHTSEB;
 with BetriebssystemKonstantenHTSEB;
+with TextKonstantenHTSEB;
 
 with VerzeichnisKonstanten;
 
@@ -26,13 +27,6 @@ package body TexteingabeGrafik is
       use type Sf.Window.Keyboard.sfKeyCode;
       use type Sf.Window.Mouse.sfMouseButton;
    begin
-      
-      case
-        ZeichenanzahlExtern
-      is
-         when others =>
-            null;
-      end case;
       
       TextSchleife:
       while
@@ -59,7 +53,8 @@ package body TexteingabeGrafik is
                   ZeichenEntfernen;
          
                else
-                  ZeichenHinzufügen (EingegebenesZeichenExtern => EingegebenesZeichen);
+                  ZeichenHinzufügen (EingegebenesZeichenExtern => EingegebenesZeichen,
+                                     ZeichenanzahlExtern       => ZeichenanzahlExtern);
                end if;
                
             when Sf.Window.Event.sfEvtKeyPressed =>
@@ -134,7 +129,8 @@ package body TexteingabeGrafik is
    
    
    procedure ZeichenHinzufügen
-     (EingegebenesZeichenExtern : in Wide_Wide_Character)
+     (EingegebenesZeichenExtern : in Wide_Wide_Character;
+      ZeichenanzahlExtern : in SystemDatentypenHTSEB.EigenesNatural)
    is begin
       
       case
@@ -154,7 +150,16 @@ package body TexteingabeGrafik is
             null;
       end case;
       
-      SchreibeLogiktask.Texteingabe (TextExtern => (LeseLogiktask.Texteingabe & EingegebenesZeichenExtern));
+      if
+        ZeichenanzahlExtern = TextKonstantenHTSEB.KeineZeichenbegrenzung
+        or
+          To_Wide_Wide_String (Source => LeseLogiktask.Texteingabe)'Length < ZeichenanzahlExtern
+      then
+         SchreibeLogiktask.Texteingabe (TextExtern => (LeseLogiktask.Texteingabe & EingegebenesZeichenExtern));
+         
+      else
+         null;
+      end if;
       
    end ZeichenHinzufügen;
    
@@ -192,6 +197,7 @@ package body TexteingabeGrafik is
       case
         To_Wide_Wide_String (Source => Text)'Length
       is
+         -- Die 0 mal durch UnendlichZeichenKonstante ersetzen. äöü
          when 0 =>
             null;
          

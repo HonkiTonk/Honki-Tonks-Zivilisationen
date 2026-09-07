@@ -23,12 +23,13 @@ package body MenuerueckgabenLogik is
             return Spielmenü (EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when MenueDatentypen.Einstellungen_Menü_Enum =>
+         when MenueDatentypen.Spieleinstellungen_Menü_Enum =>
             return SpieleinstellungenMenü (EndeExtern            => EndeExtern,
                                             AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when MenueDatentypen.Kartenpole_Menü_Enum | MenueDatentypen.Kartengröße_Menü_Enum | MenueDatentypen.Kartenart_Menü_Enum | MenueDatentypen.Kartenform_Menü_Enum | MenueDatentypen.Kartentemperatur_Menü_Enum
-            | MenueDatentypen.Kartenressourcen_Menü_Enum | MenueDatentypen.Schwierigkeitsgrad_Menü_Enum | MenueDatentypen.Spezies_Menü_Enum | MenueDatentypen.Debug_Menü_Enum =>
+         when MenueDatentypen.Kartenpole_Menü_Enum | MenueDatentypen.Kartengröße_Menü_Enum | MenueDatentypen.Kartenebene_Menü_Enum | MenueDatentypen.Kartenart_Menü_Enum | MenueDatentypen.Kartenform_Menü_Enum
+            | MenueDatentypen.Kartentemperatur_Menü_Enum | MenueDatentypen.Kartenressourcen_Menü_Enum | MenueDatentypen.Schwierigkeitsgrad_Menü_Enum | MenueDatentypen.Spezies_Menü_Enum
+            | MenueDatentypen.Debug_Menü_Enum =>
             MitFertig := True;
             
          when others =>
@@ -209,6 +210,11 @@ package body MenuerueckgabenLogik is
          
       elsif
         AktuelleAuswahlExtern = Anfang + 8
+      then
+         return RueckgabeDatentypen.Auswahl_Neun_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = Anfang + 9
       then
          return RueckgabeDatentypen.Fertig_Enum;
                     

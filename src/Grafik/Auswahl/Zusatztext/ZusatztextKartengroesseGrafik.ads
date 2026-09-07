@@ -1,9 +1,9 @@
 with Sf.System.Vector2;
 
+private with UmwandlungssystemHTSEB;
+
 private with KartenDatentypen;
 private with RueckgabeDatentypen;
-
-private with UmwandlungssystemHTSEB;
 
 package ZusatztextKartengroesseGrafik is
    pragma Elaborate_Body;

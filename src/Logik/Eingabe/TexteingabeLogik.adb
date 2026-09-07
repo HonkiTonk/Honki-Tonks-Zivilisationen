@@ -95,7 +95,7 @@ package body TexteingabeLogik is
       
       SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
       SchreibeGrafiktask.Texteingabe (JaNeinExtern        => True,
-                                      ZeichenanzahlExtern => 0);
+                                      ZeichenanzahlExtern => TextKonstantenHTSEB.KeineZeichenbegrenzung);
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       

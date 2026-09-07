@@ -27,7 +27,7 @@ package body OptionenSonstigesLogik is
       SonstigesSchleife:
       loop
 
-         AuswahlWert := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Spieleinstellungen_Menü_Enum);
+         AuswahlWert := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Sonstige_Einstellungen_Menü_Enum);
 
          case
            AuswahlWert
@@ -139,7 +139,7 @@ package body OptionenSonstigesLogik is
    procedure Dezimaltrennzeichen
    is begin
       
-      EingegebenesZeichen := TexteingabeLogik.ZeichenEingeben (FrageExtern => 1);
+      EingegebenesZeichen := TexteingabeLogik.ZeichenEingeben (FrageExtern => TextnummernKonstanten.FrageDezimaltrennzeichen);
       
       case
         EingegebenesZeichen.ErfolgreichAbbruch

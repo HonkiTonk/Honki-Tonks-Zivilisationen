@@ -14,12 +14,13 @@ package Menuetexte is
                                
    -- Mit Überschrift.
    Optionsmenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Optionen_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
-   Einstellungsmenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Einstellungen_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
+   Einstellungsmenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Spieleinstellungen_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Editorenmenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Editoren_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
-   Spieleinstellungsmenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Spieleinstellungen_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
+   Spieleinstellungsmenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Sonstige_Einstellungen_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Debugmenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Debug_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Grafikmenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Grafik_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Kartengröße : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
+   Kartenebene : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartenebene_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Kartenart : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartenart_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Kartentemperatur : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Schwierigkeitsgrad : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);

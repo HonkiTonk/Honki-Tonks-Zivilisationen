@@ -27,7 +27,8 @@ private
    procedure Abbruch;
 
    procedure ZeichenHinzufügen
-     (EingegebenesZeichenExtern : in Wide_Wide_Character);
+     (EingegebenesZeichenExtern : in Wide_Wide_Character;
+      ZeichenanzahlExtern : in SystemDatentypenHTSEB.EigenesNatural);
    
    
    

@@ -39,6 +39,7 @@ package KartenKonstanten is
       
    LeerSichtbar : constant Boolean := False;
    
+   -- Die Kartengrößen mal von einem festen Standardwert abhängig machen, für den Fall dass ich die maximale Kartengröße mal erhöhe. äöü
    MinimaleKartengröße : constant KartenRecords.KartenfeldumgebungPositivRecord := (
                                                                                       Senkrechte => KartenDatentypen.SenkrechtePositiv'Last / 50,
                                                                                       Waagerechte => KartenDatentypen.WaagerechtePositiv'Last / 50

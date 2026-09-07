@@ -9,7 +9,7 @@ private
    procedure Allgemeines;
    procedure Menüs;
    procedure Spezies;
-   procedure ZusatztextKartengröße;
+   procedure ZusatztextKarteneinstellungen;
    procedure Sprachauswahl;
    procedure StadtInformationen;
    procedure EinheitenInformationen;

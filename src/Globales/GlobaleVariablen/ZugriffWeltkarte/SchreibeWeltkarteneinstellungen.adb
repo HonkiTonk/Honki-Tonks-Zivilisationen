@@ -13,6 +13,16 @@ package body SchreibeWeltkarteneinstellungen is
    
    
    
+   procedure Ebenen
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+   is begin
+      
+      Weltkarte.Karteneinstellungen.Kartenebene := EbenenExtern;
+      
+   end Ebenen;
+   
+   
+   
    procedure Kartenform
      (KartenformExtern : in KartenRecords.KartenformRecord)
    is begin

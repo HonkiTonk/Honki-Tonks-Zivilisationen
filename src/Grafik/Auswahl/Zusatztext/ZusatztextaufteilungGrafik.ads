@@ -37,6 +37,7 @@ private
    AnfangKartenform : constant Positive := 1;
    EndeKartenform : constant Positive := 6;
    AnzahlKartengrößen : constant Positive := 9;
+   AnzahlEbenen : constant Positive := 4;
    MaximaleKartenformen : constant Positive := 10;
 
    AktuelleAuswahl : Natural;

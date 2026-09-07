@@ -11,7 +11,7 @@ package body TextaccesseSchriftrahmenGrafik is
       Allgemeines (RahmendickeExtern => RahmendickeExtern);
       Menüs (RahmendickeExtern => RahmendickeExtern);
       Spezies (RahmendickeExtern => RahmendickeExtern);
-      ZusatztextKartengröße (RahmendickeExtern => RahmendickeExtern);
+      ZusatztextKarteneinstellungen (RahmendickeExtern => RahmendickeExtern);
       Sprachauswahl (RahmendickeExtern => RahmendickeExtern);
       StadtInformationen (RahmendickeExtern => RahmendickeExtern);
       EinheitenInformationen (RahmendickeExtern => RahmendickeExtern);
@@ -477,7 +477,7 @@ package body TextaccesseSchriftrahmenGrafik is
       
       
    
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (RahmendickeExtern : in Float)
    is begin
       
@@ -489,7 +489,17 @@ package body TextaccesseSchriftrahmenGrafik is
          
       end loop ZusatztextKartengrößeSchleife;
       
-   end ZusatztextKartengröße;
+      
+      
+      ZusatztextKartenebenenSchleife:
+      for ZusatztextKartenebenenSchleifechleifenwert in TextaccessVariablen.ZusatztextKartenebenenAccess'Range loop
+         
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.ZusatztextKartenebenenAccess (ZusatztextKartenebenenSchleifechleifenwert),
+                                               thickness => RahmendickeExtern);
+         
+      end loop ZusatztextKartenebenenSchleife;
+      
+   end ZusatztextKarteneinstellungen;
    
       
    

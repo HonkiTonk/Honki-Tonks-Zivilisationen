@@ -13,7 +13,7 @@ package body TextaccesseSchriftartGrafik is
       Allgemeines (SchriftaccessExtern => SchriftaccessExtern);
       Menüs (SchriftaccessExtern => SchriftaccessExtern);
       Spezies (SchriftaccessExtern => SchriftaccessExtern);
-      ZusatztextKartengröße (SchriftaccessExtern => SchriftaccessExtern);
+      ZusatztextKarteneinstellungen (SchriftaccessExtern => SchriftaccessExtern);
       Sprachauswahl (SchriftaccessExtern => SchriftaccessExtern);
       StadtInformationen (SchriftaccessExtern => SchriftaccessExtern);
       EinheitenInformationen (SchriftaccessExtern => SchriftaccessExtern);
@@ -487,7 +487,7 @@ package body TextaccesseSchriftartGrafik is
       
       
    
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
      (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
    is begin
       
@@ -499,7 +499,17 @@ package body TextaccesseSchriftartGrafik is
          
       end loop ZusatztextKartengrößeSchleife;
       
-   end ZusatztextKartengröße;
+      
+      
+      ZusatztextKartenebenenSchleife:
+      for ZusatztextKartenebenenSchleifechleifenwert in TextaccessVariablen.ZusatztextKartenebenenAccess'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZusatztextKartenebenenAccess (ZusatztextKartenebenenSchleifechleifenwert),
+                                   font => SchriftaccessExtern);
+         
+      end loop ZusatztextKartenebenenSchleife;
+      
+   end ZusatztextKarteneinstellungen;
    
       
    

@@ -9,6 +9,7 @@ package SpieleinstellungenKartenLogik is
    
    procedure KartenpoleWählen;
    procedure KartengrößeWählen;
+   procedure KartenebeneWählen;
    procedure KartenartWählen;
    procedure KartenformWählen;
    procedure KartentemperaturWählen;
@@ -18,6 +19,7 @@ private
    
    KartenpoleAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartengrößeAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   KartenebeneAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenartAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenformAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartentemperaturAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;

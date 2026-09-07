@@ -1,3 +1,4 @@
+with KartenDatentypen;
 with KartenRecords;
 with KartenKonstanten;
 with StadtDatentypen;
@@ -62,8 +63,12 @@ package KartenRecordKonstanten is
                                                                     Ostpol  => KartenartDatentypen.Kartenpol_Nicht_Vorhanden_Enum
                                                                    );
    
+   StandardKartenebenen : constant KartenRecords.KartenebenenVorhandenRecord := (KartenDatentypen.EbeneVorhanden'First, KartenDatentypen.EbeneVorhanden'Last);
+   
    Standardkartenparameter : constant KartenRecords.PermanenteKartenparameterRecord := (
                                                                                         Kartengröße => (40, 40),
+                                                                                        
+                                                                                        Kartenebene => StandardKartenebenen,
 
                                                                                         -- Ebeneübergang, Senkrechteübergang, Waagerechteübergang
                                                                                         Kartenform  => KartenformStandard
@@ -71,6 +76,8 @@ package KartenRecordKonstanten is
    
    Standardkartengeneratorparameter : constant KartenRecords.TemporäreKartenparameterRecord := (
                                                                                                  Kartengröße      => Standardkartenparameter.Kartengröße,
+                                                                                        
+                                                                                                 Kartenebene      => (KartenDatentypen.EbeneVorhanden'First, KartenDatentypen.EbeneVorhanden'Last),
 
                                                                                                  -- Ebeneübergang, Senkrechteübergang, Waagerechteübergang
                                                                                                  Kartenform       => Standardkartenparameter.Kartenform,

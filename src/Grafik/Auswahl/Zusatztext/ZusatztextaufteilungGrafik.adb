@@ -1,6 +1,7 @@
 with SpeziesDatentypen;
 with AuswahlKonstanten;
 
+with ZusatztextKartenebeneGrafik;
 with ZusatztextSpeziesmenueGrafik;
 with ZusatztextKartengroesseGrafik;
 with ZusatztextKartenformGrafik;
@@ -42,6 +43,10 @@ package body ZusatztextaufteilungGrafik is
             
          when MenueDatentypen.Kartenpole_Menü_Enum =>
             null;
+            
+         when MenueDatentypen.Kartenebene_Menü_Enum =>
+            return ZusatztextKartenebeneGrafik.ZusatztextKartenebene (ViewflächeExtern      => ViewflächeExtern,
+                                                                      RealeViewbreiteExtern => RealeViewbreiteExtern);
       end case;
       
       return ViewflächeExtern;

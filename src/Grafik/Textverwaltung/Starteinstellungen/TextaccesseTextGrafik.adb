@@ -26,7 +26,7 @@ package body TextaccesseTextGrafik is
       Allgemeines;
       Menüs;
       Spezies;
-      ZusatztextKartengröße;
+      ZusatztextKarteneinstellungen;
       Sprachauswahl;
       StadtInformationen;
       EinheitenInformationen;
@@ -447,12 +447,12 @@ package body TextaccesseTextGrafik is
       
       
    
-   procedure ZusatztextKartengröße
+   procedure ZusatztextKarteneinstellungen
    is begin
       
       null;
       
-   end ZusatztextKartengröße;
+   end ZusatztextKarteneinstellungen;
       
       
    

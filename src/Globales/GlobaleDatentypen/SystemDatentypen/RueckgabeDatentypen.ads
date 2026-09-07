@@ -22,7 +22,7 @@ package RueckgabeDatentypen is
    subtype Kartengrößen_Standard_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Neun_Enum;
    subtype Kartenart_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Drei_Enum;
    subtype Kartentemperatur_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Fünf_Enum;
-   subtype Kartenressourcen_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Fünf_Enum;
+   subtype Kartenressourcen_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Sieben_Enum;
    subtype Kartenform_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Sechs_Enum;
    
    subtype Schwierigkeitsgrad_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Drei_Enum;

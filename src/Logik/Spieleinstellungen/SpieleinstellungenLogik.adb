@@ -41,7 +41,7 @@ package body SpieleinstellungenLogik is
          SpielEinstellungenSchleife:
          loop
          
-            Auswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Einstellungen_Menü_Enum);
+            Auswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Spieleinstellungen_Menü_Enum);
          
             case
               Auswahl
@@ -51,23 +51,26 @@ package body SpieleinstellungenLogik is
                     
                when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                   SpieleinstellungenKartenLogik.KartengrößeWählen;
-
+                  
                when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+                  SpieleinstellungenKartenLogik.KartenebeneWählen;
+
+               when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                   SpieleinstellungenKartenLogik.KartenartWählen;
                
-               when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+               when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                   SpieleinstellungenKartenLogik.KartenformWählen;
 
-               when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+               when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                   SpieleinstellungenKartenLogik.KartentemperaturWählen;
                
-               when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+               when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
                   SpieleinstellungenKartenLogik.KartenressourcenWählen;
 
-               when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+               when RueckgabeDatentypen.Auswahl_Acht_Enum =>
                   SpieleinstellungenSpeziesLogik.SpeziesWählen;
 
-               when RueckgabeDatentypen.Auswahl_Acht_Enum =>
+               when RueckgabeDatentypen.Auswahl_Neun_Enum =>
                   SpieleinstellungenSonstigesLogik.SchwierigkeitsgradFestlegen;
                
                when RueckgabeDatentypen.Fertig_Enum =>
