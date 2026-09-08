@@ -306,7 +306,7 @@ package ChangelogAugust2021 is
    -- Meldungen für Ereignisse bei Städten und Einheiten eingebaut, inklusive einer Taste um zu diesen Einheiten zu springen.
    -- Wenn sich eine sichtbare Einheit einer anderen Spezies in der Nähe befindet und man mit dieser keinen Nichtangriffspak hat, wird jetzt auch eine Meldung gesetzt.
    -- Man startet jetzt mit 100 Geldeinheiten.
-   -- Städtebau in der Luft/im Weltraum/im Planeteninnerem getestet.
+   -- Städtebau in der Luft/im Orbit/im Planeteninnerem getestet.
    -- Angefangen Speziesspezifische Kartenbewertungen und Feldergewinne einzubauen.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    

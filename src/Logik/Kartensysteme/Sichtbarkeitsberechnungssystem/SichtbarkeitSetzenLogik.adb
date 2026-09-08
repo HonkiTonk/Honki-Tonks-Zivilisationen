@@ -37,11 +37,11 @@ package body SichtbarkeitSetzenLogik is
             
          when KartenKonstanten.HimmelKonstante =>
             EbeneAnfang := KartenKonstanten.OberflächeKonstante;
-            EbeneEnde := KartenKonstanten.WeltraumKonstante;
+            EbeneEnde := KartenKonstanten.OrbitKonstante;
             
-         when KartenKonstanten.WeltraumKonstante =>
+         when KartenKonstanten.OrbitKonstante =>
             EbeneAnfang := KartenKonstanten.HimmelKonstante;
-            EbeneEnde := KartenKonstanten.WeltraumKonstante;
+            EbeneEnde := KartenKonstanten.OrbitKonstante;
             
          when KartenKonstanten.UnterflächeKonstante =>
             EbeneAnfang := KartenKonstanten.UnterflächeKonstante;

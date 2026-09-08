@@ -148,17 +148,18 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (09.09.2026):
+   -- Version 0.06.4745 => 0.06. (09.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4710 => 0.06. (08.09.2026):
+   -- Version 0.06.4710 => 0.06.4745 (08.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Englische Übersetzung an die letzten Änderungen angepasst.
+   -- Interne Benennung angepasst.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
 

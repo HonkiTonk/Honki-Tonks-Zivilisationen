@@ -250,7 +250,7 @@ package ChangelogAugust2022 is
    -- Debian GNAT auf Version 12.1.0-8 aktualisiert.
    -- ASFML aktualisiert.
    -- Einige Tests hinsichtlich der Aufteilung von Kartenfeldern wie Flussfelder und dem sich daraus ergebenden zusätzlichen Speicherverbrauch.
-   -- Weltraum-, Wolken- und Hügeltexturen überarbeitet.
+   -- Orbit-, Wolken- und Hügeltexturen überarbeitet.
    -- Cheateinheiten können jetzt nur noch gebaut werden wenn Cheats aktiv sind.
    -- Zoomfunktion eingebaut.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.

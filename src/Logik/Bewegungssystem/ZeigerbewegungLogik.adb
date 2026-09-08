@@ -33,7 +33,7 @@ package body ZeigerbewegungLogik is
       end case;
       
       if
-        BasisKoordinaten.Ebene = KartenKonstanten.WeltraumKonstante
+        BasisKoordinaten.Ebene = KartenKonstanten.OrbitKonstante
         and
           RichtungExtern = TastenbelegungDatentypen.Ebene_Hoch_Enum
       then
@@ -44,7 +44,7 @@ package body ZeigerbewegungLogik is
         and
           RichtungExtern = TastenbelegungDatentypen.Ebene_Runter_Enum
       then
-         KartenWert := (KartenKonstanten.WeltraumKonstante, BasisKoordinaten.Senkrechte, BasisKoordinaten.Waagerechte);
+         KartenWert := (KartenKonstanten.OrbitKonstante, BasisKoordinaten.Senkrechte, BasisKoordinaten.Waagerechte);
          
       else
          KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => BasisKoordinaten,

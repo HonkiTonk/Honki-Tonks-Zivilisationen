@@ -33,7 +33,7 @@ package KartenKonstanten is
    UnterflächeKonstante : constant KartenDatentypen.EbeneVorhanden := -1;
    OberflächeKonstante : constant KartenDatentypen.EbeneVorhanden := 0;
    HimmelKonstante : constant KartenDatentypen.EbeneVorhanden := 1;
-   WeltraumKonstante : constant KartenDatentypen.EbeneVorhanden := 2;
+   OrbitKonstante : constant KartenDatentypen.EbeneVorhanden := 2;
    
    LeerPassierbarkeit : constant Boolean := False;
       

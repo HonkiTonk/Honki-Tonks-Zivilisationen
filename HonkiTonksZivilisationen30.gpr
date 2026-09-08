@@ -7,7 +7,6 @@ project HonkiTonksZivilisationen30 is
    for Create_Missing_Dirs use "True";
    for Main use ("HonkiTonksZivilisationen.adb");
    for Runtime ("ada") use "default";
-
    for Object_Dir use "obj";
    for Source_Dirs use ("src30/**", "srcSystem/Entwicklung/**", "srcSystem/SFML30/**");
 
@@ -17,7 +16,7 @@ project HonkiTonksZivilisationen30 is
 
    package Compiler is
       for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2022", "-gnato", "-fstack-check", "-g", "-gnata", "-gnatVacdefimoprst", 
-         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf_q", "-gnatyACOSadefhiklnprsxM222L8");
+         "-gnatw.a.b.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zdghiklmopqrtuvwxyz_c_re.u_pajf_qC.c", "-gnatyACOSadefhiklnprsxM222L8");
       for Local_Configuration_Pragmas use "Lokale Pragmas";
    end Compiler;
 

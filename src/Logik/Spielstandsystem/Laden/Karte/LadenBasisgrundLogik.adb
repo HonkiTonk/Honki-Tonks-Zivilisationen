@@ -21,8 +21,8 @@ package body LadenBasisgrundLogik is
       case
         KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.WeltraumKonstante =>
-            Basisgrund := KartengrundDatentypen.Weltraum_Enum;
+         when KartenKonstanten.OrbitKonstante =>
+            Basisgrund := KartengrundDatentypen.Orbit_Enum;
             
          when KartenKonstanten.HimmelKonstante =>
             Basisgrund := KartengrundDatentypen.Wolken_Enum;

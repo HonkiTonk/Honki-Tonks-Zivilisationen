@@ -155,9 +155,9 @@ package body WeltkarteGrafik is
                Transparents := GrafikKonstanten.Wolkentransparents;
             
                -- Dafür was besseres einbauen. äöü
-            when KartenKonstanten.WeltraumKonstante =>
+            when KartenKonstanten.OrbitKonstante =>
                AktuelleKoordinaten := (KoordinatenExtern.Ebene - 1, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte);
-               Transparents := GrafikKonstanten.Weltraumtransparents;
+               Transparents := GrafikKonstanten.Orbittransparents;
             
             when KartenKonstanten.OberflächeKonstante =>
                if

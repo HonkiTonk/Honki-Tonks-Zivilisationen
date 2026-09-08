@@ -6,7 +6,7 @@ with BasisgrundKern;
 with BasisgrundOberflaeche;
 with BasisgrundSonstiges;
 with BasisgrundUnterflaeche;
-with BasisgrundWeltall;
+with BasisgrundOrbit;
 with ZusatzgrundOberflaeche;
 with ZusatzgrundUnterflaeche;
 with KartenextraDatentypen;
@@ -25,8 +25,8 @@ package body StandardKartenDatenbank is
          case
            BasisgrundSchleifenwert
          is
-            when BasisgrundWeltall.BasisgrundlisteWeltallArray'Range =>
-               KartenDatenbank.Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundWeltall.BasisgrundlisteWeltall (BasisgrundSchleifenwert);
+            when BasisgrundOrbit.BasisgrundlisteOrbitArray'Range =>
+               KartenDatenbank.Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundOrbit.BasisgrundlisteOrbit (BasisgrundSchleifenwert);
                
             when BasisgrundHimmel.BasisgrundlisteHimmelArray'Range =>
                KartenDatenbank.Basisgrundliste (BasisgrundSchleifenwert) := BasisgrundHimmel.BasisgrundlisteHimmel (BasisgrundSchleifenwert);

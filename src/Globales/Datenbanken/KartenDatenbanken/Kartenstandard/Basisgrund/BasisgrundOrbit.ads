@@ -7,17 +7,17 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
 
-package BasisgrundWeltall is
+package BasisgrundOrbit is
    pragma Pure;
    
-   -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
+   -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteWeltallArray is array (KartengrundDatentypen.Basisgrund_Weltraum_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
-   BasisgrundlisteWeltall : constant BasisgrundlisteWeltallArray := (
-                                                                     KartengrundDatentypen.Weltraum_Enum =>
+   type BasisgrundlisteOrbitArray is array (KartengrundDatentypen.Basisgrund_Orbit_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
+   BasisgrundlisteOrbit : constant BasisgrundlisteOrbitArray := (
+                                                                     KartengrundDatentypen.Orbit_Enum =>
                                                                        (
                                                                         Passierbarkeit => (
-                                                                                           EinheitenDatentypen.Weltraum_Enum => True,
+                                                                                           EinheitenDatentypen.Orbit_Enum => True,
                                                                                            others                            => False),
                                                                     
                                                                         Bewertung =>
@@ -204,4 +204,4 @@ package BasisgrundWeltall is
                                                                        )
                                                                     );
 
-end BasisgrundWeltall;
+end BasisgrundOrbit;

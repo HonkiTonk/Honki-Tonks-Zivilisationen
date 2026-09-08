@@ -52,7 +52,7 @@ package body SichtbarkeitsberechnungssystemLogik is
               or
                 True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                               IDExtern             => EinheitID,
-                                                              WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
+                                                              WelcheUmgebungExtern => EinheitenDatentypen.Orbit_Enum))
          then
             SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                SichtweiteExtern           => SichtweiteEinheit);

@@ -21,7 +21,7 @@ package body SpeichernBasisgrundLogik is
       case
         KoordinatenExtern.Ebene
       is
-         when KartenKonstanten.WeltraumKonstante | KartenKonstanten.HimmelKonstante =>
+         when KartenKonstanten.OrbitKonstante | KartenKonstanten.HimmelKonstante =>
             null;
             
          when KartenKonstanten.OberflächeKonstante =>

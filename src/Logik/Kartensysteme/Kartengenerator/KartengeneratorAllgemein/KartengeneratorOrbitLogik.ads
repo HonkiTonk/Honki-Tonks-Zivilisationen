@@ -1,9 +1,9 @@
 private with KartenDatentypen;
 
-package KartengeneratorWeltraumLogik is
+package KartengeneratorOrbitLogik is
    pragma Elaborate_Body;
 
-   procedure Weltraum
+   procedure Orbit
      (LadezeitbasisExtern : in Float)
      with
        Pre => (
@@ -16,4 +16,4 @@ private
 
    Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
 
-end KartengeneratorWeltraumLogik;
+end KartengeneratorOrbitLogik;

@@ -32,7 +32,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -60,7 +60,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -88,7 +88,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -116,7 +116,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -144,7 +144,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -172,7 +172,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -200,7 +200,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -228,7 +228,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -256,7 +256,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -284,7 +284,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -312,7 +312,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -340,7 +340,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -368,7 +368,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -396,7 +396,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -424,7 +424,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -452,7 +452,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -480,7 +480,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
@@ -508,7 +508,7 @@ package ArbeitszeitWegLogik is
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
                                                             KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Orbit_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            )
                                                         );

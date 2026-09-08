@@ -10,7 +10,7 @@ with KampfKonstanten;
 package BasisgrundKern is
    pragma Pure;
    
-   -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
+   -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
    type BasisgrundlisteKernArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteKern : constant BasisgrundlisteKernArray := (

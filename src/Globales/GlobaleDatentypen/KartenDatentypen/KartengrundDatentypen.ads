@@ -9,8 +9,8 @@ package KartengrundDatentypen is
    type Basisgrund_Enum is (
                             Leer_Basisgrund_Enum,
                              
-                            -- Weltraum
-                            Weltraum_Enum,
+                            -- Orbit
+                            Orbit_Enum,
                               
                             -- Himmel
                             Wolken_Enum,
@@ -51,8 +51,8 @@ package KartengrundDatentypen is
       
    subtype Basisgrund_Vorhanden_Enum is Basisgrund_Enum range Basisgrund_Enum'Succ (Basisgrund_Enum'First) .. Basisgrund_Enum'Last;
    
-   -- Weltraum
-   subtype Basisgrund_Weltraum_Enum is Basisgrund_Vorhanden_Enum range Weltraum_Enum .. Weltraum_Enum;
+   -- Orbit
+   subtype Basisgrund_Orbit_Enum is Basisgrund_Vorhanden_Enum range Orbit_Enum .. Orbit_Enum;
    
    -- Himmel
    subtype Basisgrund_Himmel_Enum is Basisgrund_Vorhanden_Enum range Wolken_Enum .. Wolken_Enum;
@@ -94,7 +94,7 @@ package KartengrundDatentypen is
    type Zusatzgrund_Enum is (
                              Leer_Zusatzgrund_Enum,
                              
-                             -- Weltraum
+                             -- Orbit
                               
                              -- Himmel
                               
@@ -127,7 +127,7 @@ package KartengrundDatentypen is
    
    subtype Zusatzgrund_Vorhanden_Enum is Zusatzgrund_Enum range Zusatzgrund_Enum'Succ (Zusatzgrund_Enum'First) .. Zusatzgrund_Enum'Last;
    
-   -- Weltraum
+   -- Orbit
    
    
    -- Himmel

@@ -112,7 +112,7 @@ Various settings
 Numbers of autosaves
 Rounds to autosave
 Change language
-Dezimaltrennzeichen festlegen
+Set decimal separator
 ~1~
 ~2~
 ~3~
@@ -127,18 +127,28 @@ Large
 Huge
 Gigantic
 Absurd
-Custom
+~7~
 Random predefined size
 Random non predefined size
 ~5~
 Current size:
 New size:
 #################################
+Choose map plane:
+Planet core
+Unterground/Unterwater (2 from 18 Species start here)
+Surface (16 from 18 Species start here)
+Sky
+Orbit
+~4~
+~6~
+~5~
+#################################
 Select map type:
 Islands
 Continents
 Pangaea
-Custom
+~7~
 Random predefined map type
 Random non predefined map type
 ~4~
@@ -198,11 +208,13 @@ Shifted backwards transition
 Shifted transition
 #################################
 Select existing resource set:
-Arm
+None
+Poor
 Little
 Medium
 Much
 Abundance
+Everywhere
 ~6~
 ~5~
 #################################

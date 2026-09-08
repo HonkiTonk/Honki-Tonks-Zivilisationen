@@ -7,9 +7,9 @@ with LeseWeltkarteneinstellungen;
 
 with LadezeitenLogik;
 
-package body KartengeneratorWeltraumLogik is
+package body KartengeneratorOrbitLogik is
 
-   procedure Weltraum
+   procedure Orbit
      (LadezeitbasisExtern : in Float)
    is begin
       
@@ -18,8 +18,8 @@ package body KartengeneratorWeltraumLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
 
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.WeltraumKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengrundDatentypen.Weltraum_Enum);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OrbitKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                          GrundExtern       => KartengrundDatentypen.Orbit_Enum);
             
          end loop WaagerechteSchleife;
          
@@ -28,6 +28,6 @@ package body KartengeneratorWeltraumLogik is
          
       end loop SenkrechteSchleife;
       
-   end Weltraum;
+   end Orbit;
 
-end KartengeneratorWeltraumLogik;
+end KartengeneratorOrbitLogik;

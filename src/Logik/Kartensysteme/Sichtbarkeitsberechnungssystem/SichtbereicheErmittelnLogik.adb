@@ -30,7 +30,7 @@ package body SichtbereicheErmittelnLogik is
            or
              True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                            IDExtern             => EinheitID,
-                                                           WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
+                                                           WelcheUmgebungExtern => EinheitenDatentypen.Orbit_Enum))
       then
          return (3, 3);
          

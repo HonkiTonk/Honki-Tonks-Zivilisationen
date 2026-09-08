@@ -1,5 +1,5 @@
 with KartengeneratorHimmelLogik;
-with KartengeneratorWeltraumLogik;
+with KartengeneratorOrbitLogik;
 with KartengeneratorPlanetenkernLogik;
 with KartengeneratorPolregionLogik;
 with KartengeneratorStandardLogik;
@@ -22,7 +22,7 @@ package body KartengeneratorAllgemeinesLogik is
    is
    
       task Himmel;
-      task Weltraum;
+      task Orbit;
       task Planeteninneres;
       
       task body Himmel
@@ -34,12 +34,12 @@ package body KartengeneratorAllgemeinesLogik is
       
       
       
-      task body Weltraum
+      task body Orbit
       is begin
 
-         KartengeneratorWeltraumLogik.Weltraum (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
+         KartengeneratorOrbitLogik.Orbit (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
          
-      end Weltraum;
+      end Orbit;
       
       
       

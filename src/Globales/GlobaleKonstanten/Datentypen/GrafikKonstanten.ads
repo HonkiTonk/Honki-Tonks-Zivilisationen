@@ -8,7 +8,7 @@ package GrafikKonstanten is
    Durchsichtig : constant Sf.sfUint8 := Sf.sfUint8'First;
    
    Wolkentransparents : constant Sf.sfUint8 := 240;
-   Weltraumtransparents : constant Sf.sfUint8 := 220;
+   Orbittransparents : constant Sf.sfUint8 := 220;
    Hintergrundtransparents : constant Sf.sfUint8 := 200;
    Wassertransparents : constant Sf.sfUint8 := 215;
    VerschiedenerGrundtransparents : constant Sf.sfUint8 := 180;

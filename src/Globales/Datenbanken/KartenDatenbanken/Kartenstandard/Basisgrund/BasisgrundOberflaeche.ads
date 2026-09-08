@@ -10,7 +10,7 @@ with KampfKonstanten;
 package BasisgrundOberflaeche is
    pragma Pure;
    
-   -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
+   -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
    type BasisgrundlisteOberflächeArray is array (KartengrundDatentypen.Basisgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteOberfläche : constant BasisgrundlisteOberflächeArray := (
@@ -18,7 +18,7 @@ package BasisgrundOberflaeche is
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
-                                                                                                   EinheitenDatentypen.Weltraum_Enum => True,
+                                                                                                   EinheitenDatentypen.Orbit_Enum => True,
                                                                                                    others                            => False),
                                                                     
                                                                                 Bewertung =>
@@ -208,7 +208,7 @@ package BasisgrundOberflaeche is
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Wasser_Enum   => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
-                                                                                                   EinheitenDatentypen.Weltraum_Enum => True,
+                                                                                                   EinheitenDatentypen.Orbit_Enum => True,
                                                                                                    others                            => False),
                                                                     
                                                                                 Bewertung =>
@@ -398,7 +398,7 @@ package BasisgrundOberflaeche is
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
-                                                                                                   EinheitenDatentypen.Weltraum_Enum => True,
+                                                                                                   EinheitenDatentypen.Orbit_Enum => True,
                                                                                                    others                            => False),
                                                                     
                                                                                 Bewertung =>
@@ -588,7 +588,7 @@ package BasisgrundOberflaeche is
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
-                                                                                                   EinheitenDatentypen.Weltraum_Enum => True,
+                                                                                                   EinheitenDatentypen.Orbit_Enum => True,
                                                                                                    others                            => False),
                                                                     
                                                                                 Bewertung =>
@@ -778,7 +778,7 @@ package BasisgrundOberflaeche is
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
-                                                                                                   EinheitenDatentypen.Weltraum_Enum => True,
+                                                                                                   EinheitenDatentypen.Orbit_Enum => True,
                                                                                                    others                            => False),
                                                                     
                                                                                 Bewertung =>
@@ -969,7 +969,7 @@ package BasisgrundOberflaeche is
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
-                                                                                                   EinheitenDatentypen.Weltraum_Enum => True,
+                                                                                                   EinheitenDatentypen.Orbit_Enum => True,
                                                                                                    others                            => False),
                                                                     
                                                                                 Bewertung =>
@@ -1159,7 +1159,7 @@ package BasisgrundOberflaeche is
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
-                                                                                                   EinheitenDatentypen.Weltraum_Enum => True,
+                                                                                                   EinheitenDatentypen.Orbit_Enum => True,
                                                                                                    others                            => False),
                                                                     
                                                                                 Bewertung =>
@@ -1349,7 +1349,7 @@ package BasisgrundOberflaeche is
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Wasser_Enum       => True,
                                                                                                    EinheitenDatentypen.Luft_Enum         => True,
-                                                                                                   EinheitenDatentypen.Weltraum_Enum     => True,
+                                                                                                   EinheitenDatentypen.Orbit_Enum     => True,
                                                                                                    EinheitenDatentypen.Küstenwasser_Enum => True,
                                                                                                    others                                => False),
                                                                     

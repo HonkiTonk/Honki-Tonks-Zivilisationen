@@ -10,14 +10,14 @@ with KampfKonstanten;
 package BasisgrundHimmel is
    pragma Pure;
 
-   -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
+   -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
    type BasisgrundlisteHimmelArray is array (KartengrundDatentypen.Basisgrund_Himmel_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteHimmel : constant BasisgrundlisteHimmelArray := (
                                                                    KartengrundDatentypen.Wolken_Enum =>
                                                                      (
                                                                       Passierbarkeit => (EinheitenDatentypen.Luft_Enum     => True,
-                                                                                         EinheitenDatentypen.Weltraum_Enum => True,
+                                                                                         EinheitenDatentypen.Orbit_Enum => True,
                                                                                          others                            => False),
 
                                                                       Bewertung =>

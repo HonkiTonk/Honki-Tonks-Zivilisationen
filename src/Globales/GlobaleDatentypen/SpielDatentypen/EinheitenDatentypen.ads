@@ -12,8 +12,8 @@ package EinheitenDatentypen is
    
 
    type Passierbarkeit_Enum is (
-                                -- Weltraum
-                                Weltraum_Enum,
+                                -- Orbit
+                                Orbit_Enum,
                                 
                                 -- Himmel
                                 Luft_Enum,
@@ -30,9 +30,9 @@ package EinheitenDatentypen is
                                 Planeteninneres_Enum, Lava_Enum
                                );
 
-   subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Enum range Weltraum_Enum .. Boden_Enum;
+   subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Enum range Orbit_Enum .. Boden_Enum;
    
-   subtype Passierbarkeit_Luftbereich_Enum is Passierbarkeit_Fliegen_Enum range Weltraum_Enum .. Luft_Enum;
+   subtype Passierbarkeit_Luftbereich_Enum is Passierbarkeit_Fliegen_Enum range Orbit_Enum .. Luft_Enum;
    
    subtype Passierbarkeit_Oberfläche_Enum is Passierbarkeit_Fliegen_Enum range Wasser_Enum .. Boden_Enum;
    subtype Passierbarkeit_Oberwasser_Enum is Passierbarkeit_Oberfläche_Enum range Wasser_Enum .. Küstenwasser_Enum;

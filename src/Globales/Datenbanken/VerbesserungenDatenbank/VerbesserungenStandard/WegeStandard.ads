@@ -17,10 +17,10 @@ package WegeStandard is
                                              (
                                               Passierbarkeit =>
                                                 (
-                                                 EinheitenDatentypen.Boden_Enum    => True,
-                                                 EinheitenDatentypen.Luft_Enum     => True,
-                                                 EinheitenDatentypen.Weltraum_Enum => True,
-                                                 others                            => False
+                                                 EinheitenDatentypen.Boden_Enum => True,
+                                                 EinheitenDatentypen.Luft_Enum  => True,
+                                                 EinheitenDatentypen.Orbit_Enum => True,
+                                                 others                         => False
                                                 ),
                                                                                                                                            
                                               Wirtschaft =>
@@ -193,10 +193,10 @@ package WegeStandard is
                                                      (
                                                       Passierbarkeit =>
                                                         (
-                                                         EinheitenDatentypen.Boden_Enum    => True,
-                                                         EinheitenDatentypen.Luft_Enum     => True,
-                                                         EinheitenDatentypen.Weltraum_Enum => True,
-                                                         others                            => False
+                                                         EinheitenDatentypen.Boden_Enum => True,
+                                                         EinheitenDatentypen.Luft_Enum  => True,
+                                                         EinheitenDatentypen.Orbit_Enum => True,
+                                                         others                         => False
                                                         ),
                                                                                                                                            
                                                       Wirtschaft =>

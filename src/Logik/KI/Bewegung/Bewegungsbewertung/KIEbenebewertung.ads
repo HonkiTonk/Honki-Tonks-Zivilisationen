@@ -23,7 +23,7 @@ private
                                                          KartenKonstanten.UnterflächeKonstante     => 2,
                                                          KartenKonstanten.OberflächeKonstante      => 3,
                                                          KartenKonstanten.HimmelKonstante          => 4,
-                                                         KartenKonstanten.WeltraumKonstante        => 5
+                                                         KartenKonstanten.OrbitKonstante        => 5
                                                         );
    
    
