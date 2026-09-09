@@ -37,10 +37,10 @@ package body ZeigerbewegungLogik is
         and
           RichtungExtern = TastenbelegungDatentypen.Ebene_Hoch_Enum
       then
-         KartenWert := (KartenKonstanten.PlaneteninneresKonstante, BasisKoordinaten.Senkrechte, BasisKoordinaten.Waagerechte);
+         KartenWert := (KartenKonstanten.KernKonstante, BasisKoordinaten.Senkrechte, BasisKoordinaten.Waagerechte);
            
       elsif
-        BasisKoordinaten.Ebene = KartenKonstanten.PlaneteninneresKonstante
+        BasisKoordinaten.Ebene = KartenKonstanten.KernKonstante
         and
           RichtungExtern = TastenbelegungDatentypen.Ebene_Runter_Enum
       then

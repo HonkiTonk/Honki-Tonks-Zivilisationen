@@ -24,6 +24,9 @@ package ZufallsgeneratorenSpieleinstellungenLogik is
    function ZufälligeKartengröße
      return KartenRecords.KartenfeldumgebungPositivRecord;
    
+   function ZufälligeKartenebenen
+     return KartenRecords.KartenebenenVorhandenRecord;
+   
    function ZufälligeVordefinierteKartenart
      return KartenartDatentypen.Kartenart_Normal_Enum;
    
@@ -47,9 +50,12 @@ private
    
    Poldicke : KartenDatentypen.SenkrechteNatural;
    
+   Ebenen : KartenRecords.KartenebenenVorhandenRecord;
+   
    package ZufälligeVordefinierteKartengrößeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RueckgabeDatentypen.Kartengrößen_Standard_Enum);
    package ZufälligeKartensenkrechteWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);
    package ZufälligeKartenwaagerechteWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.WaagerechtePositiv);
+   package ZufälligeKartenebenenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.EbeneVorhanden);
    package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenart_Normal_Enum);
    package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartentemperatur_Enum);
    package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenressourcenmenge_Enum);
@@ -67,6 +73,7 @@ private
    ZufälligeVordefinierteKartengrößeGewählt : ZufälligeVordefinierteKartengrößeWählen.Generator;
    ZufälligeKartensenkrechteGewählt : ZufälligeKartensenkrechteWählen.Generator;
    ZufälligeKartenwaagerechteGewählt : ZufälligeKartenwaagerechteWählen.Generator;
+   ZufälligeKartenebenenGewählt : ZufälligeKartenebenenWählen.Generator;
    ZufälligeKartenartGewählt : ZufälligeKartenartWählen.Generator;
    ZufälligeKartentemperaturGewählt : ZufälligeKartentemperaturWählen.Generator;
    ZufälligeKartenressourcenGewählt : ZufälligeKartenressourcenWählen.Generator;

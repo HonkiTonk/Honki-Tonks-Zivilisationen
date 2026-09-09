@@ -12,6 +12,8 @@ with KartengeneratorVariablenLogik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 
+-- Das hier in eine Funktion zusammenfassen? äöü
+-- Sollte ich mehr hinzufügen müsste ich es dann aber eventuell wieder trennen. äöü
 package body ZusatztextKartenebeneGrafik is
 
    function ZusatztextKartenebene
@@ -32,24 +34,14 @@ package body ZusatztextKartenebeneGrafik is
    procedure TextFestlegen
    is begin
       
-      Schleifenabzug := 5;
-      
-      ZusatztextKartenebeneSchleife:
-      for ZusatztextKartenebeneSchleifenwert in TextaccessVariablen.ZusatztextKartenebenenAccess'First .. TextaccessVariablen.ZusatztextKartenebenenAccess'Last - 1 loop
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartenebenenAccess (ZusatztextKartenebeneSchleifenwert),
-                                            str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartenebene_Menü_Enum) - Schleifenabzug,
-                                                                                                 WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum));
-         
-         Schleifenabzug := Schleifenabzug - 1;
-         
-      end loop ZusatztextKartenebeneSchleife;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartenebenenAccess (6),
-                                         str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartenebene_Menü_Enum) - Schleifenabzug,
+      -- Eventuell eine Funktion schreiben die eine Textzeile durchgeht bis ein Leerzeichen erscheint und dann nur den Teil davor zurückgibt? äöü
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartenebenenAccess (1),
+                                         str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartenebene_Menü_Enum),
                                                                                               WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum) & TextKonstantenHTSEB.StandardAbstand
-                                         & EbeneAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang) & Trennbereich
-                                         & EbeneAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde));
+                                         & MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang),
+                                                                                        WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum)
+                                         & Trennbereich & MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde),
+                                                                                                       WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum));
       
    end TextFestlegen;
    
@@ -63,25 +55,20 @@ package body ZusatztextKartenebeneGrafik is
       
       Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.Zeilenabstand;
       Textbreite := RealeViewbreiteExtern;
+               
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartenebenenAccess (1),
+                                                                              ViewbreiteExtern => Textbreite);
       
-      TextanzeigeSchleife:
-      for TextanzeigeSchleifenwert in TextaccessVariablen.ZusatztextKartenebenenAccess'Range loop
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartenebenenAccess (1),
+                                    position => Textposition);
          
-         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartenebenenAccess (TextanzeigeSchleifenwert),
-                                                                                 ViewbreiteExtern => Textbreite);
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
       
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartenebenenAccess (TextanzeigeSchleifenwert),
-                                       position => Textposition);
+      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartenebenenAccess (1),
+                                                                          TextbreiteExtern => Textbreite);
          
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
-      
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartenebenenAccess (TextanzeigeSchleifenwert),
-                                                                             TextbreiteExtern => Textbreite);
-         
-         TextaccessverwaltungssystemEinfachGrafik.Zeichnen (TextaccessExtern => TextaccessVariablen.ZusatztextKartenebenenAccess (TextanzeigeSchleifenwert));
-         
-      end loop TextanzeigeSchleife;
+      TextaccessverwaltungssystemEinfachGrafik.Zeichnen (TextaccessExtern => TextaccessVariablen.ZusatztextKartenebenenAccess (1));
       
       return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand);
       

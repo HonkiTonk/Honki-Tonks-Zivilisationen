@@ -141,17 +141,19 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (10.09.2026):
+   -- Version 0.06.4790 => 0.06. (10.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4745 => 0.06. (09.09.2026):
+   -- Version 0.06.4745 => 0.06.4790 (09.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kartengröße testweiße auf 1.100x1.100 erhöht und eine neue Kartengrößeauswahlmöglichkeit eingebaut..
+   -- Zufallsgenerator für die Kartenebenen eingebaut.
+   -- Weiter am neuen Ebenensystem gebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

@@ -127,6 +127,7 @@ Groß
 Riesig
 Gigantisch
 Absurd
+Maximum
 ~7~
 Zufällige vordefinierte Größe
 Zufällige nicht vordefinierte Größe
@@ -135,14 +136,15 @@ Aktuelle Größe:
 Neue Größe:
 #################################
 Kartenebene wählen:
-Planetenkern
-Untergrund/Unterwasser (2 von 18 Spezies starten hier)
-Oberfläche (16 von 18 Spezies starten hier)
-Himmel
 Orbit
+Himmel
+Oberfläche (16 Spezies starten hier)
+Untergrund/Unterwasser (2 Spezies starten hier)
+Planetenkern
 ~4~
 ~6~
 ~5~
+Ebenenbereich:
 #################################
 Kartenart wählen:
 Inseln

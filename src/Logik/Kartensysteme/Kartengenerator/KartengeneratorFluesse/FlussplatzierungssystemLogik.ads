@@ -30,14 +30,14 @@ private
    
    type StandardFlussArray is array (KartenDatentypen.EbenePlanet'Range) of KartenextraDatentypen.Fluss_Vorhanden_Enum;
    StandardFluss : constant StandardFlussArray := (
-                                                   KartenKonstanten.PlaneteninneresKonstante => KartenextraDatentypen.Lavasee_Enum,
+                                                   KartenKonstanten.KernKonstante => KartenextraDatentypen.Lavasee_Enum,
                                                    KartenKonstanten.UnterflächeKonstante     => KartenextraDatentypen.Unterirdischer_See_Enum,
                                                    KartenKonstanten.OberflächeKonstante      => KartenextraDatentypen.See_Enum
                                                   );
    
    type FlusstypArray is array (StandardFlussArray'Range) of Natural;
    Flusstyp : constant FlusstypArray := (
-                                         KartenKonstanten.PlaneteninneresKonstante =>
+                                         KartenKonstanten.KernKonstante =>
                                            KartenextraDatentypen.Fluss_Kernfläche_Enum'Pos (KartenextraDatentypen.Lavaflusskreuzung_Vier_Enum)
                                          - KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Vier_Enum),
                                                        

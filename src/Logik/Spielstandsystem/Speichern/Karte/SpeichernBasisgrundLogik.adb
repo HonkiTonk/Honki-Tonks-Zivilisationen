@@ -32,7 +32,7 @@ package body SpeichernBasisgrundLogik is
             KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                    LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
             
-         when KartenKonstanten.PlaneteninneresKonstante =>
+         when KartenKonstanten.KernKonstante =>
             Kerngrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
             -- Der Kern basiert doch auf der Kartengröße, kann ich den dann nicht einfach überspringen und beim Laden mit Kern auffüllen? äöü
             -- Das hier lieber direkt in die Koordinatenschleife packen? äöü

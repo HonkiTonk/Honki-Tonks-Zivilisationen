@@ -19,7 +19,7 @@ private
    
    type EbenenumrechnungArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.SenkrechtePositiv;
    Ebenenumrechnung : constant EbenenumrechnungArray := (
-                                                         KartenKonstanten.PlaneteninneresKonstante => 1,
+                                                         KartenKonstanten.KernKonstante => 1,
                                                          KartenKonstanten.UnterflächeKonstante     => 2,
                                                          KartenKonstanten.OberflächeKonstante      => 3,
                                                          KartenKonstanten.HimmelKonstante          => 4,

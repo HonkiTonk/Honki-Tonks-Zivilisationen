@@ -29,7 +29,7 @@ package KartenKonstanten is
    AnfangSenkrechte : constant KartenDatentypen.SenkrechtePositiv := KartenDatentypen.SenkrechtePositiv'First;
    AnfangWaagerechte : constant KartenDatentypen.WaagerechtePositiv := KartenDatentypen.WaagerechtePositiv'First;
    
-   PlaneteninneresKonstante : constant KartenDatentypen.EbeneVorhanden := -2;
+   KernKonstante : constant KartenDatentypen.EbeneVorhanden := -2;
    UnterflächeKonstante : constant KartenDatentypen.EbeneVorhanden := -1;
    OberflächeKonstante : constant KartenDatentypen.EbeneVorhanden := 0;
    HimmelKonstante : constant KartenDatentypen.EbeneVorhanden := 1;
@@ -39,23 +39,23 @@ package KartenKonstanten is
       
    LeerSichtbar : constant Boolean := False;
    
-   -- Die Kartengrößen mal von einem festen Standardwert abhängig machen, für den Fall dass ich die maximale Kartengröße mal erhöhe. äöü
    MinimaleKartengröße : constant KartenRecords.KartenfeldumgebungPositivRecord := (
-                                                                                      Senkrechte => KartenDatentypen.SenkrechtePositiv'Last / 50,
-                                                                                      Waagerechte => KartenDatentypen.WaagerechtePositiv'Last / 50
+                                                                                      Senkrechte  => 20,
+                                                                                      Waagerechte => 20
                                                                                      );
    
    type StandardKartengrößenArray is array (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range) of KartenRecords.KartenfeldumgebungPositivRecord;
    StandardKartengrößen : constant StandardKartengrößenArray := (
-                                                                     RueckgabeDatentypen.Auswahl_Eins_Enum   => (KartenDatentypen.SenkrechtePositiv'Last / 50, KartenDatentypen.WaagerechtePositiv'Last / 50),
-                                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum   => (KartenDatentypen.SenkrechtePositiv'Last / 25, KartenDatentypen.WaagerechtePositiv'Last / 25),
-                                                                     RueckgabeDatentypen.Auswahl_Drei_Enum   => (KartenDatentypen.SenkrechtePositiv'Last / 12, KartenDatentypen.WaagerechtePositiv'Last / 12),
-                                                                     RueckgabeDatentypen.Auswahl_Vier_Enum   => (KartenDatentypen.SenkrechtePositiv'Last / 8, KartenDatentypen.WaagerechtePositiv'Last / 12),
-                                                                     RueckgabeDatentypen.Auswahl_Fünf_Enum   => (KartenDatentypen.SenkrechtePositiv'Last / 8, KartenDatentypen.WaagerechtePositiv'Last / 6),
-                                                                     RueckgabeDatentypen.Auswahl_Sechs_Enum  => (KartenDatentypen.SenkrechtePositiv'Last / 6, KartenDatentypen.WaagerechtePositiv'Last / 6),
-                                                                     RueckgabeDatentypen.Auswahl_Sieben_Enum => (KartenDatentypen.SenkrechtePositiv'Last / 4, KartenDatentypen.WaagerechtePositiv'Last / 4),
-                                                                     RueckgabeDatentypen.Auswahl_Acht_Enum   => (KartenDatentypen.SenkrechtePositiv'Last / 3, KartenDatentypen.WaagerechtePositiv'Last / 3),
-                                                                     RueckgabeDatentypen.Auswahl_Neun_Enum   => (KartenDatentypen.SenkrechtePositiv'Last, KartenDatentypen.WaagerechtePositiv'Last)
+                                                                     RueckgabeDatentypen.Auswahl_Eins_Enum   => (20, 20),
+                                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum   => (40, 40),
+                                                                     RueckgabeDatentypen.Auswahl_Drei_Enum   => (80, 80),
+                                                                     RueckgabeDatentypen.Auswahl_Vier_Enum   => (80, 125),
+                                                                     RueckgabeDatentypen.Auswahl_Fünf_Enum   => (125, 170),
+                                                                     RueckgabeDatentypen.Auswahl_Sechs_Enum  => (170, 170),
+                                                                     RueckgabeDatentypen.Auswahl_Sieben_Enum => (250, 250),
+                                                                     RueckgabeDatentypen.Auswahl_Acht_Enum   => (350, 350),
+                                                                     RueckgabeDatentypen.Auswahl_Neun_Enum   => (1_000, 1_000),
+                                                                     RueckgabeDatentypen.Auswahl_Zehn_Enum   => (KartenDatentypen.SenkrechtePositiv'Last, KartenDatentypen.WaagerechtePositiv'Last)
                                                                     );
    
    StandardKartenart : constant KartenartDatentypen.Kartenart_Normal_Enum := KartenartDatentypen.Kartenart_Kontinente_Enum;

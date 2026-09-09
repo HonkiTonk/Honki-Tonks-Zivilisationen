@@ -15,6 +15,7 @@ with KartengeneratorVariablenLogik;
 with UmwandlungenDatentypen;
 with KartentestsLogik;
 
+-- Die ganzen Zugriffe auf KartengeneratorVariablenLogik auch mal in Lese/Schreibevariablen packen? äöü
 package body SpieleinstellungenKartenLogik is
    
    procedure KartenpoleWählen
@@ -133,13 +134,13 @@ package body SpieleinstellungenKartenLogik is
             when RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (KartengrößeAuswahl);
 
-            when RueckgabeDatentypen.Auswahl_Zehn_Enum =>
+            when RueckgabeDatentypen.Auswahl_Elf_Enum =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := GrößeSelbstBestimmen;
                
-            when RueckgabeDatentypen.Auswahl_Elf_Enum =>
+            when RueckgabeDatentypen.Auswahl_Zwölf_Enum =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartengröße);
                
-            when RueckgabeDatentypen.Auswahl_Zwölf_Enum =>
+            when RueckgabeDatentypen.Auswahl_Dreizehn_Enum =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartengröße;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
@@ -204,16 +205,18 @@ package body SpieleinstellungenKartenLogik is
          
          KartenebeneAuswahl := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum);
          
+         -- Anfang -2 .. 2 Ende
          case
            KartenebeneAuswahl
          is
-            -- Standard
-            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            when RueckgabeDatentypen.Kartenebenen_Enum'Range =>
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenebene := KartenebenenTests (EingabeExtern => KartenebeneAuswahl);
+                 
+            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartenebene := KartenRecordKonstanten.StandardKartenebenen;
                
-               -- Zufall
-            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               null;
+            when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenebene := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenebenen;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                exit KartenebeneSchleife;
@@ -225,6 +228,96 @@ package body SpieleinstellungenKartenLogik is
       end loop KartenebeneSchleife;
       
    end KartenebeneWählen;
+   
+   
+   
+   function KartenebenenTests
+     (EingabeExtern : in RueckgabeDatentypen.Kartenebenen_Enum)
+      return KartenRecords.KartenebenenVorhandenRecord
+   is
+      use type KartenDatentypen.EbeneVorhanden;
+   begin
+      
+      Ebene := (EbeneAnfang => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang,
+                EbeneEnde   => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde);
+      
+      case
+        EingabeExtern
+      is
+         when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            if
+              Ebene.EbeneEnde = KartenKonstanten.OrbitKonstante
+            then
+               Ebene.EbeneEnde := KartenKonstanten.HimmelKonstante;
+                  
+            else
+               Ebene.EbeneEnde := KartenKonstanten.OrbitKonstante;
+            end if;
+               
+         when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+            if
+              Ebene.EbeneEnde = KartenKonstanten.HimmelKonstante
+            then
+               Ebene.EbeneEnde := KartenKonstanten.OberflächeKonstante;
+                  
+            else
+               Ebene.EbeneEnde := KartenKonstanten.HimmelKonstante;
+            end if;
+               
+         when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+            if
+              Ebene.EbeneEnde = KartenKonstanten.OberflächeKonstante
+              and
+                Ebene.EbeneAnfang <= KartenKonstanten.UnterflächeKonstante
+            then
+               Ebene.EbeneEnde := KartenKonstanten.UnterflächeKonstante;
+                  
+            elsif
+              Ebene.EbeneEnde = KartenKonstanten.OberflächeKonstante
+              and
+                Ebene.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
+            then
+               Ebene.EbeneEnde := KartenKonstanten.UnterflächeKonstante;
+               Ebene.EbeneAnfang := KartenKonstanten.UnterflächeKonstante;
+                    
+            else
+               Ebene.EbeneEnde := KartenKonstanten.OberflächeKonstante;
+            end if;
+               
+         when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+            if
+              Ebene.EbeneAnfang = KartenKonstanten.UnterflächeKonstante
+              and
+                Ebene.EbeneEnde > KartenKonstanten.UnterflächeKonstante
+            then
+               Ebene.EbeneAnfang := KartenKonstanten.OberflächeKonstante;
+                  
+            elsif
+              Ebene.EbeneAnfang = KartenKonstanten.UnterflächeKonstante
+              and
+                Ebene.EbeneEnde <= KartenKonstanten.UnterflächeKonstante
+            then
+               Ebene.EbeneAnfang := KartenKonstanten.OberflächeKonstante;
+               Ebene.EbeneEnde := KartenKonstanten.OberflächeKonstante;
+                  
+            else
+               Ebene.EbeneAnfang := KartenKonstanten.UnterflächeKonstante;
+            end if;
+               
+         when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+            if
+              Ebene.EbeneAnfang = KartenKonstanten.KernKonstante
+            then
+               Ebene.EbeneAnfang := KartenKonstanten.UnterflächeKonstante;
+                  
+            else
+               Ebene.EbeneAnfang := KartenKonstanten.KernKonstante;
+            end if;
+      end case;
+      
+      return Ebene;
+      
+   end KartenebenenTests;
 
 
 

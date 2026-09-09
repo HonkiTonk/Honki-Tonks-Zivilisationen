@@ -1,8 +1,7 @@
 with Sf.System.Vector2;
 
-private with UmwandlungssystemHTSEB;
-
 private with KartenDatentypen;
+private with KartenKonstanten;
 
 package ZusatztextKartenebeneGrafik is
    pragma Elaborate_Body;
@@ -28,13 +27,20 @@ package ZusatztextKartenebeneGrafik is
    
 private
    
-   Schleifenabzug : Natural;
-   
    Trennbereich : constant Wide_Wide_String (1 .. 4) := " .. ";
    
    Textbreite : Float;
    
    Textposition : Sf.System.Vector2.sfVector2f;
+   
+   type ZusatztextArray is array (KartenDatentypen.EbeneVorhanden'Range) of Positive;
+   Zusatztext : constant ZusatztextArray := (
+                                             KartenKonstanten.KernKonstante        => 6,
+                                             KartenKonstanten.UnterflächeKonstante => 5,
+                                             KartenKonstanten.OberflächeKonstante  => 4,
+                                             KartenKonstanten.HimmelKonstante      => 3,
+                                             KartenKonstanten.OrbitKonstante       => 2
+                                            );
                                          
    procedure TextFestlegen;
    
@@ -58,7 +64,5 @@ private
                 and
                   TextAnzeigen'Result.y >= 0.00
                );
-   
-   function EbeneAlsString is new UmwandlungssystemHTSEB.Zahlenstring (GanzeZahl => KartenDatentypen.EbeneVorhanden);
 
 end ZusatztextKartenebeneGrafik;

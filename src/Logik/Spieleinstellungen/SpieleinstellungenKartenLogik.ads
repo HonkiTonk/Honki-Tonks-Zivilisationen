@@ -30,6 +30,8 @@ private
    
    ZwischenwertKartenart : Positive;
    
+   Ebene : KartenRecords.KartenebenenVorhandenRecord;
+   
    BenutzerdefinierteGröße : SystemRecordsHTSEB.ZahlenEingabeRecord;
    BenutzerdefinierteKartenart : SystemRecordsHTSEB.ZahlenEingabeRecord;
    
@@ -49,5 +51,9 @@ private
    
    function GrößeSelbstBestimmen
      return KartenRecords.KartenfeldumgebungPositivRecord;
+   
+   function KartenebenenTests
+     (EingabeExtern : in RueckgabeDatentypen.Kartenebenen_Enum)
+      return KartenRecords.KartenebenenVorhandenRecord;
 
 end SpieleinstellungenKartenLogik;

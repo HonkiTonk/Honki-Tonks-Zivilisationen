@@ -55,9 +55,9 @@ package body SichtbarkeitSetzenLogik is
                EbeneEnde := KartenKonstanten.UnterflächeKonstante;
             end if;
             
-         when KartenKonstanten.PlaneteninneresKonstante =>
-            EbeneAnfang := KartenKonstanten.PlaneteninneresKonstante;
-            EbeneEnde := KartenKonstanten.PlaneteninneresKonstante;
+         when KartenKonstanten.KernKonstante =>
+            EbeneAnfang := KartenKonstanten.KernKonstante;
+            EbeneEnde := KartenKonstanten.KernKonstante;
             
          when others =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "SichtbarkeitSetzenLogik.EbenenBerechnungen: Ungültige Ebene: " & KoordinatenExtern.Ebene'Wide_Wide_Image);

@@ -34,7 +34,7 @@ package body KartengeneratorRessourcenLogik is
       task body RessourcenKern
       is begin
          
-         RessourcenGenerierung (EbeneExtern         => KartenKonstanten.PlaneteninneresKonstante,
+         RessourcenGenerierung (EbeneExtern         => KartenKonstanten.KernKonstante,
                                 LadezeitbasisExtern => 100.00 / (3.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
          
       end RessourcenKern;

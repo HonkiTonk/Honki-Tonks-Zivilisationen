@@ -30,7 +30,7 @@ package body KartengeneratorPlanetenkernLogik is
               and
                 WaagerechteSchleifenwert in XKernanfang .. XKernende
             then
-               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                              GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
                
             elsif
@@ -38,11 +38,11 @@ package body KartengeneratorPlanetenkernLogik is
               and
                 WaagerechteSchleifenwert in XKernanfang - 1 .. XKernende + 1
             then
-               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                              GrundExtern       => KartengrundDatentypen.Lava_Enum);
                
             else
-               BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+               BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
             end if;
                
          end loop WaagerechteSchleife;

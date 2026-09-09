@@ -39,6 +39,26 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    
+   function ZufälligeKartenebenen
+     return KartenRecords.KartenebenenVorhandenRecord
+   is begin
+      
+      ZufälligeKartenebenenWählen.Reset (Gen => ZufälligeKartenebenenGewählt);
+      
+      Ebenen.EbeneAnfang := ZufälligeKartenebenenWählen.Random (Gen   => ZufälligeKartenebenenGewählt,
+                                                                  First => KartenKonstanten.KernKonstante,
+                                                                  Last  => KartenKonstanten.OberflächeKonstante);
+      
+      Ebenen.EbeneEnde := ZufälligeKartenebenenWählen.Random (Gen   => ZufälligeKartenebenenGewählt,
+                                                                  First => Ebenen.EbeneAnfang,
+                                                                  Last  => KartenKonstanten.OrbitKonstante);
+      
+      return Ebenen;
+      
+   end ZufälligeKartenebenen;
+   
+   
+   
    function ZufälligeVordefinierteKartenart
      return KartenartDatentypen.Kartenart_Normal_Enum
    is begin

@@ -1,7 +1,7 @@
 package KartenDatentypen is
    pragma Pure;
 
-   type SenkrechteBasis is range -1_000 .. 1_000;
+   type SenkrechteBasis is range -1_100 .. 1_100;
    subtype SenkrechteNatural is SenkrechteBasis range 0 .. SenkrechteBasis'Last;
    subtype SenkrechtePositiv is SenkrechteNatural range 1 .. SenkrechteNatural'Last;
       

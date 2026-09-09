@@ -35,7 +35,7 @@ package body LadenBasisgrundLogik is
             KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                   Basisgrund);
             
-         when KartenKonstanten.PlaneteninneresKonstante =>
+         when KartenKonstanten.KernKonstante =>
             -- YKernanfang := LeseWeltkarteneinstellungen.Senkrechte / 2 - LeseWeltkarteneinstellungen.Senkrechte / 10;
             -- XKernanfang := LeseWeltkarteneinstellungen.Waagerechte / 2 - LeseWeltkarteneinstellungen.Waagerechte / 10;
             -- YKernende := LeseWeltkarteneinstellungen.Senkrechte / 2 + LeseWeltkarteneinstellungen.Senkrechte / 10;

@@ -38,17 +38,18 @@ private
    Rückgabewert : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    
-   type StandardKartengrößenArray is array (1 .. 9) of RueckgabeDatentypen.Kartengrößen_Standard_Enum;
+   type StandardKartengrößenArray is array (1 .. 10) of RueckgabeDatentypen.Kartengrößen_Standard_Enum;
    StandardKartengrößen : constant StandardKartengrößenArray := (
-                                                                     1 => RueckgabeDatentypen.Auswahl_Eins_Enum,
-                                                                     2 => RueckgabeDatentypen.Auswahl_Zwei_Enum,
-                                                                     3 => RueckgabeDatentypen.Auswahl_Drei_Enum,
-                                                                     4 => RueckgabeDatentypen.Auswahl_Vier_Enum,
-                                                                     5 => RueckgabeDatentypen.Auswahl_Fünf_Enum,
-                                                                     6 => RueckgabeDatentypen.Auswahl_Sechs_Enum,
-                                                                     7 => RueckgabeDatentypen.Auswahl_Sieben_Enum,
-                                                                     8 => RueckgabeDatentypen.Auswahl_Acht_Enum,
-                                                                     9 => RueckgabeDatentypen.Auswahl_Neun_Enum
+                                                                     1  => RueckgabeDatentypen.Auswahl_Eins_Enum,
+                                                                     2  => RueckgabeDatentypen.Auswahl_Zwei_Enum,
+                                                                     3  => RueckgabeDatentypen.Auswahl_Drei_Enum,
+                                                                     4  => RueckgabeDatentypen.Auswahl_Vier_Enum,
+                                                                     5  => RueckgabeDatentypen.Auswahl_Fünf_Enum,
+                                                                     6  => RueckgabeDatentypen.Auswahl_Sechs_Enum,
+                                                                     7  => RueckgabeDatentypen.Auswahl_Sieben_Enum,
+                                                                     8  => RueckgabeDatentypen.Auswahl_Acht_Enum,
+                                                                     9  => RueckgabeDatentypen.Auswahl_Neun_Enum,
+                                                                     10 => RueckgabeDatentypen.Auswahl_Zehn_Enum
                                                                     );
                                          
    procedure TextFestlegen
