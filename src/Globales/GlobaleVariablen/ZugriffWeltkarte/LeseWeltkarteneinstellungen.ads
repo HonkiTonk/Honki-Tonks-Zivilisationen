@@ -13,6 +13,14 @@ package LeseWeltkarteneinstellungen is
      return KartenDatentypen.WaagerechtePositiv;
    pragma Inline (Waagerechte);
    
+   function EbeneAnfang
+     return KartenDatentypen.EbeneVorhanden;
+   pragma Inline (EbeneAnfang);
+   
+   function EbeneEnde
+     return KartenDatentypen.EbeneVorhanden;
+   pragma Inline (EbeneEnde);
+   
    function EbeneOben
      return KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum;
    pragma Inline (EbeneOben);

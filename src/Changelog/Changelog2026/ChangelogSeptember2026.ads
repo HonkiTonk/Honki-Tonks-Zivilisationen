@@ -134,23 +134,25 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (11.09.2026):
+   -- Version 0.06.4840 => 0.06. (11.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4790 => 0.06. (10.09.2026):
+   -- Version 0.06.4790 => 0.06.4840 (10.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Funktion eingebaut um einzelne Wörter oder Textbereiche aus einer Zeile herauszusuchen.
+   -- Funktion zum Einstellen der Ebenen fertig gestellt.
+   -- Angefangen alles an die neue Ebeneneinstellung anzupassen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
    -- Version 0.06.4745 => 0.06.4790 (09.09.2026):
    
-   -- Kartengröße testweiße auf 1.100x1.100 erhöht und eine neue Kartengrößeauswahlmöglichkeit eingebaut..
+   -- Kartengröße testweiße auf 1.100x1.100 erhöht und eine neue Kartengrößeauswahlmöglichkeit eingebaut.
    -- Zufallsgenerator für die Kartenebenen eingebaut.
    -- Weiter am neuen Ebenensystem gebaut.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.

@@ -73,10 +73,10 @@ package body SpeichernAllgemeinesLogik is
                                                      LeseAllgemeines.Schwierigkeitsgrad);
       
       SystemDatentypenHTSEB.EigenesPositive'Write (Stream (File => DateiSpeichernExtern),
-                                              LeseAllgemeines.Rundenanzahl);
+                                                   LeseAllgemeines.Rundenanzahl);
       
       SystemDatentypenHTSEB.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
-                                             LeseAllgemeines.Rundengrenze);
+                                                  LeseAllgemeines.Rundengrenze);
       
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
                                         LeseAllgemeines.Ironman);
@@ -86,7 +86,7 @@ package body SpeichernAllgemeinesLogik is
       
       -- Diese beiden Werte eventuell in kleinere Datentypen packen? Würde ich das überall tun würde ich vermutlich ein paar Byte sparen, ist das sinnvoll? äöü
       SystemDatentypenHTSEB.EigenerInteger'Write (Stream (File => DateiSpeichernExtern),
-                                             LeseAllgemeines.Zusammenbruchszeit);
+                                                  LeseAllgemeines.Zusammenbruchszeit);
       
       SystemDatentypenHTSEB.EigenesNatural'Write (Stream (File => DateiSpeichernExtern),
                                                   LeseAllgemeines.EingesetztePZB);

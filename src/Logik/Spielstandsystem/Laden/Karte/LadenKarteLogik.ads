@@ -37,12 +37,14 @@ private
    
    function Felderzusammenfassung
      (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
+      DateiLadenExtern : in File_Type;
+      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord)
       return Boolean;
    
    function Spezieszusammenfassung
      (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
+      DateiLadenExtern : in File_Type;
+      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord)
       return Boolean;
 
 end LadenKarteLogik;

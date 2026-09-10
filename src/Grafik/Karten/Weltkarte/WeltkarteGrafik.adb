@@ -136,6 +136,7 @@ package body WeltkarteGrafik is
    
    
    
+   -- Das noch an die Ebenenänderung anpassen. äöü
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;

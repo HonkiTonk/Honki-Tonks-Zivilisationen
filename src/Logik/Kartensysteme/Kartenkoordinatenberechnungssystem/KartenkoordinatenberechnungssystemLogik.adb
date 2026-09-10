@@ -35,8 +35,8 @@ package body KartenkoordinatenberechnungssystemLogik is
             
          when others =>
             NeueKoordinate (TaskExtern).Ebene := KartenkoordinateEbeneBerechnenLogik.KartenkoordinateEbeneBerechnen (EbeneExtern         => KoordinatenExtern.Ebene,
-                                                                                                                        ÄnderungEbeneExtern => ÄnderungExtern.Ebene,
-                                                                                                                        TaskExtern    => TaskExtern);
+                                                                                                                     ÄnderungEbeneExtern => ÄnderungExtern.Ebene,
+                                                                                                                     TaskExtern          => TaskExtern);
             
             if
               NeueKoordinate (TaskExtern).Ebene = KartenKonstanten.LeerEbene
@@ -48,7 +48,7 @@ package body KartenkoordinatenberechnungssystemLogik is
       end case;
       
       KartenkoordinatenWerteLogik.SenkrechteVerschiebungSchreiben (TaskExtern     => TaskExtern,
-                                                               ÜbergangExtern => KartenartDatentypen.Senkrechte_Übergangslos_Enum);
+                                                                   ÜbergangExtern => KartenartDatentypen.Senkrechte_Übergangslos_Enum);
       
       case
         ÄnderungExtern.Senkrechte
@@ -58,8 +58,8 @@ package body KartenkoordinatenberechnungssystemLogik is
             
          when others =>
             NeueKoordinate (TaskExtern).Senkrechte := KartenkoordinateSenkrechteBerechnenLogik.KartenkoordinateSenkrechteBerechnen (SenkrechteExtern         => KoordinatenExtern.Senkrechte,
-                                                                                                                        ÄnderungSenkrechteExtern => ÄnderungExtern.Senkrechte,
-                                                                                                                        TaskExtern    => TaskExtern);
+                                                                                                                                    ÄnderungSenkrechteExtern => ÄnderungExtern.Senkrechte,
+                                                                                                                                    TaskExtern               => TaskExtern);
       
             if
               NeueKoordinate (TaskExtern).Senkrechte = KartenKonstanten.LeerSenkrechte
@@ -72,7 +72,7 @@ package body KartenkoordinatenberechnungssystemLogik is
       end case;
       
       KartenkoordinatenWerteLogik.WaagerechteVerschiebungSchreiben (TaskExtern     => TaskExtern,
-                                                               ÜbergangExtern => KartenartDatentypen.Waagerechte_Übergangslos_Enum);
+                                                                    ÜbergangExtern => KartenartDatentypen.Waagerechte_Übergangslos_Enum);
             
       case
         ÄnderungExtern.Waagerechte
@@ -82,8 +82,8 @@ package body KartenkoordinatenberechnungssystemLogik is
             
          when others =>
             NeueKoordinate (TaskExtern).Waagerechte := KartenkoordinateWaagerechteBerechnenLogik.KartenkoordinateWaagerechteBerechnen (WaagerechteExtern         => KoordinatenExtern.Waagerechte,
-                                                                                                                        ÄnderungWaagerechteExtern => ÄnderungExtern.Waagerechte,
-                                                                                                                        TaskExtern    => TaskExtern);
+                                                                                                                                       ÄnderungWaagerechteExtern => ÄnderungExtern.Waagerechte,
+                                                                                                                                       TaskExtern                => TaskExtern);
             
             if
               NeueKoordinate (TaskExtern).Waagerechte = KartenKonstanten.LeerWaagerechte

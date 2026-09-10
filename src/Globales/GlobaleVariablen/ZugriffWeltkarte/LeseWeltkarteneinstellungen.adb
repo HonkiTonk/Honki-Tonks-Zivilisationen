@@ -22,6 +22,26 @@ package body LeseWeltkarteneinstellungen is
    
    
    
+   function EbeneAnfang
+     return KartenDatentypen.EbeneVorhanden
+   is begin
+      
+      return Weltkarte.Karteneinstellungen.Kartenebene.EbeneAnfang;
+      
+   end EbeneAnfang;
+   
+   
+   
+   function EbeneEnde
+     return KartenDatentypen.EbeneVorhanden
+   is begin
+      
+      return Weltkarte.Karteneinstellungen.Kartenebene.EbeneEnde;
+      
+   end EbeneEnde;
+   
+   
+   
    function EbeneOben
      return KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum
    is begin

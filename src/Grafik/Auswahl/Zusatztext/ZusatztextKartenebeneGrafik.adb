@@ -1,6 +1,7 @@
 with Sf.Graphics.Text;
 
 with TextKonstantenHTSEB;
+with BetriebssystemKonstantenHTSEB;
 
 with MenueKonstanten;
 with MenueDatentypen;
@@ -11,6 +12,7 @@ with MenuestringsSetzenGrafik;
 with KartengeneratorVariablenLogik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
+with TextaufteilungGrafik;
 
 -- Das hier in eine Funktion zusammenfassen? äöü
 -- Sollte ich mehr hinzufügen müsste ich es dann aber eventuell wieder trennen. äöü
@@ -34,14 +36,20 @@ package body ZusatztextKartenebeneGrafik is
    procedure TextFestlegen
    is begin
       
-      -- Eventuell eine Funktion schreiben die eine Textzeile durchgeht bis ein Leerzeichen erscheint und dann nur den Teil davor zurückgibt? äöü
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartenebenenAccess (1),
                                          str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartenebene_Menü_Enum),
                                                                                               WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum) & TextKonstantenHTSEB.StandardAbstand
-                                         & MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang),
-                                                                                        WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum)
-                                         & Trennbereich & MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde),
-                                                                                                       WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum));
+                                         & TextaufteilungGrafik.Wortsuche (AnfangExtern => BetriebssystemKonstantenHTSEB.NUL,
+                                                                           EndeExtern   => BetriebssystemKonstantenHTSEB.Leerzeichen,
+                                                                           TextExtern   => MenuestringsSetzenGrafik.MenüstringsSetzen
+                                                                             (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang),
+                                                                              WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum))
+                                         & Trennbereich
+                                         & TextaufteilungGrafik.Wortsuche (AnfangExtern => BetriebssystemKonstantenHTSEB.NUL,
+                                                                           EndeExtern   => BetriebssystemKonstantenHTSEB.Leerzeichen,
+                                                                           TextExtern   => MenuestringsSetzenGrafik.MenüstringsSetzen
+                                                                             (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde),
+                                                                              WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum)));
       
    end TextFestlegen;
    

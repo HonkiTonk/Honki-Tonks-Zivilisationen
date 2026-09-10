@@ -55,8 +55,7 @@ package body SpeichernKarteLogik is
       end case;
       
       EbeneSchleife:
-      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
-      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+      for EbeneSchleifenwert in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
             WaagerechteSchleife:
@@ -221,8 +220,7 @@ package body SpeichernKarteLogik is
       SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
       
       EbeneSchleife:
-      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
-      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+      for EbeneSchleifenwert in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
             WaagerechteSchleife:
@@ -295,8 +293,7 @@ package body SpeichernKarteLogik is
       SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
       
       EbeneSchleife:
-      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
-      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+      for EbeneSchleifenwert in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
             WaagerechteSchleife:

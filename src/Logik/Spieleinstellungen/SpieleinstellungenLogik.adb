@@ -121,6 +121,7 @@ package body SpieleinstellungenLogik is
       
       -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.
       SchreibeWeltkarteneinstellungen.Fläche (AchsenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße);
+      SchreibeWeltkarteneinstellungen.Ebenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene);
       SchreibeWeltkarteneinstellungen.Kartenform (KartenformExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenform);
       KartengeneratorLogik.Kartengenerator;
       

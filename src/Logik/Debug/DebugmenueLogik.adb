@@ -124,7 +124,7 @@ package body DebugmenueLogik is
    is begin
       
       EbeneSchleife:
-      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+      for EbeneSchleifenwert in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
             WaagerechteSchleife:

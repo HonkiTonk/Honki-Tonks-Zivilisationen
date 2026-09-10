@@ -58,7 +58,7 @@ package body LadenKarteLogik is
       LadezeitKarteBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
       
       EbeneSchleife:
-      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+      for EbeneSchleifenwert in Karteneinstellungen.Kartenebene.EbeneAnfang .. Karteneinstellungen.Kartenebene.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
             WaagerechteSchleife:
@@ -194,12 +194,14 @@ package body LadenKarteLogik is
         SichtbarkeitLadeaufteilung
       is
          when 0 =>
-            return Felderzusammenfassung (LadenPrüfenExtern => LadenPrüfenExtern,
-                                          DateiLadenExtern  => DateiLadenExtern);
+            return Felderzusammenfassung (LadenPrüfenExtern         => LadenPrüfenExtern,
+                                          DateiLadenExtern          => DateiLadenExtern,
+                                          KarteneinstellungenExtern => Karteneinstellungen);
             
          when 1 =>
-            return Spezieszusammenfassung (LadenPrüfenExtern => LadenPrüfenExtern,
-                                           DateiLadenExtern  => DateiLadenExtern);
+            return Spezieszusammenfassung (LadenPrüfenExtern         => LadenPrüfenExtern,
+                                           DateiLadenExtern          => DateiLadenExtern,
+                                           KarteneinstellungenExtern => Karteneinstellungen);
             
          when others =>
             return False;
@@ -217,7 +219,8 @@ package body LadenKarteLogik is
    
    function Felderzusammenfassung
      (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
+      DateiLadenExtern : in File_Type;
+      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord)
       return Boolean
    is begin
       
@@ -227,12 +230,11 @@ package body LadenKarteLogik is
       LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
             
       EbeneSchleife:
-      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
-      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+      for EbeneSchleifenwert in KarteneinstellungenExtern.Kartenebene.EbeneAnfang .. KarteneinstellungenExtern.Kartenebene.EbeneEnde loop
          SenkrechteSchleife:
-         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
+         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. KarteneinstellungenExtern.Kartengröße.Senkrechte loop
             WaagerechteSchleife:
-            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
+            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. KarteneinstellungenExtern.Kartengröße.Waagerechte loop
                
                KoordinatenFestgelegt (FelderanzahlSichtbarkeit) := (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert);
                      
@@ -295,19 +297,19 @@ package body LadenKarteLogik is
    
    function Spezieszusammenfassung
      (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
+      DateiLadenExtern : in File_Type;
+      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord)
       return Boolean
    is begin
       
       LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
       
       EbeneSchleife:
-      -- Warum loope ich da nicht direkt über EbeneVorhanden'Range? äöü
-      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+      for EbeneSchleifenwert in KarteneinstellungenExtern.Kartenebene.EbeneAnfang .. KarteneinstellungenExtern.Kartenebene.EbeneEnde loop
          SenkrechteSchleife:
-         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
+         for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. KarteneinstellungenExtern.Kartengröße.Senkrechte loop
             WaagerechteSchleife:
-            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellungen.Kartengröße.Waagerechte loop
+            for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. KarteneinstellungenExtern.Kartengröße.Waagerechte loop
                
                case
                  LadenSichtbarkeitLogik.AufteilungSpezieszeile (DateiLadenExtern        => DateiLadenExtern,

@@ -123,7 +123,7 @@ package body PZBEingesetztLogik is
    begin
       
       EbeneSchleife:
-      for EbeneSchleifenwert in KartenKonstanten.AnfangEbene .. KartenKonstanten.EndeEbene loop
+      for EbeneSchleifenwert in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in VernichtungsbereichExtern.SenkrechteAnfang .. VernichtungsbereichExtern.SenkrechteEnde loop
             WaagerechteSchleife:

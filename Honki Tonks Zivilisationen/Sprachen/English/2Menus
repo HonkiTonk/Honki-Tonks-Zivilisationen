@@ -136,14 +136,15 @@ Current size:
 New size:
 #################################
 Choose map plane:
-Planet core
-Unterground/Unterwater (2 from 18 Species start here)
-Surface (16 from 18 Species start here)
-Sky
 Orbit
+Sky
+Surface (16 Species start here)
+Unterground/Unterwater (2 Species start here)
+Planet core
 ~4~
 ~6~
 ~5~
+Plane range:
 #################################
 Select map type:
 Islands

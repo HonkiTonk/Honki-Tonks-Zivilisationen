@@ -9,15 +9,17 @@ package KartengeneratorFlussLogik is
    procedure GenerierungFlüsse;
 
 private
+   
+   EbeneEnde : KartenDatentypen.EbeneVorhanden;
          
    LadezeitBasis : Float;
    
    -- Später vom Nutzer einstellbar machen. äöü
    type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of SystemDatentypenHTSEB.NullBisHundert;
    WahrscheinlichkeitFluss : constant WahrscheinlichkeitFlussArray := (
-                                                                       KartenKonstanten.KernKonstante => 30,
-                                                                       KartenKonstanten.UnterflächeKonstante     => 30,
-                                                                       KartenKonstanten.OberflächeKonstante      => 30
+                                                                       KartenKonstanten.KernKonstante        => 30,
+                                                                       KartenKonstanten.UnterflächeKonstante => 30,
+                                                                       KartenKonstanten.OberflächeKonstante  => 30
                                                                       );
 
 end KartengeneratorFlussLogik;

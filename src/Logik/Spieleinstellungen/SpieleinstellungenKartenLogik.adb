@@ -219,7 +219,7 @@ package body SpieleinstellungenKartenLogik is
                KartengeneratorVariablenLogik.Kartenparameter.Kartenebene := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenebenen;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
-               exit KartenebeneSchleife;
+               return;
                
             when others =>
                MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenKartenLogik.KartenebeneWählen: Falsche Auswahl: " & KartenebeneAuswahl'Wide_Wide_Image);

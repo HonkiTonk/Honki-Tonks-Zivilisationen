@@ -24,6 +24,7 @@ package KartenKonstanten is
    WaagerechteWesten : constant KartenDatentypen.WaagerechteUmgebungEins := -1;
    WaagerechteOsten : constant KartenDatentypen.WaagerechteUmgebungEins := 1;
    
+   -- Die Ebenenkonstanten hier noch einmal besser benennen? Nach der letzten Änderung ergeben ihre Namen nicht mehr wirklich Sinn. äöü
    AnfangEbene : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'First;
    EndeEbene : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'Last;
    AnfangSenkrechte : constant KartenDatentypen.SenkrechtePositiv := KartenDatentypen.SenkrechtePositiv'First;
