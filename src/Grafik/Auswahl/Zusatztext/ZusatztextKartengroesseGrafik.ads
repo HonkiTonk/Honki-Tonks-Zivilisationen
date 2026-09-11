@@ -30,7 +30,6 @@ package ZusatztextKartengroesseGrafik is
    
 private
    
-   Ebenenanzahl : constant Wide_Wide_String (1 .. 2) := "5x";
    KleinesX : constant Wide_Wide_String (1 .. 1) := "x";
    
    Textbreite : Float;

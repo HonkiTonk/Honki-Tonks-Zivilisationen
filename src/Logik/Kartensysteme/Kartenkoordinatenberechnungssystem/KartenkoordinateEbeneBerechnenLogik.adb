@@ -15,18 +15,18 @@ package body KartenkoordinateEbeneBerechnenLogik is
    begin
       
       if
-        EbeneExtern + ÄnderungEbeneExtern < KartenKonstanten.AnfangEbene
+        EbeneExtern + ÄnderungEbeneExtern < LeseWeltkarteneinstellungen.EbeneAnfang
       then
          return KartenkoordinateEbeneÜbergangUnten (EbeneExtern         => EbeneExtern,
-                                                      ÄnderungEbeneExtern => ÄnderungEbeneExtern,
-                                                      TaskExtern    => TaskExtern);
+                                                     ÄnderungEbeneExtern => ÄnderungEbeneExtern,
+                                                     TaskExtern          => TaskExtern);
          
       elsif
-        EbeneExtern + ÄnderungEbeneExtern > KartenKonstanten.EndeEbene
+        EbeneExtern + ÄnderungEbeneExtern > LeseWeltkarteneinstellungen.EbeneEnde
       then
          return KartenkoordinateEbeneÜbergangOben (EbeneExtern         => EbeneExtern,
-                                                     ÄnderungEbeneExtern => ÄnderungEbeneExtern,
-                                                     TaskExtern    => TaskExtern);
+                                                    ÄnderungEbeneExtern => ÄnderungEbeneExtern,
+                                                    TaskExtern          => TaskExtern);
          
       else
          return EbeneExtern + ÄnderungEbeneExtern;
@@ -58,9 +58,9 @@ package body KartenkoordinateEbeneBerechnenLogik is
       while ZwischenwertEbene (TaskExtern) > 0 loop
             
          if
-           ÜberhangEbene (TaskExtern) - 1 < Integer (KartenKonstanten.AnfangEbene)
+           ÜberhangEbene (TaskExtern) - 1 < Integer (LeseWeltkarteneinstellungen.EbeneAnfang)
          then
-            ÜberhangEbene (TaskExtern) := Positive (KartenKonstanten.EndeEbene);
+            ÜberhangEbene (TaskExtern) := Positive (LeseWeltkarteneinstellungen.EbeneEnde);
                
          else
             ÜberhangEbene (TaskExtern) := ÜberhangEbene (TaskExtern) - 1;
@@ -98,9 +98,9 @@ package body KartenkoordinateEbeneBerechnenLogik is
       while ZwischenwertEbene (TaskExtern) > 0 loop
             
          if
-           ÜberhangEbene (TaskExtern) + 1 > Positive (KartenKonstanten.EndeEbene)
+           ÜberhangEbene (TaskExtern) + 1 > Positive (LeseWeltkarteneinstellungen.EbeneEnde)
          then
-            ÜberhangEbene (TaskExtern) := Integer (KartenKonstanten.AnfangEbene);
+            ÜberhangEbene (TaskExtern) := Integer (LeseWeltkarteneinstellungen.EbeneAnfang);
                
          else
             ÜberhangEbene (TaskExtern) := ÜberhangEbene (TaskExtern) + 1;

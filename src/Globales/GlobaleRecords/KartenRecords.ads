@@ -242,7 +242,12 @@ package KartenRecords is
    
    
    
-   type KartenebenenVorhandenRecord is new EffekthöheRecord;
+   type KartenebenenVorhandenRecord is record
+      
+      EbeneAnfang : KartenDatentypen.EbeneAnfang;
+      EbeneEnde : KartenDatentypen.EbeneEnde;
+      
+   end record;
    
    
    

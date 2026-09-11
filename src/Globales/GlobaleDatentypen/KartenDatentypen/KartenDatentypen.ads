@@ -1,7 +1,7 @@
 package KartenDatentypen is
    pragma Pure;
 
-   type SenkrechteBasis is range -1_100 .. 1_100;
+   type SenkrechteBasis is range -1_000 .. 1_000;
    subtype SenkrechteNatural is SenkrechteBasis range 0 .. SenkrechteBasis'Last;
    subtype SenkrechtePositiv is SenkrechteNatural range 1 .. SenkrechteNatural'Last;
       
@@ -39,6 +39,10 @@ package KartenDatentypen is
    subtype EbeneOberfläche is EbeneVorhanden range 0 .. EbeneVorhanden'Last;
    subtype EbeneLuft is EbeneOberfläche range 1 .. EbeneVorhanden'Last;
    subtype EbenenbereichEins is EbeneVorhanden range EbeneVorhanden (SenkrechteUmgebungEins'First) .. EbeneVorhanden (SenkrechteUmgebungEins'Last);
+   
+   -- Für die Festlegung der im Spiel vorhandenen Ebenen.
+   subtype EbeneAnfang is EbeneVorhanden range EbeneVorhanden'First .. 0;
+   subtype EbeneEnde is EbeneVorhanden range -1 .. EbeneVorhanden'Last;
    
    
    

@@ -295,7 +295,7 @@ package body SpieleinstellungenKartenLogik is
             elsif
               Ebene.EbeneAnfang = KartenKonstanten.UnterflächeKonstante
               and
-                Ebene.EbeneEnde <= KartenKonstanten.UnterflächeKonstante
+                Ebene.EbeneEnde = KartenKonstanten.UnterflächeKonstante
             then
                Ebene.EbeneAnfang := KartenKonstanten.OberflächeKonstante;
                Ebene.EbeneEnde := KartenKonstanten.OberflächeKonstante;

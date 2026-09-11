@@ -7,6 +7,7 @@ with KartengrundDatentypen;
 with KartenartDatentypen;
 with KartenextraDatentypen;
 
+-- Die Sachen hier auch mal mit Lese/Schreibefunktionen versehen. äöü
 package KartengeneratorVariablenLogik is
    pragma Elaborate_Body;
 

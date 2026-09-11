@@ -1,3 +1,5 @@
+with KartenDatentypen;
+
 with KartengeneratorHimmelLogik;
 with KartengeneratorOrbitLogik;
 with KartengeneratorPlanetenkernLogik;
@@ -5,6 +7,7 @@ with KartengeneratorPolregionLogik;
 with KartengeneratorStandardLogik;
 with PolbereicheBerechnenLogik;
 with KartengeneratorVariablenLogik;
+with KartentestsLogik;
 
 package body KartengeneratorAllgemeinesLogik is
    
@@ -20,26 +23,44 @@ package body KartengeneratorAllgemeinesLogik is
   
    procedure GenerierungGrundlagen
    is
+      use type KartenDatentypen.EbeneVorhanden;
+      use type KartenDatentypen.SenkrechtePositiv;
    
-      task Himmel;
       task Orbit;
+      task Himmel;
       task Planeteninneres;
-      
-      task body Himmel
-      is begin
-         
-         KartengeneratorHimmelLogik.Himmel (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
-         
-      end Himmel;
-      
-      
       
       task body Orbit
       is begin
 
-         KartengeneratorOrbitLogik.Orbit (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
+         if
+           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde = 2
+         then
+            KartengeneratorOrbitLogik.Orbit (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                             * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+            
+         else
+            null;
+         end if;
          
       end Orbit;
+      
+      
+      
+      task body Himmel
+      is begin
+         
+         if
+           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= 1
+         then
+            KartengeneratorHimmelLogik.Himmel (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                               * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+            
+         else
+            null;
+         end if;
+         
+      end Himmel;
       
       
       
@@ -48,14 +69,31 @@ package body KartengeneratorAllgemeinesLogik is
          
          -- Sollte ich in dieser Prozedur später weitere Berechnungen durchführen die Zugriff auf die Kartenkoordinatenberechnung vornehmen, äöü
          -- dann muss ich das hier wegverschieben da der Zugriff ebenfalls in KartengeneratorStandardLogik.OberflächeGenerieren erfolgt. äöü
-         KartengeneratorPlanetenkernLogik.Planetenkern (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
+         if
+           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = -2
+         then
+            KartengeneratorPlanetenkernLogik.Planetenkern (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                                           * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+            
+         else
+            null;
+         end if;
          
       end Planeteninneres;
    
    begin
       
       KartengeneratorPolregionLogik.PolregionGenerieren;
-      KartengeneratorStandardLogik.OberflächeGenerieren (LadezeitbasisExtern => 100.00 / (4.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
+      
+      if
+        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= 0
+      then
+         KartengeneratorStandardLogik.OberflächeGenerieren (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                                             * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+            
+      else
+         null;
+      end if;
       
    end GenerierungGrundlagen;
 

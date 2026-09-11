@@ -1,5 +1,6 @@
 with KartenDatentypen;
 with KartenartDatentypen;
+with KartenRecords;
 
 package KartentestsLogik is
    pragma Elaborate_Body;
@@ -25,5 +26,21 @@ package KartentestsLogik is
        Pre => (
                  PolgrößeExtern <= KartenDatentypen.WaagerechteNatural'Last / 2
               );
+
+   function VorhandeneEbenen
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+      return KartenDatentypen.SenkrechtePositiv
+     with
+       Post => (
+                  VorhandeneEbenen'Result <= 5
+               );
+
+   function PlanetenEbenen
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+      return KartenDatentypen.SenkrechtePositiv
+     with
+       Post => (
+                  PlanetenEbenen'Result <= 3
+               );
 
 end KartentestsLogik;

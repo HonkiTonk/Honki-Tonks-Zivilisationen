@@ -127,17 +127,21 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (12.09.2026):
+   -- Version 0.06.4910 => 0.06. (12.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4840 => 0.06. (11.09.2026):
+   -- Version 0.06.4840 => 0.06.4910 (11.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GeheZu an die neuen Ebeneneinstellungen angepasst.
+   -- Kartengenerator an die neuen Ebeneneinstellungen angepasst.
+   -- Funktion zum ermitteln der vorhandenen Kartenebenen eingebaut.
+   -- Kartenpositionsberechnungen an die neuen Ebeneneinstellungen angepasst.
+   -- Alles? an die neuen Ebeneneinstellungen angepasst.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

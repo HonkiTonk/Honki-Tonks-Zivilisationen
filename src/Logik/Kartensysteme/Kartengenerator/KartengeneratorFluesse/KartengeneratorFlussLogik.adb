@@ -7,7 +7,9 @@ with ZufallsgeneratorenKartenLogik;
 with KartengeneratorVariablenLogik;
 with FlussplatzierungssystemLogik;
 with LadezeitenLogik;
+with KartentestsLogik;
 
+-- Das hier auch mal noch Parallelisieren. äöü
 package body KartengeneratorFlussLogik is
 
    procedure GenerierungFlüsse
@@ -17,37 +19,8 @@ package body KartengeneratorFlussLogik is
       use type KartenDatentypen.EbeneVorhanden;
    begin
       
-      if
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = KartenKonstanten.KernKonstante
-        and
-          KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde = KartenKonstanten.UnterflächeKonstante
-      then
-         LadezeitBasis := 100.00 / Float (2 * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
-         
-      elsif
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = KartenKonstanten.UnterflächeKonstante
-        and
-          KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde = KartenKonstanten.UnterflächeKonstante
-      then
-         LadezeitBasis := 100.00 / Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
-         
-      elsif
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = KartenKonstanten.UnterflächeKonstante
-        and
-          KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= KartenKonstanten.OberflächeKonstante
-      then
-         LadezeitBasis := 100.00 / Float (2 * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
-         
-      elsif
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = KartenKonstanten.OberflächeKonstante
-        and
-          KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= KartenKonstanten.OberflächeKonstante
-      then
-         LadezeitBasis := 100.00 / Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
-         
-      else
-         LadezeitBasis := 100.00 / Float (3 * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
-      end if;
+      LadezeitBasis := 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                       * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
       
       if
         KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde > KartenKonstanten.OberflächeKonstante

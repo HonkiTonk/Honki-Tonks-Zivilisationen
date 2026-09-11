@@ -162,6 +162,12 @@ package body WeltkarteGrafik is
             
             when KartenKonstanten.OberflächeKonstante =>
                if
+                 LeseWeltkarteneinstellungen.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
+               then
+                  AktuelleKoordinaten := KoordinatenExtern;
+                  Transparents := GrafikKonstanten.Undurchsichtig;
+                  
+               elsif
                  LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
                then
                   AktuelleKoordinaten := (KoordinatenExtern.Ebene - 1, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte);

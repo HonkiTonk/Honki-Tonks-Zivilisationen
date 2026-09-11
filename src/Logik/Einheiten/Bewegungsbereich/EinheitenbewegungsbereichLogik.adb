@@ -86,6 +86,7 @@ package body EinheitenbewegungsbereichLogik is
 
       ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern      => Kartenwert,
                                                                                                         EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                  
       EbeneSchleife:
       for EbeneSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          SenkrechteSchleife:
@@ -143,9 +144,9 @@ package body EinheitenbewegungsbereichLogik is
                    SenkrechteSchleifenwert <= 0
                then
                   null;
-                  
+                                    
                elsif
-                 BewegungsfeldExtern.Ebene + EbeneSchleifenwert not in KartenDatentypen.EbeneVorhanden'Range
+                 BewegungsfeldExtern.Ebene + EbeneSchleifenwert not in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde
                then
                   null;
 
@@ -178,7 +179,7 @@ package body EinheitenbewegungsbereichLogik is
       use type KartenRecords.KartenfeldNaturalRecord;
       use type StadtDatentypen.StädtebereichBasis;
    begin
-      
+            
       if
         NeueKoordinatenExtern.Waagerechte = KartenKonstanten.LeerWaagerechte
       then
@@ -218,7 +219,7 @@ package body EinheitenbewegungsbereichLogik is
          Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinatenExtern,
                                                                             TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       end if;
-      
+                  
       if
         Stadt.Nummer = StadtKonstanten.LeerNummer
       then

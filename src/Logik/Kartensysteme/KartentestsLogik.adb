@@ -117,4 +117,44 @@ package body KartentestsLogik is
      
    end WaagerechteKartenpolePrüfen;
    
+   
+   
+   function VorhandeneEbenen
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+      return KartenDatentypen.SenkrechtePositiv
+   is
+      use type KartenDatentypen.EbeneVorhanden;
+   begin
+            
+      if
+        EbenenExtern.EbeneEnde >= 0
+      then
+         return KartenDatentypen.SenkrechtePositiv ((abs (EbenenExtern.EbeneAnfang) + EbenenExtern.EbeneEnde) + 1);
+                  
+      else
+         return KartenDatentypen.SenkrechtePositiv (abs (EbenenExtern.EbeneAnfang));
+      end if;
+      
+   end VorhandeneEbenen;
+   
+   
+   
+   function PlanetenEbenen
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+      return KartenDatentypen.SenkrechtePositiv
+   is
+      use type KartenDatentypen.EbeneVorhanden;
+   begin
+      
+      if
+        EbenenExtern.EbeneEnde >= 0
+      then
+         return KartenDatentypen.SenkrechtePositiv (abs (EbenenExtern.EbeneAnfang) + 1);
+         
+      else
+         return KartenDatentypen.SenkrechtePositiv (abs (EbenenExtern.EbeneAnfang));
+      end if;
+      
+   end PlanetenEbenen;
+   
 end KartentestsLogik;

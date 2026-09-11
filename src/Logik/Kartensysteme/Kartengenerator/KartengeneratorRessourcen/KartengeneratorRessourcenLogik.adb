@@ -10,22 +10,32 @@ with KartengeneratorWasserressourcenLogik;
 with KartengeneratorUnterlandressourcenLogik;
 with KartengeneratorUnterwasserressourcenLogik;
 with LadezeitenLogik;
+with KartentestsLogik;
 
+-- Später noch Ressourcen für weitere Ebenen einbauen. äöü
 package body KartengeneratorRessourcenLogik is
 
    procedure GenerierungRessourcen
    is
-   
-      -- Später noch Ressourcen für weitere Ebenen einbauen. äöü
-      -- Nach Einbau einer freien Auswahl, die ganzen Ressourcengeneratoren überarbeiten.
+      use type KartenDatentypen.EbeneVorhanden;
+      use type KartenDatentypen.SenkrechtePositiv;
+      
       task RessourcenUnterfläche;
       task RessourcenKern;
       
       task body RessourcenUnterfläche
       is begin
          
-         RessourcenGenerierung (EbeneExtern         => KartenKonstanten.UnterflächeKonstante,
-                                LadezeitbasisExtern => 100.00 / (3.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
+         if
+           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang <= -1
+         then
+            RessourcenGenerierung (EbeneExtern         => KartenKonstanten.UnterflächeKonstante,
+                                   LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                     * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+            
+         else
+            null;
+         end if;
          
       end RessourcenUnterfläche;
       
@@ -34,15 +44,31 @@ package body KartengeneratorRessourcenLogik is
       task body RessourcenKern
       is begin
          
-         RessourcenGenerierung (EbeneExtern         => KartenKonstanten.KernKonstante,
-                                LadezeitbasisExtern => 100.00 / (3.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
+         if
+           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = -2
+         then
+            RessourcenGenerierung (EbeneExtern         => KartenKonstanten.KernKonstante,
+                                   LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                     * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+            
+         else
+            null;
+         end if;
          
       end RessourcenKern;
    
    begin
 
-      RessourcenGenerierung (EbeneExtern         => KartenKonstanten.OberflächeKonstante,
-                             LadezeitbasisExtern => 100.00 / (3.00 * Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte)));
+      if
+        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= 0
+      then
+         RessourcenGenerierung (EbeneExtern         => KartenKonstanten.OberflächeKonstante,
+                                LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                  * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+         
+      else
+         null;
+      end if;
       
    end GenerierungRessourcen;
    

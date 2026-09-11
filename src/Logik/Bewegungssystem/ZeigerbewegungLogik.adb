@@ -69,8 +69,8 @@ package body ZeigerbewegungLogik is
    procedure GeheZu
    is begin
       
-      KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Integer (KartenKonstanten.AnfangEbene),
-                                                            ZahlenMaximumExtern => Integer (KartenKonstanten.EndeEbene),
+      KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Integer (LeseWeltkarteneinstellungen.EbeneAnfang),
+                                                            ZahlenMaximumExtern => Integer (LeseWeltkarteneinstellungen.EbeneEnde),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheEbene);
       
       case
