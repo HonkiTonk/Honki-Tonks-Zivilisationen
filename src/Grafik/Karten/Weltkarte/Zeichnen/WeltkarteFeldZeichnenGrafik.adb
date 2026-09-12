@@ -1,4 +1,4 @@
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with GrafikKonstanten;
 
 with LeseWeltkarte;
@@ -25,7 +25,7 @@ package body WeltkarteFeldZeichnenGrafik is
       case
         Gesamtgrund.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
             
          when others =>
@@ -49,7 +49,7 @@ package body WeltkarteFeldZeichnenGrafik is
       case
         KartenfeldFluss
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             null;
             
          when others =>
@@ -73,7 +73,7 @@ package body WeltkarteFeldZeichnenGrafik is
       case
         KartenfeldRessource
       is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
+         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
             null;
             
          when others =>

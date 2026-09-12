@@ -1,5 +1,8 @@
 with TextKonstantenHTSEB;
 
+with KarteneffekteDatentypen;
+with KartenzusatzgrundDatentypen;
+
 with LeseWeltkarte;
 with LeseZeiger;
 
@@ -74,7 +77,7 @@ package body AllgemeinesSeitenleisteGrafik is
       case
         GesamtgrundExtern.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => GesamtgrundExtern.Basisgrund);
          
          when others =>
@@ -87,14 +90,14 @@ package body AllgemeinesSeitenleisteGrafik is
    
    
    function Ressource
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
       case
         RessourceExtern
       is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
+         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
             return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
@@ -125,14 +128,14 @@ package body AllgemeinesSeitenleisteGrafik is
    
    
    function Weg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
@@ -144,14 +147,14 @@ package body AllgemeinesSeitenleisteGrafik is
    
    
    function Fluss
-     (FlussExtern : in KartenextraDatentypen.Fluss_Enum)
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
       case
         FlussExtern
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
@@ -170,7 +173,7 @@ package body AllgemeinesSeitenleisteGrafik is
       Zwischenspeicher := TextKonstantenHTSEB.LeerUnboundedString;
       
       FeldeffekteSchleife:
-      for FeldeffektSchleifenwert in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
+      for FeldeffektSchleifenwert in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
       
          if
            False = LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

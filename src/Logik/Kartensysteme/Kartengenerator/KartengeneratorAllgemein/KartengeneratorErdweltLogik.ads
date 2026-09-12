@@ -3,7 +3,7 @@ private with SystemDatentypenHTSEB;
 with KartenDatentypen;
 with KartenRecords;
 
-private with KartengrundDatentypen;
+private with KartenbasisgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -23,17 +23,17 @@ package KartengeneratorErdweltLogik is
    
 private
       
-   Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
    
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
    Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
       
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
+   type BasisWahrscheinlichkeitenArray is array (KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
-                                                                  KartengrundDatentypen.Erde_Enum       => 30,
-                                                                  KartengrundDatentypen.Erdgestein_Enum => 30,
-                                                                  KartengrundDatentypen.Sand_Enum       => 30,
-                                                                  KartengrundDatentypen.Gestein_Enum    => 30
+                                                                  KartenbasisgrundDatentypen.Erde_Enum       => 30,
+                                                                  KartenbasisgrundDatentypen.Erdgestein_Enum => 30,
+                                                                  KartenbasisgrundDatentypen.Sand_Enum       => 30,
+                                                                  KartenbasisgrundDatentypen.Gestein_Enum    => 30
                                                                  );
    
    procedure BasisgrundBestimmen
@@ -58,8 +58,8 @@ private
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -69,8 +69,8 @@ private
    
    function ZusatzberechnungErde
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -80,8 +80,8 @@ private
    
    function ZusatzberechnungErdgestein
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -91,8 +91,8 @@ private
    
    function ZusatzberechnungSand
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -102,8 +102,8 @@ private
    
    function ZusatzberechnungGestein
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

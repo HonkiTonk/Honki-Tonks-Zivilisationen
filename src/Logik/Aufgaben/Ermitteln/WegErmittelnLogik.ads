@@ -7,9 +7,9 @@ with KartenRecords;
 with EinheitenKonstanten;
 
 private with AufgabenDatentypen;
-private with KartenverbesserungDatentypen;
 private with ProduktionDatentypen;
-private with KartengrundDatentypen;
+private with KartenbasisgrundDatentypen;
+private with KartenwegeDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -38,9 +38,9 @@ package WegErmittelnLogik is
               );
 
 private
-   use type KartengrundDatentypen.Basisgrund_Enum;
+   use type KartenbasisgrundDatentypen.Basisgrund_Enum;
 
-   WegVorhanden : KartenverbesserungDatentypen.Weg_Enum;
+   WegVorhanden : KartenwegeDatentypen.Weg_Enum;
 
    WelcherWeg : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
@@ -54,66 +54,66 @@ private
    -- Benutze ich das mehrmals und wenn ja, kann ich es zusammenführen? äöü
    -- Bräuchte ich hier aber in verschiedenen Ausführungen. Vermutlich sinnvoll die alle anzulegen aber wahrscheinlich nicht sie auszulagern. äöü
    -- Benutze aber eine kleine Version davon im Wegeplatzierungssystem, eventuell ist da eine Zusammenführung sinnvoll? äöü
-   type WelcheWegartArray is array (KartenverbesserungDatentypen.Weg_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
+   type WelcheWegartArray is array (KartenwegeDatentypen.Weg_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
    WelcheWegart : constant WelcheWegartArray := (
-                                                 KartenverbesserungDatentypen.Leer_Weg_Enum      => AufgabenDatentypen.Straße_Bauen_Enum,
-                                                 KartenverbesserungDatentypen.Straße_Enum'Range  => AufgabenDatentypen.Schiene_Bauen_Enum,
-                                                 KartenverbesserungDatentypen.Schiene_Enum'Range => AufgabenDatentypen.Schiene_Bauen_Enum,
-                                                 KartenverbesserungDatentypen.Tunnel_Enum'Range  => AufgabenDatentypen.Tunnel_Bauen_Enum
+                                                 KartenwegeDatentypen.Leer_Weg_Enum      => AufgabenDatentypen.Straße_Bauen_Enum,
+                                                 KartenwegeDatentypen.Straße_Enum'Range  => AufgabenDatentypen.Schiene_Bauen_Enum,
+                                                 KartenwegeDatentypen.Schiene_Enum'Range => AufgabenDatentypen.Schiene_Bauen_Enum,
+                                                 KartenwegeDatentypen.Tunnel_Enum'Range  => AufgabenDatentypen.Tunnel_Bauen_Enum
                                                 );
 
 
 
    function OberflächeLand
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      WegExtern : in KartenwegeDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 (GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range
+                 (GrundExtern.Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range
                   or
-                    GrundExtern.Basisgrund = KartengrundDatentypen.Eis_Enum)
+                    GrundExtern.Basisgrund = KartenbasisgrundDatentypen.Eis_Enum)
               );
 
    function OberflächeWasser
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      WegExtern : in KartenwegeDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
+                 GrundExtern.Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
               );
 
    function UnterflächeLand
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      WegExtern : in KartenwegeDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 (GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range
+                 (GrundExtern.Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range
                   or
-                    GrundExtern.Basisgrund = KartengrundDatentypen.Untereis_Enum)
+                    GrundExtern.Basisgrund = KartenbasisgrundDatentypen.Untereis_Enum)
               );
 
    function UnterflächeWasser
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      WegExtern : in KartenwegeDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
+                 GrundExtern.Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
               );
 
    function ArbeitszeitPrüfen is new GanzzahltestsHTSEB.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.ArbeitszeitBasis);

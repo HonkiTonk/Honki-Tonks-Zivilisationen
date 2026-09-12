@@ -4,7 +4,8 @@ with Sf;
 with KartenRecords;
 with KartenDatentypen;
 
-private with KartenextraDatentypen;
+private with KartenfluesseDatentypen;
+private with KartenressourcenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -58,9 +59,9 @@ package WeltkarteFeldZeichnenGrafik is
    
 private
       
-   KartenfeldFluss : KartenextraDatentypen.Fluss_Enum;
+   KartenfeldFluss : KartenfluesseDatentypen.Fluss_Enum;
    
-   KartenfeldRessource : KartenextraDatentypen.Ressourcen_Enum;
+   KartenfeldRessource : KartenressourcenDatentypen.Ressourcen_Enum;
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
 

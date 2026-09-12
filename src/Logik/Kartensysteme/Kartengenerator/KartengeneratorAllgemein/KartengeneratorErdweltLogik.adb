@@ -23,7 +23,7 @@ package body KartengeneratorErdweltLogik is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
-      Basisgrund := KartengrundDatentypen.Leer_Basisgrund_Enum;
+      Basisgrund := KartenbasisgrundDatentypen.Leer_Basisgrund_Enum;
       Zahlenspeicher := 0;
       
       BasisgrundSchleife:
@@ -59,7 +59,7 @@ package body KartengeneratorErdweltLogik is
          case
            Basisgrund
          is
-            when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+            when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
                null;
             
             when others =>
@@ -90,26 +90,26 @@ package body KartengeneratorErdweltLogik is
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Erde_Enum =>
+         when KartenbasisgrundDatentypen.Erde_Enum =>
             return ZusatzberechnungErde (KoordinatenExtern => KoordinatenExtern,
                                          GrundExtern       => GrundExtern);
             
-         when KartengrundDatentypen.Erdgestein_Enum =>
+         when KartenbasisgrundDatentypen.Erdgestein_Enum =>
             return ZusatzberechnungErdgestein (KoordinatenExtern => KoordinatenExtern,
                                                GrundExtern       => GrundExtern);
             
-         when KartengrundDatentypen.Sand_Enum =>
+         when KartenbasisgrundDatentypen.Sand_Enum =>
             return ZusatzberechnungSand (KoordinatenExtern => KoordinatenExtern,
                                          GrundExtern       => GrundExtern);
             
-         when KartengrundDatentypen.Gestein_Enum =>
+         when KartenbasisgrundDatentypen.Gestein_Enum =>
             return ZusatzberechnungGestein (KoordinatenExtern => KoordinatenExtern,
                                             GrundExtern       => GrundExtern);
       end case;
@@ -120,8 +120,8 @@ package body KartengeneratorErdweltLogik is
    
    function ZusatzberechnungErde
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
@@ -141,8 +141,8 @@ package body KartengeneratorErdweltLogik is
    
    function ZusatzberechnungErdgestein
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
@@ -162,8 +162,8 @@ package body KartengeneratorErdweltLogik is
    
    function ZusatzberechnungSand
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if
@@ -183,8 +183,8 @@ package body KartengeneratorErdweltLogik is
    
    function ZusatzberechnungGestein
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
    is begin
       
       if

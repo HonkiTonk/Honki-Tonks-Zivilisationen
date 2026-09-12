@@ -12,11 +12,11 @@ package body KartengeneratorWasserressourcenLogik is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
-      WelcheRessource := KartenextraDatentypen.Leer_Ressource_Enum;
+      WelcheRessource := KartenressourcenDatentypen.Leer_Ressource_Enum;
       Zahlenspeicher := 0;
       
       ZufallszahlenSchleife:
-      for ZufallszahlSchleifenwert in KartenextraDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range loop
+      for ZufallszahlSchleifenwert in KartenressourcenDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range loop
          
          GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
@@ -46,7 +46,7 @@ package body KartengeneratorWasserressourcenLogik is
       case
         WelcheRessource
       is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
+         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
             return;
               
          when others =>
@@ -57,7 +57,7 @@ package body KartengeneratorWasserressourcenLogik is
       case
         WelcheRessource
       is
-         when KartenextraDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range =>
+         when KartenressourcenDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range =>
             SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                          RessourceExtern   => WelcheRessource);
             
@@ -71,18 +71,18 @@ package body KartengeneratorWasserressourcenLogik is
    
    function RessourceZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Wasser_Enum)
-      return KartenextraDatentypen.Ressourcen_Enum
+      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Wasser_Enum)
+      return KartenressourcenDatentypen.Ressourcen_Enum
    is begin
       
       case
         RessourceExtern
       is            
-         when KartenextraDatentypen.Fisch_Enum =>
+         when KartenressourcenDatentypen.Fisch_Enum =>
             return ZusatzberechnungFisch (KoordinatenExtern => KoordinatenExtern,
                                           RessourceExtern   => RessourceExtern);
             
-         when KartenextraDatentypen.Wal_Enum =>
+         when KartenressourcenDatentypen.Wal_Enum =>
             return ZusatzberechnungWal (KoordinatenExtern => KoordinatenExtern,
                                         RessourceExtern   => RessourceExtern);
       end case;
@@ -93,8 +93,8 @@ package body KartengeneratorWasserressourcenLogik is
    
    function ZusatzberechnungFisch
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Wasser_Enum)
-      return KartenextraDatentypen.Ressourcen_Enum
+      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Wasser_Enum)
+      return KartenressourcenDatentypen.Ressourcen_Enum
    is begin
       
       if
@@ -114,8 +114,8 @@ package body KartengeneratorWasserressourcenLogik is
    
    function ZusatzberechnungWal
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Wasser_Enum)
-      return KartenextraDatentypen.Ressourcen_Enum
+      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Wasser_Enum)
+      return KartenressourcenDatentypen.Ressourcen_Enum
    is begin
       
       if

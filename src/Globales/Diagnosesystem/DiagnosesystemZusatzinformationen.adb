@@ -46,8 +46,8 @@ package body DiagnosesystemZusatzinformationen is
       DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeichern,
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Version 2"));
       
-      KartengrundDatentypen.Basisgrund_Enum'Write (Stream (File => DateiSpeichern),
-                                                   KartengrundDatentypen.Flachland_Enum);
+      KartenbasisgrundDatentypen.Basisgrund_Enum'Write (Stream (File => DateiSpeichern),
+                                                   KartenbasisgrundDatentypen.Flachland_Enum);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                  NameExtern     => ("Spielstand/Manuell/Z" & "Version 2"));

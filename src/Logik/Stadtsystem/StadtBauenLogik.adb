@@ -1,7 +1,8 @@
 with KartenDatentypen;
 with Speziestexte;
 with TextnummernKonstanten;
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
+with KartenwegeDatentypen;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -215,7 +216,7 @@ package body StadtBauenLogik is
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartengrundDatentypen.Vernichtet_Enum =>
+         when KartenbasisgrundDatentypen.Vernichtet_Enum =>
             return;
             
          when others =>
@@ -225,7 +226,7 @@ package body StadtBauenLogik is
       case
         LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             null;
             
          when others =>

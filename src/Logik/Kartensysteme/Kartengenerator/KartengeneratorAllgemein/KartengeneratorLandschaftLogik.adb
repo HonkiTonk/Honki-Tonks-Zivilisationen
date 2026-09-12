@@ -28,7 +28,7 @@ package body KartengeneratorLandschaftLogik is
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
-               when KartengrundDatentypen.Flachland_Enum =>
+               when KartenbasisgrundDatentypen.Flachland_Enum =>
                   BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
 
                when others =>
@@ -38,7 +38,7 @@ package body KartengeneratorLandschaftLogik is
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
-               when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum =>
+               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum =>
                   ZusatzgrundBestimmen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
 
                when others =>
@@ -159,7 +159,7 @@ package body KartengeneratorLandschaftLogik is
       case
         Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return;
             
          when others =>
@@ -170,7 +170,7 @@ package body KartengeneratorLandschaftLogik is
       case
         Zusatzgrund
       is
-         when KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range =>
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range =>
             Zusatzgrundplatzierungssystem.Zusatzgrundplatzierung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                                                   ZusatzgrundExtern => Zusatzgrund);
             
@@ -184,30 +184,30 @@ package body KartengeneratorLandschaftLogik is
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
      
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Basisgrund_Flachland_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum'Range =>
             return ZusatzberechnungFlachland (KoordinatenExtern => KoordinatenExtern,
                                               GrundExtern       => GrundExtern);
             
-         when KartengrundDatentypen.Basisgrund_Wüste_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range =>
             return ZusatzberechnungWüste (KoordinatenExtern => KoordinatenExtern,
                                            GrundExtern       => GrundExtern);
             
-         when KartengrundDatentypen.Basisgrund_Tundra_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range =>
             return ZusatzberechnungTundra (KoordinatenExtern => KoordinatenExtern,
                                            GrundExtern       => GrundExtern);
                         
-         when KartengrundDatentypen.Basisgrund_Hügel_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
             return ZusatzberechnungHügel (KoordinatenExtern => KoordinatenExtern,
                                            GrundExtern       => GrundExtern);
             
-         when KartengrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
             return ZusatzberechnungGebirge (KoordinatenExtern => KoordinatenExtern,
                                             GrundExtern       => GrundExtern);
       end case;
@@ -218,22 +218,22 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is begin
       
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range =>
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum'Range =>
             return ZusatzberechnungWald (KoordinatenExtern => KoordinatenExtern,
                                          GrundExtern       => GrundExtern);
             
-         when KartengrundDatentypen.Zusatzgrund_Dschungel_Enum'Range =>
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum'Range =>
             return ZusatzberechnungDschungel (KoordinatenExtern => KoordinatenExtern,
                                               GrundExtern       => GrundExtern);
             
-         when KartengrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
             return ZusatzberechnungSumpf (KoordinatenExtern => KoordinatenExtern,
                                           GrundExtern       => GrundExtern);
       end case;
@@ -244,10 +244,10 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungTundra
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Tundra_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
       SenkrechteSchleife:
@@ -265,9 +265,9 @@ package body KartengeneratorLandschaftLogik is
                null;
                
             elsif
-              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Wüste_Enum
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartenbasisgrundDatentypen.Wüste_Enum
             then
-               return KartengrundDatentypen.Wüste_Enum;
+               return KartenbasisgrundDatentypen.Wüste_Enum;
                   
             else
                null;
@@ -284,10 +284,10 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungWüste
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Wüste_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
       SenkrechteSchleife:
@@ -305,11 +305,11 @@ package body KartengeneratorLandschaftLogik is
                null;
                
             elsif
-              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartenbasisgrundDatentypen.Eis_Enum
               or
-                LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Tundra_Enum
+                LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartenbasisgrundDatentypen.Tundra_Enum
             then
-               return KartengrundDatentypen.Tundra_Enum;
+               return KartenbasisgrundDatentypen.Tundra_Enum;
                   
             else
                null;
@@ -326,8 +326,8 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungHügel
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Hügel_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -347,8 +347,8 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungGebirge
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Gebirge_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -368,8 +368,8 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungFlachland
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Flachland_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
          
       if
@@ -389,18 +389,18 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungWald
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Wald_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
       Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
       
       if
-        Basisgrund = KartengrundDatentypen.Wüste_Enum
+        Basisgrund = KartenbasisgrundDatentypen.Wüste_Enum
       then
-         return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
+         return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
          
       else
          return GrundExtern;
@@ -412,20 +412,20 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungDschungel
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Dschungel_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
       Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
       
       if
-        Basisgrund = KartengrundDatentypen.Wüste_Enum
+        Basisgrund = KartenbasisgrundDatentypen.Wüste_Enum
         or
-          Basisgrund = KartengrundDatentypen.Tundra_Enum
+          Basisgrund = KartenbasisgrundDatentypen.Tundra_Enum
       then
-         return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
+         return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
          
       else
          return GrundExtern;
@@ -437,18 +437,18 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungSumpf
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Sumpf_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
       Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
       
       if
-        Basisgrund = KartengrundDatentypen.Wüste_Enum
+        Basisgrund = KartenbasisgrundDatentypen.Wüste_Enum
       then
-         return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
+         return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
          
       else
          return GrundExtern;

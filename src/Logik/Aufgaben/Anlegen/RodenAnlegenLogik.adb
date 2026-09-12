@@ -1,4 +1,4 @@
-with KartenextraDatentypen;
+with KartenressourcenDatentypen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
@@ -16,9 +16,9 @@ package body RodenAnlegenLogik is
       case
         LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenextraDatentypen.Hochwertiges_Holz_Enum =>
+         when KartenressourcenDatentypen.Hochwertiges_Holz_Enum =>
             SchreibeWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern,
-                                         RessourceExtern   => KartenextraDatentypen.Leer_Ressource_Enum);
+                                         RessourceExtern   => KartenressourcenDatentypen.Leer_Ressource_Enum);
             
          when others =>
             null;

@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded;
 
 with Views;
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with ViewKonstanten;
 with ZeitKonstanten;
 with GrafikDatentypen;
@@ -109,7 +109,7 @@ package body StadtkarteGrafik is
       case
         GrundExtern.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
             
          when others =>

@@ -3,7 +3,7 @@ with SpeziesDatentypen;
 with KartenRecords;
 with KartenDatentypen;
 
-private with KartengrundDatentypen;
+private with KartenbasisgrundDatentypen;
 
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
@@ -30,7 +30,7 @@ package FeldproduktionLogik is
    
 private
    
-   Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
    
    Gesamtwert : ProduktionDatentypen.Feldproduktion;
 

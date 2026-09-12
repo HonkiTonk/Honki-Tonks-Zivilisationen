@@ -22,17 +22,17 @@ package body LadenBasisgrundLogik is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.OrbitKonstante =>
-            Basisgrund := KartengrundDatentypen.Orbit_Enum;
+            Basisgrund := KartenbasisgrundDatentypen.Orbit_Enum;
             
          when KartenKonstanten.HimmelKonstante =>
-            Basisgrund := KartengrundDatentypen.Wolken_Enum;
+            Basisgrund := KartenbasisgrundDatentypen.Wolken_Enum;
             
          when KartenKonstanten.OberflächeKonstante =>
-            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+            KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                   Basisgrund);
             
          when KartenKonstanten.UnterflächeKonstante =>
-            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+            KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                   Basisgrund);
             
          when KartenKonstanten.KernKonstante =>
@@ -45,10 +45,10 @@ package body LadenBasisgrundLogik is
               and
                 KoordinatenExtern.Waagerechte in KartenfeldExtern.Waagerechte / 2 - KartenfeldExtern.Waagerechte / 10 .. KartenfeldExtern.Waagerechte / 2 + KartenfeldExtern.Waagerechte / 10
             then
-               Basisgrund := KartengrundDatentypen.Planetenkern_Enum;
+               Basisgrund := KartenbasisgrundDatentypen.Planetenkern_Enum;
                
             else
-               KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+               KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                      Basisgrund);
             end if;
       end case;

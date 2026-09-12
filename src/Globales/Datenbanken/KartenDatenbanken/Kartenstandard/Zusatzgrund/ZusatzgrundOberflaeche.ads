@@ -1,4 +1,4 @@
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
 with ZufallsgeneratorenDatentypenHTSEB;
@@ -11,9 +11,9 @@ package ZusatzgrundOberflaeche is
    
    -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type ZusatzgrundlisteOberflächeArray is array (KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
+   type ZusatzgrundlisteOberflächeArray is array (KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
    ZusatzgrundlisteOberfläche : constant ZusatzgrundlisteOberflächeArray := (
-                                                                               KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range =>
+                                                                               KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum'Range =>
                                                                                  (
                                                                                   Bewertung =>
                                                                                     (
@@ -198,7 +198,7 @@ package ZusatzgrundOberflaeche is
                                                                                     )
                                                                                  ),
 
-                                                                               KartengrundDatentypen.Zusatzgrund_Dschungel_Enum'Range =>
+                                                                               KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum'Range =>
                                                                                  (
                                                                                   Bewertung =>
                                                                                     (
@@ -383,7 +383,7 @@ package ZusatzgrundOberflaeche is
                                                                                     )
                                                                                  ),
 
-                                                                               KartengrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
+                                                                               KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
                                                                                  (
                                                                                   Bewertung =>
                                                                                     (

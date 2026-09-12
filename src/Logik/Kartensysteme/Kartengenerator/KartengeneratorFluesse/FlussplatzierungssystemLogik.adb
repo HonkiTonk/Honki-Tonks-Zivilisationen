@@ -63,7 +63,7 @@ package body FlussplatzierungssystemLogik is
       end loop SenkrechteSchleife;
 
       SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
-                               FlussExtern       => KartenextraDatentypen.Fluss_Enum'Val (Flusswert (Flussseite.Links, Flussseite.Rechts,
+                               FlussExtern       => KartenfluesseDatentypen.Fluss_Enum'Val (Flusswert (Flussseite.Links, Flussseite.Rechts,
                                  Flussseite.Oben, Flussseite.Unten) + Flusstyp (KoordinatenExtern.Ebene)));
       
    end Flussplatzierung;
@@ -80,13 +80,13 @@ package body FlussplatzierungssystemLogik is
       case
         WelcherFluss
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             return False;
             
          when others =>
-            WelcherFluss := KartenextraDatentypen.Fluss_Oberfläche_Enum'Val (KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (WelcherFluss) - Flusstyp (KoordinatenExtern.Ebene));
+            WelcherFluss := KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Val (KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Pos (WelcherFluss) - Flusstyp (KoordinatenExtern.Ebene));
             SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
-                                     FlussExtern       => KartenextraDatentypen.Fluss_Enum'Val (FlüsseLinks (WelcherFluss) + Flusstyp (KoordinatenExtern.Ebene)));
+                                     FlussExtern       => KartenfluesseDatentypen.Fluss_Enum'Val (FlüsseLinks (WelcherFluss) + Flusstyp (KoordinatenExtern.Ebene)));
             return True;
       end case;
             
@@ -104,13 +104,13 @@ package body FlussplatzierungssystemLogik is
       case
         WelcherFluss
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             return False;
             
          when others =>
-            WelcherFluss := KartenextraDatentypen.Fluss_Oberfläche_Enum'Val (KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (WelcherFluss) - Flusstyp (KoordinatenExtern.Ebene));
+            WelcherFluss := KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Val (KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Pos (WelcherFluss) - Flusstyp (KoordinatenExtern.Ebene));
             SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
-                                     FlussExtern       => KartenextraDatentypen.Fluss_Enum'Val (FlüsseRechts (WelcherFluss) + Flusstyp (KoordinatenExtern.Ebene)));
+                                     FlussExtern       => KartenfluesseDatentypen.Fluss_Enum'Val (FlüsseRechts (WelcherFluss) + Flusstyp (KoordinatenExtern.Ebene)));
             return True;
       end case;
       
@@ -128,13 +128,13 @@ package body FlussplatzierungssystemLogik is
       case
         WelcherFluss
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             return False;
             
          when others =>
-            WelcherFluss := KartenextraDatentypen.Fluss_Oberfläche_Enum'Val (KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (WelcherFluss) - Flusstyp (KoordinatenExtern.Ebene));
+            WelcherFluss := KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Val (KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Pos (WelcherFluss) - Flusstyp (KoordinatenExtern.Ebene));
             SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
-                                     FlussExtern       => KartenextraDatentypen.Fluss_Enum'Val (FlüsseOben (WelcherFluss) + Flusstyp (KoordinatenExtern.Ebene)));
+                                     FlussExtern       => KartenfluesseDatentypen.Fluss_Enum'Val (FlüsseOben (WelcherFluss) + Flusstyp (KoordinatenExtern.Ebene)));
             return True;
       end case;
             
@@ -152,13 +152,13 @@ package body FlussplatzierungssystemLogik is
       case
         WelcherFluss
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             return False;
             
          when others =>
-            WelcherFluss:= KartenextraDatentypen.Fluss_Oberfläche_Enum'Val (KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (WelcherFluss) - Flusstyp (KoordinatenExtern.Ebene));
+            WelcherFluss:= KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Val (KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Pos (WelcherFluss) - Flusstyp (KoordinatenExtern.Ebene));
             SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
-                                     FlussExtern       => KartenextraDatentypen.Fluss_Enum'Val (FlüsseUnten (WelcherFluss) + Flusstyp (KoordinatenExtern.Ebene)));
+                                     FlussExtern       => KartenfluesseDatentypen.Fluss_Enum'Val (FlüsseUnten (WelcherFluss) + Flusstyp (KoordinatenExtern.Ebene)));
             return True;
       end case;
       

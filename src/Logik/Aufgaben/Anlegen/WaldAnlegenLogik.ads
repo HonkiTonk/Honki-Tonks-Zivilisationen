@@ -3,7 +3,7 @@ with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
 
-private with KartengrundDatentypen;
+private with KartenzusatzgrundDatentypen;
 
 package WaldAnlegenLogik is
    pragma Elaborate_Body;
@@ -21,6 +21,6 @@ package WaldAnlegenLogik is
 
 private
 
-   NeuerGrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
+   NeuerGrund : KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum;
 
 end WaldAnlegenLogik;

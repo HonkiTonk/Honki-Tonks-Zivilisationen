@@ -11,14 +11,14 @@ package body LeseWeltkarte is
    
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartengrundDatentypen.Basisgrund_Enum
+      return KartenbasisgrundDatentypen.Basisgrund_Enum
    is begin
       
       case
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return KartengrundDatentypen.Leer_Basisgrund_Enum;
+            return KartenbasisgrundDatentypen.Leer_Basisgrund_Enum;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Basisgrund;
@@ -30,14 +30,14 @@ package body LeseWeltkarte is
    
    function Zusatzgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is begin
       
       case
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
+            return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Zusatzgrund;
@@ -56,7 +56,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum);
+            return (KartenbasisgrundDatentypen.Leer_Basisgrund_Enum, KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum);
             
          when others =>
             return (Basisgrund (KoordinatenExtern => KoordinatenExtern), Zusatzgrund (KoordinatenExtern => KoordinatenExtern));
@@ -68,7 +68,7 @@ package body LeseWeltkarte is
    
    function Effekt
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      WelcherEffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+      WelcherEffektExtern : in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -146,14 +146,14 @@ package body LeseWeltkarte is
    
    function Fluss
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenextraDatentypen.Fluss_Enum
+      return KartenfluesseDatentypen.Fluss_Enum
    is begin
       
       case
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return KartenextraDatentypen.Leer_Fluss_Enum;
+            return KartenfluesseDatentypen.Leer_Fluss_Enum;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Fluss;
@@ -165,14 +165,14 @@ package body LeseWeltkarte is
    
    function Weg
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenverbesserungDatentypen.Weg_Enum
+      return KartenwegeDatentypen.Weg_Enum
    is begin
             
       case
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return KartenverbesserungDatentypen.Leer_Weg_Enum;
+            return KartenwegeDatentypen.Leer_Weg_Enum;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Weg;
@@ -203,14 +203,14 @@ package body LeseWeltkarte is
    
    function Ressource
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenextraDatentypen.Ressourcen_Enum
+      return KartenressourcenDatentypen.Ressourcen_Enum
    is begin
       
       case
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return KartenextraDatentypen.Leer_Ressource_Enum;
+            return KartenressourcenDatentypen.Leer_Ressource_Enum;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Ressource;

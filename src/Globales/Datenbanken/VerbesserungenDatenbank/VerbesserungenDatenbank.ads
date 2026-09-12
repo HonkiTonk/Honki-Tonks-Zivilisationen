@@ -1,5 +1,6 @@
 with KartenverbesserungDatentypen;
 with KartendatenbankRecord;
+with KartenwegeDatentypen;
 
 package VerbesserungenDatenbank is
    pragma Preelaborate;
@@ -7,7 +8,7 @@ package VerbesserungenDatenbank is
    type VerbesserungenlisteArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of KartendatenbankRecord.VerbesserungenlisteRecord;
    Verbesserungenliste : VerbesserungenlisteArray;
    
-   type WegelisteArray is array (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range) of KartendatenbankRecord.WegelisteRecord;
+   type WegelisteArray is array (KartenwegeDatentypen.Weg_Vorhanden_Enum'Range) of KartendatenbankRecord.WegelisteRecord;
    Wegeliste : WegelisteArray;
          
 end VerbesserungenDatenbank;

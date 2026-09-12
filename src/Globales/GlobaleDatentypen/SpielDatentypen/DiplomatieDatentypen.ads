@@ -1,6 +1,6 @@
 with SpeziesDatentypen;
 with KartenRecords;
-with KartenextraDatentypen;
+with KarteneffekteDatentypen;
 
 package DiplomatieDatentypen is
    pragma Pure;
@@ -21,7 +21,7 @@ package DiplomatieDatentypen is
    -- Beziehungsweise alle Konstanten Arrays in die Konstanten schieben. äöü
    type MeinungsänderungFeldeffekteArray is array (KartenRecords.EffekteArray'Range, SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of MeinungBasis;
    MeinungsänderungFeldeffekte : constant MeinungsänderungFeldeffekteArray := (
-                                                                                 KartenextraDatentypen.Strahlung_Enum =>
+                                                                                 KarteneffekteDatentypen.Strahlung_Enum =>
                                                                                    (
                                                                                     SpeziesDatentypen.Menschen_Enum         => -1,
                                                                                     SpeziesDatentypen.Kasrodiah_Enum        => -1,
@@ -43,7 +43,7 @@ package DiplomatieDatentypen is
                                                                                     SpeziesDatentypen.Talbidahr_Enum        => -1
                                                                                    ),
                                                                                  
-                                                                                 KartenextraDatentypen.Biologisch_Enum =>
+                                                                                 KarteneffekteDatentypen.Biologisch_Enum =>
                                                                                    (
                                                                                     SpeziesDatentypen.Menschen_Enum         => -1,
                                                                                     SpeziesDatentypen.Kasrodiah_Enum        => -1,
@@ -65,7 +65,7 @@ package DiplomatieDatentypen is
                                                                                     SpeziesDatentypen.Talbidahr_Enum        => -1
                                                                                    ),
                                                                                  
-                                                                                 KartenextraDatentypen.Chemisch_Enum =>
+                                                                                 KarteneffekteDatentypen.Chemisch_Enum =>
                                                                                    (
                                                                                     SpeziesDatentypen.Menschen_Enum         => -1,
                                                                                     SpeziesDatentypen.Kasrodiah_Enum        => -1,
@@ -87,7 +87,7 @@ package DiplomatieDatentypen is
                                                                                     SpeziesDatentypen.Talbidahr_Enum        => -1
                                                                                    ),
                                                                                  
-                                                                                 KartenextraDatentypen.Verschmutzt_Enum =>
+                                                                                 KarteneffekteDatentypen.Verschmutzt_Enum =>
                                                                                    (
                                                                                     SpeziesDatentypen.Menschen_Enum         => -1,
                                                                                     SpeziesDatentypen.Kasrodiah_Enum        => -1,
@@ -109,7 +109,7 @@ package DiplomatieDatentypen is
                                                                                     SpeziesDatentypen.Talbidahr_Enum        => -1
                                                                                    ),
                                                                                    
-                                                                                 KartenextraDatentypen.Vernichtet_Enum =>
+                                                                                 KarteneffekteDatentypen.Vernichtet_Enum =>
                                                                                    (others => MeinungBasis'First)
                                                                                 );
 

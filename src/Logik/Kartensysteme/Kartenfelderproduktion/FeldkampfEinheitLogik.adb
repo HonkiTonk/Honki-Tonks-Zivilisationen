@@ -1,4 +1,4 @@
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with KartenArrays;
 
 with LeseWeltkarte;
@@ -23,7 +23,7 @@ package body FeldkampfEinheitLogik is
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartengrundDatentypen.Vernichtet_Enum =>
+         when KartenbasisgrundDatentypen.Vernichtet_Enum =>
             return KampfBasiswertExtern;
             
          when others =>

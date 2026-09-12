@@ -7,9 +7,11 @@ with KartenRecords;
 private with KartenverbesserungDatentypen;
 private with EinheitenRecords;
 private with StadtRecords;
-private with KartengrundDatentypen;
-private with KartenextraDatentypen;
+private with KartenzusatzgrundDatentypen;
+private with KartenfluesseDatentypen;
 private with KartenArrays;
+private with KartenressourcenDatentypen;
+private with KartenwegeDatentypen;
 
 package LadenZusatzbelegungLogik is
    pragma Elaborate_Body;
@@ -36,15 +38,15 @@ private
    
    Potenz : SystemDatentypenHTSEB.EigenesNatural;
    
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
+   Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum;
    
    Feldeffekte : KartenArrays.FeldeffektArray;
    
-   Fluss : KartenextraDatentypen.Fluss_Vorhanden_Enum;
+   Fluss : KartenfluesseDatentypen.Fluss_Vorhanden_Enum;
    
-   Ressource : KartenextraDatentypen.Ressourcen_Vorhanden_Enum;
+   Ressource : KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum;
    
-   Weg : KartenverbesserungDatentypen.Weg_Vorhanden_Enum;
+   Weg : KartenwegeDatentypen.Weg_Vorhanden_Enum;
    
    Verbesserung : KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum;
    

@@ -1,4 +1,3 @@
-with KartengrundDatentypen;
 with EinheitenDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
@@ -6,15 +5,17 @@ with ZufallsgeneratorenDatentypenHTSEB;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
+with KartenbasisgrundDatentypen;
+
 
 package BasisgrundKern is
    pragma Pure;
    
    -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteKernArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
+   type BasisgrundlisteKernArray is array (KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteKern : constant BasisgrundlisteKernArray := (
-                                                               KartengrundDatentypen.Lava_Enum =>
+                                                               KartenbasisgrundDatentypen.Lava_Enum =>
                                                                  (
                                                                   Passierbarkeit => (EinheitenDatentypen.Planeteninneres_Enum => True,
                                                                                      others                                   => False),
@@ -202,7 +203,7 @@ package BasisgrundKern is
                                                                     )
                                                                  ),
       
-                                                               KartengrundDatentypen.Planetenkern_Enum =>
+                                                               KartenbasisgrundDatentypen.Planetenkern_Enum =>
                                                                  (
                                                                   Passierbarkeit => (EinheitenDatentypen.Planeteninneres_Enum => True,
                                                                                      others                                   => False),
@@ -390,7 +391,7 @@ package BasisgrundKern is
                                                                     )
                                                                  ),
                                                                  
-                                                               KartengrundDatentypen.Ringwoodit_Enum =>
+                                                               KartenbasisgrundDatentypen.Ringwoodit_Enum =>
                                                                  (
                                                                   Passierbarkeit => (EinheitenDatentypen.Planeteninneres_Enum => True,
                                                                                      others                                   => False),
@@ -578,7 +579,7 @@ package BasisgrundKern is
                                                                     )
                                                                  ),
       
-                                                               KartengrundDatentypen.Majorit_Enum =>
+                                                               KartenbasisgrundDatentypen.Majorit_Enum =>
                                                                  (
                                                                   Passierbarkeit => (EinheitenDatentypen.Planeteninneres_Enum => True,
                                                                                      others                                   => False),
@@ -766,7 +767,7 @@ package BasisgrundKern is
                                                                     )
                                                                  ),
                                                                  
-                                                               KartengrundDatentypen.Perowskit_Enum =>
+                                                               KartenbasisgrundDatentypen.Perowskit_Enum =>
                                                                  (
                                                                   Passierbarkeit => (EinheitenDatentypen.Planeteninneres_Enum => True,
                                                                                      others                                   => False),
@@ -954,7 +955,7 @@ package BasisgrundKern is
                                                                     )
                                                                  ),
       
-                                                               KartengrundDatentypen.Magnesiowüstit_Enum =>
+                                                               KartenbasisgrundDatentypen.Magnesiowüstit_Enum =>
                                                                  (
                                                                   Passierbarkeit => (EinheitenDatentypen.Planeteninneres_Enum => True,
                                                                                      others                                   => False),

@@ -3,7 +3,7 @@ with Sf.Graphics.Text;
 
 with KartenDatentypen;
 with Views;
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with ViewKonstanten;
 with TextaccessVariablen;
 with Spieltexte;
@@ -12,6 +12,7 @@ with GrafikKonstanten;
 with TextnummernKonstanten;
 with ProduktionDatentypen;
 with SystemDatentypen;
+with KarteneffekteDatentypen;
 
 with LeseWeltkarte;
 
@@ -270,7 +271,7 @@ package body StadtumgebungGrafik is
       case
         Gesamtgrund.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
             
          when others =>
@@ -295,7 +296,7 @@ package body StadtumgebungGrafik is
       case
         KartenfeldFluss
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             null;
             
          when others =>
@@ -320,7 +321,7 @@ package body StadtumgebungGrafik is
       case
         KartenfeldRessource
       is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
+         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
             null;
             
          when others =>
@@ -345,7 +346,7 @@ package body StadtumgebungGrafik is
       case
         Wegfeld
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             null;
             
          when others =>
@@ -391,7 +392,7 @@ package body StadtumgebungGrafik is
    is begin
       
       EffekteSchleife:
-      for EffektSchleifenwert in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
+      for EffektSchleifenwert in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
          
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

@@ -1,28 +1,31 @@
 with KartenRecords;
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with KartenverbesserungDatentypen;
 with KartenRecordKonstanten;
 with EinheitenRecords;
 with EinheitenKonstanten;
 with StadtRecords;
-with KartenextraDatentypen;
+with KartenfluesseDatentypen;
 with KartenArrays;
+with KartenressourcenDatentypen;
+with KartenbasisgrundDatentypen;
+with KartenwegeDatentypen;
 
 package WeltkarteRecords is
    pragma Elaborate_Body;
 
    type WeltkarteRecord is record
 
-      Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
-      Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
+      Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
+      Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       Sichtbar : KartenRecords.SichtbarkeitArray;
       
       Effekte : KartenArrays.FeldeffektArray;
       
-      Fluss : KartenextraDatentypen.Fluss_Enum;
-      Ressource : KartenextraDatentypen.Ressourcen_Enum;
+      Fluss : KartenfluesseDatentypen.Fluss_Enum;
+      Ressource : KartenressourcenDatentypen.Ressourcen_Enum;
       
-      Weg : KartenverbesserungDatentypen.Weg_Enum;
+      Weg : KartenwegeDatentypen.Weg_Enum;
       Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
       
       Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -33,13 +36,13 @@ package WeltkarteRecords is
    
    -- Das hier mal nach KartenRecordKonstanten schieben, wenn das denn geht. äöü
    LeerWeltkarte : constant WeltkarteRecord := (
-                                                Basisgrund    => KartengrundDatentypen.Leer_Basisgrund_Enum,
-                                                Zusatzgrund   => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
+                                                Basisgrund    => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
+                                                Zusatzgrund   => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
                                                 Sichtbar      => KartenRecordKonstanten.LeerSichtbarkeit,
                                                 Effekte       => KartenRecordKonstanten.LeerEffekte,
-                                                Fluss         => KartenextraDatentypen.Leer_Fluss_Enum,
-                                                Ressource     => KartenextraDatentypen.Leer_Ressource_Enum,
-                                                Weg           => KartenverbesserungDatentypen.Leer_Weg_Enum,
+                                                Fluss         => KartenfluesseDatentypen.Leer_Fluss_Enum,
+                                                Ressource     => KartenressourcenDatentypen.Leer_Ressource_Enum,
+                                                Weg           => KartenwegeDatentypen.Leer_Weg_Enum,
                                                 Verbesserung  => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
                                                 Einheit       => EinheitenKonstanten.LeerEinheit,
                                                 Stadtbelegung => KartenRecordKonstanten.LeerDurchStadtBelegterGrund

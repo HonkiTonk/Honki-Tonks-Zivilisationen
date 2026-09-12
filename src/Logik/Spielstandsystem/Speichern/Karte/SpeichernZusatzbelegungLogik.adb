@@ -13,11 +13,11 @@ package body SpeichernZusatzbelegungLogik is
    procedure Leersetzung
    is begin
       
-      Zusatzgrund := (others => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
+      Zusatzgrund := (others => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum);
       Feldeffekte := (others => KartenRecordKonstanten.LeerEffekte);
-      Fluss := (others => KartenextraDatentypen.Leer_Fluss_Enum);
-      Ressource := (others => KartenextraDatentypen.Leer_Ressource_Enum);
-      Weg := (others => KartenverbesserungDatentypen.Leer_Weg_Enum);
+      Fluss := (others => KartenfluesseDatentypen.Leer_Fluss_Enum);
+      Ressource := (others => KartenressourcenDatentypen.Leer_Ressource_Enum);
+      Weg := (others => KartenwegeDatentypen.Leer_Weg_Enum);
       Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       Stadt := (others => StadtKonstanten.LeerStadt);
       
@@ -121,7 +121,7 @@ package body SpeichernZusatzbelegungLogik is
          case
            ZusatzgrundExtern (ZusatzgrundSchleifenwert)
          is
-            when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
                null;
                
             when others =>
@@ -151,11 +151,11 @@ package body SpeichernZusatzbelegungLogik is
          case
            ZusatzgrundExtern (ZusatzgrundSpeichernSchleifenwert)
          is
-            when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
                null;
                
             when others =>
-               KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+               KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                        ZusatzgrundExtern (ZusatzgrundSpeichernSchleifenwert));
          end case;
          
@@ -190,7 +190,7 @@ package body SpeichernZusatzbelegungLogik is
          case
            FlussExtern (FlussSchleifenwert)
          is
-            when KartenextraDatentypen.Leer_Fluss_Enum =>
+            when KartenfluesseDatentypen.Leer_Fluss_Enum =>
                null;
                
             when others =>
@@ -220,11 +220,11 @@ package body SpeichernZusatzbelegungLogik is
          case
            FlussExtern (FlussSpeichernSchleifenwert)
          is
-            when KartenextraDatentypen.Leer_Fluss_Enum =>
+            when KartenfluesseDatentypen.Leer_Fluss_Enum =>
                null;
                
             when others =>
-               KartenextraDatentypen.Fluss_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+               KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                  FlussExtern (FlussSpeichernSchleifenwert));
          end case;
          
@@ -259,7 +259,7 @@ package body SpeichernZusatzbelegungLogik is
          case
            RessourceExtern (RessourceSchleifenwert)
          is
-            when KartenextraDatentypen.Leer_Ressource_Enum =>
+            when KartenressourcenDatentypen.Leer_Ressource_Enum =>
                null;
                
             when others =>
@@ -289,11 +289,11 @@ package body SpeichernZusatzbelegungLogik is
          case
            RessourceExtern (RessourceSpeichernSchleifenwert)
          is
-            when KartenextraDatentypen.Leer_Ressource_Enum =>
+            when KartenressourcenDatentypen.Leer_Ressource_Enum =>
                null;
                
             when others =>
-               KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+               KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                       RessourceExtern (RessourceSpeichernSchleifenwert));
          end case;
          
@@ -328,7 +328,7 @@ package body SpeichernZusatzbelegungLogik is
          case
            WegExtern (WegSchleifenwert)
          is
-            when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+            when KartenwegeDatentypen.Leer_Weg_Enum =>
                null;
                
             when others =>
@@ -358,11 +358,11 @@ package body SpeichernZusatzbelegungLogik is
          case
            WegExtern (WegSpeichernSchleifenwert)
          is
-            when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+            when KartenwegeDatentypen.Leer_Weg_Enum =>
                null;
                
             when others =>
-               KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+               KartenwegeDatentypen.Weg_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                       WegExtern (WegSpeichernSchleifenwert));
          end case;
          

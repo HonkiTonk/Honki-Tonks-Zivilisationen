@@ -5,7 +5,8 @@ with KartenDatentypen;
 
 private with StadtRecords;
 private with EinheitenRecords;
-private with KartengrundDatentypen;
+private with KartenzusatzgrundDatentypen;
+private with KartenbasisgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
@@ -43,8 +44,8 @@ private
    EbeneAnfang : KartenDatentypen.EbeneVorhanden;
    EbeneEnde : KartenDatentypen.EbeneVorhanden;
 
-   Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
+   Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum;
 
    FremdeStadt : StadtRecords.SpeziesStadtnummerRecord;
 

@@ -4,8 +4,8 @@ with EinheitenDatentypen;
 private with KartenRecords;
 private with KartenDatentypen;
 private with StadtDatentypen;
-private with KartengrundDatentypen;
-private with KartenverbesserungDatentypen;
+private with KartenbasisgrundDatentypen;
+private with KartenwegeDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -37,10 +37,10 @@ private
    Leerwert : Boolean;
    TechnologieVorhanden : Boolean;
       
-   VorhandenerWeg : KartenverbesserungDatentypen.Weg_Enum;
+   VorhandenerWeg : KartenwegeDatentypen.Weg_Enum;
 
-   Startgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
-   Zielgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+   Startgrund : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
+   Zielgrund : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
    
    Stadtgrenze : StadtDatentypen.StädtebereichBasis;
    

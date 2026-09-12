@@ -6,9 +6,9 @@ with SpeziesKonstanten;
 with KartenKonstanten;
 with TextaccessVariablen;
 with GrafikKonstanten;
-with KartenextraDatentypen;
 with GrafikDatentypen;
 with SystemDatentypen;
+with KarteneffekteDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -38,7 +38,7 @@ package body WeltkarteZusatzZeichnenGrafik is
       case
         Wegfeld
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             null;
             
          when others =>
@@ -277,7 +277,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    is begin
       
       EffekteSchleife:
-      for EffektSchleifenwert in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
+      for EffektSchleifenwert in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
          
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

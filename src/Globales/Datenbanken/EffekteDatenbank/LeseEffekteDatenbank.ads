@@ -1,7 +1,7 @@
 with SpeziesDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
-with KartenextraDatentypen;
+with KarteneffekteDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -10,7 +10,7 @@ package LeseEffekteDatenbank is
    use type SpeziesDatentypen.Spieler_Enum;
 
    function Produktion
-     (EffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Enum;
+     (EffektExtern : in KarteneffekteDatentypen.Effekt_Kartenfeld_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -20,7 +20,7 @@ package LeseEffekteDatenbank is
               );
    
    function Kampf
-     (EffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Enum;
+     (EffektExtern : in KarteneffekteDatentypen.Effekt_Kartenfeld_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus

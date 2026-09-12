@@ -9,7 +9,7 @@ with EinheitenKonstanten;
 private with AufgabenDatentypen;
 private with KartenverbesserungDatentypen;
 private with ProduktionDatentypen;
-private with KartengrundDatentypen;
+private with KartenbasisgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -38,7 +38,7 @@ package WaldErmittelnLogik is
               );
 
 private
-   use type KartengrundDatentypen.Basisgrund_Enum;
+   use type KartenbasisgrundDatentypen.Basisgrund_Enum;
 
    VorarbeitNötig : Boolean;
 
@@ -68,9 +68,9 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 (GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range
+                 (GrundExtern.Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range
                   or
-                    GrundExtern.Basisgrund = KartengrundDatentypen.Eis_Enum)
+                    GrundExtern.Basisgrund = KartenbasisgrundDatentypen.Eis_Enum)
               );
 
    function UnterflächeWasser
@@ -89,7 +89,7 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
+                 GrundExtern.Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
               );
 
    function ArbeitszeitPrüfen is new GanzzahltestsHTSEB.StrichrechnungPositive (GanzeZahl => ProduktionDatentypen.ArbeitszeitBasis);

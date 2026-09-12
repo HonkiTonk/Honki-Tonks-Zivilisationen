@@ -1,10 +1,12 @@
 with SpeziesDatentypen;
 with EinheitenDatentypen;
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with ZufallsgeneratorenDatentypenHTSEB;
-with KartenextraDatentypen;
+with KartenfluesseDatentypen;
+with KartenressourcenDatentypen;
+with KartenbasisgrundDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -13,12 +15,12 @@ package LeseKartenDatenbanken is
    use type SpeziesDatentypen.Spieler_Enum;
 
    function PassierbarkeitBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean;
    
    function BewertungBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ZufallsgeneratorenDatentypenHTSEB.Bewertung_Enum
      with
@@ -27,7 +29,7 @@ package LeseKartenDatenbanken is
               );
    
    function BewertungZusatzgrund
-     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+     (GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ZufallsgeneratorenDatentypenHTSEB.Bewertung_Enum
      with
@@ -36,7 +38,7 @@ package LeseKartenDatenbanken is
               );
    
    function BewegungBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.BewegungspunkteVorhanden
      with
@@ -45,7 +47,7 @@ package LeseKartenDatenbanken is
               );
      
    function BewegungZusatzgrund
-     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+     (GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.BewegungspunkteVorhanden
      with
@@ -54,7 +56,7 @@ package LeseKartenDatenbanken is
               );
    
    function BewertungFluss
-     (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
@@ -63,7 +65,7 @@ package LeseKartenDatenbanken is
               );
    
    function BewertungRessource
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
@@ -72,7 +74,7 @@ package LeseKartenDatenbanken is
               );
    
    function ProduktionBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -82,7 +84,7 @@ package LeseKartenDatenbanken is
               );
    
    function ProduktionZusatzgrund
-     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+     (GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -92,7 +94,7 @@ package LeseKartenDatenbanken is
               );
    
    function ProduktionFluss
-     (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -102,7 +104,7 @@ package LeseKartenDatenbanken is
               );
    
    function ProduktionRessourcen
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -112,7 +114,7 @@ package LeseKartenDatenbanken is
               );
    
    function KampfBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -122,7 +124,7 @@ package LeseKartenDatenbanken is
               );
    
    function KampfZusatzgrund
-     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+     (GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -132,7 +134,7 @@ package LeseKartenDatenbanken is
               );
    
    function KampfFluss
-     (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -142,7 +144,7 @@ package LeseKartenDatenbanken is
               );
    
    function KampfRessource
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus

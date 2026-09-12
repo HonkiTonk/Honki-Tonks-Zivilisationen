@@ -1,7 +1,7 @@
 with KartenKonstanten;
 with GrafikRecordKonstanten;
 with Views;
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with GrafikKonstanten;
 with ViewKonstanten;
 with EinheitenKonstanten;
@@ -168,7 +168,7 @@ package body WeltkarteGrafik is
                   Transparents := GrafikKonstanten.Undurchsichtig;
                   
                elsif
-                 LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
+                 LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
                then
                   AktuelleKoordinaten := (KoordinatenExtern.Ebene - 1, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte);
                   Transparents := GrafikKonstanten.Wassertransparents;

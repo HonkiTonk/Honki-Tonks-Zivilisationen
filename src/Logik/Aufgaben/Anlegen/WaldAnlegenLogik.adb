@@ -17,10 +17,10 @@ package body WaldAnlegenLogik is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.OberflächeKonstante =>
-            NeuerGrund := KartengrundDatentypen.Wald_Enum;
+            NeuerGrund := KartenzusatzgrundDatentypen.Wald_Enum;
             
          when KartenKonstanten.UnterflächeKonstante =>
-            NeuerGrund := KartengrundDatentypen.Unterwald_Enum;
+            NeuerGrund := KartenzusatzgrundDatentypen.Unterwald_Enum;
             
          when others =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "WaldAnlegenLogik.WaldAnlegen: Falsche Ebene" & KoordinatenExtern.Ebene'Wide_Wide_Image);

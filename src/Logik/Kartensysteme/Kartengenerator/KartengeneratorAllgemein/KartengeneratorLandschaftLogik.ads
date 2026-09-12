@@ -1,8 +1,9 @@
 private with SystemDatentypenHTSEB;
 
 private with KartenDatentypen;
-private with KartengrundDatentypen;
+private with KartenzusatzgrundDatentypen;
 private with KartenRecords;
+private with KartenbasisgrundDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -15,8 +16,8 @@ private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
       
-   Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
+   Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
    Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
@@ -35,13 +36,13 @@ private
                                                                   5 => 15
                                                                  );
    
-   type ZahlenNachBasisgrundArray is array (BasisWahrscheinlichkeitenArray'Range) of KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
+   type ZahlenNachBasisgrundArray is array (BasisWahrscheinlichkeitenArray'Range) of KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
    ZahlenNachBasisgrund : constant ZahlenNachBasisgrundArray := (
-                                                                 1 => KartengrundDatentypen.Flachland_Enum,
-                                                                 2 => KartengrundDatentypen.Wüste_Enum,
-                                                                 3 => KartengrundDatentypen.Tundra_Enum,
-                                                                 4 => KartengrundDatentypen.Hügel_Enum,
-                                                                 5 => KartengrundDatentypen.Gebirge_Enum
+                                                                 1 => KartenbasisgrundDatentypen.Flachland_Enum,
+                                                                 2 => KartenbasisgrundDatentypen.Wüste_Enum,
+                                                                 3 => KartenbasisgrundDatentypen.Tundra_Enum,
+                                                                 4 => KartenbasisgrundDatentypen.Hügel_Enum,
+                                                                 5 => KartenbasisgrundDatentypen.Gebirge_Enum
                                                                 );
    
    type ZusatzWahrscheinlichkeitenArray is array (SystemDatentypenHTSEB.EinsBisHundert'First .. 3) of SystemDatentypenHTSEB.NullBisHundert;
@@ -51,12 +52,12 @@ private
                                                                     3 => 30
                                                                    );
    
-   type ZahlenNachZusatzgrundArray is array (0 .. ZusatzWahrscheinlichkeitenArray'Last) of KartengrundDatentypen.Zusatzgrund_Enum;
+   type ZahlenNachZusatzgrundArray is array (0 .. ZusatzWahrscheinlichkeitenArray'Last) of KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    ZahlenNachZusatzgrund : constant ZahlenNachZusatzgrundArray := (
-                                                                   0 => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
-                                                                   1 => KartengrundDatentypen.Wald_Enum,
-                                                                   2 => KartengrundDatentypen.Dschungel_Enum,
-                                                                   3 => KartengrundDatentypen.Sumpf_Enum
+                                                                   0 => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
+                                                                   1 => KartenzusatzgrundDatentypen.Wald_Enum,
+                                                                   2 => KartenzusatzgrundDatentypen.Dschungel_Enum,
+                                                                   3 => KartenzusatzgrundDatentypen.Sumpf_Enum
                                                                   );
    
    procedure BasisgrundBestimmen
@@ -81,8 +82,8 @@ private
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -92,8 +93,8 @@ private
       
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -103,8 +104,8 @@ private
    
    function ZusatzberechnungTundra
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Tundra_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -114,8 +115,8 @@ private
    
    function ZusatzberechnungWüste
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Wüste_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -125,8 +126,8 @@ private
    
    function ZusatzberechnungHügel
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Hügel_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -136,8 +137,8 @@ private
    
    function ZusatzberechnungGebirge
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Gebirge_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre =>
          (KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -147,8 +148,8 @@ private
    
    function ZusatzberechnungFlachland
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Flachland_Enum)
-      return KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -158,8 +159,8 @@ private
    
    function ZusatzberechnungWald
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Wald_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -169,8 +170,8 @@ private
    
    function ZusatzberechnungDschungel
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Dschungel_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -180,8 +181,8 @@ private
    
    function ZusatzberechnungSumpf
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Sumpf_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

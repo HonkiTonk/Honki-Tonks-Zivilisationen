@@ -3,7 +3,8 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with KartenRecords;
 with KartenDatentypen;
 
-private with KartengrundDatentypen;
+private with KartenbasisgrundDatentypen;
+
 
 with LeseWeltkarteneinstellungen;
 
@@ -25,6 +26,6 @@ package SpeichernBasisgrundLogik is
    
 private
    
-   Kerngrund : KartengrundDatentypen.Basisgrund_Kernfläche_Enum;
+   Kerngrund : KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Enum;
 
 end SpeichernBasisgrundLogik;

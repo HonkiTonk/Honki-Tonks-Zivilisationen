@@ -10,9 +10,11 @@ with StadtGrafikRecords;
 private with KartenverbesserungDatentypen;
 private with KartenRecords;
 private with KartenKonstanten;
-private with KartenextraDatentypen;
+private with KartenfluesseDatentypen;
 private with GrafikRecordKonstanten;
 private with StadtRecords;
+private with KartenressourcenDatentypen;
+private with KartenwegeDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -37,11 +39,11 @@ private
    
    FeldBewirtschaftet : Boolean;
    
-   KartenfeldRessource : KartenextraDatentypen.Ressourcen_Enum;
+   KartenfeldRessource : KartenressourcenDatentypen.Ressourcen_Enum;
    
-   KartenfeldFluss : KartenextraDatentypen.Fluss_Enum;
+   KartenfeldFluss : KartenfluesseDatentypen.Fluss_Enum;
    
-   Wegfeld : KartenverbesserungDatentypen.Weg_Enum;
+   Wegfeld : KartenwegeDatentypen.Weg_Enum;
 
    Stadtfeld : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
    Verbesserungsfeld : KartenverbesserungDatentypen.Verbesserung_Enum;

@@ -1,5 +1,5 @@
-with KartenextraDatentypen;
 with KampfDatentypen;
+with KarteneffekteDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -26,7 +26,7 @@ package body EffektberechnungenLogik is
       EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       EffekteSchleife:
-      for EffektSchleifenwert in reverse KartenextraDatentypen.Effekt_Vorhanden_Enum'Range loop
+      for EffektSchleifenwert in reverse KarteneffekteDatentypen.Effekt_Vorhanden_Enum'Range loop
          
          if
            True = LeseEinheitenDatenbank.Zusatzeffekt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
@@ -36,19 +36,19 @@ package body EffektberechnungenLogik is
             case
               EffektSchleifenwert
             is
-               when KartenextraDatentypen.Strahlung_Enum =>
+               when KarteneffekteDatentypen.Strahlung_Enum =>
                   StrahlungswaffeEingesetztLogik.StrahlungswaffeEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
-               when KartenextraDatentypen.Biologisch_Enum =>
+               when KarteneffekteDatentypen.Biologisch_Enum =>
                   BiologischeWaffeEingesetztLogik.BiologischeWaffeEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
-               when KartenextraDatentypen.Chemisch_Enum =>
+               when KarteneffekteDatentypen.Chemisch_Enum =>
                   ChemischeWaffeEingesetztLogik.ChemischeWaffeEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
-               when KartenextraDatentypen.Verschmutzt_Enum =>
+               when KarteneffekteDatentypen.Verschmutzt_Enum =>
                   VerschmutzendeWaffeEingesetztLogik.VerschmutzendeWaffeEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
-               when KartenextraDatentypen.Vernichtet_Enum =>
+               when KarteneffekteDatentypen.Vernichtet_Enum =>
                   PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   exit EffekteSchleife;
             end case;

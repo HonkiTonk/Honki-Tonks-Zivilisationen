@@ -1,4 +1,4 @@
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
 with ZufallsgeneratorenDatentypenHTSEB;
@@ -11,9 +11,9 @@ package ZusatzgrundUnterflaeche is
    
    -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type ZusatzgrundlisteUnterflächeArray is array (KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
+   type ZusatzgrundlisteUnterflächeArray is array (KartenzusatzgrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
    ZusatzgrundlisteUnterfläche : constant ZusatzgrundlisteUnterflächeArray := (
-                                                                                 KartengrundDatentypen.Zusatzgrund_Korallen_Enum'Range =>
+                                                                                 KartenzusatzgrundDatentypen.Zusatzgrund_Korallen_Enum'Range =>
                                                                                    (
                                                                                     Bewertung =>
                                                                                       (
@@ -198,7 +198,7 @@ package ZusatzgrundUnterflaeche is
                                                                                       )
                                                                                    ),
 
-                                                                                 KartengrundDatentypen.Zusatzgrund_Unterwald_Enum'Range =>
+                                                                                 KartenzusatzgrundDatentypen.Zusatzgrund_Unterwald_Enum'Range =>
                                                                                    (
                                                                                     Bewertung =>
                                                                                       (

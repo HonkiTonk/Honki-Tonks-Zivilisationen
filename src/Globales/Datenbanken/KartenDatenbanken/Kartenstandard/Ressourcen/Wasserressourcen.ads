@@ -1,17 +1,17 @@
 with SpeziesDatentypen;
 with KartendatenbankRecord;
-with KartenextraDatentypen;
 with ProduktionKonstanten;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
+with KartenressourcenDatentypen;
 
 package Wasserressourcen is
    pragma Pure;
 
-   type WasserressourcenlisteArray is array (KartenextraDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
+   type WasserressourcenlisteArray is array (KartenressourcenDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    Wasserressourcenliste : constant WasserressourcenlisteArray := (
-                                                                   KartenextraDatentypen.Fisch_Enum =>
+                                                                   KartenressourcenDatentypen.Fisch_Enum =>
                                                                      (
                                                                       Bewertung  =>
                                                                         (
@@ -174,7 +174,7 @@ package Wasserressourcen is
                                                                         )
                                                                      ),
       
-                                                                   KartenextraDatentypen.Wal_Enum =>
+                                                                   KartenressourcenDatentypen.Wal_Enum =>
                                                                      (
                                                                       Bewertung  =>
                                                                         (

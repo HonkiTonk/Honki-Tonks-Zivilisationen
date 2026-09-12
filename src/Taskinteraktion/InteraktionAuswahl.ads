@@ -10,7 +10,8 @@ with TastenbelegungDatentypen;
 with SpeziesDatentypen;
 with BefehleDatentypen;
 with GrafikRecordKonstanten;
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
+with KartenbasisgrundDatentypen;
 
 -- Das hier später auch mal thematisch aufteilen? äöü
 -- Auch mal besser benennen? äöü
@@ -99,10 +100,10 @@ package InteraktionAuswahl is
 
 
 
-   type PositionenBasisgrundeditorArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   type PositionenBasisgrundeditorArray is array (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenBasisgrundeditor : PositionenBasisgrundeditorArray := (others => GrafikRecordKonstanten.Leerbereich);
 
-   type PositionenZusatzgrundeditorArray is array (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   type PositionenZusatzgrundeditorArray is array (KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenZusatzgrundeditor : PositionenZusatzgrundeditorArray := (others => GrafikRecordKonstanten.Leerbereich);
 
    procedure SchreibeGesamteMausposition

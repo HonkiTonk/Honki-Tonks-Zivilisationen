@@ -1,13 +1,16 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with KartengrundDatentypen;
-with KartenextraDatentypen;
+with KartenzusatzgrundDatentypen;
+with KartenressourcenDatentypen;
+with KarteneffekteDatentypen;
+with KartenbasisgrundDatentypen;
+with KartenfluesseDatentypen;
 
 package KartenbeschreibungenGrafik is
    pragma Elaborate_Body;
 
    function KurzbeschreibungBasisgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+     (KartenGrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -15,7 +18,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function LangbeschreibungBasisgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+     (KartenGrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -23,7 +26,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function KurzbeschreibungZusatzgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+     (KartenGrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -31,7 +34,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function LangbeschreibungZusatzgrund
-     (KartenGrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+     (KartenGrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -39,7 +42,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function KurzbeschreibungFluss
-     (KartenFlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
+     (KartenFlussExtern : in KartenfluesseDatentypen.Fluss_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -47,7 +50,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function LangbeschreibungFluss
-     (KartenFlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
+     (KartenFlussExtern : in KartenfluesseDatentypen.Fluss_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -55,7 +58,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function KurzbeschreibungRessource
-     (KartenRessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -63,7 +66,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function LangbeschreibungRessource
-     (KartenRessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -71,7 +74,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function KurzbeschreibungFeldeffekte
-     (FeldeffekteExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+     (FeldeffekteExtern : in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -79,7 +82,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function LangbeschreibungFeldeffekte
-     (FeldeffekteExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+     (FeldeffekteExtern : in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (

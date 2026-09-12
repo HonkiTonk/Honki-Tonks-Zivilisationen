@@ -2,7 +2,7 @@ with KartenDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
 
-private with KartenverbesserungDatentypen;
+private with KartenwegeDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -31,22 +31,21 @@ package WegeplatzierungssystemLogik is
               );
    
 private
-   
-      
-   WelcherWeg : KartenverbesserungDatentypen.Weg_Enum;
-   ZwischenWeg : KartenverbesserungDatentypen.Weg_Enum;
-   EntfernungWeg : KartenverbesserungDatentypen.Weg_Enum;
+         
+   WelcherWeg : KartenwegeDatentypen.Weg_Enum;
+   ZwischenWeg : KartenwegeDatentypen.Weg_Enum;
+   EntfernungWeg : KartenwegeDatentypen.Weg_Enum;
    
    Entfernungskartenwert : KartenRecords.KartenfeldNaturalRecord;
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
    Wegumgebung : KartenRecords.UmgebungskreuzRecord;
    
-   type StandardWegArray is array (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
+   type StandardWegArray is array (KartenwegeDatentypen.Weg_Vorhanden_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
    StandardWeg : constant StandardWegArray := (
-                                               KartenverbesserungDatentypen.Straße_Enum'Range  => AufgabenDatentypen.Straße_Bauen_Enum,
-                                               KartenverbesserungDatentypen.Schiene_Enum'Range => AufgabenDatentypen.Schiene_Bauen_Enum,
-                                               KartenverbesserungDatentypen.Tunnel_Enum'Range  => AufgabenDatentypen.Tunnel_Bauen_Enum
+                                               KartenwegeDatentypen.Straße_Enum'Range  => AufgabenDatentypen.Straße_Bauen_Enum,
+                                               KartenwegeDatentypen.Schiene_Enum'Range => AufgabenDatentypen.Schiene_Bauen_Enum,
+                                               KartenwegeDatentypen.Tunnel_Enum'Range  => AufgabenDatentypen.Tunnel_Bauen_Enum
                                               );
    
    type WegtypArray is array (AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range) of Natural;
@@ -54,12 +53,12 @@ private
                                      AufgabenDatentypen.Straße_Bauen_Enum  => 0,
                                      
                                      AufgabenDatentypen.Schiene_Bauen_Enum =>
-                                       KartenverbesserungDatentypen.Schiene_Enum'Pos (KartenverbesserungDatentypen.Schienenkreuzung_Vier_Enum)
-                                     - KartenverbesserungDatentypen.Straße_Enum'Pos (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum),
+                                       KartenwegeDatentypen.Schiene_Enum'Pos (KartenwegeDatentypen.Schienenkreuzung_Vier_Enum)
+                                     - KartenwegeDatentypen.Straße_Enum'Pos (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum),
                                      
                                      AufgabenDatentypen.Tunnel_Bauen_Enum  =>
-                                       KartenverbesserungDatentypen.Tunnel_Enum'Pos (KartenverbesserungDatentypen.Tunnelkreuzung_Vier_Enum)
-                                     - KartenverbesserungDatentypen.Straße_Enum'Pos (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum)
+                                       KartenwegeDatentypen.Tunnel_Enum'Pos (KartenwegeDatentypen.Tunnelkreuzung_Vier_Enum)
+                                     - KartenwegeDatentypen.Straße_Enum'Pos (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum)
                                     );
    
    type WegwertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Positive;
@@ -70,14 +69,14 @@ private
                                             (
                                              True =>
                                                (
-                                                True  => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum),
-                                                False => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum)
+                                                True  => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum),
+                                                False => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum)
                                                ),
                                                  
                                              False =>
                                                (
-                                                True  => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum),
-                                                False => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straße_Waagrecht_Enum)
+                                                True  => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum),
+                                                False => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straße_Waagrecht_Enum)
                                                )
                                             ),
                                               
@@ -85,14 +84,14 @@ private
                                             (
                                              True =>
                                                (
-                                                True  => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum),
-                                                False => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenkurve_Oben_Links_Enum)
+                                                True  => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum),
+                                                False => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenkurve_Oben_Links_Enum)
                                                ),
                                                  
                                              False =>
                                                (
-                                                True  => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenkurve_Unten_Links_Enum),
-                                                False => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenende_Rechts_Enum)
+                                                True  => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenkurve_Unten_Links_Enum),
+                                                False => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenende_Rechts_Enum)
                                                )
                                             )
                                          ),
@@ -103,14 +102,14 @@ private
                                             (
                                              True =>
                                                (
-                                                True  => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
-                                                False => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum)
+                                                True  => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
+                                                False => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenkurve_Oben_Rechts_Enum)
                                                ),
                                                  
                                              False =>
                                                (
-                                                True  => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum),
-                                                False => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenende_Links_Enum)
+                                                True  => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenkurve_Unten_Rechts_Enum),
+                                                False => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenende_Links_Enum)
                                                )
                                             ),
                                               
@@ -118,170 +117,170 @@ private
                                             (
                                              True =>
                                                (
-                                                True  => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straße_Senkrecht_Enum),
-                                                False => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenende_Unten_Enum)
+                                                True  => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straße_Senkrecht_Enum),
+                                                False => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenende_Unten_Enum)
                                                ),
                                                  
                                              False =>
                                                (
-                                                True  => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straßenende_Oben_Enum),
-                                                False => KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Straße_Einzeln_Enum)
+                                                True  => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straßenende_Oben_Enum),
+                                                False => KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Straße_Einzeln_Enum)
                                                )
                                             )
                                          )
                                       );
    
-   type WegeSeitenArray is array (KartenverbesserungDatentypen.Straße_Enum'Range) of Positive;
+   type WegeSeitenArray is array (KartenwegeDatentypen.Straße_Enum'Range) of Positive;
    WegeLinks : constant WegeSeitenArray := (
                                             -- Alle Möglichkeiten die sich ändern.
-                                            KartenverbesserungDatentypen.Straße_Senkrecht_Enum            => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straßenkurve_Unten_Links_Enum    => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum),
-                                            KartenverbesserungDatentypen.Straßenkurve_Oben_Links_Enum     => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum  => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum),
-                                            KartenverbesserungDatentypen.Straßenende_Rechts_Enum      => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straße_Waagrecht_Enum),
-                                            KartenverbesserungDatentypen.Straßenende_Unten_Enum       => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straßenende_Oben_Enum        => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straße_Einzeln_Enum              => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenende_Links_Enum),
+                                            KartenwegeDatentypen.Straße_Senkrecht_Enum            => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
+                                            KartenwegeDatentypen.Straßenkurve_Unten_Links_Enum    => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum),
+                                            KartenwegeDatentypen.Straßenkurve_Oben_Links_Enum     => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum  => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum),
+                                            KartenwegeDatentypen.Straßenende_Rechts_Enum      => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straße_Waagrecht_Enum),
+                                            KartenwegeDatentypen.Straßenende_Unten_Enum       => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkurve_Oben_Rechts_Enum),
+                                            KartenwegeDatentypen.Straßenende_Oben_Enum        => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkurve_Unten_Rechts_Enum),
+                                            KartenwegeDatentypen.Straße_Einzeln_Enum              => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenende_Links_Enum),
                                             
                                             -- Alle Möglichkeiten die gleich bleiben.
-                                            KartenverbesserungDatentypen.Straße_Waagrecht_Enum            => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straße_Waagrecht_Enum),
-                                            KartenverbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum   => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum    => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straßenende_Links_Enum       => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenende_Links_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum   => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum  => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum        => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum)
+                                            KartenwegeDatentypen.Straße_Waagrecht_Enum            => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straße_Waagrecht_Enum),
+                                            KartenwegeDatentypen.Straßenkurve_Unten_Rechts_Enum   => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkurve_Unten_Rechts_Enum),
+                                            KartenwegeDatentypen.Straßenkurve_Oben_Rechts_Enum    => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkurve_Oben_Rechts_Enum),
+                                            KartenwegeDatentypen.Straßenende_Links_Enum       => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenende_Links_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum   => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum  => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Vier_Enum        => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum)
                                            );
    
    WegeRechts : constant WegeSeitenArray := (
                                              -- Alle Möglichkeiten die sich ändern.
-                                             KartenverbesserungDatentypen.Straße_Senkrecht_Enum            => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum),
-                                             KartenverbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum   => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum),
-                                             KartenverbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum    => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum),
-                                             KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum),
-                                             KartenverbesserungDatentypen.Straßenende_Links_Enum       => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straße_Waagrecht_Enum),
-                                             KartenverbesserungDatentypen.Straßenende_Unten_Enum       => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkurve_Oben_Links_Enum),
-                                             KartenverbesserungDatentypen.Straßenende_Oben_Enum        => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkurve_Unten_Links_Enum),
-                                             KartenverbesserungDatentypen.Straße_Einzeln_Enum              => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenende_Rechts_Enum),
+                                             KartenwegeDatentypen.Straße_Senkrecht_Enum            => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum),
+                                             KartenwegeDatentypen.Straßenkurve_Unten_Rechts_Enum   => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum),
+                                             KartenwegeDatentypen.Straßenkurve_Oben_Rechts_Enum    => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum),
+                                             KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum),
+                                             KartenwegeDatentypen.Straßenende_Links_Enum       => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straße_Waagrecht_Enum),
+                                             KartenwegeDatentypen.Straßenende_Unten_Enum       => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkurve_Oben_Links_Enum),
+                                             KartenwegeDatentypen.Straßenende_Oben_Enum        => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkurve_Unten_Links_Enum),
+                                             KartenwegeDatentypen.Straße_Einzeln_Enum              => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenende_Rechts_Enum),
                                              
                                              -- Alle Möglichkeiten die gleich bleiben.
-                                             KartenverbesserungDatentypen.Straße_Waagrecht_Enum            => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straße_Waagrecht_Enum),
-                                             KartenverbesserungDatentypen.Straßenkurve_Unten_Links_Enum    => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkurve_Unten_Links_Enum),
-                                             KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum  => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum),
-                                             KartenverbesserungDatentypen.Straßenende_Rechts_Enum      => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenende_Rechts_Enum),
-                                             KartenverbesserungDatentypen.Straßenkurve_Oben_Links_Enum     => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkurve_Oben_Links_Enum),
-                                             KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum   => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum),
-                                             KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum  => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum),
-                                             KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum        => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                               (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum)
+                                             KartenwegeDatentypen.Straße_Waagrecht_Enum            => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straße_Waagrecht_Enum),
+                                             KartenwegeDatentypen.Straßenkurve_Unten_Links_Enum    => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkurve_Unten_Links_Enum),
+                                             KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum  => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum),
+                                             KartenwegeDatentypen.Straßenende_Rechts_Enum      => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenende_Rechts_Enum),
+                                             KartenwegeDatentypen.Straßenkurve_Oben_Links_Enum     => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkurve_Oben_Links_Enum),
+                                             KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum   => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum),
+                                             KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum  => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum),
+                                             KartenwegeDatentypen.Straßenkreuzung_Vier_Enum        => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                               (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum)
                                             );
    
    WegeOben : constant WegeSeitenArray := (
                                            -- Alle Möglichkeiten die sich ändern.
-                                           KartenverbesserungDatentypen.Straße_Waagrecht_Enum            => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum),
-                                           KartenverbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum    => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
-                                           KartenverbesserungDatentypen.Straßenkurve_Oben_Links_Enum     => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum),
-                                           KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum   => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum),
-                                           KartenverbesserungDatentypen.Straßenende_Links_Enum       => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum),
-                                           KartenverbesserungDatentypen.Straßenende_Rechts_Enum      => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkurve_Unten_Links_Enum),
-                                           KartenverbesserungDatentypen.Straßenende_Unten_Enum       => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straße_Senkrecht_Enum),
-                                           KartenverbesserungDatentypen.Straße_Einzeln_Enum              => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenende_Oben_Enum),
+                                           KartenwegeDatentypen.Straße_Waagrecht_Enum            => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum),
+                                           KartenwegeDatentypen.Straßenkurve_Oben_Rechts_Enum    => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
+                                           KartenwegeDatentypen.Straßenkurve_Oben_Links_Enum     => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum),
+                                           KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum   => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum),
+                                           KartenwegeDatentypen.Straßenende_Links_Enum       => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkurve_Unten_Rechts_Enum),
+                                           KartenwegeDatentypen.Straßenende_Rechts_Enum      => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkurve_Unten_Links_Enum),
+                                           KartenwegeDatentypen.Straßenende_Unten_Enum       => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straße_Senkrecht_Enum),
+                                           KartenwegeDatentypen.Straße_Einzeln_Enum              => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenende_Oben_Enum),
                                             
                                            -- Alle Möglichkeiten die gleich bleiben.
-                                           KartenverbesserungDatentypen.Straße_Senkrecht_Enum            => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straße_Senkrecht_Enum),
-                                           KartenverbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum   => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum),
-                                           KartenverbesserungDatentypen.Straßenkurve_Unten_Links_Enum    => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkurve_Unten_Links_Enum),
-                                           KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum  => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum),
-                                           KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
-                                           KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum  => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum),
-                                           KartenverbesserungDatentypen.Straßenende_Oben_Enum        => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenende_Oben_Enum),
-                                           KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum        => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                             (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum)
+                                           KartenwegeDatentypen.Straße_Senkrecht_Enum            => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straße_Senkrecht_Enum),
+                                           KartenwegeDatentypen.Straßenkurve_Unten_Rechts_Enum   => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkurve_Unten_Rechts_Enum),
+                                           KartenwegeDatentypen.Straßenkurve_Unten_Links_Enum    => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkurve_Unten_Links_Enum),
+                                           KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum  => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum),
+                                           KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
+                                           KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum  => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum),
+                                           KartenwegeDatentypen.Straßenende_Oben_Enum        => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenende_Oben_Enum),
+                                           KartenwegeDatentypen.Straßenkreuzung_Vier_Enum        => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                             (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum)
                                           );
    
    WegeUnten : constant WegeSeitenArray := (
                                             -- Alle Möglichkeiten die sich ändern.
-                                            KartenverbesserungDatentypen.Straße_Waagrecht_Enum            => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum),
-                                            KartenverbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum   => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straßenkurve_Unten_Links_Enum    => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum  => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum),
-                                            KartenverbesserungDatentypen.Straßenende_Links_Enum       => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straßenende_Rechts_Enum      => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkurve_Oben_Links_Enum),
-                                            KartenverbesserungDatentypen.Straßenende_Oben_Enum        => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straße_Senkrecht_Enum),
-                                            KartenverbesserungDatentypen.Straße_Einzeln_Enum              => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenende_Unten_Enum),
+                                            KartenwegeDatentypen.Straße_Waagrecht_Enum            => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum),
+                                            KartenwegeDatentypen.Straßenkurve_Unten_Rechts_Enum   => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
+                                            KartenwegeDatentypen.Straßenkurve_Unten_Links_Enum    => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Drei_Unten_Enum  => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum),
+                                            KartenwegeDatentypen.Straßenende_Links_Enum       => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkurve_Oben_Rechts_Enum),
+                                            KartenwegeDatentypen.Straßenende_Rechts_Enum      => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkurve_Oben_Links_Enum),
+                                            KartenwegeDatentypen.Straßenende_Oben_Enum        => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straße_Senkrecht_Enum),
+                                            KartenwegeDatentypen.Straße_Einzeln_Enum              => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenende_Unten_Enum),
                                             
                                             -- Alle Möglichkeiten die gleich bleiben.
-                                            KartenverbesserungDatentypen.Straße_Senkrecht_Enum            => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straße_Senkrecht_Enum),
-                                            KartenverbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum    => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straßenkurve_Oben_Links_Enum     => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkurve_Oben_Links_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum   => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum  => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum),
-                                            KartenverbesserungDatentypen.Straßenende_Unten_Enum       => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenende_Unten_Enum),
-                                            KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum        => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos
-                                              (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum)
+                                            KartenwegeDatentypen.Straße_Senkrecht_Enum            => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straße_Senkrecht_Enum),
+                                            KartenwegeDatentypen.Straßenkurve_Oben_Rechts_Enum    => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkurve_Oben_Rechts_Enum),
+                                            KartenwegeDatentypen.Straßenkurve_Oben_Links_Enum     => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkurve_Oben_Links_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum   => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Oben_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Rechts_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum  => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Drei_Links_Enum),
+                                            KartenwegeDatentypen.Straßenende_Unten_Enum       => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenende_Unten_Enum),
+                                            KartenwegeDatentypen.Straßenkreuzung_Vier_Enum        => KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos
+                                              (KartenwegeDatentypen.Straßenkreuzung_Vier_Enum)
                                            );
    
    

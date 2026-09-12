@@ -144,7 +144,7 @@ package body GebaeudeanforderungenLogik is
    is begin
       
       BasisgrundSchleife:
-      for BasisgrundSchleifenwert in KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range loop
+      for BasisgrundSchleifenwert in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Range loop
          
          if
            False = LeseGebaeudeDatenbank.BasisgrundBenötigt (SpeziesExtern => SpeziesExtern,
@@ -155,11 +155,11 @@ package body GebaeudeanforderungenLogik is
             
          elsif
            True = UmgebungVorhanden (BasisgrundExtern   => BasisgrundSchleifenwert,
-                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
-                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
-                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                     ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
+                                     FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
+                                     RessourceExtern    => KartenressourcenDatentypen.Leer_Ressource_Enum,
                                      VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
-                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
+                                     WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
             null;
             
@@ -170,7 +170,7 @@ package body GebaeudeanforderungenLogik is
       end loop BasisgrundSchleife;
       
       ZusatzgrundSchleife:
-      for ZusatzgrundSchleifenwert in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range loop
+      for ZusatzgrundSchleifenwert in KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range loop
          
          if
            False = LeseGebaeudeDatenbank.ZusatzgrundBenötigt (SpeziesExtern => SpeziesExtern,
@@ -180,12 +180,12 @@ package body GebaeudeanforderungenLogik is
             null;
             
          elsif
-           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+           True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
                                      ZusatzgrundExtern  => ZusatzgrundSchleifenwert,
-                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
-                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                     FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
+                                     RessourceExtern    => KartenressourcenDatentypen.Leer_Ressource_Enum,
                                      VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
-                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
+                                     WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
             null;
             
@@ -196,7 +196,7 @@ package body GebaeudeanforderungenLogik is
       end loop ZusatzgrundSchleife;
       
       FlussSchleife:
-      for FlussSchleifenwert in KartenextraDatentypen.Fluss_Vorhanden_Enum'Range loop
+      for FlussSchleifenwert in KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Range loop
          
          if
            False = LeseGebaeudeDatenbank.FlussBenötigt (SpeziesExtern  => SpeziesExtern,
@@ -206,12 +206,12 @@ package body GebaeudeanforderungenLogik is
             null;
             
          elsif
-           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
-                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
+           True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
+                                     ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => FlussSchleifenwert,
-                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                     RessourceExtern    => KartenressourcenDatentypen.Leer_Ressource_Enum,
                                      VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
-                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
+                                     WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
             null;
             
@@ -222,7 +222,7 @@ package body GebaeudeanforderungenLogik is
       end loop FlussSchleife;
       
       RessourcenSchleife:
-      for RessourcenSchleifenwert in KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range loop
+      for RessourcenSchleifenwert in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Range loop
          
          if
            False = LeseGebaeudeDatenbank.RessourceBenötigt (SpeziesExtern   => SpeziesExtern,
@@ -232,12 +232,12 @@ package body GebaeudeanforderungenLogik is
             null;
             
          elsif
-           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
-                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
-                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
+           True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
+                                     ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
+                                     FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
                                      RessourceExtern    => RessourcenSchleifenwert,
                                      VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
-                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
+                                     WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
             null;
             
@@ -258,12 +258,12 @@ package body GebaeudeanforderungenLogik is
             null;
             
          elsif
-           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
-                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
-                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
-                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+           True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
+                                     ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
+                                     FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
+                                     RessourceExtern    => KartenressourcenDatentypen.Leer_Ressource_Enum,
                                      VerbesserungExtern => VerbesserungenSchleifenwert,
-                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
+                                     WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
             null;
             
@@ -274,7 +274,7 @@ package body GebaeudeanforderungenLogik is
       end loop VerbesserungenSchleife;
       
       WegeSchleife:
-      for WegeSchleifenwert in KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range loop
+      for WegeSchleifenwert in KartenwegeDatentypen.Weg_Vorhanden_Enum'Range loop
          
          if
            False = LeseGebaeudeDatenbank.WegBenötigt (SpeziesExtern => SpeziesExtern,
@@ -284,10 +284,10 @@ package body GebaeudeanforderungenLogik is
             null;
             
          elsif
-           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
-                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
-                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
-                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+           True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
+                                     ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
+                                     FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
+                                     RessourceExtern    => KartenressourcenDatentypen.Leer_Ressource_Enum,
                                      VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
                                      WegExtern          => WegeSchleifenwert)
          then
@@ -306,12 +306,12 @@ package body GebaeudeanforderungenLogik is
 
 
    function UmgebungVorhanden
-     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+     (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
+      ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+      FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
+      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
+      WegExtern : in KartenwegeDatentypen.Weg_Enum)
       return Boolean
    is begin
       
@@ -321,28 +321,28 @@ package body GebaeudeanforderungenLogik is
          for WaagerechteSchleifenwert in UmgebungArray'Range (2) loop
             
             if
-              BasisgrundExtern /= KartengrundDatentypen.Leer_Basisgrund_Enum
+              BasisgrundExtern /= KartenbasisgrundDatentypen.Leer_Basisgrund_Enum
               and then
                 Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Basisgrund = BasisgrundExtern
             then
                return True;
                
             elsif
-              ZusatzgrundExtern /= KartengrundDatentypen.Leer_Zusatzgrund_Enum
+              ZusatzgrundExtern /= KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum
               and then
                 Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Zusatzgrund = ZusatzgrundExtern
             then
                return True;
                
             elsif
-              FlussExtern /= KartenextraDatentypen.Leer_Fluss_Enum
+              FlussExtern /= KartenfluesseDatentypen.Leer_Fluss_Enum
               and then
                 Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Fluss = FlussExtern
             then
                return True;
                
             elsif
-              RessourceExtern /= KartenextraDatentypen.Leer_Ressource_Enum
+              RessourceExtern /= KartenressourcenDatentypen.Leer_Ressource_Enum
               and then
                 Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Ressource = RessourceExtern
             then
@@ -356,7 +356,7 @@ package body GebaeudeanforderungenLogik is
                return True;
                
             elsif
-              WegExtern /= KartenverbesserungDatentypen.Leer_Weg_Enum
+              WegExtern /= KartenwegeDatentypen.Leer_Weg_Enum
               and then
                 Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Weg = WegExtern
             then

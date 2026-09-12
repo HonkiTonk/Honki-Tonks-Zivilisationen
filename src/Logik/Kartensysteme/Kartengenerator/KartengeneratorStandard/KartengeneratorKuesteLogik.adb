@@ -1,4 +1,4 @@
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
 with SystemDatentypen;
@@ -24,7 +24,7 @@ package body KartengeneratorKuesteLogik is
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
-               when KartengrundDatentypen.Wasser_Enum =>
+               when KartenbasisgrundDatentypen.Wasser_Enum =>
                   GewässerFestlegen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when others =>
@@ -64,9 +64,9 @@ package body KartengeneratorKuesteLogik is
                case
                  LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert)
                is
-                  when KartengrundDatentypen.Flachland_Enum | KartengrundDatentypen.Eis_Enum =>
+                  when KartenbasisgrundDatentypen.Flachland_Enum | KartenbasisgrundDatentypen.Eis_Enum =>
                      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                                   GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
+                                                   GrundExtern       => KartenbasisgrundDatentypen.Küstengewässer_Enum);
                      return;
                      
                   when others =>

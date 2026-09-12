@@ -1,7 +1,7 @@
 with MeldungssystemHTSEB;
 
 with LadezeitenDatentypen;
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with SystemDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
@@ -203,7 +203,7 @@ package body SpieleinstellungenSpeziesLogik is
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => GezogeneKoordinate)
       is
-         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Untereis_Enum =>
+         when KartenbasisgrundDatentypen.Eis_Enum | KartenbasisgrundDatentypen.Untereis_Enum =>
             return False;
             
          when others =>
@@ -257,7 +257,7 @@ package body SpieleinstellungenSpeziesLogik is
       NotAusExtern : in SystemDatentypenHTSEB.Durchläufe100)
       return KartenRecords.KartenfeldNaturalRecord
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
       use type SystemDatentypenHTSEB.Durchläufe100;
    begin
             
@@ -285,9 +285,9 @@ package body SpieleinstellungenSpeziesLogik is
                null;
                
             elsif
-              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartenbasisgrundDatentypen.Eis_Enum
               or
-                LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Untereis_Enum
+                LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartenbasisgrundDatentypen.Untereis_Enum
             then
                null;
                                     

@@ -11,7 +11,7 @@ package body Zusatzgrundplatzierungssystem is
    procedure Zusatzgrundentfernung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
+      use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    begin
             
       AktuellerGrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
@@ -19,12 +19,12 @@ package body Zusatzgrundplatzierungssystem is
       case
         AktuellerGrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return;
             
          when others =>
             SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
-                                           GrundExtern       => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
+                                           GrundExtern       => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum);
       end case;
       
       SenkrechteSchleife:
@@ -53,7 +53,7 @@ package body Zusatzgrundplatzierungssystem is
                      NebenfeldGrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => Entfernungskartenwert);
                      
                      if
-                       NebenfeldGrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
+                       NebenfeldGrund = KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum
                      then
                         null;
                         
@@ -78,7 +78,7 @@ package body Zusatzgrundplatzierungssystem is
 
    procedure Zusatzgrundplatzierung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+      ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum)
    is begin
       
       Grundumgebung := (others => False);
@@ -138,7 +138,7 @@ package body Zusatzgrundplatzierungssystem is
       end loop SenkrechteSchleife;
       
       SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (Zusatzgrundwert (Grundumgebung.Links, Grundumgebung.Rechts,
+                                     GrundExtern       => KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (Zusatzgrundwert (Grundumgebung.Links, Grundumgebung.Rechts,
                                        Grundumgebung.Oben, Grundumgebung.Unten) + Zusatzgrundtyp (Grundnummer)));
             
    end Zusatzgrundplatzierung;
@@ -156,7 +156,7 @@ package body Zusatzgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return False;
          
          when others =>
@@ -169,9 +169,9 @@ package body Zusatzgrundplatzierungssystem is
          return False;
             
       else
-         WelcherGrund := KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
+         WelcherGrund := KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
          SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
-                                        GrundExtern       => KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (ZusatzgrundLinks (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
+                                        GrundExtern       => KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (ZusatzgrundLinks (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
          return True;
       end if;
             
@@ -190,7 +190,7 @@ package body Zusatzgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return False;
          
          when others =>
@@ -203,9 +203,9 @@ package body Zusatzgrundplatzierungssystem is
          return False;
             
       else
-         WelcherGrund := KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
+         WelcherGrund := KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
          SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
-                                        GrundExtern       => KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (ZusatzgrundRechts (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
+                                        GrundExtern       => KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (ZusatzgrundRechts (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
          return True;
       end if;
       
@@ -224,7 +224,7 @@ package body Zusatzgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return False;
          
          when others =>
@@ -237,9 +237,9 @@ package body Zusatzgrundplatzierungssystem is
          return False;
             
       else
-         WelcherGrund := KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
+         WelcherGrund := KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
          SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
-                                        GrundExtern       => KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (ZusatzgrundOben (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
+                                        GrundExtern       => KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (ZusatzgrundOben (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
          return True;
       end if;
             
@@ -258,7 +258,7 @@ package body Zusatzgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return False;
          
          when others =>
@@ -271,9 +271,9 @@ package body Zusatzgrundplatzierungssystem is
          return False;
             
       else
-         WelcherGrund := KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
+         WelcherGrund := KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
          SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
-                                        GrundExtern       => KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (ZusatzgrundUnten (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
+                                        GrundExtern       => KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Val (ZusatzgrundUnten (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
          return True;
       end if;
       

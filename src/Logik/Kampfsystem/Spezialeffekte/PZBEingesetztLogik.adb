@@ -1,10 +1,14 @@
 with KartenKonstanten;
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with KartenverbesserungDatentypen;
 with StadtKonstanten;
-with KartenextraDatentypen;
+with KartenfluesseDatentypen;
 with DiplomatieDatentypen;
 with SystemDatentypen;
+with KartenressourcenDatentypen;
+with KarteneffekteDatentypen;
+with KartenbasisgrundDatentypen;
+with KartenwegeDatentypen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -33,7 +37,7 @@ package body PZBEingesetztLogik is
       Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
       Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                       IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                      EffektExtern  => KartenextraDatentypen.Vernichtet_Enum);
+                                                                      EffektExtern  => KarteneffekteDatentypen.Vernichtet_Enum);
       
       case
         Zusammenbruchszeit
@@ -105,7 +109,7 @@ package body PZBEingesetztLogik is
                                                                             ZeitbegrenzungBerücksichtigenExtern => False);
             SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => EinheitSpeziesNummerExtern.Spezies,
                                                   SpeziesZweiExtern   => SpeziesSchleifenwert,
-                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KartenextraDatentypen.Vernichtet_Enum, EinheitSpeziesNummerExtern.Spezies),
+                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KarteneffekteDatentypen.Vernichtet_Enum, EinheitSpeziesNummerExtern.Spezies),
                                                   RechnenSetzenExtern => False);
          end if;
          
@@ -182,15 +186,15 @@ package body PZBEingesetztLogik is
       end case;
       
       SchreibeWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => (KartengrundDatentypen.Vernichtet_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum));
+                                     GrundExtern       => (KartenbasisgrundDatentypen.Vernichtet_Enum, KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum));
       SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
-                               FlussExtern       => KartenextraDatentypen.Leer_Fluss_Enum);
+                               FlussExtern       => KartenfluesseDatentypen.Leer_Fluss_Enum);
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                             WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
+                             WegExtern         => KartenwegeDatentypen.Leer_Weg_Enum);
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern,
-                                   RessourceExtern   => KartenextraDatentypen.Leer_Ressource_Enum);
+                                   RessourceExtern   => KartenressourcenDatentypen.Leer_Ressource_Enum);
       
    end FeldVernichten;
 

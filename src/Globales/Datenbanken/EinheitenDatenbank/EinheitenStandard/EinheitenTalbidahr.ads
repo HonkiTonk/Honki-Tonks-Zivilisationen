@@ -4,7 +4,7 @@ with EinheitendatenbankRecord;
 with KartenDatentypen;
 with KartenRecordKonstanten;
 with EinheitenKonstanten;
-with KartenextraDatentypen;
+with KarteneffekteDatentypen;
 
 with DebugobjekteLogik;
 
@@ -644,9 +644,9 @@ package EinheitenTalbidahr is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Strahlung_Enum => True,
+                                                                                          Zusatzeffekt            => (KarteneffekteDatentypen.Strahlung_Enum => True,
                                                                                                                       others                               => False),
-                                                                                          Effektreichweite        => (KartenextraDatentypen.Strahlung_Enum => (SenkrechteAnfang => -2,
+                                                                                          Effektreichweite        => (KarteneffekteDatentypen.Strahlung_Enum => (SenkrechteAnfang => -2,
                                                                                                                                                                SenkrechteEnde   => 2,
                                                                                                                                                                WaagerechteAnfang => -2,
                                                                                                                                                                WaagerechteEnde   => 2),
@@ -814,9 +814,9 @@ package EinheitenTalbidahr is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => True,
+                                                                                          Zusatzeffekt            => (KarteneffekteDatentypen.Vernichtet_Enum => True,
                                                                                                                       others                                => False),
-                                                                                          Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum =>
+                                                                                          Effektreichweite        => (KarteneffekteDatentypen.Vernichtet_Enum =>
                                                                                                                           (SenkrechteAnfang => KartenDatentypen.SenkrechteBasis'First / 10,
                                                                                                                            SenkrechteEnde   => KartenDatentypen.SenkrechteBasis'Last / 10,
                                                                                                                            WaagerechteAnfang => KartenDatentypen.WaagerechteBasis'First / 10,
@@ -846,9 +846,9 @@ package EinheitenTalbidahr is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => True,
+                                                                                          Zusatzeffekt            => (KarteneffekteDatentypen.Vernichtet_Enum => True,
                                                                                                                       others                                => False),
-                                                                                          Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum =>
+                                                                                          Effektreichweite        => (KarteneffekteDatentypen.Vernichtet_Enum =>
                                                                                                                           (SenkrechteAnfang => KartenDatentypen.SenkrechteBasis'First / 5,
                                                                                                                            SenkrechteEnde   => KartenDatentypen.SenkrechteBasis'Last / 5,
                                                                                                                            WaagerechteAnfang => KartenDatentypen.WaagerechteBasis'First / 5,
@@ -878,9 +878,9 @@ package EinheitenTalbidahr is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => True,
+                                                                                          Zusatzeffekt            => (KarteneffekteDatentypen.Vernichtet_Enum => True,
                                                                                                                       others                                => False),
-                                                                                          Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum =>
+                                                                                          Effektreichweite        => (KarteneffekteDatentypen.Vernichtet_Enum =>
                                                                                                                           (SenkrechteAnfang => KartenDatentypen.SenkrechteBasis'First,
                                                                                                                            SenkrechteEnde   => KartenDatentypen.SenkrechteBasis'Last,
                                                                                                                            WaagerechteAnfang => KartenDatentypen.WaagerechteBasis'First,
@@ -1250,9 +1250,9 @@ package EinheitenTalbidahr is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Biologisch_Enum => True,
+                                                                                          Zusatzeffekt            => (KarteneffekteDatentypen.Biologisch_Enum => True,
                                                                                                                       others                                => False),
-                                                                                          Effektreichweite        => (KartenextraDatentypen.Biologisch_Enum => (SenkrechteAnfang => -2,
+                                                                                          Effektreichweite        => (KarteneffekteDatentypen.Biologisch_Enum => (SenkrechteAnfang => -2,
                                                                                                                                                                 SenkrechteEnde   => 2,
                                                                                                                                                                 WaagerechteAnfang => -2,
                                                                                                                                                                 WaagerechteEnde   => 2),
@@ -1280,9 +1280,9 @@ package EinheitenTalbidahr is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Chemisch_Enum => True,
+                                                                                          Zusatzeffekt            => (KarteneffekteDatentypen.Chemisch_Enum => True,
                                                                                                                       others                              => False),
-                                                                                          Effektreichweite        => (KartenextraDatentypen.Chemisch_Enum => (SenkrechteAnfang => -2,
+                                                                                          Effektreichweite        => (KarteneffekteDatentypen.Chemisch_Enum => (SenkrechteAnfang => -2,
                                                                                                                                                               SenkrechteEnde   => 2,
                                                                                                                                                               WaagerechteAnfang => -2,
                                                                                                                                                               WaagerechteEnde   => 2),
@@ -1310,9 +1310,9 @@ package EinheitenTalbidahr is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Verschmutzt_Enum => True,
+                                                                                          Zusatzeffekt            => (KarteneffekteDatentypen.Verschmutzt_Enum => True,
                                                                                                                       others                                 => False),
-                                                                                          Effektreichweite        => (KartenextraDatentypen.Verschmutzt_Enum => (SenkrechteAnfang => -2,
+                                                                                          Effektreichweite        => (KarteneffekteDatentypen.Verschmutzt_Enum => (SenkrechteAnfang => -2,
                                                                                                                                                                  SenkrechteEnde   => 2,
                                                                                                                                                                  WaagerechteAnfang => -2,
                                                                                                                                                                  WaagerechteEnde   => 2),
@@ -1340,9 +1340,9 @@ package EinheitenTalbidahr is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => (KartenextraDatentypen.Vernichtet_Enum => False,
+                                                                                          Zusatzeffekt            => (KarteneffekteDatentypen.Vernichtet_Enum => False,
                                                                                                                       others                                => True),
-                                                                                          Effektreichweite        => (KartenextraDatentypen.Vernichtet_Enum => KartenRecordKonstanten.LeerEffektbereich,
+                                                                                          Effektreichweite        => (KarteneffekteDatentypen.Vernichtet_Enum => KartenRecordKonstanten.LeerEffektbereich,
                                                                                                                       others => (SenkrechteAnfang => -2,
                                                                                                                                  SenkrechteEnde   => 2,
                                                                                                                                  WaagerechteAnfang => -2,

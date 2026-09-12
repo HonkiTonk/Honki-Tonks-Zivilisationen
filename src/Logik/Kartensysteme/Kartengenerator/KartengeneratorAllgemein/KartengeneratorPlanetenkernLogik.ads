@@ -1,8 +1,8 @@
 private with SystemDatentypenHTSEB;
 
 private with KartenDatentypen;
-private with KartengrundDatentypen;
 private with KartenRecords;
+private with KartenbasisgrundDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -22,7 +22,7 @@ private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
 
-   WelcherGrund : KartengrundDatentypen.Basisgrund_Enum;
+   WelcherGrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
 
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
    Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
@@ -32,12 +32,12 @@ private
    YKernende : KartenDatentypen.SenkrechtePositiv;
    XKernende : KartenDatentypen.WaagerechtePositiv;
 
-   type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
+   type BasisWahrscheinlichkeitenArray is array (KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
-                                                                  KartengrundDatentypen.Ringwoodit_Enum     => 15,
-                                                                  KartengrundDatentypen.Majorit_Enum        => 15,
-                                                                  KartengrundDatentypen.Perowskit_Enum      => 15,
-                                                                  KartengrundDatentypen.Magnesiowüstit_Enum => 15
+                                                                  KartenbasisgrundDatentypen.Ringwoodit_Enum     => 15,
+                                                                  KartenbasisgrundDatentypen.Majorit_Enum        => 15,
+                                                                  KartenbasisgrundDatentypen.Perowskit_Enum      => 15,
+                                                                  KartenbasisgrundDatentypen.Magnesiowüstit_Enum => 15
                                                                  );
 
    procedure BasisgrundBestimmen
@@ -53,8 +53,8 @@ private
 
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -64,8 +64,8 @@ private
 
    function ZusatzberechnungRingwoodit
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -75,8 +75,8 @@ private
 
    function ZusatzberechnungMajorit
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -86,8 +86,8 @@ private
 
    function ZusatzberechnungPerowskit
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -97,8 +97,8 @@ private
 
    function ZusatzberechnungMagnesiowüstit
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

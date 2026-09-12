@@ -1,4 +1,4 @@
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
 
@@ -88,16 +88,16 @@ package body KartengeneratorRessourcenLogik is
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
-               when KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
+               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
                   KartengeneratorWasserressourcenLogik.KartengeneratorWasserressourcen (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
-               when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
+               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
                   KartengeneratorLandressourcenLogik.KartengeneratorLandressourcen (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
-               when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
+               when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
                   KartengeneratorUnterwasserressourcenLogik.KartengeneratorUnterwasserressourcen (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
-               when KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
+               when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
                   KartengeneratorUnterlandressourcenLogik.KartengeneratorUnterlandressourcen (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when others =>

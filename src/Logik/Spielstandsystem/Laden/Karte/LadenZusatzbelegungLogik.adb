@@ -128,7 +128,7 @@ package body LadenZusatzbelegungLogik is
                if
                  VorhandeneFeldelemente >= 2**(ZusatzgrundSchleifenwert - 1)
                then
-                  KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                  KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                          Zusatzgrund);
             
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(ZusatzgrundSchleifenwert - 1);
@@ -198,7 +198,7 @@ package body LadenZusatzbelegungLogik is
                if
                  VorhandeneFeldelemente >= 2**(FlussSchleifenwert - 1)
                then
-                  KartenextraDatentypen.Fluss_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                  KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                    Fluss);
             
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(FlussSchleifenwert - 1);
@@ -268,7 +268,7 @@ package body LadenZusatzbelegungLogik is
                if
                  VorhandeneFeldelemente >= 2**(RessourceSchleifenwert - 1)
                then
-                  KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                  KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                         Ressource);
             
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(RessourceSchleifenwert - 1);
@@ -338,7 +338,7 @@ package body LadenZusatzbelegungLogik is
                if
                  VorhandeneFeldelemente >= 2**(WegSchleifenwert - 1)
                then
-                  KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                  KartenwegeDatentypen.Weg_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                         Weg);
             
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(WegSchleifenwert - 1);

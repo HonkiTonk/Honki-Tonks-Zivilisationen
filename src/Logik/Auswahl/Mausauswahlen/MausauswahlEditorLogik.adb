@@ -10,7 +10,7 @@ with Vergleiche;
 package body MausauswahlEditorLogik is
 
    function Kartengrundeditor
-     return KartengrundDatentypen.Kartengrund_Enum
+     return KartenzusatzgrundDatentypen.Kartengrund_Enum
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -33,7 +33,7 @@ package body MausauswahlEditorLogik is
          
       end loop KartengrundSchleife;
       
-      return KartengrundDatentypen.Leer_Grund_Enum;
+      return KartenzusatzgrundDatentypen.Leer_Grund_Enum;
       
    end Kartengrundeditor;
 

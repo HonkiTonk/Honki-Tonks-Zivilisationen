@@ -10,8 +10,10 @@ with SpeziesKonstanten;
 private with KartenRecords;
 private with KartenverbesserungDatentypen;
 private with TextaccessVariablen;
-private with KartenextraDatentypen;
-private with KartengrundDatentypen;
+private with KartenfluesseDatentypen;
+private with KartenressourcenDatentypen;
+private with KartenbasisgrundDatentypen;
+private with KartenwegeDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -40,7 +42,7 @@ package AllgemeinesSeitenleisteGrafik is
    
 private
    use Ada.Strings.Wide_Wide_Unbounded;
-   use type KartengrundDatentypen.Basisgrund_Enum;
+   use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    
    Leerzeilen : Natural;
       
@@ -59,7 +61,7 @@ private
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 GesamtgrundExtern.Basisgrund /= KartengrundDatentypen.Leer_Basisgrund_Enum
+                 GesamtgrundExtern.Basisgrund /= KartenbasisgrundDatentypen.Leer_Basisgrund_Enum
               ),
          
        Post => (
@@ -68,7 +70,7 @@ private
    
    -- Die Contracts hier noch hinzufügen. äöü
    function Ressource
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
       return Unbounded_Wide_Wide_String;
    
    function Verbesserung
@@ -76,11 +78,11 @@ private
       return Unbounded_Wide_Wide_String;
    
    function Weg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum)
       return Unbounded_Wide_Wide_String;
    
    function Fluss
-     (FlussExtern : in KartenextraDatentypen.Fluss_Enum)
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Enum)
       return Unbounded_Wide_Wide_String;
    
    function Feldeffekte

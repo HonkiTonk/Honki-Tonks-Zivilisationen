@@ -1,6 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenverbesserungDatentypen;
+with KartenwegeDatentypen;
 
 package AufgabenbeschreibungenGrafik is
    pragma Elaborate_Body;
@@ -22,7 +23,7 @@ package AufgabenbeschreibungenGrafik is
                );
 
    function KurzbeschreibungWeg
-     (KartenWegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
+     (KartenWegExtern : in KartenwegeDatentypen.Weg_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -30,7 +31,7 @@ package AufgabenbeschreibungenGrafik is
                );
 
    function LangbeschreibungWeg
-     (KartenWegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
+     (KartenWegExtern : in KartenwegeDatentypen.Weg_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (

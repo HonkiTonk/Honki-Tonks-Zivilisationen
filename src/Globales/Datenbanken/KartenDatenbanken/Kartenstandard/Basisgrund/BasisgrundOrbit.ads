@@ -1,4 +1,3 @@
-with KartengrundDatentypen;
 with EinheitenDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
@@ -6,15 +5,16 @@ with ZufallsgeneratorenDatentypenHTSEB;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
+with KartenbasisgrundDatentypen;
 
 package BasisgrundOrbit is
    pragma Pure;
    
    -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteOrbitArray is array (KartengrundDatentypen.Basisgrund_Orbit_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
+   type BasisgrundlisteOrbitArray is array (KartenbasisgrundDatentypen.Basisgrund_Orbit_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteOrbit : constant BasisgrundlisteOrbitArray := (
-                                                                     KartengrundDatentypen.Orbit_Enum =>
+                                                                     KartenbasisgrundDatentypen.Orbit_Enum =>
                                                                        (
                                                                         Passierbarkeit => (
                                                                                            EinheitenDatentypen.Orbit_Enum => True,

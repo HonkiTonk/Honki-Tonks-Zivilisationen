@@ -11,11 +11,11 @@ package body WegeplatzierungssystemLogik is
    procedure Wegentfernung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
-      use type KartenverbesserungDatentypen.Weg_Enum;
+      use type KartenwegeDatentypen.Weg_Enum;
    begin
       
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                             WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
+                             WegExtern         => KartenwegeDatentypen.Leer_Weg_Enum);
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
@@ -43,7 +43,7 @@ package body WegeplatzierungssystemLogik is
                      EntfernungWeg := LeseWeltkarte.Weg (KoordinatenExtern => Entfernungskartenwert);
                      
                      if
-                       EntfernungWeg = KartenverbesserungDatentypen.Leer_Weg_Enum
+                       EntfernungWeg = KartenwegeDatentypen.Leer_Weg_Enum
                      then
                         null;
                         
@@ -118,7 +118,7 @@ package body WegeplatzierungssystemLogik is
       end loop SenkrechteSchleife;
       
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                             WegExtern         => KartenverbesserungDatentypen.Weg_Enum'Val (Wegwert (Wegumgebung.Links, Wegumgebung.Rechts, Wegumgebung.Oben, Wegumgebung.Unten) + Wegtyp (WegartExtern)));
+                             WegExtern         => KartenwegeDatentypen.Weg_Enum'Val (Wegwert (Wegumgebung.Links, Wegumgebung.Rechts, Wegumgebung.Oben, Wegumgebung.Unten) + Wegtyp (WegartExtern)));
       
    end Wegplatzierung;
    
@@ -134,13 +134,13 @@ package body WegeplatzierungssystemLogik is
       case
         WelcherWeg
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             return False;
             
          when others =>
-            ZwischenWeg := KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenwegeDatentypen.Weg_Vorhanden_Enum'Val (KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                                   WegExtern         => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (WegeLinks (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                   WegExtern         => KartenwegeDatentypen.Weg_Vorhanden_Enum'Val (WegeLinks (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       
@@ -158,13 +158,13 @@ package body WegeplatzierungssystemLogik is
       case
         WelcherWeg
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             return False;
             
          when others =>
-            ZwischenWeg := KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenwegeDatentypen.Weg_Vorhanden_Enum'Val (KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                                   WegExtern         => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (WegeRechts (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                   WegExtern         => KartenwegeDatentypen.Weg_Vorhanden_Enum'Val (WegeRechts (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       
@@ -182,13 +182,13 @@ package body WegeplatzierungssystemLogik is
       case
         WelcherWeg
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             return False;
             
          when others =>
-            ZwischenWeg := KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenwegeDatentypen.Weg_Vorhanden_Enum'Val (KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                                   WegExtern         => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (WegeOben (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                   WegExtern         => KartenwegeDatentypen.Weg_Vorhanden_Enum'Val (WegeOben (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       
@@ -206,13 +206,13 @@ package body WegeplatzierungssystemLogik is
       case
         WelcherWeg
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             return False;
             
          when others =>
-            ZwischenWeg := KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenwegeDatentypen.Weg_Vorhanden_Enum'Val (KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                                   WegExtern         => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (WegeUnten (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                   WegExtern         => KartenwegeDatentypen.Weg_Vorhanden_Enum'Val (WegeUnten (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       

@@ -29,7 +29,7 @@ package body FeldproduktionLogik is
       case
         Basisgrund
       is
-         when KartengrundDatentypen.Vernichtet_Enum =>
+         when KartenbasisgrundDatentypen.Vernichtet_Enum =>
             -- Das beist sich ein wenig mit der Möglichkeit eine Stadt auf vernichtet zu bauen. Ändern oder einfach so lassen und sagen das ist ein Spielerproblem? äöü
             return ProduktionKonstanten.LeerProduktion;
             

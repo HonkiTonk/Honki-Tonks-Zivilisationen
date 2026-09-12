@@ -1,6 +1,6 @@
 with KartenRecordKonstanten;
 with KartenKonstanten;
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with SystemDatentypen;
 
 with LeseEinheitenGebaut;
@@ -191,7 +191,7 @@ package body KIZielSuchenLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
       -- Diese Prüfungen hier mal Speziesspezifisch erweitern. äöü
@@ -202,7 +202,7 @@ package body KIZielSuchenLogik is
          null;
       
       elsif
-        LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) = KartenbasisgrundDatentypen.Eis_Enum
       then
          null;
          

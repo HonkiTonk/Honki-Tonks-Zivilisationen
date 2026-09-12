@@ -3,6 +3,7 @@ with KartenKonstanten;
 with KartenRecordKonstanten;
 with AufgabenDatentypen;
 with SystemDatentypen;
+with KartenverbesserungDatentypen;
 
 with LeseGrenzen;
 with LeseStadtGebaut;
@@ -92,7 +93,7 @@ package body KIStaedteverbindungssystemLogik is
       return Boolean
    is
       use type KartenDatentypen.EbeneBasis;
-      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
      -- use type SpeziesDatentypen.Spezies_Enum;
    begin
             
@@ -114,18 +115,18 @@ package body KIStaedteverbindungssystemLogik is
       if
         StartkoordinatenExtern.Ebene = KartenKonstanten.OberflächeKonstante
         and
-          Startgrund not in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
+          Startgrund not in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
           and
-            Zielgrund not in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
+            Zielgrund not in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
       then
          null;
          
       elsif
         StartkoordinatenExtern.Ebene = KartenKonstanten.UnterflächeKonstante
         and
-          Startgrund not in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
+          Startgrund not in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
           and
-            Zielgrund not in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
+            Zielgrund not in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
       then
          null;
          
@@ -331,7 +332,7 @@ package body KIStaedteverbindungssystemLogik is
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range | KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             return True;
             
          when others =>
@@ -346,7 +347,7 @@ package body KIStaedteverbindungssystemLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is
-      use type KartenverbesserungDatentypen.Weg_Enum;
+      use type KartenwegeDatentypen.Weg_Enum;
    begin
       
       TechnologieVorhanden := ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
@@ -377,12 +378,12 @@ package body KIStaedteverbindungssystemLogik is
                                                                                                        AbschnittExtern => VerbindungSchleifenwert));
                              
             if
-              VorhandenerWeg = KartenverbesserungDatentypen.Leer_Weg_Enum
+              VorhandenerWeg = KartenwegeDatentypen.Leer_Weg_Enum
             then
                null;
          
             elsif
-              VorhandenerWeg in KartenverbesserungDatentypen.Straße_Enum'Range
+              VorhandenerWeg in KartenwegeDatentypen.Straße_Enum'Range
               and
                 TechnologieVorhanden
             then

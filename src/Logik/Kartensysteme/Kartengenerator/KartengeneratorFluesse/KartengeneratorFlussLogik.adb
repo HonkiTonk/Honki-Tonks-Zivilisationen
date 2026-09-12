@@ -1,4 +1,4 @@
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with LadezeitenDatentypen;
 
 with LeseWeltkarte;
@@ -41,8 +41,8 @@ package body KartengeneratorFlussLogik is
                case
                  LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
                is
-                  when KartengrundDatentypen.Basisgrund_Oberfläche_Eiswasser_Enum'Range | KartengrundDatentypen.Basisgrund_Unterfläche_Eiswasser_Enum'Range
-                     | KartengrundDatentypen.Basisgrund_Kernfläche_Flüssig_Enum'Range =>
+                  when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Eiswasser_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Eiswasser_Enum'Range
+                     | KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Flüssig_Enum'Range =>
                      null;
                   
                   when others =>

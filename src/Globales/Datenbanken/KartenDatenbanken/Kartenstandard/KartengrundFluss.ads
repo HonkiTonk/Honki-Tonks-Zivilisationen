@@ -1,6 +1,6 @@
 with SpeziesDatentypen;
 with KartendatenbankRecord;
-with KartenextraDatentypen;
+with KartenfluesseDatentypen;
 with ProduktionKonstanten;
 with ProduktionDatentypen;
 with KampfDatentypen;
@@ -9,7 +9,7 @@ with KampfKonstanten;
 package KartengrundFluss is
    pragma Pure;
    
-   type KartenflusslisteOberflächeArray is array (KartenextraDatentypen.Fluss_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
+   type KartenflusslisteOberflächeArray is array (KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    KartenflusslisteOberfläche : constant KartenflusslisteOberflächeArray := (
                                                                                others =>
                                                                                  (
@@ -175,7 +175,7 @@ package KartengrundFluss is
                                                                                  )
                                                                               );
    
-   type KartenflusslisteUnterflächeArray is array (KartenextraDatentypen.Fluss_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
+   type KartenflusslisteUnterflächeArray is array (KartenfluesseDatentypen.Fluss_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    KartenflusslisteUnterfläche : constant KartenflusslisteUnterflächeArray := (
                                                                                  others =>
                                                                                    (
@@ -341,7 +341,7 @@ package KartengrundFluss is
                                                                                    )
                                                                                 );
    
-   type KartenflusslisteKernArray is array (KartenextraDatentypen.Fluss_Kernfläche_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
+   type KartenflusslisteKernArray is array (KartenfluesseDatentypen.Fluss_Kernfläche_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    KartenflusslisteKern : constant KartenflusslisteKernArray := (
                                                                  others =>
                                                                    (

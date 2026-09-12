@@ -1,32 +1,5 @@
-package KartenextraDatentypen is
+package KartenfluesseDatentypen is
    pragma Pure;
-   
-   -- Ressourcen für den Kern hinzufügen. äöü
-   type Ressourcen_Enum is (
-                            Leer_Ressource_Enum,
-                                   
-                            -- Wasserressourcen
-                            Fisch_Enum, Wal_Enum,
-                            Hochwertiges_Holz_Enum,
-                                   
-                            -- Landressourcen
-                            -- Diese Ressourcuen kann man aber auch im Wasser finden, mal anpassen. äöü
-                            Kohle_Enum, Eisen_Enum, Öl_Enum, Hochwertiger_Boden_Enum, Gold_Enum
-                                     
-                            -- Kernressourcen
-                            
-                           );
-   pragma Ordered (Ressourcen_Enum);
-   
-   subtype Ressourcen_Vorhanden_Enum is Ressourcen_Enum range Ressourcen_Enum'Succ (Ressourcen_Enum'First) .. Ressourcen_Enum'Last;
-   
-   subtype Ressourcen_Oberfläche_Wasser_Enum is Ressourcen_Vorhanden_Enum range Fisch_Enum .. Wal_Enum;
-   subtype Ressourcen_Oberfläche_Land_Enum is Ressourcen_Vorhanden_Enum range Hochwertiges_Holz_Enum .. Gold_Enum;
-   
-   subtype Ressourcen_Unterfläche_Wasser_Enum is Ressourcen_Vorhanden_Enum range Fisch_Enum .. Hochwertiges_Holz_Enum;
-   subtype Ressourcen_Unterfläche_Land_Enum is Ressourcen_Vorhanden_Enum range Kohle_Enum .. Gold_Enum;
-   
-   
    
    type Fluss_Enum is (
                        Leer_Fluss_Enum,
@@ -56,23 +29,5 @@ package KartenextraDatentypen is
    subtype Fluss_Kernfläche_Enum is Fluss_Vorhanden_Enum range Lavaflusskreuzung_Vier_Enum .. Lavasee_Enum;
    
    type Flussarten_Enum is (Oberfläche_Fluss_Enum, Unterfläche_Fluss_Enum, Kernfläche_Fluss_Enum);
-   
-   
-   
-   type Effekt_Enum is (
-                        Leer_Effekt_Enum,
-                        
-                        Strahlung_Enum, Biologisch_Enum, Chemisch_Enum,
-                        
-                        -- Das hier vielleicht in Müll und Smog aufteilen? äöü
-                        Verschmutzt_Enum,
-                        
-                        Vernichtet_Enum
-                       );
-   
-   subtype Effekt_Vorhanden_Enum is Effekt_Enum range Effekt_Enum'Succ (Effekt_Enum'First) .. Effekt_Enum'Last;
-   
-   subtype Effekt_Kartenfeld_Enum is Effekt_Enum range Effekt_Enum'First .. Effekt_Enum'Pred (Effekt_Enum'Last);
-   subtype Effekt_Kartenfeld_Vorhanden_Enum is Effekt_Kartenfeld_Enum range Effekt_Enum'Succ (Effekt_Enum'First) .. Effekt_Kartenfeld_Enum'Last;
 
-end KartenextraDatentypen;
+end KartenfluesseDatentypen;

@@ -1,7 +1,7 @@
 package body TexturenfelderVariablenGrafik is
 
    function BasisgrundRechteck
-     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+     (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
@@ -12,7 +12,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function BasisgrundVektor
-     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+     (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -23,7 +23,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function ZusatzgrundRechteck
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+     (ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
@@ -34,7 +34,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function ZusatzgrundVektor
-     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+     (ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -45,7 +45,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function FlussRechteck
-     (FlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
@@ -56,7 +56,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function FlussVektor
-     (FlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -67,7 +67,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function RessourcenRechteck
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
@@ -78,7 +78,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function RessourcenVektor
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -111,7 +111,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function WegeRechteck
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
+     (WegExtern : in KartenwegeDatentypen.Weg_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
@@ -122,7 +122,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function WegeVektor
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
+     (WegExtern : in KartenwegeDatentypen.Weg_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
@@ -133,7 +133,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function FeldeffekteRechteck
-     (FeldeffektedExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
+     (FeldeffektedExtern : in KarteneffekteDatentypen.Effekt_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
@@ -144,7 +144,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function FeldeffekteVektor
-     (FeldeffektedExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
+     (FeldeffektedExtern : in KarteneffekteDatentypen.Effekt_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       

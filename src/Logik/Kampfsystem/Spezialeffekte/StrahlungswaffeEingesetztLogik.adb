@@ -1,5 +1,5 @@
 with KartenKonstanten;
-with KartenextraDatentypen;
+with KarteneffekteDatentypen;
 with DiplomatieDatentypen;
 with SpeziesKonstanten;
 with SystemDatentypen;
@@ -24,7 +24,7 @@ package body StrahlungswaffeEingesetztLogik is
       
       Strahlungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                     IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                    EffektExtern  => KartenextraDatentypen.Strahlung_Enum);
+                                                                    EffektExtern  => KarteneffekteDatentypen.Strahlung_Enum);
       
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -59,7 +59,7 @@ package body StrahlungswaffeEingesetztLogik is
                      
                   when others =>
                      SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => Kartenwert,
-                                                   FeldeffektExtern  => KartenextraDatentypen.Strahlung_Enum);
+                                                   FeldeffektExtern  => KarteneffekteDatentypen.Strahlung_Enum);
                      Spezies := LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => Kartenwert);
                      
                      if
@@ -111,7 +111,7 @@ package body StrahlungswaffeEingesetztLogik is
          else
             SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => EinheitSpeziesNummerExtern.Spezies,
                                                   SpeziesZweiExtern   => SpeziesSchleifenwert,
-                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KartenextraDatentypen.Strahlung_Enum, EinheitSpeziesNummerExtern.Spezies),
+                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KarteneffekteDatentypen.Strahlung_Enum, EinheitSpeziesNummerExtern.Spezies),
                                                   RechnenSetzenExtern => True);
          end if;
          

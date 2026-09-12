@@ -1,8 +1,9 @@
 with KartenDatentypen;
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with SpeziesDatentypen;
 with KartenartDatentypen;
-with KartenextraDatentypen;
+with KarteneffekteDatentypen;
+with KartenbasisgrundDatentypen;
 
 package KartenRecords is
    pragma Pure;
@@ -150,7 +151,7 @@ package KartenRecords is
    
    -- Kann nicht nach KartenArrays verschoben werden, da KartenArrays auf KartenRecords zugreift.
    -- Später mal eine bessere Lösung für finden. äöü
-   type EffekteArray is array (KartenextraDatentypen.Effekt_Vorhanden_Enum'Range) of Boolean;
+   type EffekteArray is array (KarteneffekteDatentypen.Effekt_Vorhanden_Enum'Range) of Boolean;
    type EffektbereichArray is array (EffekteArray'Range) of EffektbereichRecord;
    
    type SichtbarkeitArray is array (SpeziesDatentypen.Spezies_Vorhanden_Enum'Range) of Boolean;
@@ -163,8 +164,8 @@ package KartenRecords is
    
    type KartengrundRecord is record
       
-      Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
-      Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
+      Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
+      Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       
    end record;
    
@@ -172,7 +173,7 @@ package KartenRecords is
       
    type ImmerVorhandenRecord is record
       
-      Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+      Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
       Sichtbarkeit : SichtbarkeitArray;
       
    end record;

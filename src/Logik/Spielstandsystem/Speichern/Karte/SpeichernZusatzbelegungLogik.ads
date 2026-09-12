@@ -5,11 +5,13 @@ private with SystemDatentypenHTSEB;
 with KartenRecords;
 with KartenDatentypen;
 
-private with KartengrundDatentypen;
-private with KartenextraDatentypen;
+private with KartenzusatzgrundDatentypen;
+private with KartenfluesseDatentypen;
 private with KartenverbesserungDatentypen;
 private with StadtRecords;
 private with KartenArrays;
+private with KartenressourcenDatentypen;
+private with KartenwegeDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -42,16 +44,16 @@ private
    FeldelementeVorhanden : SystemDatentypenHTSEB.EinByte;
    AktuellesFeldelement : SystemDatentypenHTSEB.EinByte;
    
-   type ZusatzgrundArray is array (SystemDatentypenHTSEB.AchtElemente'Range) of KartengrundDatentypen.Zusatzgrund_Enum;
+   type ZusatzgrundArray is array (SystemDatentypenHTSEB.AchtElemente'Range) of KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    Zusatzgrund : ZusatzgrundArray;
    
-   type FlussArray is array (ZusatzgrundArray'Range) of KartenextraDatentypen.Fluss_Enum;
+   type FlussArray is array (ZusatzgrundArray'Range) of KartenfluesseDatentypen.Fluss_Enum;
    Fluss : FlussArray;
    
-   type RessourceArray is array (ZusatzgrundArray'Range) of KartenextraDatentypen.Ressourcen_Enum;
+   type RessourceArray is array (ZusatzgrundArray'Range) of KartenressourcenDatentypen.Ressourcen_Enum;
    Ressource : RessourceArray;
    
-   type WegArray is array (ZusatzgrundArray'Range) of KartenverbesserungDatentypen.Weg_Enum;
+   type WegArray is array (ZusatzgrundArray'Range) of KartenwegeDatentypen.Weg_Enum;
    Weg : WegArray;
    
    type VerbesserungArray is array (ZusatzgrundArray'Range) of KartenverbesserungDatentypen.Verbesserung_Enum;

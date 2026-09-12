@@ -1,4 +1,3 @@
-with KartenverbesserungDatentypen;
 with EinheitenDatentypen;
 with KartendatenbankRecord;
 with ProduktionKonstanten;
@@ -6,12 +5,13 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 with SpeziesDatentypen;
 with KampfKonstanten;
+with KartenwegeDatentypen;
 
 package WegeStandard is
    pragma Pure;
    use type EinheitenDatentypen.BewegungspunkteBasis;
 
-   type WegelisteArray is array (KartenverbesserungDatentypen.Straße_Enum'Range) of KartendatenbankRecord.WegelisteRecord;
+   type WegelisteArray is array (KartenwegeDatentypen.Straße_Enum'Range) of KartendatenbankRecord.WegelisteRecord;
    Wegeliste : constant WegelisteArray := (
                                            others =>
                                              (
@@ -187,7 +187,7 @@ package WegeStandard is
                                            
    
    
-   type SchienenlisteArray is array (KartenverbesserungDatentypen.Schiene_Enum'Range) of KartendatenbankRecord.WegelisteRecord;
+   type SchienenlisteArray is array (KartenwegeDatentypen.Schiene_Enum'Range) of KartendatenbankRecord.WegelisteRecord;
    Schienenliste : constant SchienenlisteArray := (
                                                    others =>
                                                      (
@@ -363,7 +363,7 @@ package WegeStandard is
    
    
    
-   type TunnellisteArray is array (KartenverbesserungDatentypen.Tunnel_Enum'Range) of KartendatenbankRecord.WegelisteRecord;
+   type TunnellisteArray is array (KartenwegeDatentypen.Tunnel_Enum'Range) of KartendatenbankRecord.WegelisteRecord;
    Tunnelliste : constant TunnellisteArray := (
                                                others =>
                                                  (

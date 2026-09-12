@@ -6,7 +6,7 @@ with EinheitenKonstanten;
 package body LeseVerbesserungenDatenbank is
       
    function PassierbarkeitWeg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
@@ -14,7 +14,7 @@ package body LeseVerbesserungenDatenbank is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             return False;
             
          when others =>
@@ -26,7 +26,7 @@ package body LeseVerbesserungenDatenbank is
    
    
    function BewegungWeg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.BewegungspunkteBasis
    is begin
@@ -34,7 +34,7 @@ package body LeseVerbesserungenDatenbank is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             return EinheitenKonstanten.LeerBewegungspunkte;
             
          when others =>
@@ -67,7 +67,7 @@ package body LeseVerbesserungenDatenbank is
       
    
    function ProduktionWeg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -76,7 +76,7 @@ package body LeseVerbesserungenDatenbank is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
@@ -109,7 +109,7 @@ package body LeseVerbesserungenDatenbank is
       
    
    function KampfWeg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -118,7 +118,7 @@ package body LeseVerbesserungenDatenbank is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             return KampfKonstanten.LeerBonus;
             
          when others =>

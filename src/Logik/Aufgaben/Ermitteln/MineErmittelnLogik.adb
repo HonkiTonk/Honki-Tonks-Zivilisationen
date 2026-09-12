@@ -1,5 +1,6 @@
 with EinheitenRecordKonstanten;
 with ProduktionKonstanten;
+with KartenzusatzgrundDatentypen;
 
 with LeseWeltkarte;
 
@@ -32,19 +33,19 @@ package body MineErmittelnLogik is
       case
         Gesamtgrund.Basisgrund
       is
-         when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                              GrundExtern                => Gesamtgrund,
                                              AnlegenTestenExtern        => AnlegenTestenExtern,
                                              KoordinatenExtern          => KoordinatenExtern);
             
-         when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                 GrundExtern                => Gesamtgrund,
                                                 AnlegenTestenExtern        => AnlegenTestenExtern,
                                                 KoordinatenExtern          => KoordinatenExtern);
             
-         when KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
             Arbeitswerte := UnterflächeLand (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               GrundExtern                => Gesamtgrund);
             
@@ -90,14 +91,14 @@ package body MineErmittelnLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
    is
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
+      use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    begin
       
       Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
                                          ZusatzwertExtern => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
-        GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
+        GrundExtern.Zusatzgrund = KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum
       then
          VorarbeitNötig := False;
          
@@ -129,14 +130,14 @@ package body MineErmittelnLogik is
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
    is
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
+      use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    begin
       
       Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
                                          ZusatzwertExtern => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
-        GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
+        GrundExtern.Zusatzgrund = KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum
       then
          VorarbeitNötig := False;
          
@@ -163,14 +164,14 @@ package body MineErmittelnLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
    is
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
+      use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    begin
       
       Arbeitszeit := ArbeitszeitPrüfen (GrundwertExtern  => ProduktionKonstanten.MinimaleArbeitszeit,
                                          ZusatzwertExtern => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
-        GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
+        GrundExtern.Zusatzgrund = KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum
       then
          VorarbeitNötig := False;
          

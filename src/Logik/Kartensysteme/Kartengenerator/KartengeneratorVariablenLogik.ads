@@ -3,16 +3,17 @@ with SystemDatentypenHTSEB;
 with KartenRecords;
 with KartenRecordKonstanten;
 with KartengeneratorRecordKonstanten;
-with KartengrundDatentypen;
 with KartenartDatentypen;
-with KartenextraDatentypen;
+with KartenressourcenDatentypen;
+with KartenbasisgrundDatentypen;
+
 
 -- Die Sachen hier auch mal mit Lese/Schreibefunktionen versehen. äöü
 package KartengeneratorVariablenLogik is
    pragma Elaborate_Body;
 
-   PolgrundOberfläche : KartengrundDatentypen.Basisgrund_Vorhanden_Enum := KartengrundDatentypen.Eis_Enum;
-   PolgrundUnterfläche : KartengrundDatentypen.Basisgrund_Vorhanden_Enum := KartengrundDatentypen.Untereis_Enum;
+   PolgrundOberfläche : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum := KartenbasisgrundDatentypen.Eis_Enum;
+   PolgrundUnterfläche : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum := KartenbasisgrundDatentypen.Untereis_Enum;
 
    Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
 
@@ -25,7 +26,7 @@ package KartengeneratorVariablenLogik is
    SchleifenanfangOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
    SchleifenendeOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
 
-   type StandardKartenressourcenWahrscheinlichkeitenArray is array (KartenartDatentypen.Kartenressourcenmenge_Enum'Range, KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
+   type StandardKartenressourcenWahrscheinlichkeitenArray is array (KartenartDatentypen.Kartenressourcenmenge_Enum'Range, KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
    StandardKartenressourcenWahrscheinlichkeiten : constant StandardKartenressourcenWahrscheinlichkeitenArray := (
                                                                                                                  KartenartDatentypen.Kartenressourcen_Keine_Enum =>
                                                                                                                    (
@@ -34,62 +35,62 @@ package KartengeneratorVariablenLogik is
 
                                                                                                                  KartenartDatentypen.Kartenressourcen_Arm_Enum =>
                                                                                                                    (
-                                                                                                                    KartenextraDatentypen.Fisch_Enum              => 1,
-                                                                                                                    KartenextraDatentypen.Wal_Enum                => 1,
-                                                                                                                    KartenextraDatentypen.Hochwertiges_Holz_Enum  => 1,
-                                                                                                                    KartenextraDatentypen.Kohle_Enum              => 1,
-                                                                                                                    KartenextraDatentypen.Eisen_Enum              => 1,
-                                                                                                                    KartenextraDatentypen.Öl_Enum                 => 1,
-                                                                                                                    KartenextraDatentypen.Hochwertiger_Boden_Enum => 1,
-                                                                                                                    KartenextraDatentypen.Gold_Enum               => 1
+                                                                                                                    KartenressourcenDatentypen.Fisch_Enum              => 1,
+                                                                                                                    KartenressourcenDatentypen.Wal_Enum                => 1,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiges_Holz_Enum  => 1,
+                                                                                                                    KartenressourcenDatentypen.Kohle_Enum              => 1,
+                                                                                                                    KartenressourcenDatentypen.Eisen_Enum              => 1,
+                                                                                                                    KartenressourcenDatentypen.Öl_Enum                 => 1,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiger_Boden_Enum => 1,
+                                                                                                                    KartenressourcenDatentypen.Gold_Enum               => 1
                                                                                                                    ),
 
                                                                                                                  KartenartDatentypen.Kartenressourcen_Wenig_Enum =>
                                                                                                                    (
-                                                                                                                    KartenextraDatentypen.Fisch_Enum              => 2,
-                                                                                                                    KartenextraDatentypen.Wal_Enum                => 2,
-                                                                                                                    KartenextraDatentypen.Hochwertiges_Holz_Enum  => 2,
-                                                                                                                    KartenextraDatentypen.Kohle_Enum              => 2,
-                                                                                                                    KartenextraDatentypen.Eisen_Enum              => 2,
-                                                                                                                    KartenextraDatentypen.Öl_Enum                 => 2,
-                                                                                                                    KartenextraDatentypen.Hochwertiger_Boden_Enum => 2,
-                                                                                                                    KartenextraDatentypen.Gold_Enum               => 2
+                                                                                                                    KartenressourcenDatentypen.Fisch_Enum              => 2,
+                                                                                                                    KartenressourcenDatentypen.Wal_Enum                => 2,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiges_Holz_Enum  => 2,
+                                                                                                                    KartenressourcenDatentypen.Kohle_Enum              => 2,
+                                                                                                                    KartenressourcenDatentypen.Eisen_Enum              => 2,
+                                                                                                                    KartenressourcenDatentypen.Öl_Enum                 => 2,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiger_Boden_Enum => 2,
+                                                                                                                    KartenressourcenDatentypen.Gold_Enum               => 2
                                                                                                                    ),
 
                                                                                                                  KartenartDatentypen.Kartenressourcen_Mittel_Enum =>
                                                                                                                    (
-                                                                                                                    KartenextraDatentypen.Fisch_Enum              => 3,
-                                                                                                                    KartenextraDatentypen.Wal_Enum                => 3,
-                                                                                                                    KartenextraDatentypen.Hochwertiges_Holz_Enum  => 3,
-                                                                                                                    KartenextraDatentypen.Kohle_Enum              => 3,
-                                                                                                                    KartenextraDatentypen.Eisen_Enum              => 3,
-                                                                                                                    KartenextraDatentypen.Öl_Enum                 => 3,
-                                                                                                                    KartenextraDatentypen.Hochwertiger_Boden_Enum => 3,
-                                                                                                                    KartenextraDatentypen.Gold_Enum               => 3
+                                                                                                                    KartenressourcenDatentypen.Fisch_Enum              => 3,
+                                                                                                                    KartenressourcenDatentypen.Wal_Enum                => 3,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiges_Holz_Enum  => 3,
+                                                                                                                    KartenressourcenDatentypen.Kohle_Enum              => 3,
+                                                                                                                    KartenressourcenDatentypen.Eisen_Enum              => 3,
+                                                                                                                    KartenressourcenDatentypen.Öl_Enum                 => 3,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiger_Boden_Enum => 3,
+                                                                                                                    KartenressourcenDatentypen.Gold_Enum               => 3
                                                                                                                    ),
 
                                                                                                                  KartenartDatentypen.Kartenressourcen_Viel_Enum =>
                                                                                                                    (
-                                                                                                                    KartenextraDatentypen.Fisch_Enum              => 4,
-                                                                                                                    KartenextraDatentypen.Wal_Enum                => 4,
-                                                                                                                    KartenextraDatentypen.Hochwertiges_Holz_Enum  => 4,
-                                                                                                                    KartenextraDatentypen.Kohle_Enum              => 4,
-                                                                                                                    KartenextraDatentypen.Eisen_Enum              => 4,
-                                                                                                                    KartenextraDatentypen.Öl_Enum                 => 4,
-                                                                                                                    KartenextraDatentypen.Hochwertiger_Boden_Enum => 4,
-                                                                                                                    KartenextraDatentypen.Gold_Enum               => 4
+                                                                                                                    KartenressourcenDatentypen.Fisch_Enum              => 4,
+                                                                                                                    KartenressourcenDatentypen.Wal_Enum                => 4,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiges_Holz_Enum  => 4,
+                                                                                                                    KartenressourcenDatentypen.Kohle_Enum              => 4,
+                                                                                                                    KartenressourcenDatentypen.Eisen_Enum              => 4,
+                                                                                                                    KartenressourcenDatentypen.Öl_Enum                 => 4,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiger_Boden_Enum => 4,
+                                                                                                                    KartenressourcenDatentypen.Gold_Enum               => 4
                                                                                                                    ),
 
                                                                                                                  KartenartDatentypen.Kartenressourcen_Überfluss_Enum =>
                                                                                                                    (
-                                                                                                                    KartenextraDatentypen.Fisch_Enum              => 6,
-                                                                                                                    KartenextraDatentypen.Wal_Enum                => 6,
-                                                                                                                    KartenextraDatentypen.Hochwertiges_Holz_Enum  => 6,
-                                                                                                                    KartenextraDatentypen.Kohle_Enum              => 6,
-                                                                                                                    KartenextraDatentypen.Eisen_Enum              => 6,
-                                                                                                                    KartenextraDatentypen.Öl_Enum                 => 6,
-                                                                                                                    KartenextraDatentypen.Hochwertiger_Boden_Enum => 6,
-                                                                                                                    KartenextraDatentypen.Gold_Enum               => 6
+                                                                                                                    KartenressourcenDatentypen.Fisch_Enum              => 6,
+                                                                                                                    KartenressourcenDatentypen.Wal_Enum                => 6,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiges_Holz_Enum  => 6,
+                                                                                                                    KartenressourcenDatentypen.Kohle_Enum              => 6,
+                                                                                                                    KartenressourcenDatentypen.Eisen_Enum              => 6,
+                                                                                                                    KartenressourcenDatentypen.Öl_Enum                 => 6,
+                                                                                                                    KartenressourcenDatentypen.Hochwertiger_Boden_Enum => 6,
+                                                                                                                    KartenressourcenDatentypen.Gold_Enum               => 6
                                                                                                                    ),
 
                                                                                                                  KartenartDatentypen.Kartenressourcen_Überall_Enum =>

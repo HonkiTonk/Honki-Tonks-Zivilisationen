@@ -1,5 +1,6 @@
 with KartenverbesserungDatentypen;
 with TextnummernKonstanten;
+with KartenwegeDatentypen;
 
 with LeseWeltkarte;
 with SchreibeWeltkarte;
@@ -17,13 +18,13 @@ package body VerbesserungPluendernLogik is
       return Boolean
    is
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
-      use type KartenverbesserungDatentypen.Weg_Enum;
+      use type KartenwegeDatentypen.Weg_Enum;
    begin
             
       if
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
         and
-          LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Weg_Enum
+          LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern) = KartenwegeDatentypen.Leer_Weg_Enum
       then
          return False;
          
@@ -70,7 +71,7 @@ package body VerbesserungPluendernLogik is
       case
         LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             null;
             
          when others =>

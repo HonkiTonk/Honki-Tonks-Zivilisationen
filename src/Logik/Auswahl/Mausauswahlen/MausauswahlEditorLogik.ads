@@ -1,12 +1,12 @@
 private with Sf.System.Vector2;
 
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 
 package MausauswahlEditorLogik is
    pragma Elaborate_Body;
 
    function Kartengrundeditor
-     return KartengrundDatentypen.Kartengrund_Enum;
+     return KartenzusatzgrundDatentypen.Kartengrund_Enum;
    
 private
    

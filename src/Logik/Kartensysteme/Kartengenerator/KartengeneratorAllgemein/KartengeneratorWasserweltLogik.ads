@@ -3,7 +3,8 @@ private with SystemDatentypenHTSEB;
 with KartenDatentypen;
 with KartenRecords;
 
-private with KartengrundDatentypen;
+private with KartenzusatzgrundDatentypen;
+private with KartenbasisgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -23,7 +24,7 @@ package KartengeneratorWasserweltLogik is
    
 private
          
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
+   Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
    Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
@@ -35,11 +36,11 @@ private
                                                                     2 => 30
                                                                    );
    
-   type ZahlenNachZusatzgrundArray is array (0 .. ZusatzWahrscheinlichkeitenArray'Last) of KartengrundDatentypen.Zusatzgrund_Enum;
+   type ZahlenNachZusatzgrundArray is array (0 .. ZusatzWahrscheinlichkeitenArray'Last) of KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    ZahlenNachZusatzgrund : constant ZahlenNachZusatzgrundArray := (
-                                                                   0 => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
-                                                                   1 => KartengrundDatentypen.Korallen_Enum,
-                                                                   2 => KartengrundDatentypen.Unterwald_Enum
+                                                                   0 => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
+                                                                   1 => KartenzusatzgrundDatentypen.Korallen_Enum,
+                                                                   2 => KartenzusatzgrundDatentypen.Unterwald_Enum
                                                                   );
    
    procedure BasisgrundBestimmen
@@ -64,8 +65,8 @@ private
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -75,8 +76,8 @@ private
          
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Unterfläche_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -86,8 +87,8 @@ private
    
    function ZusatzberechnungMeeresgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -97,8 +98,8 @@ private
    
    function ZusatzberechnungKorallen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Korallen_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Korallen_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -108,8 +109,8 @@ private
    
    function ZusatzberechnungUnterwald
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterwald_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Unterwald_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

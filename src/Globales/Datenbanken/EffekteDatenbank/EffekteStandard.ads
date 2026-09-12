@@ -1,15 +1,15 @@
-with KartenextraDatentypen;
 with KartendatenbankRecord;
 with SpeziesDatentypen;
 with ProduktionKonstanten;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
+with KarteneffekteDatentypen;
 
 package EffekteStandard is
    pragma Pure;
 
-   type EffektelisteArray is array (KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
+   type EffektelisteArray is array (KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    Effekteliste : constant EffektelisteArray := (
                                                  others =>
                                                    (

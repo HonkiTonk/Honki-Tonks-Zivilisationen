@@ -4,8 +4,8 @@ with EinheitenKonstanten;
 with SpeziesDatentypen;
 with KartenDatentypen;
 
-private with KartengrundDatentypen;
-private with KartenextraDatentypen;
+private with KartenressourcenDatentypen;
+private with KartenbasisgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -34,17 +34,17 @@ package KIVerbesserungAnlegbarLogik is
 
 private
    
-   Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
 
-   Ressourcen : KartenextraDatentypen.Ressourcen_Enum;
+   Ressourcen : KartenressourcenDatentypen.Ressourcen_Enum;
    
    
    
    function MineAnlegen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+      BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
+      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
       return Boolean
      with
        Pre => (
@@ -60,7 +60,7 @@ private
    function FestungAnlegen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+      BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Boolean
      with
        Pre => (

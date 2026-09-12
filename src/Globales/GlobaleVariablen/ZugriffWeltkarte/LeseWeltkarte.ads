@@ -1,15 +1,19 @@
 with SpeziesDatentypen;
 with KartenDatentypen;
 with KartenRecords;
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with KartenverbesserungDatentypen;
 with StadtRecords;
 with EinheitenRecords;
 with WeltkarteRecords;
 with StadtKonstanten;
-with KartenextraDatentypen;
+with KartenfluesseDatentypen;
 with StadtDatentypen;
 with KartenArrays;
+with KartenressourcenDatentypen;
+with KarteneffekteDatentypen;
+with KartenbasisgrundDatentypen;
+with KartenwegeDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -25,7 +29,7 @@ package LeseWeltkarte is
    
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartengrundDatentypen.Basisgrund_Enum
+      return KartenbasisgrundDatentypen.Basisgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -35,7 +39,7 @@ package LeseWeltkarte is
 
    function Zusatzgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -55,7 +59,7 @@ package LeseWeltkarte is
    
    function Effekt
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      WelcherEffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+      WelcherEffektExtern : in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -97,7 +101,7 @@ package LeseWeltkarte is
 
    function Fluss
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenextraDatentypen.Fluss_Enum
+      return KartenfluesseDatentypen.Fluss_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -107,7 +111,7 @@ package LeseWeltkarte is
 
    function Weg
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenverbesserungDatentypen.Weg_Enum
+      return KartenwegeDatentypen.Weg_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -127,7 +131,7 @@ package LeseWeltkarte is
 
    function Ressource
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenextraDatentypen.Ressourcen_Enum
+      return KartenressourcenDatentypen.Ressourcen_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

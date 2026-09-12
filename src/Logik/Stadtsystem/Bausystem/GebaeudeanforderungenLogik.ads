@@ -4,10 +4,13 @@ with StadtRecords;
 with StadtKonstanten;
 
 private with KartenRecords;
-private with KartengrundDatentypen;
+private with KartenzusatzgrundDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenDatentypen;
-private with KartenextraDatentypen;
+private with KartenfluesseDatentypen;
+private with KartenressourcenDatentypen;
+private with KartenbasisgrundDatentypen;
+private  with KartenwegeDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -28,12 +31,12 @@ package GebaeudeanforderungenLogik is
               );
    
 private
-   use type KartengrundDatentypen.Basisgrund_Enum;
-   use type KartengrundDatentypen.Zusatzgrund_Enum;
-   use type KartenextraDatentypen.Fluss_Enum;
-   use type KartenextraDatentypen.Ressourcen_Enum;
+   use type KartenbasisgrundDatentypen.Basisgrund_Enum;
+   use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+   use type KartenfluesseDatentypen.Fluss_Enum;
+   use type KartenressourcenDatentypen.Ressourcen_Enum;
    use type KartenverbesserungDatentypen.Verbesserung_Enum;
-   use type KartenverbesserungDatentypen.Weg_Enum;
+   use type KartenwegeDatentypen.Weg_Enum;
    
    Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    
@@ -43,22 +46,22 @@ private
    -- Den Record und die LeerUmgebung mal in Globales verschieben? äöü
    type UmgebungRecord is record
       
-      Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
-      Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
-      Fluss : KartenextraDatentypen.Fluss_Enum;
-      Ressource : KartenextraDatentypen.Ressourcen_Enum;
+      Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
+      Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+      Fluss : KartenfluesseDatentypen.Fluss_Enum;
+      Ressource : KartenressourcenDatentypen.Ressourcen_Enum;
       Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
-      Weg : KartenverbesserungDatentypen.Weg_Enum;
+      Weg : KartenwegeDatentypen.Weg_Enum;
       
    end record;
    
    LeerUmgebung : constant UmgebungRecord := (
-                                              Basisgrund   => KartengrundDatentypen.Leer_Basisgrund_Enum,
-                                              Zusatzgrund  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
-                                              Fluss        => KartenextraDatentypen.Leer_Fluss_Enum,
-                                              Ressource    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                              Basisgrund   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
+                                              Zusatzgrund  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
+                                              Fluss        => KartenfluesseDatentypen.Leer_Fluss_Enum,
+                                              Ressource    => KartenressourcenDatentypen.Leer_Ressource_Enum,
                                               Verbesserung => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
-                                              Weg          => KartenverbesserungDatentypen.Leer_Weg_Enum
+                                              Weg          => KartenwegeDatentypen.Leer_Weg_Enum
                                              );
    
    type UmgebungArray is array (KartenDatentypen.SenkrechteUmgebungDrei'Range, KartenDatentypen.WaagerechteUmgebungDrei'Range) of UmgebungRecord;
@@ -87,26 +90,26 @@ private
               );
    
    function UmgebungVorhanden
-     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+     (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
+      ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+      FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
+      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
+      WegExtern : in KartenwegeDatentypen.Weg_Enum)
       return Boolean
      with
        Pre => (
-                 BasisgrundExtern /= KartengrundDatentypen.Leer_Basisgrund_Enum
+                 BasisgrundExtern /= KartenbasisgrundDatentypen.Leer_Basisgrund_Enum
                or
-                 ZusatzgrundExtern /= KartengrundDatentypen.Leer_Zusatzgrund_Enum
+                 ZusatzgrundExtern /= KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum
                or
-                 FlussExtern /= KartenextraDatentypen.Leer_Fluss_Enum
+                 FlussExtern /= KartenfluesseDatentypen.Leer_Fluss_Enum
                or
-                 RessourceExtern /= KartenextraDatentypen.Leer_Ressource_Enum
+                 RessourceExtern /= KartenressourcenDatentypen.Leer_Ressource_Enum
                or
                  VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
                or
-                 WegExtern /= KartenverbesserungDatentypen.Leer_Weg_Enum
+                 WegExtern /= KartenwegeDatentypen.Leer_Weg_Enum
               );
    
    function NotwendigeUmgebung

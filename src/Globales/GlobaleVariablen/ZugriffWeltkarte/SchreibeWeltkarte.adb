@@ -13,7 +13,7 @@ package body SchreibeWeltkarte is
    
    procedure Basisgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
    is begin
       
       case
@@ -32,7 +32,7 @@ package body SchreibeWeltkarte is
 
    procedure Zusatzgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum)
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum)
    is begin
       
       case
@@ -71,7 +71,7 @@ package body SchreibeWeltkarte is
    
    procedure Feldeffekt
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      FeldeffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+      FeldeffektExtern : in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
    is begin
       
       case
@@ -148,7 +148,7 @@ package body SchreibeWeltkarte is
    
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      FlussExtern : in KartenextraDatentypen.Fluss_Enum)
+      FlussExtern : in KartenfluesseDatentypen.Fluss_Enum)
    is begin
       
       case
@@ -167,7 +167,7 @@ package body SchreibeWeltkarte is
    
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
    is begin
       
       case
@@ -186,7 +186,7 @@ package body SchreibeWeltkarte is
    
    procedure Weg
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
+      WegExtern : in KartenwegeDatentypen.Weg_Enum)
    is begin
       
       case

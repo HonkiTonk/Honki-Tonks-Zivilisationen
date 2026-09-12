@@ -25,22 +25,22 @@ package body AufgabenbeschreibungenGrafik is
    
 
    function KurzbeschreibungWeg
-     (KartenWegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
+     (KartenWegExtern : in KartenwegeDatentypen.Weg_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
-      return Kartentexte.Wege (2 * KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1);
+      return Kartentexte.Wege (2 * KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1);
       
    end KurzbeschreibungWeg;
    
    
 
    function LangbeschreibungWeg
-     (KartenWegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
+     (KartenWegExtern : in KartenwegeDatentypen.Weg_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
-      return Kartentexte.Wege (2 * KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (KartenWegExtern));
+      return Kartentexte.Wege (2 * KartenwegeDatentypen.Weg_Vorhanden_Enum'Pos (KartenWegExtern));
       
    end LangbeschreibungWeg;
 

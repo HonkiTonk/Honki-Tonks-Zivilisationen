@@ -5,7 +5,7 @@ with KampfKonstanten;
 package body LeseEffekteDatenbank is
 
    function Produktion
-     (EffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Enum;
+     (EffektExtern : in KarteneffekteDatentypen.Effekt_Kartenfeld_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -14,7 +14,7 @@ package body LeseEffekteDatenbank is
       case
         EffektExtern
       is
-         when KartenextraDatentypen.Leer_Effekt_Enum =>
+         when KarteneffekteDatentypen.Leer_Effekt_Enum =>
             return ProduktionKonstanten.LeerMalus;
             
          when others =>
@@ -26,7 +26,7 @@ package body LeseEffekteDatenbank is
       
    
    function Kampf
-     (EffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Enum;
+     (EffektExtern : in KarteneffekteDatentypen.Effekt_Kartenfeld_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -35,7 +35,7 @@ package body LeseEffekteDatenbank is
       case
         EffektExtern
       is
-         when KartenextraDatentypen.Leer_Effekt_Enum =>
+         when KarteneffekteDatentypen.Leer_Effekt_Enum =>
             return KampfKonstanten.LeerMalus;
             
          when others =>

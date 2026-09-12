@@ -1,5 +1,5 @@
 with KartenKonstanten;
-with KartenextraDatentypen;
+with KarteneffekteDatentypen;
 with DiplomatieDatentypen;
 with SystemDatentypen;
 
@@ -20,7 +20,7 @@ package body VerschmutzendeWaffeEingesetztLogik is
       
       Verschmutzungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                         IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                        EffektExtern  => KartenextraDatentypen.Verschmutzt_Enum);
+                                                                        EffektExtern  => KarteneffekteDatentypen.Verschmutzt_Enum);
       
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -55,7 +55,7 @@ package body VerschmutzendeWaffeEingesetztLogik is
                      
                   when others =>
                      SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => Kartenwert,
-                                                   FeldeffektExtern  => KartenextraDatentypen.Verschmutzt_Enum);
+                                                   FeldeffektExtern  => KarteneffekteDatentypen.Verschmutzt_Enum);
                end case;
 
             end loop WaagerechteSchleife;
@@ -75,7 +75,7 @@ package body VerschmutzendeWaffeEingesetztLogik is
          else
             SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => EinheitSpeziesNummerExtern.Spezies,
                                                   SpeziesZweiExtern   => SpeziesSchleifenwert,
-                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KartenextraDatentypen.Verschmutzt_Enum, EinheitSpeziesNummerExtern.Spezies),
+                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KarteneffekteDatentypen.Verschmutzt_Enum, EinheitSpeziesNummerExtern.Spezies),
                                                   RechnenSetzenExtern => True);
          end if;
          

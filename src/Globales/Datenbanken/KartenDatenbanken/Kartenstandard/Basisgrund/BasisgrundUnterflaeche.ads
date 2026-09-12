@@ -1,4 +1,3 @@
-with KartengrundDatentypen;
 with EinheitenDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
@@ -6,15 +5,16 @@ with ZufallsgeneratorenDatentypenHTSEB;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
+with KartenbasisgrundDatentypen;
 
 package BasisgrundUnterflaeche is
    pragma Pure;
    
    -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteUnterflächeArray is array (KartengrundDatentypen.Basisgrund_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
+   type BasisgrundlisteUnterflächeArray is array (KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteUnterfläche : constant BasisgrundlisteUnterflächeArray := (
-                                                                               KartengrundDatentypen.Untereis_Enum =>
+                                                                               KartenbasisgrundDatentypen.Untereis_Enum =>
                                                                                  (
                                                                                   Passierbarkeit => (EinheitenDatentypen.Unterirdisch_Enum => True,
                                                                                                      others                                => False),
@@ -202,7 +202,7 @@ package BasisgrundUnterflaeche is
                                                                                     )
                                                                                  ),
                                       
-                                                                               KartengrundDatentypen.Erde_Enum =>
+                                                                               KartenbasisgrundDatentypen.Erde_Enum =>
                                                                                  (
                                                                                   Passierbarkeit => (EinheitenDatentypen.Unterirdisch_Enum => True,
                                                                                                      others                                => False),
@@ -390,7 +390,7 @@ package BasisgrundUnterflaeche is
                                                                                     )
                                                                                  ),
       
-                                                                               KartengrundDatentypen.Erdgestein_Enum =>
+                                                                               KartenbasisgrundDatentypen.Erdgestein_Enum =>
                                                                                  (
                                                                                   Passierbarkeit => (EinheitenDatentypen.Unterirdisch_Enum => True,
                                                                                                      others                                => False),
@@ -578,7 +578,7 @@ package BasisgrundUnterflaeche is
                                                                                     )
                                                                                  ),
                                       
-                                                                               KartengrundDatentypen.Gestein_Enum =>
+                                                                               KartenbasisgrundDatentypen.Gestein_Enum =>
                                                                                  (
                                                                                   Passierbarkeit => (EinheitenDatentypen.Unterirdisch_Enum => True,
                                                                                                      others                                => False),
@@ -766,7 +766,7 @@ package BasisgrundUnterflaeche is
                                                                                     )
                                                                                  ),
       
-                                                                               KartengrundDatentypen.Sand_Enum =>
+                                                                               KartenbasisgrundDatentypen.Sand_Enum =>
                                                                                  (
                                                                                   Passierbarkeit => (EinheitenDatentypen.Unterirdisch_Enum => True,
                                                                                                      others                                => False),
@@ -954,7 +954,7 @@ package BasisgrundUnterflaeche is
                                                                                     )
                                                                                  ),
       
-                                                                               KartengrundDatentypen.Meeresgrund_Enum =>
+                                                                               KartenbasisgrundDatentypen.Meeresgrund_Enum =>
                                                                                  (
                                                                                   Passierbarkeit => (EinheitenDatentypen.Unterwasser_Enum => True,
                                                                                                      others                               => False),
@@ -1142,7 +1142,7 @@ package BasisgrundUnterflaeche is
                                                                                     )
                                                                                  ),
                                       
-                                                                               KartengrundDatentypen.Küstengrund_Enum =>
+                                                                               KartenbasisgrundDatentypen.Küstengrund_Enum =>
                                                                                  (
                                                                                   Passierbarkeit => (EinheitenDatentypen.Unterwasser_Enum => True,
                                                                                                      others                               => False),

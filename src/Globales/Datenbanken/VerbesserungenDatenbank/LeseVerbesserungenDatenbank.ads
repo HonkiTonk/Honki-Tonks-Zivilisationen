@@ -3,6 +3,7 @@ with EinheitenDatentypen;
 with KartenverbesserungDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
+with KartenwegeDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -11,12 +12,12 @@ package LeseVerbesserungenDatenbank is
    use type SpeziesDatentypen.Spieler_Enum;
    
    function PassierbarkeitWeg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean;
    
    function BewegungWeg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.BewegungspunkteBasis
      with
@@ -35,7 +36,7 @@ package LeseVerbesserungenDatenbank is
               );
    
    function ProduktionWeg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -55,7 +56,7 @@ package LeseVerbesserungenDatenbank is
               );
    
    function KampfWeg
-     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+     (WegExtern : in KartenwegeDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus

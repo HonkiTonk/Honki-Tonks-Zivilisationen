@@ -3,12 +3,12 @@ with ZufallsgeneratorenDatentypenHTSEB;
 
 with SpeziesDatentypen;
 with KartenRecords;
-with KartenextraDatentypen;
+with KarteneffekteDatentypen;
 
 package KartenArrays is
    pragma Preelaborate;
 
-   type FeldeffektArray is array (KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of Boolean;
+   type FeldeffektArray is array (KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of Boolean;
 
 
 

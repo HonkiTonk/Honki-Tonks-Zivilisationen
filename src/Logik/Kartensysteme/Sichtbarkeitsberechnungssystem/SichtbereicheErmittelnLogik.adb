@@ -1,5 +1,6 @@
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with SystemDatentypen;
+with KartenbasisgrundDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -14,8 +15,8 @@ package body SichtbereicheErmittelnLogik is
       return KartenRecords.SichtweitePositiveRecord
    is
       use type KartenDatentypen.EbeneBasis;
-      use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
+      use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    begin
       
       KoordinatenEinheit := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -41,18 +42,18 @@ package body SichtbereicheErmittelnLogik is
       -- Das hier später erweitern, beispielsweise im Dschungel auf dem Berg kürzere Sichtweite ermitteln. äöü
       -- Oder auch einheitenspezifische Eigenschaften berücksichtigen. äöü
       if
-        Gesamtgrund.Basisgrund = KartengrundDatentypen.Gebirge_Enum
+        Gesamtgrund.Basisgrund = KartenbasisgrundDatentypen.Gebirge_Enum
         or
-          Gesamtgrund.Basisgrund = KartengrundDatentypen.Hügel_Enum
+          Gesamtgrund.Basisgrund = KartenbasisgrundDatentypen.Hügel_Enum
       then
          return (3, 3);
 
       elsif
-        Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Dschungel_Enum
+        Gesamtgrund.Zusatzgrund = KartenzusatzgrundDatentypen.Dschungel_Enum
         or
-          Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Sumpf_Enum
+          Gesamtgrund.Zusatzgrund = KartenzusatzgrundDatentypen.Sumpf_Enum
           or
-            Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Wald_Enum
+            Gesamtgrund.Zusatzgrund = KartenzusatzgrundDatentypen.Wald_Enum
       then
          return (1, 1);
                
@@ -73,8 +74,8 @@ package body SichtbereicheErmittelnLogik is
    is
       use type KartenDatentypen.SenkrechteBasis;
       use type KartenDatentypen.WaagerechteBasis;
-      use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
+      use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    begin
       
       KartenBlockadeWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
@@ -92,9 +93,9 @@ package body SichtbereicheErmittelnLogik is
       end case;
          
       if
-        Gesamtgrund.Basisgrund = KartengrundDatentypen.Gebirge_Enum
+        Gesamtgrund.Basisgrund = KartenbasisgrundDatentypen.Gebirge_Enum
         or
-          Gesamtgrund.Basisgrund = KartengrundDatentypen.Hügel_Enum
+          Gesamtgrund.Basisgrund = KartenbasisgrundDatentypen.Hügel_Enum
       then
          null;
          
@@ -103,11 +104,11 @@ package body SichtbereicheErmittelnLogik is
          or
            SichtweiteExtern.Waagerechte /= 3)
         and
-          (Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Dschungel_Enum
+          (Gesamtgrund.Zusatzgrund = KartenzusatzgrundDatentypen.Dschungel_Enum
            or
-             Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Sumpf_Enum
+             Gesamtgrund.Zusatzgrund = KartenzusatzgrundDatentypen.Sumpf_Enum
            or
-             Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Wald_Enum)
+             Gesamtgrund.Zusatzgrund = KartenzusatzgrundDatentypen.Wald_Enum)
       then
          null;
          

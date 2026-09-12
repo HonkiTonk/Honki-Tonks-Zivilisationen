@@ -1,5 +1,7 @@
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with KartenDatenbank;
+with KartenressourcenDatentypen;
+with KartenbasisgrundDatentypen;
 
 with BasisgrundHimmel;
 with BasisgrundKern;
@@ -9,7 +11,7 @@ with BasisgrundUnterflaeche;
 with BasisgrundOrbit;
 with ZusatzgrundOberflaeche;
 with ZusatzgrundUnterflaeche;
-with KartenextraDatentypen;
+with KartenfluesseDatentypen;
 with KartengrundFluss;
 with Landressourcen;
 with Wasserressourcen;
@@ -20,7 +22,7 @@ package body StandardKartenDatenbank is
    is begin
       
       BasisgrundSchleife:
-      for BasisgrundSchleifenwert in KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range loop
+      for BasisgrundSchleifenwert in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Range loop
          
          case
            BasisgrundSchleifenwert
@@ -54,7 +56,7 @@ package body StandardKartenDatenbank is
    is begin
       
       ZusatzgrundSchleife:
-      for ZusatzgrundSchleifenwert in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range loop
+      for ZusatzgrundSchleifenwert in KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range loop
          
          case
            ZusatzgrundSchleifenwert
@@ -76,7 +78,7 @@ package body StandardKartenDatenbank is
    is begin
       
       KartenflussSchleife:
-      for KartenflussSchleifenwert in KartenextraDatentypen.Fluss_Vorhanden_Enum'Range loop
+      for KartenflussSchleifenwert in KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Range loop
          
          case
            KartenflussSchleifenwert
@@ -101,7 +103,7 @@ package body StandardKartenDatenbank is
    is begin
       
       KartenressourcenSchleife:
-      for KartenressourcenSchleifenwert in KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range loop
+      for KartenressourcenSchleifenwert in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Range loop
          
          case
            KartenressourcenSchleifenwert

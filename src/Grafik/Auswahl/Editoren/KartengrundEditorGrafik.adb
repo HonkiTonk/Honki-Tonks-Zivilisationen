@@ -1,6 +1,6 @@
 -- with GrafikDatentypen;
 with Views;
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with InteraktionAuswahl;
 
 -- with AllgemeineViewsGrafik;
@@ -37,7 +37,7 @@ package body KartengrundEditorGrafik is
          InteraktionAuswahl.PositionenBasisgrundeditor (KartengrundSchleifenwert) := (Grafikposition.x, Grafikposition.y, Feldgröße.x, Feldgröße.y);
          
          case
-           KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (KartengrundSchleifenwert) mod 6
+           KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (KartengrundSchleifenwert) mod 6
          is
             when 0 =>
                Grafikposition.x := GrafikRecordKonstanten.Nullposition.x;

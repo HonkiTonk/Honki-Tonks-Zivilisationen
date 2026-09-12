@@ -120,17 +120,20 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (13.09.2026):
+   -- Version 0.06.4965 => 0.06. (13.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4910 => 0.06. (12.09.2026):
+   -- Version 0.06.4910 => 0.06.4965 (12.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kartenressourcen, Kartenflüsse und Karteneffekte jeweils in eigene Dateien aufgeteilt.
+   -- Kartenbasis- und Kartenzusatzgrund jeweils in eigene Dateien aufgeteilt.
+   -- Kartenverbesserungen und Kartenwege in eigene Dateien aufgeteilt.
+   -- Angefangen die Ressourcenliste neu zu schreiben und deutlich zu erweitern.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

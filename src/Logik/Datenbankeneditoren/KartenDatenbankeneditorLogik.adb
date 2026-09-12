@@ -1,6 +1,6 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with GrafikDatentypen;
 with TastenbelegungDatentypen;
 with KartenDatenbank;
@@ -26,7 +26,7 @@ package body KartenDatenbankeneditorLogik is
          case
            Feldauswahl
          is
-            when KartengrundDatentypen.Leer_Grund_Enum =>
+            when KartenzusatzgrundDatentypen.Leer_Grund_Enum =>
                exit KartengrundSchleife;
                
             when others =>
@@ -42,7 +42,7 @@ package body KartenDatenbankeneditorLogik is
    
    
    function Kartenfeldauswahl
-     return KartengrundDatentypen.Kartengrund_Enum
+     return KartenzusatzgrundDatentypen.Kartengrund_Enum
    is begin
       
       AuswahlSchleife:
@@ -55,7 +55,7 @@ package body KartenDatenbankeneditorLogik is
                return MausauswahlEditorLogik.Kartengrundeditor;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               return KartengrundDatentypen.Leer_Grund_Enum;
+               return KartenzusatzgrundDatentypen.Leer_Grund_Enum;
                
             when others =>
                null;
@@ -69,7 +69,7 @@ package body KartenDatenbankeneditorLogik is
    
    -- Als Menü aufbauen und entsprechend nur die Auswahlmöglichkeiten als Text einbauen? äöü
    procedure Feldeinstellungen
-     (FeldExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
+     (FeldExtern : in KartenzusatzgrundDatentypen.Kartengrund_Vorhanden_Enum)
    is begin
       
       Put_Line (FeldExtern'Wide_Wide_Image);

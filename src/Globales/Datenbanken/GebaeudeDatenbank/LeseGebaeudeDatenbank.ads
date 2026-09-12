@@ -1,12 +1,15 @@
 with SpeziesDatentypen;
 with KartenDatentypen;
 with StadtDatentypen;
-with KartengrundDatentypen;
+with KartenzusatzgrundDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KartenverbesserungDatentypen;
-with KartenextraDatentypen;
+with KartenfluesseDatentypen;
+with KartenressourcenDatentypen;
+with KartenbasisgrundDatentypen;
+with KartenwegeDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -74,7 +77,7 @@ package LeseGebaeudeDatenbank is
    function BasisgrundBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -84,7 +87,7 @@ package LeseGebaeudeDatenbank is
    function ZusatzgrundBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -94,7 +97,7 @@ package LeseGebaeudeDatenbank is
    function FlussBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      FlussartExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
+      FlussartExtern : in KartenfluesseDatentypen.Fluss_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -104,7 +107,7 @@ package LeseGebaeudeDatenbank is
    function RessourceBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
+      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -124,7 +127,7 @@ package LeseGebaeudeDatenbank is
    function WegBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
+      WegExtern : in KartenwegeDatentypen.Weg_Vorhanden_Enum)
       return Boolean
      with
        Pre => (

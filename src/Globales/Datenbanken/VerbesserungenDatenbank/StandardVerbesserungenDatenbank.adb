@@ -1,5 +1,6 @@
 with KartenverbesserungDatentypen;
 with VerbesserungenDatenbank;
+with KartenwegeDatentypen;
 
 with WegeStandard;
 with VerbesserungenStandard;
@@ -32,7 +33,7 @@ package body StandardVerbesserungenDatenbank is
    is begin
       
       WegeSchleife:
-      for WegeSchleifenwert in KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range loop
+      for WegeSchleifenwert in KartenwegeDatentypen.Weg_Vorhanden_Enum'Range loop
          
          case
            WegeSchleifenwert

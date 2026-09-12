@@ -1,4 +1,4 @@
-private with KartengrundDatentypen;
+private with KartenzusatzgrundDatentypen;
 
 package KartenDatenbankeneditorLogik is
    pragma Elaborate_Body;
@@ -7,15 +7,15 @@ package KartenDatenbankeneditorLogik is
 
 private
 
-   Feldauswahl : KartengrundDatentypen.Kartengrund_Enum;
-   AktuelleAuswahl : KartengrundDatentypen.Kartengrund_Enum;
+   Feldauswahl : KartenzusatzgrundDatentypen.Kartengrund_Enum;
+   AktuelleAuswahl : KartenzusatzgrundDatentypen.Kartengrund_Enum;
 
    procedure Feldeinstellungen
-     (FeldExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum);
+     (FeldExtern : in KartenzusatzgrundDatentypen.Kartengrund_Vorhanden_Enum);
 
 
 
    function Kartenfeldauswahl
-     return KartengrundDatentypen.Kartengrund_Enum;
+     return KartenzusatzgrundDatentypen.Kartengrund_Enum;
 
 end KartenDatenbankeneditorLogik;

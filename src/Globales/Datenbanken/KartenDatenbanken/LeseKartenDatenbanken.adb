@@ -8,7 +8,7 @@ with MeldungssystemHTSEB;
 package body LeseKartenDatenbanken is
 
    function PassierbarkeitBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
@@ -16,7 +16,7 @@ package body LeseKartenDatenbanken is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "LeseKartenDatenbanken.PassierbarkeitBasisgrund: Leerer Grund");
             return False;
             
@@ -29,7 +29,7 @@ package body LeseKartenDatenbanken is
    
    
    function BewertungBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ZufallsgeneratorenDatentypenHTSEB.Bewertung_Enum
    is begin
@@ -37,7 +37,7 @@ package body LeseKartenDatenbanken is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "LeseKartenDatenbanken.BewertungBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return ZufallsgeneratorenDatentypenHTSEB.Bewertung_Eins_Enum;
             
@@ -50,7 +50,7 @@ package body LeseKartenDatenbanken is
    
    
    function BewertungZusatzgrund
-     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+     (GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return ZufallsgeneratorenDatentypenHTSEB.Bewertung_Enum
    is begin
@@ -58,7 +58,7 @@ package body LeseKartenDatenbanken is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return ZufallsgeneratorenDatentypenHTSEB.Bewertung_Eins_Enum;
               
          when others =>
@@ -70,7 +70,7 @@ package body LeseKartenDatenbanken is
    
    
    function BewegungBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.BewegungspunkteVorhanden
    is begin
@@ -78,7 +78,7 @@ package body LeseKartenDatenbanken is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "LeseKartenDatenbanken.BewegungBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return EinheitenKonstanten.LeerBewegungspunkte;
             
@@ -91,7 +91,7 @@ package body LeseKartenDatenbanken is
    
    
    function BewegungZusatzgrund
-     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+     (GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return EinheitenDatentypen.BewegungspunkteVorhanden
    is begin
@@ -99,7 +99,7 @@ package body LeseKartenDatenbanken is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return EinheitenKonstanten.LeerBewegungspunkte;
               
          when others =>
@@ -111,7 +111,7 @@ package body LeseKartenDatenbanken is
       
    
    function BewertungFluss
-     (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is begin
@@ -119,7 +119,7 @@ package body LeseKartenDatenbanken is
       case
         FlussExtern
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             return False;
             
          when others =>
@@ -131,7 +131,7 @@ package body LeseKartenDatenbanken is
    
    
    function BewertungRessource
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is begin
@@ -139,7 +139,7 @@ package body LeseKartenDatenbanken is
       case
         RessourceExtern
       is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
+         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
             return False;
             
          when others =>
@@ -151,7 +151,7 @@ package body LeseKartenDatenbanken is
    
    
    function ProduktionBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -160,7 +160,7 @@ package body LeseKartenDatenbanken is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "LeseKartenDatenbanken.ProduktionBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return ProduktionKonstanten.LeerProduktion;
             
@@ -173,7 +173,7 @@ package body LeseKartenDatenbanken is
    
    
    function ProduktionZusatzgrund
-     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+     (GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -182,7 +182,7 @@ package body LeseKartenDatenbanken is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
@@ -194,7 +194,7 @@ package body LeseKartenDatenbanken is
    
    
    function ProduktionFluss
-     (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -203,7 +203,7 @@ package body LeseKartenDatenbanken is
       case
         FlussExtern
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
@@ -215,7 +215,7 @@ package body LeseKartenDatenbanken is
    
    
    function ProduktionRessourcen
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -224,7 +224,7 @@ package body LeseKartenDatenbanken is
       case
         RessourceExtern
       is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
+         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
@@ -236,7 +236,7 @@ package body LeseKartenDatenbanken is
    
    
    function KampfBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+     (GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -245,7 +245,7 @@ package body LeseKartenDatenbanken is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "LeseKartenDatenbanken.KampfBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return KampfKonstanten.LeerBonus;
             
@@ -258,7 +258,7 @@ package body LeseKartenDatenbanken is
    
    
    function KampfZusatzgrund
-     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+     (GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -267,7 +267,7 @@ package body LeseKartenDatenbanken is
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return KampfKonstanten.LeerBonus;
             
          when others =>
@@ -279,7 +279,7 @@ package body LeseKartenDatenbanken is
    
    
    function KampfFluss
-     (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+     (FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -288,7 +288,7 @@ package body LeseKartenDatenbanken is
       case
         FlussExtern
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
+         when KartenfluesseDatentypen.Leer_Fluss_Enum =>
             return KampfKonstanten.LeerBonus;
             
          when others =>
@@ -300,7 +300,7 @@ package body LeseKartenDatenbanken is
    
    
    function KampfRessource
-     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -309,7 +309,7 @@ package body LeseKartenDatenbanken is
       case
         RessourceExtern
       is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
+         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
             return KampfKonstanten.LeerBonus;
             
          when others =>

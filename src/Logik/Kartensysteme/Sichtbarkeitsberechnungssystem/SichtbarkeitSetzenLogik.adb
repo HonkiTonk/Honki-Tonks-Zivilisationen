@@ -25,7 +25,7 @@ package body SichtbarkeitSetzenLogik is
       is
          when KartenKonstanten.OberflächeKonstante =>
             if
-              Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
+              Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
             then
                EbeneAnfang := KartenKonstanten.UnterflächeKonstante;
                
@@ -47,7 +47,7 @@ package body SichtbarkeitSetzenLogik is
             EbeneAnfang := KartenKonstanten.UnterflächeKonstante;
             
             if
-              Basisgrund in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
+              Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range
             then
                EbeneEnde := KartenKonstanten.OberflächeKonstante;
                

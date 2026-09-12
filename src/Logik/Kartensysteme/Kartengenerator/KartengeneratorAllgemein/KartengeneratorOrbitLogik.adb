@@ -1,4 +1,4 @@
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
 
@@ -19,7 +19,7 @@ package body KartengeneratorOrbitLogik is
          for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
 
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OrbitKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengrundDatentypen.Orbit_Enum);
+                                          GrundExtern       => KartenbasisgrundDatentypen.Orbit_Enum);
             
          end loop WaagerechteSchleife;
          

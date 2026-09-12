@@ -1,6 +1,6 @@
 with KartenRecords;
-with KartengrundDatentypen;
 with KartenDatentypen;
+with KartenbasisgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -11,7 +11,7 @@ package Basisgrundplatzierungssystem is
 
    procedure Basisgrundplatzierung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+      BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -21,7 +21,7 @@ package Basisgrundplatzierungssystem is
 
 private
 
-   WelcherGrund : KartengrundDatentypen.Basisgrund_Enum;
+   WelcherGrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
 
    Grundnummer : Positive;
    AndersfeldigeGrundnummer : Positive;
@@ -31,13 +31,13 @@ private
    Grundumgebung : KartenRecords.UmgebungskreuzRecord;
 
    -- Das hier später anpassen, wenn ich tatsächliche alle Basisgründe so erweitere. äöü
-   type GrundZuNummerArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Positive;
+   type GrundZuNummerArray is array (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Positive;
    GrundZuNummer : constant GrundZuNummerArray := (
-                                                   -- KartengrundDatentypen.Basisgrund_Flachland_Enum'Range => 1,
-                                                   -- KartengrundDatentypen.Basisgrund_Wüste_Enum'Range     => 2,
-                                                   -- KartengrundDatentypen.Basisgrund_Tundra_Enum'Range    => 3,
-                                                   KartengrundDatentypen.Basisgrund_Hügel_Enum'Range     => 1,
-                                                   KartengrundDatentypen.Basisgrund_Gebirge_Enum'Range   => 2,
+                                                   -- KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum'Range => 1,
+                                                   -- KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range     => 2,
+                                                   -- KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range    => 3,
+                                                   KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range     => 1,
+                                                   KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range   => 2,
 
                                                    others => 1_000
                                                   );
@@ -46,8 +46,8 @@ private
    Basisgrundtyp : constant BasisgrundtypArray := (
                                                    1 => 0,
                                                    2 =>
-                                                     KartengrundDatentypen.Basisgrund_Gebirge_Enum'Pos (KartengrundDatentypen.Gebirgekreuzung_Vier_Enum)
-                                                   - KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum)
+                                                     KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Pos (KartenbasisgrundDatentypen.Gebirgekreuzung_Vier_Enum)
+                                                   - KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum)
                                                   );
 
    type BasisgrundwertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Positive;
@@ -58,14 +58,14 @@ private
                                                           (
                                                            True =>
                                                              (
-                                                              True  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum),
-                                                              False => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum)
+                                                              True  => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum),
+                                                              False => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum)
                                                              ),
 
                                                            False =>
                                                              (
-                                                              True  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
-                                                              False => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Waagrecht_Enum)
+                                                              True  => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
+                                                              False => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Waagrecht_Enum)
                                                              )
                                                           ),
 
@@ -73,14 +73,14 @@ private
                                                           (
                                                            True =>
                                                              (
-                                                              True  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
-                                                              False => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Links_Enum)
+                                                              True  => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
+                                                              False => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Links_Enum)
                                                              ),
 
                                                            False =>
                                                              (
-                                                              True  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Links_Enum),
-                                                              False => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Rechts_Enum)
+                                                              True  => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Links_Enum),
+                                                              False => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Rechts_Enum)
                                                              )
                                                           )
                                                        ),
@@ -91,14 +91,14 @@ private
                                                           (
                                                            True =>
                                                              (
-                                                              True  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
-                                                              False => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Rechts_Enum)
+                                                              True  => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
+                                                              False => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Rechts_Enum)
                                                              ),
 
                                                            False =>
                                                              (
-                                                              True  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
-                                                              False => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Links_Enum)
+                                                              True  => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
+                                                              False => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Links_Enum)
                                                              )
                                                           ),
 
@@ -106,106 +106,170 @@ private
                                                           (
                                                            True =>
                                                              (
-                                                              True  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Senkrecht_Enum),
-                                                              False => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Unten_Enum)
+                                                              True  => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Senkrecht_Enum),
+                                                              False => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Unten_Enum)
                                                              ),
 
                                                            False =>
                                                              (
-                                                              True  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Oben_Enum),
-                                                              False => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Enum)
+                                                              True  => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Oben_Enum),
+                                                              False => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Enum)
                                                              )
                                                           )
                                                        )
                                                     );
 
-   type BasisgrundSeitenArray is array (KartengrundDatentypen.Basisgrund_Hügel_Enum'Range) of Positive;
+   type BasisgrundSeitenArray is array (KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range) of Positive;
    BasisgrundLinks : constant BasisgrundSeitenArray := (
                                                         -- Alle Möglichkeiten die sich ändern.
-                                                        KartengrundDatentypen.Hügel_Senkrecht_Enum           => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügelkurve_Unten_Links_Enum    => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
-                                                        KartengrundDatentypen.Hügelkurve_Oben_Links_Enum     => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum),
-                                                        KartengrundDatentypen.Hügelende_Rechts_Enum      => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Waagrecht_Enum),
-                                                        KartengrundDatentypen.Hügelende_Unten_Enum       => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügelende_Oben_Enum        => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügel_Enum                     => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Links_Enum),
+                                                        KartenbasisgrundDatentypen.Hügel_Senkrecht_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkurve_Unten_Links_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkurve_Oben_Links_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelende_Rechts_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Waagrecht_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelende_Unten_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelende_Oben_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügel_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Links_Enum),
 
                                                         -- Alle Möglichkeiten die gleich bleiben.
-                                                        KartengrundDatentypen.Hügel_Waagrecht_Enum           => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Waagrecht_Enum),
-                                                        KartengrundDatentypen.Hügelkurve_Unten_Rechts_Enum   => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügelkurve_Oben_Rechts_Enum    => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügelende_Links_Enum       => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Links_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum   => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Vier_Enum        => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum)
+                                                        KartenbasisgrundDatentypen.Hügel_Waagrecht_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Waagrecht_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkurve_Unten_Rechts_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkurve_Oben_Rechts_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelende_Links_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Links_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum)
                                                        );
 
    BasisgrundRechts : constant BasisgrundSeitenArray := (
                                                          -- Alle Möglichkeiten die sich ändern.
-                                                         KartengrundDatentypen.Hügel_Senkrecht_Enum           => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
-                                                         KartengrundDatentypen.Hügelkurve_Unten_Rechts_Enum   => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
-                                                         KartengrundDatentypen.Hügelkurve_Oben_Rechts_Enum    => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
-                                                         KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum),
-                                                         KartengrundDatentypen.Hügelende_Links_Enum       => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Waagrecht_Enum),
-                                                         KartengrundDatentypen.Hügelende_Unten_Enum       => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Links_Enum),
-                                                         KartengrundDatentypen.Hügelende_Oben_Enum        => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Links_Enum),
-                                                         KartengrundDatentypen.Hügel_Enum                     => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Rechts_Enum),
+                                                         KartenbasisgrundDatentypen.Hügel_Senkrecht_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelkurve_Unten_Rechts_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelkurve_Oben_Rechts_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelende_Links_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Waagrecht_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelende_Unten_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Links_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelende_Oben_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Links_Enum),
+                                                         KartenbasisgrundDatentypen.Hügel_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Rechts_Enum),
 
                                                          -- Alle Möglichkeiten die gleich bleiben.
-                                                         KartengrundDatentypen.Hügel_Waagrecht_Enum           => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Waagrecht_Enum),
-                                                         KartengrundDatentypen.Hügelkurve_Unten_Links_Enum    => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Links_Enum),
-                                                         KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
-                                                         KartengrundDatentypen.Hügelende_Rechts_Enum      => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Rechts_Enum),
-                                                         KartengrundDatentypen.Hügelkurve_Oben_Links_Enum     => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Links_Enum),
-                                                         KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum   => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
-                                                         KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
-                                                         KartengrundDatentypen.Hügelkreuzung_Vier_Enum        => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum)
+                                                         KartenbasisgrundDatentypen.Hügel_Waagrecht_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Waagrecht_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelkurve_Unten_Links_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Links_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelende_Rechts_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Rechts_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelkurve_Oben_Links_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Links_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
+                                                         KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum
+                                                         => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum)
                                                         );
 
    BasisgrundOben : constant BasisgrundSeitenArray := (
                                                        -- Alle Möglichkeiten die sich ändern.
-                                                       KartengrundDatentypen.Hügel_Waagrecht_Enum          => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
-                                                       KartengrundDatentypen.Hügelkurve_Oben_Rechts_Enum   => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
-                                                       KartengrundDatentypen.Hügelkurve_Oben_Links_Enum    => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
-                                                       KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum),
-                                                       KartengrundDatentypen.Hügelende_Links_Enum      => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
-                                                       KartengrundDatentypen.Hügelende_Rechts_Enum     => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Links_Enum),
-                                                       KartengrundDatentypen.Hügelende_Unten_Enum      => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Senkrecht_Enum),
-                                                       KartengrundDatentypen.Hügel_Enum                    => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Oben_Enum),
+                                                       KartenbasisgrundDatentypen.Hügel_Waagrecht_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelkurve_Oben_Rechts_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelkurve_Oben_Links_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelende_Links_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelende_Rechts_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Links_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelende_Unten_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Senkrecht_Enum),
+                                                       KartenbasisgrundDatentypen.Hügel_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Oben_Enum),
 
                                                        -- Alle Möglichkeiten die gleich bleiben.
-                                                       KartengrundDatentypen.Hügel_Senkrecht_Enum           => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Senkrecht_Enum),
-                                                       KartengrundDatentypen.Hügelkurve_Unten_Rechts_Enum   => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
-                                                       KartengrundDatentypen.Hügelkurve_Unten_Links_Enum    => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Unten_Links_Enum),
-                                                       KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
-                                                       KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
-                                                       KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
-                                                       KartengrundDatentypen.Hügelende_Oben_Enum        => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Oben_Enum),
-                                                       KartengrundDatentypen.Hügelkreuzung_Vier_Enum        => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum)
+                                                       KartenbasisgrundDatentypen.Hügel_Senkrecht_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Senkrecht_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelkurve_Unten_Rechts_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Rechts_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelkurve_Unten_Links_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Unten_Links_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelende_Oben_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Oben_Enum),
+                                                       KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum
+                                                       => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum)
                                                       );
 
    BasisgrundUnten : constant BasisgrundSeitenArray := (
                                                         -- Alle Möglichkeiten die sich ändern.
-                                                        KartengrundDatentypen.Hügel_Waagrecht_Enum           => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
-                                                        KartengrundDatentypen.Hügelkurve_Unten_Rechts_Enum   => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügelkurve_Unten_Links_Enum    => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Drei_Unten_Enum  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum),
-                                                        KartengrundDatentypen.Hügelende_Links_Enum       => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügelende_Rechts_Enum      => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Links_Enum),
-                                                        KartengrundDatentypen.Hügelende_Oben_Enum        => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Senkrecht_Enum),
-                                                        KartengrundDatentypen.Hügel_Enum                     => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Unten_Enum),
+                                                        KartenbasisgrundDatentypen.Hügel_Waagrecht_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkurve_Unten_Rechts_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkurve_Unten_Links_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Unten_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelende_Links_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelende_Rechts_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Links_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelende_Oben_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Senkrecht_Enum),
+                                                        KartenbasisgrundDatentypen.Hügel_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Unten_Enum),
 
                                                         -- Alle Möglichkeiten die gleich bleiben.
-                                                        KartengrundDatentypen.Hügel_Senkrecht_Enum           => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügel_Senkrecht_Enum),
-                                                        KartengrundDatentypen.Hügelkurve_Oben_Rechts_Enum    => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügelkurve_Oben_Links_Enum     => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkurve_Oben_Links_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum   => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum  => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
-                                                        KartengrundDatentypen.Hügelende_Unten_Enum       => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelende_Unten_Enum),
-                                                        KartengrundDatentypen.Hügelkreuzung_Vier_Enum        => KartengrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartengrundDatentypen.Hügelkreuzung_Vier_Enum)
+                                                        KartenbasisgrundDatentypen.Hügel_Senkrecht_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügel_Senkrecht_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkurve_Oben_Rechts_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkurve_Oben_Links_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkurve_Oben_Links_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Oben_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Rechts_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Drei_Links_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelende_Unten_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelende_Unten_Enum),
+                                                        KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum
+                                                        => KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum)
                                                        );
 
 

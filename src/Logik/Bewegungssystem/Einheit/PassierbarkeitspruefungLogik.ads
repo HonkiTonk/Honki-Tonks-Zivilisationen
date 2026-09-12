@@ -8,7 +8,7 @@ with StadtKonstanten;
 with EinheitenKonstanten;
 
 private with StadtDatentypen;
-private with KartenverbesserungDatentypen;
+private with KartenwegeDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -65,7 +65,7 @@ private
    
    Passierbar : Boolean;
    
-   WegVorhanden : KartenverbesserungDatentypen.Weg_Enum;
+   WegVorhanden : KartenwegeDatentypen.Weg_Enum;
       
    IDEinheit : EinheitenDatentypen.EinheitenIDBasis;
    

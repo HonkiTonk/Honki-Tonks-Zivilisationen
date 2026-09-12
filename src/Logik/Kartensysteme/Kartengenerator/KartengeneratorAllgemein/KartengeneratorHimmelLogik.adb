@@ -1,4 +1,4 @@
-with KartengrundDatentypen;
+with KartenbasisgrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
 
@@ -19,7 +19,7 @@ package body KartengeneratorHimmelLogik is
          for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
                
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.HimmelKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengrundDatentypen.Wolken_Enum);
+                                          GrundExtern       => KartenbasisgrundDatentypen.Wolken_Enum);
                
          end loop WaagerechteSchleife;
          

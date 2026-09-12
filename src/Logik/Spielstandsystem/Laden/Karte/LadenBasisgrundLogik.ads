@@ -3,7 +3,7 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with KartenRecords;
 with KartenDatentypen;
 
-private with KartengrundDatentypen;
+private with KartenbasisgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -30,6 +30,6 @@ package LadenBasisgrundLogik is
    
 private
    
-   Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
 
 end LadenBasisgrundLogik;

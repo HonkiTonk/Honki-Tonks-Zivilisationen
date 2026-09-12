@@ -417,7 +417,7 @@ package body LeseEinheitenDatenbank is
    function Zusatzeffekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDBasis;
-      EffektExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
+      EffektExtern : in KarteneffekteDatentypen.Effekt_Vorhanden_Enum)
       return Boolean
    is begin
             
@@ -438,7 +438,7 @@ package body LeseEinheitenDatenbank is
    function Effektreichweite
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDBasis;
-      EffektExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
+      EffektExtern : in KarteneffekteDatentypen.Effekt_Vorhanden_Enum)
       return KartenRecords.EffektbereichRecord
    is begin
             

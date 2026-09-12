@@ -1,5 +1,6 @@
 with TextnummernKonstanten;
 with ProduktionKonstanten;
+with KartenzusatzgrundDatentypen;
 
 with LeseWeltkarte;
   
@@ -16,14 +17,14 @@ package body RodenErmittelnLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
+      use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       use type ProduktionDatentypen.ArbeitszeitBasis;
    begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
+        Gesamtgrund.Zusatzgrund = KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum
       then
          MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserung,
                                                         SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
@@ -41,11 +42,11 @@ package body RodenErmittelnLogik is
       case
         Gesamtgrund.Basisgrund
       is
-         when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                              GrundExtern   => Gesamtgrund);
             
-         when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                 GrundExtern   => Gesamtgrund);
             

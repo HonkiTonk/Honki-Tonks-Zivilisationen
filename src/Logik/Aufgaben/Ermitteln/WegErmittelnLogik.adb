@@ -1,5 +1,6 @@
 with EinheitenRecordKonstanten;
 with ProduktionKonstanten;
+with KartenzusatzgrundDatentypen;
 
 with LeseWeltkarte;
 with LeseForschungenDatenbank;
@@ -33,22 +34,22 @@ package body WegErmittelnLogik is
       case
         Gesamtgrund.Basisgrund
       is
-         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
+         when KartenbasisgrundDatentypen.Eis_Enum | KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                              WegExtern     => WegVorhanden,
                                              GrundExtern   => Gesamtgrund);
             
-         when KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
             Arbeitswerte := OberflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                WegExtern     => WegVorhanden,
                                                GrundExtern   => Gesamtgrund);
             
-         when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
+         when KartenbasisgrundDatentypen.Untereis_Enum | KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
             Arbeitswerte := UnterflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                               WegExtern     => WegVorhanden,
                                               GrundExtern   => Gesamtgrund);
             
-         when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                 WegExtern     => WegVorhanden,
                                                 GrundExtern   => Gesamtgrund);
@@ -90,7 +91,7 @@ package body WegErmittelnLogik is
    
    function OberflächeLand
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      WegExtern : in KartenwegeDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -98,7 +99,7 @@ package body WegErmittelnLogik is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Straße_Enum'Range | KartenwegeDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (WegExtern),
@@ -120,7 +121,7 @@ package body WegErmittelnLogik is
       case
         GrundExtern.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
 
          when others =>
@@ -136,7 +137,7 @@ package body WegErmittelnLogik is
      
    function OberflächeWasser
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      WegExtern : in KartenwegeDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is
@@ -145,7 +146,7 @@ package body WegErmittelnLogik is
       
       -- Eventuell noch Wege für andere Spezies auf Küstengewässer zulassen? äöü
       if
-        GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
+        GrundExtern.Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
         and
           SpeziesExtern /= SpeziesDatentypen.Ekropa_Enum
       then
@@ -158,13 +159,13 @@ package body WegErmittelnLogik is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Straße_Enum'Range | KartenwegeDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
-                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (KartenverbesserungDatentypen.Schiene_Einzeln_Enum),
+                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (KartenwegeDatentypen.Schiene_Einzeln_Enum),
                                                                                                                     SpeziesExtern => SpeziesExtern))
             then
-               WelcheArbeit := WelcheWegart (KartenverbesserungDatentypen.Schiene_Einzeln_Enum);
+               WelcheArbeit := WelcheWegart (KartenwegeDatentypen.Schiene_Einzeln_Enum);
                
             else
                return EinheitenRecordKonstanten.KeineArbeit;
@@ -180,7 +181,7 @@ package body WegErmittelnLogik is
       case
         GrundExtern.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
 
          when others =>
@@ -196,7 +197,7 @@ package body WegErmittelnLogik is
      
    function UnterflächeLand
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      WegExtern : in KartenwegeDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -204,13 +205,13 @@ package body WegErmittelnLogik is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum => -- KartenverbesserungDatentypen.Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum => -- KartenwegeDatentypen.Straße_Enum'Range | KartenwegeDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
-                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (KartenverbesserungDatentypen.Tunnel_Einzeln_Enum),
+                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (KartenwegeDatentypen.Tunnel_Einzeln_Enum),
                                                                                                                     SpeziesExtern => SpeziesExtern))
             then
-               WelcheArbeit := WelcheWegart (KartenverbesserungDatentypen.Tunnel_Einzeln_Enum);
+               WelcheArbeit := WelcheWegart (KartenwegeDatentypen.Tunnel_Einzeln_Enum);
                
             else
                return EinheitenRecordKonstanten.KeineArbeit;
@@ -226,7 +227,7 @@ package body WegErmittelnLogik is
       case
         GrundExtern.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
 
          when others =>
@@ -244,7 +245,7 @@ package body WegErmittelnLogik is
    -- Vielleicht Wasserröhren? Ähnlich wie ein Tunnel? äöü
    function UnterflächeWasser
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      WegExtern : in KartenwegeDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -252,7 +253,7 @@ package body WegErmittelnLogik is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Straße_Enum'Range | KartenwegeDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (WegExtern),
@@ -274,7 +275,7 @@ package body WegErmittelnLogik is
       case
         GrundExtern.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
 
          when others =>

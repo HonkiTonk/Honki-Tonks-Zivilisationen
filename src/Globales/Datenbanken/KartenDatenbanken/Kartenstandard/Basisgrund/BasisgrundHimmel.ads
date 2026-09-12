@@ -1,4 +1,3 @@
-with KartengrundDatentypen;
 with EinheitenDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
@@ -6,15 +5,17 @@ with ZufallsgeneratorenDatentypenHTSEB;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
+with KartenbasisgrundDatentypen;
+
 
 package BasisgrundHimmel is
    pragma Pure;
 
    -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteHimmelArray is array (KartengrundDatentypen.Basisgrund_Himmel_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
+   type BasisgrundlisteHimmelArray is array (KartenbasisgrundDatentypen.Basisgrund_Himmel_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteHimmel : constant BasisgrundlisteHimmelArray := (
-                                                                   KartengrundDatentypen.Wolken_Enum =>
+                                                                   KartenbasisgrundDatentypen.Wolken_Enum =>
                                                                      (
                                                                       Passierbarkeit => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                          EinheitenDatentypen.Orbit_Enum => True,

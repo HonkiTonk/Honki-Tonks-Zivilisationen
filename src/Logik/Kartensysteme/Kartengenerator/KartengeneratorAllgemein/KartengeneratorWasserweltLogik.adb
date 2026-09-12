@@ -29,14 +29,14 @@ package body KartengeneratorWasserweltLogik is
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte))
       is
-         when KartengrundDatentypen.Küstengewässer_Enum =>
+         when KartenbasisgrundDatentypen.Küstengewässer_Enum =>
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => KartengrundDatentypen.Küstengrund_Enum);
+                                          GrundExtern       => KartenbasisgrundDatentypen.Küstengrund_Enum);
       
             
-         when KartengrundDatentypen.Wasser_Enum =>
+         when KartenbasisgrundDatentypen.Wasser_Enum =>
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => KartengrundDatentypen.Meeresgrund_Enum);
+                                          GrundExtern       => KartenbasisgrundDatentypen.Meeresgrund_Enum);
             
          when others =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorWasserweltLogik.BasisgrundBestimmen: Weder Küstengewässer noch Wasser");
@@ -88,7 +88,7 @@ package body KartengeneratorWasserweltLogik is
       case
         Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             return;
             
          when others =>
@@ -99,7 +99,7 @@ package body KartengeneratorWasserweltLogik is
       case
         Zusatzgrund
       is
-         when KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range =>
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range =>
             Zusatzgrundplatzierungssystem.Zusatzgrundplatzierung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                                                   ZusatzgrundExtern => Zusatzgrund);
             
@@ -113,14 +113,14 @@ package body KartengeneratorWasserweltLogik is
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
    is begin
      
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Meeresgrund_Enum | KartengrundDatentypen.Küstengrund_Enum =>
+         when KartenbasisgrundDatentypen.Meeresgrund_Enum | KartenbasisgrundDatentypen.Küstengrund_Enum =>
             return ZusatzberechnungMeeresgrund (KoordinatenExtern => KoordinatenExtern,
                                                 GrundExtern       => GrundExtern);
       end case;
@@ -131,18 +131,18 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Unterfläche_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is begin
       
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Zusatzgrund_Korallen_Enum'Range =>
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Korallen_Enum'Range =>
             return ZusatzberechnungKorallen (KoordinatenExtern => KoordinatenExtern,
                                              GrundExtern       => GrundExtern);
             
-         when KartengrundDatentypen.Zusatzgrund_Unterwald_Enum'Range =>
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Unterwald_Enum'Range =>
             return ZusatzberechnungUnterwald (KoordinatenExtern => KoordinatenExtern,
                                               GrundExtern       => GrundExtern);
       end case;
@@ -153,8 +153,8 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzberechnungMeeresgrund
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
-      return KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
    is begin
       
       if
@@ -174,8 +174,8 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzberechnungKorallen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Korallen_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Korallen_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is begin
       
       if
@@ -195,8 +195,8 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzberechnungUnterwald
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterwald_Enum)
-      return KartengrundDatentypen.Zusatzgrund_Enum
+      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Unterwald_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is begin
       
       if

@@ -1,4 +1,3 @@
-with KartengrundDatentypen;
 with EinheitenDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
@@ -6,15 +5,16 @@ with ZufallsgeneratorenDatentypenHTSEB;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
+with KartenbasisgrundDatentypen;
 
 package BasisgrundSonstiges is
    pragma Pure;
 
    -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteSonstigesArray is array (KartengrundDatentypen.Basisgrund_Sonstiges_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
+   type BasisgrundlisteSonstigesArray is array (KartenbasisgrundDatentypen.Basisgrund_Sonstiges_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteSonstiges : constant BasisgrundlisteSonstigesArray := (
-                                                                         KartengrundDatentypen.Vernichtet_Enum =>
+                                                                         KartenbasisgrundDatentypen.Vernichtet_Enum =>
                                                                            (
                                                                             Passierbarkeit => (EinheitenDatentypen.Luft_Enum     => True,
                                                                                                EinheitenDatentypen.Orbit_Enum => True,

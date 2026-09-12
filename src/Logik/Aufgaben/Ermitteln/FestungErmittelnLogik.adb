@@ -1,4 +1,5 @@
 with ProduktionKonstanten;
+with KartenzusatzgrundDatentypen;
 
 with LeseWeltkarte;
 
@@ -30,15 +31,15 @@ package body FestungErmittelnLogik is
       case
         Gesamtgrund.Basisgrund
       is
-         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
+         when KartenbasisgrundDatentypen.Eis_Enum | KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                              GrundExtern   => Gesamtgrund);
             
-         when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                 GrundExtern   => Gesamtgrund);
             
-         when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
+         when KartenbasisgrundDatentypen.Untereis_Enum | KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
             Arbeitswerte := UnterflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                               GrundExtern   => Gesamtgrund);
             
@@ -89,7 +90,7 @@ package body FestungErmittelnLogik is
       case
         GrundExtern.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
 
          when others =>
@@ -118,7 +119,7 @@ package body FestungErmittelnLogik is
       case
         GrundExtern.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
 
          when others =>
@@ -147,7 +148,7 @@ package body FestungErmittelnLogik is
       case
         GrundExtern.Zusatzgrund
       is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
 
          when others =>

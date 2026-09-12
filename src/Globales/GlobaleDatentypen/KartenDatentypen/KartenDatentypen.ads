@@ -1,3 +1,4 @@
+-- Das heir mal besser benennen- äöü
 package KartenDatentypen is
    pragma Pure;
 

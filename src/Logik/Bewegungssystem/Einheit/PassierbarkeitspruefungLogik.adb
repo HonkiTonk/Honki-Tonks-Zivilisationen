@@ -1,6 +1,6 @@
-with KartengrundDatentypen;
 with KartenKonstanten;
 with SystemDatentypen;
+with KartenbasisgrundDatentypen;
 
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
@@ -149,7 +149,7 @@ package body PassierbarkeitspruefungLogik is
       case
         WegVorhanden
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
             if
               SpeziesExtern = SpeziesDatentypen.Ekropa_Enum
             then
@@ -169,7 +169,7 @@ package body PassierbarkeitspruefungLogik is
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => NeueKoordinatenExtern)
       is
-         when KartengrundDatentypen.Wasser_Enum | KartengrundDatentypen.Küstengewässer_Enum =>
+         when KartenbasisgrundDatentypen.Wasser_Enum | KartenbasisgrundDatentypen.Küstengewässer_Enum =>
             null;
             
          when others =>
@@ -194,7 +194,7 @@ package body PassierbarkeitspruefungLogik is
                   
                when others =>
                   if
-                    LeseWeltkarte.Weg (KoordinatenExtern => Ekropaumgebung) in KartenverbesserungDatentypen.Schiene_Enum'Range
+                    LeseWeltkarte.Weg (KoordinatenExtern => Ekropaumgebung) in KartenwegeDatentypen.Schiene_Enum'Range
                   then
                      return True;
                      

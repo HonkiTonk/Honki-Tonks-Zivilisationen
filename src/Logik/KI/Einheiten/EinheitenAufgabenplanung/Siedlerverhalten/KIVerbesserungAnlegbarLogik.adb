@@ -16,8 +16,8 @@ package body KIVerbesserungAnlegbarLogik is
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartenextraDatentypen.Ressourcen_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
+      use type KartenressourcenDatentypen.Ressourcen_Enum;
    begin
       
       Ressourcen := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
@@ -25,7 +25,7 @@ package body KIVerbesserungAnlegbarLogik is
       case
         Ressourcen
       is
-         when KartenextraDatentypen.Hochwertiges_Holz_Enum =>
+         when KartenressourcenDatentypen.Hochwertiges_Holz_Enum =>
             return False;
             
          when others =>
@@ -77,12 +77,12 @@ package body KIVerbesserungAnlegbarLogik is
    function MineAnlegen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+      BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
+      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
       return Boolean
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartenextraDatentypen.Ressourcen_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
+      use type KartenressourcenDatentypen.Ressourcen_Enum;
    begin
       
       case
@@ -99,15 +99,15 @@ package body KIVerbesserungAnlegbarLogik is
       end case;
       
       if
-        BasisgrundExtern = KartengrundDatentypen.Hügel_Enum
+        BasisgrundExtern = KartenbasisgrundDatentypen.Hügel_Enum
         or
-          BasisgrundExtern = KartengrundDatentypen.Gebirge_Enum
+          BasisgrundExtern = KartenbasisgrundDatentypen.Gebirge_Enum
           or
-            RessourceExtern = KartenextraDatentypen.Kohle_Enum
+            RessourceExtern = KartenressourcenDatentypen.Kohle_Enum
             or
-              RessourceExtern = KartenextraDatentypen.Eisen_Enum
+              RessourceExtern = KartenressourcenDatentypen.Eisen_Enum
               or
-                RessourceExtern = KartenextraDatentypen.Gold_Enum
+                RessourceExtern = KartenressourcenDatentypen.Gold_Enum
       then
          SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                  BeschäftigungExtern        => AufgabenDatentypen.Mine_Bauen_Enum);
@@ -124,10 +124,10 @@ package body KIVerbesserungAnlegbarLogik is
    function FestungAnlegen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+      BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Boolean
    is
-      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
       case
@@ -144,7 +144,7 @@ package body KIVerbesserungAnlegbarLogik is
       end case;
       
       if
-        BasisgrundExtern = KartengrundDatentypen.Eis_Enum
+        BasisgrundExtern = KartenbasisgrundDatentypen.Eis_Enum
       then
          SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                  BeschäftigungExtern        => AufgabenDatentypen.Festung_Bauen_Enum);

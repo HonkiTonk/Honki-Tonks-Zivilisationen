@@ -14,7 +14,7 @@ package body SpeichernBasisgrundLogik is
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
-      use type KartengrundDatentypen.Basisgrund_Kernfläche_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Enum;
    begin
       
       -- Man kann das teilweise zusammenfassen, aber mal getrennt lassen für spätere, potentielle Verbesserungen.
@@ -25,11 +25,11 @@ package body SpeichernBasisgrundLogik is
             null;
             
          when KartenKonstanten.OberflächeKonstante =>
-            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+            KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                    LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
             
          when KartenKonstanten.UnterflächeKonstante =>
-            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+            KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                    LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
             
          when KartenKonstanten.KernKonstante =>
@@ -38,12 +38,12 @@ package body SpeichernBasisgrundLogik is
             -- Das hier lieber direkt in die Koordinatenschleife packen? äöü
             
             if
-              Kerngrund = KartengrundDatentypen.Planetenkern_Enum
+              Kerngrund = KartenbasisgrundDatentypen.Planetenkern_Enum
             then
                null;
                
             else
-               KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+               KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                       Kerngrund);
             end if;
       end case;

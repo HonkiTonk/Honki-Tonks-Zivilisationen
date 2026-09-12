@@ -1,4 +1,3 @@
-with KartengrundDatentypen;
 with EinheitenDatentypen;
 with SpeziesDatentypen;
 with KartendatenbankRecord;
@@ -6,15 +5,17 @@ with ZufallsgeneratorenDatentypenHTSEB;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
+with KartenbasisgrundDatentypen;
+
 
 package BasisgrundOberflaeche is
    pragma Pure;
    
    -- Passierbarkeit: Boden, Wasser, Luft, Orbit, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteOberflächeArray is array (KartengrundDatentypen.Basisgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
+   type BasisgrundlisteOberflächeArray is array (KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteOberfläche : constant BasisgrundlisteOberflächeArray := (
-                                                                             KartengrundDatentypen.Eis_Enum =>
+                                                                             KartenbasisgrundDatentypen.Eis_Enum =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -204,7 +205,7 @@ package BasisgrundOberflaeche is
                                                                                   )
                                                                                ),
                                                                              
-                                                                             KartengrundDatentypen.Wasser_Enum =>
+                                                                             KartenbasisgrundDatentypen.Wasser_Enum =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Wasser_Enum   => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -394,7 +395,7 @@ package BasisgrundOberflaeche is
                                                                                   )
                                                                                ),
                                       
-                                                                             KartengrundDatentypen.Flachland_Enum =>
+                                                                             KartenbasisgrundDatentypen.Flachland_Enum =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -584,7 +585,7 @@ package BasisgrundOberflaeche is
                                                                                   )
                                                                                ),
                                       
-                                                                             KartengrundDatentypen.Tundra_Enum =>
+                                                                             KartenbasisgrundDatentypen.Tundra_Enum =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -774,7 +775,7 @@ package BasisgrundOberflaeche is
                                                                                   )
                                                                                ),
                                       
-                                                                             KartengrundDatentypen.Wüste_Enum =>
+                                                                             KartenbasisgrundDatentypen.Wüste_Enum =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -965,7 +966,7 @@ package BasisgrundOberflaeche is
                                                                                ),
                                       
                                                                                -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
-                                                                             KartengrundDatentypen.Basisgrund_Hügel_Enum'Range =>
+                                                                             KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -1155,7 +1156,7 @@ package BasisgrundOberflaeche is
                                                                                   )
                                                                                ),
                                       
-                                                                             KartengrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+                                                                             KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -1345,7 +1346,7 @@ package BasisgrundOberflaeche is
                                                                                   )
                                                                                ),
                                                                                                                                                            
-                                                                             KartengrundDatentypen.Küstengewässer_Enum =>
+                                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Wasser_Enum       => True,
                                                                                                    EinheitenDatentypen.Luft_Enum         => True,

@@ -1,17 +1,17 @@
 with SpeziesDatentypen;
 with KartendatenbankRecord;
-with KartenextraDatentypen;
 with ProduktionKonstanten;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
+with KartenressourcenDatentypen;
 
 package Landressourcen is
    pragma Pure;
 
-   type LandressourcenlisteArray is array (KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
+   type LandressourcenlisteArray is array (KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    Landressourcenliste : constant LandressourcenlisteArray := (
-                                                               KartenextraDatentypen.Kohle_Enum =>
+                                                               KartenressourcenDatentypen.Kohle_Enum =>
                                                                  (
                                                                   Bewertung  =>
                                                                     (
@@ -174,7 +174,7 @@ package Landressourcen is
                                                                     )
                                                                  ),
                                                                   
-                                                               KartenextraDatentypen.Eisen_Enum =>
+                                                               KartenressourcenDatentypen.Eisen_Enum =>
                                                                  (
                                                                   Bewertung  =>
                                                                     (
@@ -337,7 +337,7 @@ package Landressourcen is
                                                                     )
                                                                  ),
                                       
-                                                               KartenextraDatentypen.Öl_Enum =>
+                                                               KartenressourcenDatentypen.Öl_Enum =>
                                                                  (
                                                                   Bewertung  =>
                                                                     (
@@ -500,7 +500,7 @@ package Landressourcen is
                                                                     )
                                                                  ),
                                                                            
-                                                               KartenextraDatentypen.Hochwertiger_Boden_Enum =>
+                                                               KartenressourcenDatentypen.Hochwertiger_Boden_Enum =>
                                                                  (
                                                                   Bewertung  =>
                                                                     (
@@ -663,7 +663,7 @@ package Landressourcen is
                                                                     )
                                                                  ),
                                                                            
-                                                               KartenextraDatentypen.Hochwertiges_Holz_Enum =>
+                                                               KartenressourcenDatentypen.Hochwertiges_Holz_Enum =>
                                                                  (
                                                                   Bewertung  =>
                                                                     (
@@ -826,7 +826,7 @@ package Landressourcen is
                                                                     )
                                                                  ),
                                       
-                                                               KartenextraDatentypen.Gold_Enum =>
+                                                               KartenressourcenDatentypen.Gold_Enum =>
                                                                  (
                                                                   Bewertung  =>
                                                                     (

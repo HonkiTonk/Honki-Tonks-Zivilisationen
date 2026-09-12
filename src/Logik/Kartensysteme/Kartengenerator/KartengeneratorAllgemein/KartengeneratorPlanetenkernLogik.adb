@@ -31,7 +31,7 @@ package body KartengeneratorPlanetenkernLogik is
                 WaagerechteSchleifenwert in XKernanfang .. XKernende
             then
                SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                             GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
+                                             GrundExtern       => KartenbasisgrundDatentypen.Planetenkern_Enum);
                
             elsif
               SenkrechteSchleifenwert in YKernanfang - 1 .. YKernende + 1
@@ -39,7 +39,7 @@ package body KartengeneratorPlanetenkernLogik is
                 WaagerechteSchleifenwert in XKernanfang - 1 .. XKernende + 1
             then
                SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                             GrundExtern       => KartengrundDatentypen.Lava_Enum);
+                                             GrundExtern       => KartenbasisgrundDatentypen.Lava_Enum);
                
             else
                BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
@@ -62,7 +62,7 @@ package body KartengeneratorPlanetenkernLogik is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
-      WelcherGrund := KartengrundDatentypen.Leer_Basisgrund_Enum;
+      WelcherGrund := KartenbasisgrundDatentypen.Leer_Basisgrund_Enum;
       Zahlenspeicher := 0;
       
       ZufallszahlenSchleife:
@@ -96,9 +96,9 @@ package body KartengeneratorPlanetenkernLogik is
       case
         WelcherGrund
       is
-         when KartengrundDatentypen.Leer_Basisgrund_Enum =>
+         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => KartengrundDatentypen.Lava_Enum);
+                                          GrundExtern       => KartenbasisgrundDatentypen.Lava_Enum);
             return;
             
          when others =>
@@ -109,13 +109,13 @@ package body KartengeneratorPlanetenkernLogik is
       case
         WelcherGrund
       is
-         when KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range =>
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                           GrundExtern       => WelcherGrund);
             
          when others =>
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => KartengrundDatentypen.Lava_Enum);
+                                          GrundExtern       => KartenbasisgrundDatentypen.Lava_Enum);
       end case;
       
    end BasisgrundBestimmen;
@@ -124,26 +124,26 @@ package body KartengeneratorPlanetenkernLogik is
    
    function BasisExtraberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       case
         GrundExtern
       is
-         when KartengrundDatentypen.Ringwoodit_Enum =>
+         when KartenbasisgrundDatentypen.Ringwoodit_Enum =>
             return ZusatzberechnungRingwoodit (KoordinatenExtern => KoordinatenExtern,
                                                GrundExtern       => WelcherGrund);
             
-         when KartengrundDatentypen.Majorit_Enum =>
+         when KartenbasisgrundDatentypen.Majorit_Enum =>
             return ZusatzberechnungMajorit (KoordinatenExtern => KoordinatenExtern,
                                             GrundExtern       => WelcherGrund);
             
-         when KartengrundDatentypen.Perowskit_Enum =>
+         when KartenbasisgrundDatentypen.Perowskit_Enum =>
             return ZusatzberechnungPerowskit (KoordinatenExtern => KoordinatenExtern,
                                               GrundExtern       => WelcherGrund);
             
-         when KartengrundDatentypen.Magnesiowüstit_Enum =>
+         when KartenbasisgrundDatentypen.Magnesiowüstit_Enum =>
             return ZusatzberechnungMagnesiowüstit (KoordinatenExtern => KoordinatenExtern,
                                                     GrundExtern       => WelcherGrund);
       end case;
@@ -154,8 +154,8 @@ package body KartengeneratorPlanetenkernLogik is
    
    function ZusatzberechnungRingwoodit
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
@@ -175,8 +175,8 @@ package body KartengeneratorPlanetenkernLogik is
    
    function ZusatzberechnungMajorit
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
@@ -196,8 +196,8 @@ package body KartengeneratorPlanetenkernLogik is
    
    function ZusatzberechnungPerowskit
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
@@ -217,8 +217,8 @@ package body KartengeneratorPlanetenkernLogik is
    
    function ZusatzberechnungMagnesiowüstit
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
    is begin
       
       if
