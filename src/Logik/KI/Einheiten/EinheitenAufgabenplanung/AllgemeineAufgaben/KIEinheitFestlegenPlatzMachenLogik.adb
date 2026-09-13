@@ -25,7 +25,7 @@ package body KIEinheitFestlegenPlatzMachenLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungDrei'Range loop
                
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                          ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                

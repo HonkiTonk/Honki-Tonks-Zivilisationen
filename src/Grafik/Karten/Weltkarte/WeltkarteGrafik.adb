@@ -1,11 +1,9 @@
-with KartenKonstanten;
 with GrafikRecordKonstanten;
 with Views;
 with KartenbasisgrundDatentypen;
 with GrafikKonstanten;
 with ViewKonstanten;
 with EinheitenKonstanten;
-with KartenartDatentypen;
 with KartenverbesserungDatentypen;
 with SystemDatentypen;
 
@@ -26,7 +24,9 @@ package body WeltkarteGrafik is
    
    procedure WeltkarteAnzeigen
      (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)
-   is begin
+   is
+      -- use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte),
                                             GrößeExtern          => FensterGrafik.AktuelleAuflösung,
@@ -42,9 +42,9 @@ package body WeltkarteGrafik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => ZeigerKoordinatenAlt,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => ZeigerKoordinatenAlt,
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                         TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
@@ -72,24 +72,34 @@ package body WeltkarteGrafik is
       end loop SenkrechteSchleife;
             
       case
-        LeseWeltkarteneinstellungen.SenkrechteNorden
+        Anzeige (Stadtnamen_Enum)
       is
-         when KartenartDatentypen.Senkrechte_Übergangslos_Enum =>
-            Feldposition := GrafikRecordKonstanten.Nullposition;
-            Stadtnamenposition := 0;
+         when True =>
+            Stadtnamen (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
             
-         when others =>
-            return;
+         when False =>
+            null;
       end case;
-      
-      SenkrechteamenSchleife:
-      for SenkrechteamenSchleifenwert in -Sichtbereich.Senkrechte .. Sichtbereich.Senkrechte loop
-         WaagerechteamenSchleife:
-         for WaagerechteamenSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => ZeigerKoordinatenAlt,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteamenSchleifenwert, WaagerechteamenSchleifenwert),
-                                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
+   end WeltkarteAnzeigen;
+   
+   
+   
+   procedure Stadtnamen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
+   is begin
+      
+      Feldposition := GrafikRecordKonstanten.Nullposition;
+      Stadtnamenposition := 0;
+      
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in -Sichtbereich.Senkrechte .. Sichtbereich.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
+            
+            KartenWert := KartenkoordinatenberechnungssystemLogik.KoordinatenberechnungEbenenfest (KoordinatenExtern => ZeigerKoordinatenAlt,
+                                                                                                   ÄnderungExtern    => (SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                                   TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
@@ -98,7 +108,7 @@ package body WeltkarteGrafik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies)
+                                              SpeziesExtern     => SpeziesExtern)
             then
                null;
                
@@ -124,26 +134,23 @@ package body WeltkarteGrafik is
             
             Feldposition.x := Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x;
             
-         end loop WaagerechteamenSchleife;
+         end loop WaagerechteSchleife;
          
-            Feldposition := (GrafikKonstanten.Nullwert, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
+         Feldposition := (GrafikKonstanten.Nullwert, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
             
-            Stadtnamenposition := Stadtnamenposition + 1;
+         Stadtnamenposition := Stadtnamenposition + 1;
          
-      end loop SenkrechteamenSchleife;
-            
-   end WeltkarteAnzeigen;
+      end loop SenkrechteSchleife;
+      
+   end Stadtnamen;
    
    
    
-   -- Das noch an die Ebenenänderung anpassen. äöü
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is
-      use type KartenDatentypen.EbeneBasis;
-   begin
+   is begin
       
       if
         LeseEinstellungenGrafik.EbenenUnterhalbSichtbar = True
@@ -155,7 +162,6 @@ package body WeltkarteGrafik is
                AktuelleKoordinaten := (KoordinatenExtern.Ebene - 1, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte);
                Transparents := GrafikKonstanten.Wolkentransparents;
             
-               -- Dafür was besseres einbauen. äöü
             when KartenKonstanten.OrbitKonstante =>
                AktuelleKoordinaten := (KoordinatenExtern.Ebene - 1, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte);
                Transparents := GrafikKonstanten.Orbittransparents;
@@ -190,8 +196,7 @@ package body WeltkarteGrafik is
       EbeneZeichnen (KoordinatenExtern      => AktuelleKoordinaten,
                      EinheitenauswahlExtern => EinheitenauswahlExtern,
                      PositionExtern         => PositionExtern,
-                     TransparentsExtern     => GrafikKonstanten.Undurchsichtig,
-                     EbeneExtern            => KoordinatenExtern.Ebene);
+                     TransparentsExtern     => GrafikKonstanten.Undurchsichtig);
       
       if
         KoordinatenExtern.Ebene = AktuelleKoordinaten.Ebene
@@ -202,8 +207,7 @@ package body WeltkarteGrafik is
          EbeneZeichnen (KoordinatenExtern      => KoordinatenExtern,
                         EinheitenauswahlExtern => EinheitenauswahlExtern,
                         PositionExtern         => PositionExtern,
-                        TransparentsExtern     => Transparents,
-                        EbeneExtern            => KoordinatenExtern.Ebene);
+                        TransparentsExtern     => Transparents);
       end if;
       
    end IstSichtbar;
@@ -214,54 +218,136 @@ package body WeltkarteGrafik is
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      TransparentsExtern : in Sf.sfUint8;
-      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
+      TransparentsExtern : in Sf.sfUint8)
    is begin
       
-      WeltkarteFeldZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => KoordinatenExtern,
-                                                      PositionExtern         => PositionExtern,
-                                                      DurchsichtigkeitExtern => TransparentsExtern);
+      case
+        Anzeige (Basisgrund_Enum)
+      is
+         when True =>
+            WeltkarteFeldZeichnenGrafik.BasisgrundZeichnen (KoordinatenExtern      => KoordinatenExtern,
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => TransparentsExtern);
+            
+         when False =>
+            null;
+      end case;
       
-      WeltkarteFeldZeichnenGrafik.FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                 PositionExtern    => PositionExtern);
+      case
+        Anzeige (Zusatzgrund_Enum)
+      is
+         when True =>
+            WeltkarteFeldZeichnenGrafik.ZusatzgrundZeichnen (KoordinatenExtern      => KoordinatenExtern,
+                                                             PositionExtern         => PositionExtern,
+                                                             DurchsichtigkeitExtern => TransparentsExtern);
+            
+         when False =>
+            null;
+      end case;
       
-      WeltkarteFeldZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                     PositionExtern    => PositionExtern);
-      
-      
-      
-      WeltkarteZusatzZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                 PositionExtern    => PositionExtern);
-      
-      WeltkarteZusatzZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                          EbeneExtern       => EbeneExtern,
-                                                          PositionExtern    => PositionExtern);
-      
-      WeltkarteZusatzZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
-                                                         PositionExtern    => PositionExtern);
-      
-      WeltkarteZusatzZeichnenGrafik.AnzeigeFeldeffekt (KoordinatenExtern => KoordinatenExtern,
+      case
+        Anzeige (Fluss_Enum)
+      is
+         when True =>
+            WeltkarteFeldZeichnenGrafik.FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
                                                        PositionExtern    => PositionExtern);
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        Anzeige (Ressourcen_Enum)
+      is
+         when True =>
+            WeltkarteFeldZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                           PositionExtern    => PositionExtern);
+            
+         when False =>
+            null;
+      end case;
       
       
       
-      WeltkarteEinheitZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern      => KoordinatenExtern,
-                                                     EinheitenauswahlExtern => EinheitenauswahlExtern,
-                                                     PositionExtern         => PositionExtern);
+      case
+        Anzeige (Weg_Enum)
+      is
+         when True =>
+            WeltkarteZusatzZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                       PositionExtern    => PositionExtern);
+            
+         when False =>
+            null;
+      end case;
       
-      if
-        LeseGrafiktask.Einheitenbewegungsbereich
-        and
-          LeseGrafiktask.Einheitenbewegung = False
-        and
-          EinheitenauswahlExtern.SpeziesNummer.Nummer /= EinheitenKonstanten.LeerNummer
-      then
-         WeltkarteEinheitZeichnenGrafik.AnzeigeBewegungsfeld (KoordinatenExtern => KoordinatenExtern,
-                                                              PositionExtern    => PositionExtern);
+      case
+        Anzeige (Verbesserungen_Enum)
+      is
+         when True =>
+            WeltkarteZusatzZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                                PositionExtern    => PositionExtern);
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        Anzeige (Feldbesitzer_Enum)
+      is
+         when True =>
+            WeltkarteZusatzZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
+                                                               PositionExtern    => PositionExtern);
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        Anzeige (Feldeffekte_Enum)
+      is
+         when True =>
+            WeltkarteZusatzZeichnenGrafik.AnzeigeFeldeffekt (KoordinatenExtern => KoordinatenExtern,
+                                                             PositionExtern    => PositionExtern);
+            
+         when False =>
+            null;
+      end case;
+      
+      
+      
+      case
+        Anzeige (Einheit_Enum)
+      is
+         when True =>
+            WeltkarteEinheitZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern      => KoordinatenExtern,
+                                                           EinheitenauswahlExtern => EinheitenauswahlExtern,
+                                                           PositionExtern         => PositionExtern);
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        Anzeige (Bewegungsfeld_Enum)
+      is
+         when True =>
+            if
+              LeseGrafiktask.Einheitenbewegungsbereich
+              and
+                LeseGrafiktask.Einheitenbewegung = False
+                and
+                  EinheitenauswahlExtern.SpeziesNummer.Nummer /= EinheitenKonstanten.LeerNummer
+            then
+               WeltkarteEinheitZeichnenGrafik.AnzeigeBewegungsfeld (KoordinatenExtern => KoordinatenExtern,
+                                                                    PositionExtern    => PositionExtern);
          
-      else
-         null;
-      end if;
+            else
+               null;
+            end if;
+            
+         when False =>
+            null;
+      end case;
       
    end EbeneZeichnen;
 

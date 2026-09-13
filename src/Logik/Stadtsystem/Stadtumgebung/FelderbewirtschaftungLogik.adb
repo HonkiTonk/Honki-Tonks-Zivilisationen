@@ -72,7 +72,7 @@ package body FelderbewirtschaftungLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -NutzbarerBereich.Waagerechte .. NutzbarerBereich.Waagerechte loop
             
-            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

@@ -47,7 +47,7 @@ package body StrahlungswaffeEingesetztLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in Strahlungsbereich.WaagerechteAnfang .. Strahlungsbereich.WaagerechteEnde loop
 
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EbeneSchleifenwert, Koordinaten.Senkrechte, Koordinaten.Waagerechte),
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (EbeneSchleifenwert, Koordinaten.Senkrechte, Koordinaten.Waagerechte),
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                

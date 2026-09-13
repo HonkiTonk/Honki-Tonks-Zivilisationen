@@ -112,7 +112,7 @@ package body EinheitInUmgebungLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -UmgebungExtern.Waagerechte .. UmgebungExtern.Waagerechte loop
       
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

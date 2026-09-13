@@ -37,7 +37,7 @@ package body KIEinheitSuchenLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in -WaagerechtePrüfen .. WaagerechtePrüfen loop
             
-               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

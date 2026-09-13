@@ -78,7 +78,7 @@ package body SichtbereicheErmittelnLogik is
       use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      KartenBlockadeWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+      KartenBlockadeWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteÄnderungExtern, WaagerechteÄnderungExtern),
                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       

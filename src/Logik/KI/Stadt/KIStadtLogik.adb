@@ -178,7 +178,7 @@ package body KIStadtLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -Umgebungsgröße.Waagerechte .. Umgebungsgröße.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

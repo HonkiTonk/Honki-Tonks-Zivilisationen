@@ -39,7 +39,7 @@ package body Zusatzgrundplatzierungssystem is
                
             else
                Entfernungskartenwert
-                 := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                 := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                 TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
@@ -89,7 +89,7 @@ package body Zusatzgrundplatzierungssystem is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
-            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

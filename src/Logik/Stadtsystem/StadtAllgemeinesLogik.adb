@@ -103,7 +103,7 @@ package body StadtAllgemeinesLogik is
                   WaagerechteSchleife:
                   for WaagerechteSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
                   
-                     Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+                     Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => Stadtkoordinaten,
                                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                   

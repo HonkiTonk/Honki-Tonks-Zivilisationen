@@ -113,17 +113,21 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (14.09.2026):
+   -- Version 0.06.5035 => 0.06. (14.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.4965 => 0.06. (13.09.2026):
+   -- Version 0.06.4965 => 0.06.5035 (13.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Karteneinstellungen umsortiert.
+   -- Alten Code entfernt der keinen nutzen mehr hatte aber noch Probleme verursachte.
+   -- Interne Benennung überarbeitet.
+   -- Vereinfachte Varianten des Kartenkoordinatenberechnungssystems eingebaut.
+   -- Fehler korrigiert der bei bestimmten Karteneinstellungen dazu führte dass die Stadtnamen nicht angezeigt wurden.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

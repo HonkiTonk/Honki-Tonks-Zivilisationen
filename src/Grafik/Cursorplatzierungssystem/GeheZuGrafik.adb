@@ -152,7 +152,7 @@ package body GeheZuGrafik is
          KartenwertKoordinatenberechnung.Waagerechte := KoordinatenExtern.Waagerechte;
       end if;
       
-      return KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KartenwertKoordinatenberechnung,
+      return KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KartenwertKoordinatenberechnung,
                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
                                                                                                                 KartenKonstanten.LeerSenkrechteÄnderung,
                                                                                                                 KartenKonstanten.LeerWaagerechteÄnderung),

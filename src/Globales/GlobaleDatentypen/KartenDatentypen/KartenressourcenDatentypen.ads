@@ -24,7 +24,6 @@ package KartenressourcenDatentypen is
    subtype Ressourcen_Unterfläche_Wasser_Enum is Ressourcen_Vorhanden_Enum range Fisch_Enum .. Hochwertiges_Holz_Enum;
    subtype Ressourcen_Unterfläche_Land_Enum is Ressourcen_Vorhanden_Enum range Kohle_Enum .. Gold_Enum;
    
-   -- Eihenfolge für die Ressourcen in den jeweiligen Bereichen: Pflanzen, Tiere, Mineralien, Sonstiges
    type Ressourcen_Neu_Enum is (
                                 Leer_Ressourcen_Enum,
                                 
@@ -35,13 +34,13 @@ package KartenressourcenDatentypen is
                                 Vogel_Enum,
                                 
                                 -- Oberfläche
-                                Getreide_Enum, Mais_Enum, Kartoffeln_Enum, Sauerkraut_Enum, Weintrauben_Enum, Gewürze_Enum, Baumwolle_Enum, Tabak_Enum,
+                                Getreide_Enum, Mais_Enum, Kartoffeln_Enum, Sauerkraut_Enum, Weintrauben_Enum, Gewürze_Enum, Baumwolle_Enum, Tabak_Enum, Zuckerrohr_Enum,
                                 
-                                Wildtiere_Enum,
+                                Pferde_Enum, Wildtiere_Enum,
                                 
                                 Kupfer_Enum, Eisen_Enum, Kohle_Enum, Silber_Enum, Gold_Enum,
                                 
-                                Öl_Enum, Salz_Enum, Zucker_Enum,
+                                Lehm_Enum, Torf_Enum, Öl_Enum, Salz_Enum,
                                 
                                 -- Oberfläche Wasser
                                 Fisch_Enum, Wal_Enum,
@@ -59,6 +58,7 @@ package KartenressourcenDatentypen is
                                );
    pragma Ordered (Ressourcen_Neu_Enum);
    
+   -- Anstelle oder Statt nur Ebenenbereiche anzulegen, einfach Resssourcenbereiche anlegen und die dann benutzen für den Kartengenerator und alles weitere? äöü
    subtype Ressourcen_Neu_Vorhanden_Enum is Ressourcen_Neu_Enum range Ressourcen_Neu_Enum'Succ (Ressourcen_Neu_Enum'First) .. Ressourcen_Neu_Enum'Last;
    
    subtype Ressourcen_Orbit_Enum is Ressourcen_Neu_Vorhanden_Enum range Ressourcen_Neu_Vorhanden_Enum'First .. Asteroid_Enum;
@@ -66,7 +66,7 @@ package KartenressourcenDatentypen is
    subtype Ressourcen_Himmel_Enum is Ressourcen_Neu_Vorhanden_Enum range Ressourcen_Neu_Vorhanden_Enum'Succ (Ressourcen_Orbit_Enum'Last) .. Vogel_Enum;
    
    subtype Ressourcen_Oberfläche_Enum is Ressourcen_Neu_Vorhanden_Enum range Ressourcen_Neu_Vorhanden_Enum'Succ (Ressourcen_Himmel_Enum'Last) .. Wal_Enum;
-    subtype Ressourcen_Oberfläche_Land_Neu_Enum is Ressourcen_Oberfläche_Enum range Ressourcen_Oberfläche_Enum'First .. Zucker_Enum;
+    subtype Ressourcen_Oberfläche_Land_Neu_Enum is Ressourcen_Oberfläche_Enum range Ressourcen_Oberfläche_Enum'First .. Salz_Enum;
     subtype Ressourcen_Oberfläche_Wasser_Neu_Enum is Ressourcen_Oberfläche_Enum range Ressourcen_Neu_Vorhanden_Enum'Succ (Ressourcen_Oberfläche_Land_Neu_Enum'Last) .. Ressourcen_Oberfläche_Enum'Last;
    
    -- subtype Ressourcen_Unterfläche_Enum is Ressourcen_Neu_Vorhanden_Enum range Ressourcen_Neu_Vorhanden_Enum'Succ (Ressourcen_Oberfläche_Enum'Last) .. ;

@@ -54,7 +54,7 @@ package body KIBewegungsplanVereinfachenLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
-               KartenwertVereinfachung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuellePlankoordinaten,
+               KartenwertVereinfachung := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => AktuellePlankoordinaten,
                                                                                                                       ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                

@@ -89,7 +89,7 @@ package body SichtbarkeitsberechnungssystemLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -SichtweiteExtern.Waagerechte .. SichtweiteExtern.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
@@ -129,7 +129,7 @@ package body SichtbarkeitsberechnungssystemLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -SichtweiteStadt.Waagerechte .. SichtweiteStadt.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

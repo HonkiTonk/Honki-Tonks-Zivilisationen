@@ -47,7 +47,7 @@ package body ZeigerbewegungLogik is
          KartenWert := (LeseWeltkarteneinstellungen.EbeneEnde, BasisKoordinaten.Senkrechte, BasisKoordinaten.Waagerechte);
          
       else
-         KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => BasisKoordinaten,
+         KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => BasisKoordinaten,
                                                                                                    ÄnderungExtern    => Richtung (RichtungExtern),
                                                                                                    TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       end if;

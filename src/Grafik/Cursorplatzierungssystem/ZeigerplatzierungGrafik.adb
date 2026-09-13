@@ -82,7 +82,7 @@ package body ZeigerplatzierungGrafik is
          Kartenänderung.Waagerechte := -Sichtbereich.Waagerechte + KartenDatentypen.WaagerechteBasis (Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x));
       end if;
       
-      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseZeiger.KoordinatenAlt (SpeziesExtern => SpeziesExtern),
+      KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => LeseZeiger.KoordinatenAlt (SpeziesExtern => SpeziesExtern),
                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, Kartenänderung.Senkrechte, Kartenänderung.Waagerechte),
                                                                                                 TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       

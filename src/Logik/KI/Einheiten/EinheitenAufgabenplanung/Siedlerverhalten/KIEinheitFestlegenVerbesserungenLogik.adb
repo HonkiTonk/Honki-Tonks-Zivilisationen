@@ -119,7 +119,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
-               VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitKoordinaten,
+               VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => EinheitKoordinaten,
                                                                                                                       ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
@@ -173,7 +173,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                
             -- else
             VerbesserungKoordinaten
-              := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
+              := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => StadtKoordinaten,
                                                                                              ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                              TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

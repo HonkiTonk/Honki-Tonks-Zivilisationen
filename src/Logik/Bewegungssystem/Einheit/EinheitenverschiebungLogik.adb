@@ -69,7 +69,7 @@ package body EinheitenverschiebungLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -Umgebungsgröße.Waagerechte .. Umgebungsgröße.Waagerechte loop
                
-            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (Stadtkoordinaten.Ebene, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                      
@@ -129,7 +129,7 @@ package body EinheitenverschiebungLogik is
             for WaagerechteSchleifenwert in -UmgebungPrüfen.Waagerechte .. UmgebungPrüfen.Waagerechte loop
                      
                KartenwertVerschieben
-                 := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
+                 := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                 TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

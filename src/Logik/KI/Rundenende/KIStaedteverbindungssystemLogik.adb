@@ -253,7 +253,7 @@ package body KIStaedteverbindungssystemLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                

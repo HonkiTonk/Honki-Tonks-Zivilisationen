@@ -27,9 +27,9 @@ package body UmwandlungenGrafik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => ZeigerKoordinatenAlt,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => ZeigerKoordinatenAlt,
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                         TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte

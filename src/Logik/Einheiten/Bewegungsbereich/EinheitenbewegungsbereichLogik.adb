@@ -64,7 +64,7 @@ package body EinheitenbewegungsbereichLogik is
       use type KartenDatentypen.EbeneBasis;
    begin
 
-      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+      Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                 ÄnderungExtern    => (BewegungsfeldExtern.Ebene, BewegungsfeldExtern.Senkrechte, BewegungsfeldExtern.Waagerechte),
                                                                                                 TaskExtern        => SystemDatentypen.Logik_Task_Enum);
 

@@ -84,7 +84,7 @@ package body QuadrantenberechnungenLogik is
       use type KartenDatentypen.WaagerechteBasis;
    begin
               
-      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                           ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
                                                                                                                                  -SichtweiteRichtungExtern.Senkrechte,
                                                                                                                                  SichtweiteRichtungExtern.Waagerechte),
@@ -218,7 +218,7 @@ package body QuadrantenberechnungenLogik is
       use type KartenDatentypen.WaagerechteBasis;
    begin
                     
-      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                           ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
                                                                                                                                  SichtweiteRichtungExtern.Senkrechte,
                                                                                                                                  SichtweiteRichtungExtern.Waagerechte),
@@ -352,7 +352,7 @@ package body QuadrantenberechnungenLogik is
       use type KartenDatentypen.WaagerechteBasis;
    begin
                     
-      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                           ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
                                                                                                                                  SichtweiteRichtungExtern.Senkrechte,
                                                                                                                                  -SichtweiteRichtungExtern.Waagerechte),
@@ -486,7 +486,7 @@ package body QuadrantenberechnungenLogik is
       use type KartenDatentypen.WaagerechteBasis;
    begin
                     
-      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+      KartenQuadrantenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                           ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung,
                                                                                                                                  -SichtweiteRichtungExtern.Senkrechte,
                                                                                                                                  -SichtweiteRichtungExtern.Waagerechte),

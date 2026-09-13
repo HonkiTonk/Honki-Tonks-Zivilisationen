@@ -134,7 +134,7 @@ package body EinheitentransporterLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => TranspoterKoordinatenExtern,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => TranspoterKoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

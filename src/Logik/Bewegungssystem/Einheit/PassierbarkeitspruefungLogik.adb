@@ -182,7 +182,7 @@ package body PassierbarkeitspruefungLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
-            Ekropaumgebung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => NeueKoordinatenExtern,
+            Ekropaumgebung := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => NeueKoordinatenExtern,
                                                                                                           ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                           TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
@@ -228,7 +228,7 @@ package body PassierbarkeitspruefungLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -Stadtumgebung.Waagerechte .. Stadtumgebung.Waagerechte loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             

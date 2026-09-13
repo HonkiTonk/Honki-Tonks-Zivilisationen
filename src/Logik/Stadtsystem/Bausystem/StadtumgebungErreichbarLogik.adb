@@ -30,7 +30,7 @@ package body StadtumgebungErreichbarLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in -Umgebung.Waagerechte .. Umgebung.Waagerechte loop
                
-               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinatenExtern,
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => StadtKoordinatenExtern,
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
@@ -113,7 +113,7 @@ package body StadtumgebungErreichbarLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
-               KartenWertZwei := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinatenExtern,
+               KartenWertZwei := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => StadtKoordinatenExtern,
                                                                                                              ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                              TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                

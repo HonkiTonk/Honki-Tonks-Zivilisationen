@@ -47,14 +47,14 @@ package body SpieleinstellungenLogik is
               Auswahl
             is
                when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-                  SpieleinstellungenKartenLogik.KartenpoleWählen;
+                  SpieleinstellungenKartenLogik.KartenebeneWählen;
                     
                when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                   SpieleinstellungenKartenLogik.KartengrößeWählen;
                   
                when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-                  SpieleinstellungenKartenLogik.KartenebeneWählen;
-
+                  SpieleinstellungenKartenLogik.KartenpoleWählen;
+                  
                when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                   SpieleinstellungenKartenLogik.KartenartWählen;
                

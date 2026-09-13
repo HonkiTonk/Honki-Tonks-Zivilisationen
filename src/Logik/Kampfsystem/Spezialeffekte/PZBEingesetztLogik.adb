@@ -133,7 +133,7 @@ package body PZBEingesetztLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in VernichtungsbereichExtern.WaagerechteAnfang .. VernichtungsbereichExtern.WaagerechteEnde loop
 
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EbeneSchleifenwert, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (EbeneSchleifenwert, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                

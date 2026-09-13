@@ -41,7 +41,7 @@ package body BewegungsplanLogik is
             
       else
          EinzelbewegungKartenwert
-           := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+           := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                                                                                           ÄnderungExtern    => ÄnderungExtern,
                                                                                           TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       end if;
@@ -405,7 +405,7 @@ package body BewegungsplanLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                
-               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                                          ÄnderungExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                

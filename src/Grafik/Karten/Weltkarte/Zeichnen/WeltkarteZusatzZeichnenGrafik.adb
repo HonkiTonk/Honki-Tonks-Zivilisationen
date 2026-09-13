@@ -54,11 +54,8 @@ package body WeltkarteZusatzZeichnenGrafik is
    
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      EbeneExtern : in KartenDatentypen.EbeneVorhanden;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is
-      use type KartenDatentypen.EbeneBasis;
-   begin
+   is begin
       
       Verbesserungsfeld := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
       
@@ -67,18 +64,6 @@ package body WeltkarteZusatzZeichnenGrafik is
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return;
-            
-         when KartenverbesserungDatentypen.Verbesserung_Städte_Enum =>
-            if
-              KoordinatenExtern.Ebene /= EbeneExtern
-            then
-               StadtnameAnzeigen (KoordinatenExtern => KoordinatenExtern,
-                                  PositionExtern    => PositionExtern,
-                                  ObenUntenExtern   => True);
-               
-            else
-               null;
-            end if;
             
          when others =>
             null;
@@ -131,7 +116,7 @@ package body WeltkarteZusatzZeichnenGrafik is
       UmgebungSchleife:
       for UmgebungSchleifenwert in UmgebungArray'Range loop
          
-         KartenWertRahmen := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+         KartenWertRahmen := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
                                                                                                          ÄnderungExtern    => Umgebung (UmgebungSchleifenwert),
                                                                                                          TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
                
@@ -271,6 +256,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    
    
    -- Das später auch noch über die Ebenen hinweg sichtbar machen? äöü
+   -- Ist das nicht schon über Ebenen hinweg sichtbar? äöü
    procedure AnzeigeFeldeffekt
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)

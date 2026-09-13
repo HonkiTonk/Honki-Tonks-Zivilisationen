@@ -51,7 +51,7 @@ package body StadtumgebungGrafik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtauswahlExtern.Koordinaten,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             

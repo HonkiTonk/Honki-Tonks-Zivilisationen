@@ -1,4 +1,3 @@
-with KartenzusatzgrundDatentypen;
 with GrafikKonstanten;
 
 with LeseWeltkarte;
@@ -9,33 +8,43 @@ with TexturenfelderVariablenGrafik;
 
 package body WeltkarteFeldZeichnenGrafik is
 
-   procedure KartenfeldZeichnen
+   procedure BasisgrundZeichnen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigkeitExtern : in Sf.sfUint8)
+   is begin
+          
+      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundAccess,
+                                                      TexturbereichExtern    => TexturenfelderVariablenGrafik.BasisgrundRechteck (BasisgrundExtern => LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)),
+                                                      PositionExtern         => PositionExtern,
+                                                      DurchsichtigkeitExtern => DurchsichtigkeitExtern);
+      
+   end BasisgrundZeichnen;
+   
+   
+   
+   procedure ZusatzgrundZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
    is begin
       
-      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
-          
-      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.BasisgrundAccess,
-                                                      TexturbereichExtern    => TexturenfelderVariablenGrafik.BasisgrundRechteck (BasisgrundExtern => Gesamtgrund.Basisgrund),
-                                                      PositionExtern         => PositionExtern,
-                                                      DurchsichtigkeitExtern => DurchsichtigkeitExtern);
-      
+      Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
+        
       case
-        Gesamtgrund.Zusatzgrund
+        Zusatzgrund
       is
          when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
             null;
             
          when others =>
             KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.ZusatzgrundAccess,
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.ZusatzgrundRechteck (ZusatzgrundExtern => Gesamtgrund.Zusatzgrund),
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.ZusatzgrundRechteck (ZusatzgrundExtern => Zusatzgrund),
                                                             PositionExtern         => PositionExtern,
                                                             DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end case;
       
-   end KartenfeldZeichnen;
+   end ZusatzgrundZeichnen;
    
    
    

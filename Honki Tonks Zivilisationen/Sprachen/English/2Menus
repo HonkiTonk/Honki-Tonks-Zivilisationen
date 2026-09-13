@@ -135,7 +135,7 @@ Random non predefined size
 Current size:
 New size:
 #################################
-Choose map plane:
+Choose map layers:
 Orbit
 Sky
 Surface (16 Species start here)
@@ -228,13 +228,13 @@ Declare peace
 Declare war
 ~1~
 Exit menu
-Current Opinion:
+Current opinion:
 Current state:
 #################################
 Game Settings
-Map poles
+Map layers
 Map size
-Map planes
+Map poles
 Map type
 Map shape
 Map temperature
@@ -246,10 +246,10 @@ Difficulty level
 ~3~
 #################################
 Map poles
-North Pole
-South Pole
-West Pole
-East Pole
+North pole
+South pole
+West pole
+East pole
 ~6~
 ~4~
 ~5~

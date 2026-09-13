@@ -38,7 +38,6 @@ package WeltkarteZusatzZeichnenGrafik is
    
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      EbeneExtern : in KartenDatentypen.EbeneVorhanden;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (

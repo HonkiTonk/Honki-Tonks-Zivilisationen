@@ -89,7 +89,7 @@ package body KIZielSuchenLogik is
                WaagerechteSchleife:
                for WaagerechteSchleifenwert in XQuadrantenbereich.Anfang .. XQuadrantenbereich.Ende loop
             
-                  Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
+                  Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => EinheitenKoordinaten,
                                                                                                             ÄnderungExtern    => (EbeneSchleifenwert,
                                                                                                                                    Multiplikator.Senkrechte * SenkrechteSchleifenwert,
                                                                                                                                    Multiplikator.Waagerechte * WaagerechteSchleifenwert),

@@ -8,8 +8,7 @@ with KartenkoordinatenWerteLogik;
 
 package body KartenkoordinatenberechnungssystemLogik is
 
-   -- Zufallsübergänge einbauen? äöü
-   function Kartenkoordinatenberechnungssystem
+   function Koordinatenberechnung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       ÄnderungExtern : in KartenRecords.KartenfeldRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
@@ -117,6 +116,36 @@ package body KartenkoordinatenberechnungssystemLogik is
       
       return NeueKoordinate (TaskExtern);
       
-   end Kartenkoordinatenberechnungssystem;
+   end Koordinatenberechnung;
+   
+   
+   
+   function KoordinatenberechnungEbenenfest
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ÄnderungExtern : in KartenRecords.KartenfeldumgebungRecord;
+      TaskExtern : in SystemDatentypen.Task_Enum)
+      return KartenRecords.KartenfeldNaturalRecord
+   is begin
+      
+      return Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
+                                    ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, ÄnderungExtern.Senkrechte, ÄnderungExtern.Waagerechte),
+                                    TaskExtern        => TaskExtern);
+      
+   end KoordinatenberechnungEbenenfest;
+   
+   
+   
+   function KoordinatenberechnungUmgebungfest
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      ÄnderungExtern : in KartenDatentypen.EbeneBasis;
+      TaskExtern : in SystemDatentypen.Task_Enum)
+      return KartenRecords.KartenfeldNaturalRecord
+   is begin
+      
+      return Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
+                                    ÄnderungExtern    => (ÄnderungExtern, KartenKonstanten.LeerSenkrechteÄnderung, KartenKonstanten.LeerWaagerechte),
+                                    TaskExtern        => TaskExtern);
+      
+   end KoordinatenberechnungUmgebungfest;
 
 end KartenkoordinatenberechnungssystemLogik;

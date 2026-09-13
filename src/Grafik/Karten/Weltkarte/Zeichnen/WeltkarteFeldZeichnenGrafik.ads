@@ -6,6 +6,7 @@ with KartenDatentypen;
 
 private with KartenfluesseDatentypen;
 private with KartenressourcenDatentypen;
+private with KartenzusatzgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -14,7 +15,22 @@ package WeltkarteFeldZeichnenGrafik is
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
 
-   procedure KartenfeldZeichnen
+   procedure BasisgrundZeichnen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigkeitExtern : in Sf.sfUint8)
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+   
+   procedure ZusatzgrundZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
@@ -58,11 +74,11 @@ package WeltkarteFeldZeichnenGrafik is
               );
    
 private
-      
+   
+   Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+         
    KartenfeldFluss : KartenfluesseDatentypen.Fluss_Enum;
    
    KartenfeldRessource : KartenressourcenDatentypen.Ressourcen_Enum;
-   
-   Gesamtgrund : KartenRecords.KartengrundRecord;
 
 end WeltkarteFeldZeichnenGrafik;

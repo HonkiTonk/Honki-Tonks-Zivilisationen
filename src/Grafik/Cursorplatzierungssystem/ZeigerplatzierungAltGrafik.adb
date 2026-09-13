@@ -121,7 +121,7 @@ package body ZeigerplatzierungAltGrafik is
       
       Koordinatenänderung.Ebene := KartenKonstanten.LeerEbeneÄnderung;
       
-      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseZeiger.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies),
+      Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => LeseZeiger.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies),
                                                                                                 ÄnderungExtern    => Koordinatenänderung,
                                                                                                 TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       
@@ -166,7 +166,7 @@ package body ZeigerplatzierungAltGrafik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in -Sichtbereich.Waagerechte .. Sichtbereich.Waagerechte loop
             
-            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AlteZeigerkoordinaten,
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => AlteZeigerkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                                       TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             

@@ -64,7 +64,7 @@ package body EinwohnersystemLogik is
             
          when others =>
             Stadtfeld.Waagerechte := Stadtfeld.Waagerechte - XKoordinatenausgleich;
-            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, Stadtfeld.Senkrechte, Stadtfeld.Waagerechte),
                                                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       end case;
