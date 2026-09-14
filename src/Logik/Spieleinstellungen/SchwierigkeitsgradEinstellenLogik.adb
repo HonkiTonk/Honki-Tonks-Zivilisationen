@@ -7,9 +7,9 @@ with AuswahlaufteilungLogik;
 with MeldungssystemHTSEB;
 with UmwandlungenDatentypen;
 
-package body SpieleinstellungenSonstigesLogik is
+package body SchwierigkeitsgradEinstellenLogik is
 
-   procedure SchwierigkeitsgradFestlegen
+   procedure Schwierigkeitsgrad
    is begin
       
       SchwierigkeitsgradSchleife:
@@ -30,11 +30,11 @@ package body SpieleinstellungenSonstigesLogik is
                return;
                
             when others =>
-               MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenSonstigesLogik.SchwierigkeitsgradFestlegen: Falsche Auswahl: " & SchwierigkeitAuswahl'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "SchwierigkeitsgradEinstellenLogik.Schwierigkeitsgrad: Falsche Auswahl: " & SchwierigkeitAuswahl'Wide_Wide_Image);
          end case;
          
       end loop SchwierigkeitsgradSchleife;
       
-   end SchwierigkeitsgradFestlegen;
+   end Schwierigkeitsgrad;
 
-end SpieleinstellungenSonstigesLogik;
+end SchwierigkeitsgradEinstellenLogik;

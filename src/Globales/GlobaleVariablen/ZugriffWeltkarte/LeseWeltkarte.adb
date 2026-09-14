@@ -201,22 +201,22 @@ package body LeseWeltkarte is
    
    
    
-   function Ressource
+   function Rohstoff
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
       case
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return KartenressourcenDatentypen.Leer_Ressource_Enum;
+            return KartenrohstoffeDatentypen.Leer_Rohstoff_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Ressource;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoff;
       end case;
       
-   end Ressource;
+   end Rohstoff;
    
    
    

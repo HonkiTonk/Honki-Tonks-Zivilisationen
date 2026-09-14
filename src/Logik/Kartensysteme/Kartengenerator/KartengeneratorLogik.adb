@@ -3,7 +3,7 @@ with LadezeitenDatentypen;
 with KartengeneratorKuesteLogik;
 with KartengeneratorLandschaftLogik;
 with KartengeneratorFlussLogik;
-with KartengeneratorRessourcenLogik;
+with KartengeneratorRohstoffeLogik;
 with KartengeneratorUnterflaecheLogik;
 with KartengeneratorAllgemeinesLogik;
 with LadezeitenLogik;
@@ -31,25 +31,25 @@ package body KartengeneratorLogik is
       KartengeneratorFlussLogik.GenerierungFlüsse;
       LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
       
-      KartengeneratorRessourcenLogik.GenerierungRessourcen;
-      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Ressourcen_Enum);
+      KartengeneratorRohstoffeLogik.GenerierungRohstoffe;
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Rohstoffe_Enum);
       
    end Kartengenerator;
    
    
    
-   -- Setzt im Moment nur die Ressourcen und kann deswegen nicht entfernt werden, später mal erweitern. äöü
+   -- Setzt im Moment nur die Rohstoffe und kann deswegen nicht entfernt werden, später mal erweitern. äöü
    -- Beim Erweitern auch Prüfungen auf korrekte Werte einbauen. äöü
    procedure PrüfeEinstellungen
    is begin
       
-      RessourcenSchleife:
-      for RessourcenSchleifenwert in KartengeneratorVariablenLogik.KartenressourcenWahrscheinlichkeitenArray'Range loop
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in KartengeneratorVariablenLogik.KartenrohstoffeWahrscheinlichkeitenArray'Range loop
          
-         KartengeneratorVariablenLogik.KartenressourcenWahrscheinlichkeiten (RessourcenSchleifenwert)
-           := KartengeneratorVariablenLogik.StandardKartenressourcenWahrscheinlichkeiten (KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen, RessourcenSchleifenwert);
+         KartengeneratorVariablenLogik.KartenrohstoffeWahrscheinlichkeiten (RohstoffeSchleifenwert)
+           := KartengeneratorVariablenLogik.StandardKartenrohstoffeWahrscheinlichkeiten (KartengeneratorVariablenLogik.Kartenparameter.Kartenrohstoffe, RohstoffeSchleifenwert);
          
-      end loop RessourcenSchleife;
+      end loop RohstoffeSchleife;
       
    end PrüfeEinstellungen;
 

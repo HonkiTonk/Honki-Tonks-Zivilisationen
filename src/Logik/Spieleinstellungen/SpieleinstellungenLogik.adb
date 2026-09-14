@@ -7,15 +7,21 @@ with SchreibeGrafiktask;
 
 with SpielLogik;
 with KartengeneratorLogik;
-with SpieleinstellungenKartenLogik;
+with KartengroesseEinstellenLogik;
 with SpieleinstellungenSpeziesLogik;
-with SpieleinstellungenSonstigesLogik;
+with SchwierigkeitsgradEinstellenLogik;
 with MeldungssystemHTSEB;
 with LadezeitenLogik;
 with AuswahlaufteilungLogik;
 with StandardSpielwerteSetzenLogik;
 with KartengeneratorVariablenLogik;
 with Spielertests;
+with KartenpoleEinstellenLogik;
+with KartenebenenEinstellenLogik;
+with KartenartEinstellenLogik;
+with KartenformEinstellenLogik;
+with KartenrohstoffeEinstellenLogik;
+with KartentemperaturEinstellenLogik;
 
 package body SpieleinstellungenLogik is
 
@@ -47,31 +53,31 @@ package body SpieleinstellungenLogik is
               Auswahl
             is
                when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-                  SpieleinstellungenKartenLogik.KartenebeneWählen;
+                  KartenebenenEinstellenLogik.Kartenebene;
                     
                when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-                  SpieleinstellungenKartenLogik.KartengrößeWählen;
+                  KartengroesseEinstellenLogik.Kartengröße;
                   
                when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-                  SpieleinstellungenKartenLogik.KartenpoleWählen;
+                  KartenpoleEinstellenLogik.Kartenpole;
                   
                when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-                  SpieleinstellungenKartenLogik.KartenartWählen;
+                  KartenartEinstellenLogik.Kartenart;
                
                when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-                  SpieleinstellungenKartenLogik.KartenformWählen;
+                  KartenformEinstellenLogik.Kartenform;
 
                when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-                  SpieleinstellungenKartenLogik.KartentemperaturWählen;
+                  KartentemperaturEinstellenLogik.Kartentemperatur;
                
                when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
-                  SpieleinstellungenKartenLogik.KartenressourcenWählen;
+                  KartenrohstoffeEinstellenLogik.Kartenrohstoffe;
 
                when RueckgabeDatentypen.Auswahl_Acht_Enum =>
                   SpieleinstellungenSpeziesLogik.SpeziesWählen;
 
                when RueckgabeDatentypen.Auswahl_Neun_Enum =>
-                  SpieleinstellungenSonstigesLogik.SchwierigkeitsgradFestlegen;
+                  SchwierigkeitsgradEinstellenLogik.Schwierigkeitsgrad;
                
                when RueckgabeDatentypen.Fertig_Enum =>
                   if

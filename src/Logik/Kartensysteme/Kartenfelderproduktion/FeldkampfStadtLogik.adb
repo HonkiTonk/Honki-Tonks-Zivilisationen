@@ -41,7 +41,7 @@ package body FeldkampfStadtLogik is
                                                                                                                KampfartExtern => KampfartExtern));
             
             Gesamtwert (TaskExtern) := Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => Gesamtwert (TaskExtern),
-                                                                         KampfbonusExtern => LeseKartenDatenbanken.KampfRessource (RessourceExtern => LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern),
+                                                                         KampfbonusExtern => LeseKartenDatenbanken.KampfRohstoff (RohstoffExtern => LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern),
                                                                                                                                    SpeziesExtern   => SpeziesExtern,
                                                                                                                                    KampfartExtern  => KampfartExtern));
             

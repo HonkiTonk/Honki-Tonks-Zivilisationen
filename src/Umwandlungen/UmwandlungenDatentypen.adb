@@ -39,14 +39,14 @@ package body UmwandlungenDatentypen is
    
    
    
-   function KartenressourcenrückgabeNachKartenressource
-     (RückgabeExtern : in RueckgabeDatentypen.Kartenressourcen_Enum)
-      return KartenartDatentypen.Kartenressourcenmenge_Enum
+   function KartenrohstofferückgabeNachKartenRohstoff
+     (RückgabeExtern : in RueckgabeDatentypen.Kartenrohstoffe_Enum)
+      return KartenartDatentypen.Kartenrohstoffemenge_Enum
    is begin
       
-      return KartenressourcenrückgabeKartenressource (RückgabeExtern);
+      return KartenrohstofferückgabeKartenRohstoff (RückgabeExtern);
       
-   end KartenressourcenrückgabeNachKartenressource;
+   end KartenrohstofferückgabeNachKartenRohstoff;
    
    
    

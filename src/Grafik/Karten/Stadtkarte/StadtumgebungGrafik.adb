@@ -173,7 +173,7 @@ package body StadtumgebungGrafik is
                                                                                                                            ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
             when ProduktionDatentypen.Material_Enum =>
-               Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+               Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugRohstoffeproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                                                                                                  SpeziesExtern        => SpeziesExtern,
                                                                                                                                  ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
@@ -235,7 +235,7 @@ package body StadtumgebungGrafik is
                      FeldgrößeExtern   => FeldgrößeExtern,
                      PositionExtern    => PositionExtern);
       
-      RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+      RohstoffZeichnen (KoordinatenExtern => KoordinatenExtern,
                          FeldgrößeExtern   => FeldgrößeExtern,
                          PositionExtern    => PositionExtern);
       
@@ -310,28 +310,28 @@ package body StadtumgebungGrafik is
    
    
       
-   procedure RessourceZeichnen
+   procedure RohstoffZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      KartenfeldRessource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
+      KartenfeldRohstoff := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
       
       case
-        KartenfeldRessource
+        KartenfeldRohstoff
       is
-         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.RessourcenAccess,
-                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.RessourcenRechteck (RessourceExtern => KartenfeldRessource),
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.RohstoffeAccess,
+                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffExtern => KartenfeldRohstoff),
                                                                       FeldgrößeExtern     => FeldgrößeExtern,
                                                                       PositionExtern      => PositionExtern);
       end case;
       
-   end RessourceZeichnen;
+   end RohstoffZeichnen;
    
    
       

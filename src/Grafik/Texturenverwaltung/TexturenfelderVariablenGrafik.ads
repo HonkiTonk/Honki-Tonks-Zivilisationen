@@ -10,7 +10,7 @@ with StadtDatentypen;
 with GrafikDatentypen;
 with TastenbelegungDatentypen;
 with BefehleDatentypen;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KarteneffekteDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenwegeDatentypen;
@@ -28,8 +28,8 @@ package TexturenfelderVariablenGrafik is
    type FlüsseArray is array (KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
    Flüsse : FlüsseArray;
    
-   type RessourcenArray is array (KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
-   Ressourcen : RessourcenArray;
+   type RohstoffeArray is array (KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   Rohstoffe : RohstoffeArray;
    
    type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
    Verbesserungen : VerbesserungenArray;
@@ -143,28 +143,28 @@ package TexturenfelderVariablenGrafik is
                   FlussVektor'Result.y >= 0.00
                );
    
-   function RessourcenRechteck
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
+   function RohstoffeRechteck
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
-                  RessourcenRechteck'Result.left >= 0
+                  RohstoffeRechteck'Result.left >= 0
                 and
-                  RessourcenRechteck'Result.top >= 0
+                  RohstoffeRechteck'Result.top >= 0
                 and
-                  RessourcenRechteck'Result.width >= 0
+                  RohstoffeRechteck'Result.width >= 0
                 and
-                  RessourcenRechteck'Result.height >= 0
+                  RohstoffeRechteck'Result.height >= 0
                );
    
-   function RessourcenVektor
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
+   function RohstoffeVektor
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  RessourcenVektor'Result.x >= 0.00
+                  RohstoffeVektor'Result.x >= 0.00
                 and
-                  RessourcenVektor'Result.y >= 0.00
+                  RohstoffeVektor'Result.y >= 0.00
                );
    
    function VerbesserungRechteck

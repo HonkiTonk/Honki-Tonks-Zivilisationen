@@ -7,7 +7,7 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 with KartenverbesserungDatentypen;
 with KartenfluesseDatentypen;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenwegeDatentypen;
 
@@ -104,10 +104,10 @@ package LeseGebaeudeDatenbank is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
       
-   function RessourceBenötigt
+   function RohstoffBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Boolean
      with
        Pre => (

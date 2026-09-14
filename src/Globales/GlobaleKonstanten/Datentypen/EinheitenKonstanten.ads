@@ -41,7 +41,7 @@ package EinheitenKonstanten is
    
    LeerEinheitArt : constant EinheitenDatentypen.Einheitart_Enum := EinheitenDatentypen.Leer_Einheitart_Enum;
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
-   LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
+   LeerPreisRohstoffe : constant ProduktionDatentypen.Produktion := 0;
    LeerPermanenteKosten : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDUnmöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;

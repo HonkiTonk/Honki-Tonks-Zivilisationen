@@ -7,12 +7,16 @@ with EinheitenKonstanten;
 with StadtRecords;
 with KartenfluesseDatentypen;
 with KartenArrays;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenwegeDatentypen;
+with KartenrohstoffeNeuDatentypen;
 
 package WeltkarteRecords is
    pragma Elaborate_Body;
+   
+   type RohstoffeArray is array (1 .. 4) of KartenrohstoffeNeuDatentypen.Rohstoffe_Enum;
+   type VerbesserungenArray is array (1 .. 4) of KartenverbesserungDatentypen.Verbesserung_Enum;
 
    type WeltkarteRecord is record
 
@@ -23,7 +27,7 @@ package WeltkarteRecords is
       Effekte : KartenArrays.FeldeffektArray;
       
       Fluss : KartenfluesseDatentypen.Fluss_Enum;
-      Ressource : KartenressourcenDatentypen.Ressourcen_Enum;
+      Rohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
       
       Weg : KartenwegeDatentypen.Weg_Enum;
       Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
@@ -41,7 +45,7 @@ package WeltkarteRecords is
                                                 Sichtbar      => KartenRecordKonstanten.LeerSichtbarkeit,
                                                 Effekte       => KartenRecordKonstanten.LeerEffekte,
                                                 Fluss         => KartenfluesseDatentypen.Leer_Fluss_Enum,
-                                                Ressource     => KartenressourcenDatentypen.Leer_Ressource_Enum,
+                                                Rohstoff      => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum,
                                                 Weg           => KartenwegeDatentypen.Leer_Weg_Enum,
                                                 Verbesserung  => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
                                                 Einheit       => EinheitenKonstanten.LeerEinheit,

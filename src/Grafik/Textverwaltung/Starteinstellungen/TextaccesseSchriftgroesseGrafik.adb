@@ -322,13 +322,13 @@ package body TextaccesseSchriftgroesseGrafik is
             
       
       
-      RessourcenmengeSchleife:
-      for RessourcenmengeSchleifenwert in TextaccessVariablen.RessourcenmengeAccess'Range loop
+      RohstoffemengeSchleife:
+      for RohstoffemengeSchleifenwert in TextaccessVariablen.RohstoffemengeAccess'Range loop
          
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RessourcenmengeAccess (RessourcenmengeSchleifenwert),
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RohstoffemengeAccess (RohstoffemengeSchleifenwert),
                                             size => StandardExtern);
          
-      end loop RessourcenmengeSchleife;
+      end loop RohstoffemengeSchleife;
             
       
             
@@ -666,13 +666,13 @@ package body TextaccesseSchriftgroesseGrafik is
       
       
       
-      RessourcenSchleife:
-      for RessourcenSchleifenwert in TextaccessVariablen.RessourcenAccess'Range loop
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in TextaccessVariablen.RohstoffeAccess'Range loop
          
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RessourcenAccess (RessourcenSchleifenwert),
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RohstoffeAccess (RohstoffeSchleifenwert),
                                             size => ÜberschriftExtern);
          
-      end loop RessourcenSchleife;
+      end loop RohstoffeSchleife;
       
       
       

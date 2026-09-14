@@ -4,7 +4,7 @@ with TextKonstantenHTSEB;
 with KartenzusatzgrundDatentypen;
 with KartenverbesserungDatentypen;
 with KartenfluesseDatentypen;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KarteneffekteDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenwegeDatentypen;
@@ -21,7 +21,7 @@ package Kartentexte is
    
    Flüsse : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenfluesseDatentypen.Fluss_Enum'Pos (KartenfluesseDatentypen.Fluss_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);
-   Ressourcen : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenressourcenDatentypen.Ressourcen_Enum'Pos (KartenressourcenDatentypen.Ressourcen_Enum'Last))
+   Rohstoffe : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenrohstoffeDatentypen.Rohstoffe_Enum'Pos (KartenrohstoffeDatentypen.Rohstoffe_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);
    Feldeffekte : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);

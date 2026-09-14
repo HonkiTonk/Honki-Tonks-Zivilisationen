@@ -1,4 +1,4 @@
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
@@ -14,11 +14,11 @@ package body RodenAnlegenLogik is
       Zusatzgrundplatzierungssystem.Zusatzgrundentfernung (KoordinatenExtern => KoordinatenExtern);
       
       case
-        LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern)
+        LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenressourcenDatentypen.Hochwertiges_Holz_Enum =>
-            SchreibeWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern,
-                                         RessourceExtern   => KartenressourcenDatentypen.Leer_Ressource_Enum);
+         when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
+            SchreibeWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern,
+                                         RohstoffExtern   => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum);
             
          when others =>
             null;

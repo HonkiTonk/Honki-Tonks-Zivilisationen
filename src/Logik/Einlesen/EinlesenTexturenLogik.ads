@@ -19,8 +19,8 @@ private
    Basisgrund : constant Positive := 1;
    Zusatzgrund : constant Positive := Basisgrund + 1;
    Flüsse : constant Positive := Zusatzgrund + 1;
-   Ressourcen : constant Positive := Flüsse + 1;
-   Verbesserungen : constant Positive := Ressourcen + 1;
+   Rohstoffe : constant Positive := Flüsse + 1;
+   Verbesserungen : constant Positive := Rohstoffe + 1;
    Wege : constant Positive := Verbesserungen + 1;
    Feldeffekte : constant Positive := Wege + 1;
    Einheitenbefehle : constant Positive := Feldeffekte + 1;

@@ -21,9 +21,9 @@ package UmwandlungenDatentypen is
      (RückgabeExtern : in RueckgabeDatentypen.Kartentemperatur_Enum)
       return KartenartDatentypen.Kartentemperatur_Enum;
    
-   function KartenressourcenrückgabeNachKartenressource
-     (RückgabeExtern : in RueckgabeDatentypen.Kartenressourcen_Enum)
-      return KartenartDatentypen.Kartenressourcenmenge_Enum;
+   function KartenrohstofferückgabeNachKartenRohstoff
+     (RückgabeExtern : in RueckgabeDatentypen.Kartenrohstoffe_Enum)
+      return KartenartDatentypen.Kartenrohstoffemenge_Enum;
    
    function RückgabeNachSchwierigkeitsgrad
      (RückgabeExtern : in RueckgabeDatentypen.Schwierigkeitsgrad_Enum)
@@ -73,16 +73,13 @@ private
                                                                                                            RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenartDatentypen.Kartentemperatur_Wüste_Enum
                                                                                                           );
    
-   type KartenressourcenrückgabeKartenressourceArray is array (RueckgabeDatentypen.Kartenressourcen_Enum'Range) of KartenartDatentypen.Kartenressourcenmenge_Enum;
-   KartenressourcenrückgabeKartenressource : constant KartenressourcenrückgabeKartenressourceArray := (
-                                                                                                         RueckgabeDatentypen.Auswahl_Eins_Enum   => KartenartDatentypen.Kartenressourcen_Keine_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Zwei_Enum   => KartenartDatentypen.Kartenressourcen_Arm_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Drei_Enum   => KartenartDatentypen.Kartenressourcen_Wenig_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Vier_Enum   => KartenartDatentypen.Kartenressourcen_Mittel_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Fünf_Enum   => KartenartDatentypen.Kartenressourcen_Viel_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Sechs_Enum  => KartenartDatentypen.Kartenressourcen_Überfluss_Enum,
-                                                                                                         RueckgabeDatentypen.Auswahl_Sieben_Enum => KartenartDatentypen.Kartenressourcen_Überall_Enum
-                                                                                                        );
+   type KartenrohstofferückgabeKartenRohstoffArray is array (RueckgabeDatentypen.Kartenrohstoffe_Enum'Range) of KartenartDatentypen.Kartenrohstoffemenge_Enum;
+   KartenrohstofferückgabeKartenRohstoff : constant KartenrohstofferückgabeKartenRohstoffArray := (
+                                                                                                     RueckgabeDatentypen.Auswahl_Eins_Enum => KartenartDatentypen.Ein_Rohstoff_Enum,
+                                                                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenartDatentypen.Zwei_Rohstoffe_Enum,
+                                                                                                     RueckgabeDatentypen.Auswahl_Drei_Enum => KartenartDatentypen.Drei_Rohstoffe_Enum,
+                                                                                                     RueckgabeDatentypen.Auswahl_Vier_Enum => KartenartDatentypen.Vier_Rohstoffe_Enum
+                                                                                                    );
    
    type RückgabeSchwierigkeitsgradArray is array (RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range) of SpielDatentypen.Schwierigkeitsgrad_Enum;
    RückgabeSchwierigkeitsgrad : constant RückgabeSchwierigkeitsgradArray := (

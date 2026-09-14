@@ -127,7 +127,7 @@ package ChangelogFebruar2022 is
 
    -- Version 0.00.9960 => 0.00.9970 (11.02.2022):
    
-   -- Testtexturen für die Ressourcen erstellt und eingebunden.
+   -- Testtexturen für die Rohstoffe erstellt und eingebunden.
    -- Hüllen für das Einlesen, Speichern und Darstellen der restlichen Texturen angelegt.
    -- Angefangen bestimmte Benennungen zur Unterscheidung der aktuellen Koordinatenposition, der aktuellen Grafikposition und der aktuellen Arrayposition einzuführen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
@@ -143,7 +143,7 @@ package ChangelogFebruar2022 is
    -- Einlesen von Kartenfeldertexturen erweitert, so dass alle vorhandenen Texturen eingelesen werden und die fehlenden ignoriert werden.
    -- Einlesen von Kartenfeldertexturen ermöglicht jetzt einfache, externe Modifikationen wie die Textdateien.
    -- Erste Texturen für alle vorhandenen Kartenfelder erstellt.
-   -- Leerdateien für alle Ressourcen- und Sonstigekartenfelder angelegt.
+   -- Leerdateien für alle Rohstoffe- und Sonstigekartenfelder angelegt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    

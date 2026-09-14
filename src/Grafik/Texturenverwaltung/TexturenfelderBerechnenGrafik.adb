@@ -12,7 +12,7 @@ package body TexturenfelderBerechnenGrafik is
       BasisgrundBerechnen;
       ZusatzgrundBerechnen;
       FlüsseBerechnen;
-      RessourcenBerechnen;
+      RohstoffeBerechnen;
       VerbesserungenBerechnen;
       WegeBerechnen;
       FeldeffekteBerechnen;
@@ -135,27 +135,27 @@ package body TexturenfelderBerechnenGrafik is
    
    
       
-   procedure RessourcenBerechnen
+   procedure RohstoffeBerechnen
    is
       use type Sf.sfUint32;
    begin
       
-      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.RessourcenAccess);
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => EingeleseneTexturenGrafik.RohstoffeAccess);
       
-      Feldgröße := (Texturengröße.x / FelderanzahlRessourcen.x, Texturengröße.y / FelderanzahlRessourcen.y);
+      Feldgröße := (Texturengröße.x / FelderanzahlRohstoffe.x, Texturengröße.y / FelderanzahlRohstoffe.y);
       
       AktuelleFeldposition := (1, 1);
       
-      RessourcenSchleife:
-      for RessourcenSchleifenwert in TexturenfelderVariablenGrafik.RessourcenArray'Range loop
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in TexturenfelderVariablenGrafik.RohstoffeArray'Range loop
          
-         TexturenfelderVariablenGrafik.Ressourcen (RessourcenSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
+         TexturenfelderVariablenGrafik.Rohstoffe (RohstoffeSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
                                                                                 Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
                                                                                 Integer (Feldgröße.x),
                                                                                 Integer (Feldgröße.y));
          
          if
-           AktuelleFeldposition.x < FelderanzahlRessourcen.x
+           AktuelleFeldposition.x < FelderanzahlRohstoffe.x
          then
             AktuelleFeldposition.x := AktuelleFeldposition.x + 1;
             
@@ -164,9 +164,9 @@ package body TexturenfelderBerechnenGrafik is
             AktuelleFeldposition.y := AktuelleFeldposition.y + 1;
          end if;
          
-      end loop RessourcenSchleife;
+      end loop RohstoffeSchleife;
       
-   end RessourcenBerechnen;
+   end RohstoffeBerechnen;
    
    
    

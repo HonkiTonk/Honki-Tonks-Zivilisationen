@@ -209,14 +209,11 @@ Kein Übergang
 Verschobener rückwärts Übergang
 Verschobener Übergang
 #################################
-Vorhandene Ressourcenmenge wählen:
-Keine
-Arm
-Wenig
-Mittel
-Viel
-Überfluss
-Überall
+Rohstoffmenge wählen:
+Mindestens ein Rohstoff pro Feld
+Mindestens zwei Rohstoffe pro Feld
+Mindestens drei Rohstoffe pro Feld
+Vier Rohstoffe pro Feld
 ~6~
 ~5~
 #################################
@@ -238,7 +235,7 @@ Kartenpole
 Kartenart
 Kartenform
 Kartentemperatur
-Kartenressourcen
+Kartenrohstoffe
 Speziesauswahl
 Schwierigkeitsgrad
 ~5~

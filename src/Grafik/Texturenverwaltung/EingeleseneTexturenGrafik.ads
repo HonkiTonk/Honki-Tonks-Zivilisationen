@@ -9,7 +9,7 @@ package EingeleseneTexturenGrafik is
    ZusatzgrundAccess : Sf.Graphics.sfTexture_Ptr := null;
 
    FlussAccess : Sf.Graphics.sfTexture_Ptr := null;
-   RessourcenAccess : Sf.Graphics.sfTexture_Ptr := null;
+   RohstoffeAccess : Sf.Graphics.sfTexture_Ptr := null;
    -- Auch auf Spezies erweitern, damit man verschieden aussehende Städte/Verbesserungen hat? äöü
    VerbesserungenAccess : Sf.Graphics.sfTexture_Ptr := null;
    WegeAccess : Sf.Graphics.sfTexture_Ptr := null;

@@ -8,7 +8,7 @@ with StadtRecords;
 with WeltkarteRecords;
 with KartenfluesseDatentypen;
 with KartenArrays;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KarteneffekteDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenwegeDatentypen;
@@ -105,9 +105,9 @@ package SchreibeWeltkarte is
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-   procedure Ressource
+   procedure Rohstoff
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

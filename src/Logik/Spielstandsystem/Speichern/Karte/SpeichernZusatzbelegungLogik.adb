@@ -16,7 +16,7 @@ package body SpeichernZusatzbelegungLogik is
       Zusatzgrund := (others => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum);
       Feldeffekte := (others => KartenRecordKonstanten.LeerEffekte);
       Fluss := (others => KartenfluesseDatentypen.Leer_Fluss_Enum);
-      Ressource := (others => KartenressourcenDatentypen.Leer_Ressource_Enum);
+      Rohstoff := (others => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum);
       Weg := (others => KartenwegeDatentypen.Leer_Weg_Enum);
       Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       Stadt := (others => StadtKonstanten.LeerStadt);
@@ -32,7 +32,7 @@ package body SpeichernZusatzbelegungLogik is
       
       Zusatzgrund (FelderanzahlExtern) := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
       Fluss (FelderanzahlExtern) := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      Ressource (FelderanzahlExtern) := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
+      Rohstoff (FelderanzahlExtern) := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
       Weg (FelderanzahlExtern) := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       Verbesserung (FelderanzahlExtern) := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
                   
@@ -67,7 +67,7 @@ package body SpeichernZusatzbelegungLogik is
          return False;
                         
       elsif
-        False = RessourceSchreiben (RessourceExtern      => Ressource,
+        False = RohstoffSchreiben (RohstoffExtern      => Rohstoff,
                                     DateiSpeichernExtern => DateiSpeichernExtern)
       then
          return False;
@@ -242,8 +242,8 @@ package body SpeichernZusatzbelegungLogik is
    
    
    
-   function RessourceSchreiben
-     (RessourceExtern : in RessourceArray;
+   function RohstoffSchreiben
+     (RohstoffExtern : in RohstoffArray;
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
@@ -253,13 +253,13 @@ package body SpeichernZusatzbelegungLogik is
       FeldelementeVorhanden := 0;
       AktuellesFeldelement := 1;
       
-      RessourceSchleife:
-      for RessourceSchleifenwert in RessourceExtern'Range loop
+      RohstoffSchleife:
+      for RohstoffSchleifenwert in RohstoffExtern'Range loop
          
          case
-           RessourceExtern (RessourceSchleifenwert)
+           RohstoffExtern (RohstoffSchleifenwert)
          is
-            when KartenressourcenDatentypen.Leer_Ressource_Enum =>
+            when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
                null;
                
             when others =>
@@ -268,7 +268,7 @@ package body SpeichernZusatzbelegungLogik is
          
          AktuellesFeldelement := AktuellesFeldelement * 2;
          
-      end loop RessourceSchleife;
+      end loop RohstoffSchleife;
       
       SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
                                            FeldelementeVorhanden);
@@ -283,31 +283,31 @@ package body SpeichernZusatzbelegungLogik is
             null;
       end case;
       
-      RessourceSpeichernSchleife:
-      for RessourceSpeichernSchleifenwert in reverse RessourceExtern'Range loop
+      RohstoffSpeichernSchleife:
+      for RohstoffSpeichernSchleifenwert in reverse RohstoffExtern'Range loop
          
          case
-           RessourceExtern (RessourceSpeichernSchleifenwert)
+           RohstoffExtern (RohstoffSpeichernSchleifenwert)
          is
-            when KartenressourcenDatentypen.Leer_Ressource_Enum =>
+            when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
                null;
                
             when others =>
-               KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                      RessourceExtern (RessourceSpeichernSchleifenwert));
+               KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                      RohstoffExtern (RohstoffSpeichernSchleifenwert));
          end case;
          
-      end loop RessourceSpeichernSchleife;
+      end loop RohstoffSpeichernSchleife;
       
       return True;
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernZusatzbelegungLogik.RessourceSchreiben: Konnte nicht gespeichert werden: "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernZusatzbelegungLogik.RohstoffSchreiben: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
-   end RessourceSchreiben;
+   end RohstoffSchreiben;
    
    
    

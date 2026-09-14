@@ -13,7 +13,7 @@ private with KartenKonstanten;
 private with KartenfluesseDatentypen;
 private with GrafikRecordKonstanten;
 private with StadtRecords;
-private with KartenressourcenDatentypen;
+private with KartenrohstoffeDatentypen;
 private with KartenwegeDatentypen;
 
 with LeseGrenzen;
@@ -39,7 +39,7 @@ private
    
    FeldBewirtschaftet : Boolean;
    
-   KartenfeldRessource : KartenressourcenDatentypen.Ressourcen_Enum;
+   KartenfeldRohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
    
    KartenfeldFluss : KartenfluesseDatentypen.Fluss_Enum;
    
@@ -136,7 +136,7 @@ private
                  FeldgrößeExtern.y >= 0.00
               );
 
-   procedure RessourceZeichnen
+   procedure RohstoffZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)

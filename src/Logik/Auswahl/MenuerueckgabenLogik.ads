@@ -49,7 +49,7 @@ private
                                   MenueDatentypen.Sonstige_Einstellungen_Menü_Enum => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Sonstige_Einstellungen_Menü_Enum) - AbzugZusatzauswahl,
                                   MenueDatentypen.Debug_Menü_Enum                  => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Debug_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartenart_Menü_Enum              => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenart_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Kartenressourcen_Menü_Enum       => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenressourcen_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Kartenrohstoffe_Menü_Enum       => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenrohstoffe_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Schwierigkeitsgrad_Menü_Enum     => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartentemperatur_Menü_Enum       => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartentemperatur_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Spezies_Menü_Enum                => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spezies_Menü_Enum) - AbzugFertig,

@@ -89,7 +89,7 @@ package ChangelogNovember2022 is
    -- Kartengenerator an die ganzen Änderungen angepasst.
    -- Basisgrundplatzierungssystem fertiggestellt, es ist jetzt möglich Hügel und Gebirge über mehrere Felder zu ziehen.
    -- Code vereinfacht.
-   -- Die Änderung der Ressourcenmenge hat jetzt wieder einen Einfluss auf die vorhandenen Ressourcen.
+   -- Die Änderung der Rohstoffemenge hat jetzt wieder einen Einfluss auf die vorhandenen Rohstoffe.
    -- Neue Beispielbilder erstellt.
    -- KI überarbeitet.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/entfernt.
@@ -269,13 +269,13 @@ package ChangelogNovember2022 is
 
    -- Version 0.04.3130 => 0.04.3220 (09.11.2022):
    
-   -- Hochwertiges Holz als Ressource hinzugefügt.
+   -- Hochwertiges Holz als Rohstoff hinzugefügt.
    -- KI überarbeitet.
    -- Berechnungssystem für das Anlegen von Verbesserungen durch die KI überarbeitet.
    -- KI entfernt jetzt keinen Wald mehr wenn sich auf diesem hochwertiges Holz befindet.
    -- Das Eentfernen eines Waldes/Dschungels entfernt jetzt auch hochwertiges Holz.
    -- Bewegungsplanberechnung der KI überarbeitet.
-   -- Fehler korrigiert der es erlaubte mehr als das Maximum an Ressourcen in einer Stadt zu haben und dadurch zu einem Absturz führte.
+   -- Fehler korrigiert der es erlaubte mehr als das Maximum an Rohstoffe in einer Stadt zu haben und dadurch zu einem Absturz führte.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    

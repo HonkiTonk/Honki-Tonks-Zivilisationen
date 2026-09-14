@@ -162,8 +162,8 @@ package ChangelogOktober2022 is
    
    -- Neue Texturen erstellt.
    -- Alte Texturen überarbeitet.
-   -- Ressourcen werden jetzt über den Flüssen angezeigt, statt wie bisher darunter.
-   -- Vollständigen Satz an Ressourcentexturen erstellt.
+   -- Rohstoffe werden jetzt über den Flüssen angezeigt, statt wie bisher darunter.
+   -- Vollständigen Satz an Rohstoffetexturen erstellt.
    -- Fehler korrigiert der die Anzeige des Endbildes verhinderte.
    -- Eigenes Bild für die Planetensprengung durch den Einsatz einer PZB erstellt.
    -- Neue Beispielbilder erstellt.

@@ -3,16 +3,16 @@ private with SystemDatentypenHTSEB;
 with KartenDatentypen;
 with KartenRecords;
 
-private with KartenressourcenDatentypen;
+private with KartenrohstoffeDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
-package KartengeneratorUnterwasserressourcenLogik is
+package KartengeneratorWasserrohstoffeLogik is
    pragma Elaborate_Body;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
 
-   procedure KartengeneratorUnterwasserressourcen
+   procedure KartengeneratorWasserrohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
      with
        Pre => (
@@ -23,17 +23,17 @@ package KartengeneratorUnterwasserressourcenLogik is
 
 private
 
-   WelcheRessource : KartenressourcenDatentypen.Ressourcen_Enum;
+   WelcheRohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
 
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
    Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
 
 
 
-   function RessourceZusatzberechnungen
+   function RohstoffZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Unterfläche_Wasser_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Wasser_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -43,8 +43,8 @@ private
 
    function ZusatzberechnungFisch
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Wasser_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -54,8 +54,8 @@ private
 
    function ZusatzberechnungWal
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Wasser_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -63,15 +63,4 @@ private
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-   function ZusatzberechnungHochwertigesHolz
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-
-end KartengeneratorUnterwasserressourcenLogik;
+end KartengeneratorWasserrohstoffeLogik;

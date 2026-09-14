@@ -34,7 +34,7 @@ package StadtfeldBewertenLogik is
 private
    
    NahrungGesamt : ProduktionDatentypen.Feldproduktion;
-   RessourcenGesamt : ProduktionDatentypen.Feldproduktion;
+   RohstoffeGesamt : ProduktionDatentypen.Feldproduktion;
    GeldGesamt : ProduktionDatentypen.Feldproduktion;
    WissenGesamt : ProduktionDatentypen.Feldproduktion;
    

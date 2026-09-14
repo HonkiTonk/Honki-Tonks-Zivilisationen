@@ -130,8 +130,8 @@ package body SchreibenDatenbankenLogik is
       KartenDatenbank.KartenflusslisteArray'Write (Stream (File => DateiKartendatenbank),
                                                    KartenDatenbank.Kartenflussliste);
       
-      KartenDatenbank.KartenressourcenlisteArray'Write (Stream (File => DateiKartendatenbank),
-                                                        KartenDatenbank.Kartenressourcenliste);
+      KartenDatenbank.KartenrohstoffelisteArray'Write (Stream (File => DateiKartendatenbank),
+                                                        KartenDatenbank.Kartenrohstoffeliste);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiKartendatenbank,
                                                  NameExtern     => VerzeichnisKonstanten.KartenDatenbank);

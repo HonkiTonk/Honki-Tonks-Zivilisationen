@@ -67,7 +67,7 @@ package StadtRecords is
    type GebäudeRecord is record
       
       Vorhanden : Boolean;
-      InvestierteRessourcen : ProduktionDatentypen.Produktion;
+      InvestierteRohstoffe : ProduktionDatentypen.Produktion;
       
    end record;
 
@@ -78,7 +78,7 @@ package StadtRecords is
    type EinwohnerArbeiterArray is array (1 .. 2) of StadtDatentypen.EinwohnerBasis;
    
    -- XXX äöü
-   -- Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Ressourcen gespeichert werden und beim Wechsel des Bauprojekts bleiben die angefangenen Gebäude erhalten. äöü
+   -- Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Rohstoffe gespeichert werden und beim Wechsel des Bauprojekts bleiben die angefangenen Gebäude erhalten. äöü
    -- Sollte ich das auch für die Forschung oder für Einheiten einbauen? äöü
    type StadtMeldungenArray is array (StadtDatentypen.Stadt_Meldung_Art_Enum'Range) of StadtDatentypen.Stadt_Meldung_Enum;
    type UmgebungBewirtschaftungArray is array (KartenDatentypen.SenkrechteUmgebungDrei'Range, KartenDatentypen.WaagerechteUmgebungDrei'Range) of Boolean;

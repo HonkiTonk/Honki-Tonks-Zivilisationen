@@ -3,8 +3,8 @@ package TextnummernKonstanten is
    
    ZeugEinwohner : constant Positive := 1;
    ZeugNahrungsmittel : constant Positive := ZeugEinwohner + 1;
-   ZeugRessourcenproduktion : constant Positive := ZeugNahrungsmittel + 1;
-   ZeugGeldproduktion : constant Positive := ZeugRessourcenproduktion + 1;
+   ZeugRohstoffeproduktion : constant Positive := ZeugNahrungsmittel + 1;
+   ZeugGeldproduktion : constant Positive := ZeugRohstoffeproduktion + 1;
    ZeugWissensproduktion : constant Positive := ZeugGeldproduktion + 1;
    ZeugKorruption : constant Positive := ZeugWissensproduktion + 1;
    ZeugBauprojekt : constant Positive := ZeugKorruption + 1;
@@ -145,8 +145,8 @@ package TextnummernKonstanten is
    LadezeitLandschaft : constant Positive := LadezeitKüstenwasser + 1;
    LadezeitUnterfläche : constant Positive := LadezeitLandschaft + 1;
    LadezeitFlüsse : constant Positive := LadezeitUnterfläche + 1;
-   LadezeitRessourcen : constant Positive := LadezeitFlüsse + 1;
-   LadezeitSpezies : constant Positive := LadezeitRessourcen + 1;
+   LadezeitRohstoffe : constant Positive := LadezeitFlüsse + 1;
+   LadezeitSpezies : constant Positive := LadezeitRohstoffe + 1;
    LadezeitRechnet : constant Positive := LadezeitSpezies + 1;
    LadezeitEinheiten : constant Positive := LadezeitRechnet + 1;
    LadezeitStädte : constant Positive := LadezeitEinheiten + 1;

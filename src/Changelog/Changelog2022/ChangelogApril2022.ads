@@ -26,7 +26,7 @@ package ChangelogApril2022 is
    -- Kartengenerator für die Unterfläche vorerst fertig überarbeitet.
    -- Flussgenerator fürs Erste überarbeitet.
    -- Flussplatzierungssystem überarbeitet.
-   -- Ressourcengenerator fürs Erste überarbeitet.
+   -- Rohstoffegenerator fürs Erste überarbeitet.
    -- Fehler behoben der das Ausladen von Einheiten verhinderte.
    -- Angefangen das Wegeplatzierungssystem an das neue Flussplatzierungssystem anzupassen.
    -- Fehler im Passierbarkeitssystem behoben, der es unmöglich machte sich auf Straßen zu bewegen.

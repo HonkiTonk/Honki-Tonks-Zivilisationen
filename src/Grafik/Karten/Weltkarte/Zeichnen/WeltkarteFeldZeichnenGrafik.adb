@@ -72,26 +72,26 @@ package body WeltkarteFeldZeichnenGrafik is
    
    
    
-   procedure RessourceZeichnen
+   procedure RohstoffZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      KartenfeldRessource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
+      KartenfeldRohstoff := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
       
       case
-        KartenfeldRessource
+        KartenfeldRohstoff
       is
-         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.RessourcenAccess,
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.RessourcenRechteck (RessourceExtern => KartenfeldRessource),
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.RohstoffeAccess,
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffExtern => KartenfeldRohstoff),
                                                             PositionExtern         => PositionExtern,
                                                             DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;
       
-   end RessourceZeichnen;
+   end RohstoffZeichnen;
 
 end WeltkarteFeldZeichnenGrafik;

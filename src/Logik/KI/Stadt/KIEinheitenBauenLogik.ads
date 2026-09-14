@@ -124,7 +124,7 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
      
-   function RessourcenKostenBewerten
+   function RohstoffeKostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung

@@ -5,7 +5,7 @@ with StadtKonstanten;
 with KartenfluesseDatentypen;
 with DiplomatieDatentypen;
 with SystemDatentypen;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KarteneffekteDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenwegeDatentypen;
@@ -193,8 +193,8 @@ package body PZBEingesetztLogik is
                              WegExtern         => KartenwegeDatentypen.Leer_Weg_Enum);
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
-      SchreibeWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern,
-                                   RessourceExtern   => KartenressourcenDatentypen.Leer_Ressource_Enum);
+      SchreibeWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern,
+                                   RohstoffExtern   => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum);
       
    end FeldVernichten;
 

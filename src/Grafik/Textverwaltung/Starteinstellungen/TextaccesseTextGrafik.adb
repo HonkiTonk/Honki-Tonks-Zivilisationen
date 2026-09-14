@@ -262,13 +262,13 @@ package body TextaccesseTextGrafik is
             
       
       
-      RessourcenmengeSchleife:
-      for RessourcenmengeSchleifenwert in TextaccessVariablen.RessourcenmengeAccess'Range loop
+      RohstoffemengeSchleife:
+      for RohstoffemengeSchleifenwert in TextaccessVariablen.RohstoffemengeAccess'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RessourcenmengeAccess (RessourcenmengeSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => Menuetexte.Ressourcenmenge (RessourcenmengeSchleifenwert)));
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RohstoffemengeAccess (RohstoffemengeSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Rohstoffemenge (RohstoffemengeSchleifenwert)));
          
-      end loop RessourcenmengeSchleife;
+      end loop RohstoffemengeSchleife;
             
       
             
@@ -535,13 +535,13 @@ package body TextaccesseTextGrafik is
       
       
       
-      RessourcenSchleife:
-      for RessourcenSchleifenwert in TextaccessVariablen.RessourcenAccess'Range loop
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in TextaccessVariablen.RohstoffeAccess'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RessourcenAccess (RessourcenSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => Kartentexte.Ressourcen (RessourcenSchleifenwert)));
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RohstoffeAccess (RohstoffeSchleifenwert),
+                                            str  => To_Wide_Wide_String (Source => Kartentexte.Rohstoffe (RohstoffeSchleifenwert)));
          
-      end loop RessourcenSchleife;
+      end loop RohstoffeSchleife;
       
       
       

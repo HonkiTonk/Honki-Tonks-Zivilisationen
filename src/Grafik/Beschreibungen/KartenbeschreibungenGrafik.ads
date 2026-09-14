@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenzusatzgrundDatentypen;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KarteneffekteDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenfluesseDatentypen;
@@ -57,20 +57,20 @@ package KartenbeschreibungenGrafik is
                   To_Wide_Wide_String (Source => LangbeschreibungFluss'Result)'Length > 0
                );
 
-   function KurzbeschreibungRessource
-     (KartenRessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
+   function KurzbeschreibungRohstoff
+     (KartenRohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
-                  To_Wide_Wide_String (Source => KurzbeschreibungRessource'Result)'Length > 0
+                  To_Wide_Wide_String (Source => KurzbeschreibungRohstoff'Result)'Length > 0
                );
 
-   function LangbeschreibungRessource
-     (KartenRessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
+   function LangbeschreibungRohstoff
+     (KartenRohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
-                  To_Wide_Wide_String (Source => LangbeschreibungRessource'Result)'Length > 0
+                  To_Wide_Wide_String (Source => LangbeschreibungRohstoff'Result)'Length > 0
                );
 
    function KurzbeschreibungFeldeffekte

@@ -70,7 +70,7 @@ package ChangelogJuli2021 is
    -- Die Leerwerte in GlobaleKonstanten und die Datenbank übersichtlicher gestaltet.
    -- Erzeugung von Einheiten vereinfacht und verallgemeinert.
    -- Einheiten bekommen beim Erzeugen die Herstellungsstadt als Heimatstadt zugewiesen.
-   -- Einheiten und Gebäude können jetzt permanente Kosten für verschiedene Ressourcen haben.
+   -- Einheiten und Gebäude können jetzt permanente Kosten für verschiedene Rohstoffe haben.
    -- Einfaches Beförderungssystem für siegreiche Einheiten eingebaut.
    -- Fehler behoben der dazu führte dass über das TransportArray hinausgeloopt wurde.
    -- Es ist jetzt nicht mehr möglich Kartenfelder ohne Verbesserungen zu plündern.

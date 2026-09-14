@@ -9,7 +9,7 @@ with Kampfgrenzen;
 
 package body KampfwerteEinheitErmittelnLogik is
  
-   -- Einheitenwert * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte * Rang
+   -- Einheitenwert * Verbesserung * Basisgrund * Zusatzgrund * Rohstoff * Fluss * Straße * Gebäudebonus * Feldeffekte * Rang
    function Gesamtverteidigung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
@@ -60,7 +60,7 @@ package body KampfwerteEinheitErmittelnLogik is
    
    
    
-   -- Einheitenwert * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte * Rang
+   -- Einheitenwert * Verbesserung * Basisgrund * Zusatzgrund * Rohstoff * Fluss * Straße * Gebäudebonus * Feldeffekte * Rang
    function Gesamtangriff
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)

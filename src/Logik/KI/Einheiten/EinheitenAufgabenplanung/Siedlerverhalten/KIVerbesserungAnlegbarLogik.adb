@@ -17,15 +17,15 @@ package body KIVerbesserungAnlegbarLogik is
       return Boolean
    is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
-      use type KartenressourcenDatentypen.Ressourcen_Enum;
+      use type KartenrohstoffeDatentypen.Rohstoffe_Enum;
    begin
       
-      Ressourcen := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
+      Rohstoffe := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
       
       case
-        Ressourcen
+        Rohstoffe
       is
-         when KartenressourcenDatentypen.Hochwertiges_Holz_Enum =>
+         when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
             return False;
             
          when others =>
@@ -36,7 +36,7 @@ package body KIVerbesserungAnlegbarLogik is
         MineAnlegen (KoordinatenExtern          => KoordinatenExtern,
                      EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                      BasisgrundExtern           => Basisgrund,
-                     RessourceExtern            => Ressourcen)
+                     RohstoffExtern            => Rohstoffe)
       is
          when True =>
             return True;
@@ -78,11 +78,11 @@ package body KIVerbesserungAnlegbarLogik is
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return Boolean
    is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
-      use type KartenressourcenDatentypen.Ressourcen_Enum;
+      use type KartenrohstoffeDatentypen.Rohstoffe_Enum;
    begin
       
       case
@@ -103,11 +103,11 @@ package body KIVerbesserungAnlegbarLogik is
         or
           BasisgrundExtern = KartenbasisgrundDatentypen.Gebirge_Enum
           or
-            RessourceExtern = KartenressourcenDatentypen.Kohle_Enum
+            RohstoffExtern = KartenrohstoffeDatentypen.Kohle_Enum
             or
-              RessourceExtern = KartenressourcenDatentypen.Eisen_Enum
+              RohstoffExtern = KartenrohstoffeDatentypen.Eisen_Enum
               or
-                RessourceExtern = KartenressourcenDatentypen.Gold_Enum
+                RohstoffExtern = KartenrohstoffeDatentypen.Gold_Enum
       then
          SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                  BeschäftigungExtern        => AufgabenDatentypen.Mine_Bauen_Enum);

@@ -10,7 +10,7 @@ with Kampfgrenzen;
 -- Bonus auf Basis der Stadtgröße einbauen? äöü
 package body KampfwerteStadtErmittelnLogik is
 
-   -- Einwohner * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte
+   -- Einwohner * Verbesserung * Basisgrund * Zusatzgrund * Rohstoff * Fluss * Straße * Gebäudebonus * Feldeffekte
    function AktuelleVerteidigungStadt
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
@@ -62,7 +62,7 @@ package body KampfwerteStadtErmittelnLogik is
    
    
    
-   -- Einwohner * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte
+   -- Einwohner * Verbesserung * Basisgrund * Zusatzgrund * Rohstoff * Fluss * Straße * Gebäudebonus * Feldeffekte
    function AktuellerAngriffStadt
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;

@@ -46,7 +46,7 @@ private
    
    Flüsse : KartenDatenbank.KartenflusslisteArray;
    
-   Ressourcen : KartenDatenbank.KartenressourcenlisteArray;
+   Rohstoffe : KartenDatenbank.KartenrohstoffelisteArray;
    
    Verbesserung : VerbesserungenDatenbank.VerbesserungenlisteArray;
    

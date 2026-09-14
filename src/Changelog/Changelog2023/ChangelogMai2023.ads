@@ -43,7 +43,7 @@ package ChangelogMai2023 is
    
    -- Weiter am neuen Kartenfelderproduktionssystem gearbeitet.
    -- Unnötigen Code gelöscht.
-   -- Nahrungsproduktionsbonus durch Ressourcen überarbeitet.
+   -- Nahrungsproduktionsbonus durch Rohstoffe überarbeitet.
    -- Nahrungsproduktionsbonus durch Verbesserungen überarbeitet.
    -- Code besser aufgeteilt.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.

@@ -192,10 +192,10 @@ package body LeseGebaeudeDatenbank is
 
 
       
-   function RessourceBenötigt
+   function RohstoffBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -206,10 +206,10 @@ package body LeseGebaeudeDatenbank is
             return False;
             
          when others =>
-            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).RessourceBenötigt (RessourceExtern);
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).RohstoffBenötigt (RohstoffExtern);
       end case;
       
-   end RessourceBenötigt;
+   end RohstoffBenötigt;
    
    
    

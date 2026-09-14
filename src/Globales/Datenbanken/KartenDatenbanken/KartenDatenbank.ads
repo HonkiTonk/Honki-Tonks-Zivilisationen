@@ -1,7 +1,7 @@
 with KartenzusatzgrundDatentypen;
 with KartendatenbankRecord;
 with KartenfluesseDatentypen;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KartenbasisgrundDatentypen;
 
 package KartenDatenbank is
@@ -17,7 +17,7 @@ package KartenDatenbank is
    type KartenflusslisteArray is array (KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    Kartenflussliste : KartenflusslisteArray;
    
-   type KartenressourcenlisteArray is array (KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
-   Kartenressourcenliste : KartenressourcenlisteArray;
+   type KartenrohstoffelisteArray is array (KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
+   Kartenrohstoffeliste : KartenrohstoffelisteArray;
    
 end KartenDatenbank;

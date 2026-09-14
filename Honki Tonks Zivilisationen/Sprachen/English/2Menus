@@ -209,14 +209,11 @@ Transition
 Shifted backwards transition
 Shifted transition
 #################################
-Select existing resource set:
-None
-Poor
-Little
-Medium
-Much
-Abundance
-Everywhere
+Set resources:
+Mindestens ein Rohstoff pro Feld
+Mindestens zwei Rohstoffe pro Feld
+Mindestens drei Rohstoffe pro Feld
+Vier Rohstoffe pro Feld
 ~6~
 ~5~
 #################################

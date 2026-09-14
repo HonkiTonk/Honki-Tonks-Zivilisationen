@@ -299,13 +299,13 @@ package body TextaccesseSchriftfarbeGrafik is
             
       
       
-      RessourcenmengeSchleife:
-      for RessourcenmengeSchleifenwert in TextaccessVariablen.RessourcenmengeAccess'Range loop
+      RohstoffemengeSchleife:
+      for RohstoffemengeSchleifenwert in TextaccessVariablen.RohstoffemengeAccess'Range loop
          
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RessourcenmengeAccess (RessourcenmengeSchleifenwert),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RohstoffemengeAccess (RohstoffemengeSchleifenwert),
                                     color => StandardExtern);
          
-      end loop RessourcenmengeSchleife;
+      end loop RohstoffemengeSchleife;
             
       
             
@@ -641,13 +641,13 @@ package body TextaccesseSchriftfarbeGrafik is
       
       
       
-      RessourcenSchleife:
-      for RessourcenSchleifenwert in TextaccessVariablen.RessourcenAccess'Range loop
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in TextaccessVariablen.RohstoffeAccess'Range loop
          
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RessourcenAccess (RessourcenSchleifenwert),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RohstoffeAccess (RohstoffeSchleifenwert),
                                     color => StandardExtern);
          
-      end loop RessourcenSchleife;
+      end loop RohstoffeSchleife;
       
       
       

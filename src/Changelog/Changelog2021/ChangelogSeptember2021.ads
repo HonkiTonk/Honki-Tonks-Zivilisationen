@@ -273,7 +273,7 @@ package ChangelogSeptember2021 is
    
    -- Fehler behoben durch den es nicht möglich war eine ausgewählte Spezies wieder abzuwählen.
    -- Zusätzliche Prüfungen eingebaut um fehlerhafte Werte zu korrigieren.
-   -- Vorhandene Ressourcen, positiv wie negativ, werden jetzt nicht mehr verworfen wenn man das Bauprojekt wechselt.
+   -- Vorhandene Rohstoffe, positiv wie negativ, werden jetzt nicht mehr verworfen wenn man das Bauprojekt wechselt.
    -- Eine negative Produktionsrate führt bei fehlendem Bauprojekt zu Geldabzug.
    -- Unnötigen Code gelöscht.
    -- Kleinigkeiten korrigiert/angepasst/überarbeitet.

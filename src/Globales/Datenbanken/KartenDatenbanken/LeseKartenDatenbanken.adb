@@ -130,23 +130,23 @@ package body LeseKartenDatenbanken is
    
    
    
-   function BewertungRessource
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
+   function BewertungRohstoff
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
    is begin
       
       case
-        RessourceExtern
+        RohstoffExtern
       is
-         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
             return False;
             
          when others =>
-            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Bewertung (SpeziesExtern);
+            return KartenDatenbank.Kartenrohstoffeliste (RohstoffExtern).Bewertung (SpeziesExtern);
       end case;
       
-   end BewertungRessource;
+   end BewertungRohstoff;
    
    
    
@@ -214,24 +214,24 @@ package body LeseKartenDatenbanken is
    
    
    
-   function ProduktionRessourcen
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
+   function ProduktionRohstoffe
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
       case
-        RessourceExtern
+        RohstoffExtern
       is
-         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Wirtschaft (ProduktionsartExtern, SpeziesExtern);
+            return KartenDatenbank.Kartenrohstoffeliste (RohstoffExtern).Wirtschaft (ProduktionsartExtern, SpeziesExtern);
       end case;
       
-   end ProduktionRessourcen;
+   end ProduktionRohstoffe;
    
    
    
@@ -299,23 +299,23 @@ package body LeseKartenDatenbanken is
    
    
    
-   function KampfRessource
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
+   function KampfRohstoff
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
    is begin
       
       case
-        RessourceExtern
+        RohstoffExtern
       is
-         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
             return KampfKonstanten.LeerBonus;
             
          when others =>
-            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (KampfartExtern, SpeziesExtern);
+            return KartenDatenbank.Kartenrohstoffeliste (RohstoffExtern).Kampf (KampfartExtern, SpeziesExtern);
       end case;
       
-   end KampfRessource;
+   end KampfRohstoff;
 
 end LeseKartenDatenbanken;

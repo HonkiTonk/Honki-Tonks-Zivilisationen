@@ -36,7 +36,7 @@ package body StadtproduktionLogik is
       WeitereNahrungsproduktionÄnderungen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       WeitereProduktionrateÄnderungen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      -- Geldgewinnung muss immer nach der Produktionsrate ausgeführt werden, da bei keinem Bauprojekt sonst die Ressourcenumwandlung nach Geld nicht korrekt ist.
+      -- Geldgewinnung muss immer nach der Produktionsrate ausgeführt werden, da bei keinem Bauprojekt sonst die Rohstoffeumwandlung nach Geld nicht korrekt ist.
       case
         StadtSpeziesNummerExtern.Spezies
       is
@@ -222,25 +222,25 @@ package body StadtproduktionLogik is
       is
          -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
          when 0 =>
-            RessourcenverbrauchKorruptionMultiplikator := -0;
+            RohstoffeverbrauchKorruptionMultiplikator := -0;
             
          when 1 .. 4 =>
-            RessourcenverbrauchKorruptionMultiplikator := -0;
+            RohstoffeverbrauchKorruptionMultiplikator := -0;
             
          when 5 .. 7 =>
-            RessourcenverbrauchKorruptionMultiplikator := -0;
+            RohstoffeverbrauchKorruptionMultiplikator := -0;
             
          when 8 .. 10 =>
-            RessourcenverbrauchKorruptionMultiplikator := -0;
+            RohstoffeverbrauchKorruptionMultiplikator := -0;
             
          when others =>
-            RessourcenverbrauchKorruptionMultiplikator := -0;
+            RohstoffeverbrauchKorruptionMultiplikator := -0;
       end case;
       
       SchreibeStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                           ProduktionrateExtern     => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                                                                                                EinwohnerArbeiterExtern  => True))
-                                          * RessourcenverbrauchKorruptionMultiplikator,
+                                          * RohstoffeverbrauchKorruptionMultiplikator,
                                           ÄndernSetzenExtern       => True);
       
    end WeitereProduktionrateÄnderungen;

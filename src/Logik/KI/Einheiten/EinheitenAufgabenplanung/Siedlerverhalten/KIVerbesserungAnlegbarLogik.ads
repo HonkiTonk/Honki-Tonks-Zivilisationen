@@ -4,7 +4,7 @@ with EinheitenKonstanten;
 with SpeziesDatentypen;
 with KartenDatentypen;
 
-private with KartenressourcenDatentypen;
+private with KartenrohstoffeDatentypen;
 private with KartenbasisgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
@@ -36,7 +36,7 @@ private
    
    Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
 
-   Ressourcen : KartenressourcenDatentypen.Ressourcen_Enum;
+   Rohstoffe : KartenrohstoffeDatentypen.Rohstoffe_Enum;
    
    
    
@@ -44,7 +44,7 @@ private
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return Boolean
      with
        Pre => (

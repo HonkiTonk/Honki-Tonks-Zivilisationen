@@ -23,7 +23,7 @@ package MenueKonstanten is
                                            MenueDatentypen.Debug_Menü_Enum                  => 11,
                                            MenueDatentypen.Kartenart_Menü_Enum              => 9,
                                            MenueDatentypen.Kartentemperatur_Menü_Enum       => 8,
-                                           MenueDatentypen.Kartenressourcen_Menü_Enum       => 10,
+                                           MenueDatentypen.Kartenrohstoffe_Menü_Enum        => 7,
                                            MenueDatentypen.Schwierigkeitsgrad_Menü_Enum     => 6,
                                            MenueDatentypen.Kartengröße_Menü_Enum            => 17,
                                            MenueDatentypen.Kartenebene_Menü_Enum            => 10,
@@ -65,7 +65,7 @@ package MenueKonstanten is
 
                                                  MenueDatentypen.Kartenart_Menü_Enum              => EndeMenü (MenueDatentypen.Kartenart_Menü_Enum),
                                                  MenueDatentypen.Kartentemperatur_Menü_Enum       => EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum),
-                                                 MenueDatentypen.Kartenressourcen_Menü_Enum       => EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum),
+                                                 MenueDatentypen.Kartenrohstoffe_Menü_Enum        => EndeMenü (MenueDatentypen.Kartenrohstoffe_Menü_Enum),
                                                  MenueDatentypen.Schwierigkeitsgrad_Menü_Enum     => EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum),
                                                  -- Die -2 kommen von der zusätzlichen Textanzeige (bsw. aktuelle Kartengröße).
                                                  MenueDatentypen.Kartengröße_Menü_Enum            => EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 2,

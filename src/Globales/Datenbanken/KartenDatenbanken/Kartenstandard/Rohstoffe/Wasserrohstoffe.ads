@@ -4,14 +4,14 @@ with ProduktionKonstanten;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KampfKonstanten;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 
-package Wasserressourcen is
+package Wasserrohstoffe is
    pragma Pure;
 
-   type WasserressourcenlisteArray is array (KartenressourcenDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
-   Wasserressourcenliste : constant WasserressourcenlisteArray := (
-                                                                   KartenressourcenDatentypen.Fisch_Enum =>
+   type WasserrohstoffelisteArray is array (KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Wasser_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
+   Wasserrohstoffeliste : constant WasserrohstoffelisteArray := (
+                                                                   KartenrohstoffeDatentypen.Fisch_Enum =>
                                                                      (
                                                                       Bewertung  =>
                                                                         (
@@ -174,7 +174,7 @@ package Wasserressourcen is
                                                                         )
                                                                      ),
       
-                                                                   KartenressourcenDatentypen.Wal_Enum =>
+                                                                   KartenrohstoffeDatentypen.Wal_Enum =>
                                                                      (
                                                                       Bewertung  =>
                                                                         (
@@ -338,4 +338,4 @@ package Wasserressourcen is
                                                                      )
                                                                   );
 
-end Wasserressourcen;
+end Wasserrohstoffe;

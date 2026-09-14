@@ -165,22 +165,22 @@ package body SchreibeWeltkarte is
    
    
    
-   procedure Ressource
+   procedure Rohstoff
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
    is begin
       
       case
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Ressource: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Rohstoff: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Ressource := RessourceExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoff := RohstoffExtern;
       end case;
       
-   end Ressource;
+   end Rohstoff;
    
    
    

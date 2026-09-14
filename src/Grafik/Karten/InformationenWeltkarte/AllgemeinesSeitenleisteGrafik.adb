@@ -33,7 +33,7 @@ package body AllgemeinesSeitenleisteGrafik is
             AktuelleKoordinaten := LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
             
             AnzuzeigenderText (1) := Gesamtgrund (GesamtgrundExtern => LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten));
-            AnzuzeigenderText (2) := Ressource (RessourceExtern => LeseWeltkarte.Ressource (KoordinatenExtern => AktuelleKoordinaten));
+            AnzuzeigenderText (2) := Rohstoff (RohstoffExtern => LeseWeltkarte.Rohstoff (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (3) := Verbesserung (VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (4) := Weg (WegExtern => LeseWeltkarte.Weg (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (5) := Fluss (FlussExtern => LeseWeltkarte.Fluss (KoordinatenExtern => AktuelleKoordinaten));
@@ -89,22 +89,22 @@ package body AllgemeinesSeitenleisteGrafik is
    
    
    
-   function Ressource
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
+   function Rohstoff
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
       case
-        RessourceExtern
+        RohstoffExtern
       is
-         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
             return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
-            return KartenbeschreibungenGrafik.KurzbeschreibungRessource (KartenRessourceExtern => RessourceExtern);
+            return KartenbeschreibungenGrafik.KurzbeschreibungRohstoff (KartenRohstoffExtern => RohstoffExtern);
       end case;
       
-   end Ressource;
+   end Rohstoff;
    
    
    

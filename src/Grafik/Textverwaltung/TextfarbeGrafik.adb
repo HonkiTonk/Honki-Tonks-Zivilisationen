@@ -59,8 +59,8 @@ package body TextfarbeGrafik is
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
             AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur);
             
-         when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenressourcenmenge_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen);
+         when MenueDatentypen.Kartenrohstoffe_Menü_Enum =>
+            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenrohstoffemenge_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenrohstoffe);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
             AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (LeseAllgemeines.Schwierigkeitsgrad);

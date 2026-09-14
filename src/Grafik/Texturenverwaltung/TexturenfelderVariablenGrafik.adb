@@ -66,25 +66,25 @@ package body TexturenfelderVariablenGrafik is
    
    
    
-   function RessourcenRechteck
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
+   function RohstoffeRechteck
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return Ressourcen (RessourceExtern);
+      return Rohstoffe (RohstoffExtern);
       
-   end RessourcenRechteck;
+   end RohstoffeRechteck;
    
    
    
-   function RessourcenVektor
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum)
+   function RohstoffeVektor
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Ressourcen (RessourceExtern).width), Float (Ressourcen (RessourceExtern).height));
+      return (Float (Rohstoffe (RohstoffExtern).width), Float (Rohstoffe (RohstoffExtern).height));
       
-   end RessourcenVektor;
+   end RohstoffeVektor;
    
    
    

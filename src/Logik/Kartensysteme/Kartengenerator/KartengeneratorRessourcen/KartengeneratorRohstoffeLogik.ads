@@ -1,13 +1,13 @@
 private with KartenDatentypen;
 
-package KartengeneratorRessourcenLogik is
+package KartengeneratorRohstoffeLogik is
    pragma Elaborate_Body;
    
-   procedure GenerierungRessourcen;
+   procedure GenerierungRohstoffe;
 
 private
             
-   procedure RessourcenGenerierung
+   procedure RohstoffeGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet;
       LadezeitbasisExtern : in Float)
      with
@@ -17,4 +17,4 @@ private
                  LadezeitbasisExtern <= 100.00
               );
 
-end KartengeneratorRessourcenLogik;
+end KartengeneratorRohstoffeLogik;

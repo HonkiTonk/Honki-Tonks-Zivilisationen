@@ -293,13 +293,13 @@ package body TextaccesseSchriftstilGrafik is
             
       
       
-      RessourcenmengeSchleife:
-      for RessourcenmengeSchleifenwert in TextaccessVariablen.RessourcenmengeAccess'Range loop
+      RohstoffemengeSchleife:
+      for RohstoffemengeSchleifenwert in TextaccessVariablen.RohstoffemengeAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.RessourcenmengeAccess (RessourcenmengeSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.RohstoffemengeAccess (RohstoffemengeSchleifenwert),
                                     style => StilExtern);
          
-      end loop RessourcenmengeSchleife;
+      end loop RohstoffemengeSchleife;
             
       
             
@@ -634,13 +634,13 @@ package body TextaccesseSchriftstilGrafik is
       
       
       
-      RessourcenSchleife:
-      for RessourcenSchleifenwert in TextaccessVariablen.RessourcenAccess'Range loop
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in TextaccessVariablen.RohstoffeAccess'Range loop
          
-         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.RessourcenAccess (RessourcenSchleifenwert),
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.RohstoffeAccess (RohstoffeSchleifenwert),
                                     style => StilExtern);
          
-      end loop RessourcenSchleife;
+      end loop RohstoffeSchleife;
       
       
       

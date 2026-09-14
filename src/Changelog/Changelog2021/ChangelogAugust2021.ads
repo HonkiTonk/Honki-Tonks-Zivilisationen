@@ -27,7 +27,7 @@ package ChangelogAugust2021 is
    
    -- Version 0.00.8520 => 0.00.8530 (29.08.2021):
    
-   -- Die Darstellung/Änderung der globalen Ressourcenwerte werden jetzt direkt angezeigt/berechnet, anstatt erst eine Runde später.
+   -- Die Darstellung/Änderung der globalen Rohstoffewerte werden jetzt direkt angezeigt/berechnet, anstatt erst eine Runde später.
    -- Die Standardbonis die ein Gebäude geben kann zusammengefasst um sie einfacher aufrufbar/einbaubar zu machen.
    -- Die Verbleibende Produktionszeit wird jetzt immer sofort und korrekt angezeigt, anstatt erst eine Runde später.
    -- Kleinigkeiten korrigiert/überarbeitet.
@@ -167,7 +167,7 @@ package ChangelogAugust2021 is
    
    -- Den Aspari_2 Forschungsbaum grafisch größtenteils erstellt.
    -- Die anderen Forschungsbäume grafisch erweitert.
-   -- Chaoskartengenerator um Ressourcen und Flüsse erweitert.
+   -- Chaoskartengenerator um Rohstoffe und Flüsse erweitert.
    -- Prüfung ob die richtige Umgebung für ein Gebäude vorhanden ist ausgelagert, um sie so später für die KI und bei Verkleinerungen der Stadtumgebung wiederverwerten zu können.
    -- Wenn durch Stadtschrumpfung die Anforderungen für ein Gebäude nicht mehr erfüllt werden, dann wird dieses Gebäude jetzt entfernt.
    -- Der Eisrand und der benötigte Generatorenabstand dazu ist jetzt Kartengrößenabhängig.
@@ -192,7 +192,7 @@ package ChangelogAugust2021 is
    -- Achsenfehler in der Flussgenerierung behoben.
    -- Ladezeiten an die neue Generierung angepasst.
    -- Unnötigen Code gelöscht.
-   -- Einfache Ressourcengenerierung für Unterwasser/Unterirdisch eingebaut.
+   -- Einfache Rohstoffegenerierung für Unterwasser/Unterirdisch eingebaut.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/hinzugefügt/überarbeitet.
    
    
@@ -338,7 +338,7 @@ package ChangelogAugust2021 is
    -- Version 0.00.8080 => 0.00.8100 (03.08.2021):
    
    -- ImSpiel fertig überarbeitet.
-   -- Es ist jetzt möglich die vorhandene Ressourcenmenge einzustellen.
+   -- Es ist jetzt möglich die vorhandene Rohstoffemenge einzustellen.
    -- Fehler behoben der dazu führte das zwei Einwohner einer Stadt verhunderten statt Einer.
    -- Vereinfachte Abfrage für die Gesamtproduktion eines Feldes eingebaut.
    -- Automatische Arbeiterbelegung in den Städte verbessert. Es werden jetzt Felder mit höheren Werte bevorzugt belegt und bei fehlender Nahrungsproduktion Felder mit hoher Nahrungsproduktion zuerst belegt.
@@ -379,8 +379,8 @@ package ChangelogAugust2021 is
    -- Ladezeiten auf Enum umgeschrieben.
    -- Der Kartengenerator für Flusserzeugung berücksichtigt jetzt die Kartentemperatur für die Erzeugung von Flüssen und ist leicht schneller.
    -- Reihenfolge der Kartengenerierung überarbeitet.
-   -- Ressourcenmaximum rausgeworfen, der Ressourcengenerator platziert jetzt auf Basis verschiedenen Wahrscheinlichkeiten die Ressourcen auf den dazu passenden Feldern.
-   -- Angefangen eine Möglichkeit einzubauen die vorhandene Ressourcenmenge einzustellen.
+   -- Rohstoffemaximum rausgeworfen, der Rohstoffegenerator platziert jetzt auf Basis verschiedenen Wahrscheinlichkeiten die Rohstoffe auf den dazu passenden Feldern.
+   -- Angefangen eine Möglichkeit einzubauen die vorhandene Rohstoffemenge einzustellen.
    -- Kleinigkeiten korrigiert/überarbeitet/angepasst.
 
 end ChangelogAugust2021;

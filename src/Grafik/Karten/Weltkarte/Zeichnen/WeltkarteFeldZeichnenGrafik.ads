@@ -5,7 +5,7 @@ with KartenRecords;
 with KartenDatentypen;
 
 private with KartenfluesseDatentypen;
-private with KartenressourcenDatentypen;
+private with KartenrohstoffeDatentypen;
 private with KartenzusatzgrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
@@ -59,7 +59,7 @@ package WeltkarteFeldZeichnenGrafik is
                  PositionExtern.y >= 0.00
               );
    
-   procedure RessourceZeichnen
+   procedure RohstoffZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
@@ -79,6 +79,6 @@ private
          
    KartenfeldFluss : KartenfluesseDatentypen.Fluss_Enum;
    
-   KartenfeldRessource : KartenressourcenDatentypen.Ressourcen_Enum;
+   KartenfeldRohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
 
 end WeltkarteFeldZeichnenGrafik;

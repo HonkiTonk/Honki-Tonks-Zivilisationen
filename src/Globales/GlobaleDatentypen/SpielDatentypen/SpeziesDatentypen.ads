@@ -12,10 +12,10 @@ package SpeziesDatentypen is
    pragma Ordered (Spezies_Enum);
    
    subtype Spezies_Vorhanden_Enum is Spezies_Enum range Spezies_Enum'Succ (Spezies_Enum'First) .. Spezies_Enum'Last;
-   subtype Spezies_Überirdisch_Enum is Spezies_Vorhanden_Enum range Spezies_Vorhanden_Enum'First.. Ekropa_Enum;
-   subtype Spezies_Unterirdisch_Enum is Spezies_Vorhanden_Enum range Tesorahn_Enum .. Talbidahr_Enum;
-   subtype Spezies_Wasser_Enum is Spezies_Unterirdisch_Enum range Tesorahn_Enum .. Tesorahn_Enum;
-   subtype Spezies_Erde_Enum is Spezies_Unterirdisch_Enum range Talbidahr_Enum .. Talbidahr_Enum;
+   subtype Spezies_Oberfläche_Enum is Spezies_Vorhanden_Enum range Spezies_Vorhanden_Enum'First.. Ekropa_Enum;
+   subtype Spezies_Unterfläche_Enum is Spezies_Vorhanden_Enum range Tesorahn_Enum .. Talbidahr_Enum;
+   subtype Spezies_Unterwasser_Enum is Spezies_Unterfläche_Enum range Tesorahn_Enum .. Tesorahn_Enum;
+   subtype Spezies_Untererde_Enum is Spezies_Unterfläche_Enum range Talbidahr_Enum .. Talbidahr_Enum;
    
    subtype Speichern_Laden_Eins_Enum is Spezies_Vorhanden_Enum range Spezies_Vorhanden_Enum'First .. Spezies_Vorhanden_Enum'Val (Spezies_Vorhanden_Enum'Pos (Spezies_Vorhanden_Enum'First) + 7);
    subtype Speichern_Laden_Zwei_Enum is Spezies_Vorhanden_Enum range Spezies_Enum'Succ (Speichern_Laden_Eins_Enum'Last)
@@ -24,6 +24,9 @@ package SpeziesDatentypen is
    
    subtype SpeziesnummernBasis is Natural range Spezies_Enum'Pos (Spezies_Enum'First) .. Spezies_Enum'Pos (Spezies_Enum'Last);
    subtype SpeziesnummernVorhanden is SpeziesnummernBasis range Spezies_Enum'Pos (Spezies_Vorhanden_Enum'First) .. SpeziesnummernBasis'Last;
+   
+   subtype SpeziesanzahlOberfläche is SpeziesnummernVorhanden range 1 .. 16;
+   subtype SpeziesanzahlUnterfläche is SpeziesnummernVorhanden range 1 .. 2;
 
    
    

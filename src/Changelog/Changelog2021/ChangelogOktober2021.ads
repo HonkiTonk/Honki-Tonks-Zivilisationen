@@ -153,7 +153,7 @@ package ChangelogOktober2021 is
    
    -- Einfache Kartenfelderanzeige über die SFML eingebaut.
    -- Alle Kartenfelder werden, wie in der Terminalnversion, korrekt angezeigt und an die aktuelle Auflösung und Fenstergröße angepasst.
-   -- Alle Ressourcen, Flüsse, Straßen, verbesserungen, Städte, Einheiten und der Cursor werden, wie in der Terminalnversion, korrekt angezeigt und an die aktuelle Auflösung und Fenstergröße angepasst.
+   -- Alle Rohstoffe, Flüsse, Straßen, verbesserungen, Städte, Einheiten und der Cursor werden, wie in der Terminalnversion, korrekt angezeigt und an die aktuelle Auflösung und Fenstergröße angepasst.
    -- Angefangen die Maus benutzbar zu machen.
    -- Kleinigkeiten korrigiert/überarbeitet/angepasst.
    

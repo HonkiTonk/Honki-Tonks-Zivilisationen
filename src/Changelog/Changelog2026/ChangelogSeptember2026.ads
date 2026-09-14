@@ -106,21 +106,30 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (15.09.2026):
+   -- Version 0.06.5170 => 0.06. (15.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5035 => 0.06. (14.09.2026):
+   -- Version 0.06.5045 => 0.06.5170 (14.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen das Rohstoffekonzept tiefgreifend zu ändern und neu zu bauen.
+   -- Interne Benennung überarbeitet.
+   -- Angefangen die Rohstoffe pro Feld auf vier zu erhöhen.
+   -- Fehler korrigiert der zu einem Programmstopp führen konnte wenn man eine Zufällige Anzahl an Ebenen ausgewählt hat.
+   -- Fehler korrigiert der es ermöglichte Spezien auszuwählen die auf nicht vorhandenen Ebenen starten.
+   -- Fehler korrigiert der bei der Zufallsauswahl Spezien auswählte die auf nicht vorhandenen Ebenen starten.
+   -- Zusatzprüfung eingebaut die sicherstellen sollte das ein Spiel nur noch mit Spezien startet, für die die nötigen Ebenen vorhanden sind.
+   -- Vorübergehend die Generierung der Unterfläche deaktiviert wenn es keine Oberfläche gibt, das führt zu Programmstopps.
+   -- Spezies die nicht ausgewählt werden können, werden jetzt auch nicht mehr im Speziesauswahlmenü angezeigt.
+   -- SpieleinstellungenKartenLogik in mehrere Dateien aufgeteilt um mehr Übersichtlichekit und Lesbarkeit zu haben.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 
-   -- Version 0.06.4965 => 0.06.5035 (13.09.2026):
+   -- Version 0.06.4975 => 0.06.5045 (13.09.2026):
    
    -- Karteneinstellungen umsortiert.
    -- Alten Code entfernt der keinen nutzen mehr hatte aber noch Probleme verursachte.
@@ -131,23 +140,24 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06.4910 => 0.06.4965 (12.09.2026):
+   -- Version 0.06.4920 => 0.06.4975 (12.09.2026):
    
-   -- Kartenressourcen, Kartenflüsse und Karteneffekte jeweils in eigene Dateien aufgeteilt.
+   -- Kartenrohstoffe, Kartenflüsse und Karteneffekte jeweils in eigene Dateien aufgeteilt.
    -- Kartenbasis- und Kartenzusatzgrund jeweils in eigene Dateien aufgeteilt.
    -- Kartenverbesserungen und Kartenwege in eigene Dateien aufgeteilt.
-   -- Angefangen die Ressourcenliste neu zu schreiben und deutlich zu erweitern.
+   -- Angefangen die Rohstoffeliste neu zu schreiben und deutlich zu erweitern.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.06.4840 => 0.06.4910 (11.09.2026):
+   -- Version 0.06.4840 => 0.06.4920 (11.09.2026):
    
    -- GeheZu an die neuen Ebeneneinstellungen angepasst.
    -- Kartengenerator an die neuen Ebeneneinstellungen angepasst.
    -- Funktion zum ermitteln der vorhandenen Kartenebenen eingebaut.
    -- Kartenpositionsberechnungen an die neuen Ebeneneinstellungen angepasst.
    -- Alles? an die neuen Ebeneneinstellungen angepasst.
+   -- Neue Version veröffentlicht.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
@@ -181,7 +191,7 @@ package ChangelogSeptember2026 is
    -- Version 0.06.4660 => 0.06.4710 (07.09.2026):
    
    -- Zeicheneingabesystem überarbeitet.
-   -- Es ist jetzt möglich Ressourcen Überall oder Nirgends erscheinen zu lassen.
+   -- Es ist jetzt möglich Rohstoffe Überall oder Nirgends erscheinen zu lassen.
    -- Angefangen ein System einzubauen um die vorhandenen Ebenen einstellen zu können.
    -- Contacts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    

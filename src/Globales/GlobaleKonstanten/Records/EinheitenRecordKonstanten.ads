@@ -30,7 +30,7 @@ package EinheitenRecordKonstanten is
    LeerEinheitListe : constant EinheitendatenbankRecord.EinheitenlisteRecord := (
                                                                                  Einheitenart            => EinheitenKonstanten.LeerEinheitArt,
                                                                                  PreisGeld               => EinheitenKonstanten.LeerPreisGeld,
-                                                                                 Produktionskosten       => EinheitenKonstanten.LeerPreisRessourcen,
+                                                                                 Produktionskosten       => EinheitenKonstanten.LeerPreisRohstoffe,
                                                                                  PermanenteKosten        => (others => EinheitenKonstanten.LeerPermanenteKosten),
                                                                                  Anforderungen           => EinheitenKonstanten.LeerAnforderungen,
                                                                                  NotwendigeGebäude       => (others => EinheitenKonstanten.LeerGebäudeBenötigt),

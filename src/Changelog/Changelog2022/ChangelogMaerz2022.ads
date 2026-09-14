@@ -61,7 +61,7 @@ package ChangelogMaerz2022 is
 
    -- Version 0.01.0165 => 0.01.0185 (22.03.2022):
    
-   -- Grund, Fluss und Ressource vollständig aufgeteilt.
+   -- Grund, Fluss und Rohstoff vollständig aufgeteilt.
    -- Wege und Verbesserungen vollständig in zwei Datenbanken aufgeteilt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
@@ -76,7 +76,7 @@ package ChangelogMaerz2022 is
    -- Version 0.01.0161 => 0.01.0165 (20.03.2022):
    
    -- Weiter an die Aufteilung der Datenbanken gearbeitet.
-   -- Es ist jetzt möglich die Baubarkeit von Gebäuden von einem bestimmten Grund, Fluss und Ressourcen abhängig zu machen anstatt wie bisher nur von einem der Drei.
+   -- Es ist jetzt möglich die Baubarkeit von Gebäuden von einem bestimmten Grund, Fluss und Rohstoffe abhängig zu machen anstatt wie bisher nur von einem der Drei.
    -- Kommentare und Kleinigkeiten korrigiert.
    
    
@@ -101,7 +101,7 @@ package ChangelogMaerz2022 is
 
    -- Version 0.01.0150 => 0.01.0160 (16.03.2022):
    
-   -- Kartengrundenum und die KartengrundDatenbank in Grund, Fluss und Ressource aufgeteilt und angefangen alles entsprechend daran anzupassen.
+   -- Kartengrundenum und die KartengrundDatenbank in Grund, Fluss und Rohstoff aufgeteilt und angefangen alles entsprechend daran anzupassen.
    -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    

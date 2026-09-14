@@ -5,7 +5,7 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 with ZufallsgeneratorenDatentypenHTSEB;
 with KartenfluesseDatentypen;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KartenbasisgrundDatentypen;
 
 with LeseSpeziesbelegung;
@@ -64,8 +64,8 @@ package LeseKartenDatenbanken is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function BewertungRessource
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
+   function BewertungRohstoff
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
@@ -103,8 +103,8 @@ package LeseKartenDatenbanken is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function ProduktionRessourcen
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
+   function ProduktionRohstoffe
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -143,8 +143,8 @@ package LeseKartenDatenbanken is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function KampfRessource
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum;
+   function KampfRohstoff
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus

@@ -120,7 +120,7 @@ package body KIEinheitenBauenLogik is
                                                            EinheitenIDExtern        => IDExtern);
       Gesamtwertung := Gesamtwertung + NahrungKostenBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                               EinheitenIDExtern        => IDExtern);
-      Gesamtwertung := Gesamtwertung + RessourcenKostenBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+      Gesamtwertung := Gesamtwertung + RohstoffeKostenBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                  EinheitenIDExtern        => IDExtern);
       Gesamtwertung := Gesamtwertung + SpezielleEinheitBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                  IDExtern                 => IDExtern,
@@ -484,7 +484,7 @@ package body KIEinheitenBauenLogik is
      
      
      
-   function RessourcenKostenBewerten
+   function RohstoffeKostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
@@ -512,6 +512,6 @@ package body KIEinheitenBauenLogik is
          return KIKonstanten.LeerBewertung;
       end if;
       
-   end RessourcenKostenBewerten;
+   end RohstoffeKostenBewerten;
 
 end KIEinheitenBauenLogik;

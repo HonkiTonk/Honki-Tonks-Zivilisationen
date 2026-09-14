@@ -1,5 +1,4 @@
 with "asfml30.gpr";
-
 with "Spieleentwicklungsbibliothek/HonkiTonksSpieleentwicklungsbibliothek.gpr";
 
 project HonkiTonksZivilisationen_Windows_Release30 is

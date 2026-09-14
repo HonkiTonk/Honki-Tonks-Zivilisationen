@@ -89,7 +89,7 @@ package KartenRecordKonstanten is
                                                                                                  Kartentemperatur => KartenartDatentypen.Kartentemperatur_Gemäßigt_Enum,
 
                                                                                                  -- Arm, Wenig, Mittel, Viel, Überfluss
-                                                                                                 Kartenressourcen => KartenartDatentypen.Kartenressourcen_Mittel_Enum,
+                                                                                                 Kartenrohstoffe  => KartenartDatentypen.Ein_Rohstoff_Enum,
                                                                               
                                                                                                  Kartenpole       => KartenpoleStandard
                                                                                                 );

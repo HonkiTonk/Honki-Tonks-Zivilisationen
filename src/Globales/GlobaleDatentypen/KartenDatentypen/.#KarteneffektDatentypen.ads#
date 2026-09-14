@@ -1,6 +1,0 @@
-package KarteneffektDatentypen is
-   pragma Pure;
-   
-   
-
-end KarteneffektDatentypen;

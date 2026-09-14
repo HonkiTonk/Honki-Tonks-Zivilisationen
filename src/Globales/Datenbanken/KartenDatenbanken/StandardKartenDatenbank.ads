@@ -4,6 +4,6 @@ package StandardKartenDatenbank is
    procedure StandardBasisgrundDatenbankLaden;
    procedure StandardZusatzgrundDatenbankLaden;
    procedure StandardKartenflussDatenbankLaden;
-   procedure StandardKartenressourcenDatenbankLaden;
+   procedure StandardKartenrohstoffeDatenbankLaden;
 
 end StandardKartenDatenbank;

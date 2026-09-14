@@ -119,7 +119,7 @@ package body DebugmenueTextausgabeLogik is
          Put_Line ("b = Speziesauswahl");
          Put_Line ("c = Schwierigkeitsgrad");
          Put_Line ("d = Kartenform");
-         Put_Line ("e = Ressourcenmenge");
+         Put_Line ("e = Rohstoffemenge");
          Put_Line ("f = Diplomatiemenü");
          Put_Line ("g = Einstellungsmenü");
          Put_Line ("h = Kartenpole");
@@ -267,14 +267,14 @@ package body DebugmenueTextausgabeLogik is
                end loop KartenformSchleife;
                
             when 'e' =>
-               RessourcenmengeSchleife:
-               for RessourcenmengeSchleifenwert in Menuetexte.Ressourcenmenge'Range loop
+               RohstoffemengeSchleife:
+               for RohstoffemengeSchleifenwert in Menuetexte.Rohstoffemenge'Range loop
          
-                  Put_Line (Item => Zeile'Wide_Wide_Image & " /" & RessourcenmengeSchleifenwert'Wide_Wide_Image & ": " & To_Wide_Wide_String (Source => Menuetexte.Ressourcenmenge (RessourcenmengeSchleifenwert)));
+                  Put_Line (Item => Zeile'Wide_Wide_Image & " /" & RohstoffemengeSchleifenwert'Wide_Wide_Image & ": " & To_Wide_Wide_String (Source => Menuetexte.Rohstoffemenge (RohstoffemengeSchleifenwert)));
          
                   Zeile := Zeile + 1;
          
-               end loop RessourcenmengeSchleife;
+               end loop RohstoffemengeSchleife;
                
             when 'f' =>
                DiplomatiemenüSchleife:
@@ -517,7 +517,7 @@ package body DebugmenueTextausgabeLogik is
          Put_Line ("1 = Basisgrund");
          Put_Line ("2 = Zusatzgrund");
          Put_Line ("3 = Flüsse");
-         Put_Line ("4 = Ressourcen");
+         Put_Line ("4 = Rohstoffe");
          Put_Line ("5 = Feldeffekte");
          Put_Line ("6 = Verbesserungen");
          Put_Line ("7 = Wege");
@@ -561,14 +561,14 @@ package body DebugmenueTextausgabeLogik is
                end loop FlüsseSchleife;
                
             when '4' =>
-               RessourcenSchleife:
-               for Ressourcenchleifenwert in Kartentexte.Ressourcen'Range loop
+               RohstoffeSchleife:
+               for Rohstoffechleifenwert in Kartentexte.Rohstoffe'Range loop
          
-                  Put_Line (Item => Zeile'Wide_Wide_Image & " /" & Ressourcenchleifenwert'Wide_Wide_Image & ": " & To_Wide_Wide_String (Source => Kartentexte.Ressourcen (Ressourcenchleifenwert)));
+                  Put_Line (Item => Zeile'Wide_Wide_Image & " /" & Rohstoffechleifenwert'Wide_Wide_Image & ": " & To_Wide_Wide_String (Source => Kartentexte.Rohstoffe (Rohstoffechleifenwert)));
          
                   Zeile := Zeile + 1;
          
-               end loop RessourcenSchleife;
+               end loop RohstoffeSchleife;
                
             when '5' =>
                FeldeffekteSchleife:

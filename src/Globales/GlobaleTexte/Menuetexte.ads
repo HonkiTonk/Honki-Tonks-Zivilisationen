@@ -24,7 +24,7 @@ package Menuetexte is
    Kartenart : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartenart_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Kartentemperatur : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Schwierigkeitsgrad : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
-   Ressourcenmenge : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
+   Rohstoffemenge : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartenrohstoffe_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Diplomatiemenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Kartenpole : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);
    Soundmenü : ArraysHTSEB.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Sound_Menü_Enum)) := (others => TextKonstantenHTSEB.FehlenderText);

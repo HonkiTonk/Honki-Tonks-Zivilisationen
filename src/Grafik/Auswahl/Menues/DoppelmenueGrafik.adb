@@ -7,6 +7,9 @@ with MenueKonstanten;
 with GrafikKonstanten;
 with InteraktionAuswahl;
 with ViewKonstanten;
+with KartenKonstanten;
+with KartenDatentypen;
+with SpeziesDatentypen;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -17,6 +20,7 @@ with MenuestringsSetzenGrafik;
 with ZusatztextaufteilungGrafik;
 with KartenformmenueGrafik;
 with TextaccessverwaltungssystemEinfachGrafik;
+with KartengeneratorVariablenLogik;
 
 package body DoppelmenueGrafik is
 
@@ -51,7 +55,7 @@ package body DoppelmenueGrafik is
       end case;
 
       Viewfläche (Auswahlbereich).y := Viewfläche (Auswahlbereich).y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
-
+      
 
       
       Viewfläche (Zusatzbereich) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Zusatzbereich),
@@ -80,7 +84,9 @@ package body DoppelmenueGrafik is
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       AktuelleAuswahlExtern : in Natural)
       return Sf.System.Vector2.sfVector2f
-   is begin
+   is
+      use type KartenDatentypen.EbeneBasis;
+   begin
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textbreite := GrafikKonstanten.Nullwert;
@@ -88,26 +94,53 @@ package body DoppelmenueGrafik is
       PositionenSchleife:
       for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
-         TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                             TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
-                                                                                                                              WelchesMenüExtern => WelchesMenüExtern),
-                                                             FarbeExtern      => TextfarbeGrafik.FarbeDoppelmenü (AktuellerTextExtern   => PositionSchleifenwert,
-                                                                                                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern + MenueKonstanten.SchleifenanpassungGrafikLogik));
+         if
+           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
+           and
+             PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung + SpeziesDatentypen.SpeziesanzahlOberfläche'Last
+               .. MenueKonstanten.StandardArrayanpassung + SpeziesDatentypen.SpeziesanzahlOberfläche'Last + SpeziesDatentypen.SpeziesanzahlUnterfläche'Last - 1
+         then
+            Anzeigen := False;
+         
+         elsif
+           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde < KartenKonstanten.OberflächeKonstante
+           and
+             PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.StandardArrayanpassung + SpeziesDatentypen.SpeziesanzahlOberfläche'Last - 1
+         then
+            Anzeigen := False;
+         
+         else
+            Anzeigen := True;
+         end if;
+      
+         case
+           Anzeigen
+         is
+            when True =>
+               TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                                   TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
+                                                                                                                                    WelchesMenüExtern => WelchesMenüExtern),
+                                                                   FarbeExtern      => TextfarbeGrafik.FarbeDoppelmenü (AktuellerTextExtern   => PositionSchleifenwert,
+                                                                                                                         AktuelleAuswahlExtern => AktuelleAuswahlExtern + MenueKonstanten.SchleifenanpassungGrafikLogik));
                   
-         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                                 ViewbreiteExtern => ViewflächeExtern.x);
+               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                                                       ViewbreiteExtern => ViewflächeExtern.x);
          
-         TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                    PositionExtern   => Textposition);
+               TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                                          PositionExtern   => Textposition);
 
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                                             TextbreiteExtern => Textbreite);
+               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                                                   TextbreiteExtern => Textbreite);
          
-         InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik)
-           := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert));
+               InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik)
+                 := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert));
          
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+               
+            when False =>
+               InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik) := GrafikRecordKonstanten.Leerbereich;
+         end case;
                   
       end loop PositionenSchleife;
 

@@ -34,7 +34,7 @@ package ProduktionDatentypen is
                                    
                                    Nahrung_Enum, Material_Enum, Geld_Enum
                                    
-                                   -- Noch spezielles Ressourcen hier einbauen, weglassen oder ein eigenes Enum dafür erstellen? äöü
+                                   -- Noch spezielles Rohstoffe hier einbauen, weglassen oder ein eigenes Enum dafür erstellen? äöü
                                   );
    
    subtype Permanente_Kosten_Vorhanden_Enum is Permanente_Kosten_Enum range Permanente_Kosten_Enum'Succ (Permanente_Kosten_Enum'First) .. Permanente_Kosten_Enum'Last;

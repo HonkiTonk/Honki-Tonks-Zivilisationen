@@ -412,18 +412,18 @@ package body EinlesenTextLogik is
                                                                                              VorhandenerTextExtern  => Menuetexte.Kartenform (AktuelleZeile - Schwierigkeitsgrad));
                   
                elsif
-                 AktuelleZeile in Kartenform + 1 .. Ressourcenmenge
+                 AktuelleZeile in Kartenform + 1 .. Rohstoffemenge
                then
-                  Menuetexte.Ressourcenmenge (AktuelleZeile - Kartenform) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                  Menuetexte.Rohstoffemenge (AktuelleZeile - Kartenform) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                                                                           EingelesenerTextExtern => Zwischenspeicher,
-                                                                                          VorhandenerTextExtern  => Menuetexte.Ressourcenmenge (AktuelleZeile - Kartenform));
+                                                                                          VorhandenerTextExtern  => Menuetexte.Rohstoffemenge (AktuelleZeile - Kartenform));
                   
                elsif
-                 AktuelleZeile in Ressourcenmenge + 1 .. Diplomatiemenü
+                 AktuelleZeile in Rohstoffemenge + 1 .. Diplomatiemenü
                then
-                  Menuetexte.Diplomatiemenü (AktuelleZeile - Ressourcenmenge) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                  Menuetexte.Diplomatiemenü (AktuelleZeile - Rohstoffemenge) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                                                                                EingelesenerTextExtern => Zwischenspeicher,
-                                                                                               VorhandenerTextExtern  => Menuetexte.Diplomatiemenü (AktuelleZeile - Ressourcenmenge));
+                                                                                               VorhandenerTextExtern  => Menuetexte.Diplomatiemenü (AktuelleZeile - Rohstoffemenge));
                   
                elsif
                  AktuelleZeile in Diplomatiemenü + 1 .. Einstellungsmenü
@@ -710,18 +710,18 @@ package body EinlesenTextLogik is
                                                                                     VorhandenerTextExtern  => Kartentexte.Flüsse (AktuelleZeile - Zusatzgrund));
                   
                elsif
-                 AktuelleZeile in Flüsse + 1 .. Ressourcen
+                 AktuelleZeile in Flüsse + 1 .. Rohstoffe
                then
-                  Kartentexte.Ressourcen (AktuelleZeile - Flüsse) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                  Kartentexte.Rohstoffe (AktuelleZeile - Flüsse) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                                                                    EingelesenerTextExtern => Zwischenspeicher,
-                                                                                   VorhandenerTextExtern  => Kartentexte.Ressourcen (AktuelleZeile - Flüsse));
+                                                                                   VorhandenerTextExtern  => Kartentexte.Rohstoffe (AktuelleZeile - Flüsse));
                   
                elsif
-                 AktuelleZeile in Ressourcen + 1 .. Feldeffekte
+                 AktuelleZeile in Rohstoffe + 1 .. Feldeffekte
                then
-                  Kartentexte.Feldeffekte (AktuelleZeile - Ressourcen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                  Kartentexte.Feldeffekte (AktuelleZeile - Rohstoffe) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                                                                        EingelesenerTextExtern => Zwischenspeicher,
-                                                                                       VorhandenerTextExtern  => Kartentexte.Feldeffekte (AktuelleZeile - Ressourcen));
+                                                                                       VorhandenerTextExtern  => Kartentexte.Feldeffekte (AktuelleZeile - Rohstoffe));
                   
                elsif
                  AktuelleZeile in Feldeffekte + 1 .. Verbesserungen

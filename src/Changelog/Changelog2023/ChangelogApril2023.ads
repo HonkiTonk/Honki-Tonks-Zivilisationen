@@ -180,7 +180,7 @@ package ChangelogApril2023 is
    -- Prüfung ob ein Gebäude gebaut werden kann überarbeitet.
    -- Ein Gebäude kann jetzt mehrere Arten von Basisgrund zum Bau benötigen.
    -- Ein Gebäude kann jetzt mehrere andere Gebäude zum Bau benötigen.
-   -- Ein Gebäude kann jetzt mehrere Ressourcen für den Bau benötigen.
+   -- Ein Gebäude kann jetzt mehrere Rohstoffe für den Bau benötigen.
    -- Ein Gebäude kann jetzt mehrere Umgebungsverbesserungen für den Bau benötigen.
    -- Contracst, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    

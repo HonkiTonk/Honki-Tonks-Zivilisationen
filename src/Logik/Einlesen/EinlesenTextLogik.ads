@@ -42,8 +42,8 @@ private
    Speziesauswahl : constant Positive := Kartentemperatur + Menuetexte.Speziesauswahl'Last;
    Schwierigkeitsgrad : constant Positive := Speziesauswahl + Menuetexte.Schwierigkeitsgrad'Last;
    Kartenform : constant Positive := Schwierigkeitsgrad + Menuetexte.Kartenform'Last;
-   Ressourcenmenge : constant Positive := Kartenform + Menuetexte.Ressourcenmenge'Last;
-   Diplomatiemenü : constant Positive := Ressourcenmenge + Menuetexte.Diplomatiemenü'Last;
+   Rohstoffemenge : constant Positive := Kartenform + Menuetexte.Rohstoffemenge'Last;
+   Diplomatiemenü : constant Positive := Rohstoffemenge + Menuetexte.Diplomatiemenü'Last;
    Einstellungsmenü : constant Positive := Diplomatiemenü + Menuetexte.Einstellungsmenü'Last;
    Kartenpole : constant Positive := Einstellungsmenü + Menuetexte.Kartenpole'Last;
    Spielstandmenü : constant Positive := Kartenpole + Menuetexte.Spielstandmenü'Last;
@@ -70,8 +70,8 @@ private
    Basisgrund : constant Positive := Kartentexte.Basisgrund'Last;
    Zusatzgrund : constant Positive := Basisgrund + Kartentexte.Zusatzgrund'Last;
    Flüsse : constant Positive := Zusatzgrund + Kartentexte.Flüsse'Last;
-   Ressourcen : constant Positive := Flüsse + Kartentexte.Ressourcen'Last;
-   Feldeffekte : constant Positive := Ressourcen + Kartentexte.Feldeffekte'Last;
+   Rohstoffe : constant Positive := Flüsse + Kartentexte.Rohstoffe'Last;
+   Feldeffekte : constant Positive := Rohstoffe + Kartentexte.Feldeffekte'Last;
    Verbesserungen : constant Positive := Feldeffekte + Kartentexte.Verbesserungen'Last;
    Wege : constant Positive := Verbesserungen + Kartentexte.Wege'Last;
    -- Karte

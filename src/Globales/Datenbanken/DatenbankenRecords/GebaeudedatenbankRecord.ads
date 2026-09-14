@@ -8,7 +8,7 @@ with KampfDatentypen;
 with StadtRecords;
 with KartenfluesseDatentypen;
 with StadtArrays;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenwegeDatentypen;
 
@@ -37,7 +37,7 @@ package GebaeudedatenbankRecord is
    
    -- Das erlaubt eine Beschränung auf eine Flussart, aber nicht eine Notwendigkeit für mehrere Flussstück, später mal überarbeiten. äöü
    type FlussArray is array (KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Range) of Boolean;
-   type RessourcenArray is array (KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Range) of Boolean;
+   type RohstoffeArray is array (KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
    type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of Boolean;
    type WegeArray is array (KartenwegeDatentypen.Weg_Vorhanden_Enum'Range) of Boolean;
    
@@ -65,7 +65,7 @@ package GebaeudedatenbankRecord is
       ZusatzgrundBenötigt : ZusatzgrundArray;
       
       FlussBenötigt : FlussArray;
-      RessourceBenötigt : RessourcenArray;
+      RohstoffBenötigt : RohstoffeArray;
       VerbesserungBenötigt : VerbesserungenArray;
       WegBenötigt : WegeArray;
       

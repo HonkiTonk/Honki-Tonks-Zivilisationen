@@ -278,13 +278,13 @@ package body TextaccesseSchriftrahmenGrafik is
             
       
       
-      RessourcenmengeSchleife:
-      for RessourcenmengeSchleifenwert in TextaccessVariablen.RessourcenmengeAccess'Range loop
+      RohstoffemengeSchleife:
+      for RohstoffemengeSchleifenwert in TextaccessVariablen.RohstoffemengeAccess'Range loop
          
-         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.RessourcenmengeAccess (RessourcenmengeSchleifenwert),
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.RohstoffemengeAccess (RohstoffemengeSchleifenwert),
                                                thickness => RahmendickeExtern);
          
-      end loop RessourcenmengeSchleife;
+      end loop RohstoffemengeSchleife;
             
       
             
@@ -617,13 +617,13 @@ package body TextaccesseSchriftrahmenGrafik is
       
       
       
-      RessourcenSchleife:
-      for RessourcenSchleifenwert in TextaccessVariablen.RessourcenAccess'Range loop
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in TextaccessVariablen.RohstoffeAccess'Range loop
          
-         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.RessourcenAccess (RessourcenSchleifenwert),
+         Sf.Graphics.Text.setOutlineThickness (text      => TextaccessVariablen.RohstoffeAccess (RohstoffeSchleifenwert),
                                                thickness => RahmendickeExtern);
          
-      end loop RessourcenSchleife;
+      end loop RohstoffeSchleife;
       
       
       

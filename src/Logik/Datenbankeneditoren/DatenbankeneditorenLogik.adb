@@ -78,7 +78,7 @@ package body DatenbankeneditorenLogik is
       StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
       StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
       StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
-      StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
+      StandardKartenDatenbank.StandardKartenrohstoffeDatenbankLaden;
       StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
       StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
       StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;

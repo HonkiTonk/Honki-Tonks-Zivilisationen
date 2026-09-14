@@ -14,6 +14,8 @@ package DoppelmenueGrafik is
    
 private
    
+   Anzeigen : Boolean;
+   
    Auswahlbereich : constant Positive := 1;
    Zusatzbereich : constant Positive := 2;
    

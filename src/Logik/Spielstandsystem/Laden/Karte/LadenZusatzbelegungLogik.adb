@@ -51,7 +51,7 @@ package body LadenZusatzbelegungLogik is
          return False;
                         
       elsif
-        False = RessourceEinlesen (DateiLadenExtern  => DateiLadenExtern,
+        False = RohstoffEinlesen (DateiLadenExtern  => DateiLadenExtern,
                                    KoordinatenExtern => Koordinaten,
                                    LadenPrüfenExtern => LadenPrüfenExtern)
       then
@@ -233,7 +233,7 @@ package body LadenZusatzbelegungLogik is
    
    
    
-   function RessourceEinlesen
+   function RohstoffEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KoordinatenArray;
       LadenPrüfenExtern : in Boolean)
@@ -255,30 +255,30 @@ package body LadenZusatzbelegungLogik is
             null;
       end case;
       
-      RessourceSchleife:
-      for RessourceSchleifenwert in reverse KoordinatenExtern'Range loop
+      RohstoffSchleife:
+      for RohstoffSchleifenwert in reverse KoordinatenExtern'Range loop
          
          case
-           KoordinatenExtern (RessourceSchleifenwert).Ebene
+           KoordinatenExtern (RohstoffSchleifenwert).Ebene
          is
             when KartenKonstanten.LeerEbene =>
                null;
                
             when others =>
                if
-                 VorhandeneFeldelemente >= 2**(RessourceSchleifenwert - 1)
+                 VorhandeneFeldelemente >= 2**(RohstoffSchleifenwert - 1)
                then
-                  KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                        Ressource);
+                  KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                                                                        Rohstoff);
             
-                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(RessourceSchleifenwert - 1);
+                  VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(RohstoffSchleifenwert - 1);
             
                   case
                     LadenPrüfenExtern
                   is
                      when True =>
-                        SchreibeWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern (RessourceSchleifenwert),
-                                                     RessourceExtern   => Ressource);
+                        SchreibeWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern (RohstoffSchleifenwert),
+                                                     RohstoffExtern   => Rohstoff);
             
                      when False =>
                         null;
@@ -289,17 +289,17 @@ package body LadenZusatzbelegungLogik is
                end if;
          end case;
          
-      end loop RessourceSchleife;
+      end loop RohstoffSchleife;
       
       return True;
       
    exception
       when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenZusatzbelegungLogik.RessourceEinlesen: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
+         MeldungssystemHTSEB.Logik (MeldungExtern => "LadenZusatzbelegungLogik.RohstoffEinlesen: Konnte nicht geladen werden: LadenPrüfenExtern = " & LadenPrüfenExtern'Wide_Wide_Image & " "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
-   end RessourceEinlesen;
+   end RohstoffEinlesen;
    
    
    

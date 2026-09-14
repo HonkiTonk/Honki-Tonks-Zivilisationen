@@ -10,10 +10,10 @@ package body ZufallsgeneratorenStartkoordinatenLogik is
       case
         SpeziesExtern
       is
-         when SpeziesDatentypen.Spezies_Unterirdisch_Enum'Range =>
+         when SpeziesDatentypen.Spezies_Unterfläche_Enum'Range =>
             Startkoordinate.Ebene := KartenKonstanten.UnterflächeKonstante;
             
-         when SpeziesDatentypen.Spezies_Überirdisch_Enum'Range =>
+         when SpeziesDatentypen.Spezies_Oberfläche_Enum'Range =>
             Startkoordinate.Ebene := KartenKonstanten.OberflächeKonstante;
       end case;
       

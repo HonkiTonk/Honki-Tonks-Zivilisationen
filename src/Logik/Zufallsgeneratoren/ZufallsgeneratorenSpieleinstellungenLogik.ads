@@ -11,7 +11,8 @@ private with KartenDatentypen;
 package ZufallsgeneratorenSpieleinstellungenLogik is
    pragma Elaborate_Body;
      
-   procedure ZufälligeSpeziesbelegung;
+   procedure ZufälligeSpeziesbelegung
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord);
    procedure ZufälligeKartenform;
    procedure ZufälligePole;
    procedure ZufälligeKartenart;
@@ -33,13 +34,14 @@ package ZufallsgeneratorenSpieleinstellungenLogik is
    function ZufälligeKartentemperatur
      return KartenartDatentypen.Kartentemperatur_Enum;
    
-   function ZufälligeKartenressourcen
-     return KartenartDatentypen.Kartenressourcenmenge_Enum;
+   function ZufälligeKartenrohstoffe
+     return KartenartDatentypen.Kartenrohstoffemenge_Enum;
    
    function ZufälligerSchwiewrigkeitsgrad
      return SpielDatentypen.Schwierigkeitsgrad_Enum;
    
    function ZufälligeSpezies
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
      return SpeziesDatentypen.Spezies_Vorhanden_Enum;
 
 private
@@ -58,7 +60,7 @@ private
    package ZufälligeKartenebenenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.EbeneVorhanden);
    package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenart_Normal_Enum);
    package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartentemperatur_Enum);
-   package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenressourcenmenge_Enum);
+   package ZufälligeKartenrohstoffeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenrohstoffemenge_Enum);
    package ZufälligeSpeziesbelegungWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpeziesDatentypen.Spieler_Enum);
    package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpielDatentypen.Schwierigkeitsgrad_Enum);
    package ZufälligeSpeziesWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpeziesDatentypen.Spezies_Vorhanden_Enum);
@@ -76,7 +78,7 @@ private
    ZufälligeKartenebenenGewählt : ZufälligeKartenebenenWählen.Generator;
    ZufälligeKartenartGewählt : ZufälligeKartenartWählen.Generator;
    ZufälligeKartentemperaturGewählt : ZufälligeKartentemperaturWählen.Generator;
-   ZufälligeKartenressourcenGewählt : ZufälligeKartenressourcenWählen.Generator;
+   ZufälligeKartenrohstoffeGewählt : ZufälligeKartenrohstoffeWählen.Generator;
    ZufälligeSpeziesbelegungGewählt : ZufälligeSpeziesbelegungWählen.Generator;
    ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
    ZufälligeSpeziesGewählt : ZufälligeSpeziesWählen.Generator;

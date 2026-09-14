@@ -8,30 +8,30 @@ with LeseWeltkarte;
 with ZufallsgeneratorenKartenLogik;
 with KartengeneratorVariablenLogik;
 
-package body KartengeneratorLandressourcenLogik is
+package body KartengeneratorLandrohstoffeLogik is
 
-   procedure KartengeneratorLandressourcen
+   procedure KartengeneratorLandrohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
-      WelcheRessource := KartenressourcenDatentypen.Leer_Ressource_Enum;
+      WelcheRohstoff := KartenrohstoffeDatentypen.Leer_Rohstoff_Enum;
       Zahlenspeicher := 0;
       
       ZufallszahlenSchleife:
-      for ZufallszahlSchleifenwert in KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum'Range loop
+      for ZufallszahlSchleifenwert in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum'Range loop
          
          GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
-           KartengeneratorVariablenLogik.KartenressourcenWahrscheinlichkeiten (ZufallszahlSchleifenwert) = 100
+           KartengeneratorVariablenLogik.KartenrohstoffeWahrscheinlichkeiten (ZufallszahlSchleifenwert) = 100
          then
             Zahlenspeicher := GezogeneZahl;
-            WelcheRessource := ZufallszahlSchleifenwert;
+            WelcheRohstoff := ZufallszahlSchleifenwert;
             
          elsif
-           GezogeneZahl > KartengeneratorVariablenLogik.KartenressourcenWahrscheinlichkeiten (ZufallszahlSchleifenwert)
+           GezogeneZahl > KartengeneratorVariablenLogik.KartenrohstoffeWahrscheinlichkeiten (ZufallszahlSchleifenwert)
            or
              GezogeneZahl = 0
          then
@@ -45,7 +45,7 @@ package body KartengeneratorLandressourcenLogik is
              GezogeneZahl > Zahlenspeicher
          then
             Zahlenspeicher := GezogeneZahl;
-            WelcheRessource := ZufallszahlSchleifenwert;
+            WelcheRohstoff := ZufallszahlSchleifenwert;
             
          else
             null;
@@ -53,77 +53,77 @@ package body KartengeneratorLandressourcenLogik is
          
       end loop ZufallszahlenSchleife;
       
-      -- Sollte bei den Ressourcen nicht eher eine erneute Prüfung erfolgen wenn keine Ressource gewählt wurde? äöü
-      -- Eventuell wenn bereits eine Ressource sich um dieses Feld herumbefindet? äöü
-      -- Oder bei einem bestimmten Grund, beziehungsweise dessen Häufigkeit um die Ressource herum? äöü
+      -- Sollte bei den Rohstoffe nicht eher eine erneute Prüfung erfolgen wenn keine Rohstoff gewählt wurde? äöü
+      -- Eventuell wenn bereits eine Rohstoff sich um dieses Feld herumbefindet? äöü
+      -- Oder bei einem bestimmten Grund, beziehungsweise dessen Häufigkeit um die Rohstoff herum? äöü
       case
-        WelcheRessource
+        WelcheRohstoff
       is
-         when KartenressourcenDatentypen.Leer_Ressource_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
             return;
               
          when others =>
-            WelcheRessource := RessourceZusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                                            RessourceExtern   => WelcheRessource);
+            WelcheRohstoff := RohstoffZusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
+                                                            RohstoffExtern   => WelcheRohstoff);
       end case;
       
       case
-        WelcheRessource
+        WelcheRohstoff
       is
-         when KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum'Range =>
-            SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                         RessourceExtern   => WelcheRessource);
+         when KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum'Range =>
+            SchreibeWeltkarte.Rohstoff (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+                                         RohstoffExtern   => WelcheRohstoff);
             
          when others =>
             null;
       end case;
       
-   end KartengeneratorLandressourcen;
+   end KartengeneratorLandrohstoffe;
    
    
    
-   function RessourceZusatzberechnungen
+   function RohstoffZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
       case
-        RessourceExtern
+        RohstoffExtern
       is
-         when KartenressourcenDatentypen.Kohle_Enum =>
+         when KartenrohstoffeDatentypen.Kohle_Enum =>
             return ZusatzberechnungKohle (KoordinatenExtern => KoordinatenExtern,
-                                          RessourceExtern   => RessourceExtern);
+                                          RohstoffExtern   => RohstoffExtern);
             
-         when KartenressourcenDatentypen.Eisen_Enum =>
+         when KartenrohstoffeDatentypen.Eisen_Enum =>
             return ZusatzberechnungEisen (KoordinatenExtern => KoordinatenExtern,
-                                          RessourceExtern   => RessourceExtern);
+                                          RohstoffExtern   => RohstoffExtern);
             
-         when KartenressourcenDatentypen.Öl_Enum =>
+         when KartenrohstoffeDatentypen.Öl_Enum =>
             return ZusatzberechnungÖl (KoordinatenExtern => KoordinatenExtern,
-                                        RessourceExtern   => RessourceExtern);
+                                        RohstoffExtern   => RohstoffExtern);
             
-         when KartenressourcenDatentypen.Hochwertiger_Boden_Enum =>
+         when KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum =>
             return ZusatzberechnungHochwertigerBoden (KoordinatenExtern => KoordinatenExtern,
-                                                      RessourceExtern   => RessourceExtern);
+                                                      RohstoffExtern   => RohstoffExtern);
             
-         when KartenressourcenDatentypen.Hochwertiges_Holz_Enum =>
+         when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
             return ZusatzberechnungHochwertigesHolz (KoordinatenExtern => KoordinatenExtern,
-                                                     RessourceExtern   => RessourceExtern);
+                                                     RohstoffExtern   => RohstoffExtern);
             
-         when KartenressourcenDatentypen.Gold_Enum =>
+         when KartenrohstoffeDatentypen.Gold_Enum =>
             return ZusatzberechnungGold (KoordinatenExtern => KoordinatenExtern,
-                                         RessourceExtern   => RessourceExtern);
+                                         RohstoffExtern   => RohstoffExtern);
       end case;
       
-   end RessourceZusatzberechnungen;
+   end RohstoffZusatzberechnungen;
    
    
    
    function ZusatzberechnungKohle
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
       if
@@ -135,7 +135,7 @@ package body KartengeneratorLandressourcenLogik is
          null;
       end if;
       
-      return RessourceExtern;
+      return RohstoffExtern;
       
    end ZusatzberechnungKohle;
    
@@ -143,8 +143,8 @@ package body KartengeneratorLandressourcenLogik is
    
    function ZusatzberechnungEisen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
       if
@@ -156,7 +156,7 @@ package body KartengeneratorLandressourcenLogik is
          null;
       end if;
       
-      return RessourceExtern;
+      return RohstoffExtern;
       
    end ZusatzberechnungEisen;
    
@@ -164,8 +164,8 @@ package body KartengeneratorLandressourcenLogik is
    
    function ZusatzberechnungÖl
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
       if
@@ -177,7 +177,7 @@ package body KartengeneratorLandressourcenLogik is
          null;
       end if;
       
-      return RessourceExtern;
+      return RohstoffExtern;
       
    end ZusatzberechnungÖl;
    
@@ -185,8 +185,8 @@ package body KartengeneratorLandressourcenLogik is
    
    function ZusatzberechnungHochwertigerBoden
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
       if
@@ -198,7 +198,7 @@ package body KartengeneratorLandressourcenLogik is
          null;
       end if;
       
-      return RessourceExtern;
+      return RohstoffExtern;
       
    end ZusatzberechnungHochwertigerBoden;
    
@@ -206,18 +206,18 @@ package body KartengeneratorLandressourcenLogik is
    
    function ZusatzberechnungHochwertigesHolz
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
       case
         LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte))
       is
          when KartenzusatzgrundDatentypen.Wald_Enum | KartenzusatzgrundDatentypen.Dschungel_Enum =>
-            return RessourceExtern;
+            return RohstoffExtern;
             
          when others =>
-            return KartenressourcenDatentypen.Leer_Ressource_Enum;
+            return KartenrohstoffeDatentypen.Leer_Rohstoff_Enum;
       end case;
       
    end ZusatzberechnungHochwertigesHolz;
@@ -226,8 +226,8 @@ package body KartengeneratorLandressourcenLogik is
    
    function ZusatzberechnungGold
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Oberfläche_Land_Enum)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
       if
@@ -239,8 +239,8 @@ package body KartengeneratorLandressourcenLogik is
          null;
       end if;
       
-      return RessourceExtern;
+      return RohstoffExtern;
       
    end ZusatzberechnungGold;
 
-end KartengeneratorLandressourcenLogik;
+end KartengeneratorLandrohstoffeLogik;

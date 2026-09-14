@@ -1,5 +1,5 @@
 -- Das mal teilweise oder ganz auslagern? äöü
--- Das alles als Wide_Wiide_String anlegen und an den entsprechenden Stellen dann einfach umwandeln? äöü
+-- Das alles als Wide_Wide_String anlegen und an den entsprechenden Stellen dann einfach umwandeln? äöü
 -- Muss ja teilweise eh umwandeln und es würde die Doppelvarianten entfernen. äöü
 package VerzeichnisKonstanten is
    pragma Pure;
@@ -15,11 +15,11 @@ package VerzeichnisKonstanten is
    SpielstandSpielerStrich : constant Wide_Wide_String (1 .. 8) := "Manuell/";
    SpielstandAutoStrich : constant Wide_Wide_String (1 .. 5) := "Auto/";
    
-   -- Einen besseren Namen dafür finden? äöü
-   Notfallspeichern : constant Wide_Wide_String (1 .. 13) := "Programmstopp";
+   Notfallspeichern : constant Wide_Wide_String (1 .. 16) := "Notfallspeichern";
    
    
    
+   -- Die Datenbanken weiter aufteilen? Beispielsweise eine eigene Datenbank für Rohstoffe/Verarbeitung? äöü
    Datenbanken : constant String (1 .. 11) := "Datenbanken";
    EinheitenDatenbank : constant String (1 .. 30) := Datenbanken & "/EinheitenDatenbank";
    ForschungenDatenbank : constant String (1 .. 32) := Datenbanken & "/ForschungenDatenbank";
@@ -57,24 +57,6 @@ package VerzeichnisKonstanten is
    SoundOhneStrich : constant String (1 .. 5) := "Sound";
    SoundEinfach : constant String (1 .. 6) := "Sound/";
    Sound : constant Wide_Wide_String (1 .. 6) := "Sound/";
-   
-   
-   
-   -- Statt einzelner Teile einfach nur die Gesamtpfade erstellen? äöü
-   -- Wäre wahrscheinlich übersichtlicher und weniger Konstanten. äöü
-   -- Oder die Nulldateien in den Hauptordner schieben und von da alles einlesen? äöü Das hier dürfte vermutlich das Sinnvollste sein, ähnlich wie bei den Textdateien? äöü
-   System : constant String (1 .. 7) := "/System";
-   Hintergrund : constant String (1 .. 12) := "/Hintergrund";
-   Basisgrund : constant String (1 .. 11) := "/Basisgrund";
-   Zusatzgrund : constant String (1 .. 12) := "/Zusatzgrund";
-   Feldeffekte : constant String (1 .. 12) := "/Feldeffekte";
-   Kartenfluss : constant String (1 .. 12) := "/Kartenfluss";
-   Kartenressourcen : constant String (1 .. 17) := "/Kartenressourcen";
-   Kartenverbesserungen : constant String (1 .. 15) := "/Verbesserungen";
-   Kartenwege : constant String (1 .. 5) := "/Wege";
-   Einheiten : constant String (1 .. 10) := "/Einheiten";
-   Bauwerke : constant String (1 .. 9) := "/Bauwerke";
-   Spezies : constant String (1 .. 8) := "/Spezies";
    
       
    

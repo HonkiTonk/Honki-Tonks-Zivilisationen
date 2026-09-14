@@ -61,14 +61,14 @@ package StadtKonstanten is
    LeerGebäudeID : constant StadtDatentypen.GebäudeIDBasis := 0;
    LeerGebäudeBenötigt : constant Boolean := False;
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
-   LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
+   LeerPreisRohstoffe : constant ProduktionDatentypen.Produktion := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDUnmöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant ProduktionDatentypen.Feldproduktion := 0;
    LeerBonusKampf : constant KampfDatentypen.KampfwerteEinheiten := KampfDatentypen.KampfwerteEinheiten'First;
    LeerBasisgrundBenötigt : constant Boolean := False;
    LeerZusatzgrundBenötigt : constant Boolean := False;
    LeerFlussBenötigt : constant Boolean := False;
-   LeerRessourceBenötigt : constant Boolean := False;
+   LeerRohstoffBenötigt : constant Boolean := False;
    LeerVerbesserungBenötigt : constant Boolean := False;
    LeerWegBenötigt : constant Boolean := False;
    LeerEbeneBenötigt : constant Boolean := False;

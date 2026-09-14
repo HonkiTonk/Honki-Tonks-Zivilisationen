@@ -39,7 +39,7 @@ private
    VorhandeneEinwohner : StadtDatentypen.EinwohnerBasis;
 
    NahrungsverbrauchEinwohnerMultiplikator : ProduktionDatentypen.Stadtproduktion;
-   RessourcenverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
+   RohstoffeverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
    GeldverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
    ForschungsverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
    

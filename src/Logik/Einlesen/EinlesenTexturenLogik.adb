@@ -91,9 +91,9 @@ package body EinlesenTexturenLogik is
                                                                             TexturenpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
-                 AktuelleZeile = Ressourcen
+                 AktuelleZeile = Rohstoffe
                then
-                  EingeleseneTexturenGrafik.RessourcenAccess := TexturFestlegen (TexturenAccessExtern => EingeleseneTexturenGrafik.RessourcenAccess,
+                  EingeleseneTexturenGrafik.RohstoffeAccess := TexturFestlegen (TexturenAccessExtern => EingeleseneTexturenGrafik.RohstoffeAccess,
                                                                                  TexturenpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif

@@ -1,12 +1,12 @@
 private with RueckgabeDatentypen;
 
-package SpieleinstellungenSonstigesLogik is
+package SchwierigkeitsgradEinstellenLogik is
    pragma Elaborate_Body;
 
-   procedure SchwierigkeitsgradFestlegen;
+   procedure Schwierigkeitsgrad;
    
 private
    
    SchwierigkeitAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
-end SpieleinstellungenSonstigesLogik;
+end SchwierigkeitsgradEinstellenLogik;

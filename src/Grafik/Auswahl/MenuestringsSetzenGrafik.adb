@@ -59,8 +59,8 @@ package body MenuestringsSetzenGrafik is
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
             AktuellerText := Menuetexte.Kartentemperatur (WelcheZeileExtern);
             
-         when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-            AktuellerText := Menuetexte.Ressourcenmenge (WelcheZeileExtern);
+         when MenueDatentypen.Kartenrohstoffe_Menü_Enum =>
+            AktuellerText := Menuetexte.Rohstoffemenge (WelcheZeileExtern);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
             AktuellerText := Menuetexte.Schwierigkeitsgrad (WelcheZeileExtern);

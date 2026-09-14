@@ -83,23 +83,23 @@ package body StadtfeldBewertenLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      RessourcenGesamt := FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+      RohstoffeGesamt := FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                               SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
                                                               ProduktionsartExtern => ProduktionDatentypen.Material_Enum);
       
       if
         LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 0
         and
-          RessourcenGesamt >= 1
+          RohstoffeGesamt >= 1
       then
          case
            BelegenEntfernenExtern
          is
             when True =>
-               return 25 + RessourcenGesamt;
+               return 25 + RohstoffeGesamt;
                
             when False =>
-               return -25 - RessourcenGesamt;
+               return -25 - RohstoffeGesamt;
          end case;
          
       else
@@ -107,10 +107,10 @@ package body StadtfeldBewertenLogik is
            BelegenEntfernenExtern
          is
             when True =>
-               return RessourcenGesamt;
+               return RohstoffeGesamt;
                
             when False =>
-               return -RessourcenGesamt;
+               return -RohstoffeGesamt;
          end case;
       end if;
       

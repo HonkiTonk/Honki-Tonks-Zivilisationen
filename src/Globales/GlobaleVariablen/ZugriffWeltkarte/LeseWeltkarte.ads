@@ -10,7 +10,7 @@ with StadtKonstanten;
 with KartenfluesseDatentypen;
 with StadtDatentypen;
 with KartenArrays;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KarteneffekteDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenwegeDatentypen;
@@ -129,9 +129,9 @@ package LeseWeltkarte is
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-   function Ressource
+   function Rohstoff
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenressourcenDatentypen.Ressourcen_Enum
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

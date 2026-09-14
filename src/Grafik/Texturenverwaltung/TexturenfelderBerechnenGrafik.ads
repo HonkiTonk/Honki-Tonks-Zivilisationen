@@ -12,7 +12,7 @@ private
    FelderanzahlBasisgrund : constant Sf.System.Vector2.sfVector2u := (10, 6);
    FelderanzahlZusatzgrund : constant Sf.System.Vector2.sfVector2u := (10, 8);
    FelderanzahlFlüsse : constant Sf.System.Vector2.sfVector2u := (10, 5);
-   FelderanzahlRessourcen : constant Sf.System.Vector2.sfVector2u := (3, 3);
+   FelderanzahlRohstoffe : constant Sf.System.Vector2.sfVector2u := (3, 3);
    FelderanzahlVerbesserungen : constant Sf.System.Vector2.sfVector2u := (3, 3);
    FelderanzahlWege : constant Sf.System.Vector2.sfVector2u := (7, 7);
    FelderanzahlFeldeffekte : constant Sf.System.Vector2.sfVector2u := (3, 3);
@@ -41,7 +41,7 @@ private
    procedure BasisgrundBerechnen;
    procedure ZusatzgrundBerechnen;
    procedure FlüsseBerechnen;
-   procedure RessourcenBerechnen;
+   procedure RohstoffeBerechnen;
    procedure VerbesserungenBerechnen;
    procedure WegeBerechnen;
    procedure FeldeffekteBerechnen;

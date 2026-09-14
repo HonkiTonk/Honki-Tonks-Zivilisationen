@@ -270,7 +270,7 @@ package KartenRecords is
             
       Kartenart : KartenartDatentypen.Kartenart_Enum;
       Kartentemperatur : KartenartDatentypen.Kartentemperatur_Enum;
-      Kartenressourcen : KartenartDatentypen.Kartenressourcenmenge_Enum;
+      Kartenrohstoffe : KartenartDatentypen.Kartenrohstoffemenge_Enum;
       Kartenpole : KartenpoleRecord;
             
    end record;

@@ -41,7 +41,9 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    function ZufälligeKartenebenen
      return KartenRecords.KartenebenenVorhandenRecord
-   is begin
+   is
+      use type KartenDatentypen.EbeneBasis;
+   begin
       
       ZufälligeKartenebenenWählen.Reset (Gen => ZufälligeKartenebenenGewählt);
       
@@ -49,9 +51,19 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
                                                                   First => KartenKonstanten.KernKonstante,
                                                                   Last  => KartenKonstanten.OberflächeKonstante);
       
-      Ebenen.EbeneEnde := ZufälligeKartenebenenWählen.Random (Gen   => ZufälligeKartenebenenGewählt,
-                                                                  First => Ebenen.EbeneAnfang,
-                                                                  Last  => KartenKonstanten.OrbitKonstante);
+      case
+        Ebenen.EbeneAnfang
+      is
+         when KartenKonstanten.KernKonstante =>
+            Ebenen.EbeneEnde := ZufälligeKartenebenenWählen.Random (Gen   => ZufälligeKartenebenenGewählt,
+                                                                      First => KartenKonstanten.UnterflächeKonstante,
+                                                                      Last  => KartenKonstanten.OrbitKonstante);
+         
+         when others =>
+            Ebenen.EbeneEnde := ZufälligeKartenebenenWählen.Random (Gen   => ZufälligeKartenebenenGewählt,
+                                                                      First => Ebenen.EbeneAnfang,
+                                                                      Last  => KartenKonstanten.OrbitKonstante);
+      end case;
       
       return Ebenen;
       
@@ -128,31 +140,53 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
 
    
    
-   function ZufälligeKartenressourcen
-     return KartenartDatentypen.Kartenressourcenmenge_Enum
+   function ZufälligeKartenrohstoffe
+     return KartenartDatentypen.Kartenrohstoffemenge_Enum
    is begin
       
-      ZufälligeKartenressourcenWählen.Reset (Gen => ZufälligeKartenressourcenGewählt);
-      return ZufälligeKartenressourcenWählen.Random (Gen => ZufälligeKartenressourcenGewählt);
+      ZufälligeKartenrohstoffeWählen.Reset (Gen => ZufälligeKartenrohstoffeGewählt);
+      return ZufälligeKartenrohstoffeWählen.Random (Gen => ZufälligeKartenrohstoffeGewählt);
       
-   end ZufälligeKartenressourcen;
+   end ZufälligeKartenrohstoffe;
    
    
    
    function ZufälligeSpezies
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
      return SpeziesDatentypen.Spezies_Vorhanden_Enum
-   is begin
+   is
+      use type KartenDatentypen.EbeneBasis;
+   begin
       
       ZufälligeSpeziesWählen.Reset (Gen => ZufälligeSpeziesGewählt);
-      return ZufälligeSpeziesWählen.Random (Gen => ZufälligeSpeziesGewählt);
+      
+      if
+        EbenenExtern.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
+      then
+         return ZufälligeSpeziesWählen.Random (Gen   => ZufälligeSpeziesGewählt,
+                                                 First => SpeziesDatentypen.Spezies_Oberfläche_Enum'First,
+                                                 Last  => SpeziesDatentypen.Spezies_Oberfläche_Enum'Last);
+         
+      elsif
+        EbenenExtern.EbeneEnde < KartenKonstanten.OberflächeKonstante
+      then
+         return ZufälligeSpeziesWählen.Random (Gen   => ZufälligeSpeziesGewählt,
+                                                 First => SpeziesDatentypen.Spezies_Unterfläche_Enum'First,
+                                                 Last  => SpeziesDatentypen.Spezies_Unterfläche_Enum'Last);
+      
+      else
+         return ZufälligeSpeziesWählen.Random (Gen => ZufälligeSpeziesGewählt);
+      end if;
       
    end ZufälligeSpezies;
    
    
    
    procedure ZufälligeSpeziesbelegung
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
    is
       use type SpeziesDatentypen.Spieler_Enum;
+      use type KartenDatentypen.EbeneBasis;
    begin
       
       SpielerVorhanden := False;
@@ -164,19 +198,35 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
          SpeziesSchleife:
          for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Vorhanden_Enum'Range loop
          
-            SpeziesImSpiel := ZufälligeSpeziesbelegungWählen.Random (Gen => ZufälligeSpeziesbelegungGewählt);
-
             if
-              SpeziesImSpiel = SpeziesDatentypen.KI_Spieler_Enum
+              EbenenExtern.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
+              and
+                SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Unterfläche_Enum'Range
             then
-               SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesSchleifenwert,
-                                                 BelegungExtern => SpeziesImSpiel);
-               SpielerVorhanden := True;
-            
-            else
                null;
-            end if;
          
+            elsif
+              EbenenExtern.EbeneEnde < KartenKonstanten.OberflächeKonstante
+              and
+                SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Oberfläche_Enum'Range
+            then
+               null;
+      
+            else
+               SpeziesImSpiel := ZufälligeSpeziesbelegungWählen.Random (Gen => ZufälligeSpeziesbelegungGewählt);
+
+               if
+                 SpeziesImSpiel = SpeziesDatentypen.KI_Spieler_Enum
+               then
+                  SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesSchleifenwert,
+                                                    BelegungExtern => SpeziesImSpiel);
+                  SpielerVorhanden := True;
+            
+               else
+                  null;
+               end if;
+            end if;
+            
          end loop SpeziesSchleife;
       end loop SpielerSchleife;
       

@@ -32,7 +32,7 @@ package StadtRecordKonstanten is
    
    LeerGebäudeListe : constant GebaeudedatenbankRecord.GebäudelisteRecord := (
                                                                                 PreisGeld            => StadtKonstanten.LeerPreisGeld,
-                                                                                Produktionskosten    => StadtKonstanten.LeerPreisRessourcen,
+                                                                                Produktionskosten    => StadtKonstanten.LeerPreisRohstoffe,
                                                                                 PermanenteKosten     => (others => StadtKonstanten.LeerPermanenteKosten),
                                                                                 Anforderungen        => StadtKonstanten.LeerAnforderungen,
                                                                                 Produktionsbonus     => (others => StadtKonstanten.LeerBonusWirtschaft),
@@ -40,7 +40,7 @@ package StadtRecordKonstanten is
                                                                                 BasisgrundBenötigt   => (others => StadtKonstanten.LeerBasisgrundBenötigt),
                                                                                 ZusatzgrundBenötigt  => (others => StadtKonstanten.LeerZusatzgrundBenötigt),
                                                                                 FlussBenötigt        => (others => StadtKonstanten.LeerFlussBenötigt),
-                                                                                RessourceBenötigt    => (others => StadtKonstanten.LeerRessourceBenötigt),
+                                                                                RohstoffBenötigt    => (others => StadtKonstanten.LeerRohstoffBenötigt),
                                                                                 VerbesserungBenötigt => (others => StadtKonstanten.LeerVerbesserungBenötigt),
                                                                                 WegBenötigt          => (others => StadtKonstanten.LeerWegBenötigt),
                                                                                 GebäudeBenötigt      => (others => StadtKonstanten.LeerGebäudeBenötigt),

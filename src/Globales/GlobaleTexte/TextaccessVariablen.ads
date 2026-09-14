@@ -78,7 +78,7 @@ package TextaccessVariablen is
    KartenartAccess : constant TextaccessArray (Menuetexte.Kartenart'Range) := (others => Sf.Graphics.Text.create);
    KartentemperaturAccess : constant TextaccessArray (Menuetexte.Kartentemperatur'Range) := (others => Sf.Graphics.Text.create);
    SchwierigkeitsgradAccess : constant TextaccessArray (Menuetexte.Schwierigkeitsgrad'Range) := (others => Sf.Graphics.Text.create);
-   RessourcenmengeAccess : constant TextaccessArray (Menuetexte.Ressourcenmenge'Range) := (others => Sf.Graphics.Text.create);
+   RohstoffemengeAccess : constant TextaccessArray (Menuetexte.Rohstoffemenge'Range) := (others => Sf.Graphics.Text.create);
    DiplomatiemenüAccess : constant TextaccessArray (Menuetexte.Diplomatiemenü'Range) := (others => Sf.Graphics.Text.create);
    KartenpoleAccess : constant TextaccessArray (Menuetexte.Kartenpole'Range) := (others => Sf.Graphics.Text.create);
    SoundmenüAccess : constant TextaccessArray (Menuetexte.Soundmenü'Range) := (others => Sf.Graphics.Text.create);
@@ -102,7 +102,7 @@ package TextaccessVariablen is
    ZusatzgrundAccess : constant TextaccessArray (Kartentexte.Zusatzgrund'Range) := (others => Sf.Graphics.Text.create);
    
    FlüsseAccess : constant TextaccessArray (Kartentexte.Flüsse'Range) := (others => Sf.Graphics.Text.create);
-   RessourcenAccess : constant TextaccessArray (Kartentexte.Ressourcen'Range) := (others => Sf.Graphics.Text.create);
+   RohstoffeAccess : constant TextaccessArray (Kartentexte.Rohstoffe'Range) := (others => Sf.Graphics.Text.create);
    FeldeffekteAccess : constant TextaccessArray (Kartentexte.Feldeffekte'Range) := (others => Sf.Graphics.Text.create);
    
    VerbesserungenAccess : constant TextaccessArray (Kartentexte.Verbesserungen'Range) := (others => Sf.Graphics.Text.create);

@@ -11,7 +11,7 @@ private with KartenRecords;
 private with KartenverbesserungDatentypen;
 private with TextaccessVariablen;
 private with KartenfluesseDatentypen;
-private with KartenressourcenDatentypen;
+private with KartenrohstoffeDatentypen;
 private with KartenbasisgrundDatentypen;
 private with KartenwegeDatentypen;
 
@@ -69,8 +69,8 @@ private
                );
    
    -- Die Contracts hier noch hinzufügen. äöü
-   function Ressource
-     (RessourceExtern : in KartenressourcenDatentypen.Ressourcen_Enum)
+   function Rohstoff
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return Unbounded_Wide_Wide_String;
    
    function Verbesserung

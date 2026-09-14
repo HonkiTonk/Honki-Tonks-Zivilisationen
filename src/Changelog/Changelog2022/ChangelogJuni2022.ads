@@ -242,7 +242,7 @@ package ChangelogJuni2022 is
    -- Version 0.00.0910 => 0.01.0960 (03.06.2022):
    
    -- KartengeneratorUnterwasserUnterirdisch überarbeitet.
-   -- KartengeneratorRessourcen überarbeitet.
+   -- KartengeneratorRohstoffe überarbeitet.
    -- Zufallsgenerator für Booleans eingebaut.
    -- Roden/Trockenlegen/Aufforsten an das neue Grundsystem angepasst.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.

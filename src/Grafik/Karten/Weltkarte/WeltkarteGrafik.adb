@@ -257,10 +257,10 @@ package body WeltkarteGrafik is
       end case;
       
       case
-        Anzeige (Ressourcen_Enum)
+        Anzeige (Rohstoffe_Enum)
       is
          when True =>
-            WeltkarteFeldZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+            WeltkarteFeldZeichnenGrafik.RohstoffZeichnen (KoordinatenExtern => KoordinatenExtern,
                                                            PositionExtern    => PositionExtern);
             
          when False =>

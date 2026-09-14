@@ -54,7 +54,7 @@ private
    
    -- Die Sichtbarkeit unten drunter hier nicht mit einbauen, aber eventuell später dennoch einen Knopf dafür haben? äöü
    type Weltkarte_Anzeige_Enum is (
-                                   Basisgrund_Enum, Zusatzgrund_Enum, Fluss_Enum, Ressourcen_Enum, Weg_Enum, Verbesserungen_Enum,
+                                   Basisgrund_Enum, Zusatzgrund_Enum, Fluss_Enum, Rohstoffe_Enum, Weg_Enum, Verbesserungen_Enum,
                                    Stadtnamen_Enum, Feldbesitzer_Enum, Feldeffekte_Enum, Einheit_Enum, Bewegungsfeld_Enum
                                   );
    

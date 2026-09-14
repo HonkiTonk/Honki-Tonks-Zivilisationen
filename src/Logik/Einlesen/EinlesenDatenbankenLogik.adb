@@ -281,7 +281,7 @@ package body EinlesenDatenbankenLogik is
             StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
             StandardKartenDatenbank.StandardZusatzgrundDatenbankLaden;
             StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
-            StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
+            StandardKartenDatenbank.StandardKartenrohstoffeDatenbankLaden;
             return;
             
          when True =>
@@ -302,7 +302,7 @@ package body EinlesenDatenbankenLogik is
             StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
             StandardKartenDatenbank.StandardZusatzgrundDatenbankLaden;
             StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
-            StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
+            StandardKartenDatenbank.StandardKartenrohstoffeDatenbankLaden;
       end case;
             
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
@@ -315,7 +315,7 @@ package body EinlesenDatenbankenLogik is
          StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
          StandardKartenDatenbank.StandardZusatzgrundDatenbankLaden;
          StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
-         StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
+         StandardKartenDatenbank.StandardKartenrohstoffeDatenbankLaden;
             
          DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
                                                     NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
@@ -338,8 +338,8 @@ package body EinlesenDatenbankenLogik is
       KartenDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
                                                   Flüsse);
       
-      KartenDatenbank.KartenressourcenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                       Ressourcen);
+      KartenDatenbank.KartenrohstoffelisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                       Rohstoffe);
       
       case
         LadenPrüfenExtern
@@ -351,7 +351,7 @@ package body EinlesenDatenbankenLogik is
             KartenDatenbank.Basisgrundliste := Basisgrund;
             KartenDatenbank.Zusatzgrundliste := Zusatzgrund;
             KartenDatenbank.Kartenflussliste := Flüsse;
-            KartenDatenbank.Kartenressourcenliste := Ressourcen;
+            KartenDatenbank.Kartenrohstoffeliste := Rohstoffe;
       end case;
    
       return True;

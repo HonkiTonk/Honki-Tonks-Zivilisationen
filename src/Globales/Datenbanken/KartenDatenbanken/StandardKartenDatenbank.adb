@@ -1,6 +1,6 @@
 with KartenzusatzgrundDatentypen;
 with KartenDatenbank;
-with KartenressourcenDatentypen;
+with KartenrohstoffeDatentypen;
 with KartenbasisgrundDatentypen;
 
 with BasisgrundHimmel;
@@ -13,8 +13,8 @@ with ZusatzgrundOberflaeche;
 with ZusatzgrundUnterflaeche;
 with KartenfluesseDatentypen;
 with KartengrundFluss;
-with Landressourcen;
-with Wasserressourcen;
+with Landrohstoffe;
+with Wasserrohstoffe;
 
 package body StandardKartenDatenbank is
 
@@ -99,24 +99,24 @@ package body StandardKartenDatenbank is
    
    
 
-   procedure StandardKartenressourcenDatenbankLaden
+   procedure StandardKartenrohstoffeDatenbankLaden
    is begin
       
-      KartenressourcenSchleife:
-      for KartenressourcenSchleifenwert in KartenressourcenDatentypen.Ressourcen_Vorhanden_Enum'Range loop
+      KartenrohstoffeSchleife:
+      for KartenrohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range loop
          
          case
-           KartenressourcenSchleifenwert
+           KartenrohstoffeSchleifenwert
          is
-            when Landressourcen.LandressourcenlisteArray'Range =>
-               KartenDatenbank.Kartenressourcenliste (KartenressourcenSchleifenwert) := Landressourcen.Landressourcenliste (KartenressourcenSchleifenwert);
+            when Landrohstoffe.LandrohstoffelisteArray'Range =>
+               KartenDatenbank.Kartenrohstoffeliste (KartenrohstoffeSchleifenwert) := Landrohstoffe.Landrohstoffeliste (KartenrohstoffeSchleifenwert);
                
-            when Wasserressourcen.WasserressourcenlisteArray'Range =>
-               KartenDatenbank.Kartenressourcenliste (KartenressourcenSchleifenwert) := Wasserressourcen.Wasserressourcenliste (KartenressourcenSchleifenwert);
+            when Wasserrohstoffe.WasserrohstoffelisteArray'Range =>
+               KartenDatenbank.Kartenrohstoffeliste (KartenrohstoffeSchleifenwert) := Wasserrohstoffe.Wasserrohstoffeliste (KartenrohstoffeSchleifenwert);
          end case;
          
-      end loop KartenressourcenSchleife;
+      end loop KartenrohstoffeSchleife;
       
-   end StandardKartenressourcenDatenbankLaden;
+   end StandardKartenrohstoffeDatenbankLaden;
 
 end StandardKartenDatenbank;
