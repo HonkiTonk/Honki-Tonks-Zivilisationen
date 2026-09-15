@@ -1,3 +1,5 @@
+private with KartenDatentypen;
+
 package KartengeneratorAllgemeinesLogik is
    pragma Elaborate_Body;
    
@@ -5,6 +7,7 @@ package KartengeneratorAllgemeinesLogik is
    
 private
    
-   procedure GenerierungGrundlagen;
+   procedure GenerierungGrundlagen
+     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural);
 
 end KartengeneratorAllgemeinesLogik;

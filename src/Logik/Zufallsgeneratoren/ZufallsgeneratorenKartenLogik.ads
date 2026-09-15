@@ -17,10 +17,10 @@ package ZufallsgeneratorenKartenLogik is
 
 private
 
-   Minimalwert : KartenRecords.KartenfeldumgebungPositivRecord;
-   Maximalwert : KartenRecords.KartenfeldumgebungPositivRecord;
    Zwischenspeicher : KartenRecords.KartenfeldumgebungPositivRecord;
    Gesamtwert : KartenRecords.KartenfeldumgebungPositivRecord;
+
+   Landgröße : KartenRecords.LandgrößenRecord;
 
    package ZufälligeZahl is new Ada.Numerics.Discrete_Random (Result_Subtype => SystemDatentypenHTSEB.NullBisHundert);
    package ZufälligeSenkrechteLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);

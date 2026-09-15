@@ -4,80 +4,90 @@ with KartenRecords;
 with KartenRecordKonstanten;
 with KartengeneratorRecordKonstanten;
 with KartenartDatentypen;
-with KartenrohstoffeDatentypen;
 with KartenbasisgrundDatentypen;
+with KartenDatentypen;
+with KartenrohstoffeDatentypen;
 
+private with KartenArrays;
 
--- Die Sachen hier auch mal mit Lese/Schreibefunktionen versehen. äöü
+-- Man kann den Polgrund noch nicht einstellen, auch irgendwann mal einbauen. äöü
 package KartengeneratorVariablenLogik is
    pragma Elaborate_Body;
+
+   -- protected Variablenzugriff is
+
+   procedure OberflächenpolSchreiben
+     (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum);
+
+   procedure UnterflächenpolSchreiben
+     (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum);
+
+   procedure SenkrechterPolSchreiben
+     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
+      HimmelsrichtungExtern : in KartenartDatentypen.Senkrechte_Himmelsrichtungen_Enum);
+
+   procedure WaagerechterPolSchreiben
+     (WaagerechteExtern : in KartenDatentypen.WaagerechteNatural;
+      HimmelsrichtungExtern : in KartenartDatentypen.Waagerechte_Himmelsrichtungen_Enum);
+
+   procedure Standardpole;
+
+   procedure LandgrößenSchreiben
+     (GrößeExtern : in KartenRecords.LandgrößenRecord);
+
+   procedure PolfreierBereichSchreiben
+     (BereichExtern : in KartenRecords.LandgrößenNaturalRecord);
+
+   -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
+   procedure RohstoffwahrscheinlichkeitenSchreiben
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
+     WahrscheinlichkeitExtern : in SystemDatentypenHTSEB.NullBisHundert);
+
+
+
+   function OberflächenpolLesen
+     return KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
+
+   function UnterflächenpolLesen
+     return KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
+
+   function SenkrechterPolLesen
+     (HimmelsrichtungExtern : in KartenartDatentypen.Senkrechte_Himmelsrichtungen_Enum)
+      return KartenDatentypen.SenkrechteNatural;
+
+   function WaagerechterPolLesen
+     (HimmelsrichtungExtern : in KartenartDatentypen.Waagerechte_Himmelsrichtungen_Enum)
+      return KartenDatentypen.WaagerechteNatural;
+
+   function LandgrößenLesen
+     return KartenRecords.LandgrößenRecord;
+
+   function PolfreierBereichLesen
+     return KartenRecords.LandgrößenNaturalRecord;
+
+   -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
+   function RohstoffwahrscheinlichkeitenLesen
+     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+      return SystemDatentypenHTSEB.NullBisHundert;
+
+   Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
+
+private
 
    PolgrundOberfläche : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum := KartenbasisgrundDatentypen.Eis_Enum;
    PolgrundUnterfläche : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum := KartenbasisgrundDatentypen.Untereis_Enum;
 
-   Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
-
-   SenkrechtePolgrößen : KartengeneratorRecordKonstanten.SenkrechtePolregionenArray := KartengeneratorRecordKonstanten.SenkrechterEisrand;
-   WaagerechtePolgrößen : KartengeneratorRecordKonstanten.WaagerechtePolregionenArray := KartengeneratorRecordKonstanten.WaagerechterEisrand;
+   Polsenkrechte : KartengeneratorRecordKonstanten.SenkrechtePolregionenArray := KartengeneratorRecordKonstanten.SenkrechterEisrand;
+   Polwaagerechte : KartengeneratorRecordKonstanten.WaagerechtePolregionenArray := KartengeneratorRecordKonstanten.WaagerechterEisrand;
 
    -- Alle Angaben sind Radien.
    Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum);
 
-   SchleifenanfangOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
-   SchleifenendeOhnePolbereich : KartenRecords.KartenfeldumgebungNaturalRecord;
+   PolfreierBereich : KartenRecords.LandgrößenNaturalRecord;
 
-   type StandardKartenrohstoffeWahrscheinlichkeitenArray is array (KartenartDatentypen.Kartenrohstoffemenge_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
-   StandardKartenrohstoffeWahrscheinlichkeiten : constant StandardKartenrohstoffeWahrscheinlichkeitenArray := (
-                                                                                                               KartenartDatentypen.Ein_Rohstoff_Enum =>
-                                                                                                                 (
-                                                                                                                  KartenrohstoffeDatentypen.Fisch_Enum              => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Wal_Enum                => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum  => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Kohle_Enum              => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Eisen_Enum              => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Öl_Enum                 => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Gold_Enum               => 3
-                                                                                                                 ),
+   -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
+   KartenrohstoffeWahrscheinlichkeiten : KartenArrays.KartenrohstoffeWahrscheinlichkeitenArray;
 
-                                                                                                               KartenartDatentypen.Zwei_Rohstoffe_Enum =>
-                                                                                                                 (
-                                                                                                                  KartenrohstoffeDatentypen.Fisch_Enum              => 2,
-                                                                                                                  KartenrohstoffeDatentypen.Wal_Enum                => 2,
-                                                                                                                  KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum  => 2,
-                                                                                                                  KartenrohstoffeDatentypen.Kohle_Enum              => 2,
-                                                                                                                  KartenrohstoffeDatentypen.Eisen_Enum              => 2,
-                                                                                                                  KartenrohstoffeDatentypen.Öl_Enum                 => 2,
-                                                                                                                  KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum => 2,
-                                                                                                                  KartenrohstoffeDatentypen.Gold_Enum               => 2
-                                                                                                                 ),
-
-                                                                                                               KartenartDatentypen.Drei_Rohstoffe_Enum =>
-                                                                                                                 (
-                                                                                                                  KartenrohstoffeDatentypen.Fisch_Enum              => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Wal_Enum                => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum  => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Kohle_Enum              => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Eisen_Enum              => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Öl_Enum                 => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum => 3,
-                                                                                                                  KartenrohstoffeDatentypen.Gold_Enum               => 3
-                                                                                                                 ),
-
-                                                                                                               KartenartDatentypen.Vier_Rohstoffe_Enum =>
-                                                                                                                 (
-                                                                                                                  KartenrohstoffeDatentypen.Fisch_Enum              => 4,
-                                                                                                                  KartenrohstoffeDatentypen.Wal_Enum                => 4,
-                                                                                                                  KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum  => 4,
-                                                                                                                  KartenrohstoffeDatentypen.Kohle_Enum              => 4,
-                                                                                                                  KartenrohstoffeDatentypen.Eisen_Enum              => 4,
-                                                                                                                  KartenrohstoffeDatentypen.Öl_Enum                 => 4,
-                                                                                                                  KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum => 4,
-                                                                                                                  KartenrohstoffeDatentypen.Gold_Enum               => 4
-                                                                                                                 )
-                                                                                                              );
-
-   type KartenrohstoffeWahrscheinlichkeitenArray is array (StandardKartenrohstoffeWahrscheinlichkeitenArray'Range (2)) of SystemDatentypenHTSEB.NullBisHundert;
-   KartenrohstoffeWahrscheinlichkeiten : KartenrohstoffeWahrscheinlichkeitenArray;
+   -- end Variablenzugriff;
 
 end KartengeneratorVariablenLogik;

@@ -13,8 +13,16 @@ with LadezeitenLogik;
 with KartentestsLogik;
 
 package body KartengeneratorRohstoffeLogik is
+   
+   procedure Rohstoffe
+   is begin
+      
+      GenerierungRohstoffe (SchleifenbereichtExtern => KartengeneratorVariablenLogik.PolfreierBereichLesen);
+      
+   end Rohstoffe;
 
    procedure GenerierungRohstoffe
+     (SchleifenbereichtExtern : in KartenRecords.LandgrößenNaturalRecord)
    is
       use type KartenDatentypen.EbeneVorhanden;
       use type KartenDatentypen.SenkrechtePositiv;
@@ -28,9 +36,10 @@ package body KartengeneratorRohstoffeLogik is
          if
            KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang <= -1
          then
-            RohstoffeGenerierung (EbeneExtern         => KartenKonstanten.UnterflächeKonstante,
-                                   LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
-                                     * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+            RohstoffeGenerierung (EbeneExtern             => KartenKonstanten.UnterflächeKonstante,
+                                  LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                    * SchleifenbereichtExtern.MaximaleSenkrechte),
+                                  SchleifenbereichtExtern => SchleifenbereichtExtern);
             
          else
             null;
@@ -46,9 +55,10 @@ package body KartengeneratorRohstoffeLogik is
          if
            KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = -2
          then
-            RohstoffeGenerierung (EbeneExtern         => KartenKonstanten.KernKonstante,
-                                   LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
-                                     * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+            RohstoffeGenerierung (EbeneExtern             => KartenKonstanten.KernKonstante,
+                                  LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                    * SchleifenbereichtExtern.MaximaleSenkrechte),
+                                  SchleifenbereichtExtern => SchleifenbereichtExtern);
             
          else
             null;
@@ -61,9 +71,10 @@ package body KartengeneratorRohstoffeLogik is
       if
         KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= 0
       then
-         RohstoffeGenerierung (EbeneExtern         => KartenKonstanten.OberflächeKonstante,
-                                LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
-                                  * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+         RohstoffeGenerierung (EbeneExtern             => KartenKonstanten.OberflächeKonstante,
+                               LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                 * SchleifenbereichtExtern.MaximaleSenkrechte),
+                               SchleifenbereichtExtern => SchleifenbereichtExtern);
          
       else
          null;
@@ -76,13 +87,14 @@ package body KartengeneratorRohstoffeLogik is
    -- Warum generiere ich keine Rohstoffe an den Polen? Mal anpassen. äöü
    procedure RohstoffeGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet;
-      LadezeitbasisExtern : in Float)
+      LadezeitbasisExtern : in Float;
+      SchleifenbereichtExtern : in KartenRecords.LandgrößenNaturalRecord)
    is begin
       
       SenkrechteSchleife:
-      for SenkrechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte loop
+      for SenkrechteSchleifenwert in SchleifenbereichtExtern.MinimaleSenkrechte .. SchleifenbereichtExtern.MaximaleSenkrechte loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte loop
+         for WaagerechteSchleifenwert in SchleifenbereichtExtern.MinimaleWaagerechte .. SchleifenbereichtExtern.MaximaleWaagerechte loop
             
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert))

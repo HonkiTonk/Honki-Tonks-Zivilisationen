@@ -43,4 +43,10 @@ package KartentestsLogik is
                   PlanetenEbenen'Result <= 3
                );
 
+
+
+private
+
+   Landgrößen : KartenRecords.LandgrößenRecord;
+
 end KartentestsLogik;

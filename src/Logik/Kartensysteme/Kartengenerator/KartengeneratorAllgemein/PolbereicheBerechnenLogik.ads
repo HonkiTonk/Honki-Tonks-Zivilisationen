@@ -1,4 +1,4 @@
-private with KartenDatentypen;
+private with KartenRecords;
 
 package PolbereicheBerechnenLogik is
    pragma Elaborate_Body;
@@ -7,9 +7,6 @@ package PolbereicheBerechnenLogik is
    
 private
    
-   PolbereichNorden : KartenDatentypen.SenkrechteNatural;
-   PolbereichSüden : KartenDatentypen.SenkrechteNatural;
-   PolbereichWesten : KartenDatentypen.SenkrechteNatural;
-   PolbereichOsten : KartenDatentypen.SenkrechteNatural;
+   Schleifenbereiche : KartenRecords.LandgrößenNaturalRecord;
 
 end PolbereicheBerechnenLogik;

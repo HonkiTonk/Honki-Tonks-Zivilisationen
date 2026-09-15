@@ -52,6 +52,8 @@ private
    
    Poldicke : KartenDatentypen.SenkrechteNatural;
    
+   Landgröße : KartenRecords.LandgrößenRecord;
+   
    Ebenen : KartenRecords.KartenebenenVorhandenRecord;
    
    package ZufälligeVordefinierteKartengrößeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RueckgabeDatentypen.Kartengrößen_Standard_Enum);

@@ -72,15 +72,15 @@ package body KartengeneratorPolregionLogik is
       end case;
       
       SenkrechteSchleife:
-      for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum) loop
+      for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum) loop
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
             
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
+                                          GrundExtern       => KartengeneratorVariablenLogik.OberflächenpolLesen);
             
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
+                                          GrundExtern       => KartengeneratorVariablenLogik.UnterflächenpolLesen);
             
          end loop WaagerechteSchleife;
       end loop SenkrechteSchleife;
@@ -106,15 +106,16 @@ package body KartengeneratorPolregionLogik is
 
       -- Hier ist + 1 nötig, da er nicht wie auf der anderen Polseite bis zu dem Punkt loopt sondern eins weiter.
       SenkrechteSchleife:
-      for SenkrechteSchleifenwert in LeseWeltkarteneinstellungen.Senkrechte - KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum) + 1 .. LeseWeltkarteneinstellungen.Senkrechte loop
+      for SenkrechteSchleifenwert in LeseWeltkarteneinstellungen.Senkrechte - KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum) + 1
+        .. LeseWeltkarteneinstellungen.Senkrechte loop
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
             
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
+                                          GrundExtern       => KartengeneratorVariablenLogik.OberflächenpolLesen);
             
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
+                                          GrundExtern       => KartengeneratorVariablenLogik.UnterflächenpolLesen);
             
          end loop WaagerechteSchleife;
       end loop SenkrechteSchleife;
@@ -139,13 +140,13 @@ package body KartengeneratorPolregionLogik is
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum) loop
+         for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum) loop
             
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
+                                          GrundExtern       => KartengeneratorVariablenLogik.OberflächenpolLesen);
             
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
+                                          GrundExtern       => KartengeneratorVariablenLogik.UnterflächenpolLesen);
             
          end loop WaagerechteSchleife;
       end loop SenkrechteSchleife;
@@ -173,14 +174,14 @@ package body KartengeneratorPolregionLogik is
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in LeseWeltkarteneinstellungen.Waagerechte - KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum) + 1
+         for WaagerechteSchleifenwert in LeseWeltkarteneinstellungen.Waagerechte - KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum) + 1
            .. LeseWeltkarteneinstellungen.Waagerechte loop
             
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundOberfläche);
+                                          GrundExtern       => KartengeneratorVariablenLogik.OberflächenpolLesen);
             
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                          GrundExtern       => KartengeneratorVariablenLogik.PolgrundUnterfläche);
+                                          GrundExtern       => KartengeneratorVariablenLogik.UnterflächenpolLesen);
             
          end loop WaagerechteSchleife;
       end loop SenkrechteSchleife;

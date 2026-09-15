@@ -1,3 +1,5 @@
+private with KartenRecords;
+
 package KartengeneratorUnterflaecheLogik is
    pragma Elaborate_Body;
 
@@ -6,5 +8,7 @@ package KartengeneratorUnterflaecheLogik is
 private
 
    LadezeitBasis : Float;
+
+   Schleifenbereiche : KartenRecords.LandgrößenNaturalRecord;
 
 end KartengeneratorUnterflaecheLogik;

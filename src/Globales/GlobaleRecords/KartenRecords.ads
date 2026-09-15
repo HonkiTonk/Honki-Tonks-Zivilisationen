@@ -133,6 +133,7 @@ package KartenRecords is
       
       SenkrechteAnfang : KartenDatentypen.SenkrechteBasis;
       SenkrechteEnde : KartenDatentypen.SenkrechteNatural;
+      
       WaagerechteAnfang : KartenDatentypen.WaagerechteBasis;
       WaagerechteEnde : KartenDatentypen.WaagerechteNatural;
       
@@ -226,6 +227,18 @@ package KartenRecords is
       Südpol : KartenartDatentypen.Kartenpole_Enum;
       Westpol : KartenartDatentypen.Kartenpole_Enum;
       Ostpol : KartenartDatentypen.Kartenpole_Enum;
+      
+   end record;
+   
+   
+   
+   type LandgrößenNaturalRecord is record
+      
+      MinimaleSenkrechte : KartenDatentypen.SenkrechteNatural;
+      MaximaleSenkrechte : KartenDatentypen.SenkrechteNatural;
+      
+      MinimaleWaagerechte : KartenDatentypen.WaagerechteNatural;
+      MaximaleWaagerechte : KartenDatentypen.WaagerechteNatural;
       
    end record;
    

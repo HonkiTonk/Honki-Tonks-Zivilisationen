@@ -1,5 +1,6 @@
 with KartenartDatentypen;
 with KartenKonstanten;
+with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -13,11 +14,18 @@ package body PolbereicheBerechnenLogik is
       use type KartenDatentypen.WaagerechteBasis;
    begin
       
-      KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte := KartenKonstanten.AnfangSenkrechte + KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum);
-      KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte := LeseWeltkarteneinstellungen.Senkrechte - KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum);
+      Schleifenbereiche.MinimaleSenkrechte := KartenKonstanten.AnfangSenkrechte + KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
       
-      KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte := KartenKonstanten.AnfangWaagerechte + KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum);
-      KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte := LeseWeltkarteneinstellungen.Waagerechte - KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum);
+      Schleifenbereiche.MaximaleSenkrechte := LeseWeltkarteneinstellungen.Senkrechte - KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
+      
+      
+      
+      Schleifenbereiche.MinimaleWaagerechte := KartenKonstanten.AnfangWaagerechte + KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
+      
+      
+      Schleifenbereiche.MaximaleWaagerechte := LeseWeltkarteneinstellungen.Waagerechte - KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
+      
+      KartengeneratorVariablenLogik.PolfreierBereichSchreiben (BereichExtern => Schleifenbereiche);
 
    end PolbereicheBerechnen;
 

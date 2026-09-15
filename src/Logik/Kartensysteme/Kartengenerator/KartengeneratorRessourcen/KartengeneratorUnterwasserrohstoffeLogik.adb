@@ -23,7 +23,7 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
          GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
-           GezogeneZahl > KartengeneratorVariablenLogik.KartenrohstoffeWahrscheinlichkeiten (ZufallszahlSchleifenwert)
+           GezogeneZahl > KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenLesen (RohstoffExtern => ZufallszahlSchleifenwert)
            or
              GezogeneZahl = 0
          then

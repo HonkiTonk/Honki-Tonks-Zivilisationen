@@ -24,6 +24,8 @@ private
    WelcherGrund : SystemDatentypenHTSEB.NullBisHundert;
 
    LadezeitBasis : Float;
+   
+   Schleifenbereiche : KartenRecords.LandgrößenNaturalRecord;
          
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
    

@@ -16,11 +16,13 @@ package body KartengeneratorStandardLogik is
    procedure OberflächeGenerieren
      (LadezeitbasisExtern : in Float)
    is begin
+      
+      Schleifenbereich := KartengeneratorVariablenLogik.PolfreierBereichLesen;
             
       SenkrechteSchleife:
-      for SenkrechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte loop
+      for SenkrechteSchleifenwert in Schleifenbereich.MinimaleSenkrechte .. Schleifenbereich.MaximaleSenkrechte loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte loop
+         for WaagerechteSchleifenwert in Schleifenbereich.MinimaleWaagerechte .. Schleifenbereich.MaximaleWaagerechte loop
                
             LandVorhanden (SenkrechteExtern => SenkrechteSchleifenwert,
                            WaagerechteExtern => WaagerechteSchleifenwert);
@@ -119,12 +121,12 @@ package body KartengeneratorStandardLogik is
       end loop LandmassenSchleife;
       
       SenkrechteZwischenwert := StartSenkrechte (SenkrechteExtern => SenkrechteExtern,
-                                         AnfangExtern => Landmassen (1).Senkrechte,
-                                         EndeExtern   => Landmassen (2).Senkrechte);
+                                                 AnfangExtern => Landmassen (1).Senkrechte,
+                                                 EndeExtern   => Landmassen (2).Senkrechte);
       
       WaagerechteZwischenwert := StartWaagerechte (WaagerechteExtern => WaagerechteExtern,
-                                         AnfangExtern => Landmassen (1).Waagerechte,
-                                         EndeExtern   => Landmassen (2).Waagerechte);
+                                                   AnfangExtern => Landmassen (1).Waagerechte,
+                                                   EndeExtern   => Landmassen (2).Waagerechte);
       
       QuadrantenSchleife:
       for QuadrantenSchleifenwert in QuadrantenArray'Range loop
@@ -185,8 +187,8 @@ package body KartengeneratorStandardLogik is
             for WaagerechteSchleifenwert in WaagerechteAnfang .. WaagerechteEnde loop
             
                KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteZwischenwert, WaagerechteZwischenwert),
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+                                                                                            ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                            TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
                if
                  Quadrantenwert <= Quadranten (QuadrantenSchleifenwert)
@@ -210,8 +212,8 @@ package body KartengeneratorStandardLogik is
                            
             KartenWert
               := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteZwischenwert, WaagerechteZwischenwert),
-                                                                                             ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteabstandSchleifenwert, WaagerechteabstandSchleifenwert),
-                                                                                             TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteabstandSchleifenwert, WaagerechteabstandSchleifenwert),
+                                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
               SenkrechteabstandSchleifenwert in -Landmassen (1).Senkrechte .. Landmassen (2).Senkrechte
@@ -244,6 +246,7 @@ package body KartengeneratorStandardLogik is
       
       ÜbergangNorden := LeseWeltkarteneinstellungen.SenkrechteNorden;
       ÜbergangSüden := LeseWeltkarteneinstellungen.SenkrechteSüden;
+      SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
       
       if
         ÜbergangNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
@@ -251,12 +254,12 @@ package body KartengeneratorStandardLogik is
           ÜbergangSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          if
-           SenkrechteExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte
+           SenkrechteExtern - AnfangExtern < SchleifenbereichZusatz.MinimaleSenkrechte
          then
             return AnfangExtern;
          
          elsif
-           SenkrechteExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte
+           SenkrechteExtern + EndeExtern > SchleifenbereichZusatz.MaximaleSenkrechte
          then
             return EndeExtern;
          
@@ -268,7 +271,7 @@ package body KartengeneratorStandardLogik is
         ÜbergangNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          if
-           SenkrechteExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte
+           SenkrechteExtern - AnfangExtern < SchleifenbereichZusatz.MinimaleSenkrechte
          then
             return AnfangExtern;
             
@@ -280,7 +283,7 @@ package body KartengeneratorStandardLogik is
         ÜbergangSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          if
-           SenkrechteExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte
+           SenkrechteExtern + EndeExtern > SchleifenbereichZusatz.MaximaleSenkrechte
          then
             return EndeExtern;
          
@@ -309,6 +312,7 @@ package body KartengeneratorStandardLogik is
       
       ÜbergangWesten := LeseWeltkarteneinstellungen.WaagerechteWesten;
       ÜbergangOsten := LeseWeltkarteneinstellungen.WaagerechteOsten;
+      SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
       
       if
         ÜbergangWesten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
@@ -316,12 +320,12 @@ package body KartengeneratorStandardLogik is
           ÜbergangOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
       then
          if
-           WaagerechteExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte
+           WaagerechteExtern - AnfangExtern < SchleifenbereichZusatz.MinimaleWaagerechte
          then
             return AnfangExtern;
          
          elsif
-           WaagerechteExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte
+           WaagerechteExtern + EndeExtern > SchleifenbereichZusatz.MaximaleWaagerechte
          then
             return EndeExtern;
          
@@ -333,7 +337,7 @@ package body KartengeneratorStandardLogik is
         ÜbergangWesten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
       then
          if
-           WaagerechteExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte
+           WaagerechteExtern - AnfangExtern < SchleifenbereichZusatz.MinimaleWaagerechte
          then
             return AnfangExtern;
             
@@ -345,7 +349,7 @@ package body KartengeneratorStandardLogik is
         ÜbergangOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
       then
          if
-           WaagerechteExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte
+           WaagerechteExtern + EndeExtern > SchleifenbereichZusatz.MaximaleWaagerechte
          then
             return EndeExtern;
          
@@ -370,6 +374,8 @@ package body KartengeneratorStandardLogik is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
+      SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
+      
       -- Wird die erste Abfrag überhaupt benötigt wenn ich darunter prüfe ob es im gültigen Kartenbereich ist? äöü
       if
         WaagerechteExtern = KartenKonstanten.LeerWaagerechte
@@ -377,9 +383,9 @@ package body KartengeneratorStandardLogik is
          null;
                
       elsif
-        SenkrechteExtern not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte
+        SenkrechteExtern not in SchleifenbereichZusatz.MinimaleSenkrechte .. SchleifenbereichZusatz.MaximaleSenkrechte
         or
-          WaagerechteExtern not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte
+          WaagerechteExtern not in SchleifenbereichZusatz.MinimaleWaagerechte .. SchleifenbereichZusatz.MaximaleWaagerechte
       then
          null;
       
@@ -405,15 +411,17 @@ package body KartengeneratorStandardLogik is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
+      SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
+      
       if
         WaagerechteExtern = KartenKonstanten.LeerWaagerechte
       then
          null;
                
       elsif
-        SenkrechteExtern not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte
+        SenkrechteExtern not in SchleifenbereichZusatz.MinimaleSenkrechte .. SchleifenbereichZusatz.MaximaleSenkrechte
         or
-          WaagerechteExtern not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte
+          WaagerechteExtern not in SchleifenbereichZusatz.MinimaleWaagerechte .. SchleifenbereichZusatz.MaximaleWaagerechte
       then
          null;
          

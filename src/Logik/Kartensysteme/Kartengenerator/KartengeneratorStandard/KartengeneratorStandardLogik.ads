@@ -50,6 +50,9 @@ private
    
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
+   Schleifenbereich : KartenRecords.LandgrößenNaturalRecord;
+   SchleifenbereichZusatz : KartenRecords.LandgrößenNaturalRecord;
+   
    type WahrscheinlichkeitenRecord is record
       
       Anfangswert : SystemDatentypenHTSEB.NullBisHundert;

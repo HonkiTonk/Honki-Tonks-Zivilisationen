@@ -18,12 +18,14 @@ package body KartengeneratorLandschaftLogik is
    procedure GenerierungLandschaft
    is begin
       
-      LadezeitBasis := 100.00 / Float (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte);
+      Schleifenbereiche := KartengeneratorVariablenLogik.PolfreierBereichLesen;
+      
+      LadezeitBasis := 100.00 / Float (Schleifenbereiche.MaximaleSenkrechte);
       
       SenkrechteSchleife:
-      for SenkrechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Senkrechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte loop
+      for SenkrechteSchleifenwert in Schleifenbereiche.MinimaleSenkrechte .. Schleifenbereiche.MaximaleSenkrechte loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.Waagerechte .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Waagerechte loop
+         for WaagerechteSchleifenwert in Schleifenbereiche.MinimaleWaagerechte .. Schleifenbereiche.MaximaleWaagerechte loop
             
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert))

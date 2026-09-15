@@ -1,15 +1,20 @@
 private with KartenDatentypen;
+private with KartenRecords;
 
 package KartengeneratorRohstoffeLogik is
    pragma Elaborate_Body;
    
-   procedure GenerierungRohstoffe;
+   procedure Rohstoffe;
 
 private
-            
+   
+   procedure GenerierungRohstoffe
+     (SchleifenbereichtExtern : in KartenRecords.LandgrößenNaturalRecord);
+   
    procedure RohstoffeGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet;
-      LadezeitbasisExtern : in Float)
+      LadezeitbasisExtern : in Float;
+      SchleifenbereichtExtern : in KartenRecords.LandgrößenNaturalRecord)
      with
        Pre => (
                  LadezeitbasisExtern > 0.00

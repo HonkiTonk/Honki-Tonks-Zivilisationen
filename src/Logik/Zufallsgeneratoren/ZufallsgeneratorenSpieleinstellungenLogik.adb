@@ -91,21 +91,23 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       ZufälligeKartensenkrechteWählen.Reset (Gen => ZufälligeKartensenkrechteGewählt);
       ZufälligeKartenwaagerechteWählen.Reset (Gen => ZufälligeKartenwaagerechteGewählt);
       
-      KartengeneratorVariablenLogik.Landgrößen.MinimaleSenkrechte := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
-                                                                                                             First => KartenDatentypen.SenkrechtePositiv'First,
-                                                                                                             Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
+      Landgröße.MinimaleSenkrechte := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
+                                                                                  First => KartenDatentypen.SenkrechtePositiv'First,
+                                                                                  Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
       
-      KartengeneratorVariablenLogik.Landgrößen.MaximaleSenkrechte := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
-                                                                                                             First => KartengeneratorVariablenLogik.Landgrößen.MinimaleSenkrechte,
-                                                                                                             Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
+      Landgröße.MaximaleSenkrechte := ZufälligeKartensenkrechteWählen.Random (Gen   => ZufälligeKartensenkrechteGewählt,
+                                                                                  First => Landgröße.MinimaleSenkrechte,
+                                                                                  Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
       
-      KartengeneratorVariablenLogik.Landgrößen.MinimaleWaagerechte := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
-                                                                                                              First => KartenDatentypen.WaagerechtePositiv'First,
-                                                                                                              Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
+      Landgröße.MinimaleWaagerechte := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
+                                                                                    First => KartenDatentypen.WaagerechtePositiv'First,
+                                                                                    Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
       
-      KartengeneratorVariablenLogik.Landgrößen.MaximaleWaagerechte := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
-                                                                                                              First => KartengeneratorVariablenLogik.Landgrößen.MinimaleWaagerechte,
-                                                                                                              Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
+      Landgröße.MaximaleWaagerechte := ZufälligeKartenwaagerechteWählen.Random (Gen   => ZufälligeKartenwaagerechteGewählt,
+                                                                                    First => Landgröße.MinimaleWaagerechte,
+                                                                                    Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
+      
+      KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => Landgröße);
       
    end ZufälligeKartenart;
    
@@ -153,7 +155,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    function ZufälligeSpezies
      (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
-     return SpeziesDatentypen.Spezies_Vorhanden_Enum
+      return SpeziesDatentypen.Spezies_Vorhanden_Enum
    is
       use type KartenDatentypen.EbeneBasis;
    begin
@@ -286,38 +288,43 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       ZufälligeSenkrechtePolgrößenWählen.Reset (Gen => ZufälligeSenkrechtePolgrößeGewählt);
       ZufälligeWaagerechtePolgrößenWählen.Reset (Gen => ZufälligeWaagerechtePolgrößeGewählt);
       
+      KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => ZufälligeSenkrechtePolgrößenWählen.Random (Gen   => ZufälligeSenkrechtePolgrößeGewählt,
+                                                                                                                                     First => KartenDatentypen.SenkrechteNatural'First,
+                                                                                                                                     Last  => LeseWeltkarteneinstellungen.Senkrechte / 2),
+                                                             HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
       
-      KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum) := ZufälligeSenkrechtePolgrößenWählen.Random (Gen   => ZufälligeSenkrechtePolgrößeGewählt,
-                                                                                                                                              First => KartenDatentypen.SenkrechteNatural'First,
-                                                                                                                                              Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
-      
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum));
-      
-      
-      
-      KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum) := ZufälligeSenkrechtePolgrößenWählen.Random (Gen   => ZufälligeSenkrechtePolgrößeGewählt,
-                                                                                                                                              First => KartenDatentypen.SenkrechteNatural'First,
-                                                                                                                                              Last  => LeseWeltkarteneinstellungen.Senkrechte / 2);
-      
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum));
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol
+        := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum));
       
       
+            
+      KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => ZufälligeSenkrechtePolgrößenWählen.Random (Gen   => ZufälligeSenkrechtePolgrößeGewählt,
+                                                                                                                                     First => KartenDatentypen.SenkrechteNatural'First,
+                                                                                                                                     Last  => LeseWeltkarteneinstellungen.Senkrechte / 2),
+                                                             HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
       
-      KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum) := ZufälligeWaagerechtePolgrößenWählen.Random (Gen   => ZufälligeWaagerechtePolgrößeGewählt,
-                                                                                                                                                First => KartenDatentypen.WaagerechteNatural'First,
-                                                                                                                                                Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
+      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol
+        := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum));
+      
+            
+      
+      KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => ZufälligeWaagerechtePolgrößenWählen.Random (Gen   => ZufälligeWaagerechtePolgrößeGewählt,
+                                                                                                                                       First => KartenDatentypen.WaagerechteNatural'First,
+                                                                                                                                       Last  => LeseWeltkarteneinstellungen.Waagerechte / 2),
+                                                              HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
       
       KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol
-        := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum));
+        := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum));
       
+            
       
-      
-      KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum) := ZufälligeWaagerechtePolgrößenWählen.Random (Gen   => ZufälligeWaagerechtePolgrößeGewählt,
-                                                                                                                                               First => KartenDatentypen.WaagerechteNatural'First,
-                                                                                                                                               Last  => LeseWeltkarteneinstellungen.Waagerechte / 2);
+      KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => ZufälligeWaagerechtePolgrößenWählen.Random (Gen   => ZufälligeWaagerechtePolgrößeGewählt,
+                                                                                                                                       First => KartenDatentypen.WaagerechteNatural'First,
+                                                                                                                                       Last  => LeseWeltkarteneinstellungen.Waagerechte / 2),
+                                                              HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
       
       KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol
-        := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum));
+        := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum));
       
    end ZufälligePole;
 

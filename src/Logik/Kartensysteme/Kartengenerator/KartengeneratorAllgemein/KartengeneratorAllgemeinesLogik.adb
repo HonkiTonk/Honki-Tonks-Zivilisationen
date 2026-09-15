@@ -1,5 +1,3 @@
-with KartenDatentypen;
-
 with KartengeneratorHimmelLogik;
 with KartengeneratorOrbitLogik;
 with KartengeneratorPlanetenkernLogik;
@@ -15,13 +13,14 @@ package body KartengeneratorAllgemeinesLogik is
    is begin
             
       PolbereicheBerechnenLogik.PolbereicheBerechnen;
-      GenerierungGrundlagen;
+      GenerierungGrundlagen (SenkrechteExtern => KartengeneratorVariablenLogik.PolfreierBereichLesen.MaximaleSenkrechte);
       
    end GenerierungAllgemeines;
    
    
   
    procedure GenerierungGrundlagen
+     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural)
    is
       use type KartenDatentypen.EbeneVorhanden;
       use type KartenDatentypen.SenkrechtePositiv;
@@ -37,7 +36,7 @@ package body KartengeneratorAllgemeinesLogik is
            KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde = 2
          then
             KartengeneratorOrbitLogik.Orbit (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
-                                             * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+                                             * SenkrechteExtern));
             
          else
             null;
@@ -54,7 +53,7 @@ package body KartengeneratorAllgemeinesLogik is
            KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= 1
          then
             KartengeneratorHimmelLogik.Himmel (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
-                                               * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+                                               * SenkrechteExtern));
             
          else
             null;
@@ -73,7 +72,7 @@ package body KartengeneratorAllgemeinesLogik is
            KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = -2
          then
             KartengeneratorPlanetenkernLogik.Planetenkern (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
-                                                           * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+                                                           * SenkrechteExtern));
             
          else
             null;
@@ -89,7 +88,7 @@ package body KartengeneratorAllgemeinesLogik is
         KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= 0
       then
          KartengeneratorStandardLogik.OberflächeGenerieren (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
-                                                             * KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.Senkrechte));
+                                                             * SenkrechteExtern));
             
       else
          null;

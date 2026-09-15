@@ -1,4 +1,6 @@
 with LadezeitenDatentypen;
+with KartenRecordKonstanten;
+with KartenArrays;
 
 with KartengeneratorKuesteLogik;
 with KartengeneratorLandschaftLogik;
@@ -31,7 +33,7 @@ package body KartengeneratorLogik is
       KartengeneratorFlussLogik.GenerierungFlüsse;
       LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
       
-      KartengeneratorRohstoffeLogik.GenerierungRohstoffe;
+      KartengeneratorRohstoffeLogik.Rohstoffe;
       LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Rohstoffe_Enum);
       
    end Kartengenerator;
@@ -44,10 +46,11 @@ package body KartengeneratorLogik is
    is begin
       
       RohstoffeSchleife:
-      for RohstoffeSchleifenwert in KartengeneratorVariablenLogik.KartenrohstoffeWahrscheinlichkeitenArray'Range loop
+      for RohstoffeSchleifenwert in KartenArrays.KartenrohstoffeWahrscheinlichkeitenArray'Range loop
          
-         KartengeneratorVariablenLogik.KartenrohstoffeWahrscheinlichkeiten (RohstoffeSchleifenwert)
-           := KartengeneratorVariablenLogik.StandardKartenrohstoffeWahrscheinlichkeiten (KartengeneratorVariablenLogik.Kartenparameter.Kartenrohstoffe, RohstoffeSchleifenwert);
+         KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenSchreiben
+           (RohstoffExtern           => RohstoffeSchleifenwert,
+            WahrscheinlichkeitExtern => KartenRecordKonstanten.StandardKartenrohstoffeWahrscheinlichkeiten (KartengeneratorVariablenLogik.Kartenparameter.Kartenrohstoffe, RohstoffeSchleifenwert));
          
       end loop RohstoffeSchleife;
       

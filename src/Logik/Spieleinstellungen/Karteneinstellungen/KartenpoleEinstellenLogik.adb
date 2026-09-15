@@ -4,7 +4,6 @@ with MenueDatentypen;
 with KartenartDatentypen;
 with KartenRecordKonstanten;
 with TextnummernKonstanten;
-with KartengeneratorRecordKonstanten;
 
 with AuswahlaufteilungLogik;
 with KartengeneratorVariablenLogik;
@@ -12,7 +11,6 @@ with KartentestsLogik;
 with ZufallsgeneratorenSpieleinstellungenLogik;
 with ZahleneingabeLogik;
 
--- Die Zugriffe auf KartengeneratorVariablenLogik mal in eigene Lese/Schreibefunktionen packen. äöü
 package body KartenpoleEinstellenLogik is
    
    procedure Kartenpole
@@ -27,32 +25,36 @@ package body KartenpoleEinstellenLogik is
            KartenpoleAuswahl
          is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-               KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum) := SenkrechtePolgrößen;
+               KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => SenkrechtePolgrößen,
+                                                                      HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
                KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol
-                 := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Norden_Enum));
+                 := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum));
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum) := SenkrechtePolgrößen;
+               KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => SenkrechtePolgrößen,
+                                                                      HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
                KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol
-                 := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechtePolgrößen (KartenartDatentypen.Süden_Enum));
+                 := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum));
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum) := WaagerechtePolgrößen;
+               KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => WaagerechtePolgrößen,
+                                                                       HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
                KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol
-                 := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Westen_Enum));
+                 := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum));
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum) := WaagerechtePolgrößen;
+               KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => WaagerechtePolgrößen,
+                                                                       HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
                KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol
-                 := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechtePolgrößen (KartenartDatentypen.Osten_Enum));
+                 := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum));
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligePole;
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartenpole := KartenRecordKonstanten.KartenpoleStandard;
-               KartengeneratorVariablenLogik.SenkrechtePolgrößen := KartengeneratorRecordKonstanten.SenkrechterEisrand;
-               
+               KartengeneratorVariablenLogik.Standardpole;
+              
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
                

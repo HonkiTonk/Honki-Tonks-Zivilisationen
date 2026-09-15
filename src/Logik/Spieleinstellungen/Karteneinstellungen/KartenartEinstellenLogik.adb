@@ -64,7 +64,7 @@ package body KartenartEinstellenLogik is
             null;
             
          when others =>
-            KartengeneratorVariablenLogik.Landgrößen := KartengeneratorRecordKonstanten.Kartenartgrößen (KartengeneratorVariablenLogik.Kartenparameter.Kartenart);
+            KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => KartengeneratorRecordKonstanten.Kartenartgrößen (KartengeneratorVariablenLogik.Kartenparameter.Kartenart));
       end case;
       
    end Kartenart;
@@ -86,7 +86,7 @@ package body KartenartEinstellenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablenLogik.Landgrößen.MinimaleSenkrechte := KartenDatentypen.SenkrechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            Größeneingabe.MinimaleSenkrechte := KartenDatentypen.SenkrechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
@@ -102,7 +102,7 @@ package body KartenartEinstellenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablenLogik.Landgrößen.MaximaleSenkrechte := KartenDatentypen.SenkrechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            Größeneingabe.MaximaleSenkrechte := KartenDatentypen.SenkrechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
       end case;
       
       
@@ -119,7 +119,7 @@ package body KartenartEinstellenLogik is
             return;
             
          when True =>
-            KartengeneratorVariablenLogik.Landgrößen.MinimaleWaagerechte := KartenDatentypen.WaagerechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            Größeneingabe.MinimaleWaagerechte := KartenDatentypen.WaagerechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
             ZwischenwertKartenart := BenutzerdefinierteKartenart.EingegebeneZahl;
       end case;
             
@@ -134,7 +134,8 @@ package body KartenartEinstellenLogik is
             KartenartStandard;
             
          when True =>
-            KartengeneratorVariablenLogik.Landgrößen.MaximaleWaagerechte := KartenDatentypen.WaagerechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            Größeneingabe.MaximaleWaagerechte := KartenDatentypen.WaagerechtePositiv (BenutzerdefinierteKartenart.EingegebeneZahl);
+            KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => Größeneingabe);
       end case;
       
    end KartenartNutzerdefinition;
@@ -145,7 +146,7 @@ package body KartenartEinstellenLogik is
    is begin
 
       KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenKonstanten.StandardKartenart;
-      KartengeneratorVariablenLogik.Landgrößen := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum);
+      KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum));
 
    end KartenartStandard;
 

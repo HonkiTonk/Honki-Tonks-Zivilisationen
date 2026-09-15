@@ -22,25 +22,21 @@ package body ZufallsgeneratorenKartenLogik is
       use type KartenDatentypen.WaagerechteBasis;
    begin
       
-      Minimalwert.Senkrechte := KartengeneratorVariablenLogik.Landgrößen.MinimaleSenkrechte;
-      Maximalwert.Senkrechte := KartengeneratorVariablenLogik.Landgrößen.MaximaleSenkrechte;
-      
-      Minimalwert.Waagerechte := KartengeneratorVariablenLogik.Landgrößen.MinimaleWaagerechte;
-      Maximalwert.Waagerechte := KartengeneratorVariablenLogik.Landgrößen.MaximaleWaagerechte;
+      Landgröße := KartengeneratorVariablenLogik.LandgrößenLesen;
             
       if
-        Minimalwert.Senkrechte > LeseWeltkarteneinstellungen.Senkrechte
+        Landgröße.MinimaleSenkrechte > LeseWeltkarteneinstellungen.Senkrechte
       then
-         Minimalwert.Senkrechte := LeseWeltkarteneinstellungen.Senkrechte;
+         Landgröße.MinimaleSenkrechte := LeseWeltkarteneinstellungen.Senkrechte;
                
       else
          null;
       end if;
             
       if
-        Maximalwert.Senkrechte > LeseWeltkarteneinstellungen.Senkrechte
+        Landgröße.MaximaleSenkrechte > LeseWeltkarteneinstellungen.Senkrechte
       then
-         Maximalwert.Senkrechte := LeseWeltkarteneinstellungen.Senkrechte;
+         Landgröße.MaximaleSenkrechte := LeseWeltkarteneinstellungen.Senkrechte;
                
       else
          null;
@@ -48,40 +44,40 @@ package body ZufallsgeneratorenKartenLogik is
 
             
       if
-        Minimalwert.Waagerechte > LeseWeltkarteneinstellungen.Waagerechte
+        Landgröße.MinimaleWaagerechte > LeseWeltkarteneinstellungen.Waagerechte
       then
-         Minimalwert.Waagerechte := LeseWeltkarteneinstellungen.Waagerechte;
+         Landgröße.MinimaleWaagerechte := LeseWeltkarteneinstellungen.Waagerechte;
                
       else
          null;
       end if;
             
       if
-        Maximalwert.Waagerechte > LeseWeltkarteneinstellungen.Waagerechte
+        Landgröße.MaximaleWaagerechte > LeseWeltkarteneinstellungen.Waagerechte
       then
-         Maximalwert.Waagerechte := LeseWeltkarteneinstellungen.Waagerechte;
-               
+         Landgröße.MaximaleWaagerechte := LeseWeltkarteneinstellungen.Waagerechte;
+         
       else
          null;
       end if;
       
       if
-        Minimalwert.Senkrechte > Maximalwert.Senkrechte
+        Landgröße.MinimaleSenkrechte > Landgröße.MaximaleSenkrechte
       then
-         Zwischenspeicher.Senkrechte := Minimalwert.Senkrechte;
-         Minimalwert.Senkrechte := Maximalwert.Senkrechte;
-         Maximalwert.Senkrechte := Zwischenspeicher.Senkrechte;
+         Zwischenspeicher.Senkrechte := Landgröße.MinimaleSenkrechte;
+         Landgröße.MinimaleSenkrechte := Landgröße.MaximaleSenkrechte;
+         Landgröße.MaximaleSenkrechte := Zwischenspeicher.Senkrechte;
 
       else
          null;
       end if;
       
       if
-        Minimalwert.Waagerechte > Maximalwert.Waagerechte
+        Landgröße.MinimaleWaagerechte > Landgröße.MaximaleWaagerechte
       then
-         Zwischenspeicher.Waagerechte := Minimalwert.Waagerechte;
-         Minimalwert.Waagerechte := Maximalwert.Waagerechte;
-         Maximalwert.Waagerechte := Zwischenspeicher.Waagerechte;
+         Zwischenspeicher.Waagerechte := Landgröße.MinimaleWaagerechte;
+         Landgröße.MinimaleWaagerechte := Landgröße.MaximaleWaagerechte;
+        Landgröße.MaximaleWaagerechte := Zwischenspeicher.Waagerechte;
 
       else
          null;
@@ -91,11 +87,11 @@ package body ZufallsgeneratorenKartenLogik is
       ZufälligeWaagerechteLandgrößen.Reset (Gen => ZufälligeWaagerechteLandgrößeGewählt);
       
       return (ZufälligeSenkrechteLandgrößen.Random (Gen   => ZufälligeSenkrechteLandgrößeGewählt,
-                                                       First => Minimalwert.Senkrechte,
-                                                       Last  => Maximalwert.Senkrechte),
+                                                       First => Landgröße.MinimaleSenkrechte,
+                                                       Last  => Landgröße.MaximaleSenkrechte),
               ZufälligeWaagerechteLandgrößen.Random (Gen   => ZufälligeWaagerechteLandgrößeGewählt,
-                                                        First => Minimalwert.Waagerechte,
-                                                        Last  => Maximalwert.Waagerechte));
+                                                        First => Landgröße.MinimaleWaagerechte,
+                                                        Last  => Landgröße.MaximaleWaagerechte));
               
    end KartengeneratorLandgrößen;
 

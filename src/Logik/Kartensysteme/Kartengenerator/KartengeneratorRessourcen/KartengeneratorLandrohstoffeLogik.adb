@@ -25,13 +25,13 @@ package body KartengeneratorLandrohstoffeLogik is
          GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
-           KartengeneratorVariablenLogik.KartenrohstoffeWahrscheinlichkeiten (ZufallszahlSchleifenwert) = 100
+           KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenLesen (RohstoffExtern => ZufallszahlSchleifenwert) = 100
          then
             Zahlenspeicher := GezogeneZahl;
             WelcheRohstoff := ZufallszahlSchleifenwert;
             
          elsif
-           GezogeneZahl > KartengeneratorVariablenLogik.KartenrohstoffeWahrscheinlichkeiten (ZufallszahlSchleifenwert)
+           GezogeneZahl > KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenLesen (RohstoffExtern => ZufallszahlSchleifenwert)
            or
              GezogeneZahl = 0
          then
@@ -64,7 +64,7 @@ package body KartengeneratorLandrohstoffeLogik is
               
          when others =>
             WelcheRohstoff := RohstoffZusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                                            RohstoffExtern   => WelcheRohstoff);
+                                                          RohstoffExtern   => WelcheRohstoff);
       end case;
       
       case
@@ -72,7 +72,7 @@ package body KartengeneratorLandrohstoffeLogik is
       is
          when KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum'Range =>
             SchreibeWeltkarte.Rohstoff (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                         RohstoffExtern   => WelcheRohstoff);
+                                        RohstoffExtern   => WelcheRohstoff);
             
          when others =>
             null;
