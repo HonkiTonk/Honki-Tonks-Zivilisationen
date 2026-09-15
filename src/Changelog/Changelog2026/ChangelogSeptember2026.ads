@@ -108,6 +108,7 @@ package ChangelogSeptember2026 is
 
    -- Version 0.06.5170 => 0.06. (15.09.2026):
    
+   -- README um einen Hinweis dass ich keine KI verwende erweitert und mein KeineKI Logo hinzugefügt.
    -- 
    -- Kleinigkeiten korrigiert.
    
