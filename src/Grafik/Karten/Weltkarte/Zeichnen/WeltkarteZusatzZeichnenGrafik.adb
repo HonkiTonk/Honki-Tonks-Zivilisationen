@@ -62,7 +62,7 @@ package body WeltkarteZusatzZeichnenGrafik is
       case
         Verbesserungsfeld
       is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
             return;
             
          when others =>

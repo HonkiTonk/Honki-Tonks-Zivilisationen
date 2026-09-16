@@ -89,7 +89,7 @@ package StadtRecords is
    -- Sollte man in Städte nur Verschmutzung haben oder sie wie bei den Waffen/Feldeffekten aufteilen? äöü
    type StadtGebautRecord is record
       
-      ID : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
+      ID : KartenverbesserungDatentypen.Verbesserungen_Stadt_ID_Enum;
       Koordinaten : KartenRecords.KartenfeldNaturalRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       

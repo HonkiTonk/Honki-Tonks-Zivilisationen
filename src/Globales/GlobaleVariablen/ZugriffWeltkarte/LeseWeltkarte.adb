@@ -184,22 +184,61 @@ package body LeseWeltkarte is
    
    function Verbesserung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenverbesserungDatentypen.Verbesserung_Enum
+      return KartenverbesserungDatentypen.Verbesserungen_Enum
    is begin
       
       case
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
+            return KartenverbesserungDatentypen.Leer_Verbesserungen_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserung;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserungen (KartenverbesserungDatentypen.Verbesserung_Eins_Enum);
       end case;
       
    end Verbesserung;
    
    
+   
+   function Verbesserungen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungenanzahl_Enum)
+      return KartenverbesserungDatentypen.Verbesserungen_Enum
+   is begin
+      
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.LeerEbene =>
+            return KartenverbesserungDatentypen.Leer_Verbesserungen_Enum;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserungen (VerbesserungExtern);
+      end case;
+      
+   end Verbesserungen;
+   
+   
+   
+   function AlleVerbesserungen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+      return KartenArrays.VerbesserungenArray
+   is begin
+      
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.LeerEbene =>
+            return KartenRecordKonstanten.LeerVerbesserungen;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserungen;
+      end case;
+      
+   end AlleVerbesserungen;
+   
+      
    
    function Rohstoff
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
@@ -210,13 +249,52 @@ package body LeseWeltkarte is
         KoordinatenExtern.Ebene
       is
          when KartenKonstanten.LeerEbene =>
-            return KartenrohstoffeDatentypen.Leer_Rohstoff_Enum;
+            return KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoff;
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoffe (KartenrohstoffeDatentypen.Rohstoff_Eins_Enum);
       end case;
       
    end Rohstoff;
+   
+   
+   
+   function Rohstoffe
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
+   is begin
+      
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.LeerEbene =>
+            return KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoffe (RohstoffExtern);
+      end case;
+      
+   end Rohstoffe;
+   
+   
+   
+   function AlleRohstoffe
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+      return KartenArrays.RohstoffeArray
+   is begin
+      
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.LeerEbene =>
+            return KartenRecordKonstanten.LeerRohstoffe;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoffe;
+      end case;
+      
+   end AlleRohstoffe;
    
    
    

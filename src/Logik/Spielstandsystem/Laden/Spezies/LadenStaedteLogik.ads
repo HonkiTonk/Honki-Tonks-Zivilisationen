@@ -31,7 +31,7 @@ private
 
    VorhandeneStädte : StadtDatentypen.StädtebereichBasis;
    
-   ID : KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
+   ID : KartenverbesserungDatentypen.Verbesserungen_Städte_Enum;
    
    Koordinaten : KartenRecords.KartenfeldNaturalRecord;
    

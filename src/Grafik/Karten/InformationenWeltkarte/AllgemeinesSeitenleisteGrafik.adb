@@ -33,7 +33,7 @@ package body AllgemeinesSeitenleisteGrafik is
             AktuelleKoordinaten := LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
             
             AnzuzeigenderText (1) := Gesamtgrund (GesamtgrundExtern => LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten));
-            AnzuzeigenderText (2) := Rohstoff (RohstoffExtern => LeseWeltkarte.Rohstoff (KoordinatenExtern => AktuelleKoordinaten));
+            AnzuzeigenderText (2) := Rohstoff (RohstoffeExtern => LeseWeltkarte.Rohstoff (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (3) := Verbesserung (VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (4) := Weg (WegExtern => LeseWeltkarte.Weg (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (5) := Fluss (FlussExtern => LeseWeltkarte.Fluss (KoordinatenExtern => AktuelleKoordinaten));
@@ -90,18 +90,18 @@ package body AllgemeinesSeitenleisteGrafik is
    
    
    function Rohstoff
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
       case
-        RohstoffExtern
+        RohstoffeExtern
       is
-         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
             return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>
-            return KartenbeschreibungenGrafik.KurzbeschreibungRohstoff (KartenRohstoffExtern => RohstoffExtern);
+            return KartenbeschreibungenGrafik.KurzbeschreibungRohstoff (KartenRohstoffeExtern => RohstoffeExtern);
       end case;
       
    end Rohstoff;
@@ -109,14 +109,14 @@ package body AllgemeinesSeitenleisteGrafik is
    
    
    function Verbesserung
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
       case
         VerbesserungExtern
       is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
             return TextKonstantenHTSEB.LeerUnboundedString;
             
          when others =>

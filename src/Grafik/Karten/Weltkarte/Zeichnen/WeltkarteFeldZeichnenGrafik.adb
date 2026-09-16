@@ -82,12 +82,12 @@ package body WeltkarteFeldZeichnenGrafik is
       case
         KartenfeldRohstoff
       is
-         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
             null;
             
          when others =>
             KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.RohstoffeAccess,
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffExtern => KartenfeldRohstoff),
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffeExtern => KartenfeldRohstoff),
                                                             PositionExtern         => PositionExtern,
                                                             DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;

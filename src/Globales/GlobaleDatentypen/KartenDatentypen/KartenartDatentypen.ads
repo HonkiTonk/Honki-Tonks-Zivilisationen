@@ -28,19 +28,13 @@ package KartenartDatentypen is
    
    
    -- Statt eines Enums einen Zahlenwert von 0 bis 100 einbauen. äöü
+   -- Hier auch Werte unter 0 zulassen um Eiswelten zu generieren? äöü
+   -- Maximalwert unter 100 halten da sonst das Wasser verdampfen würde. äöü
+   -- Mal einen eigenen Temperaturwert dafür einbauen. äöü
    type Kartentemperatur_Enum is (
                                   Kartentemperatur_Kalt_Enum, Kartentemperatur_Gemäßigt_Enum, Kartentemperatur_Heiß_Enum, Kartentemperatur_Eiszeit_Enum, Kartentemperatur_Wüste_Enum
                                  );
    pragma Ordered (Kartentemperatur_Enum);
-   
-   
-   
-   -- Das hier durch einen Zahlenwert von 0 bis 100 ersetzen. äöü
-   -- Und später noch eine Möglichkeit einbauen um jeden Wert einzeln festzulegen. äöü
-   type Kartenrohstoffemenge_Enum is (
-                                      Ein_Rohstoff_Enum, Zwei_Rohstoffe_Enum, Drei_Rohstoffe_Enum, Vier_Rohstoffe_Enum
-                                     );
-   pragma Ordered (Kartenrohstoffemenge_Enum);
    
    
    

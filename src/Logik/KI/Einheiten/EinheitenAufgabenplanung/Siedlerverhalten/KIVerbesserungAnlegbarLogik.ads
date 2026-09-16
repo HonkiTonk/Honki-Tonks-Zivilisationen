@@ -44,7 +44,7 @@ private
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return Boolean
      with
        Pre => (

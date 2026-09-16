@@ -32,9 +32,9 @@ package StadtBauenLogik is
               );
 
 private
-   use type KartenverbesserungDatentypen.Verbesserung_Enum;
+   use type KartenverbesserungDatentypen.Verbesserungen_Enum;
 
-   Stadtart : KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
+   Stadtart : KartenverbesserungDatentypen.Verbesserungen_Städte_Enum;
 
    WelcherWeg : AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
 
@@ -99,14 +99,14 @@ private
 
    function HauptstadtPrüfen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
-      return KartenverbesserungDatentypen.Verbesserung_Städte_Enum
+      return KartenverbesserungDatentypen.Verbesserungen_Städte_Enum
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               ),
 
        Post => (
-                  HauptstadtPrüfen'Result /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+                  HauptstadtPrüfen'Result /= KartenverbesserungDatentypen.Leer_Verbesserungen_Enum
                );
 
 end StadtBauenLogik;

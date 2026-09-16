@@ -40,7 +40,7 @@ package body FeldkampfEinheitLogik is
                                                                                                                KampfartExtern => KampfartExtern));
             
             Gesamtwert (TaskExtern) := Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => Gesamtwert (TaskExtern),
-                                                                         KampfbonusExtern => LeseKartenDatenbanken.KampfRohstoff (RohstoffExtern => LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern),
+                                                                         KampfbonusExtern => LeseKartenDatenbanken.KampfRohstoff (RohstoffeExtern => LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern),
                                                                                                                                    SpeziesExtern   => SpeziesExtern,
                                                                                                                                    KampfartExtern  => KampfartExtern));
             

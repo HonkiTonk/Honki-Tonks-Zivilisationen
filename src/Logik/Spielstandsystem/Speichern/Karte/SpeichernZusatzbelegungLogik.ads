@@ -50,13 +50,13 @@ private
    type FlussArray is array (ZusatzgrundArray'Range) of KartenfluesseDatentypen.Fluss_Enum;
    Fluss : FlussArray;
    
-   type RohstoffArray is array (ZusatzgrundArray'Range) of KartenrohstoffeDatentypen.Rohstoffe_Enum;
-   Rohstoff : RohstoffArray;
+   type RohstoffeArray is array (ZusatzgrundArray'Range) of KartenrohstoffeDatentypen.Rohstoffe_Enum;
+   Rohstoffe : RohstoffeArray;
    
    type WegArray is array (ZusatzgrundArray'Range) of KartenwegeDatentypen.Weg_Enum;
    Weg : WegArray;
    
-   type VerbesserungArray is array (ZusatzgrundArray'Range) of KartenverbesserungDatentypen.Verbesserung_Enum;
+   type VerbesserungArray is array (ZusatzgrundArray'Range) of KartenverbesserungDatentypen.Verbesserungen_Enum;
    Verbesserung : VerbesserungArray;
    
    type StadtArray is array (ZusatzgrundArray'Range) of StadtRecords.SpeziesStadtnummerRecord;
@@ -78,7 +78,7 @@ private
       return Boolean;
    
    function RohstoffSchreiben
-     (RohstoffExtern : in RohstoffArray;
+     (RohstoffeExtern : in RohstoffeArray;
       DateiSpeichernExtern : in File_Type)
       return Boolean;
    

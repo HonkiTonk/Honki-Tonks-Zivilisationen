@@ -195,7 +195,7 @@ package body LeseGebaeudeDatenbank is
    function RohstoffBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -206,7 +206,7 @@ package body LeseGebaeudeDatenbank is
             return False;
             
          when others =>
-            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).RohstoffBenötigt (RohstoffExtern);
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).RohstoffBenötigt (RohstoffeExtern);
       end case;
       
    end RohstoffBenötigt;
@@ -216,7 +216,7 @@ package body LeseGebaeudeDatenbank is
    function VerbesserungBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Boolean
    is begin
       

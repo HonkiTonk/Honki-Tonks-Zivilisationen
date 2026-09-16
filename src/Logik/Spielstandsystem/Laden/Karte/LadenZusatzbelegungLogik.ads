@@ -44,11 +44,11 @@ private
    
    Fluss : KartenfluesseDatentypen.Fluss_Vorhanden_Enum;
    
-   Rohstoff : KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
+   Rohstoffe : KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
    
    Weg : KartenwegeDatentypen.Weg_Vorhanden_Enum;
    
-   Verbesserung : KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum;
+   Verbesserung : KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum;
    
    Einheit : EinheitenRecords.SpeziesEinheitnummerVorhandenRecord;
      

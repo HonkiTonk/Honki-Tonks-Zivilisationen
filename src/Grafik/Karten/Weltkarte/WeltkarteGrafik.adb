@@ -113,7 +113,7 @@ package body WeltkarteGrafik is
                null;
                
             elsif
-              LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert) in KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range
+              LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert) in KartenverbesserungDatentypen.Verbesserungen_Städte_Enum'Range
             then
                if
                  Stadtnamenposition = Integer (Sichtbereich.Senkrechte + Sichtbereich.Senkrechte)

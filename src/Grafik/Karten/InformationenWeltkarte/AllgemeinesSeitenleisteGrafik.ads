@@ -70,11 +70,11 @@ private
    
    -- Die Contracts hier noch hinzufügen. äöü
    function Rohstoff
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return Unbounded_Wide_Wide_String;
    
    function Verbesserung
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum)
       return Unbounded_Wide_Wide_String;
    
    function Weg

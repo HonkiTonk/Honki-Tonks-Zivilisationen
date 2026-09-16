@@ -20,7 +20,7 @@ with KIBewegungAllgemeinLogik;
 package body KIEinheitFestlegenModernisierenLogik is
 
    -- Hier wird weder geprüft ob das Feld schon belegt ist, noch ob sich eine andere Einheit bereits dahin befindet. äöü
-   -- Muss prüfen ob die Heimatstadt das mitmacht und die Geldgewinnung. Und natürlich ob eine benötigte Rohstoff vorhanden ist. äöü
+   -- Muss prüfen ob die Heimatstadt das mitmacht und die Geldgewinnung. Und natürlich ob eine benötigte Rohstoffe vorhanden ist. äöü
    function EinheitVerbessern
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean

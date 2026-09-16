@@ -30,7 +30,7 @@ package StadtKonstanten is
    
    AnfangNummer : constant StadtDatentypen.StädtebereichVorhanden := StadtDatentypen.StädtebereichVorhanden'First;
    
-   LeerID : constant KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
+   LeerID : constant KartenverbesserungDatentypen.Verbesserungen_Stadt_ID_Enum := KartenverbesserungDatentypen.Leer_Verbesserungen_Enum;
    LeerEinwohner : constant StadtDatentypen.EinwohnerBasis := 0;
    LeerArbeiter : constant StadtDatentypen.EinwohnerBasis := 0;
    LeerEinwohnerArbeiter : constant StadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);

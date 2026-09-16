@@ -13,8 +13,8 @@ with ZusatzgrundOberflaeche;
 with ZusatzgrundUnterflaeche;
 with KartenfluesseDatentypen;
 with KartengrundFluss;
-with Landrohstoffe;
-with Wasserrohstoffe;
+-- with Landrohstoffe;
+-- with Wasserrohstoffe;
 
 package body StandardKartenDatenbank is
 
@@ -108,11 +108,14 @@ package body StandardKartenDatenbank is
          case
            KartenrohstoffeSchleifenwert
          is
-            when Landrohstoffe.LandrohstoffelisteArray'Range =>
-               KartenDatenbank.Kartenrohstoffeliste (KartenrohstoffeSchleifenwert) := Landrohstoffe.Landrohstoffeliste (KartenrohstoffeSchleifenwert);
+           -- when Landrohstoffe.LandrohstoffelisteArray'Range =>
+              -- KartenDatenbank.Kartenrohstoffeliste (KartenrohstoffeSchleifenwert) := Landrohstoffe.Landrohstoffeliste (KartenrohstoffeSchleifenwert);
                
-            when Wasserrohstoffe.WasserrohstoffelisteArray'Range =>
-               KartenDatenbank.Kartenrohstoffeliste (KartenrohstoffeSchleifenwert) := Wasserrohstoffe.Wasserrohstoffeliste (KartenrohstoffeSchleifenwert);
+           -- when Wasserrohstoffe.WasserrohstoffelisteArray'Range =>
+              -- KartenDatenbank.Kartenrohstoffeliste (KartenrohstoffeSchleifenwert) := Wasserrohstoffe.Wasserrohstoffeliste (KartenrohstoffeSchleifenwert);
+               
+            when others =>
+               null;
          end case;
          
       end loop KartenrohstoffeSchleife;

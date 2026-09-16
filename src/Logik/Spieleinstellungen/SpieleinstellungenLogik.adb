@@ -1,3 +1,5 @@
+with MeldungssystemHTSEB;
+
 with MenueDatentypen;
 with GrafikDatentypen;
 with SpeziesKonstanten;
@@ -10,7 +12,6 @@ with KartengeneratorLogik;
 with KartengroesseEinstellenLogik;
 with SpieleinstellungenSpeziesLogik;
 with SchwierigkeitsgradEinstellenLogik;
-with MeldungssystemHTSEB;
 with LadezeitenLogik;
 with AuswahlaufteilungLogik;
 with StandardSpielwerteSetzenLogik;
@@ -123,12 +124,14 @@ package body SpieleinstellungenLogik is
    is begin
       
       LadezeitenLogik.KartengeneratorNullsetzen;
+      
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Generierungszeit_Enum);
       
       -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.
       SchreibeWeltkarteneinstellungen.Fläche (AchsenExtern => KartengeneratorVariablenLogik.KartengrößeLesen);
       SchreibeWeltkarteneinstellungen.Ebenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen);
       SchreibeWeltkarteneinstellungen.Kartenform (KartenformExtern => KartengeneratorVariablenLogik.KartenformLesen);
+      
       KartengeneratorLogik.Kartengenerator;
       
       SpieleinstellungenSpeziesLogik.StartwerteErmitteln;

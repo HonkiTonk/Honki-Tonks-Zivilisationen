@@ -127,9 +127,9 @@ private
    
    AktuelleSpezies : SpeziesDatentypen.Spezies_Enum;
    
-   Stadtart : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
+   Stadtart : KartenverbesserungDatentypen.Verbesserungen_Stadt_ID_Enum;
    Wegfeld : KartenwegeDatentypen.Weg_Enum;
-   Verbesserungsfeld : KartenverbesserungDatentypen.Verbesserung_Enum;
+   Verbesserungsfeld : KartenverbesserungDatentypen.Verbesserungen_Enum;
    
    DickeRahmen : constant Float := 5.00;
          

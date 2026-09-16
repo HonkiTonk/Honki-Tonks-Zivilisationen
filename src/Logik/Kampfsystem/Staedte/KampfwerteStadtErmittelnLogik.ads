@@ -13,7 +13,7 @@ package KampfwerteStadtErmittelnLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    function AktuelleVerteidigungStadt
-     (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
+     (IDExtern : in KartenverbesserungDatentypen.Verbesserungen_Städte_Enum;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GebäudeExtern : in StadtArrays.GebäudeArray;
@@ -26,7 +26,7 @@ package KampfwerteStadtErmittelnLogik is
               );
    
    function AktuellerAngriffStadt
-     (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
+     (IDExtern : in KartenverbesserungDatentypen.Verbesserungen_Städte_Enum;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       GebäudeExtern : in StadtArrays.GebäudeArray;

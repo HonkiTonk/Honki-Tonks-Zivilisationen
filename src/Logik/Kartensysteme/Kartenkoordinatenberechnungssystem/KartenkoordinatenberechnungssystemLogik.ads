@@ -21,8 +21,8 @@ package KartenkoordinatenberechnungssystemLogik is
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              -- and
-              --   KoordinatenExtern.Ebene in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde
+               and
+                 KoordinatenExtern.Ebene in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde
               ),
            
        Post => (
@@ -53,11 +53,11 @@ package KartenkoordinatenberechnungssystemLogik is
                   Koordinatenberechnung'Result.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                 and
                   Koordinatenberechnung'Result.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-           --     and
+                and
                 -- Entweder so lösen oder auch mit <= EbeneEnde, wobei die meisten Dinge gar keine -3 bei der Koordinatenebene erlauben sollten. äöü
-            --      (Koordinatenberechnung'Result.Ebene in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde
-             --      or
-             --        Koordinatenberechnung'Result.Ebene = KartenKonstanten.LeerEbene)
+                  (Koordinatenberechnung'Result.Ebene in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde
+                   or
+                     Koordinatenberechnung'Result.Ebene = KartenKonstanten.LeerEbene)
                );
    
    function KoordinatenberechnungEbenenfest

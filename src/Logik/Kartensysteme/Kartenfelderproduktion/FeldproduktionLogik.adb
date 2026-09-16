@@ -57,7 +57,7 @@ package body FeldproduktionLogik is
          
          Gesamtwert := Produktionsgrenzen.ProduktionswertProduktionsbonus (ProduktionswertExtern  => Gesamtwert,
                                                                            ProduktionsbonusExtern =>
-                                                                             LeseKartenDatenbanken.ProduktionRohstoffe (RohstoffExtern      => LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern),
+                                                                             LeseKartenDatenbanken.ProduktionRohstoffe (RohstoffeExtern      => LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern),
                                                                                                                          SpeziesExtern        => SpeziesExtern,
                                                                                                                          ProduktionsartExtern => ProduktionsartExtern));
          

@@ -17,7 +17,7 @@ package body KIEinheitFestlegenBewachenLogik is
       return Boolean
    is
       use type KartenDatentypen.WaagerechteBasis;
-      use type KartenverbesserungDatentypen.Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserungen_Enum;
    begin
             
       StadtSchleife:

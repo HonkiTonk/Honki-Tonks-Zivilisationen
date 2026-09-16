@@ -19,7 +19,7 @@ package body WaldErmittelnLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenverbesserungDatentypen.Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserungen_Enum;
    begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);

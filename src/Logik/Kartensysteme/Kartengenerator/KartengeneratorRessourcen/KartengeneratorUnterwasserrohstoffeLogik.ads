@@ -32,7 +32,7 @@ private
 
    function RohstoffZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Wasser_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Wasser_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
@@ -43,7 +43,7 @@ private
 
    function ZusatzberechnungFisch
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
@@ -54,7 +54,7 @@ private
 
    function ZusatzberechnungWal
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
@@ -65,7 +65,7 @@ private
 
    function ZusatzberechnungHochwertigesHolz
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (

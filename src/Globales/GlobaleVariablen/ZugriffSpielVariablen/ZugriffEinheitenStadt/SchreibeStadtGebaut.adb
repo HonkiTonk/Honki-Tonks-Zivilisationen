@@ -13,7 +13,7 @@ package body SchreibeStadtGebaut is
 
    procedure ID
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum)
+      IDExtern : in KartenverbesserungDatentypen.Verbesserungen_Stadt_ID_Enum)
    is begin
       
       GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).ID := IDExtern;
@@ -43,7 +43,7 @@ package body SchreibeStadtGebaut is
    
    procedure IDKoordinatenLaden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
+      IDExtern : in KartenverbesserungDatentypen.Verbesserungen_Städte_Enum;
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
@@ -736,7 +736,7 @@ package body SchreibeStadtGebaut is
             
          when others =>
             SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => Stadtkoordinaten,
-                                            VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+                                            VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum);
       end case;
       
       GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer) := StadtRecordKonstanten.LeerStadt;

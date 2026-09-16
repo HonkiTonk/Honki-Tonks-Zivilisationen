@@ -5,13 +5,14 @@ with SpielDatentypen;
 with BefehleDatentypen;
 with KartenartDatentypen;
 with StadtRecords;
+with KartenrohstoffeDatentypen;
 
 package UmwandlungenDatentypen is
    pragma Elaborate_Body;
 
    function BefehleNachKartenverbesserung
      (TasteExtern : in BefehleDatentypen.Siedler_Konstruktionen_Enum)
-      return KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum;
+      return KartenverbesserungDatentypen.Verbesserungen_Gebilde_Enum;
    
    function RückgabeNachSpezies
      (RückgabeExtern : in RueckgabeDatentypen.Spezies_Verwendet_Enum)
@@ -23,7 +24,7 @@ package UmwandlungenDatentypen is
    
    function KartenrohstofferückgabeNachKartenRohstoff
      (RückgabeExtern : in RueckgabeDatentypen.Kartenrohstoffe_Enum)
-      return KartenartDatentypen.Kartenrohstoffemenge_Enum;
+      return KartenrohstoffeDatentypen.Rohstoffanzahl_Enum;
    
    function RückgabeNachSchwierigkeitsgrad
      (RückgabeExtern : in RueckgabeDatentypen.Schwierigkeitsgrad_Enum)
@@ -35,7 +36,7 @@ package UmwandlungenDatentypen is
    
 private
    
-   type BefehleKartenverbesserungArray is array (BefehleDatentypen.Siedler_Konstruktionen_Enum'Range) of KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum;
+   type BefehleKartenverbesserungArray is array (BefehleDatentypen.Siedler_Konstruktionen_Enum'Range) of KartenverbesserungDatentypen.Verbesserungen_Gebilde_Enum;
    BefehleKartenverbesserung : constant BefehleKartenverbesserungArray := (
                                                                            BefehleDatentypen.Mine_Bauen_Enum    => KartenverbesserungDatentypen.Mine_Enum,
                                                                            BefehleDatentypen.Farm_Bauen_Enum    => KartenverbesserungDatentypen.Farm_Enum,
@@ -73,12 +74,12 @@ private
                                                                                                            RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenartDatentypen.Kartentemperatur_Wüste_Enum
                                                                                                           );
    
-   type KartenrohstofferückgabeKartenRohstoffArray is array (RueckgabeDatentypen.Kartenrohstoffe_Enum'Range) of KartenartDatentypen.Kartenrohstoffemenge_Enum;
+   type KartenrohstofferückgabeKartenRohstoffArray is array (RueckgabeDatentypen.Kartenrohstoffe_Enum'Range) of KartenrohstoffeDatentypen.Rohstoffanzahl_Enum;
    KartenrohstofferückgabeKartenRohstoff : constant KartenrohstofferückgabeKartenRohstoffArray := (
-                                                                                                     RueckgabeDatentypen.Auswahl_Eins_Enum => KartenartDatentypen.Ein_Rohstoff_Enum,
-                                                                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenartDatentypen.Zwei_Rohstoffe_Enum,
-                                                                                                     RueckgabeDatentypen.Auswahl_Drei_Enum => KartenartDatentypen.Drei_Rohstoffe_Enum,
-                                                                                                     RueckgabeDatentypen.Auswahl_Vier_Enum => KartenartDatentypen.Vier_Rohstoffe_Enum
+                                                                                                     RueckgabeDatentypen.Auswahl_Eins_Enum => KartenrohstoffeDatentypen.Rohstoff_Eins_Enum,
+                                                                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenrohstoffeDatentypen.Rohstoff_Zwei_Enum,
+                                                                                                     RueckgabeDatentypen.Auswahl_Drei_Enum => KartenrohstoffeDatentypen.Rohstoff_Drei_Enum,
+                                                                                                     RueckgabeDatentypen.Auswahl_Vier_Enum => KartenrohstoffeDatentypen.Rohstoffe_Vier_Enum
                                                                                                     );
    
    type RückgabeSchwierigkeitsgradArray is array (RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range) of SpielDatentypen.Schwierigkeitsgrad_Enum;

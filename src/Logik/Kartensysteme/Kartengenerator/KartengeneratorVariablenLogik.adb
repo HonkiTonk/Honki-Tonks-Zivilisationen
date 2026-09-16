@@ -74,11 +74,11 @@ package body KartengeneratorVariablenLogik is
    
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    procedure RohstoffwahrscheinlichkeitenSchreiben
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
       WahrscheinlichkeitExtern : in SystemDatentypenHTSEB.NullBisHundert)
    is begin
       
-      KartenrohstoffeWahrscheinlichkeiten (RohstoffExtern) := WahrscheinlichkeitExtern;
+      KartenrohstoffeWahrscheinlichkeiten (RohstoffeExtern) := WahrscheinlichkeitExtern;
       
    end RohstoffwahrscheinlichkeitenSchreiben;
    
@@ -135,7 +135,7 @@ package body KartengeneratorVariablenLogik is
    
    
    procedure KartenrohstoffeSchreiben
-     (RohstoffeExtern : in KartenartDatentypen.Kartenrohstoffemenge_Enum)
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum)
    is begin
       
       Kartenparameter.Kartenrohstoffe := RohstoffeExtern;
@@ -253,11 +253,11 @@ package body KartengeneratorVariablenLogik is
    
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    function RohstoffwahrscheinlichkeitenLesen
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return SystemDatentypenHTSEB.NullBisHundert
    is begin
       
-      return KartenrohstoffeWahrscheinlichkeiten (RohstoffExtern);
+      return KartenrohstoffeWahrscheinlichkeiten (RohstoffeExtern);
       
    end RohstoffwahrscheinlichkeitenLesen;
    
@@ -314,7 +314,7 @@ package body KartengeneratorVariablenLogik is
    
    
    function KartenrohstoffeLesen
-     return KartenartDatentypen.Kartenrohstoffemenge_Enum
+     return KartenrohstoffeDatentypen.Rohstoffanzahl_Enum
    is begin
       
       return Kartenparameter.Kartenrohstoffe;

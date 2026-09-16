@@ -33,7 +33,7 @@ package StadtAllgemeinesLogik is
    
 private
    
-   StadtVorhanden : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
+   StadtVorhanden : KartenverbesserungDatentypen.Verbesserungen_Stadt_ID_Enum;
    
    Stadtumgebung : KartenRecords.UmgebungDreiRecord;
    

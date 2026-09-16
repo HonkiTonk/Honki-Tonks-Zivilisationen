@@ -38,7 +38,7 @@ package KartengeneratorVariablenLogik is
 
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    procedure RohstoffwahrscheinlichkeitenSchreiben
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
       WahrscheinlichkeitExtern : in SystemDatentypenHTSEB.NullBisHundert);
 
    procedure KartengrößeSchreiben
@@ -57,7 +57,7 @@ package KartengeneratorVariablenLogik is
      (TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum);
 
    procedure KartenrohstoffeSchreiben
-     (RohstoffeExtern : in KartenartDatentypen.Kartenrohstoffemenge_Enum);
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum);
 
    procedure KartenpoleSchreiben
      (PoleExtern : in KartenRecords.KartenpoleRecord);
@@ -93,7 +93,7 @@ package KartengeneratorVariablenLogik is
 
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    function RohstoffwahrscheinlichkeitenLesen
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return SystemDatentypenHTSEB.NullBisHundert;
 
    function KartengrößeLesen
@@ -112,7 +112,7 @@ package KartengeneratorVariablenLogik is
      return KartenartDatentypen.Kartentemperatur_Enum;
 
    function KartenrohstoffeLesen
-     return KartenartDatentypen.Kartenrohstoffemenge_Enum;
+     return KartenrohstoffeDatentypen.Rohstoffanzahl_Enum;
 
    function KartenpoleLesen
      return KartenRecords.KartenpoleRecord;

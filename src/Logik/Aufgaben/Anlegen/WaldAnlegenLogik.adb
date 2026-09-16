@@ -33,9 +33,9 @@ package body WaldAnlegenLogik is
       case
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenverbesserungDatentypen.Verbesserung_Gebilde_Friedlich_Enum'Range =>
+         when KartenverbesserungDatentypen.Verbesserungen_Gebilde_Friedlich_Enum'Range =>
             SchreibeWeltkarte.Verbesserung (KoordinatenExtern     => KoordinatenExtern,
-                                            VerbesserungExtern    => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+                                            VerbesserungExtern    => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum);
             
          when others =>
             null;

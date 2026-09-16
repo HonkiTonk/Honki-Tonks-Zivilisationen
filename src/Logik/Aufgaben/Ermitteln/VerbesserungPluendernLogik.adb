@@ -17,12 +17,12 @@ package body VerbesserungPluendernLogik is
       KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenverbesserungDatentypen.Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserungen_Enum;
       use type KartenwegeDatentypen.Weg_Enum;
    begin
             
       if
-        LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+        LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserungen_Enum
         and
           LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern) = KartenwegeDatentypen.Leer_Weg_Enum
       then
@@ -57,12 +57,12 @@ package body VerbesserungPluendernLogik is
       case
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
             null;
             
          when others =>
             SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
-                                            VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+                                            VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum);
             SchreibeWichtiges.Geldmenge (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                          GeldZugewinnExtern  => 10,
                                          RechnenSetzenExtern => True);

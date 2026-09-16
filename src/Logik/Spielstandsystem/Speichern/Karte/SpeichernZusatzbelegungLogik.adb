@@ -16,9 +16,9 @@ package body SpeichernZusatzbelegungLogik is
       Zusatzgrund := (others => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum);
       Feldeffekte := (others => KartenRecordKonstanten.LeerEffekte);
       Fluss := (others => KartenfluesseDatentypen.Leer_Fluss_Enum);
-      Rohstoff := (others => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum);
+      Rohstoffe := (others => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum);
       Weg := (others => KartenwegeDatentypen.Leer_Weg_Enum);
-      Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+      Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum);
       Stadt := (others => StadtKonstanten.LeerStadt);
       
    end Leersetzung;
@@ -32,7 +32,7 @@ package body SpeichernZusatzbelegungLogik is
       
       Zusatzgrund (FelderanzahlExtern) := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
       Fluss (FelderanzahlExtern) := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      Rohstoff (FelderanzahlExtern) := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
+      Rohstoffe (FelderanzahlExtern) := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
       Weg (FelderanzahlExtern) := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       Verbesserung (FelderanzahlExtern) := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
                   
@@ -67,8 +67,8 @@ package body SpeichernZusatzbelegungLogik is
          return False;
                         
       elsif
-        False = RohstoffSchreiben (RohstoffExtern      => Rohstoff,
-                                    DateiSpeichernExtern => DateiSpeichernExtern)
+        False = RohstoffSchreiben (RohstoffeExtern       => Rohstoffe,
+                                   DateiSpeichernExtern => DateiSpeichernExtern)
       then
          return False;
                         
@@ -156,7 +156,7 @@ package body SpeichernZusatzbelegungLogik is
                
             when others =>
                KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                       ZusatzgrundExtern (ZusatzgrundSpeichernSchleifenwert));
+                                                                             ZusatzgrundExtern (ZusatzgrundSpeichernSchleifenwert));
          end case;
          
       end loop ZusatzgrundSpeichernSchleife;
@@ -225,7 +225,7 @@ package body SpeichernZusatzbelegungLogik is
                
             when others =>
                KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                 FlussExtern (FlussSpeichernSchleifenwert));
+                                                                   FlussExtern (FlussSpeichernSchleifenwert));
          end case;
          
       end loop FlussSpeichernSchleife;
@@ -243,7 +243,7 @@ package body SpeichernZusatzbelegungLogik is
    
    
    function RohstoffSchreiben
-     (RohstoffExtern : in RohstoffArray;
+     (RohstoffeExtern : in RohstoffeArray;
       DateiSpeichernExtern : in File_Type)
       return Boolean
    is
@@ -254,12 +254,12 @@ package body SpeichernZusatzbelegungLogik is
       AktuellesFeldelement := 1;
       
       RohstoffSchleife:
-      for RohstoffSchleifenwert in RohstoffExtern'Range loop
+      for RohstoffSchleifenwert in RohstoffeExtern'Range loop
          
          case
-           RohstoffExtern (RohstoffSchleifenwert)
+           RohstoffeExtern (RohstoffSchleifenwert)
          is
-            when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
+            when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
                null;
                
             when others =>
@@ -284,17 +284,17 @@ package body SpeichernZusatzbelegungLogik is
       end case;
       
       RohstoffSpeichernSchleife:
-      for RohstoffSpeichernSchleifenwert in reverse RohstoffExtern'Range loop
+      for RohstoffSpeichernSchleifenwert in reverse RohstoffeExtern'Range loop
          
          case
-           RohstoffExtern (RohstoffSpeichernSchleifenwert)
+           RohstoffeExtern (RohstoffSpeichernSchleifenwert)
          is
-            when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
+            when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
                null;
                
             when others =>
                KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                      RohstoffExtern (RohstoffSpeichernSchleifenwert));
+                                                                         RohstoffeExtern (RohstoffSpeichernSchleifenwert));
          end case;
          
       end loop RohstoffSpeichernSchleife;
@@ -363,7 +363,7 @@ package body SpeichernZusatzbelegungLogik is
                
             when others =>
                KartenwegeDatentypen.Weg_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                      WegExtern (WegSpeichernSchleifenwert));
+                                                              WegExtern (WegSpeichernSchleifenwert));
          end case;
          
       end loop WegSpeichernSchleife;
@@ -397,7 +397,7 @@ package body SpeichernZusatzbelegungLogik is
          case
            VerbesserungExtern (VerbesserungSchleifenwert)
          is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
                null;
                
             when others =>
@@ -427,12 +427,12 @@ package body SpeichernZusatzbelegungLogik is
          case
            VerbesserungExtern (VerbesserungSpeichernSchleifenwert)
          is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
                null;
                
             when others =>
-               KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                               VerbesserungExtern (VerbesserungSpeichernSchleifenwert));
+               KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                                 VerbesserungExtern (VerbesserungSpeichernSchleifenwert));
          end case;
          
       end loop VerbesserungSpeichernSchleife;

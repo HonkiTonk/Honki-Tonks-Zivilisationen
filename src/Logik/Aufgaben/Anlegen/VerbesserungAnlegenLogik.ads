@@ -23,6 +23,6 @@ package VerbesserungAnlegenLogik is
 
 private
 
-   WelcheVerbesserung : KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum;
+   WelcheVerbesserung : KartenverbesserungDatentypen.Verbesserungen_Gebilde_Enum;
 
 end VerbesserungAnlegenLogik;

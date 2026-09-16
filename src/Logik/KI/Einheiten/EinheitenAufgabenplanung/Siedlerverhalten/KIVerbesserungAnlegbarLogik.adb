@@ -17,7 +17,7 @@ package body KIVerbesserungAnlegbarLogik is
       return Boolean
    is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
-      use type KartenrohstoffeDatentypen.Rohstoffe_Enum;
+      -- use type KartenrohstoffeDatentypen.Rohstoffe_Enum;
    begin
       
       Rohstoffe := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
@@ -25,8 +25,8 @@ package body KIVerbesserungAnlegbarLogik is
       case
         Rohstoffe
       is
-         when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
-            return False;
+        -- when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
+        --    return False;
             
          when others =>
             Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
@@ -36,7 +36,7 @@ package body KIVerbesserungAnlegbarLogik is
         MineAnlegen (KoordinatenExtern          => KoordinatenExtern,
                      EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                      BasisgrundExtern           => Basisgrund,
-                     RohstoffExtern            => Rohstoffe)
+                     RohstoffeExtern            => Rohstoffe)
       is
          when True =>
             return True;
@@ -78,11 +78,11 @@ package body KIVerbesserungAnlegbarLogik is
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return Boolean
    is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
-      use type KartenrohstoffeDatentypen.Rohstoffe_Enum;
+     -- use type KartenrohstoffeDatentypen.Rohstoffe_Enum;
    begin
       
       case
@@ -98,16 +98,23 @@ package body KIVerbesserungAnlegbarLogik is
             null;
       end case;
       
+      case
+        RohstoffeExtern
+      is
+         when others =>
+            null;
+      end case;
+      
       if
         BasisgrundExtern = KartenbasisgrundDatentypen.Hügel_Enum
         or
           BasisgrundExtern = KartenbasisgrundDatentypen.Gebirge_Enum
-          or
-            RohstoffExtern = KartenrohstoffeDatentypen.Kohle_Enum
-            or
-              RohstoffExtern = KartenrohstoffeDatentypen.Eisen_Enum
-              or
-                RohstoffExtern = KartenrohstoffeDatentypen.Gold_Enum
+         -- or
+          --  RohstoffeExtern = KartenrohstoffeDatentypen.Kohle_Enum
+          --  or
+           --   RohstoffeExtern = KartenrohstoffeDatentypen.Eisen_Enum
+           --   or
+            --    RohstoffeExtern = KartenrohstoffeDatentypen.Gold_Enum
       then
          SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                  BeschäftigungExtern        => AufgabenDatentypen.Mine_Bauen_Enum);

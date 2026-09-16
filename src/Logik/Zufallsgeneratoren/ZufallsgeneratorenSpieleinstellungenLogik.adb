@@ -143,7 +143,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    function ZufälligeKartenrohstoffe
-     return KartenartDatentypen.Kartenrohstoffemenge_Enum
+     return KartenrohstoffeDatentypen.Rohstoffanzahl_Enum
    is begin
       
       ZufälligeKartenrohstoffeWählen.Reset (Gen => ZufälligeKartenrohstoffeGewählt);

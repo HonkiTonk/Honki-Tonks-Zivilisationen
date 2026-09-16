@@ -49,7 +49,7 @@ package body KartengeneratorLogik is
       for RohstoffeSchleifenwert in KartenArrays.KartenrohstoffeWahrscheinlichkeitenArray'Range loop
          
          KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenSchreiben
-           (RohstoffExtern           => RohstoffeSchleifenwert,
+           (RohstoffeExtern           => RohstoffeSchleifenwert,
             WahrscheinlichkeitExtern => KartenRecordKonstanten.StandardKartenrohstoffeWahrscheinlichkeiten (KartengeneratorVariablenLogik.KartenrohstoffeLesen, RohstoffeSchleifenwert));
          
       end loop RohstoffeSchleife;

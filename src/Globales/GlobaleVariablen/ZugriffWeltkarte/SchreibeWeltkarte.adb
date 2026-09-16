@@ -167,7 +167,7 @@ package body SchreibeWeltkarte is
    
    procedure Rohstoff
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
    is begin
       
       case
@@ -177,10 +177,49 @@ package body SchreibeWeltkarte is
             MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Rohstoff: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoff := RohstoffExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoffe (KartenrohstoffeDatentypen.Rohstoff_Eins_Enum) := RohstoffeExtern;
       end case;
       
    end Rohstoff;
+   
+   
+   
+   procedure Rohstoffe
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      RohstoffnummerExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum;
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+   is begin
+      
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.LeerEbene =>
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Rohstoffe: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoffe (RohstoffnummerExtern) := RohstoffExtern;
+      end case;
+      
+   end Rohstoffe;
+   
+   
+   
+   procedure AlleRohstoffe
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      RohstoffeExtern : in KartenArrays.RohstoffeArray)
+   is begin
+      
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.LeerEbene =>
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.AlleRohstoffe: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoffe := RohstoffeExtern;
+      end case;
+      
+   end AlleRohstoffe;
    
    
    
@@ -205,7 +244,7 @@ package body SchreibeWeltkarte is
    
    procedure Verbesserung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum)
    is begin
       
       case
@@ -215,10 +254,49 @@ package body SchreibeWeltkarte is
             MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Verbesserung: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserung := VerbesserungExtern;
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserungen (KartenverbesserungDatentypen.Verbesserung_Eins_Enum) := VerbesserungExtern;
       end case;
       
    end Verbesserung;
+   
+   
+   
+   procedure Verbesserungen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VerbesserungsnummerExtern : in KartenverbesserungDatentypen.Verbesserungenanzahl_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum)
+   is begin
+      
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.LeerEbene =>
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.Verbesserungen: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserungen (VerbesserungsnummerExtern) := VerbesserungExtern;
+      end case;
+      
+   end Verbesserungen;
+   
+   
+   
+   procedure AlleVerbesserungen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VerbesserungenExtern : in KartenArrays.VerbesserungenArray)
+   is begin
+      
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.LeerEbene =>
+            MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibeWeltkarte.AlleVerbesserungen: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Verbesserungen := VerbesserungenExtern;
+      end case;
+      
+   end AlleVerbesserungen;
    
    
    

@@ -75,7 +75,7 @@ package body LadenStaedteLogik is
       use type SystemDatentypenHTSEB.EinByte;
    begin
       
-      KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Read (Stream (File => DateiLadenExtern),
+      KartenverbesserungDatentypen.Verbesserungen_Städte_Enum'Read (Stream (File => DateiLadenExtern),
                                                                    ID);
          
       KartenRecords.KartenfeldNaturalRecord'Read (Stream (File => DateiLadenExtern),

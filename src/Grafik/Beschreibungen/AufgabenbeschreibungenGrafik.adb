@@ -3,22 +3,22 @@ with Kartentexte;
 package body AufgabenbeschreibungenGrafik is
 
    function KurzbeschreibungVerbesserung
-     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
-      return Kartentexte.Verbesserungen (2 * KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern) - 1);
+      return Kartentexte.Verbesserungen (2 * KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum'Pos (KartenVerbesserungExtern) - 1);
       
    end KurzbeschreibungVerbesserung;
    
    
    
    function LangbeschreibungVerbesserung
-     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
       
-      return Kartentexte.Verbesserungen (2 * KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern));
+      return Kartentexte.Verbesserungen (2 * KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum'Pos (KartenVerbesserungExtern));
       
    end LangbeschreibungVerbesserung;
    

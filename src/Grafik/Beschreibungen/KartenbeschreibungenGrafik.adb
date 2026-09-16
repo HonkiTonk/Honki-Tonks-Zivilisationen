@@ -71,22 +71,22 @@ package body KartenbeschreibungenGrafik is
    
    
    function KurzbeschreibungRohstoff
-     (KartenRohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (KartenRohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
    
-      return Kartentexte.Rohstoffe (2 * KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Pos (KartenRohstoffExtern) - 1);
+      return Kartentexte.Rohstoffe (2 * KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Pos (KartenRohstoffeExtern) - 1);
       
    end KurzbeschreibungRohstoff;
    
    
    
    function LangbeschreibungRohstoff
-     (KartenRohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (KartenRohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
    
-      return Kartentexte.Rohstoffe (2 * KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Pos (KartenRohstoffExtern));
+      return Kartentexte.Rohstoffe (2 * KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Pos (KartenRohstoffeExtern));
       
    end LangbeschreibungRohstoff;
    

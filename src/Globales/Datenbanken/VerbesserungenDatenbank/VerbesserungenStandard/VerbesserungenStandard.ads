@@ -9,7 +9,7 @@ with KampfKonstanten;
 package VerbesserungenStandard is
    pragma Pure;
    
-   type StadtlisteArray is array (KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range) of KartendatenbankRecord.VerbesserungenlisteRecord;
+   type StadtlisteArray is array (KartenverbesserungDatentypen.Verbesserungen_Städte_Enum'Range) of KartendatenbankRecord.VerbesserungenlisteRecord;
    Stadtliste : constant StadtlisteArray := (
                                              KartenverbesserungDatentypen.Hauptstadt_Enum =>
                                                (
@@ -296,7 +296,7 @@ package VerbesserungenStandard is
    
    
    
-   type GebildelisteArray is array (KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum'Range) of KartendatenbankRecord.VerbesserungenlisteRecord;
+   type GebildelisteArray is array (KartenverbesserungDatentypen.Verbesserungen_Gebilde_Enum'Range) of KartendatenbankRecord.VerbesserungenlisteRecord;
    Gebildeliste : constant GebildelisteArray := (
                                                  KartenverbesserungDatentypen.Farm_Enum =>
                                                    (

@@ -67,29 +67,29 @@ package body TexturenfelderVariablenGrafik is
    
    
    function RohstoffeRechteck
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
-      return Rohstoffe (RohstoffExtern);
+      return Rohstoffe (RohstoffeExtern);
       
    end RohstoffeRechteck;
    
    
    
    function RohstoffeVektor
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      return (Float (Rohstoffe (RohstoffExtern).width), Float (Rohstoffe (RohstoffExtern).height));
+      return (Float (Rohstoffe (RohstoffeExtern).width), Float (Rohstoffe (RohstoffeExtern).height));
       
    end RohstoffeVektor;
    
    
    
    function VerbesserungRechteck
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
    is begin
       
@@ -100,7 +100,7 @@ package body TexturenfelderVariablenGrafik is
    
    
    function VerbesserungVektor
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
       

@@ -107,7 +107,28 @@ package SchreibeWeltkarte is
 
    procedure Rohstoff
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   procedure Rohstoffe
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      RohstoffnummerExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum;
       RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   procedure AlleRohstoffe
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      RohstoffeExtern : in KartenArrays.RohstoffeArray)
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -127,7 +148,28 @@ package SchreibeWeltkarte is
 
    procedure Verbesserung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum)
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   procedure Verbesserungen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VerbesserungsnummerExtern : in KartenverbesserungDatentypen.Verbesserungenanzahl_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum)
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   procedure AlleVerbesserungen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VerbesserungenExtern : in KartenArrays.VerbesserungenArray)
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

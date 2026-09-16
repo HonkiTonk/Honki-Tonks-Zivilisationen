@@ -321,12 +321,12 @@ package body StadtumgebungGrafik is
       case
         KartenfeldRohstoff
       is
-         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
             null;
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.RohstoffeAccess,
-                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffExtern => KartenfeldRohstoff),
+                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffeExtern => KartenfeldRohstoff),
                                                                       FeldgrößeExtern     => FeldgrößeExtern,
                                                                       PositionExtern      => PositionExtern);
       end case;
@@ -371,7 +371,7 @@ package body StadtumgebungGrafik is
       case
         Verbesserungsfeld
       is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
             null;
             
          when others =>

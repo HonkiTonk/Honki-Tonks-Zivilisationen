@@ -124,7 +124,7 @@ package body GebaeudeanforderungenLogik is
                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert);
                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KartenWert);
                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => KartenWert);
-               Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Rohstoff := LeseWeltkarte.Rohstoff (KoordinatenExtern => KartenWert);
+               Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Rohstoffe := LeseWeltkarte.Rohstoff (KoordinatenExtern => KartenWert);
                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert);
                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Weg := LeseWeltkarte.Weg (KoordinatenExtern => KartenWert);
             end if;
@@ -157,8 +157,8 @@ package body GebaeudeanforderungenLogik is
            True = UmgebungVorhanden (BasisgrundExtern   => BasisgrundSchleifenwert,
                                      ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
-                                     RohstoffExtern    => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum,
-                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     RohstoffeExtern    => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum,
                                      WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
             null;
@@ -183,8 +183,8 @@ package body GebaeudeanforderungenLogik is
            True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
                                      ZusatzgrundExtern  => ZusatzgrundSchleifenwert,
                                      FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
-                                     RohstoffExtern    => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum,
-                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     RohstoffeExtern    => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum,
                                      WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
             null;
@@ -209,8 +209,8 @@ package body GebaeudeanforderungenLogik is
            True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
                                      ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => FlussSchleifenwert,
-                                     RohstoffExtern    => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum,
-                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     RohstoffeExtern    => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum,
                                      WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
             null;
@@ -227,7 +227,7 @@ package body GebaeudeanforderungenLogik is
          if
            False = LeseGebaeudeDatenbank.RohstoffBenötigt (SpeziesExtern   => SpeziesExtern,
                                                              IDExtern        => GebäudeIDExtern,
-                                                             RohstoffExtern => RohstoffeSchleifenwert)
+                                                             RohstoffeExtern => RohstoffeSchleifenwert)
          then
             null;
             
@@ -235,8 +235,8 @@ package body GebaeudeanforderungenLogik is
            True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
                                      ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
-                                     RohstoffExtern    => RohstoffeSchleifenwert,
-                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     RohstoffeExtern    => RohstoffeSchleifenwert,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum,
                                      WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
             null;
@@ -248,7 +248,7 @@ package body GebaeudeanforderungenLogik is
       end loop RohstoffeSchleife;
       
       VerbesserungenSchleife:
-      for VerbesserungenSchleifenwert in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range loop
+      for VerbesserungenSchleifenwert in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum'Range loop
          
          if
            False = LeseGebaeudeDatenbank.VerbesserungBenötigt (SpeziesExtern      => SpeziesExtern,
@@ -261,7 +261,7 @@ package body GebaeudeanforderungenLogik is
            True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
                                      ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
-                                     RohstoffExtern    => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum,
+                                     RohstoffeExtern    => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum,
                                      VerbesserungExtern => VerbesserungenSchleifenwert,
                                      WegExtern          => KartenwegeDatentypen.Leer_Weg_Enum)
          then
@@ -287,8 +287,8 @@ package body GebaeudeanforderungenLogik is
            True = UmgebungVorhanden (BasisgrundExtern   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
                                      ZusatzgrundExtern  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => KartenfluesseDatentypen.Leer_Fluss_Enum,
-                                     RohstoffExtern    => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum,
-                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     RohstoffeExtern    => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum,
                                      WegExtern          => WegeSchleifenwert)
          then
             null;
@@ -309,8 +309,8 @@ package body GebaeudeanforderungenLogik is
      (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum;
       WegExtern : in KartenwegeDatentypen.Weg_Enum)
       return Boolean
    is begin
@@ -342,14 +342,14 @@ package body GebaeudeanforderungenLogik is
                return True;
                
             elsif
-              RohstoffExtern /= KartenrohstoffeDatentypen.Leer_Rohstoff_Enum
+              RohstoffeExtern /= KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum
               and then
-                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Rohstoff = RohstoffExtern
+                Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Rohstoffe = RohstoffeExtern
             then
                return True;
                
             elsif
-              VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+              VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserungen_Enum
               and then
                 Umgebung (SenkrechteSchleifenwert, WaagerechteSchleifenwert).Verbesserung = VerbesserungExtern
             then

@@ -30,6 +30,11 @@ package body KartengeneratorUnterflaecheLogik is
          for WaagerechteSchleifenwert in Schleifenbereiche.MinimaleWaagerechte .. Schleifenbereiche.MaximaleWaagerechte loop
             
             if
+              KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
+            then
+               null;
+            
+            elsif
               KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde < KartenKonstanten.OberflächeKonstante
             then
                case

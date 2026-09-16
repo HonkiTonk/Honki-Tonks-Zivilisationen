@@ -10,7 +10,7 @@ private with KartenDatentypen;
 private with KartenfluesseDatentypen;
 private with KartenrohstoffeDatentypen;
 private with KartenbasisgrundDatentypen;
-private  with KartenwegeDatentypen;
+private with KartenwegeDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -35,7 +35,7 @@ private
    use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    use type KartenfluesseDatentypen.Fluss_Enum;
    use type KartenrohstoffeDatentypen.Rohstoffe_Enum;
-   use type KartenverbesserungDatentypen.Verbesserung_Enum;
+   use type KartenverbesserungDatentypen.Verbesserungen_Enum;
    use type KartenwegeDatentypen.Weg_Enum;
    
    Stadtumgebung : KartenRecords.UmgebungDreiRecord;
@@ -49,8 +49,8 @@ private
       Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
       Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       Fluss : KartenfluesseDatentypen.Fluss_Enum;
-      Rohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
-      Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
+      Rohstoffe : KartenrohstoffeDatentypen.Rohstoffe_Enum;
+      Verbesserung : KartenverbesserungDatentypen.Verbesserungen_Enum;
       Weg : KartenwegeDatentypen.Weg_Enum;
       
    end record;
@@ -59,8 +59,8 @@ private
                                               Basisgrund   => KartenbasisgrundDatentypen.Leer_Basisgrund_Enum,
                                               Zusatzgrund  => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
                                               Fluss        => KartenfluesseDatentypen.Leer_Fluss_Enum,
-                                              Rohstoff    => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum,
-                                              Verbesserung => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                              Rohstoffe    => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum,
+                                              Verbesserung => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum,
                                               Weg          => KartenwegeDatentypen.Leer_Weg_Enum
                                              );
    
@@ -93,8 +93,8 @@ private
      (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Enum;
       ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
       FlussExtern : in KartenfluesseDatentypen.Fluss_Enum;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum;
       WegExtern : in KartenwegeDatentypen.Weg_Enum)
       return Boolean
      with
@@ -105,9 +105,9 @@ private
                or
                  FlussExtern /= KartenfluesseDatentypen.Leer_Fluss_Enum
                or
-                 RohstoffExtern /= KartenrohstoffeDatentypen.Leer_Rohstoff_Enum
+                 RohstoffeExtern /= KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum
                or
-                 VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+                 VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserungen_Enum
                or
                  WegExtern /= KartenwegeDatentypen.Leer_Weg_Enum
               );

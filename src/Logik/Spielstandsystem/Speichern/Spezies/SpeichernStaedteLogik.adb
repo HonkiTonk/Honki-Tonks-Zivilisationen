@@ -79,7 +79,7 @@ package body SpeichernStaedteLogik is
       StadtSchleife:
       for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. StädtebereichExtern loop
                            
-         KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Write (Stream (File => DateiSpeichernExtern),
+         KartenverbesserungDatentypen.Verbesserungen_Städte_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                        LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
          
          KartenRecords.KartenfeldNaturalRecord'Write (Stream (File => DateiSpeichernExtern),

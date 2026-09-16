@@ -26,7 +26,7 @@ package Kartentexte is
    Feldeffekte : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);
    
-   Verbesserungen : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenverbesserungDatentypen.Verbesserung_Enum'Pos (KartenverbesserungDatentypen.Verbesserung_Enum'Last))
+   Verbesserungen : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenverbesserungDatentypen.Verbesserungen_Enum'Pos (KartenverbesserungDatentypen.Verbesserungen_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);
    Wege : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Weg_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);

@@ -31,7 +31,7 @@ package TexturenfelderVariablenGrafik is
    type RohstoffeArray is array (KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
    Rohstoffe : RohstoffeArray;
    
-   type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
+   type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
    Verbesserungen : VerbesserungenArray;
    
    type WegeArray is array (KartenwegeDatentypen.Weg_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfIntRect;
@@ -144,7 +144,7 @@ package TexturenfelderVariablenGrafik is
                );
    
    function RohstoffeRechteck
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
@@ -158,7 +158,7 @@ package TexturenfelderVariablenGrafik is
                );
    
    function RohstoffeVektor
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -168,7 +168,7 @@ package TexturenfelderVariablenGrafik is
                );
    
    function VerbesserungRechteck
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Sf.Graphics.Rect.sfIntRect
      with
        Post => (
@@ -182,7 +182,7 @@ package TexturenfelderVariablenGrafik is
                );
    
    function VerbesserungVektor
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (

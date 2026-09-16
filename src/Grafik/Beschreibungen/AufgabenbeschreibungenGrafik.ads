@@ -7,7 +7,7 @@ package AufgabenbeschreibungenGrafik is
    pragma Elaborate_Body;
 
    function KurzbeschreibungVerbesserung
-     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -15,7 +15,7 @@ package AufgabenbeschreibungenGrafik is
                );
 
    function LangbeschreibungVerbesserung
-     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+     (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (

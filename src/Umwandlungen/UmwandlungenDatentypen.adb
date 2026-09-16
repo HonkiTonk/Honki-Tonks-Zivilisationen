@@ -8,7 +8,7 @@ package body UmwandlungenDatentypen is
 
    function BefehleNachKartenverbesserung
      (TasteExtern : in BefehleDatentypen.Siedler_Konstruktionen_Enum)
-      return KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum
+      return KartenverbesserungDatentypen.Verbesserungen_Gebilde_Enum
    is begin
       
       return BefehleKartenverbesserung (TasteExtern);
@@ -41,7 +41,7 @@ package body UmwandlungenDatentypen is
    
    function KartenrohstofferückgabeNachKartenRohstoff
      (RückgabeExtern : in RueckgabeDatentypen.Kartenrohstoffe_Enum)
-      return KartenartDatentypen.Kartenrohstoffemenge_Enum
+      return KartenrohstoffeDatentypen.Rohstoffanzahl_Enum
    is begin
       
       return KartenrohstofferückgabeKartenRohstoff (RückgabeExtern);

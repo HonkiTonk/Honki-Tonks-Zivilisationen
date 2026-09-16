@@ -1,7 +1,8 @@
+with ZufallsgeneratorenHTSEB;
+
 with SchreibeWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
-with ZufallsgeneratorenHTSEB;
 
 package body KartengeneratorErdweltLogik is
 

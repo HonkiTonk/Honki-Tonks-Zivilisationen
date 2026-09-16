@@ -52,8 +52,8 @@ package body LadenZusatzbelegungLogik is
                         
       elsif
         False = RohstoffEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                                   KoordinatenExtern => Koordinaten,
-                                   LadenPrüfenExtern => LadenPrüfenExtern)
+                                  KoordinatenExtern => Koordinaten,
+                                  LadenPrüfenExtern => LadenPrüfenExtern)
       then
          return False;
                         
@@ -129,7 +129,7 @@ package body LadenZusatzbelegungLogik is
                  VorhandeneFeldelemente >= 2**(ZusatzgrundSchleifenwert - 1)
                then
                   KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                         Zusatzgrund);
+                                                                               Zusatzgrund);
             
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(ZusatzgrundSchleifenwert - 1);
             
@@ -199,7 +199,7 @@ package body LadenZusatzbelegungLogik is
                  VorhandeneFeldelemente >= 2**(FlussSchleifenwert - 1)
                then
                   KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                   Fluss);
+                                                                     Fluss);
             
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(FlussSchleifenwert - 1);
             
@@ -269,7 +269,7 @@ package body LadenZusatzbelegungLogik is
                  VorhandeneFeldelemente >= 2**(RohstoffSchleifenwert - 1)
                then
                   KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                        Rohstoff);
+                                                                           Rohstoffe);
             
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(RohstoffSchleifenwert - 1);
             
@@ -278,7 +278,7 @@ package body LadenZusatzbelegungLogik is
                   is
                      when True =>
                         SchreibeWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern (RohstoffSchleifenwert),
-                                                     RohstoffExtern   => Rohstoff);
+                                                    RohstoffeExtern   => Rohstoffe);
             
                      when False =>
                         null;
@@ -339,7 +339,7 @@ package body LadenZusatzbelegungLogik is
                  VorhandeneFeldelemente >= 2**(WegSchleifenwert - 1)
                then
                   KartenwegeDatentypen.Weg_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                        Weg);
+                                                                Weg);
             
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(WegSchleifenwert - 1);
             
@@ -408,8 +408,8 @@ package body LadenZusatzbelegungLogik is
                if
                  VorhandeneFeldelemente >= 2**(VerbesserungSchleifenwert - 1)
                then
-                  KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                                 Verbesserung);
+                  KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                                                                                   Verbesserung);
             
                   VorhandeneFeldelemente := VorhandeneFeldelemente - 2**(VerbesserungSchleifenwert - 1);
             

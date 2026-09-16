@@ -121,7 +121,28 @@ package LeseWeltkarte is
 
    function Verbesserung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-      return KartenverbesserungDatentypen.Verbesserung_Enum
+      return KartenverbesserungDatentypen.Verbesserungen_Enum
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   function Verbesserungen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungenanzahl_Enum)
+      return KartenverbesserungDatentypen.Verbesserungen_Enum
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   function AlleVerbesserungen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+      return KartenArrays.VerbesserungenArray
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -132,6 +153,27 @@ package LeseWeltkarte is
    function Rohstoff
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   function Rohstoffe
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Enum
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   function AlleRohstoffe
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+      return KartenArrays.RohstoffeArray
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte

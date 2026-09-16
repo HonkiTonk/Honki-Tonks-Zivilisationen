@@ -11,7 +11,7 @@ package body StandardVerbesserungenDatenbank is
    is begin
             
       VerbesserungenSchleife:
-      for VerbesserungenSchleifenwert in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range loop
+      for VerbesserungenSchleifenwert in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum'Range loop
          
          case
            VerbesserungenSchleifenwert

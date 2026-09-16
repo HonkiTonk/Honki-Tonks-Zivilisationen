@@ -269,7 +269,7 @@ package ChangelogNovember2022 is
 
    -- Version 0.04.3130 => 0.04.3220 (09.11.2022):
    
-   -- Hochwertiges Holz als Rohstoff hinzugefügt.
+   -- Hochwertiges Holz als Rohstoffe hinzugefügt.
    -- KI überarbeitet.
    -- Berechnungssystem für das Anlegen von Verbesserungen durch die KI überarbeitet.
    -- KI entfernt jetzt keinen Wald mehr wenn sich auf diesem hochwertiges Holz befindet.

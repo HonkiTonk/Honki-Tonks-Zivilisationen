@@ -28,7 +28,7 @@ private
    
    WelcheVerbesserung : AufgabenDatentypen.Einheiten_Aufgabe_Vorhanden_Enum;
    
-   VorhandeneVerbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
+   VorhandeneVerbesserung : KartenverbesserungDatentypen.Verbesserungen_Enum;
    
    Befehl : BefehleDatentypen.Einheitenbelegung_Enum;
    

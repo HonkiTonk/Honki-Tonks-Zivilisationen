@@ -32,7 +32,7 @@ private
 
    function RohstoffZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
@@ -43,7 +43,7 @@ private
 
    function ZusatzberechnungKohle
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
@@ -54,7 +54,7 @@ private
 
    function ZusatzberechnungEisen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
@@ -65,7 +65,7 @@ private
 
    function ZusatzberechnungÖl
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
@@ -76,7 +76,7 @@ private
 
    function ZusatzberechnungHochwertigerBoden
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (
@@ -87,7 +87,7 @@ private
 
    function ZusatzberechnungGold
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Land_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (

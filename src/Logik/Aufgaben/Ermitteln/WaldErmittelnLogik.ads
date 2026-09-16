@@ -42,7 +42,7 @@ private
 
    VorarbeitNötig : Boolean;
 
-   VorhandeneVerbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
+   VorhandeneVerbesserung : KartenverbesserungDatentypen.Verbesserungen_Enum;
 
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
 

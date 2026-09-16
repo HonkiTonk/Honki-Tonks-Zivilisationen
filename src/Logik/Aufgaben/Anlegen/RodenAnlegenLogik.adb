@@ -1,6 +1,6 @@
-with KartenrohstoffeDatentypen;
+-- with KartenrohstoffeDatentypen;
 
-with SchreibeWeltkarte;
+-- with SchreibeWeltkarte;
 with LeseWeltkarte;
 
 with Zusatzgrundplatzierungssystem;
@@ -16,9 +16,9 @@ package body RodenAnlegenLogik is
       case
         LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
-            SchreibeWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern,
-                                         RohstoffExtern   => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum);
+        -- when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
+         --   SchreibeWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern,
+         --                                RohstoffeExtern   => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum);
             
          when others =>
             null;

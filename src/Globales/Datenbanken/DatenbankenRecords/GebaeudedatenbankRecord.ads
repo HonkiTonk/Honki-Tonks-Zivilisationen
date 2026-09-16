@@ -38,7 +38,7 @@ package GebaeudedatenbankRecord is
    -- Das erlaubt eine Beschränung auf eine Flussart, aber nicht eine Notwendigkeit für mehrere Flussstück, später mal überarbeiten. äöü
    type FlussArray is array (KartenfluesseDatentypen.Fluss_Vorhanden_Enum'Range) of Boolean;
    type RohstoffeArray is array (KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
-   type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of Boolean;
+   type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum'Range) of Boolean;
    type WegeArray is array (KartenwegeDatentypen.Weg_Vorhanden_Enum'Range) of Boolean;
    
    

@@ -32,7 +32,7 @@ package body KIStaedteverbindungssystemLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type StadtDatentypen.StädtebereichBasis;
-      use type KartenverbesserungDatentypen.Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserungen_Enum;
    begin
       
       case

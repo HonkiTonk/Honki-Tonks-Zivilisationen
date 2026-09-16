@@ -5,6 +5,7 @@ with SpeziesKonstanten;
 with SpeziesDatentypen;
 with TextDatentypen;
 with AuswahlKonstanten;
+with KartenrohstoffeDatentypen;
 
 with LeseAllgemeines;
 with LeseSpeziesbelegung;
@@ -60,7 +61,7 @@ package body TextfarbeGrafik is
             AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablenLogik.KartentemperaturLesen);
             
          when MenueDatentypen.Kartenrohstoffe_Menü_Enum =>
-            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenrohstoffemenge_Enum'Pos (KartengeneratorVariablenLogik.KartenrohstoffeLesen);
+            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Pos (KartengeneratorVariablenLogik.KartenrohstoffeLesen);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
             AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (LeseAllgemeines.Schwierigkeitsgrad);

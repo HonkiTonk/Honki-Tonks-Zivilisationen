@@ -16,7 +16,7 @@ package body FeldkampfStadtLogik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum;
       KampfBasiswertExtern : in KampfDatentypen.KampfwerteEinheiten;
-      StadttypExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
+      StadttypExtern : in KartenverbesserungDatentypen.Verbesserungen_Städte_Enum;
       TaskExtern : in SystemDatentypen.Task_Enum)
       return KampfDatentypen.KampfwerteBasis
    is begin
@@ -41,7 +41,7 @@ package body FeldkampfStadtLogik is
                                                                                                                KampfartExtern => KampfartExtern));
             
             Gesamtwert (TaskExtern) := Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => Gesamtwert (TaskExtern),
-                                                                         KampfbonusExtern => LeseKartenDatenbanken.KampfRohstoff (RohstoffExtern => LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern),
+                                                                         KampfbonusExtern => LeseKartenDatenbanken.KampfRohstoff (RohstoffeExtern => LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern),
                                                                                                                                    SpeziesExtern   => SpeziesExtern,
                                                                                                                                    KampfartExtern  => KampfartExtern));
             

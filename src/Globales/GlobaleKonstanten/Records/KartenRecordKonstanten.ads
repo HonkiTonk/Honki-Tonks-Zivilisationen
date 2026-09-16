@@ -7,13 +7,14 @@ with KartenartDatentypen;
 with SpeziesKonstanten;
 with KartenArrays;
 with KartenrohstoffeDatentypen;
+with KartenverbesserungDatentypen;
 
 package KartenRecordKonstanten is
    pragma Elaborate_Body;
 
    LeerKoordinate : constant KartenRecords.KartenfeldNaturalRecord := (
-                                                                       Ebene => KartenKonstanten.LeerEbene,
-                                                                       Senkrechte => KartenKonstanten.LeerSenkrechte,
+                                                                       Ebene       => KartenKonstanten.LeerEbene,
+                                                                       Senkrechte  => KartenKonstanten.LeerSenkrechte,
                                                                        Waagerechte => KartenKonstanten.LeerWaagerechte
                                                                       );
    
@@ -90,60 +91,21 @@ package KartenRecordKonstanten is
                                                                                                  Kartentemperatur => KartenartDatentypen.Kartentemperatur_Gemäßigt_Enum,
 
                                                                                                  -- Arm, Wenig, Mittel, Viel, Überfluss
-                                                                                                 Kartenrohstoffe  => KartenartDatentypen.Ein_Rohstoff_Enum,
+                                                                                                 Kartenrohstoffe  => KartenrohstoffeDatentypen.Rohstoff_Eins_Enum,
                                                                               
                                                                                                  Kartenpole       => KartenpoleStandard
                                                                                                 );
    
+   LeerRohstoffe : constant KartenArrays.RohstoffeArray := (others => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum);
+   
+   LeerVerbesserungen : constant KartenArrays.VerbesserungenArray := (others => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum);
+   
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    StandardKartenrohstoffeWahrscheinlichkeiten : constant KartenArrays.StandardKartenrohstoffeWahrscheinlichkeitenArray := (
-                                                                                                                            KartenartDatentypen.Ein_Rohstoff_Enum =>
-                                                                                                                              (
-                                                                                                                               KartenrohstoffeDatentypen.Fisch_Enum              => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Wal_Enum                => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum  => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Kohle_Enum              => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Eisen_Enum              => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Öl_Enum                 => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Gold_Enum               => 3
-                                                                                                                              ),
-
-                                                                                                                            KartenartDatentypen.Zwei_Rohstoffe_Enum =>
-                                                                                                                              (
-                                                                                                                               KartenrohstoffeDatentypen.Fisch_Enum              => 2,
-                                                                                                                               KartenrohstoffeDatentypen.Wal_Enum                => 2,
-                                                                                                                               KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum  => 2,
-                                                                                                                               KartenrohstoffeDatentypen.Kohle_Enum              => 2,
-                                                                                                                               KartenrohstoffeDatentypen.Eisen_Enum              => 2,
-                                                                                                                               KartenrohstoffeDatentypen.Öl_Enum                 => 2,
-                                                                                                                               KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum => 2,
-                                                                                                                               KartenrohstoffeDatentypen.Gold_Enum               => 2
-                                                                                                                              ),
-
-                                                                                                                            KartenartDatentypen.Drei_Rohstoffe_Enum =>
-                                                                                                                              (
-                                                                                                                               KartenrohstoffeDatentypen.Fisch_Enum              => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Wal_Enum                => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum  => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Kohle_Enum              => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Eisen_Enum              => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Öl_Enum                 => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum => 3,
-                                                                                                                               KartenrohstoffeDatentypen.Gold_Enum               => 3
-                                                                                                                              ),
-
-                                                                                                                            KartenartDatentypen.Vier_Rohstoffe_Enum =>
-                                                                                                                              (
-                                                                                                                               KartenrohstoffeDatentypen.Fisch_Enum              => 4,
-                                                                                                                               KartenrohstoffeDatentypen.Wal_Enum                => 4,
-                                                                                                                               KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum  => 4,
-                                                                                                                               KartenrohstoffeDatentypen.Kohle_Enum              => 4,
-                                                                                                                               KartenrohstoffeDatentypen.Eisen_Enum              => 4,
-                                                                                                                               KartenrohstoffeDatentypen.Öl_Enum                 => 4,
-                                                                                                                               KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum => 4,
-                                                                                                                               KartenrohstoffeDatentypen.Gold_Enum               => 4
-                                                                                                                              )
+                                                                                                                            KartenrohstoffeDatentypen.Rohstoff_Eins_Enum  => (others => 3),
+                                                                                                                            KartenrohstoffeDatentypen.Rohstoff_Zwei_Enum  => (others => 2),
+                                                                                                                            KartenrohstoffeDatentypen.Rohstoff_Drei_Enum  => (others => 3),
+                                                                                                                            KartenrohstoffeDatentypen.Rohstoffe_Vier_Enum => (others => 4)
                                                                                                                            );
 
 end KartenRecordKonstanten;

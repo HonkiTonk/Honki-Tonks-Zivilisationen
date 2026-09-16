@@ -4,6 +4,7 @@ with SpeziesDatentypen;
 with KartenartDatentypen;
 with KarteneffekteDatentypen;
 with KartenbasisgrundDatentypen;
+with KartenrohstoffeDatentypen;
 
 package KartenRecords is
    pragma Pure;
@@ -283,7 +284,7 @@ package KartenRecords is
             
       Kartenart : KartenartDatentypen.Kartenart_Enum;
       Kartentemperatur : KartenartDatentypen.Kartentemperatur_Enum;
-      Kartenrohstoffe : KartenartDatentypen.Kartenrohstoffemenge_Enum;
+      Kartenrohstoffe : KartenrohstoffeDatentypen.Rohstoffanzahl_Enum;
       Kartenpole : KartenpoleRecord;
             
    end record;

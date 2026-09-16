@@ -192,9 +192,9 @@ package body PZBEingesetztLogik is
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                              WegExtern         => KartenwegeDatentypen.Leer_Weg_Enum);
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
-                                      VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+                                      VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum);
       SchreibeWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern,
-                                   RohstoffExtern   => KartenrohstoffeDatentypen.Leer_Rohstoff_Enum);
+                                   RohstoffeExtern   => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum);
       
    end FeldVernichten;
 

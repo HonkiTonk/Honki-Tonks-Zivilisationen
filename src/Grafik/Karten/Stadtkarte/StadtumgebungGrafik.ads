@@ -45,8 +45,8 @@ private
    
    Wegfeld : KartenwegeDatentypen.Weg_Enum;
 
-   Stadtfeld : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
-   Verbesserungsfeld : KartenverbesserungDatentypen.Verbesserung_Enum;
+   Stadtfeld : KartenverbesserungDatentypen.Verbesserungen_Stadt_ID_Enum;
+   Verbesserungsfeld : KartenverbesserungDatentypen.Verbesserungen_Enum;
    
    Schriftabstandanpassung : constant Float := 4.30;
    Rahmendicke : Float;

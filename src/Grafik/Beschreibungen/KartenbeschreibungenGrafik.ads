@@ -58,7 +58,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function KurzbeschreibungRohstoff
-     (KartenRohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (KartenRohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
@@ -66,7 +66,7 @@ package KartenbeschreibungenGrafik is
                );
 
    function LangbeschreibungRohstoff
-     (KartenRohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+     (KartenRohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (

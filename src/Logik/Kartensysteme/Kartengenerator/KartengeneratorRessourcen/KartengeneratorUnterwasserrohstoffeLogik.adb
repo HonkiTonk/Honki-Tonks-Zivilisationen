@@ -14,7 +14,7 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
-      WelcheRohstoff := KartenrohstoffeDatentypen.Leer_Rohstoff_Enum;
+      WelcheRohstoff := KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum;
       Zahlenspeicher := 0;
       
       ZufallszahlenSchleife:
@@ -23,7 +23,7 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
          GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
-           GezogeneZahl > KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenLesen (RohstoffExtern => ZufallszahlSchleifenwert)
+           GezogeneZahl > KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenLesen (RohstoffeExtern => ZufallszahlSchleifenwert)
            or
              GezogeneZahl = 0
          then
@@ -48,12 +48,12 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
       case
         WelcheRohstoff
       is
-         when KartenrohstoffeDatentypen.Leer_Rohstoff_Enum =>
+         when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
             return;
               
          when others =>
             WelcheRohstoff := RohstoffZusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                                            RohstoffExtern   => WelcheRohstoff);
+                                                          RohstoffeExtern   => WelcheRohstoff);
       end case;
       
       case
@@ -61,7 +61,7 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
       is
          when KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Wasser_Enum'Range =>
             SchreibeWeltkarte.Rohstoff (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                         RohstoffExtern   => WelcheRohstoff);
+                                        RohstoffeExtern   => WelcheRohstoff);
             
          when others =>
             null;
@@ -73,25 +73,25 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
    
    function RohstoffZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Wasser_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Unterfläche_Wasser_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
-      case
-        RohstoffExtern
-      is
-         when KartenrohstoffeDatentypen.Fisch_Enum =>
-            return ZusatzberechnungFisch (KoordinatenExtern => KoordinatenExtern,
-                                          RohstoffExtern   => RohstoffExtern);
+      --  case
+      --  RohstoffeExtern
+      -- is
+      --  when KartenrohstoffeDatentypen.Fisch_Enum =>
+      --   return ZusatzberechnungFisch (KoordinatenExtern => KoordinatenExtern,
+      --                               RohstoffeExtern   => RohstoffeExtern);
             
-         when KartenrohstoffeDatentypen.Wal_Enum =>
-            return ZusatzberechnungWal (KoordinatenExtern => KoordinatenExtern,
-                                        RohstoffExtern   => RohstoffExtern);
+      -- when KartenrohstoffeDatentypen.Wal_Enum =>
+      --  return ZusatzberechnungWal (KoordinatenExtern => KoordinatenExtern,
+      --                            RohstoffeExtern   => RohstoffeExtern);
             
-         when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
-            return ZusatzberechnungHochwertigesHolz (KoordinatenExtern => KoordinatenExtern,
-                                                     RohstoffExtern   => RohstoffExtern);
-      end case;
+      -- when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
+      return ZusatzberechnungHochwertigesHolz (KoordinatenExtern => KoordinatenExtern,
+                                               RohstoffeExtern   => RohstoffeExtern);
+      -- end case;
       
    end RohstoffZusatzberechnungen;
    
@@ -99,7 +99,7 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
    
    function ZusatzberechnungFisch
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
@@ -112,7 +112,7 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
          null;
       end if;
       
-      return RohstoffExtern;
+      return RohstoffeExtern;
       
    end ZusatzberechnungFisch;
    
@@ -120,7 +120,7 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
    
    function ZusatzberechnungWal
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
@@ -133,7 +133,7 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
          null;
       end if;
       
-      return RohstoffExtern;
+      return RohstoffeExtern;
       
    end ZusatzberechnungWal;
    
@@ -141,7 +141,7 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
    
    function ZusatzberechnungHochwertigesHolz
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
@@ -149,10 +149,10 @@ package body KartengeneratorUnterwasserrohstoffeLogik is
         LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte))
       is
          when KartenzusatzgrundDatentypen.Unterwald_Enum =>
-            return RohstoffExtern;
+            return RohstoffeExtern;
             
          when others =>
-            return KartenrohstoffeDatentypen.Leer_Rohstoff_Enum;
+            return KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum;
       end case;
       
    end ZusatzberechnungHochwertigesHolz;

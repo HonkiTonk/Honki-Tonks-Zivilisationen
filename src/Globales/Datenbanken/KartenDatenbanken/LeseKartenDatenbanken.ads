@@ -65,7 +65,7 @@ package LeseKartenDatenbanken is
               );
    
    function BewertungRohstoff
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
       return Boolean
      with
@@ -104,7 +104,7 @@ package LeseKartenDatenbanken is
               );
    
    function ProduktionRohstoffe
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -144,7 +144,7 @@ package LeseKartenDatenbanken is
               );
    
    function KampfRohstoff
-     (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
+     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus

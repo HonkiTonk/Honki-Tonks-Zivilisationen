@@ -207,7 +207,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenverbesserungDatentypen.Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserungen_Enum;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
             
@@ -230,7 +230,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
          return False;
          
       elsif
-        LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+        LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserungen_Enum
       then
          WelcheVerbesserung := KIVerbesserungAnlegbarLogik.VerbesserungAnlegbar (KoordinatenExtern          => KoordinatenExtern,
                                                                                  EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

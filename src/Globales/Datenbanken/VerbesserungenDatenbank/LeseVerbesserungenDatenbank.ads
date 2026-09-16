@@ -26,7 +26,7 @@ package LeseVerbesserungenDatenbank is
               );
    
    function ProduktionVerbesserung
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -46,7 +46,7 @@ package LeseVerbesserungenDatenbank is
               );
    
    function KampfVerbesserung
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus

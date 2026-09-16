@@ -99,12 +99,15 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06.5205 => 0.06.5250 (16.09.2026):
+   -- Version 0.06.5205 => 0.06.5290 (16.09.2026):
    
    -- KartengeneratorVariablenLogik mit Lese/Schreibefunktionen/prozeduren versehen.
-   -- Übergangslösung für die Kreierunge der Unterfläche eingebaut.
+   -- Übergangslösung für die Kreierung der Unterfläche eingebaut.
    -- Änderung am Spielstandsystem vorgenommen, der Planetenkern wird jetzt wieder mit gespeichert damit ich später die Möglichkeit habe verschiedene Kerne zu generieren.
-   -- Contracts, Komentare und Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der dazu führte das eine Unterfläche generiert wurde auch wenn diese deaktiviert ist.
+   -- Angefangen das neue Rohstoff- und Verbesserungensystem zu schreiben und zu integrieren.
+   -- Interne Benennung überarbeitet
+   -- Contracts, Komentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 

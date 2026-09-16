@@ -107,7 +107,7 @@ package LeseGebaeudeDatenbank is
    function RohstoffBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -117,7 +117,7 @@ package LeseGebaeudeDatenbank is
    function VerbesserungBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDBasis;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum)
       return Boolean
      with
        Pre => (

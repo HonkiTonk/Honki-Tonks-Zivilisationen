@@ -46,7 +46,7 @@ package body LeseVerbesserungenDatenbank is
       
    
    function ProduktionVerbesserung
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
@@ -55,7 +55,7 @@ package body LeseVerbesserungenDatenbank is
       case
         VerbesserungExtern
       is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
@@ -88,7 +88,7 @@ package body LeseVerbesserungenDatenbank is
    
    
    function KampfVerbesserung
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.Kampfbonus
@@ -97,7 +97,7 @@ package body LeseVerbesserungenDatenbank is
       case
         VerbesserungExtern
       is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+         when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
             return KampfKonstanten.LeerBonus;
             
          when others =>

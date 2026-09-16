@@ -28,7 +28,7 @@ private
    
    Koordinaten : KartenRecords.KartenfeldNaturalRecord;
    
-   type VerbesserungArray is array (AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range) of KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum;
+   type VerbesserungArray is array (AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range) of KartenverbesserungDatentypen.Verbesserungen_Gebilde_Enum;
    Verbesserung : constant VerbesserungArray := (
                                                  AufgabenDatentypen.Mine_Bauen_Enum    => KartenverbesserungDatentypen.Mine_Enum,
                                                  AufgabenDatentypen.Farm_Bauen_Enum    => KartenverbesserungDatentypen.Farm_Enum,

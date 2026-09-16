@@ -43,7 +43,7 @@ package body StadtAllgemeinesLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Vorhanden_Enum)
    is
       use type StadtDatentypen.StädtebereichBasis;
-      use type KartenverbesserungDatentypen.Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserungen_Enum;
       use type KartenDatentypen.SenkrechteBasis;
       use type KartenDatentypen.WaagerechteBasis;
       use type EinheitenDatentypen.EinheitenIDBasis;
@@ -67,21 +67,21 @@ package body StadtAllgemeinesLogik is
          case         
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, FreierPlatzSchleifenwert))
          is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
                BelegterPlatzSchleife:
                for BelegterPlatzSchleifenwert in FreierPlatzSchleifenwert + 1 .. Stadtgrenze loop
                
                   StadtVorhanden := LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, BelegterPlatzSchleifenwert));
                   
                   if
-                    StadtVorhanden = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+                    StadtVorhanden = KartenverbesserungDatentypen.Leer_Verbesserungen_Enum
                     and
                       BelegterPlatzSchleifenwert = Stadtgrenze
                   then
                      exit FreierPlatzSchleife;
                   
                   elsif
-                    StadtVorhanden = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+                    StadtVorhanden = KartenverbesserungDatentypen.Leer_Verbesserungen_Enum
                   then
                      null;
                   

@@ -61,7 +61,7 @@ package ChangelogMaerz2022 is
 
    -- Version 0.01.0165 => 0.01.0185 (22.03.2022):
    
-   -- Grund, Fluss und Rohstoff vollständig aufgeteilt.
+   -- Grund, Fluss und Rohstoffe vollständig aufgeteilt.
    -- Wege und Verbesserungen vollständig in zwei Datenbanken aufgeteilt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
@@ -101,7 +101,7 @@ package ChangelogMaerz2022 is
 
    -- Version 0.01.0150 => 0.01.0160 (16.03.2022):
    
-   -- Kartengrundenum und die KartengrundDatenbank in Grund, Fluss und Rohstoff aufgeteilt und angefangen alles entsprechend daran anzupassen.
+   -- Kartengrundenum und die KartengrundDatenbank in Grund, Fluss und Rohstoffe aufgeteilt und angefangen alles entsprechend daran anzupassen.
    -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    

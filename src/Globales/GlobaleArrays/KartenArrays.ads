@@ -4,8 +4,8 @@ with ZufallsgeneratorenDatentypenHTSEB;
 with SpeziesDatentypen;
 with KartenRecords;
 with KarteneffekteDatentypen;
-with KartenartDatentypen;
 with KartenrohstoffeDatentypen;
+with KartenverbesserungDatentypen;
 
 package KartenArrays is
    pragma Preelaborate;
@@ -23,9 +23,12 @@ package KartenArrays is
    type SichtbarkeitKoordinatenArray is array (SystemDatentypenHTSEB.AchtElemente'Range) of KartenRecords.KartenfeldNaturalRecord;
 
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
-   type StandardKartenrohstoffeWahrscheinlichkeitenArray is array (KartenartDatentypen.Kartenrohstoffemenge_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
+   type StandardKartenrohstoffeWahrscheinlichkeitenArray is array (KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
 
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    type KartenrohstoffeWahrscheinlichkeitenArray is array (StandardKartenrohstoffeWahrscheinlichkeitenArray'Range (2)) of SystemDatentypenHTSEB.NullBisHundert;
+
+   type RohstoffeArray is array (KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range) of KartenrohstoffeDatentypen.Rohstoffe_Enum;
+   type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserungenanzahl_Enum) of KartenverbesserungDatentypen.Verbesserungen_Enum;
 
 end KartenArrays;
