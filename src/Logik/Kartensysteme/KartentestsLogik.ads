@@ -49,4 +49,6 @@ private
 
    Landgrößen : KartenRecords.LandgrößenRecord;
 
+   Kartengröße : KartenRecords.KartenfeldumgebungPositivRecord;
+
 end KartentestsLogik;

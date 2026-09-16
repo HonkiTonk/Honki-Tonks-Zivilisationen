@@ -54,13 +54,13 @@ package body TextfarbeGrafik is
         WelchesMenüExtern
       is
          when MenueDatentypen.Kartenart_Menü_Enum =>
-            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenart);
+            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablenLogik.KartenartLesen);
             
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
-            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur);
+            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablenLogik.KartentemperaturLesen);
             
          when MenueDatentypen.Kartenrohstoffe_Menü_Enum =>
-            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenrohstoffemenge_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenrohstoffe);
+            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenrohstoffemenge_Enum'Pos (KartengeneratorVariablenLogik.KartenrohstoffeLesen);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
             AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (LeseAllgemeines.Schwierigkeitsgrad);

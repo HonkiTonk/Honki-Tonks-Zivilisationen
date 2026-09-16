@@ -13,9 +13,7 @@ package body SpeichernBasisgrundLogik is
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       DateiSpeichernExtern : in File_Type)
       return Boolean
-   is
-      use type KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Enum;
-   begin
+   is begin
       
       -- Man kann das teilweise zusammenfassen, aber mal getrennt lassen für spätere, potentielle Verbesserungen.
       case
@@ -26,26 +24,15 @@ package body SpeichernBasisgrundLogik is
             
          when KartenKonstanten.OberflächeKonstante =>
             KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
+                                                                        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
             
          when KartenKonstanten.UnterflächeKonstante =>
             KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
+                                                                        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
             
          when KartenKonstanten.KernKonstante =>
-            Kerngrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
-            -- Der Kern basiert doch auf der Kartengröße, kann ich den dann nicht einfach überspringen und beim Laden mit Kern auffüllen? äöü
-            -- Das hier lieber direkt in die Koordinatenschleife packen? äöü
-            
-            if
-              Kerngrund = KartenbasisgrundDatentypen.Planetenkern_Enum
-            then
-               null;
-               
-            else
-               KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                      Kerngrund);
-            end if;
+            KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)));
       end case;
       
       return True;

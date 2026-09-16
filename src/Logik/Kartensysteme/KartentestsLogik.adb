@@ -5,10 +5,12 @@ package body KartentestsLogik is
    procedure Größenanpassung
    is begin
 
+      Kartengröße := KartengeneratorVariablenLogik.KartengrößeLesen;
+      
       if
-        KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte / 2
+        KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum) > Kartengröße.Senkrechte / 2
       then
-         KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte / 2,
+         KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => Kartengröße.Senkrechte / 2,
                                                                 HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
          
       else
@@ -16,9 +18,9 @@ package body KartentestsLogik is
       end if;
       
       if
-        KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte / 2
+        KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum) > Kartengröße.Senkrechte / 2
       then
-         KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte / 2,
+         KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => Kartengröße.Senkrechte / 2,
                                                                 HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
          
       else
@@ -26,9 +28,9 @@ package body KartentestsLogik is
       end if;
       
       if
-        KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte / 2
+        KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum) > Kartengröße.Waagerechte / 2
       then
-         KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte / 2,
+         KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => Kartengröße.Waagerechte / 2,
                                                                  HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
          
       else
@@ -36,9 +38,9 @@ package body KartentestsLogik is
       end if;
       
       if
-        KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum) > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte / 2
+        KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum) > Kartengröße.Waagerechte / 2
       then
-         KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte / 2,
+         KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => Kartengröße.Waagerechte / 2,
                                                                  HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
          
       else
@@ -48,36 +50,36 @@ package body KartentestsLogik is
       Landgrößen := KartengeneratorVariablenLogik.LandgrößenLesen;
       
       if
-       Landgrößen.MinimaleSenkrechte > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte / 2
+        Landgrößen.MinimaleSenkrechte > Kartengröße.Senkrechte / 2
       then
-         Landgrößen.MinimaleSenkrechte := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte / 2;
+         Landgrößen.MinimaleSenkrechte := Kartengröße.Senkrechte / 2;
          
       else
          null;
       end if;
       
       if
-       Landgrößen.MinimaleWaagerechte > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte / 2
+        Landgrößen.MinimaleWaagerechte > Kartengröße.Waagerechte / 2
       then
-         Landgrößen.MinimaleWaagerechte := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte / 2;
+         Landgrößen.MinimaleWaagerechte := Kartengröße.Waagerechte / 2;
          
       else
          null;
       end if;
       
       if
-      Landgrößen.MaximaleSenkrechte > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte / 2
+        Landgrößen.MaximaleSenkrechte > Kartengröße.Senkrechte / 2
       then
-         Landgrößen.MaximaleSenkrechte := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte / 2;
+         Landgrößen.MaximaleSenkrechte := Kartengröße.Senkrechte / 2;
          
       else
          null;
       end if;
       
       if
-       Landgrößen.MaximaleWaagerechte > KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte / 2
+        Landgrößen.MaximaleWaagerechte > Kartengröße.Waagerechte / 2
       then
-         Landgrößen.MaximaleWaagerechte := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte / 2;
+         Landgrößen.MaximaleWaagerechte := Kartengröße.Waagerechte / 2;
          
       else
          null;

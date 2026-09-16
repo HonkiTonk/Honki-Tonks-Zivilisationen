@@ -23,10 +23,10 @@ package body KartentemperaturEinstellenLogik is
            KartentemperaturAuswahl
          is
             when RueckgabeDatentypen.Kartentemperatur_Enum'Range =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur := UmwandlungenDatentypen.KartentemperaturrückgabeNachKartentemperatur (RückgabeExtern => KartentemperaturAuswahl);
+               KartengeneratorVariablenLogik.KartentemperaturSchreiben (TemperaturExtern => UmwandlungenDatentypen.KartentemperaturrückgabeNachKartentemperatur (RückgabeExtern => KartentemperaturAuswahl));
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartentemperatur;
+               KartengeneratorVariablenLogik.KartentemperaturSchreiben (TemperaturExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartentemperatur);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;

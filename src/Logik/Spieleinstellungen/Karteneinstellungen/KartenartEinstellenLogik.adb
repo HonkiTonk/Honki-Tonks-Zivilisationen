@@ -26,23 +26,23 @@ package body KartenartEinstellenLogik is
            KartenartAuswahl
          is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenartDatentypen.Kartenart_Inseln_Enum;
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Inseln_Enum);
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenartDatentypen.Kartenart_Kontinente_Enum;
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Kontinente_Enum);
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenartDatentypen.Kartenart_Pangäa_Enum;
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Pangäa_Enum);
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum;
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum);
                KartenartNutzerdefinition;
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartenart;
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartenart);
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum;
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum);
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenart;
                
             when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
@@ -58,13 +58,13 @@ package body KartenartEinstellenLogik is
       end loop KartenartSchleife;
       
       case
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenart
+        KartengeneratorVariablenLogik.KartenartLesen
       is
          when KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum =>
             null;
             
          when others =>
-            KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => KartengeneratorRecordKonstanten.Kartenartgrößen (KartengeneratorVariablenLogik.Kartenparameter.Kartenart));
+            KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => KartengeneratorRecordKonstanten.Kartenartgrößen (KartengeneratorVariablenLogik.KartenartLesen));
       end case;
       
    end Kartenart;
@@ -75,7 +75,7 @@ package body KartenartEinstellenLogik is
    is begin
       
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 1,
-                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.KartengrößeLesen.Senkrechte),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandhöhe);
       
       case
@@ -91,7 +91,7 @@ package body KartenartEinstellenLogik is
       end case;
             
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZwischenwertKartenart,
-                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.KartengrößeLesen.Senkrechte),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandhöhe);
       
       case
@@ -108,7 +108,7 @@ package body KartenartEinstellenLogik is
       
       
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 1,
-                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.KartengrößeLesen.Waagerechte),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMinimaleLandbreite);
       
       case
@@ -124,7 +124,7 @@ package body KartenartEinstellenLogik is
       end case;
             
       BenutzerdefinierteKartenart := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZwischenwertKartenart,
-                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte),
+                                                                       ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.KartengrößeLesen.Waagerechte),
                                                                        WelcheFrageExtern   => TextnummernKonstanten.FrageMaximaleLandbreite);
       
       case
@@ -145,7 +145,7 @@ package body KartenartEinstellenLogik is
    procedure KartenartStandard
    is begin
 
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenart := KartenKonstanten.StandardKartenart;
+      KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenKonstanten.StandardKartenart);
       KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum));
 
    end KartenartStandard;

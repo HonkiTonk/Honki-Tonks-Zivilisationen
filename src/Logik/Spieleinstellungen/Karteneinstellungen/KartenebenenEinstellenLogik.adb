@@ -27,15 +27,15 @@ package body KartenebenenEinstellenLogik is
            KartenebeneAuswahl
          is
             when RueckgabeDatentypen.Kartenebenen_Enum'Range =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenebene := KartenebenenTests (EingabeExtern => KartenebeneAuswahl);
-               SpeziesTests (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene);
+               KartengeneratorVariablenLogik.KartenebenenSchreiben (EbenenExtern => KartenebenenTests (EingabeExtern => KartenebeneAuswahl));
+               SpeziesTests (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen);
                  
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenebene := KartenRecordKonstanten.StandardKartenebenen;
+               KartengeneratorVariablenLogik.KartenebenenSchreiben (EbenenExtern => KartenRecordKonstanten.StandardKartenebenen);
                
             when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenebene := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenebenen;
-               SpeziesTests (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene);
+               KartengeneratorVariablenLogik.KartenebenenSchreiben (EbenenExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenebenen);
+               SpeziesTests (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -57,8 +57,7 @@ package body KartenebenenEinstellenLogik is
       use type KartenDatentypen.EbeneVorhanden;
    begin
       
-      Ebene := (EbeneAnfang => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang,
-                EbeneEnde   => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde);
+      Ebene := KartengeneratorVariablenLogik.KartenebenenLesen;
       
       case
         EingabeExtern

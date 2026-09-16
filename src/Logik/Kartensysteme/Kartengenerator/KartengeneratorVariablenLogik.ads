@@ -14,8 +14,6 @@ private with KartenArrays;
 package KartengeneratorVariablenLogik is
    pragma Elaborate_Body;
 
-   -- protected Variablenzugriff is
-
    procedure OberflächenpolSchreiben
      (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum);
 
@@ -41,7 +39,35 @@ package KartengeneratorVariablenLogik is
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    procedure RohstoffwahrscheinlichkeitenSchreiben
      (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
-     WahrscheinlichkeitExtern : in SystemDatentypenHTSEB.NullBisHundert);
+      WahrscheinlichkeitExtern : in SystemDatentypenHTSEB.NullBisHundert);
+
+   procedure KartengrößeSchreiben
+     (GrößeExtern : in KartenRecords.KartenfeldumgebungPositivRecord);
+
+   procedure KartenebenenSchreiben
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord);
+
+   procedure KartenformSchreiben
+     (FormExtern : in KartenRecords.KartenformRecord);
+
+   procedure KartenartSchreiben
+     (ArtExtern : in KartenartDatentypen.Kartenart_Enum);
+
+   procedure KartentemperaturSchreiben
+     (TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum);
+
+   procedure KartenrohstoffeSchreiben
+     (RohstoffeExtern : in KartenartDatentypen.Kartenrohstoffemenge_Enum);
+
+   procedure KartenpoleSchreiben
+     (PoleExtern : in KartenRecords.KartenpoleRecord);
+
+   procedure KartenpolEinzelnSchreiben
+     (PolExtern : in KartenartDatentypen.Kartenpole_Enum;
+      HimmelsrichtungExtern : in KartenartDatentypen.Himmelsrichtungen_Enum);
+
+   procedure KartenparameterSchreiben
+     (ParameterExtern : in KartenRecords.TemporäreKartenparameterRecord);
 
 
 
@@ -70,7 +96,26 @@ package KartengeneratorVariablenLogik is
      (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return SystemDatentypenHTSEB.NullBisHundert;
 
-   Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
+   function KartengrößeLesen
+     return KartenRecords.KartenfeldumgebungPositivRecord;
+
+   function KartenebenenLesen
+     return KartenRecords.KartenebenenVorhandenRecord;
+
+   function KartenformLesen
+     return KartenRecords.KartenformRecord;
+
+   function KartenartLesen
+     return KartenartDatentypen.Kartenart_Enum;
+
+   function KartentemperaturLesen
+     return KartenartDatentypen.Kartentemperatur_Enum;
+
+   function KartenrohstoffeLesen
+     return KartenartDatentypen.Kartenrohstoffemenge_Enum;
+
+   function KartenpoleLesen
+     return KartenRecords.KartenpoleRecord;
 
 private
 
@@ -85,9 +130,9 @@ private
 
    PolfreierBereich : KartenRecords.LandgrößenNaturalRecord;
 
+   Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
+
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    KartenrohstoffeWahrscheinlichkeiten : KartenArrays.KartenrohstoffeWahrscheinlichkeitenArray;
-
-   -- end Variablenzugriff;
 
 end KartengeneratorVariablenLogik;

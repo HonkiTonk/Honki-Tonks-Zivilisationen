@@ -1,6 +1,4 @@
 package body KartengeneratorVariablenLogik is
-   
-   -- protected body Variablenzugriff is
 
    procedure OberflächenpolSchreiben
      (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
@@ -74,7 +72,7 @@ package body KartengeneratorVariablenLogik is
    
    
    
-    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
+   -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    procedure RohstoffwahrscheinlichkeitenSchreiben
      (RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
       WahrscheinlichkeitExtern : in SystemDatentypenHTSEB.NullBisHundert)
@@ -86,6 +84,111 @@ package body KartengeneratorVariablenLogik is
    
    
    
+   procedure KartengrößeSchreiben
+     (GrößeExtern : in KartenRecords.KartenfeldumgebungPositivRecord)
+   is begin
+      
+      Kartenparameter.Kartengröße := GrößeExtern;
+      
+   end KartengrößeSchreiben;
+   
+   
+   
+   procedure KartenebenenSchreiben
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+   is begin
+      
+      Kartenparameter.Kartenebene := EbenenExtern;
+      
+   end KartenebenenSchreiben;
+   
+   
+   
+   procedure KartenformSchreiben
+     (FormExtern : in KartenRecords.KartenformRecord)
+   is begin
+      
+      Kartenparameter.Kartenform := FormExtern;
+      
+   end KartenformSchreiben;
+   
+   
+   
+   procedure KartenartSchreiben
+     (ArtExtern : in KartenartDatentypen.Kartenart_Enum)
+   is begin
+      
+      Kartenparameter.Kartenart := ArtExtern;
+      
+   end KartenartSchreiben;
+   
+   
+   
+   procedure KartentemperaturSchreiben
+     (TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum)
+   is begin
+      
+      Kartenparameter.Kartentemperatur := TemperaturExtern;
+      
+   end KartentemperaturSchreiben;
+   
+   
+   
+   procedure KartenrohstoffeSchreiben
+     (RohstoffeExtern : in KartenartDatentypen.Kartenrohstoffemenge_Enum)
+   is begin
+      
+      Kartenparameter.Kartenrohstoffe := RohstoffeExtern;
+      
+   end KartenrohstoffeSchreiben;
+   
+   
+   
+   procedure KartenpoleSchreiben
+     (PoleExtern : in KartenRecords.KartenpoleRecord)
+   is begin
+      
+      Kartenparameter.Kartenpole := PoleExtern;
+      
+   end KartenpoleSchreiben;
+   
+   
+   
+   procedure KartenpolEinzelnSchreiben
+     (PolExtern : in KartenartDatentypen.Kartenpole_Enum;
+      HimmelsrichtungExtern : in KartenartDatentypen.Himmelsrichtungen_Enum)
+   is begin
+      
+      case
+        HimmelsrichtungExtern
+      is
+         when KartenartDatentypen.Norden_Enum =>
+            Kartenparameter.Kartenpole.Nordpol := PolExtern;
+            
+         when KartenartDatentypen.Süden_Enum =>
+            Kartenparameter.Kartenpole.Südpol := PolExtern;
+            
+         when KartenartDatentypen.Westen_Enum =>
+            Kartenparameter.Kartenpole.Westpol := PolExtern;
+            
+         when KartenartDatentypen.Osten_Enum =>
+            Kartenparameter.Kartenpole.Ostpol := PolExtern;
+      end case;
+      
+   end KartenpolEinzelnSchreiben;
+   
+   
+   
+   procedure KartenparameterSchreiben
+     (ParameterExtern : in KartenRecords.TemporäreKartenparameterRecord)
+   is begin
+      
+      Kartenparameter := ParameterExtern;
+      
+   end KartenparameterSchreiben;
+      
+   
+      
    function OberflächenpolLesen
      return KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum
    is begin
@@ -157,7 +260,75 @@ package body KartengeneratorVariablenLogik is
       return KartenrohstoffeWahrscheinlichkeiten (RohstoffExtern);
       
    end RohstoffwahrscheinlichkeitenLesen;
+   
+   
+   
+   function KartengrößeLesen
+     return KartenRecords.KartenfeldumgebungPositivRecord
+   is begin
       
-   -- end Variablenzugriff;
+      return Kartenparameter.Kartengröße;
+      
+   end KartengrößeLesen;
+   
+   
+   
+   function KartenebenenLesen
+     return KartenRecords.KartenebenenVorhandenRecord
+   is begin
+      
+      return Kartenparameter.Kartenebene;
+      
+   end KartenebenenLesen;
+   
+   
+   
+   function KartenformLesen
+     return KartenRecords.KartenformRecord
+   is begin
+      
+      return Kartenparameter.Kartenform;
+      
+   end KartenformLesen;
+   
+   
+   
+   function KartenartLesen
+     return KartenartDatentypen.Kartenart_Enum
+   is begin
+      
+      return Kartenparameter.Kartenart;
+      
+   end KartenartLesen;
+   
+   
+   
+   function KartentemperaturLesen
+     return KartenartDatentypen.Kartentemperatur_Enum
+   is begin
+      
+      return Kartenparameter.Kartentemperatur;
+      
+   end KartentemperaturLesen;
+   
+   
+   
+   function KartenrohstoffeLesen
+     return KartenartDatentypen.Kartenrohstoffemenge_Enum
+   is begin
+      
+      return Kartenparameter.Kartenrohstoffe;
+      
+   end KartenrohstoffeLesen;
+   
+   
+   
+   function KartenpoleLesen
+     return KartenRecords.KartenpoleRecord
+   is begin
+      
+      return Kartenparameter.Kartenpole;
+      
+   end KartenpoleLesen;
 
 end KartengeneratorVariablenLogik;

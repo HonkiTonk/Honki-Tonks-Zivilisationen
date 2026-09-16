@@ -34,10 +34,10 @@ package body KartengeneratorRohstoffeLogik is
       is begin
          
          if
-           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang <= -1
+           KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= -1
          then
             RohstoffeGenerierung (EbeneExtern             => KartenKonstanten.UnterflächeKonstante,
-                                  LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                  LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                     * SchleifenbereichtExtern.MaximaleSenkrechte),
                                   SchleifenbereichtExtern => SchleifenbereichtExtern);
             
@@ -53,10 +53,10 @@ package body KartengeneratorRohstoffeLogik is
       is begin
          
          if
-           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = -2
+           KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang = -2
          then
             RohstoffeGenerierung (EbeneExtern             => KartenKonstanten.KernKonstante,
-                                  LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                                  LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                     * SchleifenbereichtExtern.MaximaleSenkrechte),
                                   SchleifenbereichtExtern => SchleifenbereichtExtern);
             
@@ -69,10 +69,10 @@ package body KartengeneratorRohstoffeLogik is
    begin
 
       if
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= 0
+        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde >= 0
       then
          RohstoffeGenerierung (EbeneExtern             => KartenKonstanten.OberflächeKonstante,
-                               LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+                               LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                  * SchleifenbereichtExtern.MaximaleSenkrechte),
                                SchleifenbereichtExtern => SchleifenbereichtExtern);
          

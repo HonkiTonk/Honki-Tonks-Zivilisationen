@@ -4,6 +4,7 @@ private with Sf.Graphics;
 private with Sf.Graphics.Sprite;
 
 private with GrafikDatentypen;
+private with KartenRecords;
 
 package ZusatztextKartenformGrafik is
    pragma Elaborate_Body;
@@ -22,6 +23,8 @@ private
    ÜbergangOsten : constant Positive := 6;
 
    Kartenform : GrafikDatentypen.Hintergrund_Kartenformen_Enum;
+
+   KartenformEingestellt : KartenRecords.KartenformRecord;
 
    Texturfläche : Sf.System.Vector2.sfVector2f;
 

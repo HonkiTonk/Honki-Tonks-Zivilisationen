@@ -67,7 +67,6 @@ package body LadenKarteLogik is
                case
                  LadenBasisgrundLogik.BasisgrundEinlesen (DateiLadenExtern  => DateiLadenExtern,
                                                           KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                          KartenfeldExtern  => Karteneinstellungen.Kartengröße,
                                                           LadenPrüfenExtern => LadenPrüfenExtern)
                is
                   when False =>

@@ -62,7 +62,7 @@ package body KartengeneratorPolregionLogik is
    is begin
       
       case
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol
+        KartengeneratorVariablenLogik.KartenpoleLesen.Nordpol
       is
          when KartenartDatentypen.Kartenpol_Nicht_Vorhanden_Enum =>
             return;
@@ -95,7 +95,7 @@ package body KartengeneratorPolregionLogik is
    begin
       
       case
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol
+        KartengeneratorVariablenLogik.KartenpoleLesen.Südpol
       is
          when KartenartDatentypen.Kartenpol_Nicht_Vorhanden_Enum =>
             return;
@@ -128,7 +128,7 @@ package body KartengeneratorPolregionLogik is
    is begin
       
       case
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol
+        KartengeneratorVariablenLogik.KartenpoleLesen.Westpol
       is
          when KartenartDatentypen.Kartenpol_Nicht_Vorhanden_Enum =>
             return;
@@ -161,7 +161,7 @@ package body KartengeneratorPolregionLogik is
    begin
       
       case
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol
+        KartengeneratorVariablenLogik.KartenpoleLesen.Ostpol
       is
          when KartenartDatentypen.Kartenpol_Nicht_Vorhanden_Enum =>
             return;

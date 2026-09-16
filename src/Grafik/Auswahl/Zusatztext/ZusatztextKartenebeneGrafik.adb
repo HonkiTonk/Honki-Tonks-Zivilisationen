@@ -42,13 +42,13 @@ package body ZusatztextKartenebeneGrafik is
                                          & TextaufteilungGrafik.Wortsuche (AnfangExtern => BetriebssystemKonstantenHTSEB.NUL,
                                                                            EndeExtern   => BetriebssystemKonstantenHTSEB.Leerzeichen,
                                                                            TextExtern   => MenuestringsSetzenGrafik.MenüstringsSetzen
-                                                                             (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang),
+                                                                             (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang),
                                                                               WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum))
                                          & Trennbereich
                                          & TextaufteilungGrafik.Wortsuche (AnfangExtern => BetriebssystemKonstantenHTSEB.NUL,
                                                                            EndeExtern   => BetriebssystemKonstantenHTSEB.Leerzeichen,
                                                                            TextExtern   => MenuestringsSetzenGrafik.MenüstringsSetzen
-                                                                             (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde),
+                                                                             (WelcheZeileExtern => Zusatztext (KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde),
                                                                               WelchesMenüExtern => MenueDatentypen.Kartenebene_Menü_Enum)));
       
    end TextFestlegen;

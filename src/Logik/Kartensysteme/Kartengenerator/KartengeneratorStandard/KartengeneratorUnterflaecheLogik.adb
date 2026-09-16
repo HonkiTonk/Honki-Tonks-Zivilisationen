@@ -30,18 +30,16 @@ package body KartengeneratorUnterflaecheLogik is
          for WaagerechteSchleifenwert in Schleifenbereiche.MinimaleWaagerechte .. Schleifenbereiche.MaximaleWaagerechte loop
             
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde < KartenKonstanten.OberflächeKonstante
+              KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde < KartenKonstanten.OberflächeKonstante
             then
                case
                  ZufallsgeneratorenHTSEB.Münzwurf
                is
                   when True =>
-                     null;
-                     -- KartengeneratorWasserweltLogik.KartengeneratorWasserwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                     KartengeneratorWasserweltLogik.KartengeneratorWasserwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                      
                   when False =>
-                     null;
-                     -- KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                     KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                end case;
                
             else

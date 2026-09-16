@@ -119,13 +119,13 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
       ZufälligerEbeneÜbergangWählen.Reset (Gen => ZufälligerEbeneÜbergangGewählt);
       ZufälligerSenkrechteÜbergangWählen.Reset (Gen => ZufälligerSenkrechteÜbergangGewählt);
       ZufälligerWaagerechteÜbergangWählen.Reset (Gen => ZufälligerWaagerechteÜbergangGewählt);
-            
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneOben := ZufälligerEbeneÜbergangWählen.Random (Gen => ZufälligerEbeneÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneUnten := ZufälligerEbeneÜbergangWählen.Random (Gen => ZufälligerEbeneÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteNorden := ZufälligerSenkrechteÜbergangWählen.Random (Gen => ZufälligerSenkrechteÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteSüden := ZufälligerSenkrechteÜbergangWählen.Random (Gen => ZufälligerSenkrechteÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteWesten := ZufälligerWaagerechteÜbergangWählen.Random (Gen => ZufälligerWaagerechteÜbergangGewählt);
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteOsten := ZufälligerWaagerechteÜbergangWählen.Random (Gen => ZufälligerWaagerechteÜbergangGewählt);
+      
+      KartengeneratorVariablenLogik.KartenformSchreiben (FormExtern => (ZufälligerEbeneÜbergangWählen.Random (Gen => ZufälligerEbeneÜbergangGewählt),
+                                                                        ZufälligerEbeneÜbergangWählen.Random (Gen => ZufälligerEbeneÜbergangGewählt),
+                                                                        ZufälligerSenkrechteÜbergangWählen.Random (Gen => ZufälligerSenkrechteÜbergangGewählt),
+                                                                        ZufälligerSenkrechteÜbergangWählen.Random (Gen => ZufälligerSenkrechteÜbergangGewählt),
+                                                                        ZufälligerWaagerechteÜbergangWählen.Random (Gen => ZufälligerWaagerechteÜbergangGewählt),
+                                                                        ZufälligerWaagerechteÜbergangWählen.Random (Gen => ZufälligerWaagerechteÜbergangGewählt)));
       
    end ZufälligeKartenform;
 
@@ -293,8 +293,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
                                                                                                                                      Last  => LeseWeltkarteneinstellungen.Senkrechte / 2),
                                                              HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
       
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol
-        := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum));
+      Kartenpole.Nordpol := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum));
       
       
             
@@ -303,8 +302,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
                                                                                                                                      Last  => LeseWeltkarteneinstellungen.Senkrechte / 2),
                                                              HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
       
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol
-        := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum));
+      Kartenpole.Südpol := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum));
       
             
       
@@ -313,8 +311,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
                                                                                                                                        Last  => LeseWeltkarteneinstellungen.Waagerechte / 2),
                                                               HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
       
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol
-        := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum));
+      Kartenpole.Westpol := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum));
       
             
       
@@ -323,8 +320,9 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
                                                                                                                                        Last  => LeseWeltkarteneinstellungen.Waagerechte / 2),
                                                               HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
       
-      KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol
-        := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum));
+      Kartenpole.Ostpol := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum));
+      
+      KartengeneratorVariablenLogik.KartenpoleSchreiben (PoleExtern => Kartenpole);
       
    end ZufälligePole;
 

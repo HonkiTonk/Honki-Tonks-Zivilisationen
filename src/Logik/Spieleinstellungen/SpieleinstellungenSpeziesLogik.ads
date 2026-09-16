@@ -37,6 +37,7 @@ private
    GezogeneKoordinate : KartenRecords.KartenfeldNaturalRecord;
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
    Zusatzkoordinate : KartenRecords.KartenfeldNaturalRecord;
+   Ebenen : KartenRecords.KartenebenenVorhandenRecord;
       
    type KoordinatenArray is array (1 .. 2) of KartenRecords.KartenfeldNaturalRecord;
    StartKoordinaten : KoordinatenArray;

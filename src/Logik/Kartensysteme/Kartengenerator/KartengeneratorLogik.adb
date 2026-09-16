@@ -50,7 +50,7 @@ package body KartengeneratorLogik is
          
          KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenSchreiben
            (RohstoffExtern           => RohstoffeSchleifenwert,
-            WahrscheinlichkeitExtern => KartenRecordKonstanten.StandardKartenrohstoffeWahrscheinlichkeiten (KartengeneratorVariablenLogik.Kartenparameter.Kartenrohstoffe, RohstoffeSchleifenwert));
+            WahrscheinlichkeitExtern => KartenRecordKonstanten.StandardKartenrohstoffeWahrscheinlichkeiten (KartengeneratorVariablenLogik.KartenrohstoffeLesen, RohstoffeSchleifenwert));
          
       end loop RohstoffeSchleife;
       

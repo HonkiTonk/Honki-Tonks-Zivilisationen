@@ -56,6 +56,8 @@ private
    
    Ebenen : KartenRecords.KartenebenenVorhandenRecord;
    
+   Kartenpole : KartenRecords.KartenpoleRecord;
+   
    package ZufälligeVordefinierteKartengrößeWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RueckgabeDatentypen.Kartengrößen_Standard_Enum);
    package ZufälligeKartensenkrechteWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);
    package ZufälligeKartenwaagerechteWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.WaagerechtePositiv);

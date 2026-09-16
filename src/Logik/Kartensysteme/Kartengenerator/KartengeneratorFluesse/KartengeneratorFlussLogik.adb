@@ -21,20 +21,20 @@ package body KartengeneratorFlussLogik is
       
       Schleifenbereiche := KartengeneratorVariablenLogik.PolfreierBereichLesen;
       
-      LadezeitBasis := 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+      LadezeitBasis := 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                        * Schleifenbereiche.MaximaleSenkrechte);
       
       if
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde > KartenKonstanten.OberflächeKonstante
+        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde > KartenKonstanten.OberflächeKonstante
       then
          EbeneEnde := KartenKonstanten.OberflächeKonstante;
            
       else
-         EbeneEnde := KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde;
+         EbeneEnde := KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde;
       end if;
       
       EbeneSchleife:
-      for EbeneSchleifenwert in KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang .. EbeneEnde loop
+      for EbeneSchleifenwert in KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang .. EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in Schleifenbereiche.MinimaleSenkrechte .. Schleifenbereiche.MaximaleSenkrechte loop
             WaagerechteSchleife:

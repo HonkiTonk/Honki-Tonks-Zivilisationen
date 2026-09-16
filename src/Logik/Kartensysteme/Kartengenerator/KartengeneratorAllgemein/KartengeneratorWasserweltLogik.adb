@@ -1,3 +1,6 @@
+with MeldungssystemHTSEB;
+with ZufallsgeneratorenHTSEB;
+
 with KartenKonstanten;
 
 with SchreibeWeltkarte;
@@ -5,8 +8,7 @@ with LeseWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
 with Zusatzgrundplatzierungssystem;
-with MeldungssystemHTSEB;
-with ZufallsgeneratorenHTSEB;
+with KartengeneratorVariablenLogik;
 
 package body KartengeneratorWasserweltLogik is
 
@@ -24,23 +26,42 @@ package body KartengeneratorWasserweltLogik is
    
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-   is begin
+   is
+      use type KartenDatentypen.EbeneBasis;
+   begin
       
-      case
-        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte))
-      is
-         when KartenbasisgrundDatentypen.Küstengewässer_Enum =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => KartenbasisgrundDatentypen.Küstengrund_Enum);
+      if
+        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde < KartenKonstanten.OberflächeKonstante
+      then
+         case
+           ZufallsgeneratorenHTSEB.Münzwurf
+         is
+            when True =>
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+                                             GrundExtern       => KartenbasisgrundDatentypen.Küstengrund_Enum);
+                     
+            when False =>
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+                                             GrundExtern       => KartenbasisgrundDatentypen.Meeresgrund_Enum);
+         end case;
+         
+      else
+         case
+           LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte))
+         is
+            when KartenbasisgrundDatentypen.Küstengewässer_Enum =>
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+                                             GrundExtern       => KartenbasisgrundDatentypen.Küstengrund_Enum);
       
             
-         when KartenbasisgrundDatentypen.Wasser_Enum =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => KartenbasisgrundDatentypen.Meeresgrund_Enum);
+            when KartenbasisgrundDatentypen.Wasser_Enum =>
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+                                             GrundExtern       => KartenbasisgrundDatentypen.Meeresgrund_Enum);
             
-         when others =>
-            MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorWasserweltLogik.BasisgrundBestimmen: Weder Küstengewässer noch Wasser");
-      end case;
+            when others =>
+               MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorWasserweltLogik.BasisgrundBestimmen: Weder Küstengewässer noch Wasser");
+         end case;
+      end if;
       
    end BasisgrundBestimmen;
    

@@ -27,32 +27,36 @@ package body KartenpoleEinstellenLogik is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
                KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => SenkrechtePolgrößen,
                                                                       HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Nordpol
-                 := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum));
+               KartengeneratorVariablenLogik.KartenpolEinzelnSchreiben (PolExtern             => KartentestsLogik.SenkrechteKartenpolePrüfen
+                                                                        (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum)),
+                                                                        HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
                KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => SenkrechtePolgrößen,
                                                                       HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Südpol
-                 := KartentestsLogik.SenkrechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum));
+               KartengeneratorVariablenLogik.KartenpolEinzelnSchreiben (PolExtern             => KartentestsLogik.SenkrechteKartenpolePrüfen
+                                                                        (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum)),
+                                                                        HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => WaagerechtePolgrößen,
                                                                        HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Westpol
-                 := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum));
+               KartengeneratorVariablenLogik.KartenpolEinzelnSchreiben (PolExtern             => KartentestsLogik.WaagerechteKartenpolePrüfen
+                                                                        (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum)),
+                                                                        HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => WaagerechtePolgrößen,
                                                                        HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole.Ostpol
-                 := KartentestsLogik.WaagerechteKartenpolePrüfen (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum));
+               KartengeneratorVariablenLogik.KartenpolEinzelnSchreiben (PolExtern             => KartentestsLogik.WaagerechteKartenpolePrüfen
+                                                                        (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum)),
+                                                                        HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligePole;
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenpole := KartenRecordKonstanten.KartenpoleStandard;
+               KartengeneratorVariablenLogik.KartenpoleSchreiben (PoleExtern => KartenRecordKonstanten.KartenpoleStandard);
                KartengeneratorVariablenLogik.Standardpole;
               
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
@@ -75,7 +79,7 @@ package body KartenpoleEinstellenLogik is
    begin
       
       BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                                     ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte / 2),
+                                                                     ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.KartengrößeLesen.Senkrechte / 2),
                                                                      WelcheFrageExtern   => TextnummernKonstanten.FrageEisschicht);
 
       
@@ -102,7 +106,7 @@ package body KartenpoleEinstellenLogik is
    begin
       
       BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                                     ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte / 2),
+                                                                     ZahlenMaximumExtern => Positive (KartengeneratorVariablenLogik.KartengrößeLesen.Waagerechte / 2),
                                                                      WelcheFrageExtern   => TextnummernKonstanten.FrageEisschicht);
       
       -- Sollte man bei Abbruch nicht besser den aktuellen Wert zurück geben? äöü

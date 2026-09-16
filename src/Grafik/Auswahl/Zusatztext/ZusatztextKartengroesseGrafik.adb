@@ -54,9 +54,9 @@ package body ZusatztextKartengroesseGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                          str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
                                                                                               WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstantenHTSEB.StandardAbstand
-                                         & KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)'Wide_Wide_Image & KleinesX
-                                         & SenkrechteAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Senkrechte) & KleinesX
-                                         & WaagerechteAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.Waagerechte));
+                                         & KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)'Wide_Wide_Image & KleinesX
+                                         & SenkrechteAlsString (ZahlExtern => KartengeneratorVariablenLogik.KartengrößeLesen.Senkrechte) & KleinesX
+                                         & WaagerechteAlsString (ZahlExtern => KartengeneratorVariablenLogik.KartengrößeLesen.Waagerechte));
       
       case
         AktuelleAuswahlExtern
@@ -68,7 +68,7 @@ package body ZusatztextKartengroesseGrafik is
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                                str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
                                                                                                     WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstantenHTSEB.StandardAbstand
-                                               & KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)'Wide_Wide_Image & KleinesX
+                                               & KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)'Wide_Wide_Image & KleinesX
                                                & SenkrechteAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).Senkrechte) & KleinesX
                                                & WaagerechteAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).Waagerechte));
       end case;

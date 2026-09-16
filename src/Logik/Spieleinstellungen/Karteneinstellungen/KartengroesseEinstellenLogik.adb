@@ -26,16 +26,16 @@ package body KartengroesseEinstellenLogik is
            KartengrößeAuswahl
          is
             when RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (KartengrößeAuswahl);
+               KartengeneratorVariablenLogik.KartengrößeSchreiben (GrößeExtern => KartenKonstanten.StandardKartengrößen (KartengrößeAuswahl));
 
             when RueckgabeDatentypen.Auswahl_Elf_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := GrößeSelbstBestimmen;
+               KartengeneratorVariablenLogik.KartengrößeSchreiben (GrößeExtern => GrößeSelbstBestimmen);
                
             when RueckgabeDatentypen.Auswahl_Zwölf_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := KartenKonstanten.StandardKartengrößen (ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartengröße);
+               KartengeneratorVariablenLogik.KartengrößeSchreiben (GrößeExtern => KartenKonstanten.StandardKartengrößen (ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartengröße));
                
             when RueckgabeDatentypen.Auswahl_Dreizehn_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartengröße;
+               KartengeneratorVariablenLogik.KartengrößeSchreiben (GrößeExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartengröße);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;

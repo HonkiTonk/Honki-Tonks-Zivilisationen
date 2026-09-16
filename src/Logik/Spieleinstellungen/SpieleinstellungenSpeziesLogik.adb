@@ -42,7 +42,7 @@ package body SpieleinstellungenSpeziesLogik is
                BelegungÄndern (SpeziesExtern => UmwandlungenDatentypen.RückgabeNachSpezies (RückgabeExtern => SpeziesAuswahl));
 
             when RueckgabeDatentypen.Auswahl_Neunzehn_Enum =>
-               ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpeziesbelegung (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene);
+               ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpeziesbelegung (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -63,15 +63,17 @@ package body SpieleinstellungenSpeziesLogik is
       use type KartenDatentypen.EbeneBasis;
    begin
       
+      Ebenen := KartengeneratorVariablenLogik.KartenebenenLesen;
+      
       if
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
+        Ebenen.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
         and
           SpeziesExtern in SpeziesDatentypen.Spezies_Unterfläche_Enum'Range
       then
          return;
          
       elsif
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde < KartenKonstanten.OberflächeKonstante
+        Ebenen.EbeneEnde < KartenKonstanten.OberflächeKonstante
         and
           SpeziesExtern in SpeziesDatentypen.Spezies_Oberfläche_Enum'Range
       then
@@ -131,7 +133,7 @@ package body SpieleinstellungenSpeziesLogik is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      SpeziesMenschSchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene);
+      SpeziesMenschSchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen);
       
       SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesMenschSchnellstart,
                                         BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
@@ -139,7 +141,7 @@ package body SpieleinstellungenSpeziesLogik is
       KIBelegenSchleife:
       loop
          
-         SpeziesKISchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene);
+         SpeziesKISchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen);
          
          if
            SpeziesMenschSchnellstart = SpeziesKISchnellstart

@@ -4,6 +4,8 @@ with Sf.System.Vector2;
 
 with MenueDatentypen;
 
+private with KartenRecords;
+
 package KartenformmenueGrafik is
    pragma Elaborate_Body;
 
@@ -39,6 +41,8 @@ private
    Textbreite : Float;
 
    Zusatztext : Unbounded_Wide_Wide_String;
+
+   KartenformEingestellt : KartenRecords.KartenformRecord;
 
    Textposition : Sf.System.Vector2.sfVector2f;
 

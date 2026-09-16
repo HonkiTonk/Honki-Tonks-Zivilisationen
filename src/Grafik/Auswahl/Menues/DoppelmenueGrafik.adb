@@ -90,12 +90,13 @@ package body DoppelmenueGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textbreite := GrafikKonstanten.Nullwert;
+      Ebenen := KartengeneratorVariablenLogik.KartenebenenLesen;
 
       PositionenSchleife:
       for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
          if
-           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
+           Ebenen.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
            and
              PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung + SpeziesDatentypen.SpeziesanzahlOberfläche'Last
                .. MenueKonstanten.StandardArrayanpassung + SpeziesDatentypen.SpeziesanzahlOberfläche'Last + SpeziesDatentypen.SpeziesanzahlUnterfläche'Last - 1
@@ -103,7 +104,7 @@ package body DoppelmenueGrafik is
             Anzeigen := False;
          
          elsif
-           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde < KartenKonstanten.OberflächeKonstante
+           Ebenen.EbeneEnde < KartenKonstanten.OberflächeKonstante
            and
              PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.StandardArrayanpassung + SpeziesDatentypen.SpeziesanzahlOberfläche'Last - 1
          then

@@ -4,6 +4,7 @@ private with Sf.Graphics.Color;
 with MenueDatentypen;
 
 private with GrafikRecordKonstanten;
+private with KartenRecords;
 
 package DoppelmenueGrafik is
    pragma Elaborate_Body;
@@ -22,6 +23,8 @@ private
    Textbreite : Float;
    
    Textposition : Sf.System.Vector2.sfVector2f;
+   
+   Ebenen : KartenRecords.KartenebenenVorhandenRecord;
    
    type ViewflächenArray is array (GrafikRecordKonstanten.MenüDoppelbereich'Range) of Sf.System.Vector2.sfVector2f;
    Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartView);

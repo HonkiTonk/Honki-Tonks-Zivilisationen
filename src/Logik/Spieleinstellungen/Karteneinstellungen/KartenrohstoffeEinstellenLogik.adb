@@ -21,10 +21,10 @@ package body KartenrohstoffeEinstellenLogik is
            KartenrohstoffeAuswahl
          is
             when RueckgabeDatentypen.Kartenrohstoffe_Enum'Range =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenrohstoffe := UmwandlungenDatentypen.KartenrohstofferückgabeNachKartenRohstoff (RückgabeExtern => KartenrohstoffeAuswahl);
+               KartengeneratorVariablenLogik.KartenrohstoffeSchreiben (RohstoffeExtern => UmwandlungenDatentypen.KartenrohstofferückgabeNachKartenRohstoff (RückgabeExtern => KartenrohstoffeAuswahl));
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenrohstoffe := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenrohstoffe;
+               KartengeneratorVariablenLogik.KartenrohstoffeSchreiben (RohstoffeExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenrohstoffe);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;

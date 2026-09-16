@@ -28,7 +28,7 @@ package body KartenformEinstellenLogik is
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenform;
                
             when RueckgabeDatentypen.Auswahl_Acht_Enum =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform := KartenRecordKonstanten.KartenformStandard;
+               KartengeneratorVariablenLogik.KartenformSchreiben (FormExtern => KartenRecordKonstanten.KartenformStandard);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -49,79 +49,83 @@ package body KartenformEinstellenLogik is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
       
+      KartenformEingestellt := KartengeneratorVariablenLogik.KartenformLesen;
+      
       case
         WelchEbeneExtern
       is
          when RueckgabeDatentypen.Auswahl_Eins_Enum =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneOben = KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Last
+              KartenformEingestellt.EbeneOben = KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneOben := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'First;
+               KartenformNeu.EbeneOben := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneOben
-                 := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Val (KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneOben) + 1);
+               KartenformNeu.EbeneOben
+                 := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Val (KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.KartenformLesen.EbeneOben) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneUnten = KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Last
+             KartenformEingestellt.EbeneUnten = KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneUnten := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'First;
+               KartenformNeu.EbeneUnten := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneUnten
-                 := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Val (KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EbeneUnten) + 1);
+               KartenformNeu.EbeneUnten
+                 := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Val (KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.KartenformLesen.EbeneUnten) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Drei_Enum =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteNorden = KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Last
+              KartenformEingestellt.SenkrechteNorden = KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteNorden := KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'First;
+               KartenformNeu.SenkrechteNorden := KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteNorden
+               KartenformNeu.SenkrechteNorden
                  := KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Val
-                   (KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteNorden) + 1);
+                   (KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.KartenformLesen.SenkrechteNorden) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Vier_Enum =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteSüden = KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Last
+              KartenformEingestellt.SenkrechteSüden = KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteSüden := KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'First;
+               KartenformNeu.SenkrechteSüden := KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteSüden
+               KartenformNeu.SenkrechteSüden
                  := KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Val
-                   (KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.SenkrechteSüden) + 1);
+                   (KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.KartenformLesen.SenkrechteSüden) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteWesten = KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Last
+              KartenformEingestellt.WaagerechteWesten = KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteWesten := KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'First;
+               KartenformNeu.WaagerechteWesten := KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteWesten
+               KartenformNeu.WaagerechteWesten
                  := KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Val
-                   (KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteWesten) + 1);
+                   (KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.KartenformLesen.WaagerechteWesten) + 1);
             end if;
             
          when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
             if
-              KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteOsten = KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Last
+              KartenformEingestellt.WaagerechteOsten = KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Last
             then
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteOsten := KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'First;
+               KartenformNeu.WaagerechteOsten := KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'First;
                
             else
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteOsten
+               KartenformNeu.WaagerechteOsten
                  := KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Val
-                   (KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenform.WaagerechteOsten) + 1);
+                   (KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Pos (KartengeneratorVariablenLogik.KartenformLesen.WaagerechteOsten) + 1);
             end if;
       end case;
+      
+      KartengeneratorVariablenLogik.KartenformSchreiben (FormExtern => KartenformNeu);
       
    end KartenformZuweisen;
 

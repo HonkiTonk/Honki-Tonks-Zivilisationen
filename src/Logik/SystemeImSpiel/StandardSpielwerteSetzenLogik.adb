@@ -40,7 +40,7 @@ package body StandardSpielwerteSetzenLogik is
             null;
             
          when False =>
-            KartengeneratorVariablenLogik.Kartenparameter := KartenRecordKonstanten.Standardkartengeneratorparameter;
+            KartengeneratorVariablenLogik.KartenparameterSchreiben (ParameterExtern => KartenRecordKonstanten.Standardkartengeneratorparameter);
             KartengeneratorVariablenLogik.Standardpole;
             KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum));
       end case;

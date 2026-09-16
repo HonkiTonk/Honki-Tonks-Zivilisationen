@@ -126,9 +126,9 @@ package body SpieleinstellungenLogik is
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Generierungszeit_Enum);
       
       -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.
-      SchreibeWeltkarteneinstellungen.Fläche (AchsenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße);
-      SchreibeWeltkarteneinstellungen.Ebenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene);
-      SchreibeWeltkarteneinstellungen.Kartenform (KartenformExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenform);
+      SchreibeWeltkarteneinstellungen.Fläche (AchsenExtern => KartengeneratorVariablenLogik.KartengrößeLesen);
+      SchreibeWeltkarteneinstellungen.Ebenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen);
+      SchreibeWeltkarteneinstellungen.Kartenform (KartenformExtern => KartengeneratorVariablenLogik.KartenformLesen);
       KartengeneratorLogik.Kartengenerator;
       
       SpieleinstellungenSpeziesLogik.StartwerteErmitteln;

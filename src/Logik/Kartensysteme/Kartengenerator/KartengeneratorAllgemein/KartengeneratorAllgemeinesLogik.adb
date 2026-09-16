@@ -33,9 +33,9 @@ package body KartengeneratorAllgemeinesLogik is
       is begin
 
          if
-           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde = 2
+           KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde = 2
          then
-            KartengeneratorOrbitLogik.Orbit (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+            KartengeneratorOrbitLogik.Orbit (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                              * SenkrechteExtern));
             
          else
@@ -50,9 +50,9 @@ package body KartengeneratorAllgemeinesLogik is
       is begin
          
          if
-           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= 1
+           KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde >= 1
          then
-            KartengeneratorHimmelLogik.Himmel (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+            KartengeneratorHimmelLogik.Himmel (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                                * SenkrechteExtern));
             
          else
@@ -69,9 +69,9 @@ package body KartengeneratorAllgemeinesLogik is
          -- Sollte ich in dieser Prozedur später weitere Berechnungen durchführen die Zugriff auf die Kartenkoordinatenberechnung vornehmen, äöü
          -- dann muss ich das hier wegverschieben da der Zugriff ebenfalls in KartengeneratorStandardLogik.OberflächeGenerieren erfolgt. äöü
          if
-           KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneAnfang = -2
+           KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang = -2
          then
-            KartengeneratorPlanetenkernLogik.Planetenkern (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+            KartengeneratorPlanetenkernLogik.Planetenkern (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                                            * SenkrechteExtern));
             
          else
@@ -85,9 +85,9 @@ package body KartengeneratorAllgemeinesLogik is
       KartengeneratorPolregionLogik.PolregionGenerieren;
       
       if
-        KartengeneratorVariablenLogik.Kartenparameter.Kartenebene.EbeneEnde >= 0
+        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde >= 0
       then
-         KartengeneratorStandardLogik.OberflächeGenerieren (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenebene)
+         KartengeneratorStandardLogik.OberflächeGenerieren (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                                              * SenkrechteExtern));
             
       else
