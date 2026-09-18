@@ -78,17 +78,20 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (19.09.2026):
+   -- Version 0.06.5385 => 0.06. (19.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5325 => 0.06. (18.09.2026):
+   -- Version 0.06.5325 => 0.06.5385 (18.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Lade/Speicheranzeige an die neuen Ebeneneinstellungen angepasst.
+   -- Angefangen den Kartengenerator an das neue Rohstoffsystem anzupassen.
+   -- Rohstoffe sollten jetzt auch an den Polen generiert werden.
+   -- Neue Version veröffentlicht.
+   -- Contracst, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

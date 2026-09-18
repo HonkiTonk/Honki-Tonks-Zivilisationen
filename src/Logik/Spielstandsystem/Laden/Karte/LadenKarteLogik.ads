@@ -5,6 +5,7 @@ private with SystemDatentypenHTSEB;
 private with KartenRecords;
 private with SpeziesDatentypen;
 private with KartenArrays;
+private with KartenDatentypen;
 
 package LadenKarteLogik is
    pragma Elaborate_Body;
@@ -15,6 +16,7 @@ package LadenKarteLogik is
       return Boolean;
    
 private
+   use type KartenDatentypen.EbeneBasis;
    
    FelderanzahlZusatzgrund : Positive;
    FelderanzahlSichtbarkeit : Positive;
@@ -27,6 +29,8 @@ private
    
    LadezeitKarteBasiswert : Float;
    LadezeitSichtbarkeitBasiswert : Float;
+   
+   Ebenen : KartenRecords.KartenebenenVorhandenRecord;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
          
@@ -38,13 +42,23 @@ private
    function Felderzusammenfassung
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type;
-      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord)
-      return Boolean;
+      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord;
+      EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+      return Boolean
+     with
+       Pre => (
+                EbenenExtern.EbeneAnfang <= EbenenExtern.EbeneEnde 
+              );
    
    function Spezieszusammenfassung
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type;
-      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord)
-      return Boolean;
+      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord;
+      EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+      return Boolean
+     with
+       Pre => (
+                EbenenExtern.EbeneAnfang <= EbenenExtern.EbeneEnde 
+              );
 
 end LadenKarteLogik;

@@ -14,6 +14,7 @@ with LadenSichtbarkeitLogik;
 with SpielstandAllgemeinesLogik;
 with LadenBasisgrundLogik;
 with LadenZusatzbelegungLogik;
+with KartentestsLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenKarteLogik is
@@ -28,12 +29,13 @@ package body LadenKarteLogik is
                                                           Karteneinstellungen);
       
       VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => False);
+      Ebenen := (Karteneinstellungen.Kartenebene.EbeneAnfang, Karteneinstellungen.Kartenebene.EbeneEnde);
       
       case
         VorhandeneSpezies
       is
          when 1 .. 8 =>
-            LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
+            LadezeitSichtbarkeitBasiswert := 100.00 / (Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => Ebenen)) * Float (Karteneinstellungen.Kartengröße.Senkrechte));
             
          when others =>
             null;
@@ -55,10 +57,10 @@ package body LadenKarteLogik is
       FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
       KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
       
-      LadezeitKarteBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
+      LadezeitKarteBasiswert := 100.00 / (Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => Ebenen)) * Float (Karteneinstellungen.Kartengröße.Senkrechte));
       
       EbeneSchleife:
-      for EbeneSchleifenwert in Karteneinstellungen.Kartenebene.EbeneAnfang .. Karteneinstellungen.Kartenebene.EbeneEnde loop
+      for EbeneSchleifenwert in Ebenen.EbeneAnfang .. Ebenen.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellungen.Kartengröße.Senkrechte loop
             WaagerechteSchleife:
@@ -195,12 +197,14 @@ package body LadenKarteLogik is
          when 0 =>
             return Felderzusammenfassung (LadenPrüfenExtern         => LadenPrüfenExtern,
                                           DateiLadenExtern          => DateiLadenExtern,
-                                          KarteneinstellungenExtern => Karteneinstellungen);
+                                          KarteneinstellungenExtern => Karteneinstellungen,
+                                          EbenenExtern              => Ebenen);
             
          when 1 =>
             return Spezieszusammenfassung (LadenPrüfenExtern         => LadenPrüfenExtern,
                                            DateiLadenExtern          => DateiLadenExtern,
-                                           KarteneinstellungenExtern => Karteneinstellungen);
+                                           KarteneinstellungenExtern => Karteneinstellungen,
+                                           EbenenExtern              => Ebenen);
             
          when others =>
             return False;
@@ -219,17 +223,18 @@ package body LadenKarteLogik is
    function Felderzusammenfassung
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type;
-      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord)
+      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord;
+      EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
       return Boolean
    is begin
       
       FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
       KoordinatenFestgelegt := (others => KartenRecordKonstanten.LeerKoordinate);
       
-      LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
+      LadezeitSichtbarkeitBasiswert := 100.00 / (Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => EbenenExtern)) * Float (Karteneinstellungen.Kartengröße.Senkrechte));
             
       EbeneSchleife:
-      for EbeneSchleifenwert in KarteneinstellungenExtern.Kartenebene.EbeneAnfang .. KarteneinstellungenExtern.Kartenebene.EbeneEnde loop
+      for EbeneSchleifenwert in EbenenExtern.EbeneAnfang .. EbenenExtern.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. KarteneinstellungenExtern.Kartengröße.Senkrechte loop
             WaagerechteSchleife:
@@ -297,14 +302,15 @@ package body LadenKarteLogik is
    function Spezieszusammenfassung
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type;
-      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord)
+      KarteneinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord;
+      EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
       return Boolean
    is begin
       
-      LadezeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (Karteneinstellungen.Kartengröße.Senkrechte));
+      LadezeitSichtbarkeitBasiswert := 100.00 / (Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => EbenenExtern)) * Float (Karteneinstellungen.Kartengröße.Senkrechte));
       
       EbeneSchleife:
-      for EbeneSchleifenwert in KarteneinstellungenExtern.Kartenebene.EbeneAnfang .. KarteneinstellungenExtern.Kartenebene.EbeneEnde loop
+      for EbeneSchleifenwert in EbenenExtern.EbeneAnfang .. EbenenExtern.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. KarteneinstellungenExtern.Kartengröße.Senkrechte loop
             WaagerechteSchleife:

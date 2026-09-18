@@ -132,9 +132,7 @@ package body KartentestsLogik is
    function VorhandeneEbenen
      (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
       return KartenDatentypen.SenkrechtePositiv
-   is
-      use type KartenDatentypen.EbeneVorhanden;
-   begin
+   is begin
             
       if
         EbenenExtern.EbeneEnde >= 0
@@ -152,9 +150,7 @@ package body KartentestsLogik is
    function PlanetenEbenen
      (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
       return KartenDatentypen.SenkrechtePositiv
-   is
-      use type KartenDatentypen.EbeneVorhanden;
-   begin
+   is begin
       
       if
         EbenenExtern.EbeneEnde >= 0

@@ -1,13 +1,11 @@
 with Ada.Exceptions; use Ada.Exceptions;
 
 with SystemDatentypenHTSEB;
-
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
 with KartenKonstanten;
 with LadezeitenDatentypen;
-with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
 
@@ -16,6 +14,7 @@ with SpeichernSichtbarkeitLogik;
 with LadezeitenLogik;
 with SpeichernBasisgrundLogik;
 with SpeichernZusatzbelegungLogik;
+with KartentestsLogik;
 
 -- with DiagnosesystemHTSEB;
 
@@ -41,21 +40,23 @@ package body SpeichernKarteLogik is
       VorhandeneSpezies := SpielstandAllgemeinesLogik.VorhandeneSpeziesanzahl (SpeichernLadenExtern => True);
       GesamtgrößeSpezieszusammenfassung := 0;
       
+      Ebenen := (LeseWeltkarteneinstellungen.EbeneAnfang, LeseWeltkarteneinstellungen.EbeneEnde);
+      
       -- Hier und auch beim Laden/Kartengenerator nehme ich die Ebene einfach als gegeben hin, mal anpassen wenn ich die Ebenenanzahl einstellbar mache. äöü
-      SpeicherzeitKarteBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
+      SpeicherzeitKarteBasiswert := 100.00 / (Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => Ebenen)) * Float (LeseWeltkarteneinstellungen.Senkrechte));
       
       case
         VorhandeneSpezies
       is
          when 1 .. 8 =>
-            SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
+            SpeicherzeitSichtbarkeitBasiswert := 100.00 / (Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => Ebenen)) * Float (LeseWeltkarteneinstellungen.Senkrechte));
               
          when others =>
             null;
       end case;
       
       EbeneSchleife:
-      for EbeneSchleifenwert in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde loop
+      for EbeneSchleifenwert in Ebenen.EbeneAnfang .. Ebenen.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
             WaagerechteSchleife:
@@ -191,12 +192,14 @@ package body SpeichernKarteLogik is
       then
          SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
                                               0);
-         return Felderzusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern);
+         return Felderzusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
+                                       EbenenExtern         => Ebenen);
                   
       else
          SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
                                               1);
-         return Spezieszusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern);
+         return Spezieszusammenfassung (DateiSpeichernExtern => DateiSpeichernExtern,
+                                        EbenenExtern         => Ebenen);
       end if;
       
    exception
@@ -210,17 +213,18 @@ package body SpeichernKarteLogik is
    
    
    function Felderzusammenfassung
-     (DateiSpeichernExtern : in File_Type)
+     (DateiSpeichernExtern : in File_Type;
+      EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
       return Boolean
    is begin
       
       FelderanzahlSichtbarkeit := SystemDatentypenHTSEB.AchtElemente'First;
       SichtbarkeitFelderreiheFestgelegt := (others => (others => False));
       
-      SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
+      SpeicherzeitSichtbarkeitBasiswert := 100.00 / (Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => EbenenExtern)) * Float (LeseWeltkarteneinstellungen.Senkrechte));
       
       EbeneSchleife:
-      for EbeneSchleifenwert in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde loop
+      for EbeneSchleifenwert in EbenenExtern.EbeneAnfang .. EbenenExtern.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
             WaagerechteSchleife:
@@ -286,14 +290,15 @@ package body SpeichernKarteLogik is
    
    
    function Spezieszusammenfassung
-     (DateiSpeichernExtern : in File_Type)
+     (DateiSpeichernExtern : in File_Type;
+      EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
       return Boolean
    is begin
       
-      SpeicherzeitSichtbarkeitBasiswert := 100.00 / (5.00 * Float (LeseWeltkarteneinstellungen.Senkrechte));
+      SpeicherzeitSichtbarkeitBasiswert := 100.00 / (Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => EbenenExtern)) * Float (LeseWeltkarteneinstellungen.Senkrechte));
       
       EbeneSchleife:
-      for EbeneSchleifenwert in LeseWeltkarteneinstellungen.EbeneAnfang .. LeseWeltkarteneinstellungen.EbeneEnde loop
+      for EbeneSchleifenwert in EbenenExtern.EbeneAnfang .. EbenenExtern.EbeneEnde loop
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
             WaagerechteSchleife:

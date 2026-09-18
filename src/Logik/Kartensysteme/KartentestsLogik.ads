@@ -6,6 +6,7 @@ package KartentestsLogik is
    pragma Elaborate_Body;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
+   use type KartenDatentypen.EbeneBasis;
 
    procedure Größenanpassung;
 
@@ -31,6 +32,10 @@ package KartentestsLogik is
      (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
       return KartenDatentypen.SenkrechtePositiv
      with
+       Pre => (
+                EbenenExtern.EbeneAnfang <= EbenenExtern.EbeneEnde
+              ),
+
        Post => (
                   VorhandeneEbenen'Result <= 5
                );
@@ -39,6 +44,10 @@ package KartentestsLogik is
      (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
       return KartenDatentypen.SenkrechtePositiv
      with
+       Pre => (
+                EbenenExtern.EbeneAnfang <= EbenenExtern.EbeneEnde
+              ),
+
        Post => (
                   PlanetenEbenen'Result <= 3
                );
