@@ -85,16 +85,17 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (18.09.2026):
+   -- Version 0.06.5325 => 0.06. (18.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (17.09.2026):
+   -- Version 0.06.5290 => 0.06.5325 (17.09.2026):
    
-   -- 
+   -- GNAT 14.4.0 auf GNAT 16.2.0 aktualisiert.
+   -- Unifont 17.0.05 auf Unifont 18.0.01 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
@@ -106,7 +107,7 @@ package ChangelogSeptember2026 is
    -- Änderung am Spielstandsystem vorgenommen, der Planetenkern wird jetzt wieder mit gespeichert damit ich später die Möglichkeit habe verschiedene Kerne zu generieren.
    -- Fehler korrigiert der dazu führte das eine Unterfläche generiert wurde auch wenn diese deaktiviert ist.
    -- Angefangen das neue Rohstoff- und Verbesserungensystem zu schreiben und zu integrieren.
-   -- Interne Benennung überarbeitet
+   -- Interne Benennung überarbeitet.
    -- Contracts, Komentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
