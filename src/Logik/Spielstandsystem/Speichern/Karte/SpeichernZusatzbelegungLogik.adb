@@ -16,7 +16,6 @@ package body SpeichernZusatzbelegungLogik is
       Zusatzgrund := (others => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum);
       Feldeffekte := (others => KartenRecordKonstanten.LeerEffekte);
       Fluss := (others => KartenfluesseDatentypen.Leer_Fluss_Enum);
-      Rohstoffe := (others => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum);
       Weg := (others => KartenwegeDatentypen.Leer_Weg_Enum);
       Verbesserung := (others => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum);
       Stadt := (others => StadtKonstanten.LeerStadt);
@@ -32,7 +31,6 @@ package body SpeichernZusatzbelegungLogik is
       
       Zusatzgrund (FelderanzahlExtern) := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
       Fluss (FelderanzahlExtern) := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      Rohstoffe (FelderanzahlExtern) := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
       Weg (FelderanzahlExtern) := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
       Verbesserung (FelderanzahlExtern) := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
                   
@@ -63,12 +61,6 @@ package body SpeichernZusatzbelegungLogik is
       elsif
         False = FlussSchreiben (FlussExtern          => Fluss,
                                 DateiSpeichernExtern => DateiSpeichernExtern)
-      then
-         return False;
-                        
-      elsif
-        False = RohstoffSchreiben (RohstoffeExtern       => Rohstoffe,
-                                   DateiSpeichernExtern => DateiSpeichernExtern)
       then
          return False;
                         
@@ -239,75 +231,6 @@ package body SpeichernZusatzbelegungLogik is
          return False;
       
    end FlussSchreiben;
-   
-   
-   
-   function RohstoffSchreiben
-     (RohstoffeExtern : in RohstoffeArray;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean
-   is
-      use type SystemDatentypenHTSEB.EinByte;
-   begin
-      
-      FeldelementeVorhanden := 0;
-      AktuellesFeldelement := 1;
-      
-      RohstoffSchleife:
-      for RohstoffSchleifenwert in RohstoffeExtern'Range loop
-         
-         case
-           RohstoffeExtern (RohstoffSchleifenwert)
-         is
-            when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
-               null;
-               
-            when others =>
-               FeldelementeVorhanden := FeldelementeVorhanden + AktuellesFeldelement;
-         end case;
-         
-         AktuellesFeldelement := AktuellesFeldelement * 2;
-         
-      end loop RohstoffSchleife;
-      
-      SystemDatentypenHTSEB.EinByte'Write (Stream (File => DateiSpeichernExtern),
-                                           FeldelementeVorhanden);
-      
-      case
-        FeldelementeVorhanden
-      is
-         when 0 =>
-            return True;
-            
-         when others =>
-            null;
-      end case;
-      
-      RohstoffSpeichernSchleife:
-      for RohstoffSpeichernSchleifenwert in reverse RohstoffeExtern'Range loop
-         
-         case
-           RohstoffeExtern (RohstoffSpeichernSchleifenwert)
-         is
-            when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
-               null;
-               
-            when others =>
-               KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                         RohstoffeExtern (RohstoffSpeichernSchleifenwert));
-         end case;
-         
-      end loop RohstoffSpeichernSchleife;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernZusatzbelegungLogik.RohstoffSchreiben: Konnte nicht gespeichert werden: "
-                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
-         return False;
-      
-   end RohstoffSchreiben;
    
    
    

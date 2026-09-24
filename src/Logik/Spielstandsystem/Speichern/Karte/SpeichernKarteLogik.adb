@@ -15,6 +15,7 @@ with LadezeitenLogik;
 with SpeichernBasisgrundLogik;
 with SpeichernZusatzbelegungLogik;
 with KartentestsLogik;
+with SpeichernRohstoffeLogik;
 
 -- with DiagnosesystemHTSEB;
 
@@ -75,6 +76,18 @@ package body SpeichernKarteLogik is
                      
                      FelderanzahlZusatzgrund := FelderanzahlZusatzgrund + 1;
                end case;
+               
+               case
+                 SpeichernRohstoffeLogik.Rohstoffe (KoordinatenExtern    => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                    DateiSpeichernExtern => DateiSpeichernExtern)
+               is
+                  when False =>
+                     return False;
+                     
+                  when True =>
+                     null;
+               end case;
+                 
                
                if
                  FelderanzahlZusatzgrund <= SystemDatentypenHTSEB.AchtElemente'Last

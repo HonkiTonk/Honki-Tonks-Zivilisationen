@@ -10,7 +10,6 @@ private with StadtRecords;
 private with KartenzusatzgrundDatentypen;
 private with KartenfluesseDatentypen;
 private with KartenArrays;
-private with KartenrohstoffeDatentypen;
 private with KartenwegeDatentypen;
 
 package LadenZusatzbelegungLogik is
@@ -44,8 +43,6 @@ private
    
    Fluss : KartenfluesseDatentypen.Fluss_Vorhanden_Enum;
    
-   Rohstoffe : KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
-   
    Weg : KartenwegeDatentypen.Weg_Vorhanden_Enum;
    
    Verbesserung : KartenverbesserungDatentypen.Verbesserungen_Vorhanden_Enum;
@@ -66,12 +63,6 @@ private
       return Boolean;
    
    function FlussEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KoordinatenArray;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean;
-   
-   function RohstoffEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KoordinatenArray;
       LadenPrüfenExtern : in Boolean)

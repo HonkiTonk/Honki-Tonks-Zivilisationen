@@ -15,6 +15,7 @@ with SpielstandAllgemeinesLogik;
 with LadenBasisgrundLogik;
 with LadenZusatzbelegungLogik;
 with KartentestsLogik;
+with LadenRohstoffeLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenKarteLogik is
@@ -78,6 +79,18 @@ package body LadenKarteLogik is
                      LadenZusatzbelegungLogik.KoordinatenSetzen (KoordinatenExtern  => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                  FelderanzahlExtern => FelderanzahlZusatzgrund);
                      FelderanzahlZusatzgrund := FelderanzahlZusatzgrund + 1;
+               end case;
+               
+               case
+                 LadenRohstoffeLogik.Rohstoffe (DateiLadenExtern  => DateiLadenExtern,
+                                                KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                LadenPrüfenExtern => LadenPrüfenExtern)
+               is
+                  when False =>
+                     return False;
+                     
+                  when True =>
+                     null;
                end case;
                
                if

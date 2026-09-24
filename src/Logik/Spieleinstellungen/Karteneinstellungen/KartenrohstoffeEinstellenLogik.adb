@@ -1,11 +1,11 @@
 with MeldungssystemHTSEB;
 
-with UmwandlungenDatentypen;
+-- with UmwandlungenDatentypen;
 with MenueDatentypen;
 
 with AuswahlaufteilungLogik;
-with KartengeneratorVariablenLogik;
-with ZufallsgeneratorenSpieleinstellungenLogik;
+-- with KartengeneratorVariablenLogik;
+-- with ZufallsgeneratorenSpieleinstellungenLogik;
 
 package body KartenrohstoffeEinstellenLogik is
 
@@ -21,10 +21,12 @@ package body KartenrohstoffeEinstellenLogik is
            KartenrohstoffeAuswahl
          is
             when RueckgabeDatentypen.Kartenrohstoffe_Enum'Range =>
-               KartengeneratorVariablenLogik.KartenrohstoffeSchreiben (RohstoffeExtern => UmwandlungenDatentypen.KartenrohstofferückgabeNachKartenRohstoff (RückgabeExtern => KartenrohstoffeAuswahl));
+               null;
+               -- KartengeneratorVariablenLogik.KartenrohstoffeSchreiben (RohstoffeExtern => UmwandlungenDatentypen.KartenrohstofferückgabeNachKartenRohstoff (RückgabeExtern => KartenrohstoffeAuswahl));
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-               KartengeneratorVariablenLogik.KartenrohstoffeSchreiben (RohstoffeExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenrohstoffe);
+               null;
+               -- KartengeneratorVariablenLogik.KartenrohstoffeSchreiben (RohstoffeExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenrohstoffe);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;

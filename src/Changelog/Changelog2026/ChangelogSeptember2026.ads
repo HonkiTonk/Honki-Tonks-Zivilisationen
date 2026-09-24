@@ -71,17 +71,20 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (20.09.2026):
+   -- Version 0.06.5445 => 0.06. (20.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5385 => 0.06. (19.09.2026):
+   -- Version 0.06.5385 => 0.06.5445 (19.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Spielstandsystem an das neue Rohstoffsystem angepasst.
+   -- Rohstoffeinstellungen vorübergehend deaktiviert.
+   -- Angefangen die Textanzeige der Rohstoffe an das neue System anzupassen.
+   -- Angefangen den Rohstoffgeneratoren neu zu schreiben.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
@@ -90,8 +93,8 @@ package ChangelogSeptember2026 is
    -- Die Lade/Speicheranzeige an die neuen Ebeneneinstellungen angepasst.
    -- Angefangen den Kartengenerator an das neue Rohstoffsystem anzupassen.
    -- Rohstoffe sollten jetzt auch an den Polen generiert werden.
-   -- Neue Version veröffentlicht.
    -- Contracst, Kommentare und Kleinigkeiten korrigiert/angepasst.
+   -- Neue Version veröffentlicht.
    
    
 
@@ -167,8 +170,8 @@ package ChangelogSeptember2026 is
    -- Funktion zum ermitteln der vorhandenen Kartenebenen eingebaut.
    -- Kartenpositionsberechnungen an die neuen Ebeneneinstellungen angepasst.
    -- Alles? an die neuen Ebeneneinstellungen angepasst.
-   -- Neue Version veröffentlicht.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
+   -- Neue Version veröffentlicht.
    
    
 
@@ -229,8 +232,8 @@ package ChangelogSeptember2026 is
    -- gpr Dateien überarbeitet damit sie übersichtlicher und besser an verschiedene A/C/SFML Versionen angepasst sind.
    -- Benennung und Ordnerstruktur angepasst um eine bessere Unterscheidung zwischen den SFML Versionen zu haben.
    -- Versionsnummer um die SFML Version erweitert.
-   -- Neue Version veröffentlicht.
    -- Contracts und Kleinigkeiten korrigiert/überarbeitet/angepasst.
+   -- Neue Version veröffentlicht.
    
    
 

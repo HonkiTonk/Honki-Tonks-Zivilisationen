@@ -11,9 +11,9 @@ private with KartenRecords;
 private with KartenverbesserungDatentypen;
 private with TextaccessVariablen;
 private with KartenfluesseDatentypen;
-private with KartenrohstoffeDatentypen;
 private with KartenbasisgrundDatentypen;
 private with KartenwegeDatentypen;
+private with KartenArrays;
 
 with LeseSpeziesbelegung;
 
@@ -68,9 +68,9 @@ private
                   To_Wide_Wide_String (Source => Gesamtgrund'Result)'Length > 0
                );
    
-   -- Die Contracts hier noch hinzufügen. äöü
+   -- Die Contracts von Gesamtgrund angepasst hier noch hinzufügen. äöü
    function Rohstoff
-     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+     (RohstoffeExtern : in KartenArrays.RohstoffeArray)
       return Unbounded_Wide_Wide_String;
    
    function Verbesserung

@@ -6,67 +6,78 @@ with ZufallsgeneratorenHTSEB;
 
 package body KartengeneratorWasserrohstoffeLogik is
 
-   procedure KartengeneratorWasserrohstoffe
+   procedure Wasserrohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
-      WelcheRohstoff := KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum;
-      Zahlenspeicher := 0;
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
+         GenerierungSchleife:
+         loop
+         
+            WelcherRohstoff := KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum;
+            Zahlenspeicher := 0;
       
-      ZufallszahlenSchleife:
-      for ZufallszahlSchleifenwert in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Wasser_Enum'Range loop
+            ZufallszahlenSchleife:
+            for ZufallszahlSchleifenwert in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Wasser_Enum'Range loop
          
-         GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+               GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
-         if
-           GezogeneZahl > KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenLesen (RohstoffeExtern => ZufallszahlSchleifenwert)
-           or
-             GezogeneZahl = 0
-         then
-            null;
+               if
+                 GezogeneZahl > KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenLesen (RohstoffeExtern => ZufallszahlSchleifenwert)
+                 or
+                   GezogeneZahl = 0
+               then
+                  null;
             
-         elsif
-           (GezogeneZahl = Zahlenspeicher
-            and
-              ZufallsgeneratorenHTSEB.Münzwurf = True)
-           or
-             GezogeneZahl > Zahlenspeicher
-         then
-            Zahlenspeicher := GezogeneZahl;
-            WelcheRohstoff := ZufallszahlSchleifenwert;
+               elsif
+                 (GezogeneZahl = Zahlenspeicher
+                  and
+                    ZufallsgeneratorenHTSEB.Münzwurf = True)
+                 or
+                   GezogeneZahl > Zahlenspeicher
+               then
+                  Zahlenspeicher := GezogeneZahl;
+                  WelcherRohstoff := ZufallszahlSchleifenwert;
             
-         else
-            null;
-         end if;
+               else
+                  null;
+               end if;
          
-      end loop ZufallszahlenSchleife;
+            end loop ZufallszahlenSchleife;
       
-      case
-        WelcheRohstoff
-      is
-         when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
-            return;
+            case
+              WelcherRohstoff
+            is
+               when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
+                  return;
               
-         when others =>
-            WelcheRohstoff := RohstoffZusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                                            RohstoffeExtern   => WelcheRohstoff);
-      end case;
+               when others =>
+                  WelcherRohstoff := RohstoffZusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
+                                                                 RohstoffeExtern   => WelcherRohstoff);
+            end case;
       
-      case
-        WelcheRohstoff
-      is
-         when KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Wasser_Enum'Range =>
-            SchreibeWeltkarte.Rohstoff (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                         RohstoffeExtern   => WelcheRohstoff);
+            case
+              WelcherRohstoff
+            is
+               when KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Wasser_Enum'Range =>
+                  SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+                                               RohstoffnummerExtern => RohstoffeSchleifenwert,
+                                               RohstoffExtern       => WelcherRohstoff);
+               
+                  exit GenerierungSchleife;
+               
+               when others =>
+                  null;
+            end case;
+         
+         end loop GenerierungSchleife;
+      end loop RohstoffeSchleife;
             
-         when others =>
-            null;
-      end case;
-            
-   end KartengeneratorWasserrohstoffe;
-   
+   end Wasserrohstoffe;
+      
    
    
    function RohstoffZusatzberechnungen
@@ -78,14 +89,14 @@ package body KartengeneratorWasserrohstoffeLogik is
       -- case
       --   RohstoffeExtern
       -- is            
-      --  when KartenrohstoffeDatentypen.Fisch_Enum =>
-      --   return ZusatzberechnungFisch (KoordinatenExtern => KoordinatenExtern,
-      --                               RohstoffeExtern   => RohstoffeExtern);
+      --    when KartenrohstoffeDatentypen.Fisch_Enum =>
+      --      return ZusatzberechnungFisch (KoordinatenExtern => KoordinatenExtern,
+      -- RohstoffeExtern   => RohstoffeExtern);
             
-      -- when KartenrohstoffeDatentypen.Wal_Enum =>
+      --    when KartenrohstoffeDatentypen.Wal_Enum =>
       return ZusatzberechnungWal (KoordinatenExtern => KoordinatenExtern,
                                   RohstoffeExtern   => RohstoffeExtern);
-      -- end case;
+      --  end case;
       
    end RohstoffZusatzberechnungen;
    

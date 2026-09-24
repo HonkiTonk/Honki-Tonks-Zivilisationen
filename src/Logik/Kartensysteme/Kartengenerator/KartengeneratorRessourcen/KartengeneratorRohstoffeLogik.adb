@@ -98,17 +98,17 @@ package body KartengeneratorRohstoffeLogik is
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
-               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
-                  KartengeneratorWasserrohstoffeLogik.KartengeneratorWasserrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range | KartenbasisgrundDatentypen.Eis_Enum =>
+                  KartengeneratorLandrohstoffeLogik.Landrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
-               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
-                  KartengeneratorLandrohstoffeLogik.KartengeneratorLandrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
+                  KartengeneratorWasserrohstoffeLogik.Wasserrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  
+               when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range | KartenbasisgrundDatentypen.Untereis_Enum =>
+                  KartengeneratorUnterlandrohstoffeLogik.Unterlandrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
-                  KartengeneratorUnterwasserrohstoffeLogik.KartengeneratorUnterwasserrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  
-               when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
-                  KartengeneratorUnterlandrohstoffeLogik.KartengeneratorUnterlandrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  KartengeneratorUnterwasserrohstoffeLogik.Unterwasserrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Enum'Range =>
                   null;

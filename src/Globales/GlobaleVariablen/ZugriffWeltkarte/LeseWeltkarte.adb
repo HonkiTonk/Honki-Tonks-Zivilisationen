@@ -184,7 +184,7 @@ package body LeseWeltkarte is
    
    -- Ds mal drinnen lassen damit ich einfach prüfen kann ob Minimum eine Verbesserung existiert?
    -- Ne, das ist Unsinn da ja unter Umständen nur eine Verbesserung für 2+ vorhanden sein kann.
-   -- Das heir jkann also später weg. äöü
+   -- Das hier kann also später weg. äöü
    function Verbesserung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return KartenverbesserungDatentypen.Verbesserungen_Enum

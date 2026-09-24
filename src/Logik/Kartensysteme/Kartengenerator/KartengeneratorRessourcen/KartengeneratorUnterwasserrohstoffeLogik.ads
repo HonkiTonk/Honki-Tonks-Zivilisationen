@@ -12,7 +12,7 @@ package KartengeneratorUnterwasserrohstoffeLogik is
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
 
-   procedure KartengeneratorUnterwasserrohstoffe
+   procedure Unterwasserrohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
      with
        Pre => (
@@ -23,7 +23,7 @@ package KartengeneratorUnterwasserrohstoffeLogik is
 
 private
 
-   WelcheRohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
+   WelcherRohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
 
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
    Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;

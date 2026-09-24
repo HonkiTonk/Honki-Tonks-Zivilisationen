@@ -10,7 +10,6 @@ private with KartenfluesseDatentypen;
 private with KartenverbesserungDatentypen;
 private with StadtRecords;
 private with KartenArrays;
-private with KartenrohstoffeDatentypen;
 private with KartenwegeDatentypen;
 
 with LeseWeltkarteneinstellungen;
@@ -50,9 +49,6 @@ private
    type FlussArray is array (ZusatzgrundArray'Range) of KartenfluesseDatentypen.Fluss_Enum;
    Fluss : FlussArray;
    
-   type RohstoffeArray is array (ZusatzgrundArray'Range) of KartenrohstoffeDatentypen.Rohstoffe_Enum;
-   Rohstoffe : RohstoffeArray;
-   
    type WegArray is array (ZusatzgrundArray'Range) of KartenwegeDatentypen.Weg_Enum;
    Weg : WegArray;
    
@@ -74,11 +70,6 @@ private
    
    function FlussSchreiben
      (FlussExtern : in FlussArray;
-      DateiSpeichernExtern : in File_Type)
-      return Boolean;
-   
-   function RohstoffSchreiben
-     (RohstoffeExtern : in RohstoffeArray;
       DateiSpeichernExtern : in File_Type)
       return Boolean;
    

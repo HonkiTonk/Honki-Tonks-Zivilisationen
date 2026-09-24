@@ -2,6 +2,7 @@ with TextKonstantenHTSEB;
 
 with KarteneffekteDatentypen;
 with KartenzusatzgrundDatentypen;
+with KartenrohstoffeDatentypen;
 
 with LeseWeltkarte;
 with LeseZeiger;
@@ -33,7 +34,7 @@ package body AllgemeinesSeitenleisteGrafik is
             AktuelleKoordinaten := LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
             
             AnzuzeigenderText (1) := Gesamtgrund (GesamtgrundExtern => LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten));
-            AnzuzeigenderText (2) := Rohstoff (RohstoffeExtern => LeseWeltkarte.Rohstoff (KoordinatenExtern => AktuelleKoordinaten));
+            AnzuzeigenderText (2) := Rohstoff (RohstoffeExtern => LeseWeltkarte.AlleRohstoffe (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (3) := Verbesserung (VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (4) := Weg (WegExtern => LeseWeltkarte.Weg (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (5) := Fluss (FlussExtern => LeseWeltkarte.Fluss (KoordinatenExtern => AktuelleKoordinaten));
@@ -89,25 +90,38 @@ package body AllgemeinesSeitenleisteGrafik is
    
    
    
+   -- Muss auch eine Leeroption haben, da im Himmel/Orbit keine Ressourcen sind.
+   -- Wenn überall Rohstoffe korrekt generiert werden diese Textausgabe umbauen. äöü
    function Rohstoff
-     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Enum)
+     (RohstoffeExtern : in KartenArrays.RohstoffeArray)
       return Unbounded_Wide_Wide_String
    is begin
       
-      case
-        RohstoffeExtern
-      is
-         when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
-            return TextKonstantenHTSEB.LeerUnboundedString;
+      Zwischenspeicher := TextKonstantenHTSEB.LeerUnboundedString;
+      
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
+         
+         case
+           RohstoffeExtern (RohstoffeSchleifenwert)
+         is
+            when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
+               null;
+               -- return TextKonstantenHTSEB.LeerUnboundedString;
             
-         when others =>
-            return KartenbeschreibungenGrafik.KurzbeschreibungRohstoff (KartenRohstoffeExtern => RohstoffeExtern);
-      end case;
+            when others =>
+               Zwischenspeicher := Zwischenspeicher & KartenbeschreibungenGrafik.KurzbeschreibungRohstoff (KartenRohstoffeExtern => RohstoffeExtern (RohstoffeSchleifenwert)) & "/";
+         end case;
+         
+      end loop RohstoffeSchleife;
+      
+      return Zwischenspeicher;
       
    end Rohstoff;
    
    
    
+   -- Nach den Rohstoffen auch die Verebsserungen hier umbauen. äöü
    function Verbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserungen_Enum)
       return Unbounded_Wide_Wide_String
