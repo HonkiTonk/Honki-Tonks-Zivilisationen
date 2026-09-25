@@ -169,7 +169,7 @@ package body PassierbarkeitspruefungLogik is
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => NeueKoordinatenExtern)
       is
-         when KartenbasisgrundDatentypen.Wasser_Enum | KartenbasisgrundDatentypen.Küstengewässer_Enum =>
+         when KartenbasisgrundDatentypen.Meer_Enum | KartenbasisgrundDatentypen.Küstengewässer_Enum =>
             null;
             
          when others =>

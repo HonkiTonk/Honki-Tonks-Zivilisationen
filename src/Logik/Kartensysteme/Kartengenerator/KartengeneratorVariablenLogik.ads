@@ -36,11 +36,6 @@ package KartengeneratorVariablenLogik is
    procedure PolfreierBereichSchreiben
      (BereichExtern : in KartenRecords.LandgrößenNaturalRecord);
 
-   -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
-   procedure RohstoffwahrscheinlichkeitenSchreiben
-     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
-      WahrscheinlichkeitExtern : in SystemDatentypenHTSEB.NullBisHundert);
-
    procedure KartengrößeSchreiben
      (GrößeExtern : in KartenRecords.KartenfeldumgebungPositivRecord);
 
@@ -68,6 +63,8 @@ package KartengeneratorVariablenLogik is
 
    procedure KartenparameterSchreiben
      (ParameterExtern : in KartenRecords.TemporäreKartenparameterRecord);
+
+   procedure RohstoffMehrfachSchreiben;
 
 
 
@@ -117,7 +114,12 @@ package KartengeneratorVariablenLogik is
    function KartenpoleLesen
      return KartenRecords.KartenpoleRecord;
 
+   function RohstoffMehrfachLesen
+     return Boolean;
+
 private
+
+   RohstoffMehrfach : Boolean := True;
 
    PolgrundOberfläche : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum := KartenbasisgrundDatentypen.Eis_Enum;
    PolgrundUnterfläche : KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum := KartenbasisgrundDatentypen.Untereis_Enum;

@@ -264,7 +264,7 @@ package body LeseWeltkarte is
    
    function Rohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum)
+      RohstoffnummerExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
    is begin
       
@@ -275,7 +275,7 @@ package body LeseWeltkarte is
             return KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoffe (RohstoffExtern);
+            return Weltkarte.Karte (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte).Rohstoffe (RohstoffnummerExtern);
       end case;
       
    end Rohstoffe;

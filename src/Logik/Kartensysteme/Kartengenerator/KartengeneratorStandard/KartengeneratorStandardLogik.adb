@@ -55,7 +55,7 @@ package body KartengeneratorStandardLogik is
               BeliebigerLandwert < WahrscheinlichkeitLandmasse.Anfangswert
             then
                SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                             GrundExtern       => KartenbasisgrundDatentypen.Wasser_Enum);
+                                             GrundExtern       => KartenbasisgrundDatentypen.Meer_Enum);
          
             elsif
               BeliebigerLandwert > WahrscheinlichkeitLandmasse.Endwert
@@ -397,7 +397,7 @@ package body KartengeneratorStandardLogik is
                
       else
          SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                       GrundExtern       => KartenbasisgrundDatentypen.Wasser_Enum);
+                                       GrundExtern       => KartenbasisgrundDatentypen.Meer_Enum);
       end if;
       
    end Landgrund;
@@ -434,7 +434,7 @@ package body KartengeneratorStandardLogik is
         ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte in WahrscheinlichkeitWasser.Anfangswert .. WahrscheinlichkeitWasser.Endwert
       then
          SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                       GrundExtern       => KartenbasisgrundDatentypen.Wasser_Enum);
+                                       GrundExtern       => KartenbasisgrundDatentypen.Meer_Enum);
                
       else
          SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),

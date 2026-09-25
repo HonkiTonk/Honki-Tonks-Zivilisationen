@@ -12,7 +12,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Menschen_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -40,7 +40,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Kasrodiah_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -68,7 +68,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Lasupin_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -96,7 +96,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Lamustra_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -124,7 +124,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Manuky_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -152,7 +152,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Suroka_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -180,7 +180,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Pryolon_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -208,7 +208,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Moru_Phisihl_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -236,7 +236,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Larinos_Lotaris_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -264,7 +264,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Carupex_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -292,7 +292,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Alary_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -320,7 +320,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Natries_Zermanis_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -348,7 +348,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Tridatus_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -376,7 +376,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Senelari_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -404,7 +404,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Aspari_2_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -432,7 +432,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Ekropa_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -460,7 +460,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Tesorahn_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -488,7 +488,7 @@ package ArbeitszeitWegLogik is
                                                          SpeziesDatentypen.Talbidahr_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,

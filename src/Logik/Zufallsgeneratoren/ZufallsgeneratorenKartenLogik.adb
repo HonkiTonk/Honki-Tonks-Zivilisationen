@@ -2,6 +2,7 @@ with LeseWeltkarteneinstellungen;
 
 with KartengeneratorVariablenLogik;
 
+-- Die Zufallgeneratoren und ihre Funktionen/Prozeduren mal besser benennen. äöü
 package body ZufallsgeneratorenKartenLogik is
    
    function KartengeneratorZufallswerte
@@ -94,5 +95,17 @@ package body ZufallsgeneratorenKartenLogik is
                                                         Last  => Landgröße.MaximaleWaagerechte));
               
    end KartengeneratorLandgrößen;
+   
+   
+   
+   function KartengeneratorRohstoffe
+     return KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum
+   is begin
+      
+      ZufälligerRohstoff.Reset (Gen => ZufälligerRohstoffGewählt);
+      
+      return ZufälligerRohstoff.Random (Gen => ZufälligerRohstoffGewählt);
+      
+   end KartengeneratorRohstoffe;
 
 end ZufallsgeneratorenKartenLogik;

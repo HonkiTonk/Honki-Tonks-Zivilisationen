@@ -1,254 +1,262 @@
-with ZufallsgeneratorenHTSEB;
-
-with KartenzusatzgrundDatentypen;
+with MeldungssystemHTSEB;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
 with KartengeneratorVariablenLogik;
+with UmwandlungenRecords;
 
+-- Eventuell kann man die ganzen Generatoren in einen schieben. äöü
+-- Möchte ich Ebenenübergreifende Berechnungen vornehmen muss ich die Ressourcen eh nacheinandern und nicht gleichzeitig generieren. äöü
+-- Einfach Ebenenunabhängig bleiben oder das alles noch einmal anpassen? äöü
 package body KartengeneratorLandrohstoffeLogik is
 
    procedure Landrohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+   is begin
+      
+      case
+        KartengeneratorVariablenLogik.RohstoffMehrfachLesen
+      is
+         when True =>
+            RohstoffMehrfach (KoordinatenExtern => KoordinatenExtern);
+            
+         when False =>
+            RohstoffEinmal (KoordinatenExtern => KoordinatenExtern);
+      end case;
+      
+   end Landrohstoffe;
+   
+   
+   
+   procedure RohstoffMehrfach
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
+   is begin
+      
+      VorhandenerGrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern));
       
       RohstoffeSchleife:
       for RohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
          GenerierungSchleife:
          loop
       
-            WelcherRohstoff := KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum;
-            Zahlenspeicher := 0;
-      
-            ZufallszahlenSchleife:
-            for ZufallszahlSchleifenwert in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum'Range loop
-         
-               GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
-         
-               if
-                 KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenLesen (RohstoffeExtern => ZufallszahlSchleifenwert) = 100
-               then
-                  Zahlenspeicher := GezogeneZahl;
-                  WelcherRohstoff := ZufallszahlSchleifenwert;
+            Rohstoff := ZufallsgeneratorenKartenLogik.KartengeneratorRohstoffe;
             
-               elsif
-                 GezogeneZahl > KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenLesen (RohstoffeExtern => ZufallszahlSchleifenwert)
-                 or
-                   GezogeneZahl = 0
-               then
-                  null;
-            
-               elsif
-                 (GezogeneZahl = Zahlenspeicher
-                  and
-                    ZufallsgeneratorenHTSEB.Münzwurf = True)
-                 or
-                   GezogeneZahl > Zahlenspeicher
-               then
-                  Zahlenspeicher := GezogeneZahl;
-                  WelcherRohstoff := ZufallszahlSchleifenwert;
-            
-               else
-                  null;
-               end if;
-         
-            end loop ZufallszahlenSchleife;
-      
-            case
-              WelcherRohstoff
-            is
-               when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
-                  return;
+            if
+              False = Basisgrund (BasisgrundExtern => VorhandenerGrund.Basisgrund,
+                                  RohstoffExtern   => Rohstoff)
+            then
+               null;
               
-               when others =>
-                  WelcherRohstoff := RohstoffZusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                                                 RohstoffeExtern   => WelcherRohstoff);
-            end case;
-      
-            case
-              WelcherRohstoff
-            is
-               when KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum'Range =>
-                  SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                               RohstoffnummerExtern => RohstoffeSchleifenwert,
-                                               RohstoffExtern       => WelcherRohstoff);
+            elsif
+              False = Zusatzgrund (ZusatzgrundExtern => VorhandenerGrund.Zusatzgrund,
+                                   RohstoffExtern    => Rohstoff)
+            then
+               null;
                
-                  exit GenerierungSchleife;
+            else
+               SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
+                                            RohstoffnummerExtern => RohstoffeSchleifenwert,
+                                            RohstoffExtern       => Rohstoff);
+                  
+               exit GenerierungSchleife;
+            end if;
             
-               when others =>
-                  null;
-            end case;
-         
          end loop GenerierungSchleife;
       end loop RohstoffeSchleife;
       
-   end Landrohstoffe;
+   end RohstoffMehrfach;
    
    
    
-   function RohstoffZusatzberechnungen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
-      return KartenrohstoffeDatentypen.Rohstoffe_Enum
-   is begin
-      
-      -- case
-      -- RohstoffeExtern
-      -- is
-      --  when KartenrohstoffeDatentypen.Kohle_Enum =>
-      -- return ZusatzberechnungKohle (KoordinatenExtern => KoordinatenExtern,
-      --                                RohstoffeExtern   => RohstoffeExtern);
-            
-      -- when KartenrohstoffeDatentypen.Eisen_Enum =>
-      -- return ZusatzberechnungEisen (KoordinatenExtern => KoordinatenExtern,
-      --                                RohstoffeExtern   => RohstoffeExtern);
-            
-      -- when KartenrohstoffeDatentypen.Öl_Enum =>
-      -- return ZusatzberechnungÖl (KoordinatenExtern => KoordinatenExtern,
-      --                               RohstoffeExtern   => RohstoffeExtern);
-            
-      --  when KartenrohstoffeDatentypen.Hochwertiger_Boden_Enum =>
-      -- return ZusatzberechnungHochwertigerBoden (KoordinatenExtern => KoordinatenExtern,
-      --                                            RohstoffeExtern   => RohstoffeExtern);
-            
-      -- when KartenrohstoffeDatentypen.Hochwertiges_Holz_Enum =>
-      --  return ZusatzberechnungHochwertigesHolz (KoordinatenExtern => KoordinatenExtern,
-      --                                           RohstoffeExtern   => RohstoffeExtern);
-            
-      -- when KartenrohstoffeDatentypen.Gold_Enum =>
-      return ZusatzberechnungGold (KoordinatenExtern => KoordinatenExtern,
-                                   RohstoffeExtern    => RohstoffeExtern);
-      -- end case;
-      
-   end RohstoffZusatzberechnungen;
-   
-   
-   
-   function ZusatzberechnungKohle
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
-      return KartenrohstoffeDatentypen.Rohstoffe_Enum
-   is begin
-      
-      if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return RohstoffeExtern;
-      
-   end ZusatzberechnungKohle;
-   
-   
-   
-   function ZusatzberechnungEisen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
-      return KartenrohstoffeDatentypen.Rohstoffe_Enum
-   is begin
-      
-      if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return RohstoffeExtern;
-      
-   end ZusatzberechnungEisen;
-   
-   
-   
-   function ZusatzberechnungÖl
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
-      return KartenrohstoffeDatentypen.Rohstoffe_Enum
-   is begin
-      
-      if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return RohstoffeExtern;
-      
-   end ZusatzberechnungÖl;
-   
-   
-   
-   function ZusatzberechnungHochwertigerBoden
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
-      return KartenrohstoffeDatentypen.Rohstoffe_Enum
-   is begin
-      
-      if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return RohstoffeExtern;
-      
-   end ZusatzberechnungHochwertigerBoden;
-   
-   
-   
-   function ZusatzberechnungHochwertigesHolz
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
-      return KartenrohstoffeDatentypen.Rohstoffe_Enum
-   is begin
+   function Basisgrund
+     (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+      return Boolean
+   is
+      use type KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
+      use type KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
+   begin
       
       case
-        LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte))
+        BasisgrundExtern
       is
-         when KartenzusatzgrundDatentypen.Wald_Enum | KartenzusatzgrundDatentypen.Dschungel_Enum =>
-            return RohstoffeExtern;
+         when KartenbasisgrundDatentypen.Eis_Enum =>
+            if
+              RohstoffExtern = KartenrohstoffeDatentypen.Algen_Enum
+              or
+                RohstoffExtern = KartenrohstoffeDatentypen.Pilze_Enum
+            then
+               null;
+               
+            elsif
+              RohstoffExtern = KartenrohstoffeDatentypen.Pinguine_Enum
+              or
+                RohstoffExtern = KartenrohstoffeDatentypen.Robben_Enum
+                or
+                  RohstoffExtern = KartenrohstoffeDatentypen.Krebse_Enum
+                  or
+                    RohstoffExtern = KartenrohstoffeDatentypen.Vögel_Enum
+                    or
+                      RohstoffExtern = KartenrohstoffeDatentypen.Wildtiere_Enum
+            then
+               null;
+               
+            elsif
+              RohstoffExtern in KartenrohstoffeDatentypen.Rohstoffe_Mineralien_Oberbegriffe_Enum'Range
+              or
+                RohstoffExtern in KartenrohstoffeDatentypen.Rohstoffe_Eis_Enum'Range
+            then
+               null;
+               
+            else
+               return False;
+            end if;
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum'Range =>
+            null;
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range =>
+            null;
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range =>
+            null;
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
+            null;
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+            null;
+                        
+         when others =>
+            MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorLandrohstoffeLogik.Basisgrund: Falscher Basisgrund: " & BasisgrundExtern'Wide_Wide_Image);
+      end case;
+              
+      return True;
+      
+   end Basisgrund;
+   
+   
+   
+   function Zusatzgrund
+     (ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+      return Boolean
+   is
+      --  use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+   begin
+      
+      case
+        ZusatzgrundExtern
+      is
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
+            if
+              RohstoffExtern not in KartenrohstoffeDatentypen.Rohstoffe_Pflanzen_Holz_Enum
+            then
+               null;
+               
+            else
+               return False;
+            end if;
+            
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum'Range =>
+            null;
+            
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum'Range =>
+            null;
+            
+         when KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
+            if
+              RohstoffExtern not in KartenrohstoffeDatentypen.Rohstoffe_Pflanzen_Holz_Enum
+            then
+               null;
+               
+            else
+               return False;
+            end if;
             
          when others =>
-            return KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum;
+            MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorLandrohstoffeLogik.Zusatzgrund: Falscher Zusatzgrund: " & ZusatzgrundExtern'Wide_Wide_Image);
       end case;
+              
+      return True;
       
-   end ZusatzberechnungHochwertigesHolz;
+   end Zusatzgrund;
    
    
    
-   function ZusatzberechnungGold
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Oberfläche_Land_Enum)
-      return KartenrohstoffeDatentypen.Rohstoffe_Enum
+   procedure RohstoffEinmal
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is begin
       
-      if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
-      then
-         null;
-         
-      else
-         null;
-      end if;
+      VorhandenerGrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern));
       
-      return RohstoffeExtern;
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
+         GenerierungSchleife:
+         loop
       
-   end ZusatzberechnungGold;
+            Rohstoff := ZufallsgeneratorenKartenLogik.KartengeneratorRohstoffe;
+            
+            if
+              False =RohstoffeVergleichen (KoordinatenExtern => KoordinatenExtern,
+                                           RohstoffExtern    => Rohstoff)
+            then
+               null;
+            
+            elsif
+              False = Basisgrund (BasisgrundExtern => VorhandenerGrund.Basisgrund,
+                                  RohstoffExtern   => Rohstoff)
+            then
+               null;
+              
+            elsif
+              False = Zusatzgrund (ZusatzgrundExtern => VorhandenerGrund.Zusatzgrund,
+                                   RohstoffExtern    => Rohstoff)
+            then
+               null;
+               
+            else
+               SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
+                                            RohstoffnummerExtern => RohstoffeSchleifenwert,
+                                            RohstoffExtern       => Rohstoff);
+                  
+               exit GenerierungSchleife;
+            end if;
+            
+         end loop GenerierungSchleife;
+      end loop RohstoffeSchleife;
+      
+   end RohstoffEinmal;
+   
+   
+   
+   function RohstoffeVergleichen
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
+      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+      return Boolean
+   is
+      use type KartenrohstoffeDatentypen.Rohstoffe_Enum;
+   begin
+      
+      VergleichenSchleife:
+      for VergleichenSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
+                  
+         if
+           RohstoffExtern = LeseWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
+                                                     RohstoffnummerExtern => VergleichenSchleifenwert)
+         then
+            return False;
+            
+         else
+            null;
+         end if;
+               
+      end loop VergleichenSchleife;
+      
+      return True;
+      
+   end RohstoffeVergleichen;
 
 end KartengeneratorLandrohstoffeLogik;

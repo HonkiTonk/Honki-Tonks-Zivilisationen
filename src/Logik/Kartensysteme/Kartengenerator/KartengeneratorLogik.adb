@@ -1,6 +1,4 @@
 with LadezeitenDatentypen;
-with KartenRecordKonstanten;
-with KartenArrays;
 
 with KartengeneratorKuesteLogik;
 with KartengeneratorLandschaftLogik;
@@ -9,7 +7,6 @@ with KartengeneratorRohstoffeLogik;
 with KartengeneratorUnterflaecheLogik;
 with KartengeneratorAllgemeinesLogik;
 with LadezeitenLogik;
-with KartengeneratorVariablenLogik;
 
 package body KartengeneratorLogik is
 
@@ -40,19 +37,11 @@ package body KartengeneratorLogik is
    
    
    
-   -- Setzt im Moment nur die Rohstoffe und kann deswegen nicht entfernt werden, später mal erweitern. äöü
-   -- Beim Erweitern auch Prüfungen auf korrekte Werte einbauen. äöü
+   -- Später hier Prüfungen auf korrekte Werte einbauen. äöü
    procedure PrüfeEinstellungen
    is begin
       
-      RohstoffeSchleife:
-      for RohstoffeSchleifenwert in KartenArrays.KartenrohstoffeWahrscheinlichkeitenArray'Range loop
-         
-         KartengeneratorVariablenLogik.RohstoffwahrscheinlichkeitenSchreiben
-           (RohstoffeExtern           => RohstoffeSchleifenwert,
-            WahrscheinlichkeitExtern => KartenRecordKonstanten.StandardKartenrohstoffeWahrscheinlichkeiten (KartengeneratorVariablenLogik.KartenrohstoffeLesen, RohstoffeSchleifenwert));
-         
-      end loop RohstoffeSchleife;
+      null;
       
    end PrüfeEinstellungen;
 

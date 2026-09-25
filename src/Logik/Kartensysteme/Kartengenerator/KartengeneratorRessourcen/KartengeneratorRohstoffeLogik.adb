@@ -85,6 +85,7 @@ package body KartengeneratorRohstoffeLogik is
    
    
    
+   -- Später die Generatoren einstellbar machen dass eine Ressource nur einmal oder mehrmals opro Feld erlaubt ist? äöü
    procedure RohstoffeGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet;
       LadezeitbasisExtern : in Float)
@@ -98,13 +99,13 @@ package body KartengeneratorRohstoffeLogik is
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
-               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range | KartenbasisgrundDatentypen.Eis_Enum =>
+               when KartenbasisgrundDatentypen.Basisgrund_Gesamtoberfläche_Land_Enum'Range =>
                   KartengeneratorLandrohstoffeLogik.Landrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
                   KartengeneratorWasserrohstoffeLogik.Wasserrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
-               when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range | KartenbasisgrundDatentypen.Untereis_Enum =>
+               when KartenbasisgrundDatentypen.Basisgrund_Gesamtunterfläche_Land_Enum'Range =>
                   KartengeneratorUnterlandrohstoffeLogik.Unterlandrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>

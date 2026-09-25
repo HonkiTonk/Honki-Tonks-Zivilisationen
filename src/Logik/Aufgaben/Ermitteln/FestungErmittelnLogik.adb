@@ -31,7 +31,7 @@ package body FestungErmittelnLogik is
       case
         Gesamtgrund.Basisgrund
       is
-         when KartenbasisgrundDatentypen.Eis_Enum | KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                              GrundExtern   => Gesamtgrund);
             
@@ -39,7 +39,7 @@ package body FestungErmittelnLogik is
             Arbeitswerte := UnterflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                 GrundExtern   => Gesamtgrund);
             
-         when KartenbasisgrundDatentypen.Untereis_Enum | KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
             Arbeitswerte := UnterflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                               GrundExtern   => Gesamtgrund);
             

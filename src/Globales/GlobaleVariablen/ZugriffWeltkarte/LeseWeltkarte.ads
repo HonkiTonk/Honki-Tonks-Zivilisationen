@@ -162,7 +162,7 @@ package LeseWeltkarte is
    
    function Rohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum)
+      RohstoffnummerExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum)
       return KartenrohstoffeDatentypen.Rohstoffe_Enum
      with
        Pre => (

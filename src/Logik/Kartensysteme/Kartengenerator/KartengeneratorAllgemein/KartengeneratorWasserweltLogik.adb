@@ -54,7 +54,7 @@ package body KartengeneratorWasserweltLogik is
                                              GrundExtern       => KartenbasisgrundDatentypen.Küstengrund_Enum);
       
             
-            when KartenbasisgrundDatentypen.Wasser_Enum =>
+            when KartenbasisgrundDatentypen.Meer_Enum =>
                SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                              GrundExtern       => KartenbasisgrundDatentypen.Meeresgrund_Enum);
             

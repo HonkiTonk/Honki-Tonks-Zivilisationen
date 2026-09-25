@@ -16,13 +16,12 @@ package KartenbasisgrundDatentypen is
                             Wolken_Enum,
                               
                             -- Oberfläche
-                            Eis_Enum,
-                            Wasser_Enum,
-                            
+                            Meer_Enum,
                             -- Wasser zu Küstengewässer in alle Richtungen einzeln und mehrfach. äöü
                             -- Wäre aber auch halt komplett übertrieben, will ich das? äöü
-                            
                             Küstengewässer_Enum,
+                            
+                            Eis_Enum,
                             Flachland_Enum, Wüste_Enum, Tundra_Enum,
                             
                             Hügelkreuzung_Vier_Enum, Hügel_Waagrecht_Enum, Hügel_Senkrecht_Enum, Hügelkurve_Unten_Rechts_Enum, Hügelkurve_Unten_Links_Enum, Hügelkurve_Oben_Rechts_Enum, Hügelkurve_Oben_Links_Enum,
@@ -34,8 +33,8 @@ package KartenbasisgrundDatentypen is
                             Gebirgeende_Links_Enum, Gebirgeende_Rechts_Enum, Gebirgeende_Unten_Enum, Gebirgeende_Oben_Enum, Gebirge_Enum,
                             
                             -- Unterfläche
+                            Meeresgrund_Enum, Küstengrund_Enum,
                             Untereis_Enum,
-                            Küstengrund_Enum, Meeresgrund_Enum,
                             Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
                               
                             -- Planetenkern
@@ -58,13 +57,15 @@ package KartenbasisgrundDatentypen is
    subtype Basisgrund_Himmel_Enum is Basisgrund_Vorhanden_Enum range Wolken_Enum .. Wolken_Enum;
    
    -- Oberfläche
-   subtype Basisgrund_Oberfläche_Enum is Basisgrund_Vorhanden_Enum range Eis_Enum .. Gebirge_Enum;
+   subtype Basisgrund_Oberfläche_Enum is Basisgrund_Vorhanden_Enum range Meer_Enum .. Gebirge_Enum;
    
-   subtype Basisgrund_Oberfläche_Eiswasser_Enum is Basisgrund_Oberfläche_Enum range Eis_Enum .. Küstengewässer_Enum;
-   subtype Basisgrund_Oberfläche_Wasser_Enum is Basisgrund_Oberfläche_Eiswasser_Enum range Wasser_Enum .. Küstengewässer_Enum;
+   subtype Basisgrund_Oberfläche_Eiswasser_Enum is Basisgrund_Oberfläche_Enum range Meer_Enum .. Eis_Enum;
+   subtype Basisgrund_Oberfläche_Wasser_Enum is Basisgrund_Oberfläche_Eiswasser_Enum range Meer_Enum .. Küstengewässer_Enum;
    
-   subtype Basisgrund_Oberfläche_Land_Enum is Basisgrund_Oberfläche_Enum range Flachland_Enum .. Gebirge_Enum;
+   subtype Basisgrund_Gesamtoberfläche_Land_Enum is Basisgrund_Oberfläche_Enum range Eis_Enum .. Gebirge_Enum;
+   subtype Basisgrund_Oberfläche_Land_Enum is Basisgrund_Gesamtoberfläche_Land_Enum range Basisgrund_Enum'Succ (Basisgrund_Gesamtoberfläche_Land_Enum'First) .. Gebirge_Enum;
    
+   subtype Basisgrund_Eis_Enum is Basisgrund_Gesamtoberfläche_Land_Enum range Eis_Enum .. Eis_Enum;
    subtype Basisgrund_Flachland_Enum is Basisgrund_Oberfläche_Land_Enum range Flachland_Enum .. Flachland_Enum;
    subtype Basisgrund_Wüste_Enum is Basisgrund_Oberfläche_Land_Enum range Wüste_Enum .. Wüste_Enum;
    subtype Basisgrund_Tundra_Enum is Basisgrund_Oberfläche_Land_Enum range Tundra_Enum .. Tundra_Enum;
@@ -72,12 +73,13 @@ package KartenbasisgrundDatentypen is
    subtype Basisgrund_Gebirge_Enum is Basisgrund_Oberfläche_Land_Enum range Gebirgekreuzung_Vier_Enum .. Gebirge_Enum;
    
    -- Unterfläche
-   subtype Basisgrund_Unterfläche_Enum is Basisgrund_Vorhanden_Enum range Untereis_Enum .. Gestein_Enum;
+   subtype Basisgrund_Unterfläche_Enum is Basisgrund_Vorhanden_Enum range Meeresgrund_Enum .. Gestein_Enum;
    
-   subtype Basisgrund_Unterfläche_Eiswasser_Enum is Basisgrund_Unterfläche_Enum range Untereis_Enum .. Meeresgrund_Enum;
-   subtype Basisgrund_Unterfläche_Wasser_Enum is Basisgrund_Unterfläche_Eiswasser_Enum range Küstengrund_Enum .. Meeresgrund_Enum;
+   subtype Basisgrund_Unterfläche_Eiswasser_Enum is Basisgrund_Unterfläche_Enum range Meeresgrund_Enum .. Untereis_Enum;
+   subtype Basisgrund_Unterfläche_Wasser_Enum is Basisgrund_Unterfläche_Eiswasser_Enum range Meeresgrund_Enum .. Küstengrund_Enum;
    
-   subtype Basisgrund_Unterfläche_Land_Enum is Basisgrund_Unterfläche_Enum range Erde_Enum .. Gestein_Enum;
+   subtype Basisgrund_Gesamtunterfläche_Land_Enum is Basisgrund_Unterfläche_Enum range Untereis_Enum .. Gestein_Enum;
+   subtype Basisgrund_Unterfläche_Land_Enum is Basisgrund_Gesamtunterfläche_Land_Enum range Basisgrund_Enum'Succ (Basisgrund_Gesamtunterfläche_Land_Enum'First) .. Gestein_Enum;
    
    -- Planeteinneres
    subtype Basisgrund_Kernfläche_Enum is Basisgrund_Vorhanden_Enum range Planetenkern_Enum .. Magnesiowüstit_Enum;

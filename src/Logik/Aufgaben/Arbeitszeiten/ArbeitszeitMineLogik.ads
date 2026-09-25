@@ -11,7 +11,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Menschen_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -39,7 +39,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Kasrodiah_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -67,7 +67,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Lasupin_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -95,7 +95,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Lamustra_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -123,7 +123,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Manuky_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -151,7 +151,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Suroka_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -179,7 +179,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Pryolon_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -207,7 +207,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Moru_Phisihl_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -235,7 +235,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Larinos_Lotaris_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -263,7 +263,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Carupex_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -291,7 +291,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Alary_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -319,7 +319,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Natries_Zermanis_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -347,7 +347,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Tridatus_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -375,7 +375,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Senelari_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -403,7 +403,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Aspari_2_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -431,7 +431,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Ekropa_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -459,7 +459,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Tesorahn_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,
@@ -487,7 +487,7 @@ package ArbeitszeitMineLogik is
                                                          SpeziesDatentypen.Talbidahr_Enum =>
                                                            (
                                                             KartenbasisgrundDatentypen.Eis_Enum                      => 5,
-                                                            KartenbasisgrundDatentypen.Wasser_Enum                   => 5,
+                                                            KartenbasisgrundDatentypen.Meer_Enum                   => 5,
                                                             KartenbasisgrundDatentypen.Küstengewässer_Enum           => 2,
                                                             KartenbasisgrundDatentypen.Flachland_Enum                => 2,
                                                             KartenbasisgrundDatentypen.Wüste_Enum                    => 5,

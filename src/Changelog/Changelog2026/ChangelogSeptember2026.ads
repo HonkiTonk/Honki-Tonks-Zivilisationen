@@ -64,17 +64,21 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (21.09.2026):
+   -- Version 0.06.5520 => 0.06. (21.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5445 => 0.06. (20.09.2026):
+   -- Version 0.06.5445 => 0.06.5520 (20.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Umwandlungssystem testweise um Records erweitert, aktuell nur KartenfeldVorhanden nach KartenfeldNatural.
+   -- Weiter an den neuen Rohstoffgeneratoren gearbeitet.
+   -- Anpassungen an der Reihenfolge des Basisgrundes vorgenommen.
+   -- Texte und Texturen an die neuen Reihenfolge des Basisgrundes angepasst.
+   -- Interne Benennung überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 

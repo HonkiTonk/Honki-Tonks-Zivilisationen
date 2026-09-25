@@ -72,18 +72,6 @@ package body KartengeneratorVariablenLogik is
    
    
    
-   -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
-   procedure RohstoffwahrscheinlichkeitenSchreiben
-     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
-      WahrscheinlichkeitExtern : in SystemDatentypenHTSEB.NullBisHundert)
-   is begin
-      
-      KartenrohstoffeWahrscheinlichkeiten (RohstoffeExtern) := WahrscheinlichkeitExtern;
-      
-   end RohstoffwahrscheinlichkeitenSchreiben;
-   
-   
-   
    procedure KartengrößeSchreiben
      (GrößeExtern : in KartenRecords.KartenfeldumgebungPositivRecord)
    is begin
@@ -186,6 +174,15 @@ package body KartengeneratorVariablenLogik is
       Kartenparameter := ParameterExtern;
       
    end KartenparameterSchreiben;
+   
+   
+   
+   procedure RohstoffMehrfachSchreiben
+   is begin
+      
+      RohstoffMehrfach := not RohstoffMehrfach;
+      
+   end RohstoffMehrfachSchreiben;
       
    
       
@@ -330,5 +327,15 @@ package body KartengeneratorVariablenLogik is
       return Kartenparameter.Kartenpole;
       
    end KartenpoleLesen;
+   
+   
+   
+   function RohstoffMehrfachLesen
+     return Boolean
+   is begin
+      
+      return RohstoffMehrfach;
+      
+   end RohstoffMehrfachLesen;
 
 end KartengeneratorVariablenLogik;

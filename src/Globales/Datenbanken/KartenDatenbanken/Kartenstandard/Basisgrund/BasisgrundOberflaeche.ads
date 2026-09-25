@@ -205,7 +205,7 @@ package BasisgrundOberflaeche is
                                                                                   )
                                                                                ),
                                                                              
-                                                                             KartenbasisgrundDatentypen.Wasser_Enum =>
+                                                                             KartenbasisgrundDatentypen.Meer_Enum =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Wasser_Enum   => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,

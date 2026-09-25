@@ -2,9 +2,10 @@ private with Ada.Numerics.Discrete_Random;
 
 with SystemDatentypenHTSEB;
 
-private with KartenDatentypen;
-
+with KartenrohstoffeDatentypen;
 with KartenRecords;
+
+private with KartenDatentypen;
 
 package ZufallsgeneratorenKartenLogik is
    pragma Elaborate_Body;
@@ -13,7 +14,10 @@ package ZufallsgeneratorenKartenLogik is
      return SystemDatentypenHTSEB.NullBisHundert;
 
    function KartengeneratorLandgrößen
-      return KartenRecords.KartenfeldumgebungPositivRecord;
+     return KartenRecords.KartenfeldumgebungPositivRecord;
+
+   function KartengeneratorRohstoffe
+     return KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
 
 private
 
@@ -26,8 +30,12 @@ private
    package ZufälligeSenkrechteLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.SenkrechtePositiv);
    package ZufälligeWaagerechteLandgrößen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenDatentypen.WaagerechtePositiv);
 
+   package ZufälligerRohstoff is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum);
+
    ZufälligeZahlGewählt : ZufälligeZahl.Generator;
    ZufälligeSenkrechteLandgrößeGewählt : ZufälligeSenkrechteLandgrößen.Generator;
    ZufälligeWaagerechteLandgrößeGewählt : ZufälligeWaagerechteLandgrößen.Generator;
+
+   ZufälligerRohstoffGewählt : ZufälligerRohstoff.Generator;
 
 end ZufallsgeneratorenKartenLogik;

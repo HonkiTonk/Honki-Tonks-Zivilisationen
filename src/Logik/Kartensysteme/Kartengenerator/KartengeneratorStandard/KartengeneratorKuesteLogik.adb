@@ -24,7 +24,7 @@ package body KartengeneratorKuesteLogik is
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
-               when KartenbasisgrundDatentypen.Wasser_Enum =>
+               when KartenbasisgrundDatentypen.Meer_Enum =>
                   GewässerFestlegen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when others =>
@@ -52,8 +52,8 @@ package body KartengeneratorKuesteLogik is
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
                      
             KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                         
             if
               KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte

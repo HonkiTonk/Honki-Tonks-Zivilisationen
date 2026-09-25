@@ -26,8 +26,8 @@ package body SpeichernRohstoffeLogik is
       RohstoffeSchleife:
       for RohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
          
-         Rohstoff := LeseWeltkarte.Rohstoffe (KoordinatenExtern => KoordinatenExtern,
-                                              RohstoffExtern    => RohstoffeSchleifenwert);
+         Rohstoff := LeseWeltkarte.Rohstoffe (KoordinatenExtern    => KoordinatenExtern,
+                                              RohstoffnummerExtern => RohstoffeSchleifenwert);
          case
            Rohstoff
          is
