@@ -3,8 +3,6 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with KartenRecords;
 with KartenDatentypen;
 
-private with KartenrohstoffeDatentypen;
-
 with LeseWeltkarteneinstellungen;
 
 package SpeichernRohstoffeLogik is
@@ -22,9 +20,5 @@ package SpeichernRohstoffeLogik is
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
-   
-private
-   
-   Rohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
 
 end SpeichernRohstoffeLogik;

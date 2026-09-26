@@ -3,10 +3,14 @@ with Ada.Exceptions; use Ada.Exceptions;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 
+with KartenrohstoffeDatentypen;
+
 with LeseWeltkarte;
 
 package body SpeichernRohstoffeLogik is
    
+   -- Wenn ich mit Technologie das Erzeugen von Rohstoffen erlauben will, dann muss ich das auch immer mitspeichern. äöü
+   -- Auch im Himmel und im Orbit. äöü
    function Rohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       DateiSpeichernExtern : in File_Type)
@@ -26,19 +30,9 @@ package body SpeichernRohstoffeLogik is
       RohstoffeSchleife:
       for RohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
          
-         Rohstoff := LeseWeltkarte.Rohstoffe (KoordinatenExtern    => KoordinatenExtern,
-                                              RohstoffnummerExtern => RohstoffeSchleifenwert);
-         case
-           Rohstoff
-         is
-            when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
-               MeldungssystemHTSEB.Logik (MeldungExtern => "SpeichernRohstoffeLogik.Rohstoffe: Kein Rohstoff.");
-               return False;
-               
-            when others =>
-               KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                         Rohstoff);
-         end case;
+         KartenrohstoffeDatentypen.Rohstoffe_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                         LeseWeltkarte.Rohstoffe (KoordinatenExtern    => KoordinatenExtern,
+                                                                                  RohstoffnummerExtern => RohstoffeSchleifenwert));
          
       end loop RohstoffeSchleife;
       

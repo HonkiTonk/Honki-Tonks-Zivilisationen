@@ -21,14 +21,17 @@ package Kartentexte is
    
    Flüsse : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenfluesseDatentypen.Fluss_Enum'Pos (KartenfluesseDatentypen.Fluss_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);
-   Rohstoffe : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenrohstoffeDatentypen.Rohstoffe_Enum'Pos (KartenrohstoffeDatentypen.Rohstoffe_Enum'Last))
-     := (others => TextKonstantenHTSEB.FehlenderText);
    Feldeffekte : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);
    
    Verbesserungen : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenverbesserungDatentypen.Verbesserungen_Enum'Pos (KartenverbesserungDatentypen.Verbesserungen_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);
    Wege : ArraysHTSEB.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenwegeDatentypen.Weg_Enum'Pos (KartenwegeDatentypen.Weg_Enum'Last))
+     := (others => TextKonstantenHTSEB.FehlenderText);
+   
+   
+   Rohstofftextmultiplikator : constant Positive := 4;
+   Rohstoffe : ArraysHTSEB.AllgemeinesTextArray (1 .. Rohstofftextmultiplikator * KartenrohstoffeDatentypen.Rohstoffe_Enum'Pos (KartenrohstoffeDatentypen.Rohstoffe_Enum'Last))
      := (others => TextKonstantenHTSEB.FehlenderText);
 
 end Kartentexte;

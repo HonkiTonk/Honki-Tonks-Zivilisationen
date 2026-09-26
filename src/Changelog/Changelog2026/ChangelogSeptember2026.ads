@@ -57,17 +57,22 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (22.09.2026):
+   -- Version 0.06.5600 => 0.06. (22.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5520 => 0.06. (21.09.2026):
+   -- Version 0.06.5520 => 0.06.5600 (21.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Einlesen der Texte neu aufgeteilt und erweitert.
+   -- Rohstoffnamen in eine eigene Datei gepackt.
+   -- Angefangen die Rohstofftexte zu erweitern.
+   -- Weiter an den neuen Rohstoffgeneratoren gearbeitet.
+   -- Speichersystem an das neue Rohstoffsystem angepasst.
+   -- Basis- und Zusatzgrund und Flüsse werden jetzt rudimentär beim Generieren von Rohstoffen berücksichtigt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 

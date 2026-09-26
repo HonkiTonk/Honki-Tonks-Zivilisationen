@@ -34,7 +34,7 @@ package body AllgemeinesSeitenleisteGrafik is
             AktuelleKoordinaten := LeseZeiger.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
             
             AnzuzeigenderText (1) := Gesamtgrund (GesamtgrundExtern => LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten));
-            AnzuzeigenderText (2) := Rohstoff (RohstoffeExtern => LeseWeltkarte.AlleRohstoffe (KoordinatenExtern => AktuelleKoordinaten));
+            AnzuzeigenderText (2) := Rohstoffe (RohstoffeExtern => LeseWeltkarte.AlleRohstoffe (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (3) := Verbesserung (VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (4) := Weg (WegExtern => LeseWeltkarte.Weg (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (5) := Fluss (FlussExtern => LeseWeltkarte.Fluss (KoordinatenExtern => AktuelleKoordinaten));
@@ -92,10 +92,13 @@ package body AllgemeinesSeitenleisteGrafik is
    
    -- Muss auch eine Leeroption haben, da im Himmel/Orbit keine Ressourcen sind.
    -- Wenn überall Rohstoffe korrekt generiert werden diese Textausgabe umbauen. äöü
-   function Rohstoff
+   -- Wenn ich die Änderbarkeit von Rohstoffen, bsw. durch Krieg oder Landwirtschaft, einbauen will, dann brauch ich immer eine leeroption- äöü
+   function Rohstoffe
      (RohstoffeExtern : in KartenArrays.RohstoffeArray)
       return Unbounded_Wide_Wide_String
-   is begin
+   is
+      use type KartenrohstoffeDatentypen.Rohstoffanzahl_Enum;
+   begin
       
       Zwischenspeicher := TextKonstantenHTSEB.LeerUnboundedString;
       
@@ -110,14 +113,23 @@ package body AllgemeinesSeitenleisteGrafik is
                -- return TextKonstantenHTSEB.LeerUnboundedString;
             
             when others =>
-               Zwischenspeicher := Zwischenspeicher & KartenbeschreibungenGrafik.KurzbeschreibungRohstoff (KartenRohstoffeExtern => RohstoffeExtern (RohstoffeSchleifenwert)) & "/";
+               Zwischenspeicher := Zwischenspeicher & KartenbeschreibungenGrafik.Rohstoffname (KartenRohstoffeExtern => RohstoffeExtern (RohstoffeSchleifenwert));
+               
+               if
+                 RohstoffeSchleifenwert = KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Last
+               then
+                  null;
+                  
+               else
+                  Zwischenspeicher := Zwischenspeicher & "/";
+               end if;
          end case;
          
       end loop RohstoffeSchleife;
       
       return Zwischenspeicher;
       
-   end Rohstoff;
+   end Rohstoffe;
    
    
    

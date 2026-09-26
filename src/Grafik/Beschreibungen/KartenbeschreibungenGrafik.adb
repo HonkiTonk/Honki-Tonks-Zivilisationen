@@ -1,7 +1,6 @@
-with Kartentexte;
-
 -- Später die Beschreibungen noch um SpeziesExtern erweitern damit jede Spezies ihren eigenen Text haben kann? äöü
 -- Gilt auch für alle anderen Beschreibungen die noch nicht Speziesspezifisch sind. äöü
+-- Eventuell mehr als nur eine Zeile für alle Beschreibungen einbauen und nicht nur bei den Rohstoffen? äöü
 package body KartenbeschreibungenGrafik is
 
    function KurzbeschreibungBasisgrund
@@ -70,25 +69,25 @@ package body KartenbeschreibungenGrafik is
    
    
    
-   function KurzbeschreibungRohstoff
+   function Rohstoffname
      (KartenRohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
    
-      return Kartentexte.Rohstoffe (2 * KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Pos (KartenRohstoffeExtern) - 1);
+      return Kartentexte.Rohstoffe (Rohstoffzeilen * KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Pos (KartenRohstoffeExtern) - Rohstoffbenennung);
       
-   end KurzbeschreibungRohstoff;
+   end Rohstoffname;
    
    
    
-   function LangbeschreibungRohstoff
+   function Rohstoffinformationen
      (KartenRohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
    is begin
    
-      return Kartentexte.Rohstoffe (2 * KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Pos (KartenRohstoffeExtern));
+      return Kartentexte.Rohstoffe (Rohstoffzeilen * KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Pos (KartenRohstoffeExtern));
       
-   end LangbeschreibungRohstoff;
+   end Rohstoffinformationen;
    
    
    

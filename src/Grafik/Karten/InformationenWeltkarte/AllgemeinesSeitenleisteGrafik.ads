@@ -69,7 +69,7 @@ private
                );
    
    -- Die Contracts von Gesamtgrund angepasst hier noch hinzufügen. äöü
-   function Rohstoff
+   function Rohstoffe
      (RohstoffeExtern : in KartenArrays.RohstoffeArray)
       return Unbounded_Wide_Wide_String;
    

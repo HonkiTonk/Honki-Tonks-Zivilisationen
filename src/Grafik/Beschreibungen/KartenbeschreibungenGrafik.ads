@@ -6,6 +6,8 @@ with KarteneffekteDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenfluesseDatentypen;
 
+private with Kartentexte;
+
 package KartenbeschreibungenGrafik is
    pragma Elaborate_Body;
 
@@ -57,20 +59,20 @@ package KartenbeschreibungenGrafik is
                   To_Wide_Wide_String (Source => LangbeschreibungFluss'Result)'Length > 0
                );
 
-   function KurzbeschreibungRohstoff
+   function Rohstoffname
      (KartenRohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
-                  To_Wide_Wide_String (Source => KurzbeschreibungRohstoff'Result)'Length > 0
+                  To_Wide_Wide_String (Source => Rohstoffname'Result)'Length > 0
                );
 
-   function LangbeschreibungRohstoff
+   function Rohstoffinformationen
      (KartenRohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
       return Unbounded_Wide_Wide_String
      with
        Post => (
-                  To_Wide_Wide_String (Source => LangbeschreibungRohstoff'Result)'Length > 0
+                  To_Wide_Wide_String (Source => Rohstoffinformationen'Result)'Length > 0
                );
 
    function KurzbeschreibungFeldeffekte
@@ -88,5 +90,14 @@ package KartenbeschreibungenGrafik is
        Post => (
                   To_Wide_Wide_String (Source => LangbeschreibungFeldeffekte'Result)'Length > 0
                );
+
+private
+
+   -- Name, Beschreibung, Vorkommen, Verwendung
+   Rohstoffzeilen : constant Positive := Kartentexte.Rohstofftextmultiplikator;
+   Rohstoffbenennung : constant Positive := Rohstoffzeilen - 1;
+   Rohstoffbeschreibung : constant Positive := Rohstoffbenennung - 1;
+   Rohstoffvorkommen : constant Positive := Rohstoffbeschreibung - 1;
+   Rohstoffverwendung : constant Natural := Rohstoffvorkommen - 1;
 
 end KartenbeschreibungenGrafik;

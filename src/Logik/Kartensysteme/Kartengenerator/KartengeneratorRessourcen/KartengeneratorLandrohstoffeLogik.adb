@@ -1,5 +1,3 @@
-with MeldungssystemHTSEB;
-
 with SchreibeWeltkarte;
 with LeseWeltkarte;
 
@@ -8,14 +6,15 @@ with KartengeneratorVariablenLogik;
 with UmwandlungenRecords;
 
 -- Eventuell kann man die ganzen Generatoren in einen schieben. äöü
--- Möchte ich Ebenenübergreifende Berechnungen vornehmen muss ich die Ressourcen eh nacheinandern und nicht gleichzeitig generieren. äöü
--- Einfach Ebenenunabhängig bleiben oder das alles noch einmal anpassen? äöü
+-- Flüsse werden nicht berücksichtigt, wie bekomme ich die denn da noch rein? äöü
 package body KartengeneratorLandrohstoffeLogik is
 
    procedure Landrohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
    is begin
       
+      -- Die beiden Generatoren in einen Zusammenfassen. äöü
+      -- Sollte leicht möglich sein mit einer einzelnen Boolean abfrage. äöü
       case
         KartengeneratorVariablenLogik.RohstoffMehrfachLesen
       is
@@ -35,6 +34,7 @@ package body KartengeneratorLandrohstoffeLogik is
    is begin
       
       VorhandenerGrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern));
+      VorhandenerFluss := LeseWeltkarte.Fluss (KoordinatenExtern => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern));
       
       RohstoffeSchleife:
       for RohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
@@ -44,14 +44,12 @@ package body KartengeneratorLandrohstoffeLogik is
             Rohstoff := ZufallsgeneratorenKartenLogik.KartengeneratorRohstoffe;
             
             if
-              False = Basisgrund (BasisgrundExtern => VorhandenerGrund.Basisgrund,
-                                  RohstoffExtern   => Rohstoff)
+              BasisgrundRohstoffe (VorhandenerGrund.Basisgrund, Rohstoff) = False
             then
                null;
               
             elsif
-              False = Zusatzgrund (ZusatzgrundExtern => VorhandenerGrund.Zusatzgrund,
-                                   RohstoffExtern    => Rohstoff)
+              ZusatzgrundRohstoffe (VorhandenerGrund.Zusatzgrund, Rohstoff) = False
             then
                null;
                
@@ -63,126 +61,24 @@ package body KartengeneratorLandrohstoffeLogik is
                exit GenerierungSchleife;
             end if;
             
+            case
+              FlussRohstoffe (VorhandenerFluss, Rohstoff)
+            is
+               when True =>
+                  SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
+                                               RohstoffnummerExtern => RohstoffeSchleifenwert,
+                                               RohstoffExtern       => Rohstoff);
+                  
+                  exit GenerierungSchleife;
+                  
+               when False =>
+                  null;
+            end case;
+                    
          end loop GenerierungSchleife;
       end loop RohstoffeSchleife;
       
    end RohstoffMehrfach;
-   
-   
-   
-   function Basisgrund
-     (BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
-      return Boolean
-   is
-      use type KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
-      use type KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum;
-   begin
-      
-      case
-        BasisgrundExtern
-      is
-         when KartenbasisgrundDatentypen.Eis_Enum =>
-            if
-              RohstoffExtern = KartenrohstoffeDatentypen.Algen_Enum
-              or
-                RohstoffExtern = KartenrohstoffeDatentypen.Pilze_Enum
-            then
-               null;
-               
-            elsif
-              RohstoffExtern = KartenrohstoffeDatentypen.Pinguine_Enum
-              or
-                RohstoffExtern = KartenrohstoffeDatentypen.Robben_Enum
-                or
-                  RohstoffExtern = KartenrohstoffeDatentypen.Krebse_Enum
-                  or
-                    RohstoffExtern = KartenrohstoffeDatentypen.Vögel_Enum
-                    or
-                      RohstoffExtern = KartenrohstoffeDatentypen.Wildtiere_Enum
-            then
-               null;
-               
-            elsif
-              RohstoffExtern in KartenrohstoffeDatentypen.Rohstoffe_Mineralien_Oberbegriffe_Enum'Range
-              or
-                RohstoffExtern in KartenrohstoffeDatentypen.Rohstoffe_Eis_Enum'Range
-            then
-               null;
-               
-            else
-               return False;
-            end if;
-            
-         when KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum'Range =>
-            null;
-            
-         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range =>
-            null;
-            
-         when KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range =>
-            null;
-            
-         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
-            null;
-            
-         when KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
-            null;
-                        
-         when others =>
-            MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorLandrohstoffeLogik.Basisgrund: Falscher Basisgrund: " & BasisgrundExtern'Wide_Wide_Image);
-      end case;
-              
-      return True;
-      
-   end Basisgrund;
-   
-   
-   
-   function Zusatzgrund
-     (ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
-      RohstoffExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
-      return Boolean
-   is
-      --  use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
-   begin
-      
-      case
-        ZusatzgrundExtern
-      is
-         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
-            if
-              RohstoffExtern not in KartenrohstoffeDatentypen.Rohstoffe_Pflanzen_Holz_Enum
-            then
-               null;
-               
-            else
-               return False;
-            end if;
-            
-         when KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum'Range =>
-            null;
-            
-         when KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum'Range =>
-            null;
-            
-         when KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
-            if
-              RohstoffExtern not in KartenrohstoffeDatentypen.Rohstoffe_Pflanzen_Holz_Enum
-            then
-               null;
-               
-            else
-               return False;
-            end if;
-            
-         when others =>
-            MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorLandrohstoffeLogik.Zusatzgrund: Falscher Zusatzgrund: " & ZusatzgrundExtern'Wide_Wide_Image);
-      end case;
-              
-      return True;
-      
-   end Zusatzgrund;
    
    
    
@@ -200,20 +96,18 @@ package body KartengeneratorLandrohstoffeLogik is
             Rohstoff := ZufallsgeneratorenKartenLogik.KartengeneratorRohstoffe;
             
             if
-              False =RohstoffeVergleichen (KoordinatenExtern => KoordinatenExtern,
-                                           RohstoffExtern    => Rohstoff)
+              False = RohstoffeVergleichen (KoordinatenExtern => KoordinatenExtern,
+                                            RohstoffExtern    => Rohstoff)
             then
                null;
             
             elsif
-              False = Basisgrund (BasisgrundExtern => VorhandenerGrund.Basisgrund,
-                                  RohstoffExtern   => Rohstoff)
+              BasisgrundRohstoffe (VorhandenerGrund.Basisgrund, Rohstoff) = False
             then
                null;
               
             elsif
-              False = Zusatzgrund (ZusatzgrundExtern => VorhandenerGrund.Zusatzgrund,
-                                   RohstoffExtern    => Rohstoff)
+              ZusatzgrundRohstoffe (VorhandenerGrund.Zusatzgrund, Rohstoff) = False
             then
                null;
                
@@ -224,6 +118,20 @@ package body KartengeneratorLandrohstoffeLogik is
                   
                exit GenerierungSchleife;
             end if;
+            
+            case
+              FlussRohstoffe (VorhandenerFluss, Rohstoff)
+            is
+               when True =>
+                  SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
+                                               RohstoffnummerExtern => RohstoffeSchleifenwert,
+                                               RohstoffExtern       => Rohstoff);
+                  
+                  exit GenerierungSchleife;
+                  
+               when False =>
+                  null;
+            end case;
             
          end loop GenerierungSchleife;
       end loop RohstoffeSchleife;

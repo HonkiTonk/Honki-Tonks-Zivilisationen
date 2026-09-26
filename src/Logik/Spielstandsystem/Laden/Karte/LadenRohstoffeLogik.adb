@@ -27,8 +27,8 @@ package body LadenRohstoffeLogik is
       RohstoffeSchleife:
       for RohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
                   
-         KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                  Rohstoff);
+         KartenrohstoffeDatentypen.Rohstoffe_Enum'Read (Stream (File => DateiLadenExtern),
+                                                        Rohstoff);
          case
            LadenPrüfenExtern
          is

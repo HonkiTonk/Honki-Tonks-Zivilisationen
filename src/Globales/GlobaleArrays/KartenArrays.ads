@@ -24,7 +24,6 @@ package KartenArrays is
 
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    type StandardKartenrohstoffeWahrscheinlichkeitenArray is array (KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
-
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
    type KartenrohstoffeWahrscheinlichkeitenArray is array (StandardKartenrohstoffeWahrscheinlichkeitenArray'Range (2)) of SystemDatentypenHTSEB.NullBisHundert;
 

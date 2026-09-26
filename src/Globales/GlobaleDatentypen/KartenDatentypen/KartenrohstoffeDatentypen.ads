@@ -17,7 +17,7 @@ package KartenrohstoffeDatentypen is
                            
                            
                            
-                           Fisch_Enum, Wale_Enum, Krabben_Enum, Krebse_Enum, Muscheln_Enum, Schildkröten_Enum, Meeresfrüchte_Enum,
+                           Fische_Enum, Wale_Enum, Krabben_Enum, Krebse_Enum, Muscheln_Enum, Schildkröten_Enum, Meeresfrüchte_Enum,
                            
                            Vögel_Enum, Bienen_Enum,
                            
@@ -34,8 +34,8 @@ package KartenrohstoffeDatentypen is
                            Mineralien_Enum, Edelsteine_Enum, Erze_Enum,
                            
                            Golderz_Enum, Silbererz_Enum, Galenit_Enum, Zinnerz_Enum, Eisenerz_Enum, Kupfererz_Enum, Öl_Enum, Uranerz_Enum, Gips_Enum, Manganerz_Enum, Silizium_Enum,
-                           Nickelerz_Enum, Jade_Enum, Salpeter_Enum, Zinnober_Enum, Bernstein_Enum, Lapislazuli_Enum, Braunkohle_Enum, Quarz_Enum, Kaolin_Enum,
-                           Schwarzkohle_Enum, Zink_Enum, Schwefel_Enum, Bauxit_Enum, Brom_Enum, Steinsalz_Enum, Alaune_Enum,
+                           Nickelerz_Enum, Jade_Enum, Salpeter_Enum, Zinnober_Enum, Bernstein_Enum, Lapislazuli_Enum, Braunkohle_Enum, Schwarzkohle_Enum, Quarz_Enum, Kaolin_Enum,
+                           Zink_Enum, Schwefel_Enum, Bauxit_Enum, Brom_Enum, Steinsalz_Enum, Alaune_Enum,
                            
                            Ton_Enum, Sand_Enum, Torf_Enum, Stein_Enum, Lehm_Enum, Schiefer_Enum, Marmor_Enum,
                            
