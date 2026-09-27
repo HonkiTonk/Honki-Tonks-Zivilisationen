@@ -7,12 +7,12 @@ with KartenKonstanten;
 with LeseWeltkarte;
 
 with KartengeneratorVariablenLogik;
-with KartengeneratorLandrohstoffeLogik;
-with KartengeneratorWasserrohstoffeLogik;
+with KartengeneratorOberrohstoffeLogik;
 with KartengeneratorUnterlandrohstoffeLogik;
 with KartengeneratorUnterwasserrohstoffeLogik;
+with KartengeneratorKernrohstoffeLogik;
 with LadezeitenLogik;
-with KartentestsLogik;
+with LadezeitenAllgemeinesLogik;
 
 package body KartengeneratorRohstoffeLogik is
    
@@ -29,7 +29,6 @@ package body KartengeneratorRohstoffeLogik is
    procedure GenerierungRohstoffe
    is
       use type KartenDatentypen.EbeneVorhanden;
-      use type KartenDatentypen.SenkrechtePositiv;
       
       task RohstoffeUnterfläche;
       task RohstoffeKern;
@@ -41,8 +40,7 @@ package body KartengeneratorRohstoffeLogik is
            KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= -1
          then
             RohstoffeGenerierung (EbeneExtern             => KartenKonstanten.UnterflächeKonstante,
-                                  LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
-                                    * KartengeneratorVariablenLogik.KartengrößeLesen.Senkrechte));
+                                  LadezeitbasisExtern     => LadezeitenAllgemeinesLogik.ZeiteinheitPlanetBerechnen);
             
          else
             null;
@@ -59,8 +57,7 @@ package body KartengeneratorRohstoffeLogik is
            KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang = -2
          then
             RohstoffeGenerierung (EbeneExtern             => KartenKonstanten.KernKonstante,
-                                  LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
-                                    * KartengeneratorVariablenLogik.KartengrößeLesen.Senkrechte));
+                                  LadezeitbasisExtern     => LadezeitenAllgemeinesLogik.ZeiteinheitPlanetBerechnen);
             
          else
             null;
@@ -73,9 +70,7 @@ package body KartengeneratorRohstoffeLogik is
       if
         KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde >= 0
       then
-         RohstoffeGenerierung (EbeneExtern             => KartenKonstanten.OberflächeKonstante,
-                               LadezeitbasisExtern     => 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
-                                 * KartengeneratorVariablenLogik.KartengrößeLesen.Senkrechte));
+         KartengeneratorOberrohstoffeLogik.Landrohstoffe (LadezeitbasisExtern => LadezeitenAllgemeinesLogik.ZeiteinheitPlanetBerechnen);
          
       else
          null;
@@ -85,10 +80,10 @@ package body KartengeneratorRohstoffeLogik is
    
    
    
-   -- Später die Generatoren einstellbar machen dass eine Ressource nur einmal oder mehrmals opro Feld erlaubt ist? äöü
+   -- Später die Generatoren einstellbar machen dass eine Ressource nur einmal oder mehrmals pro Feld erlaubt ist? äöü
    procedure RohstoffeGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet;
-      LadezeitbasisExtern : in Float)
+      LadezeitbasisExtern : in SystemDatentypenHTSEB.LadezeitBasis)
    is begin
       
       SenkrechteSchleife:
@@ -98,13 +93,7 @@ package body KartengeneratorRohstoffeLogik is
             
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
-            is
-               when KartenbasisgrundDatentypen.Basisgrund_Gesamtoberfläche_Land_Enum'Range =>
-                  KartengeneratorLandrohstoffeLogik.Landrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  
-               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
-                  KartengeneratorWasserrohstoffeLogik.Wasserrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  
+            is 
                when KartenbasisgrundDatentypen.Basisgrund_Gesamtunterfläche_Land_Enum'Range =>
                   KartengeneratorUnterlandrohstoffeLogik.Unterlandrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
@@ -112,7 +101,7 @@ package body KartengeneratorRohstoffeLogik is
                   KartengeneratorUnterwasserrohstoffeLogik.Unterwasserrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Enum'Range =>
-                  null;
+                  KartengeneratorKernrohstoffeLogik.Kernrohstoffe (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when others =>
                   MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorRohstoffeLogik.RohstoffeGenerierung: Falscher Basisgrund: "

@@ -1,6 +1,7 @@
 package KartenfluesseDatentypen is
    pragma Pure;
    
+   -- Eingefrorene Flüsse hinzufügen. äöü
    type Fluss_Enum is (
                        Leer_Fluss_Enum,
                               

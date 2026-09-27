@@ -96,8 +96,8 @@ package body LadezeitenGrafik is
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Kartengenerator_Enum'Range loop
                 
-         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (KommazahlExtern => LadezeitenLogik.Kartengenerator (SpielweltErstellenSchleifenwert))
-           & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
+         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand
+           & ZahlAlsString (KommazahlExtern => LadezeitenLogik.KartengeneratorLesen (BerechnungszeitExtern => SpielweltErstellenSchleifenwert)) & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
          
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
                                                                                                     TextpositionExtern       => Textposition,
@@ -126,7 +126,7 @@ package body LadezeitenGrafik is
       KIRechnetSchleife:
       for KIRechnetSchleifenwert in LadezeitenDatentypen.KI_Enum'Range loop
                   
-         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (KommazahlExtern => LadezeitenLogik.KI (KIRechnetSchleifenwert))
+         Text := Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (KommazahlExtern => LadezeitenLogik.KILesen (BerechnungszeitExtern => KIRechnetSchleifenwert))
            & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
          
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
@@ -170,8 +170,8 @@ package body LadezeitenGrafik is
                Text := Spieltexte.Ladezeiten (TextnummernKonstanten.Laden) & " ";
          end case;
          
-         Text := Text & Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (KommazahlExtern => LadezeitenLogik.Spielstand (SpeichernSchleifenwert))
-           & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
+         Text := Text & Spieltexte.Ladezeiten (WelcheZeit) & TextKonstantenHTSEB.StandardAbstand
+           & ZahlAlsString (KommazahlExtern => LadezeitenLogik.SpielstandLesen (BerechnungszeitExtern => SpeichernSchleifenwert)) & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
          
          Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
                                                                                                     TextpositionExtern       => Textposition,
@@ -198,7 +198,7 @@ package body LadezeitenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       
-      Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitBerechne) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (KommazahlExtern => LadezeitenLogik.Rundenende)
+      Text := Spieltexte.Ladezeiten (TextnummernKonstanten.LadezeitBerechne) & TextKonstantenHTSEB.StandardAbstand & ZahlAlsString (KommazahlExtern => LadezeitenLogik.RundenendeLesen)
         & TextKonstantenHTSEB.Trennzeichen & MaximalerLadefortschritt;
          
       Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),

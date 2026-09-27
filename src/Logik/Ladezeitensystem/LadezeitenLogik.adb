@@ -11,7 +11,7 @@ package body LadezeitenLogik is
    
    procedure KartengeneratorSchreiben
      (BerechnungszeitExtern : in LadezeitenDatentypen.Kartengenerator_Enum;
-      ZeitExtern : in Float)
+      ZeitExtern : in SystemDatentypenHTSEB.LadezeitBasis)
    is begin
       
       Kartengenerator (BerechnungszeitExtern) := LadezeitTesten (GrundwertExtern  => Kartengenerator (BerechnungszeitExtern),
@@ -52,7 +52,7 @@ package body LadezeitenLogik is
    
    procedure KISchreiben
      (BerechnungszeitExtern : in LadezeitenDatentypen.KI_Enum;
-      ZeitExtern : in Float)
+      ZeitExtern : in SystemDatentypenHTSEB.LadezeitBasis)
    is begin
       
       KI (BerechnungszeitExtern) := LadezeitTesten (GrundwertExtern  => KI (BerechnungszeitExtern),
@@ -82,7 +82,7 @@ package body LadezeitenLogik is
    
    
    procedure RundenendeSchreiben
-     (ZeitExtern : in Float)
+     (ZeitExtern : in SystemDatentypenHTSEB.LadezeitBasis)
    is begin
       
       Rundenende := LadezeitTesten (GrundwertExtern  => Rundenende,
@@ -112,7 +112,7 @@ package body LadezeitenLogik is
    
    procedure SpielstandSchreiben
      (BerechnungszeitExtern : in LadezeitenDatentypen.Spielstand_Enum;
-      ZeitExtern : in Float)
+      ZeitExtern : in SystemDatentypenHTSEB.LadezeitBasis)
    is begin
             
       Spielstand (BerechnungszeitExtern) := LadezeitTesten (GrundwertExtern  => Spielstand (BerechnungszeitExtern),
@@ -129,5 +129,48 @@ package body LadezeitenLogik is
       Spielstand (BerechnungszeitExtern) := EndeLadezeit;
       
    end SpielstandMaximum;
+   
+   
+   
+   function RundenendeLesen
+     return SystemDatentypenHTSEB.LadezeitBasis
+   is begin
+      
+      return Rundenende;
+      
+   end RundenendeLesen;
+   
+   
+   
+   function KartengeneratorLesen
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Kartengenerator_Enum)
+      return SystemDatentypenHTSEB.LadezeitBasis
+   is begin
+      
+      return Kartengenerator (BerechnungszeitExtern);
+      
+   end KartengeneratorLesen;
+   
+   
+   
+   function KILesen
+     (BerechnungszeitExtern : in LadezeitenDatentypen.KI_Enum)
+      return SystemDatentypenHTSEB.LadezeitBasis
+   is begin
+      
+      return KI (BerechnungszeitExtern);
+      
+   end KILesen;
 
+
+
+   function SpielstandLesen
+     (BerechnungszeitExtern : in LadezeitenDatentypen.Spielstand_Enum)
+      return SystemDatentypenHTSEB.LadezeitBasis
+   is begin
+      
+      return Spielstand (BerechnungszeitExtern);
+      
+   end SpielstandLesen;
+   
 end LadezeitenLogik;

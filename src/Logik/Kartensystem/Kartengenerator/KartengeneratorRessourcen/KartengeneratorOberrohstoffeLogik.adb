@@ -1,29 +1,44 @@
+with KartenKonstanten;
+with LadezeitenDatentypen;
+
 with SchreibeWeltkarte;
 with LeseWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
 with KartengeneratorVariablenLogik;
 with UmwandlungenRecords;
+with LadezeitenLogik;
 
--- Eventuell kann man die ganzen Generatoren in einen schieben. äöü
--- Flüsse werden nicht berücksichtigt, wie bekomme ich die denn da noch rein? äöü
-package body KartengeneratorLandrohstoffeLogik is
+package body KartengeneratorOberrohstoffeLogik is
 
    procedure Landrohstoffe
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
+      (LadezeitbasisExtern : in SystemDatentypenHTSEB.LadezeitBasis)
    is begin
       
-      -- Die beiden Generatoren in einen Zusammenfassen. äöü
-      -- Sollte leicht möglich sein mit einer einzelnen Boolean abfrage. äöü
-      case
-        KartengeneratorVariablenLogik.RohstoffMehrfachLesen
-      is
-         when True =>
-            RohstoffMehrfach (KoordinatenExtern => KoordinatenExtern);
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. KartengeneratorVariablenLogik.KartengrößeLesen.Senkrechte loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. KartengeneratorVariablenLogik.KartengrößeLesen.Waagerechte loop
             
-         when False =>
-            RohstoffEinmal (KoordinatenExtern => KoordinatenExtern);
-      end case;
+            -- Die beiden Generatoren in einen Zusammenfassen. äöü
+            -- Sollte möglich sein mit einer einzelnen Boolean abfrage. äöü
+            -- Oder doch nicht so einfach? äöü
+            case
+              KartengeneratorVariablenLogik.RohstoffMehrfachLesen
+            is
+               when True =>
+                  RohstoffMehrfach (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+            
+               when False =>
+                  RohstoffEinmal (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+            end case;
+            
+         end loop WaagerechteSchleife;
+         
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Rohstoffe_Enum,
+                                                   ZeitExtern            => LadezeitbasisExtern);
+         
+      end loop SenkrechteSchleife;
       
    end Landrohstoffe;
    
@@ -95,9 +110,11 @@ package body KartengeneratorLandrohstoffeLogik is
       
             Rohstoff := ZufallsgeneratorenKartenLogik.KartengeneratorRohstoffe;
             
+            RohstoffEinzigartig := RohstoffeVergleichen (KoordinatenExtern => KoordinatenExtern,
+                                                         RohstoffExtern    => Rohstoff);
+            
             if
-              False = RohstoffeVergleichen (KoordinatenExtern => KoordinatenExtern,
-                                            RohstoffExtern    => Rohstoff)
+              RohstoffEinzigartig = False
             then
                null;
             
@@ -119,19 +136,23 @@ package body KartengeneratorLandrohstoffeLogik is
                exit GenerierungSchleife;
             end if;
             
-            case
-              FlussRohstoffe (VorhandenerFluss, Rohstoff)
-            is
-               when True =>
-                  SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
-                                               RohstoffnummerExtern => RohstoffeSchleifenwert,
-                                               RohstoffExtern       => Rohstoff);
+            if
+              RohstoffEinzigartig = False
+            then
+               null;
+               
+            elsif
+              FlussRohstoffe (VorhandenerFluss, Rohstoff) = True
+            then
+               SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
+                                            RohstoffnummerExtern => RohstoffeSchleifenwert,
+                                            RohstoffExtern       => Rohstoff);
                   
-                  exit GenerierungSchleife;
+               exit GenerierungSchleife;
                   
-               when False =>
-                  null;
-            end case;
+            else
+               null;
+            end if;
             
          end loop GenerierungSchleife;
       end loop RohstoffeSchleife;
@@ -167,4 +188,4 @@ package body KartengeneratorLandrohstoffeLogik is
       
    end RohstoffeVergleichen;
 
-end KartengeneratorLandrohstoffeLogik;
+end KartengeneratorOberrohstoffeLogik;

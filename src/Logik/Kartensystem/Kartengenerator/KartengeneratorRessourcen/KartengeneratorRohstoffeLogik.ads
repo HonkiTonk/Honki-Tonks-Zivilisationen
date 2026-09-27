@@ -1,3 +1,5 @@
+private with SystemDatentypenHTSEB;
+
 private with KartenDatentypen;
 
 package KartengeneratorRohstoffeLogik is
@@ -11,12 +13,10 @@ private
    
    procedure RohstoffeGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet;
-      LadezeitbasisExtern : in Float)
+      LadezeitbasisExtern : in SystemDatentypenHTSEB.LadezeitBasis)
      with
        Pre => (
-                 LadezeitbasisExtern > 0.00
-               and
-                 LadezeitbasisExtern <= 100.00
+                 LadezeitbasisExtern in SystemDatentypenHTSEB.LadezeitBasis'Range
               );
 
 end KartengeneratorRohstoffeLogik;

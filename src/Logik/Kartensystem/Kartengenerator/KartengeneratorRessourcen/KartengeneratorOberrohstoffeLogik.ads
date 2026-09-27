@@ -1,28 +1,25 @@
-with KartenDatentypen;
-with KartenRecords;
+with SystemDatentypenHTSEB;
 
+private with KartenDatentypen;
+private with KartenRecords;
 private with KartenrohstoffeDatentypen;
 private with KartenzusatzgrundDatentypen;
 private with KartenbasisgrundDatentypen;
 private with KartenfluesseDatentypen;
 
-with LeseWeltkarteneinstellungen;
+private with LeseWeltkarteneinstellungen;
 
-package KartengeneratorLandrohstoffeLogik is
+package KartengeneratorOberrohstoffeLogik is
    pragma Elaborate_Body;
+
+   procedure Landrohstoffe
+      (LadezeitbasisExtern : in SystemDatentypenHTSEB.LadezeitBasis);
+
+private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
 
-   procedure Landrohstoffe
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-
-private
+   RohstoffEinzigartig : Boolean;
 
    Rohstoff : KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
 
@@ -31,8 +28,18 @@ private
    VorhandenerGrund : KartenRecords.KartengrundRecord;
 
    -- Diese Arrays mal irgendwohin verschieben wo sie besser hinpassen, eventuell eine neue Datenbank draus machen? äöü
-   type BasisgrundRohstoffeArray is array (KartenbasisgrundDatentypen.Basisgrund_Gesamtoberfläche_Land_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
+   type BasisgrundRohstoffeArray is array (KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
    BasisgrundRohstoffe : constant BasisgrundRohstoffeArray := (
+                                                               KartenbasisgrundDatentypen.Meer_Enum =>
+                                                                 (
+                                                                  others => False
+                                                                 ),
+
+                                                               KartenbasisgrundDatentypen.Küstengewässer_Enum =>
+                                                                 (
+                                                                  others => False
+                                                                 ),
+
                                                                KartenbasisgrundDatentypen.Basisgrund_Eis_Enum =>
                                                                  (
                                                                   KartenrohstoffeDatentypen.Algen_Enum                                   => True,
@@ -107,7 +114,8 @@ private
 
                                                      KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Range =>
                                                        (
-                                                        others => False
+                                                        KartenrohstoffeDatentypen.Fische_Enum => True,
+                                                        others                                => False
                                                        )
                                                     );
 
@@ -142,4 +150,4 @@ private
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-end KartengeneratorLandrohstoffeLogik;
+end KartengeneratorOberrohstoffeLogik;

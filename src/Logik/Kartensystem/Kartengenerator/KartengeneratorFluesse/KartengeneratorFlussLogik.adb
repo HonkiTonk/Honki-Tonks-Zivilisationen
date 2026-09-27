@@ -21,8 +21,7 @@ package body KartengeneratorFlussLogik is
       
       Schleifenbereiche := KartengeneratorVariablenLogik.PolfreierBereichLesen;
       
-      LadezeitBasis := 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
-                                       * Schleifenbereiche.MaximaleSenkrechte);
+      LadezeitBasis := 100.00 / Float (KartentestsLogik.PlanetenEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen) * Schleifenbereiche.MaximaleSenkrechte);
       
       if
         KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde > KartenKonstanten.OberflächeKonstante

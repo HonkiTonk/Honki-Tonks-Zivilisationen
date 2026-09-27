@@ -3,6 +3,7 @@ private with Ada.Strings.Wide_Wide_Unbounded;
 private with Sf.System.Vector2;
 
 private with UmwandlungssystemHTSEB;
+private with SystemDatentypenHTSEB;
 
 with SpeziesDatentypen;
 with GrafikDatentypen;
@@ -93,6 +94,6 @@ private
                   MaximalerLadefortschritt'Result'Length = 6
                );
    
-   function ZahlAlsString is new UmwandlungssystemHTSEB.Kommazahlenstring (Kommazahl => Float);
+   function ZahlAlsString is new UmwandlungssystemHTSEB.Kommazahlenstring (Kommazahl => SystemDatentypenHTSEB.LadezeitBasis);
 
 end LadezeitenGrafik;

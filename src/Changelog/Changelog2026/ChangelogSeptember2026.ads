@@ -50,17 +50,19 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (23.09.2026):
+   -- Version 0.06.5650 => 0.06. (23.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5600 => 0.06. (22.09.2026):
+   -- Version 0.06.5600 => 0.06.5650 (22.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den neuen Rohstoffgeneratoren gearbeitet.
+   -- Verbliebene Variablen im Ladezeitensystem nach private geschoben und Schreibefunktionen entsprechend erweitert.
+   -- Interne Benennung ud Ordnerstruktur überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
