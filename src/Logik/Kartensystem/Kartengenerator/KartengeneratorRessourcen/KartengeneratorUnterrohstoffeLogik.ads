@@ -9,7 +9,7 @@ private with KartenfluesseDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
-package KartengeneratorOberrohstoffeLogik is
+package KartengeneratorUnterrohstoffeLogik is
    pragma Elaborate_Body;
 
    procedure Rohstoffe
@@ -28,19 +28,19 @@ private
    VorhandenerGrund : KartenRecords.KartengrundRecord;
 
    -- Diese Arrays mal irgendwohin verschieben wo sie besser hinpassen, eventuell eine neue Datenbank draus machen? äöü
-   type BasisgrundRohstoffeArray is array (KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
+   type BasisgrundRohstoffeArray is array (KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
    BasisgrundRohstoffe : constant BasisgrundRohstoffeArray := (
-                                                               KartenbasisgrundDatentypen.Meer_Enum =>
+                                                               KartenbasisgrundDatentypen.Meeresgrund_Enum =>
                                                                  (
                                                                   others => True
                                                                  ),
 
-                                                               KartenbasisgrundDatentypen.Küstengewässer_Enum =>
+                                                               KartenbasisgrundDatentypen.Küstengrund_Enum =>
                                                                  (
                                                                   others => True
                                                                  ),
 
-                                                               KartenbasisgrundDatentypen.Basisgrund_Eis_Enum =>
+                                                               KartenbasisgrundDatentypen.Untereis_Enum =>
                                                                  (
                                                                   KartenrohstoffeDatentypen.Algen_Enum                                   => True,
                                                                   KartenrohstoffeDatentypen.Pilze_Enum                                   => True,
@@ -54,65 +54,43 @@ private
                                                                   others                                                                 => False
                                                                  ),
 
-                                                               KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum'Range =>
+                                                               KartenbasisgrundDatentypen.Erde_Enum =>
                                                                  (
                                                                   others => True
                                                                  ),
 
-                                                               KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range =>
+                                                               KartenbasisgrundDatentypen.Erdgestein_Enum =>
                                                                  (
                                                                   others => True
                                                                  ),
 
-                                                               KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range =>
+                                                               KartenbasisgrundDatentypen.Sand_Enum =>
                                                                  (
                                                                   others => True
                                                                  ),
 
-                                                               KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
-                                                                 (
-                                                                  others => True
-                                                                 ),
-
-                                                               KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+                                                               KartenbasisgrundDatentypen.Gestein_Enum =>
                                                                  (
                                                                   others => True
                                                                  )
                                                               );
 
    -- Hier muss ein nicht vorhandener Zusatzgrund mitbeachtet werden.
-   type ZusatzgrundRohstoffeArray is array (KartenzusatzgrundDatentypen.Zusatzgrund_Enum'First .. KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum'Last,
-                                            KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
+   type ZusatzgrundRohstoffeArray is array (KartenzusatzgrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
    ZusatzgrundRohstoffe : constant ZusatzgrundRohstoffeArray := (
-                                                                 KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
+                                                                 KartenzusatzgrundDatentypen.Zusatzgrund_Korallen_Enum'Range =>
                                                                    (
                                                                     others => True
                                                                    ),
 
-                                                                 KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum'Range =>
-                                                                   (
-                                                                    others => True
-                                                                   ),
-
-                                                                 KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum'Range =>
-                                                                   (
-                                                                    others => True
-                                                                   ),
-
-                                                                 KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
+                                                                 KartenzusatzgrundDatentypen.Zusatzgrund_Unterwald_Enum'Range =>
                                                                    (
                                                                     others => True
                                                                    )
                                                                 );
 
-   type FlussRohstoffeArray is array (KartenfluesseDatentypen.Leer_Fluss_Enum .. KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Last, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
-   FlussRohstoffe : constant FlussRohstoffeArray := (
-                                                     KartenfluesseDatentypen.Leer_Fluss_Enum =>
-                                                       (
-                                                        others => False
-                                                       ),
-
-                                                     KartenfluesseDatentypen.Fluss_Oberfläche_Enum'Range =>
+   type FlussRohstoffeArray is array (KartenfluesseDatentypen.Fluss_Unterfläche_Enum'Range, KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum'Range) of Boolean;
+   FlussRohstoffe : constant FlussRohstoffeArray := (KartenfluesseDatentypen.Fluss_Unterfläche_Enum'Range =>
                                                        (
                                                         KartenrohstoffeDatentypen.Fische_Enum => True,
                                                         others                                => False
@@ -150,4 +128,4 @@ private
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-end KartengeneratorOberrohstoffeLogik;
+end KartengeneratorUnterrohstoffeLogik;

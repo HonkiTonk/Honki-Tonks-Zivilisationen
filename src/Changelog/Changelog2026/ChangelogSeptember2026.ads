@@ -43,17 +43,20 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (24.09.2026):
+   -- Version 0.06.5705 => 0.06. (24.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5650 => 0.06. (23.09.2026):
+   -- Version 0.06.5650 => 0.06.5705 (23.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den neuen Rohstoffgeneratoren gearbeitet.
+   -- Angefangen die Berechnung der Texturenfelder umzuschreiben, so dass ich dort keine Konstanten sondern Bruchteile der Gesamtmenge nutzen kann.
+   -- Basisgrundtexturen an die neue Texturenfelderberechnung angepasst.
+   -- Unnützen Code gelöscht.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

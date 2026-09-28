@@ -30,7 +30,7 @@ package body KartengeneratorLogik is
       KartengeneratorFlussLogik.GenerierungFlüsse;
       LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);
       
-      KartengeneratorRohstoffeLogik.Rohstoffe;
+      KartengeneratorRohstoffeLogik.Rohstoffgenerierung;
       LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Rohstoffe_Enum);
       
    end Kartengenerator;

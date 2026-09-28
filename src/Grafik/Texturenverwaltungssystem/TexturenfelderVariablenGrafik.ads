@@ -15,6 +15,7 @@ with KarteneffekteDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenwegeDatentypen;
 
+-- Auch mal Lese/Schreibeteile einbauen? äöü
 package TexturenfelderVariablenGrafik is
    pragma Elaborate_Body;
 

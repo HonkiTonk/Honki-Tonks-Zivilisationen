@@ -1,11 +1,11 @@
 with Sf.Graphics.Texture;
 
 with EingeleseneTexturenGrafik;
-with TexturenfelderVariablenGrafik;
 
--- Das noch mal in Bereiche aufteilen?
+-- Alle Texturen müssen quadratisch angeordnet sein, damit ich die Wurzelfunktion nutzen kann.
 package body TexturenfelderBerechnenGrafik is
-
+   
+   -- Das noch mal in Bereiche aufteilen? äöü
    procedure TexturenfelderBerechnen
    is begin
       
@@ -150,9 +150,9 @@ package body TexturenfelderBerechnenGrafik is
       for RohstoffeSchleifenwert in TexturenfelderVariablenGrafik.RohstoffeArray'Range loop
          
          TexturenfelderVariablenGrafik.Rohstoffe (RohstoffeSchleifenwert) := (Integer (AktuelleFeldposition.x * Feldgröße.x - Feldgröße.x),
-                                                                                Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
-                                                                                Integer (Feldgröße.x),
-                                                                                Integer (Feldgröße.y));
+                                                                              Integer (AktuelleFeldposition.y * Feldgröße.y - Feldgröße.y),
+                                                                              Integer (Feldgröße.x),
+                                                                              Integer (Feldgröße.y));
          
          if
            AktuelleFeldposition.x < FelderanzahlRohstoffe.x

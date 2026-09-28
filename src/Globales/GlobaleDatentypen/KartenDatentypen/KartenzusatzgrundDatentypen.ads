@@ -27,6 +27,7 @@ package KartenzusatzgrundDatentypen is
                              Korallenkurve_Oben_Links_Enum, Korallenkreuzung_Drei_Oben_Enum, Korallenkreuzung_Drei_Unten_Enum, Korallenkreuzung_Drei_Rechts_Enum, Korallenkreuzung_Drei_Links_Enum,
                              Korallenende_Links_Enum, Korallenende_Rechts_Enum, Korallenende_Unten_Enum, Korallenende_Oben_Enum, Korallen_Enum,
                              
+                             -- Dschungel dafür noch einbauen? äöü
                              Unterwaldkreuzung_Vier_Enum, Unterwald_Waagrecht_Enum, Unterwald_Senkrecht_Enum, Unterwaldkurve_Unten_Rechts_Enum, Unterwaldkurve_Unten_Links_Enum, Unterwaldkurve_Oben_Rechts_Enum,
                              Unterwaldkurve_Oben_Links_Enum, Unterwaldkreuzung_Drei_Oben_Enum, Unterwaldkreuzung_Drei_Unten_Enum, Unterwaldkreuzung_Drei_Rechts_Enum, Unterwaldkreuzung_Drei_Links_Enum,
                              Unterwaldende_Links_Enum, Unterwaldende_Rechts_Enum, Unterwaldende_Unten_Enum, Unterwaldende_Oben_Enum, Unterwald_Enum

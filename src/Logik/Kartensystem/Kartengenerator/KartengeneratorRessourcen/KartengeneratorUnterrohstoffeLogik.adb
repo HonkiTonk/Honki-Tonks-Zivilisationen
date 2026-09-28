@@ -9,10 +9,10 @@ with KartengeneratorVariablenLogik;
 with UmwandlungenRecords;
 with LadezeitenLogik;
 
-package body KartengeneratorOberrohstoffeLogik is
+package body KartengeneratorUnterrohstoffeLogik is
 
    procedure Rohstoffe
-      (LadezeitbasisExtern : in SystemDatentypenHTSEB.LadezeitBasis)
+     (LadezeitbasisExtern : in SystemDatentypenHTSEB.LadezeitBasis)
    is begin
       
       SenkrechteSchleife:
@@ -27,10 +27,10 @@ package body KartengeneratorOberrohstoffeLogik is
               KartengeneratorVariablenLogik.RohstoffMehrfachLesen
             is
                when True =>
-                  RohstoffMehrfach (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  RohstoffMehrfach (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
             
                when False =>
-                  RohstoffEinmal (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                  RohstoffEinmal (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
             end case;
             
          end loop WaagerechteSchleife;
@@ -46,7 +46,10 @@ package body KartengeneratorOberrohstoffeLogik is
    
    procedure RohstoffMehrfach
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-   is begin
+   is
+      use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+      use type KartenfluesseDatentypen.Fluss_Enum;
+   begin
       
       VorhandenerGrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern));
       VorhandenerFluss := LeseWeltkarte.Fluss (KoordinatenExtern => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern));
@@ -64,7 +67,9 @@ package body KartengeneratorOberrohstoffeLogik is
                null;
               
             elsif
-              ZusatzgrundRohstoffe (VorhandenerGrund.Zusatzgrund, Rohstoff) = False
+              VorhandenerGrund.Zusatzgrund /= KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum
+              and then
+                ZusatzgrundRohstoffe (VorhandenerGrund.Zusatzgrund, Rohstoff) = False
             then
                null;
                
@@ -76,19 +81,20 @@ package body KartengeneratorOberrohstoffeLogik is
                exit GenerierungSchleife;
             end if;
             
-            case
-              FlussRohstoffe (VorhandenerFluss, Rohstoff)
-            is
-               when True =>
-                  SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
-                                               RohstoffnummerExtern => RohstoffeSchleifenwert,
-                                               RohstoffExtern       => Rohstoff);
+            if
+              VorhandenerFluss /= KartenfluesseDatentypen.Leer_Fluss_Enum
+              and then
+                FlussRohstoffe (VorhandenerFluss, Rohstoff) = True
+            then
+               SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
+                                            RohstoffnummerExtern => RohstoffeSchleifenwert,
+                                            RohstoffExtern       => Rohstoff);
                   
-                  exit GenerierungSchleife;
+               exit GenerierungSchleife;
                   
-               when False =>
-                  null;
-            end case;
+            else
+               null;
+            end if;
                     
          end loop GenerierungSchleife;
       end loop RohstoffeSchleife;
@@ -99,7 +105,10 @@ package body KartengeneratorOberrohstoffeLogik is
    
    procedure RohstoffEinmal
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-   is begin
+   is
+      use type KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+      use type KartenfluesseDatentypen.Fluss_Enum;
+   begin
       
       VorhandenerGrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern));
       
@@ -124,7 +133,9 @@ package body KartengeneratorOberrohstoffeLogik is
                null;
               
             elsif
-              ZusatzgrundRohstoffe (VorhandenerGrund.Zusatzgrund, Rohstoff) = False
+              VorhandenerGrund.Zusatzgrund /= KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum
+              and then
+                ZusatzgrundRohstoffe (VorhandenerGrund.Zusatzgrund, Rohstoff) = False
             then
                null;
                
@@ -142,7 +153,9 @@ package body KartengeneratorOberrohstoffeLogik is
                null;
                
             elsif
-              FlussRohstoffe (VorhandenerFluss, Rohstoff) = True
+              VorhandenerFluss /= KartenfluesseDatentypen.Leer_Fluss_Enum
+              and then
+                FlussRohstoffe (VorhandenerFluss, Rohstoff) = True
             then
                SchreibeWeltkarte.Rohstoffe (KoordinatenExtern    => UmwandlungenRecords.KartenfeldVorhandenNatural (KoordinatenExtern => KoordinatenExtern),
                                             RohstoffnummerExtern => RohstoffeSchleifenwert,
@@ -188,4 +201,4 @@ package body KartengeneratorOberrohstoffeLogik is
       
    end RohstoffeVergleichen;
 
-end KartengeneratorOberrohstoffeLogik;
+end KartengeneratorUnterrohstoffeLogik;

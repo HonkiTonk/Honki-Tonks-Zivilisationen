@@ -1,18 +1,31 @@
+private with Ada.Numerics.Elementary_Functions;
+
 private with Sf.System.Vector2;
+private with Sf;
 
 private with SpeziesDatentypen;
 
+private with TexturenfelderVariablenGrafik;
+
+-- Alle Texturen müssen quadratisch angeordnet sein, damit ich die Wurzelfunktion nutzen kann.
 package TexturenfelderBerechnenGrafik is
    pragma Elaborate_Body;
 
    procedure TexturenfelderBerechnen;
    
 private
+   use Ada.Numerics.Elementary_Functions;
    
-   FelderanzahlBasisgrund : constant Sf.System.Vector2.sfVector2u := (10, 6);
+   -- Alles auf diese Art umschreiben. äöü
+   FelderanzahlBasisgrund : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.BasisgrundArray'Length)))),
+                                                                      Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.BasisgrundArray'Length)))));
+   
    FelderanzahlZusatzgrund : constant Sf.System.Vector2.sfVector2u := (10, 8);
    FelderanzahlFlüsse : constant Sf.System.Vector2.sfVector2u := (10, 5);
-   FelderanzahlRohstoffe : constant Sf.System.Vector2.sfVector2u := (3, 3);
+   
+   FelderanzahlRohstoffe : constant Sf.System.Vector2.sfVector2u := (3, 3); -- (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.RohstoffeArray'Length)))),
+   -- Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.RohstoffeArray'Length)))));
+   
    FelderanzahlVerbesserungen : constant Sf.System.Vector2.sfVector2u := (3, 3);
    FelderanzahlWege : constant Sf.System.Vector2.sfVector2u := (7, 7);
    FelderanzahlFeldeffekte : constant Sf.System.Vector2.sfVector2u := (3, 3);
