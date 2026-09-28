@@ -37,12 +37,12 @@ package body StadtkarteGrafik is
       use type KartenDatentypen.SenkrechteBasis;
    begin
       
-            ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtKarte),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtKarte),
                                             GrößeExtern          => FensterGrafik.AktuelleAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtKarte));
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => StadtauswahlExtern.Koordinaten);
-      -- Der Fehler scheint in dieser Prozedur zu liegen! äöü
+      -- Der Fehler liegt in dieser Prozedur. äöü
       GrafischeDarstellung (GrundExtern => Gesamtgrund);
       GebäudeZusatzinformationen := StadtKonstanten.LeerGebäudeID;
       
@@ -71,12 +71,12 @@ package body StadtkarteGrafik is
                when True =>
                   KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies),
                                                                   TexturbereichExtern    => TexturenfelderVariablenGrafik.GebäudeRechteck (GebäudeExtern => GebäudeID,
-                                                                                                                                           SpeziesExtern  => StadtauswahlExtern.Spezies),
+                                                                                                                                            SpeziesExtern  => StadtauswahlExtern.Spezies),
                                                                   PositionExtern         => (Float (WaagerechteSchleifenwert - 1) * Grafikgröße.x, Float (SenkrechteSchleifenwert - 1) * Grafikgröße.y),
                                                                   DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
-                 -- KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (WaagerechteSchleifenwert - 1) * Grafikgröße.x, Float (SenkrechteSchleifenwert - 1) * Grafikgröße.y),
-                 --                                                     GrößeExtern        => Grafikgröße,
-                 --                                                     TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies, GebäudeID));
+                  -- KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (WaagerechteSchleifenwert - 1) * Grafikgröße.x, Float (SenkrechteSchleifenwert - 1) * Grafikgröße.y),
+                  --                                                     GrößeExtern        => Grafikgröße,
+                  --                                                     TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies, GebäudeID));
                   
                   if
                     True = Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAuswahl.LeseGesamteMausposition,
@@ -165,11 +165,11 @@ package body StadtkarteGrafik is
       SchreibeGrafikVariablen.InformationsfeldBereiche (WelcherBereichExtern => ViewKonstanten.InformationsfeldStadtkarte,
                                                         RechteckExtern       => Rechteck);
       
-     -- Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-     --                                                                   VerhältnisExtern => (Rechteck.width, Rechteck.height));
+      -- Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+      --                                                                   VerhältnisExtern => (Rechteck.width, Rechteck.height));
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeWaagerechteFestSenkrechteVariabel (ViewflächeExtern => Viewfläche,
-                                                                      VerhältnisExtern => (Rechteck.width, Rechteck.height));
+                                                                                         VerhältnisExtern => (Rechteck.width, Rechteck.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.InformationsfeldAccesse (ViewKonstanten.InformationsfeldStadtkarte),
                                             GrößeExtern          => Viewfläche,
@@ -190,9 +190,9 @@ package body StadtkarteGrafik is
       for InformationSchleifenwert in Gebäudetexte'Range loop
          
          YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),
-                                                                                             TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, YTextposition),
-                                                                                             MaximaleTextbreiteExtern => Viewfläche.x,
-                                                                                             TextAccessExtern         => TextaccessVariablen.StadtkarteAccess);
+                                                                                            TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, YTextposition),
+                                                                                            MaximaleTextbreiteExtern => Viewfläche.x,
+                                                                                            TextAccessExtern         => TextaccessVariablen.StadtkarteAccess);
          
       end loop InformationenSchleife;
         

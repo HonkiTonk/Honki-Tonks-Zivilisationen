@@ -146,9 +146,25 @@ package body SpieleinstellungenLogik is
             MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenLogik.AutomatischeEinstellungen: Speziesplatzierung unmöglich");
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
+      
+      KarteErstellt := True;
             
-      return SpielLogik.Spiel;
+      Zwischenspeicher := SpielLogik.Spiel;
+      
+      KarteErstellt := False;
+      
+      return Zwischenspeicher;
       
    end AutomatischeEinstellungen;
+   
+   
+   
+   function KarteVorhanden
+     return Boolean
+   is begin
+      
+      return KarteErstellt;
+      
+   end KarteVorhanden;
 
 end SpieleinstellungenLogik;

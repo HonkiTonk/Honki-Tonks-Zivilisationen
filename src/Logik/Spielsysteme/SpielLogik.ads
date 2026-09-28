@@ -8,7 +8,7 @@ package SpielLogik is
    pragma Elaborate_Body;
 
    function Spiel
-     return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+     return RueckgabeDatentypen.Hauptmenü_Beenden_Enum;
 
 private
    use type SpeziesDatentypen.Spieler_Enum;

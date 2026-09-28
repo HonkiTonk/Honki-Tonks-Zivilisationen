@@ -36,24 +36,27 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (25.09.2026):
+   -- Version 0.06.5760 => 0.06. (25.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5705 => 0.06. (24.09.2026):
+   -- Version 0.06.5705 => 0.06.5760 (24.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Berechnung der Texturenfelder größtenteils umgeschrieben.
+   -- Texturen größtenteils an die neue Berechnung der einzelnen Texturfelder angepasst.
+   -- Fehler korrigiert der bei der Einstellung der Kartenform zu Programmstopps führte.
+   -- Die Karte wird bei einem Programmstopp jetzt nicht mehr gespeichert, wenn noch keine Runde läuft.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
    -- Version 0.06.5650 => 0.06.5705 (23.09.2026):
    
    -- Weiter an den neuen Rohstoffgeneratoren gearbeitet.
-   -- Angefangen die Berechnung der Texturenfelder umzuschreiben, so dass ich dort keine Konstanten sondern Bruchteile der Gesamtmenge nutzen kann.
+   -- Angefangen die Berechnung der Texturenfelder umzuschreiben, so dass ich dort keine Konstanten mehr sondern Bruchteile der Gesamtmenge nutze.
    -- Basisgrundtexturen an die neue Texturenfelderberechnung angepasst.
    -- Unnützen Code gelöscht.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.

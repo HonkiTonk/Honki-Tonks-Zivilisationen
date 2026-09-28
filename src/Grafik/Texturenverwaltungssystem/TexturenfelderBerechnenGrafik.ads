@@ -20,32 +20,54 @@ private
    FelderanzahlBasisgrund : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.BasisgrundArray'Length)))),
                                                                       Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.BasisgrundArray'Length)))));
    
-   FelderanzahlZusatzgrund : constant Sf.System.Vector2.sfVector2u := (10, 8);
-   FelderanzahlFlüsse : constant Sf.System.Vector2.sfVector2u := (10, 5);
+   FelderanzahlZusatzgrund : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.ZusatzgrundArray'Length)))),
+                                                                       Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.ZusatzgrundArray'Length)))));
+   
+   FelderanzahlFlüsse : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.FlüsseArray'Length)))),
+                                                                   Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.FlüsseArray'Length)))));
    
    FelderanzahlRohstoffe : constant Sf.System.Vector2.sfVector2u := (3, 3); -- (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.RohstoffeArray'Length)))),
    -- Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.RohstoffeArray'Length)))));
    
-   FelderanzahlVerbesserungen : constant Sf.System.Vector2.sfVector2u := (3, 3);
-   FelderanzahlWege : constant Sf.System.Vector2.sfVector2u := (7, 7);
-   FelderanzahlFeldeffekte : constant Sf.System.Vector2.sfVector2u := (3, 3);
+   FelderanzahlVerbesserungen : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.VerbesserungenArray'Length)))),
+                                                                          Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.VerbesserungenArray'Length)))));
    
-   FelderanzahlAllgemeinesSpezien : constant Sf.System.Vector2.sfVector2u := (2, 2);
-   FelderanzahlEinheiten : constant Sf.System.Vector2.sfVector2u := (10, 5);
-   FelderanzahlGebäude : constant Sf.System.Vector2.sfVector2u := (6, 5);
+   FelderanzahlWege : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.WegeArray'Length)))),
+                                                                Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.WegeArray'Length)))));
    
-   FelderanzahlIntro : constant Sf.System.Vector2.sfVector2u := (1, 1);
-   FelderanzahlOutro : constant Sf.System.Vector2.sfVector2u := (1, 1);
-   FelderanzahlAllgemeines : constant Sf.System.Vector2.sfVector2u := (2, 2);
+   FelderanzahlFeldeffekte : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.FeldeffekteArray'Length)))),
+                                                                       Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.FeldeffekteArray'Length)))));
+   
+   FelderanzahlAllgemeinesSpezien : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.AllgemeinesSpezienArray'Length (2))))),
+                                                                              Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.AllgemeinesSpezienArray'Length (2))))));
+   
+   FelderanzahlEinheiten : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.EinheitenArray'Length (2))))),
+                                                                     Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.EinheitenArray'Length (2))))));
+   
+   FelderanzahlGebäude : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.GebäudeArray'Length (2))))),
+                                                                    Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.GebäudeArray'Length (2))))));
+   
+   FelderanzahlIntro : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.IntroArray'Length)))),
+                                                                 Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.IntroArray'Length)))));
+   
+   FelderanzahlOutro : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.OutroArray'Length)))),
+                                                                 Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.OutroArray'Length)))));
+   
+   FelderanzahlAllgemeines : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.AllgemeinesArray'Length)))),
+                                                                       Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.AllgemeinesArray'Length)))));
+   
    FelderanzahlKartenbefehle : constant Sf.System.Vector2.sfVector2u := (3, 4);
+   
    FelderanzahlEinheitenbefehle : constant Sf.System.Vector2.sfVector2u := (3, 5);
-   FelderanzahlKartenformen : constant Sf.System.Vector2.sfVector2u := (4, 5);
+   
+   FelderanzahlKartenformen : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.KartenformenArray'Length)))),
+                                                                        Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.KartenformenArray'Length)))));
          
    
    
-   FelderanzahlRoterKnopf : constant Sf.System.Vector2.sfVector2u := (1, 1);
-   FelderanzahlSeitenleiste : constant Sf.System.Vector2.sfVector2u := (1, 1);
-   FelderanzahlPZBEnde : constant Sf.System.Vector2.sfVector2u := (1, 1);
+   -- FelderanzahlRoterKnopf : constant Sf.System.Vector2.sfVector2u := (1, 1);
+   -- FelderanzahlSeitenleiste : constant Sf.System.Vector2.sfVector2u := (1, 1);
+   -- FelderanzahlPZBEnde : constant Sf.System.Vector2.sfVector2u := (1, 1);
    
    Feldgröße : Sf.System.Vector2.sfVector2u;
    Texturengröße : Sf.System.Vector2.sfVector2u;

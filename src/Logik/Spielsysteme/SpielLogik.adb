@@ -25,7 +25,7 @@ with KILogik;
 package body SpielLogik is
 
    function Spiel
-     return RueckgabeDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Hauptmenü_Beenden_Enum
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin

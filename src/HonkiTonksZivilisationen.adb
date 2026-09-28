@@ -18,6 +18,7 @@ with StartEndeSound;
 -- with StartEndeMusik;
 with SchreibenEinstellungenLogik;
 with SpeichernLogik;
+with SpieleinstellungenLogik;
 
 procedure HonkiTonksZivilisationen
 is
@@ -198,6 +199,8 @@ begin
 
             if
               NotfallSpielstand
+              and
+                SpieleinstellungenLogik.KarteVorhanden
             then
                SpeichernLogik.Speichern (AutospeichernExtern    => True,
                                          NotfallspeichernExtern => True);
