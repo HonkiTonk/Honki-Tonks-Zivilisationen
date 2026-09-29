@@ -47,7 +47,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         MeldungssystemHTSEB.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern: null");
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen: TexturAccessExtern: null");
          
       else
          Skalierung := TexturenskalierungGrafik.Stadtbewirtschaftung (FeldgrößeExtern     => FeldgrößeExtern,
@@ -66,7 +66,7 @@ package body KartenspritesZeichnenGrafik is
    
    procedure StadtkarteZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      TexturenbereichExtern : in Sf.System.Vector2.sfVector2f)
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect)
    is
       use type Sf.Graphics.sfTexture_Ptr;
    begin
@@ -77,14 +77,43 @@ package body KartenspritesZeichnenGrafik is
          MeldungssystemHTSEB.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.StadtkarteZeichnen: TexturAccessExtern: null");
          
       else
-         Skalierung := TexturenskalierungGrafik.Vollbildskalierung (TexturengrößeExtern => (Sf.sfUint32 (TexturenbereichExtern.x), Sf.sfUint32 (TexturenbereichExtern.y)));
+         Skalierung := TexturenskalierungGrafik.Vollbildskalierung (TexturengrößeExtern => (Sf.sfUint32 (TexturbereichExtern.width), Sf.sfUint32 (TexturbereichExtern.height)));
          
-         SpritesverwaltungssystemGrafik.PositionSkalierungZeichnen (SpriteAccessExtern => SpriteAccess,
-                                                                    PositionExtern     => GrafikRecordKonstanten.Nullposition,
-                                                                    SkalierungExtern   => Skalierung);
+         SpriteZeichnen (TexturAccessExtern     => TexturAccessExtern,
+                         TexturbereichExtern    => TexturbereichExtern,
+                         PositionExtern         => GrafikRecordKonstanten.Nullposition,
+                         SkalierungExtern       => Skalierung,
+                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end if;
       
    end StadtkarteZeichnen;
+   
+   
+   
+   procedure StadtgebäudeZeichnen
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
+      
+      if
+        TexturAccessExtern = null
+      then
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.StadtgebäudeZeichnen: TexturAccessExtern: null");
+         
+      else
+         Skalierung := TexturenskalierungGrafik.Stadtgebäudeskalierung (TexturengrößeExtern => (Sf.sfUint32 (TexturbereichExtern.width), Sf.sfUint32 (TexturbereichExtern.height)));
+         
+         SpriteZeichnen (TexturAccessExtern     => TexturAccessExtern,
+                         TexturbereichExtern    => TexturbereichExtern,
+                         PositionExtern         => PositionExtern,
+                         SkalierungExtern       => Skalierung,
+                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+      end if;
+      
+   end StadtgebäudeZeichnen;
    
    
    

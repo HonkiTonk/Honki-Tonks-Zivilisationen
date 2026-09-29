@@ -121,7 +121,7 @@ package body AllgemeinesSeitenleisteGrafik is
                   null;
                   
                else
-                  Zwischenspeicher := Zwischenspeicher & "/";
+                  Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Trennzeichen;
                end if;
          end case;
          

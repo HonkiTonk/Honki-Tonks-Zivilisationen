@@ -44,12 +44,35 @@ package KartenspritesZeichnenGrafik is
 
    procedure StadtkarteZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      TexturenbereichExtern : in Sf.System.Vector2.sfVector2f)
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect)
      with
        Pre => (
-                 TexturenbereichExtern.x >= 0.00
+                 TexturbereichExtern.left >= 0
                and
-                 TexturenbereichExtern.y >= 0.00
+                 TexturbereichExtern.top >= 0
+               and
+                 TexturbereichExtern.width >= 0
+               and
+                 TexturbereichExtern.height >= 0
+              );
+
+   procedure StadtgebäudeZeichnen
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 TexturbereichExtern.left >= 0
+               and
+                 TexturbereichExtern.top >= 0
+               and
+                 TexturbereichExtern.width >= 0
+               and
+                 TexturbereichExtern.height >= 0
               );
 
    procedure SpriteZeichnen

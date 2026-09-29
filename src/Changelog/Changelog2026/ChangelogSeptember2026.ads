@@ -29,24 +29,28 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (26.09.2026):
+   -- Version 0.06.5830 => 0.06. (26.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5760 => 0.06. (25.09.2026):
+   -- Version 0.06.5760 => 0.06.5830 (25.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert welcher dazu führte dass die Stadtkarte falsch angezeigt wurde.
+   -- Die Gebäudegrafiken werden in der Stadtkarte jetzt korrekt skaliert.
+   -- Die Berechnung der Texturenfeldergröße neugeschrieben.
+   -- Texturen an die neue Berechnung der einzelnen Texturenfelder angepasst.
+   -- Es werden jetzt nur noch die Schaltfläche für die Einheitenbefehle angezeigt wenn eine Einheit ausgewählt ist und nicht auch die Schaltfläche für allgemeine Optionen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
    -- Version 0.06.5705 => 0.06.5760 (24.09.2026):
    
    -- Die Berechnung der Texturenfelder größtenteils umgeschrieben.
-   -- Texturen größtenteils an die neue Berechnung der einzelnen Texturfelder angepasst.
+   -- Texturen größtenteils an die neue Berechnung der einzelnen Texturenfelder angepasst.
    -- Fehler korrigiert der bei der Einstellung der Kartenform zu Programmstopps führte.
    -- Die Karte wird bei einem Programmstopp jetzt nicht mehr gespeichert, wenn noch keine Runde läuft.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.

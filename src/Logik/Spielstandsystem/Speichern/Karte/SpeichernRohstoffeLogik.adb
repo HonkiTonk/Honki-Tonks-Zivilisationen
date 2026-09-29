@@ -11,6 +11,7 @@ package body SpeichernRohstoffeLogik is
    
    -- Wenn ich mit Technologie das Erzeugen von Rohstoffen erlauben will, dann muss ich das auch immer mitspeichern. äöü
    -- Auch im Himmel und im Orbit. äöü
+   -- Eventuell eine Abfrage einbauen ob schon eine Spezies in der Lage ist dies zu tun und nur dann mitspeichern? äöü
    function Rohstoffe
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       DateiSpeichernExtern : in File_Type)

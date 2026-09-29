@@ -11,6 +11,7 @@ with ViewsEinstellenGrafik;
 with EingeleseneTexturenGrafik;
 with SpritesverwaltungssystemGrafik;
 
+-- Positionierung der Befehlsknöpfe mal überdenken. äöü
 package body WeltkartenbefehleGrafik is
    
    procedure Einheitenbefehle
@@ -48,7 +49,7 @@ package body WeltkartenbefehleGrafik is
    
    
    
-   -- Für alle Einheittypen eine spezifische Anzeige einbauen. äöü
+   -- Für alle Einheittypen eine spezifische Anzeige einbauen? äöü
    function Einheitenbefehlsknöpfe
      (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
       return Sf.System.Vector2.sfVector2f

@@ -26,6 +26,16 @@ package TexturenskalierungGrafik is
                   Stadtfeldskalierung'Result.y >= 0.00
                );
    
+   function Stadtgebäudeskalierung
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Stadtgebäudeskalierung'Result.x >= 0.00
+                and
+                  Stadtgebäudeskalierung'Result.y >= 0.00
+               );
+   
    function Vollbildskalierung
      (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
       return Sf.System.Vector2.sfVector2f

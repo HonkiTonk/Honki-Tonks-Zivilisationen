@@ -1,9 +1,12 @@
+with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
+
 with Sf;
 with Sf.Graphics.Sprite;
 
 with FensterGrafik;
 with SichtweitenGrafik;
 with PruefungenGrafik;
+with TexturenfelderVariablenGrafik;
 
 package body TexturenskalierungGrafik is
    
@@ -39,6 +42,24 @@ package body TexturenskalierungGrafik is
       
    end Stadtfeldskalierung;
    
+   
+   
+   function Stadtgebäudeskalierung
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Texturengröße := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => (Float (TexturengrößeExtern.x), Float (TexturengrößeExtern.y)));
+      Bereichsabmessung := (FensterGrafik.AktuelleAuflösung.x / Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.GebäudeArray'Length (2)))),
+                            FensterGrafik.AktuelleAuflösung.y / Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.GebäudeArray'Length (2)))));
+      
+      Skalierung.x := Bereichsabmessung.x / Texturengröße.x;
+      Skalierung.y := Bereichsabmessung.y / Texturengröße.y;
+      
+      return Skalierung;
+      
+   end Stadtgebäudeskalierung;
+      
    
    
    function Vollbildskalierung

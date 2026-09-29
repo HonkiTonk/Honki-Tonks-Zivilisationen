@@ -52,8 +52,8 @@ package body StadtumgebungGrafik is
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => StadtauswahlExtern.Koordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                         TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.Ebene = KartenKonstanten.LeerEbene
@@ -169,29 +169,29 @@ package body StadtumgebungGrafik is
          is
             when ProduktionDatentypen.Nahrung_Enum =>
                Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
-                                                                                                                           SpeziesExtern        => SpeziesExtern,
-                                                                                                                           ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
+                                                                                                                        SpeziesExtern        => SpeziesExtern,
+                                                                                                                        ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
             when ProduktionDatentypen.Material_Enum =>
                Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugRohstoffeproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
-                                                                                                                                 SpeziesExtern        => SpeziesExtern,
-                                                                                                                                 ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
+                                                                                                                             SpeziesExtern        => SpeziesExtern,
+                                                                                                                             ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
             when ProduktionDatentypen.Geld_Enum =>
                Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
-                                                                                                                           SpeziesExtern        => SpeziesExtern,
-                                                                                                                           ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
+                                                                                                                        SpeziesExtern        => SpeziesExtern,
+                                                                                                                        ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
             when ProduktionDatentypen.Forschung_Enum =>
                Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
-                                                                                                                              SpeziesExtern        => SpeziesExtern,
-                                                                                                                              ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
+                                                                                                                           SpeziesExtern        => SpeziesExtern,
+                                                                                                                           ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
          end case;
          
          TextaccessverwaltungssystemEinfachGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.StadtumgebungAccess,
-                                                         TextExtern       => To_Wide_Wide_String (Source => Text),
-                                                         PositionExtern   => (PositionExtern.x, (FeldgrößeExtern.y / Schriftabstandanpassung)
-                                                                              * Float (ProduktionDatentypen.Produktion_Enum'Pos (ProduktionSchleifenwert)) + PositionExtern.y));
+                                                                TextExtern       => To_Wide_Wide_String (Source => Text),
+                                                                PositionExtern   => (PositionExtern.x, (FeldgrößeExtern.y / Schriftabstandanpassung)
+                                                                                     * Float (ProduktionDatentypen.Produktion_Enum'Pos (ProduktionSchleifenwert)) + PositionExtern.y));
          
          if
            Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtumgebungAccess).width > FeldgrößeExtern.x
@@ -212,7 +212,7 @@ package body StadtumgebungGrafik is
          end if;
          
          TextaccessverwaltungssystemEinfachGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.StadtumgebungAccess,
-                                                              SkalierungExtern => Skalierung);
+                                                                     SkalierungExtern => Skalierung);
                   
       end loop ProduktionSchleife;
       
@@ -236,8 +236,8 @@ package body StadtumgebungGrafik is
                      PositionExtern    => PositionExtern);
       
       RohstoffZeichnen (KoordinatenExtern => KoordinatenExtern,
-                         FeldgrößeExtern   => FeldgrößeExtern,
-                         PositionExtern    => PositionExtern);
+                        FeldgrößeExtern   => FeldgrößeExtern,
+                        PositionExtern    => PositionExtern);
       
       WegZeichnen (KoordinatenExtern => KoordinatenExtern,
                    FeldgrößeExtern   => FeldgrößeExtern,

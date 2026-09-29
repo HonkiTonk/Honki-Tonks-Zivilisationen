@@ -8,7 +8,6 @@ with GrafikDatentypen;
 with TextaccessVariablen;
 with KartenDatentypen;
 with InteraktionAuswahl;
-with GrafikKonstanten;
 
 with LeseWeltkarte;
 with LeseGrafikVariablen;
@@ -41,9 +40,7 @@ package body StadtkarteGrafik is
                                             GrößeExtern          => FensterGrafik.AktuelleAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtKarte));
       
-      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => StadtauswahlExtern.Koordinaten);
-      -- Der Fehler liegt in dieser Prozedur. äöü
-      GrafischeDarstellung (GrundExtern => Gesamtgrund);
+      GrafischeDarstellung (GrundExtern => LeseWeltkarte.Gesamtgrund (KoordinatenExtern => StadtauswahlExtern.Koordinaten));
       GebäudeZusatzinformationen := StadtKonstanten.LeerGebäudeID;
       
       Grafikgröße := SichtweitenGrafik.Stadtumgebungsfläche;
@@ -69,14 +66,10 @@ package body StadtkarteGrafik is
                   null;
                   
                when True =>
-                  KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies),
-                                                                  TexturbereichExtern    => TexturenfelderVariablenGrafik.GebäudeRechteck (GebäudeExtern => GebäudeID,
-                                                                                                                                            SpeziesExtern  => StadtauswahlExtern.Spezies),
-                                                                  PositionExtern         => (Float (WaagerechteSchleifenwert - 1) * Grafikgröße.x, Float (SenkrechteSchleifenwert - 1) * Grafikgröße.y),
-                                                                  DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
-                  -- KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (WaagerechteSchleifenwert - 1) * Grafikgröße.x, Float (SenkrechteSchleifenwert - 1) * Grafikgröße.y),
-                  --                                                     GrößeExtern        => Grafikgröße,
-                  --                                                     TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies, GebäudeID));
+                  KartenspritesZeichnenGrafik.StadtgebäudeZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies),
+                                                                     TexturbereichExtern    => TexturenfelderVariablenGrafik.GebäudeRechteck (GebäudeExtern => GebäudeID,
+                                                                                                                                               SpeziesExtern  => StadtauswahlExtern.Spezies),
+                                                                     PositionExtern         => (Float (WaagerechteSchleifenwert - 1) * Grafikgröße.x, Float (SenkrechteSchleifenwert - 1) * Grafikgröße.y));
                   
                   if
                     True = Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAuswahl.LeseGesamteMausposition,
@@ -104,7 +97,7 @@ package body StadtkarteGrafik is
    is begin
       
       KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.BasisgrundAccess,
-                                                      TexturenbereichExtern => TexturenfelderVariablenGrafik.BasisgrundVektor (BasisgrundExtern => GrundExtern.Basisgrund));
+                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.BasisgrundRechteck (BasisgrundExtern => GrundExtern.Basisgrund));
       
       case
         GrundExtern.Zusatzgrund
@@ -114,7 +107,7 @@ package body StadtkarteGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern    => EingeleseneTexturenGrafik.ZusatzgrundAccess,
-                                                            TexturenbereichExtern => TexturenfelderVariablenGrafik.ZusatzgrundVektor (ZusatzgrundExtern => GrundExtern.Zusatzgrund));
+                                                            TexturbereichExtern => TexturenfelderVariablenGrafik.ZusatzgrundRechteck (ZusatzgrundExtern => GrundExtern.Zusatzgrund));
       end case;
             
    end GrafischeDarstellung;

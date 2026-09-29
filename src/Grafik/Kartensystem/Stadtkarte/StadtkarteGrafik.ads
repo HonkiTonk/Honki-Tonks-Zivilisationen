@@ -43,8 +43,6 @@ private
    XMultiplikator : Float;
    YTextposition : Float;
 
-   Gesamtgrund : KartenRecords.KartengrundRecord;
-
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Grafikgröße : Sf.System.Vector2.sfVector2f;
 

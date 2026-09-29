@@ -16,7 +16,6 @@ package TexturenfelderBerechnenGrafik is
 private
    use Ada.Numerics.Elementary_Functions;
    
-   -- Alles auf diese Art umschreiben. äöü
    FelderanzahlBasisgrund : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.BasisgrundArray'Length)))),
                                                                       Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.BasisgrundArray'Length)))));
    
@@ -56,9 +55,11 @@ private
    FelderanzahlAllgemeines : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.AllgemeinesArray'Length)))),
                                                                        Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.AllgemeinesArray'Length)))));
    
-   FelderanzahlKartenbefehle : constant Sf.System.Vector2.sfVector2u := (3, 4);
+   FelderanzahlKartenbefehle : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.KartenbefehleArray'Length)))),
+                                                                         Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.KartenbefehleArray'Length)))));
    
-   FelderanzahlEinheitenbefehle : constant Sf.System.Vector2.sfVector2u := (3, 5);
+   FelderanzahlEinheitenbefehle : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.EinheitenbefehleArray'Length)))),
+                                                                        Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.EinheitenbefehleArray'Length)))));
    
    FelderanzahlKartenformen : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.KartenformenArray'Length)))),
                                                                         Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.KartenformenArray'Length)))));

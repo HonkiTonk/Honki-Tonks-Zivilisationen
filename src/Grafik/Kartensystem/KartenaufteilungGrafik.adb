@@ -31,15 +31,19 @@ package body KartenaufteilungGrafik is
       
       WeltkarteGrafik.WeltkarteAnzeigen (EinheitenauswahlExtern => EinheitenauswahlExtern);
       
+      SeitenleisteGrafik.SeitenleisteGrafik (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
+      
       case
         EinheitenauswahlExtern.SpeziesNummer.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
             RechtsLinksBefehlsanzeige := SichtweitenGrafik.UntenRechts (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
+      
+            WeltkartenbefehleGrafik.Kartenbefehle (RechtsLinksExtern => RechtsLinksBefehlsanzeige);
             
          when others =>
             Position := UmwandlungenGrafik.KoordinatenKartenposition (KoordinatenExtern => EinheitenauswahlExtern.Koordinaten,
-                                                                                   SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies);
+                                                                      SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies);
             Viewgröße := Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
             
             if
@@ -53,14 +57,12 @@ package body KartenaufteilungGrafik is
                RechtsLinksBefehlsanzeige := True;
             end if;
             
+            RechtsLinksBefehlsanzeige := SichtweitenGrafik.UntenRechts (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
+            
             WeltkartenbefehleGrafik.Einheitenbefehle (EinheitartExtern  => LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies,
                                                                                                                 IDExtern      => EinheitenauswahlExtern.ID),
                                                       RechtsLinksExtern => RechtsLinksBefehlsanzeige);
       end case;
-         
-      SeitenleisteGrafik.SeitenleisteGrafik (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
-      
-      WeltkartenbefehleGrafik.Kartenbefehle (RechtsLinksExtern => RechtsLinksBefehlsanzeige);
       
    end Weltkarte;
    
