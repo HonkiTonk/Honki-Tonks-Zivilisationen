@@ -30,10 +30,10 @@ package body KartenebenenEinstellenLogik is
                KartengeneratorVariablenLogik.KartenebenenSchreiben (EbenenExtern => KartenebenenTests (EingabeExtern => KartenebeneAuswahl));
                SpeziesTests (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen);
                  
-            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+            when Standardebenen =>
                KartengeneratorVariablenLogik.KartenebenenSchreiben (EbenenExtern => KartenRecordKonstanten.StandardKartenebenen);
                
-            when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+            when Zufall =>
                KartengeneratorVariablenLogik.KartenebenenSchreiben (EbenenExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenebenen);
                SpeziesTests (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen);
                
@@ -62,7 +62,7 @@ package body KartenebenenEinstellenLogik is
       case
         EingabeExtern
       is
-         when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+         when OrbitHimmel =>
             if
               Ebene.EbeneEnde = KartenKonstanten.OrbitKonstante
             then
@@ -72,7 +72,7 @@ package body KartenebenenEinstellenLogik is
                Ebene.EbeneEnde := KartenKonstanten.OrbitKonstante;
             end if;
                
-         when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+         when HimmelOberfläche =>
             if
               Ebene.EbeneEnde = KartenKonstanten.HimmelKonstante
             then
@@ -82,7 +82,7 @@ package body KartenebenenEinstellenLogik is
                Ebene.EbeneEnde := KartenKonstanten.HimmelKonstante;
             end if;
                
-         when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+         when OberUnterfläche =>
             if
               Ebene.EbeneEnde = KartenKonstanten.OberflächeKonstante
               and
@@ -102,7 +102,7 @@ package body KartenebenenEinstellenLogik is
                Ebene.EbeneEnde := KartenKonstanten.OberflächeKonstante;
             end if;
                
-         when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+         when UnterOberfläche =>
             if
               Ebene.EbeneAnfang = KartenKonstanten.UnterflächeKonstante
               and
@@ -122,7 +122,7 @@ package body KartenebenenEinstellenLogik is
                Ebene.EbeneAnfang := KartenKonstanten.UnterflächeKonstante;
             end if;
                
-         when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+         when UnterflächeKern =>
             if
               Ebene.EbeneAnfang = KartenKonstanten.KernKonstante
             then

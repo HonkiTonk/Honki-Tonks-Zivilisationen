@@ -66,5 +66,6 @@ package VerzeichnisKonstanten is
    FontOrdner : constant String (1 .. 15) := SprachenStrich & "Fonts/";
    SchriftartStandard : constant String (1 .. 16) := "wqy-microhei.ttc";
    FontsOrdner : constant String (1 .. 5) := "Fonts";
+   Unifont : constant String (1 .. 11) := "unifont.otf";
          
 end VerzeichnisKonstanten;

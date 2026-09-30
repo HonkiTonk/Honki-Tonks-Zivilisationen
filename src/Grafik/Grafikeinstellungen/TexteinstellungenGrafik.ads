@@ -12,6 +12,7 @@ package TexteinstellungenGrafik is
    use type Sf.Graphics.sfFont_Ptr;
       
    procedure SchriftartFestlegen;
+   procedure SchriftartFestlegenDebug;
    
    procedure SchriftgrößeSchreiben
      (GrößeExtern : in Sf.sfUint32;
@@ -53,6 +54,13 @@ package TexteinstellungenGrafik is
      with
        Post => (
                   StandardSchriftartVerwenden'Result'Length > 0
+               );
+   
+   function UnifontVerwenden
+     return String
+     with
+       Post => (
+                  UnifontVerwenden'Result'Length > 0
                );
    
    function EigeneSchriftartVerwenden

@@ -48,6 +48,18 @@ package body TexteinstellungenGrafik is
    
    
    
+   procedure SchriftartFestlegenDebug
+   is begin
+      
+      SchriftartAccess := SchriftartaccessFestlegen (SchriftartAccessExtern => SchriftartAccess,
+                                                     FontpfadExtern         => UnifontVerwenden);
+      
+      TextaccesseSchriftartGrafik.SchriftartSetzen (SchriftaccessExtern => SchriftartAccess);
+      
+   end SchriftartFestlegenDebug;
+   
+   
+   
    function SchriftartaccessFestlegen
      (SchriftartAccessExtern : in Sf.Graphics.sfFont_Ptr;
       FontpfadExtern : in String)
@@ -81,6 +93,27 @@ package body TexteinstellungenGrafik is
       end case;
             
    end StandardSchriftartVerwenden;
+   
+   
+   
+   function UnifontVerwenden
+     return String
+   is
+      use Ada.Directories;
+   begin
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.FontOrdner & VerzeichnisKonstanten.Unifont)
+      is
+         when False =>
+            MeldungssystemHTSEB.Grafik (MeldungExtern => "TexteinstellungenGrafik.UnifontVerwenden: Unifont nicht vorhanden");
+            raise SchriftartFehlt;
+            
+         when True =>
+            return VerzeichnisKonstanten.FontOrdner & VerzeichnisKonstanten.Unifont;
+      end case;
+      
+   end UnifontVerwenden;
    
    
    
@@ -227,6 +260,5 @@ package body TexteinstellungenGrafik is
       return EinstellungenGrafik.Grafikeinstellungen.Schriftrahmen;
       
    end SchriftrahmenLesen;
-        
-
+   
 end TexteinstellungenGrafik;

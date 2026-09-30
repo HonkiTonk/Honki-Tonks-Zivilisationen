@@ -144,7 +144,7 @@ package body SetauswahlGrafik is
       then
          AktuellerPfad := NeuerPfad;
          
-         SchriftartAccess :=TexteinstellungenGrafik.SchriftartaccessFestlegen (SchriftartAccessExtern => SchriftartAccess,
+         SchriftartAccess := TexteinstellungenGrafik.SchriftartaccessFestlegen (SchriftartAccessExtern => SchriftartAccess,
                                                                                FontpfadExtern         => To_String (Source => AktuellerPfad));
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.SetauswahlAccess,
                                    font => SchriftartAccess);

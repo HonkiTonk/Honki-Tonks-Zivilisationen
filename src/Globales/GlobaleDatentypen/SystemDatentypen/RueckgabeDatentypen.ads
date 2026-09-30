@@ -19,6 +19,7 @@ package RueckgabeDatentypen is
    
    subtype Auswahl_Enum is Rückgabe_Werte_Enum range Auswahl_Eins_Enum .. Auswahl_Achtzehn_Enum;
    
+   -- Diese subtypen für alle Menüs einbauen. äöü
    subtype Kartengrößen_Standard_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Zehn_Enum;
    subtype Kartenebenen_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Fünf_Enum;
    subtype Kartenart_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Drei_Enum;

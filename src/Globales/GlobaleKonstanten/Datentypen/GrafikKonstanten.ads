@@ -15,10 +15,13 @@ package GrafikKonstanten is
    Bewegungsfeldtransparents : constant Sf.sfUint8 := 120;
    Feldeffekttransparents : constant Sf.sfUint8 := 100;
    
-   MinimaleAuflösungsbreite : constant Sf.sfUint32 := 640;
+   MinimaleAuflösungsbreite : constant Sf.sfUint32 := 1;
    MaximaleAuflösungsbreite : constant Sf.sfUint32 := 4_096;
-   MinimaleAuflösunghöhe : constant Sf.sfUint32 := 480;
+   StandardAuflösungsbreite : constant Sf.sfUint32 := 800;
+   
+   MinimaleAuflösungshöhe : constant Sf.sfUint32 := 1;
    MaximaleAuflösungshöhe : constant Sf.sfUint32 := 3_072;
+   StandardAuflösungshöhe : constant Sf.sfUint32 := 600;
    
    MinimaleBildrate : constant Sf.sfUint32 := Sf.sfUint32'First;
    MaximaleBildrate : constant Sf.sfUint32 := 1_000;

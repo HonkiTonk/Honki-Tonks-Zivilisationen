@@ -22,17 +22,22 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (27.09.2026):
+   -- Version 0.06.5910 => 0.06. (27.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5830 => 0.06. (26.09.2026):
+   -- Version 0.06.5830 => 0.06.5910 (26.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die minimale Auflösung von 640x480 auf 1x1 geändert, für den Fall dass jemand eine Briefmarke spielen will.
+   -- Bei Änderung der Fensterauflösung durch manuelles Ziehen wird die Auflösung jetzt auch gespeichert und beim nächsten Spielstart geladen.
+   -- Neben normalem Fenstermodus und Vollbild ist es jetzt auch möglich Rahmenloses Fenster einzustellen.
+   -- Unnötigen Code gelöscht.
+   -- Diverse Werte durch besser benannte Konstanten ersetzt.
+   -- Debugmenü überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

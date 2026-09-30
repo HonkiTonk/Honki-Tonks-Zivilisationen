@@ -80,6 +80,8 @@ package body MenuerueckgabenLogik is
    
    
 
+   -- Hier auch die konstanten Benennungen aus den Menüs einbauen? äöü
+   -- Wäre übersichtlicher, aber dann müsste ich die Konstanten auch in eine gloabe Konstantendatei packen. äöü
    function Hauptmenü
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)

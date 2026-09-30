@@ -134,6 +134,19 @@ package body MenuestringsSetzenGrafik is
          end case;
          
       elsif
+        WelcheZeileExtern = ZeileRahmenlosUmschalten
+      then
+         case
+           LeseEinstellungenGrafik.Fenstermodus
+         is
+            when Sf.Window.Window.sfNone =>
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Haken;
+               
+            when others =>
+               Zwischenspeicher := Zwischenspeicher & TextKonstantenHTSEB.Kreuz;
+         end case;
+         
+      elsif
         WelcheZeileExtern = ZeileVSync
       then
          case

@@ -168,6 +168,7 @@ package body Grafik is
             FensterGrafik.FensterAnpassen (FensterVerändertExtern => LeseGrafiktask.FensterAnpassen);
             SichtweitenGrafik.KartenfelderAbmessungBerechnen;
             SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
+            
             SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Keine_Änderung_Enum);
             SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
             
@@ -248,8 +249,6 @@ package body Grafik is
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
             LadezeitenGrafik.Ladezeiten (WelcheLadeanzeigeExtern => AktuelleDarstellung,
                                          SpeziesExtern           => LeseGrafiktask.KIRechnet);
-            -- Diese Prüfung kann nicht rausgezogen werden, da er mit dem aktuellen System sonst Tasteneingaben nicht mehr korrekt erkennt.
-            TasteneingabeGrafik.FensterAnpassen;
          
          when GrafikDatentypen.Menüs_Enum =>
             MenueaufteilungGrafik.Menüaufteilung (WelchesMenüExtern     => LeseGrafiktask.Menü,

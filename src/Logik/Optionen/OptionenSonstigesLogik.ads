@@ -17,6 +17,11 @@ private
    
    Eingabe : Wide_Wide_Character;
    
+   AutomatischeSpielstände : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'First;
+   Autospeichern : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (AutomatischeSpielstände);
+   Sprache : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Autospeichern);
+   Dezimaltrennung : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Sprache);
+   
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
    GewählteSprache : Unbounded_Wide_Wide_String;

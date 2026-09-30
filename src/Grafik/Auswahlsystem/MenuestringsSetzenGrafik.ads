@@ -24,7 +24,8 @@ private
    
    ZeileAuflösungÄndern : constant Positive := 2;
    ZeileVollbildUmschalten : constant Positive := ZeileAuflösungÄndern + 1;
-   ZeileVSync : constant Positive := ZeileVollbildUmschalten + 1;
+   ZeileRahmenlosUmschalten : constant Positive := ZeileVollbildUmschalten + 1;
+   ZeileVSync : constant Positive := ZeileRahmenlosUmschalten + 1;
    ZeileBildrateÄndern : constant Positive := ZeileVSync + 1;
    ZeileEbeneUnterhalbAnzeigen : constant Positive := ZeileBildrateÄndern + 1;
    ZeileBildrateAnzeigen : constant Positive := ZeileEbeneUnterhalbAnzeigen + 1;

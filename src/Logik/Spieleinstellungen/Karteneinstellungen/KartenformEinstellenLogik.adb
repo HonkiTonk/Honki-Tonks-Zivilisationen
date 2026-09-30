@@ -24,10 +24,10 @@ package body KartenformEinstellenLogik is
             when RueckgabeDatentypen.Kartenform_Enum'Range =>
                KartenformZuweisen (WelchEbeneExtern => KartenformAuswahl);
                
-            when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+            when Zufall =>
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenform;
                
-            when RueckgabeDatentypen.Auswahl_Acht_Enum =>
+            when Standardform =>
                KartengeneratorVariablenLogik.KartenformSchreiben (FormExtern => KartenRecordKonstanten.KartenformStandard);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
@@ -55,7 +55,7 @@ package body KartenformEinstellenLogik is
       case
         WelchEbeneExtern
       is
-         when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+         when ObereEbene =>
             if
               KartenformEingestellt.EbeneOben = KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Last
             then
@@ -65,7 +65,7 @@ package body KartenformEinstellenLogik is
                KartenformNeu.EbeneOben := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Val (KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Pos (KartenformEingestellt.EbeneOben) + 1);
             end if;
             
-         when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+         when UntereEbene =>
             if
              KartenformEingestellt.EbeneUnten = KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Last
             then
@@ -75,7 +75,7 @@ package body KartenformEinstellenLogik is
                KartenformNeu.EbeneUnten := KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Val (KartenartDatentypen.Kartenform_Ebene_Einstellbar_Enum'Pos (KartenformEingestellt.EbeneUnten) + 1);
             end if;
             
-         when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+         when Norden =>
             if
               KartenformEingestellt.SenkrechteNorden = KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Last
             then
@@ -85,7 +85,7 @@ package body KartenformEinstellenLogik is
                KartenformNeu.SenkrechteNorden := KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Val (KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Pos (KartenformEingestellt.SenkrechteNorden) + 1);
             end if;
             
-         when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+         when Süden =>
             if
               KartenformEingestellt.SenkrechteSüden = KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Last
             then
@@ -96,7 +96,7 @@ package body KartenformEinstellenLogik is
                  := KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Val (KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum'Pos (KartenformEingestellt.SenkrechteSüden) + 1);
             end if;
             
-         when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+         when Westen =>
             if
               KartenformEingestellt.WaagerechteWesten = KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Last
             then
@@ -107,7 +107,7 @@ package body KartenformEinstellenLogik is
                  := KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Val (KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Pos (KartenformEingestellt.WaagerechteWesten) + 1);
             end if;
             
-         when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+         when Osten =>
             if
               KartenformEingestellt.WaagerechteOsten = KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum'Last
             then

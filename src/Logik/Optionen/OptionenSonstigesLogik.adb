@@ -32,16 +32,16 @@ package body OptionenSonstigesLogik is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            when AutomatischeSpielstände =>
                AnzahlAutomatischerSpielstände;
                
-            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+            when Autospeichern =>
                RundenBisAutospeichern;
                
-            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+            when Sprache =>
                SpracheWechseln;
                
-            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+            when Dezimaltrennung =>
                Dezimaltrennzeichen;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

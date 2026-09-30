@@ -25,6 +25,16 @@ private
 
    AusgewählteSpezies : SpeziesDatentypen.Spezies_Enum;
 
+   AufdeckenKarte : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'First;
+   Erforscht : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (AufdeckenKarte);
+   Tauschen : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Erforscht);
+   Diplomatie : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Tauschen);
+   Forschungsmenge : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Diplomatie);
+   Einheitenkreierung : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Forschungsmenge);
+   Mehrsprachig : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Einheitenkreierung);
+   Anhalten : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Mehrsprachig);
+   Textausgabe : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Anhalten);
+
    RückgabeDebugmenü : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    Einheitennummer : EinheitenDatentypen.EinheitenbereichBasis;

@@ -53,31 +53,31 @@ package body SpieleinstellungenLogik is
             case
               Auswahl
             is
-               when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+               when Kartenebene =>
                   KartenebenenEinstellenLogik.Kartenebene;
                     
-               when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+               when Kartengröße =>
                   KartengroesseEinstellenLogik.Kartengröße;
                   
-               when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+               when Kartenpole =>
                   KartenpoleEinstellenLogik.Kartenpole;
                   
-               when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+               when Kartenart =>
                   KartenartEinstellenLogik.Kartenart;
                
-               when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+               when Kartenform =>
                   KartenformEinstellenLogik.Kartenform;
 
-               when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+               when Kartentemperatur =>
                   KartentemperaturEinstellenLogik.Kartentemperatur;
                
-               when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+               when Kartenrohstoffe =>
                   KartenrohstoffeEinstellenLogik.Kartenrohstoffe;
 
-               when RueckgabeDatentypen.Auswahl_Acht_Enum =>
+               when Spezies =>
                   SpieleinstellungenSpeziesLogik.SpeziesWählen;
 
-               when RueckgabeDatentypen.Auswahl_Neun_Enum =>
+               when Schwierigkeitsgrad =>
                   SchwierigkeitsgradEinstellenLogik.Schwierigkeitsgrad;
                
                when RueckgabeDatentypen.Fertig_Enum =>

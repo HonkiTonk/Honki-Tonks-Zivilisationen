@@ -4,14 +4,16 @@ with Sf.Window.Cursor;
 with Sf.Window.VideoMode;
 with Sf.Graphics.Color;
 
+with MeldungssystemHTSEB;
+
 with SonstigesKonstanten;
 with GrafikKonstanten;
 with SFMLKonstanten;
 
 with LeseEinstellungenGrafik;
 with SchreibeGrafiktask;
-
-with MeldungssystemHTSEB;
+with SchreibeEinstellungenGrafik;
+with SchreibenEinstellungenLogik;
 
 package body FensterGrafik is
    
@@ -58,7 +60,7 @@ package body FensterGrafik is
          when others =>
             MeldungssystemHTSEB.Grafik (MeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & Fenstermodus'Wide_Wide_Image);
             Fenstermodus := GrafikKonstanten.StandardFenster;
-            Startauflösung := (GrafikKonstanten.MinimaleAuflösungsbreite, GrafikKonstanten.MinimaleAuflösunghöhe);
+            Startauflösung := (GrafikKonstanten.MinimaleAuflösungsbreite, GrafikKonstanten.MinimaleAuflösungshöhe);
       end case;
       
       return Sf.Graphics.RenderWindow.createUnicode (mode  => (
@@ -128,6 +130,10 @@ package body FensterGrafik is
       Auflösung := Sf.Graphics.RenderWindow.getSize (renderWindow => FensterAccess);
             
       AktuelleFensterAuflösung := (Float (Auflösung.x), Float (Auflösung.y));
+      
+      -- Das eventuell noch einmal besser umlagern? äöü
+      SchreibeEinstellungenGrafik.Auflösung (AuflösungExtern => Auflösung);
+      SchreibenEinstellungenLogik.Grafikeinstellungen;
       
    end AktuelleAuflösungFestlegen;
    

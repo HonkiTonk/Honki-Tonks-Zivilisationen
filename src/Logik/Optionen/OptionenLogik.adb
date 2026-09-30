@@ -21,16 +21,16 @@ package body OptionenLogik is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            when Grafik =>
                RückgabeWert := OptionenGrafikLogik.OptionenGrafik;
                
-            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+            when Sound =>
                RückgabeWert := OptionenSoundLogik.OptionenSound;
                
-            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+            when Steuerung =>
                RückgabeWert := OptionenSteuerungLogik.SteuerungBelegen;
                
-            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+            when Sonstiges =>
                RückgabeWert := OptionenSonstigesLogik.Sonstiges;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

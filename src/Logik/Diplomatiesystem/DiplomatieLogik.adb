@@ -114,27 +114,27 @@ package body DiplomatieLogik is
             case
               AktionAuswahl
             is
-               when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+               when Sichtbarkeit =>
                   HandelnLogik.SichtbarkeitTauschen (SpeziesEinsExtern => SpeziesExtern,
                                                      SpeziesZweiExtern => KontaktierteSpezies);
                   
-               when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+               when Rauswerfen =>
                   EinheitenverschiebungLogik.VonEigenemLandWerfen (SpeziesExtern             => SpeziesExtern,
                                                                    KontaktierteSpeziesExtern => KontaktierteSpezies);
                   
-               when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+               when Nichtangriffspakt =>
                   DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern                   => SpeziesExtern,
                                                                                   SpeziesZweiExtern                   => KontaktierteSpezies,
                                                                                   NeuerStatusExtern                   => DiplomatieDatentypen.Nichtangriffspakt_Enum,
                                                                                   ZeitbegrenzungBerücksichtigenExtern => True);
                   
-               when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+               when Frieden =>
                   DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern                   => SpeziesExtern,
                                                                                   SpeziesZweiExtern                   => KontaktierteSpezies,
                                                                                   NeuerStatusExtern                   => DiplomatieDatentypen.Neutral_Enum,
                                                                                   ZeitbegrenzungBerücksichtigenExtern => True);
                   
-               when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+               when Krieg =>
                   DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern                   => SpeziesExtern,
                                                                                   SpeziesZweiExtern                   => KontaktierteSpezies,
                                                                                   NeuerStatusExtern                   => DiplomatieDatentypen.Krieg_Enum,

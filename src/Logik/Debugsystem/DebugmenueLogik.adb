@@ -1,3 +1,5 @@
+with MeldungssystemHTSEB;
+
 with MenueDatentypen;
 with KartenKonstanten;
 with ProduktionDatentypen;
@@ -13,7 +15,6 @@ with LeseZeiger;
 with LeseEinheitenGebaut;
 
 with AuswahlaufteilungLogik;
-with MeldungssystemHTSEB;
 with DebugmenueAllgemeinesLogik;
 with ZahleneingabeLogik;
 with EinheitenErzeugenEntfernenLogik;
@@ -34,36 +35,36 @@ package body DebugmenueLogik is
          case
            RückgabeDebugmenü
          is
-            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            when AufdeckenKarte =>
                KarteAufdecken (SpeziesExtern => SpeziesExtern);
                
-            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+            when Erforscht =>
                SchreibeWichtiges.ErforschtDebug (SpeziesExtern => SpeziesExtern);
                               
-            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+            when Tauschen =>
                MenschKITauschen (SpeziesExtern => SpeziesExtern);
                
-            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+            when Diplomatie =>
                DiplomatischenStatusÄndern (NeuerStatusExtern => DebugmenueAllgemeinesLogik.DiplomatiestatusAuswählen,
                                             SpeziesExtern     => SpeziesExtern);
                
-            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+            when Forschungsmenge =>
                SchreibeWichtiges.Forschungsmenge (SpeziesExtern           => SpeziesExtern,
                                                   ForschungZugewinnExtern => ProduktionDatentypen.Produktion'Last,
                                                   RechnenSetzenExtern     => False);
                
-            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+            when Einheitenkreierung =>
                EinheitErzeugen (SpeziesExtern => SpeziesExtern);
                
-            when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
-               -- Das verwendet nur die Font die die aktuelle Sprache verwendet, sollte man das anpassen? äöü
+            when Mehrsprachig =>
+               -- Verwendet aktuell nur Unicode, sollte ich das mal anpassen? äöü
                EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => Einsprachig);
                Einsprachig := not Einsprachig;
                
-            when RueckgabeDatentypen.Auswahl_Acht_Enum =>
+            when Anhalten =>
                raise Teststopp;
                
-            when RueckgabeDatentypen.Auswahl_Neun_Enum =>
+            when Textausgabe =>
                DebugmenueTextausgabeLogik.TexteAusgeben;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>

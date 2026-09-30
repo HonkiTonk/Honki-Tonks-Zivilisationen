@@ -24,38 +24,38 @@ package body KartenpoleEinstellenLogik is
          case
            KartenpoleAuswahl
          is
-            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            when Nordpol =>
                KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => SenkrechtePolgrößen,
                                                                       HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
                KartengeneratorVariablenLogik.KartenpolEinzelnSchreiben (PolExtern             => KartentestsLogik.SenkrechteKartenpolePrüfen
                                                                         (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum)),
                                                                         HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
                
-            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+            when Südpol =>
                KartengeneratorVariablenLogik.SenkrechterPolSchreiben (SenkrechteExtern      => SenkrechtePolgrößen,
                                                                       HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
                KartengeneratorVariablenLogik.KartenpolEinzelnSchreiben (PolExtern             => KartentestsLogik.SenkrechteKartenpolePrüfen
                                                                         (PolgrößeExtern => KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum)),
                                                                         HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
                
-            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+            when Westpol =>
                KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => WaagerechtePolgrößen,
                                                                        HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
                KartengeneratorVariablenLogik.KartenpolEinzelnSchreiben (PolExtern             => KartentestsLogik.WaagerechteKartenpolePrüfen
                                                                         (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum)),
                                                                         HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
                
-            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+            when Ostpol =>
                KartengeneratorVariablenLogik.WaagerechterPolSchreiben (WaagerechteExtern     => WaagerechtePolgrößen,
                                                                        HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
                KartengeneratorVariablenLogik.KartenpolEinzelnSchreiben (PolExtern             => KartentestsLogik.WaagerechteKartenpolePrüfen
                                                                         (PolgrößeExtern => KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum)),
                                                                         HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
                
-            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+            when Zufall =>
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligePole;
                
-            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+            when Standardpol =>
                KartengeneratorVariablenLogik.KartenpoleSchreiben (PoleExtern => KartenRecordKonstanten.KartenpoleStandard);
                KartengeneratorVariablenLogik.Standardpole;
               

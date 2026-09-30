@@ -43,29 +43,33 @@ package body OptionenGrafikLogik is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            when Auflösung =>
                EinstellungenGeändert := AuflösungÄndern;
             
-            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+            when Vollbild =>
                VollbildFenster;
                EinstellungenGeändert := True;
                
-            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+            when Rahmenlos =>
+               FensterRahmenlos;
+               EinstellungenGeändert := True;
+               
+            when VSync =>
                SchreibeEinstellungenGrafik.VSync (AktivierenDeaktivierenExtern => not LeseEinstellungenGrafik.VSync);
                SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Bildrate_Ändern_Enum);
                
-            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+            when Bildrate =>
                EinstellungenGeändert := BildrateÄndern;
                
-            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+            when Ebenensichtbarkeit =>
                SchreibeEinstellungenGrafik.EbenenUnterhalbSichtbar;
                EinstellungenGeändert := True;
                
-            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+            when Bildratensichtbarkeit =>
                SchreibeEinstellungenGrafik.BildrateAnzeigen;
                EinstellungenGeändert := True;
                
-            when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+            when Texturenwechsel =>
                EinstellungenGeändert := TexturenWechseln;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
@@ -120,7 +124,7 @@ package body OptionenGrafikLogik is
          when True =>
             NeueAuflösung.x := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
       
-            EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => SystemDatentypenHTSEB.EigenesPositive (GrafikKonstanten.MinimaleAuflösunghöhe),
+            EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => SystemDatentypenHTSEB.EigenesPositive (GrafikKonstanten.MinimaleAuflösungshöhe),
                                                                    ZahlenMaximumExtern => SystemDatentypenHTSEB.EigenesPositive (GrafikKonstanten.MaximaleAuflösungshöhe),
                                                                    WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
       end case;
@@ -189,24 +193,47 @@ package body OptionenGrafikLogik is
    
    
    procedure VollbildFenster
-   is
-      use type GrafikDatentypen.Fenster_Anpassen_Enum;
-   begin
+   is begin
       
-      -- Wenn ich weitere Fenstermodis einbauen will muss ich das hier umbauen. äöü
       case
         LeseEinstellungenGrafik.Fenstermodus
       is
-         when GrafikKonstanten.StandardFenster =>
-            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.Vollbild);
-            
          when GrafikKonstanten.Vollbild =>
             SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.StandardFenster);
             
          when others =>
-            MeldungssystemHTSEB.Logik (MeldungExtern => "OptionenGrafikLogik.VollbildFenster: Unbekannter Fenstermodus: " & LeseEinstellungenGrafik.Fenstermodus'Wide_Wide_Image);
-            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.StandardFenster);
+            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.Vollbild);
       end case;
+      
+      Fenstermodus;
+      
+   end VollbildFenster;
+   
+   
+   
+   procedure FensterRahmenlos
+   is begin
+      
+      case
+        LeseEinstellungenGrafik.Fenstermodus
+      is
+         when GrafikKonstanten.RahmenlosesFenster =>
+            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.StandardFenster);
+            
+         when others =>
+            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.RahmenlosesFenster);
+      end case;
+      
+      Fenstermodus;
+      
+   end FensterRahmenlos;
+   
+   
+   
+   procedure Fenstermodus
+   is
+      use type GrafikDatentypen.Fenster_Anpassen_Enum;
+   begin
       
       SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Modus_Verändert_Enum);
       
@@ -217,7 +244,7 @@ package body OptionenGrafikLogik is
          
       end loop ErzeugungNeuesFensterAbwartenSchleife;
       
-   end VollbildFenster;
+   end Fenstermodus;
    
    
    

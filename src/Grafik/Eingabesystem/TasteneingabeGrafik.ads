@@ -4,7 +4,6 @@ package TasteneingabeGrafik is
    pragma Elaborate_Body;
 
    procedure Tasteneingabe;
-   procedure FensterAnpassen;
    
 private
    

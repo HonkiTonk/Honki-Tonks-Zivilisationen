@@ -16,6 +16,11 @@ private
    EinstellungenSchreiben : Boolean;
    EinstellungenGeändert : Boolean;
 
+   LautstärkeSound : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'First;
+   LautstärkeMusik : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (LautstärkeSound);
+   Musikauswahl : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (LautstärkeMusik);
+   Soundauswahl : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Musikauswahl);
+
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    GewählterTon : Unbounded_Wide_Wide_String;

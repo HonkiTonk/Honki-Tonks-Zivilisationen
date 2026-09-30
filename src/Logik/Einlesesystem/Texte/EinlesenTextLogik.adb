@@ -18,6 +18,7 @@ with EinlesenTextSequenzenLogik;
 with EinlesenTextSpeziesLogik;
 with EinlesenTextKarteLogik;
 with EinlesenTextRohstoffeLogik;
+with TexteinstellungenGrafik;
 
 package body EinlesenTextLogik is
 
@@ -35,6 +36,8 @@ package body EinlesenTextLogik is
             EinlesenTextSonstigesLogik.Debugmenü;
             
          when False =>
+            TexteinstellungenGrafik.SchriftartFestlegenDebug;
+            
             Start_Search (Search    => Suche,
                           Directory => VerzeichnisKonstanten.Sprachen,
                           Pattern   => "",

@@ -117,36 +117,5 @@ package body TasteneingabeGrafik is
       SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
       
    end Tasteneingabe;
-   
-   
-   
-   procedure FensterAnpassen
-   is
-      use type Sf.sfBool;
-   begin
-      
-      AnpassenSchleife:
-      while
-        Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => FensterGrafik.FensterLesen,
-                                                        event        => Fensteranpassung)
-      loop
-         
-         case
-           Fensteranpassung.eventType
-         is
-            when Sf.Window.Event.sfEvtClosed =>
-               SchreibeGrafiktask.FensterEntfernen (JaNeinExtern => True);
-               return;
-                  
-            when Sf.Window.Event.sfEvtResized =>
-               SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Fenster_Verändert_Enum);
-               
-            when others =>
-               null;
-         end case;
-         
-      end loop AnpassenSchleife;
-      
-   end FensterAnpassen;
 
 end TasteneingabeGrafik;

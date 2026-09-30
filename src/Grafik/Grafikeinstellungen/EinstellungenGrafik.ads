@@ -17,7 +17,7 @@ package EinstellungenGrafik is
    GrafikeinstellungenStandard : constant GrafikRecords.GrafikeinstellungenRecord := (
                                                                                       Fenstermodus           => GrafikKonstanten.StandardFenster,
                                                                            
-                                                                                      Auflösung              => (GrafikKonstanten.MinimaleAuflösungsbreite, GrafikKonstanten.MinimaleAuflösunghöhe),
+                                                                                      Auflösung              => (GrafikKonstanten.StandardAuflösungsbreite, GrafikKonstanten.StandardAuflösungshöhe),
                                                                                       Farbtiefe              => 32,
                                                                                       Bildrate               => 30,
                                                                                       VSync                  => Sf.sfFalse,

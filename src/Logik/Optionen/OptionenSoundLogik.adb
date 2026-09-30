@@ -38,16 +38,16 @@ package body OptionenSoundLogik is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            when LautstärkeSound =>
                EinstellungenGeändert := Soundlautstärke;
                
-            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+            when LautstärkeMusik =>
                EinstellungenGeändert := Musiklautstärke;
                
-            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+            when Musikauswahl =>
                EinstellungenGeändert := MusikWechseln;
                
-            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+            when Soundauswahl =>
                EinstellungenGeändert := SoundWechseln;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

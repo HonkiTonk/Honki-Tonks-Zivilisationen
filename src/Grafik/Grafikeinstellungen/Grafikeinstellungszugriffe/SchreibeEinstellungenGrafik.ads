@@ -24,7 +24,7 @@ package SchreibeEinstellungenGrafik is
        Pre => (
                  AuflösungExtern.x in GrafikKonstanten.MinimaleAuflösungsbreite .. GrafikKonstanten.MaximaleAuflösungsbreite
                and
-                 AuflösungExtern.y in GrafikKonstanten.MinimaleAuflösunghöhe .. GrafikKonstanten.MaximaleAuflösungshöhe
+                 AuflösungExtern.y in GrafikKonstanten.MinimaleAuflösungshöhe .. GrafikKonstanten.MaximaleAuflösungshöhe
               );
    pragma Inline (Auflösung);
    

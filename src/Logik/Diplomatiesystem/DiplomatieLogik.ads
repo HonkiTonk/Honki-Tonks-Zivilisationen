@@ -28,6 +28,12 @@ private
 
    KontaktierteSpezies : SpeziesDatentypen.Spezies_Vorhanden_Enum;
 
+   Sichtbarkeit : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'First;
+   Rauswerfen : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Sichtbarkeit);
+   Nichtangriffspakt : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Rauswerfen);
+   Frieden : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Nichtangriffspakt);
+   Krieg : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Frieden);
+
    AktionAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    Auswahl : Natural;

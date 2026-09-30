@@ -25,7 +25,7 @@ package LeseEinstellungenGrafik is
        Post => (
                   Auflösung'Result.x in GrafikKonstanten.MinimaleAuflösungsbreite .. GrafikKonstanten.MaximaleAuflösungsbreite
                 and
-                  Auflösung'Result.y in GrafikKonstanten.MinimaleAuflösunghöhe .. GrafikKonstanten.MaximaleAuflösungshöhe
+                  Auflösung'Result.y in GrafikKonstanten.MinimaleAuflösungshöhe .. GrafikKonstanten.MaximaleAuflösungshöhe
                );
    pragma Inline (Auflösung);
    

@@ -25,27 +25,27 @@ package body KartenartEinstellenLogik is
          case
            KartenartAuswahl
          is
-            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            when Inseln =>
                KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Inseln_Enum);
                
-            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+            when Kontinente =>
                KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Kontinente_Enum);
                
-            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+            when Pangäa =>
                KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Pangäa_Enum);
                
-            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+            when Nutzerdefiniert =>
                KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum);
                KartenartNutzerdefinition;
                
-            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+            when ZufallVordefiniert =>
                KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartenart);
                
-            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+            when Zufall =>
                KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum);
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenart;
                
-            when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+            when Standardauswahl =>
                KartenartStandard;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
