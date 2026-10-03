@@ -14,6 +14,7 @@ private
 
    KarteErstellt : Boolean := False;
 
+   Spielmenü : constant RueckgabeDatentypen.Rückgabe_Werte_Enum := RueckgabeDatentypen.Start_Weiter_Standard_Enum;
    Kartenebene : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'First;
    Kartengröße : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Kartenebene);
    Kartenpole : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Kartengröße);

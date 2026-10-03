@@ -17,6 +17,12 @@ package SpielmenueLogik is
    
 private
    
+   -- Das hier immer identisch mit den Werten in SpielLogik halten oder mal in GlobaleKonstanten auslagern. äöü
+   Weiter : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'First;
+   Speichern : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Weiter);
+   Laden : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Speichern);
+   Optionen : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Laden);
+   
    AuswahlSpielmenü : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    RückgabeOptionen : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 

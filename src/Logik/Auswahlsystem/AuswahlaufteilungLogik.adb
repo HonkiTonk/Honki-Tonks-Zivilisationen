@@ -26,7 +26,7 @@ package body AuswahlaufteilungLogik is
             
             -- Das passt nicht in die Menüs wegen diversen Spezialeigenschaften, ähnlich wie die Sprachauswahl.
          when MenueDatentypen.Spielstand_Menü_Enum =>
-            return RueckgabeDatentypen.Start_Weiter_Enum;
+            return RueckgabeDatentypen.Start_Weiter_Standard_Enum;
       end case;
       
    end AuswahlMenüsAufteilung;

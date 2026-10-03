@@ -34,27 +34,27 @@ package body DatenbankeneditorenLogik is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Auswahl_Eins_Enum =>
+            when Kartendatenbank =>
                -- KartenDatenbankeneditorLogik.KartenDatenbankenEditor;
                null;
                
-            when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
+            when Einheitendatenbank =>
                -- EinheitenDatenbankeditorLogik.EinheitenDatenbankEditor;
                null;
                
-            when RueckgabeDatentypen.Auswahl_Drei_Enum =>
+            when Gebäudedatenbank =>
                -- GebaeudeDatenbankeditorLogik.GebäudeDatenbankEditor;
                null;
                
-            when RueckgabeDatentypen.Auswahl_Vier_Enum =>
+            when Forschungsdatenbank =>
                -- ForschungenDatenbankeditorLogik.ForschungenDatenbankEditor;
                null;
                
-            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+            when Verbesserungendatenbank =>
                -- VerbesserungenDatenbankeditorLogik.VerbesserungenDatenbankEditor;
                null;
                
-            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+            when Standardwerte =>
                AlleAufStandard;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

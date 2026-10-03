@@ -22,6 +22,7 @@ package KartenbasisgrundDatentypen is
                             Küstengewässer_Enum,
                             
                             Eis_Enum,
+                            -- Arktisch, Tundra,  Grasland, Steppe, Savanne, Wüste,
                             Flachland_Enum, Wüste_Enum, Tundra_Enum,
                             
                             Hügelkreuzung_Vier_Enum, Hügel_Waagrecht_Enum, Hügel_Senkrecht_Enum, Hügelkurve_Unten_Rechts_Enum, Hügelkurve_Unten_Links_Enum, Hügelkurve_Oben_Rechts_Enum, Hügelkurve_Oben_Links_Enum,

@@ -2,6 +2,7 @@ package KartenzusatzgrundDatentypen is
    pragma Pure;
    
    -- Man könnte bei der Oberfläche Riffe mit einbauen, aber wie ist das dann Unterwasser? Sollte die da nicht auch vorhanden sein? äöü
+   -- Einfach Riffe für beide Ebenen einbauen? Und dann sind die Riffe das Ende der Oberfläche und der Beginn der Unterfläche. äöü
    type Zusatzgrund_Enum is (
                              Leer_Zusatzgrund_Enum,
                              
@@ -21,6 +22,8 @@ package KartenzusatzgrundDatentypen is
                              Sumpfkreuzung_Vier_Enum, Sumpf_Waagrecht_Enum, Sumpf_Senkrecht_Enum, Sumpfkurve_Unten_Rechts_Enum, Sumpfkurve_Unten_Links_Enum, Sumpfkurve_Oben_Rechts_Enum, Sumpfkurve_Oben_Links_Enum,
                              Sumpfkreuzung_Drei_Oben_Enum, Sumpfkreuzung_Drei_Unten_Enum, Sumpfkreuzung_Drei_Rechts_Enum, Sumpfkreuzung_Drei_Links_Enum, Sumpfende_Links_Enum, Sumpfende_Rechts_Enum,
                              Sumpfende_Unten_Enum, Sumpfende_Oben_Enum, Sumpf_Enum,
+                             
+                             -- Riffe_Enum,
                              
                              -- Unterfläche
                              Korallenkreuzung_Vier_Enum, Korallen_Waagrecht_Enum, Korallen_Senkrecht_Enum, Korallenkurve_Unten_Rechts_Enum, Korallenkurve_Unten_Links_Enum, Korallenkurve_Oben_Rechts_Enum,

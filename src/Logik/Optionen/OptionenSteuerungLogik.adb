@@ -19,7 +19,7 @@ package body OptionenSteuerungLogik is
          case
            AuswahlWert
          is
-            when RueckgabeDatentypen.Standard_Enum =>
+            when RueckgabeDatentypen.Start_Weiter_Standard_Enum =>
                StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
             
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

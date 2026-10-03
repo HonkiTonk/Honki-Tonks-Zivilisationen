@@ -44,10 +44,10 @@ package body SpielLogik is
                when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range =>
                   return RückgabeSpezies;
                   
-               when RueckgabeDatentypen.Schleife_Verlassen_Enum =>
+               when SchleifeVerlassen =>
                   exit SpeziesSchleife;
                   
-               when RueckgabeDatentypen.Start_Weiter_Enum =>
+               when RueckgabeDatentypen.Start_Weiter_Standard_Enum =>
                   null;
                
                when others =>
@@ -108,7 +108,7 @@ package body SpielLogik is
         or
           LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesExtern) = True
       then
-         return RueckgabeDatentypen.Start_Weiter_Enum;
+         return RueckgabeDatentypen.Start_Weiter_Standard_Enum;
       
       elsif
         LeseGrenzen.Speziesrundengrenze (SpeziesExtern => SpeziesExtern) < LeseAllgemeines.Rundenanzahl
@@ -116,7 +116,7 @@ package body SpielLogik is
           LeseGrenzen.Speziesrundengrenze (SpeziesExtern => SpeziesExtern) > 0
       then
          SpeziesEntfernenLogik.SpeziesEntfernen (SpeziesExtern => SpeziesExtern);
-         return RueckgabeDatentypen.Start_Weiter_Enum;
+         return RueckgabeDatentypen.Start_Weiter_Standard_Enum;
          
       else
          return SpeziesDurchgehen (SpeziesExtern => SpeziesExtern);
@@ -151,14 +151,14 @@ package body SpielLogik is
                
             when SpeziesDatentypen.Leer_Spieler_Enum =>
                MeldungssystemHTSEB.Logik (MeldungExtern => "SpielLogik.SpeziesDurchgehen: Keine Spezies");
-               return RueckgabeDatentypen.Runde_Beenden_Enum;
+               return Rundenende;
          end case;
 
       else
          null;
       end if;
       
-      return RueckgabeDatentypen.Start_Weiter_Enum;
+      return RueckgabeDatentypen.Start_Weiter_Standard_Enum;
       
    end SpeziesDurchgehen;
    
@@ -214,14 +214,14 @@ package body SpielLogik is
                return RückgabeWert;
             end if;
             
-         when RueckgabeDatentypen.Schleife_Verlassen_Enum =>
+         when SchleifeVerlassen =>
             return RückgabeWert;
             
          when others =>
             null;
       end case;
       
-      return RueckgabeDatentypen.Start_Weiter_Enum;
+      return RueckgabeDatentypen.Start_Weiter_Standard_Enum;
       
    end MenschlicherSpieler;
 
@@ -277,28 +277,28 @@ package body SpielLogik is
          case
            AktuellerBefehlSpieler
          is
-            when RueckgabeDatentypen.Start_Weiter_Enum =>
+            when RueckgabeDatentypen.Start_Weiter_Standard_Enum =>
                if
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
                then
                   null;
                   
                else
-                  RückgabeMenschAmZug := RueckgabeDatentypen.Start_Weiter_Enum;
+                  RückgabeMenschAmZug := RueckgabeDatentypen.Start_Weiter_Standard_Enum;
                   exit SpielerSchleife;
                end if;
                
-            when RueckgabeDatentypen.Runde_Beenden_Enum =>
+            when Rundenende =>
                RückgabeMenschAmZug := AktuellerBefehlSpieler;
                exit SpielerSchleife;
                
-            when RueckgabeDatentypen.Spielmenü_Enum =>
+            when Spielmenü =>
                RückgabeSpielmenü := SpielmenueLogik.Spielmenü (SpeziesExtern => SpeziesExtern);
 
                if
-                 RückgabeSpielmenü = RueckgabeDatentypen.Laden_Enum
+                 RückgabeSpielmenü = Laden
                then
-                  RückgabeMenschAmZug := RueckgabeDatentypen.Schleife_Verlassen_Enum;
+                  RückgabeMenschAmZug := SchleifeVerlassen;
                   exit SpielerSchleife;
                   
                elsif
@@ -308,7 +308,7 @@ package body SpielLogik is
                   exit SpielerSchleife;
                   
                elsif
-                 RückgabeSpielmenü = RueckgabeDatentypen.Start_Weiter_Enum
+                 RückgabeSpielmenü = Weiter
                  or
                    RückgabeSpielmenü = RueckgabeDatentypen.Zurück_Enum
                then

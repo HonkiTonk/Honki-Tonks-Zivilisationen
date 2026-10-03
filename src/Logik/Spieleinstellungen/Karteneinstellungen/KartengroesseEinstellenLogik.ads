@@ -11,6 +11,10 @@ package KartengroesseEinstellenLogik is
    
 private
    
+   Nutzerdefiniert : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Last);
+   Standardzufall : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Nutzerdefiniert);
+   Zufall : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Standardzufall);
+   
    KartengrößeAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
    Senkrechte : KartenDatentypen.SenkrechtePositiv;

@@ -30,7 +30,7 @@ package body HauptmenueLogik is
          case
            RückgabeAuswahl
          is
-            when RueckgabeDatentypen.Start_Weiter_Enum =>
+            when StartWeiter =>
                if
                  SpieleinstellungenLogik.Spieleinstellungen (SchnellstartExtern => False) = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
@@ -40,7 +40,7 @@ package body HauptmenueLogik is
                   null;
                end if;
                
-            when RueckgabeDatentypen.Schnellstart_Enum =>
+            when Schnellstart =>
                if
                  SpieleinstellungenLogik.Spieleinstellungen (SchnellstartExtern => True) = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
@@ -50,7 +50,7 @@ package body HauptmenueLogik is
                   null;
                end if;
                
-            when RueckgabeDatentypen.Laden_Enum =>
+            when Laden =>
                if
                  LadenLogik.Laden = True
                then
@@ -68,7 +68,7 @@ package body HauptmenueLogik is
                   null;
                end if;
                
-            when RueckgabeDatentypen.Optionen_Enum =>
+            when Optionen =>
                if
                  OptionenLogik.Optionen = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
@@ -78,7 +78,7 @@ package body HauptmenueLogik is
                   null;
                end if;
                
-            when RueckgabeDatentypen.Editoren_Enum =>
+            when Editoren =>
                if
                  DatenbankeneditorenLogik.DatenbankenEditoren = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
@@ -88,7 +88,7 @@ package body HauptmenueLogik is
                   null;
                end if;
                
-            when RueckgabeDatentypen.Würdigungen_Enum =>
+            when Würdigungen =>
                null;
                
             when RueckgabeDatentypen.Spiel_Beenden_Enum =>

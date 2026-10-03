@@ -11,7 +11,6 @@ with MeldungssystemHTSEB;
 with KartengeneratorVariablenLogik;
 with KartentestsLogik;
 
--- Die ganzen Zugriffe auf KartengeneratorVariablenLogik auch mal in Lese/Schreibevariablen packen. äöü
 package body KartengroesseEinstellenLogik is
 
    procedure Kartengröße
@@ -28,13 +27,13 @@ package body KartengroesseEinstellenLogik is
             when RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range =>
                KartengeneratorVariablenLogik.KartengrößeSchreiben (GrößeExtern => KartenKonstanten.StandardKartengrößen (KartengrößeAuswahl));
 
-            when RueckgabeDatentypen.Auswahl_Elf_Enum =>
+            when Nutzerdefiniert =>
                KartengeneratorVariablenLogik.KartengrößeSchreiben (GrößeExtern => GrößeSelbstBestimmen);
                
-            when RueckgabeDatentypen.Auswahl_Zwölf_Enum =>
+            when Standardzufall =>
                KartengeneratorVariablenLogik.KartengrößeSchreiben (GrößeExtern => KartenKonstanten.StandardKartengrößen (ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartengröße));
                
-            when RueckgabeDatentypen.Auswahl_Dreizehn_Enum =>
+            when Zufall =>
                KartengeneratorVariablenLogik.KartengrößeSchreiben (GrößeExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartengröße);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>

@@ -25,8 +25,7 @@ package body KartentemperaturEinstellenLogik is
             when RueckgabeDatentypen.Kartentemperatur_Enum'Range =>
                KartengeneratorVariablenLogik.KartentemperaturSchreiben (TemperaturExtern => UmwandlungenDatentypen.KartentemperaturrückgabeNachKartentemperatur (RückgabeExtern => KartentemperaturAuswahl));
                
-               -- Bei sowas hier direkt Successor einbauen? äöü
-            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+            when Zufall =>
                KartengeneratorVariablenLogik.KartentemperaturSchreiben (TemperaturExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartentemperatur);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>

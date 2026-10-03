@@ -18,6 +18,10 @@ package BefehlsauswahlLogik is
               );
    
 private
+   
+   -- Das hier immer identisch mit den Werten in SpielLogik halten oder mal in GlobaleKonstanten auslagern. äöü
+   Spielmenü : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'First;
+   Rundenende : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Spielmenü);
       
    Befehl : TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
    

@@ -1,4 +1,5 @@
 with MeldungssystemHTSEB;
+
 with OftVerwendeterSound;
 
 package body MenuerueckgabenLogik is
@@ -15,25 +16,16 @@ package body MenuerueckgabenLogik is
       case
         WelchesMenüExtern
       is
-         when MenueDatentypen.Haupt_Menü_Enum =>
-            return Hauptmenü (EndeExtern            => EndeExtern,
-                               AktuelleAuswahlExtern => AktuelleAuswahlExtern);
-            
-         when MenueDatentypen.Spiel_Menü_Enum =>
-            return Spielmenü (EndeExtern            => EndeExtern,
-                               AktuelleAuswahlExtern => AktuelleAuswahlExtern);
-            
          when MenueDatentypen.Spieleinstellungen_Menü_Enum =>
-            return SpieleinstellungenMenü (EndeExtern            => EndeExtern,
-                                            AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            MitFertigNurFertigZurück := SystemDatentypenHTSEB.Neutral_Enum;
             
          when MenueDatentypen.Kartenpole_Menü_Enum | MenueDatentypen.Kartengröße_Menü_Enum | MenueDatentypen.Kartenebene_Menü_Enum | MenueDatentypen.Kartenart_Menü_Enum | MenueDatentypen.Kartenform_Menü_Enum
             | MenueDatentypen.Kartentemperatur_Menü_Enum | MenueDatentypen.Kartenrohstoffe_Menü_Enum | MenueDatentypen.Schwierigkeitsgrad_Menü_Enum | MenueDatentypen.Spezies_Menü_Enum
             | MenueDatentypen.Debug_Menü_Enum =>
-            MitFertig := True;
+            MitFertigNurFertigZurück := SystemDatentypenHTSEB.True_Enum;
             
          when others =>
-            MitFertig := False;
+            MitFertigNurFertigZurück := SystemDatentypenHTSEB.False_Enum;
       end case;
       
       AuswahlSchleife:
@@ -50,9 +42,9 @@ package body MenuerueckgabenLogik is
 
       end loop AuswahlSchleife;
         
-      return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern,
-                                    FertigExtern          => MitFertig);
+      return FertigZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                          AktuelleAuswahlExtern => AktuelleAuswahlExtern,
+                                          FertigExtern          => MitFertigNurFertigZurück);
       
    end RückgabeMenüs;
    
@@ -68,223 +60,67 @@ package body MenuerueckgabenLogik is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Standard_Enum;
+         return RueckgabeDatentypen.Start_Weiter_Standard_Enum;
          
       else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern,
-                                       FertigExtern          => False);
+         return FertigZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                             AktuelleAuswahlExtern => AktuelleAuswahlExtern,
+                                             FertigExtern          => SystemDatentypenHTSEB.False_Enum);
       end if;
       
    end SteuerungMenü;
-   
-   
-
-   -- Hier auch die konstanten Benennungen aus den Menüs einbauen? äöü
-   -- Wäre übersichtlicher, aber dann müsste ich die Konstanten auch in eine gloabe Konstantendatei packen. äöü
-   function Hauptmenü
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
-            
-      if
-        AktuelleAuswahlExtern = Anfang
-      then
-         return RueckgabeDatentypen.Start_Weiter_Enum;
-         
-      elsif
-        AktuelleAuswahlExtern = Anfang + 1
-      then
-         return RueckgabeDatentypen.Schnellstart_Enum;
-                  
-      elsif
-        AktuelleAuswahlExtern = Anfang + 2
-      then
-         return RueckgabeDatentypen.Laden_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = Anfang + 3
-      then
-         return RueckgabeDatentypen.Optionen_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = Anfang + 4
-      then
-         return RueckgabeDatentypen.Editoren_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = Anfang + 5
-      then
-         return RueckgabeDatentypen.Würdigungen_Enum;
-                    
-      else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern,
-                                       FertigExtern          => False);
-      end if;
-      
-   end Hauptmenü;
-   
-   
-   
-   function Spielmenü
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahlExtern = Anfang
-      then
-         return RueckgabeDatentypen.Start_Weiter_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = Anfang + 1
-      then
-         return RueckgabeDatentypen.Speichern_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = Anfang + 2
-      then
-         return RueckgabeDatentypen.Laden_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = Anfang + 3
-      then
-         return RueckgabeDatentypen.Optionen_Enum;
-                    
-      else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern,
-                                       FertigExtern          => False);
-      end if;
-      
-   end Spielmenü;
-   
-   
-   
-   function SpieleinstellungenMenü
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahlExtern = Anfang
-      then
-         return RueckgabeDatentypen.Auswahl_Eins_Enum;
-      
-      elsif
-        AktuelleAuswahlExtern = Anfang + 1
-      then
-         return RueckgabeDatentypen.Auswahl_Zwei_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = Anfang + 2
-      then
-         return RueckgabeDatentypen.Auswahl_Drei_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = Anfang + 3
-      then
-         return RueckgabeDatentypen.Auswahl_Vier_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = Anfang + 4
-      then
-         return RueckgabeDatentypen.Auswahl_Fünf_Enum;
-         
-      elsif
-        AktuelleAuswahlExtern = Anfang + 5
-      then
-         return RueckgabeDatentypen.Auswahl_Sechs_Enum;
-         
-      elsif
-        AktuelleAuswahlExtern = Anfang + 6
-      then
-         return RueckgabeDatentypen.Auswahl_Sieben_Enum;
-         
-      elsif
-        AktuelleAuswahlExtern = Anfang + 7
-      then
-         return RueckgabeDatentypen.Auswahl_Acht_Enum;
-         
-      elsif
-        AktuelleAuswahlExtern = Anfang + 8
-      then
-         return RueckgabeDatentypen.Auswahl_Neun_Enum;
-         
-      elsif
-        AktuelleAuswahlExtern = Anfang + 9
-      then
-         return RueckgabeDatentypen.Fertig_Enum;
-                    
-      else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern,
-                                       FertigExtern          => False);
-      end if;
-      
-   end SpieleinstellungenMenü;
-   
-   
-   
-   function Fertig
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return RueckgabeDatentypen.Fertig_Enum;
-                    
-      else
-         MeldungssystemHTSEB.Logik (MeldungExtern => "MenuerueckgabenLogik.Fertig: Falsche Auswahl");
-         return RueckgabeDatentypen.Spiel_Beenden_Enum;
-      end if;
-      
-   end Fertig;
         
    
    
-   function ZurückHauptmenüEnde
+   function FertigZurückHauptmenüEnde
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive;
-      FertigExtern : in Boolean)
+      FertigExtern : in SystemDatentypenHTSEB.Erweiterter_Boolean_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       case
         FertigExtern
       is
-         when True =>
+         when SystemDatentypenHTSEB.True_Enum =>
             return RueckgabeDatentypen.Fertig_Enum;
             
-         when False =>
+         when SystemDatentypenHTSEB.Neutral_Enum =>
+            if
+              AktuelleAuswahlExtern = EndeExtern - 2
+            then
+               return RueckgabeDatentypen.Fertig_Enum;
+               
+            else
+               null;
+            end if;
+            
+         when SystemDatentypenHTSEB.False_Enum =>
             if
               AktuelleAuswahlExtern = EndeExtern - 2
             then
                return RueckgabeDatentypen.Zurück_Enum;
-                    
-            elsif
-              AktuelleAuswahlExtern = EndeExtern - 1
-            then
-               return RueckgabeDatentypen.Hauptmenü_Enum;
-                    
-            elsif
-              AktuelleAuswahlExtern = EndeExtern
-            then
-               return RueckgabeDatentypen.Spiel_Beenden_Enum;
-                    
+               
             else
-               MeldungssystemHTSEB.Logik (MeldungExtern => "MenuerueckgabenLogik.ZurückHauptmenüEnde: Falsche Auswahl");
-               return RueckgabeDatentypen.Spiel_Beenden_Enum;
+               null;
             end if;
       end case;
       
-   end ZurückHauptmenüEnde;
+      if
+        AktuelleAuswahlExtern = EndeExtern - 1
+      then
+         return RueckgabeDatentypen.Hauptmenü_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern
+      then
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
+                    
+      else
+         MeldungssystemHTSEB.Logik (MeldungExtern => "MenuerueckgabenLogik.FertigZurückHauptmenüEnde: Falsche Auswahl");
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
+      end if;
+      
+   end FertigZurückHauptmenüEnde;
 
 end MenuerueckgabenLogik;

@@ -7,6 +7,8 @@ package KartentemperaturEinstellenLogik is
    
 private
    
+   Zufall : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (RueckgabeDatentypen.Kartentemperatur_Enum'Last);
+   
    KartentemperaturAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
 end KartentemperaturEinstellenLogik;

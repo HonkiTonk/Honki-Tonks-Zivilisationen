@@ -51,7 +51,7 @@ package body BefehlsauswahlLogik is
             BefehlspruefungenLogik.AuswahlEinheitStadt (SpeziesExtern => SpeziesExtern);
             
          when TastenbelegungDatentypen.Abwählen_Enum =>
-            return RueckgabeDatentypen.Spielmenü_Enum;
+            return Spielmenü;
            
          when TastenbelegungDatentypen.Forschung_Enum =>
             ForschungsauswahlLogik.Forschung (SpeziesExtern => SpeziesExtern);
@@ -87,7 +87,7 @@ package body BefehlsauswahlLogik is
             NaechsteEinheitLogik.NächsteEinheitMeldung (SpeziesExtern => SpeziesExtern);
             
          when TastenbelegungDatentypen.Runde_Beenden_Enum =>
-            return RueckgabeDatentypen.Runde_Beenden_Enum;
+            return Rundenende;
             
          when TastenbelegungDatentypen.Debugmenü_Enum =>
             DebugmenueLogik.Debugmenü (SpeziesExtern => SpeziesExtern);
@@ -96,7 +96,7 @@ package body BefehlsauswahlLogik is
             null;
       end case;
       
-      return RueckgabeDatentypen.Start_Weiter_Enum;
+      return RueckgabeDatentypen.Start_Weiter_Standard_Enum;
       
    end Tasteneingabe;
 

@@ -13,6 +13,18 @@ package SpielLogik is
 private
    use type SpeziesDatentypen.Spieler_Enum;
 
+   -- Das hier immer identisch mit den Werten in SpielmenueLogik halten oder mal in GlobaleKonstanten auslagern. äöü
+   Weiter : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'First;
+   Speichern : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Weiter);
+   Laden : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Speichern);
+   Optionen : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Laden);
+
+   -- Das hier immer identisch mit den Werten in BefehlsauswahlLogik halten oder mal in GlobaleKonstanten auslagern. äöü
+   Spielmenü : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'First;
+   Rundenende : constant RueckgabeDatentypen.Auswahl_Enum := RueckgabeDatentypen.Auswahl_Enum'Succ (Spielmenü);
+
+   SchleifeVerlassen : constant RueckgabeDatentypen.Rückgabe_Werte_Enum := RueckgabeDatentypen.Auswahl_Neunzehn_Enum;
+
    AktuellerBefehlSpieler : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    RückgabeSpezies : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    RückgabeWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;

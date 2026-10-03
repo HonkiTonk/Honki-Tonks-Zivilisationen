@@ -106,7 +106,7 @@ package body SpieleinstellungenLogik is
          case
            Rückgabewert
          is
-            when RueckgabeDatentypen.Spielmenü_Enum =>
+            when Spielmenü =>
                null;
                
             when others =>
@@ -144,7 +144,7 @@ package body SpieleinstellungenLogik is
             
          when False =>
             MeldungssystemHTSEB.Logik (MeldungExtern => "SpieleinstellungenLogik.AutomatischeEinstellungen: Speziesplatzierung unmöglich");
-            return RueckgabeDatentypen.Spielmenü_Enum;
+            return Spielmenü;
       end case;
       
       KarteErstellt := True;

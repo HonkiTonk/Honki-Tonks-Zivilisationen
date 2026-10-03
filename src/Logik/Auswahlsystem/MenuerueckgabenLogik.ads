@@ -1,3 +1,5 @@
+private with SystemDatentypenHTSEB;
+
 with MenueDatentypen;
 with RueckgabeDatentypen;
 
@@ -30,13 +32,13 @@ package MenuerueckgabenLogik is
    
 private
    
-   MitFertig : Boolean;
+   MitFertigNurFertigZurück : SystemDatentypenHTSEB.Erweiterter_Boolean_Enum;
    
    Anfang : constant Positive := 1;
    AbzugFertig : constant Positive := 2;
-   -- Enthält aktuell Speichern, Zurück, Hauptmenü und Spiel beenden.
+   -- Enthält aktuell Speichern, Zurück/Fertig, Hauptmenü und Spiel beenden.
    AbzugZusatzauswahl : constant Positive := 4;
-   Grundwert : constant Positive := RueckgabeDatentypen.Rückgabe_Werte_Enum'Pos (RueckgabeDatentypen.Auswahl_Null_Enum);
+   Grundwert : constant Positive := RueckgabeDatentypen.Rückgabe_Werte_Enum'Pos (RueckgabeDatentypen.Start_Weiter_Standard_Enum);
    
    Ende : Positive;
    
@@ -63,53 +65,17 @@ private
                                   MenueDatentypen.Handel_Menü_Enum                 => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Handel_Menü_Enum) - 1,
                                   
                                   -- Das hier sind Spezialmenüs die nicht so einfach in das aktuelle System integriert werden können oder unvollständig sind.
-                                  MenueDatentypen.Spieleinstellungen_Menü_Enum     => 1,
-                                  MenueDatentypen.Haupt_Menü_Enum                  => 1,
-                                  MenueDatentypen.Spiel_Menü_Enum                  => 1
+                                  MenueDatentypen.Spieleinstellungen_Menü_Enum     => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spieleinstellungen_Menü_Enum) - AbzugZusatzauswahl,
+                                  MenueDatentypen.Haupt_Menü_Enum                  => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Haupt_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Spiel_Menü_Enum                  => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spiel_Menü_Enum) - 3
                                  );
 
    
    
-   function Hauptmenü
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-     with
-       Pre => (
-                 AktuelleAuswahlExtern <= EndeExtern
-              );
-
-   function Spielmenü
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-     with
-       Pre => (
-                 AktuelleAuswahlExtern <= EndeExtern
-              );
-   
-   function SpieleinstellungenMenü
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-     with
-       Pre => (
-                 AktuelleAuswahlExtern <= EndeExtern
-              );
-      
-   function Fertig
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-     with
-       Pre => (
-                 AktuelleAuswahlExtern <= EndeExtern
-              );
-   
-   function ZurückHauptmenüEnde
+   function FertigZurückHauptmenüEnde
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive;
-      FertigExtern : in Boolean)
+      FertigExtern : in SystemDatentypenHTSEB.Erweiterter_Boolean_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (

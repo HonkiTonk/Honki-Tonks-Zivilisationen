@@ -23,22 +23,22 @@ package body SpielmenueLogik is
          case
            AuswahlSpielmenü
          is
-            when RueckgabeDatentypen.Speichern_Enum =>
+            when Speichern =>
                SchreibeAllgemeines.SpezieszugNachLaden (SpeziesExtern => SpeziesExtern);
                SpeichernLogik.Speichern (AutospeichernExtern    => False,
                                          NotfallspeichernExtern => False);
                
-            when RueckgabeDatentypen.Laden_Enum =>
+            when Laden =>
                if
                  LadenLogik.Laden = True
                then
-                  return RueckgabeDatentypen.Laden_Enum;
+                  return Laden;
 
                else
                   null;
                end if;
                
-            when RueckgabeDatentypen.Optionen_Enum =>
+            when Optionen =>
                RückgabeOptionen := OptionenLogik.Optionen;
                
                if
@@ -50,7 +50,7 @@ package body SpielmenueLogik is
                   null;
                end if;
                
-            when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range | RueckgabeDatentypen.Start_Weiter_Enum | RueckgabeDatentypen.Zurück_Enum =>
+            when RueckgabeDatentypen.Zurück_Beenden_Enum'Range | Weiter =>
                return AuswahlSpielmenü;
                   
             when others =>
