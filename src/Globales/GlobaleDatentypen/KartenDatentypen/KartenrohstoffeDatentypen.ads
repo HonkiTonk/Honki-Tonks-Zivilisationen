@@ -1,7 +1,10 @@
 package KartenrohstoffeDatentypen is
    pragma Pure;
    
-   -- Grobe Aufteilung: Pflanzen, Tiere, Mineralien,
+   -- Aktuelle, grobe Aufteilung: Pflanzen, Tiere, Mineralien,
+   -- Neue, grobe Aufteilung so vielleicht?
+   -- Landpflanzen, Landtiere, Landmineralien
+   -- Wasserpflanzen, Wassertiere, Wassermineralien
    -- Oberarten/begriffe als Rohstoffe für alles was ich nicht einzeln aufteile oder erfasse.
    type Rohstoffe_Enum is (
                            Leer_Rohstoffe_Enum,
@@ -24,7 +27,7 @@ package KartenrohstoffeDatentypen is
                            
                            Nutztiere_Enum, Wildtiere_Enum, Seltene_Tiere_Enum,
                            
-                           Rinder_Enum, Rotwild_Enum, Schafe_Enum, Schweine_Enum, Kamele_Enum, Büffel_Enum, Elefanten_Enum, Pferde_Enum, Llamas_Enum, Alligator_Enum, Bär_Enum, Rentiere_Enum, Biber_Enum,
+                           Rinder_Enum, Rotwild_Enum, Schafe_Enum, Schweine_Enum, Kamele_Enum, Büffel_Enum, Elefanten_Enum, Pferde_Enum, Llamas_Enum, Alligatoren_Enum, Bären_Enum, Rentiere_Enum, Biber_Enum,
                            Pinguine_Enum, Robben_Enum,
                            Schaben_Enum, Seidenraupe_Enum,
                            

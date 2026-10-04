@@ -61,7 +61,7 @@ package body KartengeneratorStandardLogik is
               BeliebigerLandwert > WahrscheinlichkeitLandmasse.Endwert
             then
                SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                             GrundExtern       => KartenbasisgrundDatentypen.Flachland_Enum);
+                                             GrundExtern       => KartenbasisgrundDatentypen.Grasland_Enum);
                
             else
                LandmasseAbstandGenerieren (SenkrechteExtern => SenkrechteExtern,
@@ -393,7 +393,7 @@ package body KartengeneratorStandardLogik is
         ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte in WahrscheinlichkeitLand.Anfangswert .. WahrscheinlichkeitLand.Endwert
       then
          SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                       GrundExtern       => KartenbasisgrundDatentypen.Flachland_Enum);
+                                       GrundExtern       => KartenbasisgrundDatentypen.Grasland_Enum);
                
       else
          SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
@@ -438,7 +438,7 @@ package body KartengeneratorStandardLogik is
                
       else
          SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                       GrundExtern       => KartenbasisgrundDatentypen.Flachland_Enum);
+                                       GrundExtern       => KartenbasisgrundDatentypen.Grasland_Enum);
       end if;
       
    end Wassergrund;

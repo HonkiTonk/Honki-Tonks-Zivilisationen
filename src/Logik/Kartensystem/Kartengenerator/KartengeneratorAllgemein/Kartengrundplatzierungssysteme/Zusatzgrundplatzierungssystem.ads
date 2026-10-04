@@ -48,8 +48,10 @@ private
                                                    KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum'Range => 2,
                                                    KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum'Range     => 3,
 
-                                                   KartenzusatzgrundDatentypen.Zusatzgrund_Korallen_Enum'Range  => 4,
-                                                   KartenzusatzgrundDatentypen.Zusatzgrund_Unterwald_Enum'Range => 5
+                                                   KartenzusatzgrundDatentypen.Riffe_Enum                       => 4,
+
+                                                   KartenzusatzgrundDatentypen.Zusatzgrund_Korallen_Enum'Range  => 5,
+                                                   KartenzusatzgrundDatentypen.Zusatzgrund_Unterwald_Enum'Range => 6
                                                   );
 
    type ZusatzgrundtypArray is array (GrundZuNummer (GrundZuNummer'First) .. GrundZuNummer (GrundZuNummer'Last)) of Natural;
@@ -61,10 +63,13 @@ private
                                                      3 =>
                                                        KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum'Pos (KartenzusatzgrundDatentypen.Sumpfkreuzung_Vier_Enum)
                                                      - KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartenzusatzgrundDatentypen.Waldkreuzung_Vier_Enum),
-                                                     4 =>
+
+                                                     4 => KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (KartenzusatzgrundDatentypen.Riffe_Enum),
+
+                                                     5 =>
                                                        KartenzusatzgrundDatentypen.Zusatzgrund_Korallen_Enum'Pos (KartenzusatzgrundDatentypen.Korallenkreuzung_Vier_Enum)
                                                      - KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartenzusatzgrundDatentypen.Waldkreuzung_Vier_Enum),
-                                                     5 =>
+                                                     6 =>
                                                        KartenzusatzgrundDatentypen.Zusatzgrund_Unterwald_Enum'Pos (KartenzusatzgrundDatentypen.Unterwaldkreuzung_Vier_Enum)
                                                      - KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartenzusatzgrundDatentypen.Waldkreuzung_Vier_Enum)
                                                     );

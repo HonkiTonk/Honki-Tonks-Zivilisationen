@@ -22,8 +22,7 @@ package KartenbasisgrundDatentypen is
                             Küstengewässer_Enum,
                             
                             Eis_Enum,
-                            -- Arktisch, Tundra,  Grasland, Steppe, Savanne, Wüste,
-                            Flachland_Enum, Wüste_Enum, Tundra_Enum,
+                            Arktisch_Enum, Tundra_Enum, Grasland_Enum, Steppe_Enum, Savanne_Enum, Wüste_Enum,
                             
                             Hügelkreuzung_Vier_Enum, Hügel_Waagrecht_Enum, Hügel_Senkrecht_Enum, Hügelkurve_Unten_Rechts_Enum, Hügelkurve_Unten_Links_Enum, Hügelkurve_Oben_Rechts_Enum, Hügelkurve_Oben_Links_Enum,
                             Hügelkreuzung_Drei_Oben_Enum, Hügelkreuzung_Drei_Unten_Enum, Hügelkreuzung_Drei_Rechts_Enum, Hügelkreuzung_Drei_Links_Enum, Hügelende_Links_Enum, Hügelende_Rechts_Enum,
@@ -67,9 +66,12 @@ package KartenbasisgrundDatentypen is
    subtype Basisgrund_Oberfläche_Land_Enum is Basisgrund_Gesamtoberfläche_Land_Enum range Basisgrund_Enum'Succ (Basisgrund_Gesamtoberfläche_Land_Enum'First) .. Gebirge_Enum;
    
    subtype Basisgrund_Eis_Enum is Basisgrund_Gesamtoberfläche_Land_Enum range Eis_Enum .. Eis_Enum;
-   subtype Basisgrund_Flachland_Enum is Basisgrund_Oberfläche_Land_Enum range Flachland_Enum .. Flachland_Enum;
-   subtype Basisgrund_Wüste_Enum is Basisgrund_Oberfläche_Land_Enum range Wüste_Enum .. Wüste_Enum;
+   subtype Basisgrund_Arktisch_Enum is Basisgrund_Gesamtoberfläche_Land_Enum range Arktisch_Enum .. Arktisch_Enum;
    subtype Basisgrund_Tundra_Enum is Basisgrund_Oberfläche_Land_Enum range Tundra_Enum .. Tundra_Enum;
+   subtype Basisgrund_Grasland_Enum is Basisgrund_Oberfläche_Land_Enum range Grasland_Enum .. Grasland_Enum;
+   subtype Basisgrund_Steppe_Enum is Basisgrund_Oberfläche_Land_Enum range Steppe_Enum .. Steppe_Enum;
+   subtype Basisgrund_Savanne_Enum is Basisgrund_Oberfläche_Land_Enum range Savanne_Enum .. Savanne_Enum;
+   subtype Basisgrund_Wüste_Enum is Basisgrund_Oberfläche_Land_Enum range Wüste_Enum .. Wüste_Enum;
    subtype Basisgrund_Hügel_Enum is Basisgrund_Oberfläche_Land_Enum range Hügelkreuzung_Vier_Enum .. Hügel_Enum;
    subtype Basisgrund_Gebirge_Enum is Basisgrund_Oberfläche_Land_Enum range Gebirgekreuzung_Vier_Enum .. Gebirge_Enum;
    

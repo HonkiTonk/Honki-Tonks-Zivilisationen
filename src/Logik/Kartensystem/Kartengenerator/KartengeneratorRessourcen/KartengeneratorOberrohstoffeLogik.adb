@@ -1,3 +1,5 @@
+with MeldungssystemHTSEB;
+
 with KartenKonstanten;
 with LadezeitenDatentypen;
 
@@ -55,7 +57,23 @@ package body KartengeneratorOberrohstoffeLogik is
       for RohstoffeSchleifenwert in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum'Range loop
          GenerierungSchleife:
          loop
-      
+            
+            case
+              VorhandenerGrund.Basisgrund
+            is
+               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Eis_Enum'Range =>
+                 -- Rohstoff := ZufallsgeneratorenKartenLogik.KartengeneratorRohstoffbereich (AnfangExtern => ,
+                 --                                                                           EndeExtern   => );
+                  null;
+                  
+               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
+                  null;
+                  
+               when others =>
+                  MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorOberrohstoffeLogik.RohstoffMehrfach: Ungültiger Grund: " & VorhandenerGrund.Basisgrund'Wide_Wide_Image);
+                  Rohstoff := KartenrohstoffeDatentypen.Gemüse_Enum;
+            end case;
+            
             Rohstoff := ZufallsgeneratorenKartenLogik.KartengeneratorRohstoffe;
             
             if

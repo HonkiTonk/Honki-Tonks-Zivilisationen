@@ -15,7 +15,7 @@ package BasisgrundOberflaeche is
 
    type BasisgrundlisteOberflächeArray is array (KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteOberfläche : constant BasisgrundlisteOberflächeArray := (
-                                                                             KartenbasisgrundDatentypen.Eis_Enum =>
+                                                                             KartenbasisgrundDatentypen.Basisgrund_Eis_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Arktisch_Enum'Range =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -395,7 +395,7 @@ package BasisgrundOberflaeche is
                                                                                   )
                                                                                ),
                                       
-                                                                             KartenbasisgrundDatentypen.Flachland_Enum =>
+                                                                             KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Steppe_Enum'Range =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -775,7 +775,7 @@ package BasisgrundOberflaeche is
                                                                                   )
                                                                                ),
                                       
-                                                                             KartenbasisgrundDatentypen.Wüste_Enum =>
+                                                                             KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Savanne_Enum'Range =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,

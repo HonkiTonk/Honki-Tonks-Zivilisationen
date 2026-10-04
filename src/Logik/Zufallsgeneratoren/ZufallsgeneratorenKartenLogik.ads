@@ -9,6 +9,7 @@ private with KartenDatentypen;
 
 package ZufallsgeneratorenKartenLogik is
    pragma Elaborate_Body;
+   use type KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
 
    function KartengeneratorZufallswerte
      return SystemDatentypenHTSEB.NullBisHundert;
@@ -18,6 +19,15 @@ package ZufallsgeneratorenKartenLogik is
 
    function KartengeneratorRohstoffe
      return KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
+
+   function KartengeneratorRohstoffbereich
+     (AnfangExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
+      EndeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum
+     with
+       Pre => (
+                 AnfangExtern <= EndeExtern
+              );
 
 private
 

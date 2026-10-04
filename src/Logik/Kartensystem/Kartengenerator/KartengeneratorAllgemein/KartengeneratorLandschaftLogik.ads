@@ -40,7 +40,7 @@ private
    
    type ZahlenNachBasisgrundArray is array (BasisWahrscheinlichkeitenArray'Range) of KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
    ZahlenNachBasisgrund : constant ZahlenNachBasisgrundArray := (
-                                                                 1 => KartenbasisgrundDatentypen.Flachland_Enum,
+                                                                 1 => KartenbasisgrundDatentypen.Grasland_Enum,
                                                                  2 => KartenbasisgrundDatentypen.Wüste_Enum,
                                                                  3 => KartenbasisgrundDatentypen.Tundra_Enum,
                                                                  4 => KartenbasisgrundDatentypen.Hügel_Enum,
@@ -150,7 +150,7 @@ private
    
    function ZusatzberechnungFlachland
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum)
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum)
       return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (

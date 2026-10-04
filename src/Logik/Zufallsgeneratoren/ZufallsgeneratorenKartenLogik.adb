@@ -78,7 +78,7 @@ package body ZufallsgeneratorenKartenLogik is
       then
          Zwischenspeicher.Waagerechte := Landgröße.MinimaleWaagerechte;
          Landgröße.MinimaleWaagerechte := Landgröße.MaximaleWaagerechte;
-        Landgröße.MaximaleWaagerechte := Zwischenspeicher.Waagerechte;
+         Landgröße.MaximaleWaagerechte := Zwischenspeicher.Waagerechte;
 
       else
          null;
@@ -107,5 +107,21 @@ package body ZufallsgeneratorenKartenLogik is
       return ZufälligerRohstoff.Random (Gen => ZufälligerRohstoffGewählt);
       
    end KartengeneratorRohstoffe;
+   
+   
+   
+   function KartengeneratorRohstoffbereich
+     (AnfangExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum;
+      EndeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
+      return KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum
+   is begin
+      
+      ZufälligerRohstoff.Reset (Gen => ZufälligerRohstoffGewählt);
+      
+      return ZufälligerRohstoff.Random (Gen   => ZufälligerRohstoffGewählt,
+                                         First => AnfangExtern,
+                                         Last  => EndeExtern);
+      
+   end KartengeneratorRohstoffbereich;
 
 end ZufallsgeneratorenKartenLogik;

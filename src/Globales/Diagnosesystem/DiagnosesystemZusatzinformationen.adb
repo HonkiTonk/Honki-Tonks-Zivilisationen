@@ -47,7 +47,7 @@ package body DiagnosesystemZusatzinformationen is
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Version 2"));
       
       KartenbasisgrundDatentypen.Basisgrund_Enum'Write (Stream (File => DateiSpeichern),
-                                                   KartenbasisgrundDatentypen.Flachland_Enum);
+                                                   KartenbasisgrundDatentypen.Grasland_Enum);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                  NameExtern     => ("Spielstand/Manuell/Z" & "Version 2"));

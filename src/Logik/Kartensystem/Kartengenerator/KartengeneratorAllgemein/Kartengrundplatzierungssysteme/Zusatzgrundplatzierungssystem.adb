@@ -40,8 +40,8 @@ package body Zusatzgrundplatzierungssystem is
             else
                Entfernungskartenwert
                  := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
-                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+                                                                                   ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                   TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
                  Entfernungskartenwert.Waagerechte
@@ -90,8 +90,8 @@ package body Zusatzgrundplatzierungssystem is
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
               Kartenwert.Waagerechte = KartenKonstanten.LeerWaagerechte

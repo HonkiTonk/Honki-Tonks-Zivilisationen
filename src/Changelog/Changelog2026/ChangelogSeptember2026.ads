@@ -8,17 +8,21 @@ package ChangelogSeptember2026 is
    
    
 
-   -- Version 0.06. => 0.06. (29.09.2026):
+   -- Version 0.06.6045 => 0.06. (29.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.5980 => 0.06. (28.09.2026):
+   -- Version 0.06.5980 => 0.06.6045 (28.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen den Basisgrund um Steppe, Savanne und Arktisch zu erweitern.
+   -- Weiter am Zusatzgrund Riffe gearbeitet.
+   -- Flachland in Grasland umbenannt.
+   -- Texturen an die Änderungen angepasst.
+   -- Texte an die Änderungen angepasst.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

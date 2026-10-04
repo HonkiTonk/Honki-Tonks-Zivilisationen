@@ -30,7 +30,7 @@ package body KartengeneratorLandschaftLogik is
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
-               when KartenbasisgrundDatentypen.Flachland_Enum =>
+               when KartenbasisgrundDatentypen.Grasland_Enum =>
                   BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
 
                when others =>
@@ -193,15 +193,15 @@ package body KartengeneratorLandschaftLogik is
       case
         GrundExtern
       is
-         when KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Steppe_Enum'Range =>
             return ZusatzberechnungFlachland (KoordinatenExtern => KoordinatenExtern,
                                               GrundExtern       => GrundExtern);
             
-         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Savanne_Enum'Range =>
             return ZusatzberechnungWüste (KoordinatenExtern => KoordinatenExtern,
                                            GrundExtern       => GrundExtern);
             
-         when KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Arktisch_Enum'Range =>
             return ZusatzberechnungTundra (KoordinatenExtern => KoordinatenExtern,
                                            GrundExtern       => GrundExtern);
                         
@@ -370,7 +370,7 @@ package body KartengeneratorLandschaftLogik is
    
    function ZusatzberechnungFlachland
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum)
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum)
       return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
          

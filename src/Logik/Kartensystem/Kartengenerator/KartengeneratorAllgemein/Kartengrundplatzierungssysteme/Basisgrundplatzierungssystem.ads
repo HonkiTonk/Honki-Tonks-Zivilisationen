@@ -33,7 +33,7 @@ private
    -- Das hier später anpassen, wenn ich tatsächliche alle Basisgründe so erweitere. äöü
    type GrundZuNummerArray is array (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Positive;
    GrundZuNummer : constant GrundZuNummerArray := (
-                                                   -- KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum'Range => 1,
+                                                   -- KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum'Range => 1,
                                                    -- KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range     => 2,
                                                    -- KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range    => 3,
                                                    KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range     => 1,

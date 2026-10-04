@@ -64,7 +64,7 @@ package body KartengeneratorKuesteLogik is
                case
                  LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert)
                is
-                  when KartenbasisgrundDatentypen.Flachland_Enum | KartenbasisgrundDatentypen.Eis_Enum =>
+                  when KartenbasisgrundDatentypen.Grasland_Enum | KartenbasisgrundDatentypen.Eis_Enum =>
                      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
                                                    GrundExtern       => KartenbasisgrundDatentypen.Küstengewässer_Enum);
                      return;

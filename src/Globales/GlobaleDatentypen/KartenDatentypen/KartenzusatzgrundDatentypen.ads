@@ -23,7 +23,8 @@ package KartenzusatzgrundDatentypen is
                              Sumpfkreuzung_Drei_Oben_Enum, Sumpfkreuzung_Drei_Unten_Enum, Sumpfkreuzung_Drei_Rechts_Enum, Sumpfkreuzung_Drei_Links_Enum, Sumpfende_Links_Enum, Sumpfende_Rechts_Enum,
                              Sumpfende_Unten_Enum, Sumpfende_Oben_Enum, Sumpf_Enum,
                              
-                             -- Riffe_Enum,
+                             -- Oder Riffe über dem Grund und dann sowas wie Unterwasserberge unter dem Grund? äöü
+                             Riffe_Enum,
                              
                              -- Unterfläche
                              Korallenkreuzung_Vier_Enum, Korallen_Waagrecht_Enum, Korallen_Senkrecht_Enum, Korallenkurve_Unten_Rechts_Enum, Korallenkurve_Unten_Links_Enum, Korallenkurve_Oben_Rechts_Enum,

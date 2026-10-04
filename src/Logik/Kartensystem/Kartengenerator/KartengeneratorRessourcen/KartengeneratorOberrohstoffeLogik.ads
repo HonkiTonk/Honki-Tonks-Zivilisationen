@@ -32,12 +32,18 @@ private
    BasisgrundRohstoffe : constant BasisgrundRohstoffeArray := (
                                                                KartenbasisgrundDatentypen.Meer_Enum =>
                                                                  (
-                                                                  others => True
+                                                                  KartenrohstoffeDatentypen.Rohstoffe_Wassertiere_Enum'Range => True,
+                                                                  KartenrohstoffeDatentypen.Vögel_Enum                       => True,
+                                                                  KartenrohstoffeDatentypen.Meersalz_Enum                    => True,
+                                                                  others                                                     => False
                                                                  ),
 
                                                                KartenbasisgrundDatentypen.Küstengewässer_Enum =>
                                                                  (
-                                                                  others => True
+                                                                  KartenrohstoffeDatentypen.Rohstoffe_Wassertiere_Enum'Range => True,
+                                                                  KartenrohstoffeDatentypen.Vögel_Enum                       => True,
+                                                                  KartenrohstoffeDatentypen.Meersalz_Enum                    => True,
+                                                                  others                                                     => False
                                                                  ),
 
                                                                KartenbasisgrundDatentypen.Basisgrund_Eis_Enum =>
@@ -54,12 +60,27 @@ private
                                                                   others                                                                 => False
                                                                  ),
 
-                                                               KartenbasisgrundDatentypen.Basisgrund_Flachland_Enum'Range =>
+                                                               KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum'Range =>
                                                                  (
                                                                   others => True
                                                                  ),
 
                                                                KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range =>
+                                                                 (
+                                                                  others => True
+                                                                 ),
+
+                                                               KartenbasisgrundDatentypen.Basisgrund_Arktisch_Enum'Range =>
+                                                                 (
+                                                                  others => True
+                                                                 ),
+
+                                                               KartenbasisgrundDatentypen.Basisgrund_Steppe_Enum'Range =>
+                                                                 (
+                                                                  others => True
+                                                                 ),
+
+                                                               KartenbasisgrundDatentypen.Basisgrund_Savanne_Enum'Range =>
                                                                  (
                                                                   others => True
                                                                  ),
