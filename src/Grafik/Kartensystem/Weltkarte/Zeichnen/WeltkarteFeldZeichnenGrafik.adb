@@ -1,4 +1,5 @@
 with GrafikKonstanten;
+with KartenrohstoffeDatentypen;
 
 with LeseWeltkarte;
 
@@ -77,20 +78,27 @@ package body WeltkarteFeldZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      KartenfeldRohstoff := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
+      Rohstoffe := LeseWeltkarte.AlleRohstoffe (KoordinatenExtern => KoordinatenExtern);
       
       case
-        KartenfeldRohstoff
+        Rohstoffe (Rohstoffe'First)
       is
          when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
-            null;
+            return;
             
          when others =>
-            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.RohstoffeAccess,
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffeExtern => KartenfeldRohstoff),
-                                                            PositionExtern         => PositionExtern,
-                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+            null;
       end case;
+      
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in Rohstoffe'Range loop
+               
+         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.RohstoffeAccess,
+                                                         TexturbereichExtern    => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffeExtern => Rohstoffe (RohstoffeSchleifenwert)),
+                                                         PositionExtern         => PositionExtern,
+                                                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+         
+      end loop RohstoffeSchleife;
       
    end RohstoffZeichnen;
 

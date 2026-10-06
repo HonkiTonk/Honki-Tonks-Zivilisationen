@@ -4,6 +4,8 @@ with Ada.Integer_Text_IO;
 
 with DateizugriffssystemHTSEB;
 
+with KartenrohstoffeDatentypen;
+
 package body DiagnosesystemZusatzinformationen is
 
    procedure GrößenprüfungKartenfeld
@@ -47,7 +49,7 @@ package body DiagnosesystemZusatzinformationen is
                                                 NameExtern     => ("Spielstand/Manuell/Z" & "Version 2"));
       
       KartenbasisgrundDatentypen.Basisgrund_Enum'Write (Stream (File => DateiSpeichern),
-                                                   KartenbasisgrundDatentypen.Grasland_Enum);
+                                                        KartenbasisgrundDatentypen.Grasland_Enum);
       
       DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeichern,
                                                  NameExtern     => ("Spielstand/Manuell/Z" & "Version 2"));
@@ -181,5 +183,26 @@ package body DiagnosesystemZusatzinformationen is
       New_Line;
       
    end Farbinformationen;
+   
+   
+   
+   procedure EnumGesamtlänge
+   is begin
+            
+      Put_Line (Item => KartenrohstoffeDatentypen.Rohstoffe_Enum'Pos (KartenrohstoffeDatentypen.Rohstoffe_Enum'Last)'Wide_Wide_Image);
+      
+   end EnumGesamtlänge;
+   
+   
+   
+   procedure EnumTeillänge
+   is begin
+      
+      Zahlenzwischenspeicher := (KartenrohstoffeDatentypen.Rohstoffe_Enum'Pos (KartenrohstoffeDatentypen.Rohstoffe_Enum'Last)
+                                 - KartenrohstoffeDatentypen.Rohstoffe_Enum'Pos (KartenrohstoffeDatentypen.Braunkohle_Enum));
+      
+      Put_Line (Item => Zahlenzwischenspeicher'Wide_Wide_Image);
+                                 
+   end EnumTeillänge;
 
 end DiagnosesystemZusatzinformationen;

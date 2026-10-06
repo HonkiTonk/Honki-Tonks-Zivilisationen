@@ -12,8 +12,8 @@ with EinheitenRecords;
 with StadtRecords;
 
 private with WeltkarteRecords;
--- private with StadtDatentypen;
-private with KartenzusatzgrundDatentypen;
+private with KartenbasisgrundDatentypen;
+-- private with KartenzusatzgrundDatentypen;
 
 with SpeziesDatentypen;
 
@@ -50,6 +50,9 @@ package DiagnosesystemZusatzinformationen is
    procedure Farbinformationen
      (FarbeExtern : in Sf.Graphics.Color.sfColor);
    
+   procedure EnumGesamtlänge;
+   procedure EnumTeillänge;
+   
 private
    
    ByteTeiler : constant Positive := System.Storage_Unit;
@@ -58,6 +61,8 @@ private
    
    Kartenfeld : constant Positive := WeltkarteRecords.WeltkarteRecord'Size;
    ZuPrüfendeGröße : constant Positive := KartenbasisgrundDatentypen.Basisgrund_Enum'Size;
+   
+   Zahlenzwischenspeicher : Integer;
    
    DateiSpeichern : File_Type;
    

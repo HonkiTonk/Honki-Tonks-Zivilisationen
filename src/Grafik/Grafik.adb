@@ -38,7 +38,7 @@ package body Grafik is
    
    procedure Grafik
    is begin
-            
+                  
       GrafikStartenSchleife:
       while LeseGrafiktask.FensterErzeugen = False loop
 
@@ -52,7 +52,7 @@ package body Grafik is
       TextaccesseSetzenGrafik.Texthöhe;
       
       -- DiagnosesystemZusatzinformationen.GrößenprüfungKartenfeld;
-      -- DiagnosesystemHTSEB.Zahl (2**0);
+      -- DiagnosesystemZusatzinformationen.EnumGesamtlänge;
             
       Startzeit := Clock;
       

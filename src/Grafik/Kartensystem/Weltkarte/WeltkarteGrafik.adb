@@ -24,9 +24,7 @@ package body WeltkarteGrafik is
    
    procedure WeltkarteAnzeigen
      (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)
-   is
-      -- use type KartenartDatentypen.Kartenform_Enum;
-   begin
+   is begin
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte),
                                             GrößeExtern          => FensterGrafik.AktuelleAuflösung,

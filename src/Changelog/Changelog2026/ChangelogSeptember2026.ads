@@ -1,17 +1,20 @@
 package ChangelogSeptember2026 is
    pragma Pure;
 
-   -- Version 0.06. => 0.06. (30.09.2026):
+   -- Version 0.06.6100 => 0.06. (30.09.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6045 => 0.06. (29.09.2026):
+   -- Version 0.06.6045 => 0.06.6100 (29.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Texturen für Steppe, Savanne und Arktis hinzugefügt und Texturen für Eis überarbeitet.
+   -- Diagnosesystem erweitert.
+   -- Weiter am neuen Rohstoffsystem gearbeitet.
+   -- Angefangen die Anzeige der Rohstoffe zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

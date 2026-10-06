@@ -5,8 +5,8 @@ with KartenRecords;
 with KartenDatentypen;
 
 private with KartenfluesseDatentypen;
-private with KartenrohstoffeDatentypen;
 private with KartenzusatzgrundDatentypen;
+private with KartenArrays;
 
 with LeseWeltkarteneinstellungen;
 
@@ -79,6 +79,6 @@ private
          
    KartenfeldFluss : KartenfluesseDatentypen.Fluss_Enum;
    
-   KartenfeldRohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
+   Rohstoffe : KartenArrays.RohstoffeArray;
 
 end WeltkarteFeldZeichnenGrafik;

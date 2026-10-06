@@ -25,8 +25,8 @@ private
    FelderanzahlFlüsse : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.FlüsseArray'Length)))),
                                                                    Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.FlüsseArray'Length)))));
    
-   FelderanzahlRohstoffe : constant Sf.System.Vector2.sfVector2u := (3, 3); -- (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.RohstoffeArray'Length)))),
-   -- Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.RohstoffeArray'Length)))));
+   FelderanzahlRohstoffe : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.RohstoffeArray'Length)))),
+                                                                     Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.RohstoffeArray'Length)))));
    
    FelderanzahlVerbesserungen : constant Sf.System.Vector2.sfVector2u := (Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.VerbesserungenArray'Length)))),
                                                                           Sf.sfUint32 (Float'Ceiling (Sqrt (Float (TexturenfelderVariablenGrafik.VerbesserungenArray'Length)))));
