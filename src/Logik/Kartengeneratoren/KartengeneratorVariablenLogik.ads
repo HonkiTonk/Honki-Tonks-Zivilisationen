@@ -1,5 +1,3 @@
-with SystemDatentypenHTSEB;
-
 with KartenRecords;
 with KartenRecordKonstanten;
 with KartengeneratorRecordKonstanten;
@@ -7,8 +5,6 @@ with KartenartDatentypen;
 with KartenbasisgrundDatentypen;
 with KartenDatentypen;
 with KartenrohstoffeDatentypen;
-
-private with KartenArrays;
 
 -- Man kann den Polgrund noch nicht einstellen, auch irgendwann mal einbauen. äöü
 package KartengeneratorVariablenLogik is
@@ -51,7 +47,7 @@ package KartengeneratorVariablenLogik is
    procedure KartentemperaturSchreiben
      (TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum);
 
-   procedure KartenrohstoffeSchreiben
+    procedure KartenrohstoffeSchreiben
      (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffanzahl_Enum);
 
    procedure KartenpoleSchreiben
@@ -87,11 +83,6 @@ package KartengeneratorVariablenLogik is
 
    function PolfreierBereichLesen
      return KartenRecords.LandgrößenNaturalRecord;
-
-   -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
-   function RohstoffwahrscheinlichkeitenLesen
-     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
-      return SystemDatentypenHTSEB.NullBisHundert;
 
    function KartengrößeLesen
      return KartenRecords.KartenfeldumgebungPositivRecord;
@@ -135,6 +126,6 @@ private
    Kartenparameter : KartenRecords.TemporäreKartenparameterRecord := KartenRecordKonstanten.Standardkartengeneratorparameter;
 
    -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
-   KartenrohstoffeWahrscheinlichkeiten : KartenArrays.KartenrohstoffeWahrscheinlichkeitenArray;
+   -- KartenrohstoffeWahrscheinlichkeiten : KartenArrays.KartenrohstoffeWahrscheinlichkeitenArray;
 
 end KartengeneratorVariablenLogik;

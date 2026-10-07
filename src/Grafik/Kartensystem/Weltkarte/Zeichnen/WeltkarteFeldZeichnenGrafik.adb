@@ -6,6 +6,7 @@ with LeseWeltkarte;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with TexturenfelderVariablenGrafik;
+with SichtweitenGrafik;
 
 package body WeltkarteFeldZeichnenGrafik is
 
@@ -87,16 +88,35 @@ package body WeltkarteFeldZeichnenGrafik is
             return;
             
          when others =>
-            null;
+            Kartenfeld := SichtweitenGrafik.Kartenfeldfläche;
       end case;
       
       RohstoffeSchleife:
       for RohstoffeSchleifenwert in Rohstoffe'Range loop
                
-         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.RohstoffeAccess,
-                                                         TexturbereichExtern    => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffeExtern => Rohstoffe (RohstoffeSchleifenwert)),
-                                                         PositionExtern         => PositionExtern,
-                                                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+         case
+           RohstoffeSchleifenwert
+         is
+            when KartenrohstoffeDatentypen.Rohstoff_Eins_Enum =>
+               Rohstoffposition := PositionExtern;
+               
+            when KartenrohstoffeDatentypen.Rohstoff_Zwei_Enum =>
+               Rohstoffposition.x := PositionExtern.x + Kartenfeld.x / 2.00;
+               Rohstoffposition.y := PositionExtern.y;
+               
+            when KartenrohstoffeDatentypen.Rohstoff_Drei_Enum =>
+               Rohstoffposition.x := PositionExtern.x;
+               Rohstoffposition.y := PositionExtern.y + Kartenfeld.y / 2.00;
+               
+            when KartenrohstoffeDatentypen.Rohstoffe_Vier_Enum =>
+               Rohstoffposition.x := PositionExtern.x + Kartenfeld.x / 2.00;
+               Rohstoffposition.y := PositionExtern.y + Kartenfeld.y / 2.00;
+         end case;
+                  
+         KartenspritesZeichnenGrafik.RohstoffeZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.RohstoffeAccess,
+                                                        TexturbereichExtern    => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffeExtern => Rohstoffe (RohstoffeSchleifenwert)),
+                                                        PositionExtern         => Rohstoffposition,
+                                                        DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
          
       end loop RohstoffeSchleife;
       

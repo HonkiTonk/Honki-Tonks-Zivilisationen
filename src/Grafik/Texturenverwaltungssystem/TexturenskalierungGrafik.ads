@@ -16,6 +16,23 @@ package TexturenskalierungGrafik is
                   Kartenfeldskalierung'Result.y >= 0.00
                );
    
+   function KartenfeldskalierungVariabel
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u;
+      ZusatzfaktorExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Pre => (
+                 ZusatzfaktorExtern.x > 0.00
+               and
+                 ZusatzfaktorExtern.y > 0.00
+              ),
+         
+       Post => (
+                  KartenfeldskalierungVariabel'Result.x >= 0.00
+                and
+                  KartenfeldskalierungVariabel'Result.y >= 0.00
+               );
+   
    function Stadtfeldskalierung
      (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u)
       return Sf.System.Vector2.sfVector2f
@@ -93,6 +110,32 @@ package TexturenskalierungGrafik is
                   Stadtbewirtschaftung'Result.x >= 0.00
                 and
                   Stadtbewirtschaftung'Result.y >= 0.00
+               );
+   
+   function StadtbewirtschaftungVariabel
+     (FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
+      TexturengrößeExtern : in Sf.System.Vector2.sfVector2f;
+      ZusatzfaktorExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Pre => (
+                 ZusatzfaktorExtern.x > 0.00
+               and
+                 ZusatzfaktorExtern.y > 0.00
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
+               and
+                 TexturengrößeExtern.x >= 0.00
+               and
+                 TexturengrößeExtern.y >= 0.00
+              ),
+         
+       Post => (
+                  StadtbewirtschaftungVariabel'Result.x >= 0.00
+                and
+                  StadtbewirtschaftungVariabel'Result.y >= 0.00
                );
    
    function TexturskalierungVariabel

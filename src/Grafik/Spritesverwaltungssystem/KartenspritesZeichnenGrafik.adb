@@ -1,8 +1,9 @@
+with MeldungssystemHTSEB;
+
 with GrafikRecordKonstanten;
 with GrafikKonstanten;
 
 with TexturenskalierungGrafik;
-with MeldungssystemHTSEB;
 with SpritesverwaltungssystemGrafik;
 
 package body KartenspritesZeichnenGrafik is
@@ -114,6 +115,65 @@ package body KartenspritesZeichnenGrafik is
       end if;
       
    end StadtgebäudeZeichnen;
+   
+   
+   
+   procedure RohstoffeZeichnen
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigkeitExtern : in Sf.sfUint8)
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
+                 
+      if
+        TexturAccessExtern = null
+      then
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.RohstoffeZeichnen: TexturAccessExtern: null");
+         
+      else
+         Skalierung := TexturenskalierungGrafik.KartenfeldskalierungVariabel (TexturengrößeExtern => (Sf.sfUint32 (TexturbereichExtern.width), Sf.sfUint32 (TexturbereichExtern.height)),
+                                                                              ZusatzfaktorExtern  => (KartenfeldVierteln, KartenfeldVierteln));
+         
+         SpriteZeichnen (TexturAccessExtern     => TexturAccessExtern,
+                         TexturbereichExtern    => TexturbereichExtern,
+                         PositionExtern         => PositionExtern,
+                         SkalierungExtern       => Skalierung,
+                         DurchsichtigkeitExtern => DurchsichtigkeitExtern);
+      end if;
+      
+   end RohstoffeZeichnen;
+   
+   
+   
+   procedure StadtrohstoffeZeichnen
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
+                 
+      if
+        TexturAccessExtern = null
+      then
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.StadtrohstoffeZeichnen: TexturAccessExtern: null");
+         
+      else
+         Skalierung := TexturenskalierungGrafik.StadtbewirtschaftungVariabel (FeldgrößeExtern     => FeldgrößeExtern,
+                                                                              TexturengrößeExtern => (Float (TexturbereichExtern.width), Float (TexturbereichExtern.height)),
+                                                                              ZusatzfaktorExtern  => (KartenfeldVierteln, KartenfeldVierteln));
+         
+         SpriteZeichnen (TexturAccessExtern     => TexturAccessExtern,
+                         TexturbereichExtern    => TexturbereichExtern,
+                         PositionExtern         => PositionExtern,
+                         SkalierungExtern       => Skalierung,
+                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+      end if;
+      
+   end StadtrohstoffeZeichnen;
    
    
    

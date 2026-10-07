@@ -13,8 +13,8 @@ private with KartenKonstanten;
 private with KartenfluesseDatentypen;
 private with GrafikRecordKonstanten;
 private with StadtRecords;
-private with KartenrohstoffeDatentypen;
 private with KartenwegeDatentypen;
+private with KartenArrays;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -39,8 +39,6 @@ private
    
    FeldBewirtschaftet : Boolean;
    
-   KartenfeldRohstoff : KartenrohstoffeDatentypen.Rohstoffe_Enum;
-   
    KartenfeldFluss : KartenfluesseDatentypen.Fluss_Enum;
    
    Wegfeld : KartenwegeDatentypen.Weg_Enum;
@@ -61,10 +59,13 @@ private
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Skalierung : Sf.System.Vector2.sfVector2f;
    Feldgröße : Sf.System.Vector2.sfVector2f;
+   Rohstoffposition : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
 
    Farbe : Sf.Graphics.Color.sfColor;
+   
+   Rohstoffe : KartenArrays.RohstoffeArray;
    
    procedure DarstellungUmgebung
      (KarteKoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;

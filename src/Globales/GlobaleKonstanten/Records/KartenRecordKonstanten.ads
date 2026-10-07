@@ -99,13 +99,5 @@ package KartenRecordKonstanten is
    LeerRohstoffe : constant KartenArrays.RohstoffeArray := (others => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum);
    
    LeerVerbesserungen : constant KartenArrays.VerbesserungenArray := (others => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum);
-   
-   -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
-   StandardKartenrohstoffeWahrscheinlichkeiten : constant KartenArrays.StandardKartenrohstoffeWahrscheinlichkeitenArray := (
-                                                                                                                            KartenrohstoffeDatentypen.Rohstoff_Eins_Enum  => (others => 3),
-                                                                                                                            KartenrohstoffeDatentypen.Rohstoff_Zwei_Enum  => (others => 2),
-                                                                                                                            KartenrohstoffeDatentypen.Rohstoff_Drei_Enum  => (others => 3),
-                                                                                                                            KartenrohstoffeDatentypen.Rohstoffe_Vier_Enum => (others => 4)
-                                                                                                                           );
 
 end KartenRecordKonstanten;

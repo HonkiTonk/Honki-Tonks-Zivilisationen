@@ -79,6 +79,9 @@ private
          
    KartenfeldFluss : KartenfluesseDatentypen.Fluss_Enum;
    
+   Rohstoffposition : Sf.System.Vector2.sfVector2f;
+   Kartenfeld : Sf.System.Vector2.sfVector2f;
+   
    Rohstoffe : KartenArrays.RohstoffeArray;
 
 end WeltkarteFeldZeichnenGrafik;

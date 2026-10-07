@@ -8,6 +8,7 @@ with SichtweitenGrafik;
 with PruefungenGrafik;
 with TexturenfelderVariablenGrafik;
 
+-- Mal schauen ob und wie ich das zusammenfassen kann. äöü
 package body TexturenskalierungGrafik is
    
    function Kartenfeldskalierung
@@ -24,6 +25,27 @@ package body TexturenskalierungGrafik is
       return Skalierung;
       
    end Kartenfeldskalierung;
+   
+   
+   
+   function KartenfeldskalierungVariabel
+     (TexturengrößeExtern : in Sf.System.Vector2.sfVector2u;
+      ZusatzfaktorExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Texturengröße := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => (Float (TexturengrößeExtern.x), Float (TexturengrößeExtern.y)));
+      Bereichsabmessung := SichtweitenGrafik.Kartenfeldfläche;
+      
+      Bereichsabmessung.x := Bereichsabmessung.x / ZusatzfaktorExtern.x;
+      Bereichsabmessung.y := Bereichsabmessung.y / ZusatzfaktorExtern.y;
+      
+      Skalierung.x := Bereichsabmessung.x / Texturengröße.x;
+      Skalierung.y := Bereichsabmessung.y / Texturengröße.y;
+      
+      return Skalierung;
+      
+   end KartenfeldskalierungVariabel;
    
    
    
@@ -135,6 +157,28 @@ package body TexturenskalierungGrafik is
       return Skalierung;
       
    end Stadtbewirtschaftung;
+   
+   
+   
+   function StadtbewirtschaftungVariabel
+     (FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
+      TexturengrößeExtern : in Sf.System.Vector2.sfVector2f;
+      ZusatzfaktorExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Feldgröße := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => (FeldgrößeExtern.x, FeldgrößeExtern.y));
+      Texturengröße := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => (TexturengrößeExtern.x, TexturengrößeExtern.y));
+      
+      Feldgröße.x := Feldgröße.x / ZusatzfaktorExtern.x;
+      Feldgröße.y := Feldgröße.y / ZusatzfaktorExtern.y;
+      
+      Skalierung.x := Feldgröße.x / Texturengröße.x;
+      Skalierung.y := Feldgröße.y / Texturengröße.y;
+      
+      return Skalierung;
+      
+   end StadtbewirtschaftungVariabel;
    
    
    

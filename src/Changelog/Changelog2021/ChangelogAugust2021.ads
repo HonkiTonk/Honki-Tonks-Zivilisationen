@@ -220,7 +220,7 @@ package ChangelogAugust2021 is
    -- Version 0.00.8250 => 0.00.8280 (12.08.2021):
    
    -- Verbesserung so umgebaut dass es jetzt sowohl als Prüfung als auch Festlegung genutzt werden kann.
-   -- Fehler behoben durch den man einen Hügel mit Flachland ersetzen konnte.
+   -- Fehler behoben durch den man einen Hügel mit Grasland ersetzen konnte.
    -- Unnötigen Code gelöscht.
    -- KI Prüfung ob die Stadtumgebung verbessert werden kann übersichtlicher gestaltet, die neue Version von Verbesserung eingebunden und den Umgebungsbereich auf die Stadtumgebungsgröße erweitert.
    -- Das Bewegungssystem so überarbeitet dass es jetzt möglich ist Einheiten während der Bewegung Befehle zu erteilen.

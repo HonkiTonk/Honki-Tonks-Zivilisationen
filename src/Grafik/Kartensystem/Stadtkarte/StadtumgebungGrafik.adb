@@ -1,4 +1,3 @@
-
 with Sf.Graphics.Text;
 
 with KartenDatentypen;
@@ -13,6 +12,7 @@ with TextnummernKonstanten;
 with ProduktionDatentypen;
 with SystemDatentypen;
 with KarteneffekteDatentypen;
+with KartenrohstoffeDatentypen;
 
 with LeseWeltkarte;
 
@@ -316,20 +316,46 @@ package body StadtumgebungGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      KartenfeldRohstoff := LeseWeltkarte.Rohstoff (KoordinatenExtern => KoordinatenExtern);
+      Rohstoffe := LeseWeltkarte.AlleRohstoffe (KoordinatenExtern => KoordinatenExtern);
       
       case
-        KartenfeldRohstoff
+        Rohstoffe (Rohstoffe'First)
       is
          when KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum =>
-            null;
+            return;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.RohstoffeAccess,
-                                                                      TexturbereichExtern => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffeExtern => KartenfeldRohstoff),
-                                                                      FeldgrößeExtern     => FeldgrößeExtern,
-                                                                      PositionExtern      => PositionExtern);
+            null;
       end case;
+      
+      RohstoffeSchleife:
+      for RohstoffeSchleifenwert in Rohstoffe'Range loop
+               
+         case
+           RohstoffeSchleifenwert
+         is
+            when KartenrohstoffeDatentypen.Rohstoff_Eins_Enum =>
+               Rohstoffposition := PositionExtern;
+               
+            when KartenrohstoffeDatentypen.Rohstoff_Zwei_Enum =>
+               Rohstoffposition.x := PositionExtern.x + FeldgrößeExtern.x / 2.00;
+               Rohstoffposition.y := PositionExtern.y;
+               
+            when KartenrohstoffeDatentypen.Rohstoff_Drei_Enum =>
+               Rohstoffposition.x := PositionExtern.x;
+               Rohstoffposition.y := PositionExtern.y + FeldgrößeExtern.y / 2.00;
+               
+            when KartenrohstoffeDatentypen.Rohstoffe_Vier_Enum =>
+               Rohstoffposition.x := PositionExtern.x + FeldgrößeExtern.x / 2.00;
+               Rohstoffposition.y := PositionExtern.y + FeldgrößeExtern.y / 2.00;
+         end case;
+                  
+         KartenspritesZeichnenGrafik.StadtrohstoffeZeichnen (TexturAccessExtern  => EingeleseneTexturenGrafik.RohstoffeAccess,
+                                                             TexturbereichExtern => TexturenfelderVariablenGrafik.RohstoffeRechteck (RohstoffeExtern => Rohstoffe (RohstoffeSchleifenwert)),
+                                                             FeldgrößeExtern     => FeldgrößeExtern,
+                                                             PositionExtern      => Rohstoffposition);
+         
+      end loop RohstoffeSchleife;
       
    end RohstoffZeichnen;
    

@@ -50,7 +50,7 @@ package KartenzusatzgrundDatentypen is
    
    
    -- Oberfläche
-   subtype Zusatzgrund_Oberfläche_Enum is Zusatzgrund_Vorhanden_Enum range Waldkreuzung_Vier_Enum .. Sumpf_Enum;
+   subtype Zusatzgrund_Oberfläche_Enum is Zusatzgrund_Vorhanden_Enum range Waldkreuzung_Vier_Enum .. Riffe_Enum;
    
    subtype Zusatzgrund_Wald_Enum is Zusatzgrund_Oberfläche_Enum range Waldkreuzung_Vier_Enum .. Wald_Enum;
    subtype Zusatzgrund_Dschungel_Enum is Zusatzgrund_Oberfläche_Enum range Dschungelkreuzung_Vier_Enum .. Dschungel_Enum;

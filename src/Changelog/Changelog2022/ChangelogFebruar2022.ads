@@ -138,7 +138,7 @@ package ChangelogFebruar2022 is
    
    -- Einige fehlende Prüfungen auf eine gültige Kartenposition eingefügt.
    -- Fehler in den Post Conditions der Positionsberechnung korrigiert, der zu Stopps beim Generieren von Karten führte.
-   -- Neue Textur für Flachland erstellt.
+   -- Neue Textur für Grasland erstellt.
    -- Warnmeldungen für Fehler die fehlende Grafikdateien hinzugefügt, welche auf das Fehlen von nicht notwendigen Dateien hinweisen aber das Programm nicht stoppen.
    -- Einlesen von Kartenfeldertexturen erweitert, so dass alle vorhandenen Texturen eingelesen werden und die fehlenden ignoriert werden.
    -- Einlesen von Kartenfeldertexturen ermöglicht jetzt einfache, externe Modifikationen wie die Textdateien.

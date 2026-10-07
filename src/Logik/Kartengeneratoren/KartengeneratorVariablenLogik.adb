@@ -248,18 +248,6 @@ package body KartengeneratorVariablenLogik is
    
    
    
-   -- Wenn das neue Rohstoffsystem da ist kann das weg. äöü
-   function RohstoffwahrscheinlichkeitenLesen
-     (RohstoffeExtern : in KartenrohstoffeDatentypen.Rohstoffe_Vorhanden_Enum)
-      return SystemDatentypenHTSEB.NullBisHundert
-   is begin
-      
-      return KartenrohstoffeWahrscheinlichkeiten (RohstoffeExtern);
-      
-   end RohstoffwahrscheinlichkeitenLesen;
-   
-   
-   
    function KartengrößeLesen
      return KartenRecords.KartenfeldumgebungPositivRecord
    is begin

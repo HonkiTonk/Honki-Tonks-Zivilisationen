@@ -75,6 +75,46 @@ package KartenspritesZeichnenGrafik is
                  TexturbereichExtern.height >= 0
               );
 
+   procedure RohstoffeZeichnen
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigkeitExtern : in Sf.sfUint8)
+     with
+       Pre => (
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 TexturbereichExtern.left >= 0
+               and
+                 TexturbereichExtern.top >= 0
+               and
+                 TexturbereichExtern.width >= 0
+               and
+                 TexturbereichExtern.height >= 0
+              );
+
+   procedure StadtrohstoffeZeichnen
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 TexturbereichExtern.left >= 0
+               and
+                 TexturbereichExtern.top >= 0
+               and
+                 TexturbereichExtern.width >= 0
+               and
+                 TexturbereichExtern.height >= 0
+              );
+
    procedure SpriteZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
@@ -93,6 +133,8 @@ package KartenspritesZeichnenGrafik is
               );
 
 private
+
+   KartenfeldVierteln : constant Float := 2.00;
 
    Skalierung : Sf.System.Vector2.sfVector2f;
 

@@ -211,7 +211,7 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (01.10.2026):
+   -- Version 0.06.6180 => 0.06. (01.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.

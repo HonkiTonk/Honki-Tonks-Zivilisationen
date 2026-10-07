@@ -123,6 +123,11 @@ private
                                                                  KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
                                                                    (
                                                                     others => True
+                                                                   ),
+
+                                                                 KartenzusatzgrundDatentypen.Riffe_Enum =>
+                                                                   (
+                                                                    others => True
                                                                    )
                                                                 );
 

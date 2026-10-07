@@ -1,10 +1,15 @@
 package ChangelogSeptember2026 is
    pragma Pure;
 
-   -- Version 0.06.6100 => 0.06. (30.09.2026):
+   -- Version 0.06.6100 => 0.06.6180 (30.09.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötig gewordenen Code gelöscht.
+   -- Es werden jetzt alle vier Rohstoffe auf einem Kartenfeld gleichzeitig angezeigt.
+   -- Es werden jetzt Steppe, Savanne und arktische Kartenfelder generiert.
+   -- Interne Struktur überarbeitet.
+   -- Textur für Riffe hinzugefügt.
+   -- Es werden jetzt Riffe als Zusatzgrund generiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
@@ -22,7 +27,7 @@ package ChangelogSeptember2026 is
    
    -- Angefangen den Basisgrund um Steppe, Savanne und Arktisch zu erweitern.
    -- Weiter am Zusatzgrund Riffe gearbeitet.
-   -- Flachland in Grasland umbenannt.
+   -- Grasland in Grasland umbenannt.
    -- Texturen an die Änderungen angepasst.
    -- Texte an die Änderungen angepasst.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.

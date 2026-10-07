@@ -81,8 +81,18 @@ package body Zusatzgrundplatzierungssystem is
       ZusatzgrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Vorhanden_Enum)
    is begin
       
-      Grundumgebung := (others => False);
-      Grundnummer := GrundZuNummer (ZusatzgrundExtern);
+      case
+        ZusatzgrundExtern
+      is
+         when KartenzusatzgrundDatentypen.Riffe_Enum =>
+            SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
+                                           GrundExtern       => ZusatzgrundExtern);
+            return;
+            
+         when others =>
+            Grundumgebung := (others => False);
+            Grundnummer := GrundZuNummer (ZusatzgrundExtern);
+      end case;
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
@@ -156,7 +166,7 @@ package body Zusatzgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum | KartenzusatzgrundDatentypen.Riffe_Enum =>
             return False;
          
          when others =>
@@ -190,7 +200,7 @@ package body Zusatzgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum | KartenzusatzgrundDatentypen.Riffe_Enum =>
             return False;
          
          when others =>
@@ -224,7 +234,7 @@ package body Zusatzgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum | KartenzusatzgrundDatentypen.Riffe_Enum =>
             return False;
          
          when others =>
@@ -258,7 +268,7 @@ package body Zusatzgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum | KartenzusatzgrundDatentypen.Riffe_Enum =>
             return False;
          
          when others =>
