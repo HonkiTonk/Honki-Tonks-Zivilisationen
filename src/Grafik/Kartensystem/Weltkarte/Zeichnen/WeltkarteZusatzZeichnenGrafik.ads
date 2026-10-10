@@ -36,20 +36,6 @@ package WeltkarteZusatzZeichnenGrafik is
                  PositionExtern.y >= 0.00
               );
    
-   procedure VerbesserungZeichnen
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
-   
    procedure AnzeigeFeldbesitzer
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)

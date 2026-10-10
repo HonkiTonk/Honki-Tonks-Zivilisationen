@@ -66,9 +66,6 @@ package body StandardKartenDatenbank is
                
             when ZusatzgrundUnterflaeche.ZusatzgrundlisteUnterflächeArray'Range =>
                KartenDatenbank.Zusatzgrundliste (ZusatzgrundSchleifenwert) := ZusatzgrundUnterflaeche.ZusatzgrundlisteUnterfläche (ZusatzgrundSchleifenwert);
-               
-           -- when others =>
-           --    KartenDatenbank.Zusatzgrundliste (ZusatzgrundSchleifenwert) := ZusatzgrundUnterflaeche.ZusatzgrundlisteUnterfläche (KartenzusatzgrundDatentypen.Korallen_Senkrecht_Enum);
          end case;
          
       end loop ZusatzgrundSchleife;

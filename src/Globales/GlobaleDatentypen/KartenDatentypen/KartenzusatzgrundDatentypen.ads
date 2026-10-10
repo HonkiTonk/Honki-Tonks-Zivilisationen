@@ -3,6 +3,7 @@ package KartenzusatzgrundDatentypen is
    
    -- Man könnte bei der Oberfläche Riffe mit einbauen, aber wie ist das dann Unterwasser? Sollte die da nicht auch vorhanden sein? äöü
    -- Einfach Riffe für beide Ebenen einbauen? Und dann sind die Riffe das Ende der Oberfläche und der Beginn der Unterfläche. äöü
+   -- Übergänge Wald -> Dschungel, Dschungel -> Wald, Wald -> Sumpf, usw. einbauen? äöü
    type Zusatzgrund_Enum is (
                              Leer_Zusatzgrund_Enum,
                              

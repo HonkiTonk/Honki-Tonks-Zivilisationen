@@ -52,32 +52,6 @@ package body WeltkarteZusatzZeichnenGrafik is
    
    
    
-   procedure VerbesserungZeichnen
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-      
-      Verbesserungsfeld := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        Verbesserungsfeld
-      is
-         when KartenverbesserungDatentypen.Leer_Verbesserungen_Enum =>
-            return;
-            
-         when others =>
-            null;
-      end case;
-      
-      KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccess,
-                                                      TexturbereichExtern    => TexturenfelderVariablenGrafik.VerbesserungRechteck (VerbesserungExtern => Verbesserungsfeld),
-                                                      PositionExtern         => PositionExtern,
-                                                      DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
-      
-   end VerbesserungZeichnen;
-   
-   
-   
    procedure AnzeigeFeldbesitzer
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)

@@ -118,7 +118,7 @@ package body KartenspritesZeichnenGrafik is
    
    
    
-   procedure RohstoffeZeichnen
+   procedure RohstoffeVerbesserungenZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -130,7 +130,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         MeldungssystemHTSEB.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.RohstoffeZeichnen: TexturAccessExtern: null");
+         MeldungssystemHTSEB.Grafik (MeldungExtern => "KartenspritesZeichnenGrafik.RohstoffeVerbesserungenZeichnen: TexturAccessExtern: null");
          
       else
          Skalierung := TexturenskalierungGrafik.KartenfeldskalierungVariabel (TexturengrößeExtern => (Sf.sfUint32 (TexturbereichExtern.width), Sf.sfUint32 (TexturbereichExtern.height)),
@@ -143,7 +143,7 @@ package body KartenspritesZeichnenGrafik is
                          DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end if;
       
-   end RohstoffeZeichnen;
+   end RohstoffeVerbesserungenZeichnen;
    
    
    

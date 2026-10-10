@@ -75,7 +75,7 @@ package KartenspritesZeichnenGrafik is
                  TexturbereichExtern.height >= 0
               );
 
-   procedure RohstoffeZeichnen
+   procedure RohstoffeVerbesserungenZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       TexturbereichExtern : in Sf.Graphics.Rect.sfIntRect;
       PositionExtern : in Sf.System.Vector2.sfVector2f;

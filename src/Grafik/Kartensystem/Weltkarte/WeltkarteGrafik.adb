@@ -258,7 +258,7 @@ package body WeltkarteGrafik is
         Anzeige (Rohstoffe_Enum)
       is
          when True =>
-            WeltkarteFeldZeichnenGrafik.RohstoffZeichnen (KoordinatenExtern => KoordinatenExtern,
+            WeltkarteFeldZeichnenGrafik.RohstoffeZeichnen (KoordinatenExtern => KoordinatenExtern,
                                                            PositionExtern    => PositionExtern);
             
          when False =>
@@ -282,7 +282,7 @@ package body WeltkarteGrafik is
         Anzeige (Verbesserungen_Enum)
       is
          when True =>
-            WeltkarteZusatzZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
+            WeltkarteFeldZeichnenGrafik.VerbesserungenZeichnen (KoordinatenExtern => KoordinatenExtern,
                                                                 PositionExtern    => PositionExtern);
             
          when False =>

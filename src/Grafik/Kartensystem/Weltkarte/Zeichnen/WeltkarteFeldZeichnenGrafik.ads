@@ -59,7 +59,21 @@ package WeltkarteFeldZeichnenGrafik is
                  PositionExtern.y >= 0.00
               );
    
-   procedure RohstoffZeichnen
+   procedure RohstoffeZeichnen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+   
+   procedure VerbesserungenZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
@@ -80,8 +94,11 @@ private
    KartenfeldFluss : KartenfluesseDatentypen.Fluss_Enum;
    
    Rohstoffposition : Sf.System.Vector2.sfVector2f;
+   Verbesserungsposition : Sf.System.Vector2.sfVector2f;
    Kartenfeld : Sf.System.Vector2.sfVector2f;
    
    Rohstoffe : KartenArrays.RohstoffeArray;
+   
+   Verbesserungen : KartenArrays.VerbesserungenArray;
 
 end WeltkarteFeldZeichnenGrafik;

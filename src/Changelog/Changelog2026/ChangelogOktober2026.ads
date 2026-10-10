@@ -204,16 +204,16 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (02.10.2026):
+   -- Version 0.06.6205 => 0.06. (02.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6180 => 0.06. (01.10.2026):
+   -- Version 0.06.6180 => 0.06.6205 (01.10.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Grafische Anzeige der Verbesserungen überarbeitet, sie werden auf der Weltkarte jetzt wie Ressourcen angezeigt.
+   -- Kommentare und Kleinigkeiten korrigiert.
 
 end ChangelogOktober2026;
