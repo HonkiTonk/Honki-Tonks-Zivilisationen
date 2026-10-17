@@ -2,8 +2,6 @@ with ZufallsgeneratorenHTSEB;
 
 with SchreibeWeltkarte;
 
-with ZufallsgeneratorenKartenLogik;
-
 package body KartengeneratorErdweltLogik is
 
    procedure KartengeneratorErdwelt
@@ -32,7 +30,7 @@ package body KartengeneratorErdweltLogik is
          ZufallszahlenSchleife:
          for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
          
-            GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+            GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
          
             if
               GezogeneZahl > BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)

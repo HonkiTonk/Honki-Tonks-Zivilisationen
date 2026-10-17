@@ -1,8 +1,8 @@
-# Honki-Tonks-Spieleentwicklungsbibliothek - Version: 0.01.2450
+# Honki-Tonks-Spieleentwicklungsbibliothek - Version: 0.01.2500
 
-Eine verallgemeinerte Sammlung an Code den ich für [Honki Tonks Zivilisationen](https://github.com/HonkiTonk/Honki-Tonks-Zivilisationen) geschrieben habe, aber meiner Meinung nach auch für weitere Spiele nützlich sein könnte.
+Eine verallgemeinerte Sammlung an Code den ich für [Honki Tonks Zivilisationen](https://github.com/HonkiTonk/Honki-Tonks-Zivilisationen) geschrieben habe, aber meiner Meinung nach auch für weitere Spiele nützlich sein könnte. Erstellt ohne die Verwendung von KI.
 
-A generalized collection of code I wrote for [Honki Tonks Zivilisationen](https://github.com/HonkiTonk/Honki-Tonks-Zivilisationen), but which I think is useful for other games as well.
+A generalized collection of code I wrote for [Honki Tonks Zivilisationen](https://github.com/HonkiTonk/Honki-Tonks-Zivilisationen), but which I think is useful for other games as well. Created without the use of AI.
 
 [Discordserver](https://discord.gg/2XCY8WYcqY)
 

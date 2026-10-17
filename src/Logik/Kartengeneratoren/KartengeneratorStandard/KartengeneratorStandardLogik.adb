@@ -1,3 +1,5 @@
+with ZufallsgeneratorenHTSEB;
+
 with KartenbasisgrundDatentypen;
 with KartenKonstanten;
 with LadezeitenDatentypen;
@@ -49,7 +51,7 @@ package body KartengeneratorStandardLogik is
         LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern))
       is
          when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
-            BeliebigerLandwert := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+            BeliebigerLandwert := ZufallsgeneratorenHTSEB.Hunderterbereich;
             
             if
               BeliebigerLandwert < WahrscheinlichkeitLandmasse.Anfangswert
@@ -131,7 +133,7 @@ package body KartengeneratorStandardLogik is
       QuadrantenSchleife:
       for QuadrantenSchleifenwert in QuadrantenArray'Range loop
       
-         Quadrantenwert := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+         Quadrantenwert := ZufallsgeneratorenHTSEB.Hunderterbereich;
          
          case
            QuadrantenSchleifenwert
@@ -390,7 +392,7 @@ package body KartengeneratorStandardLogik is
          null;
       
       elsif
-        ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte in WahrscheinlichkeitLand.Anfangswert .. WahrscheinlichkeitLand.Endwert
+        ZufallsgeneratorenHTSEB.Hunderterbereich in WahrscheinlichkeitLand.Anfangswert .. WahrscheinlichkeitLand.Endwert
       then
          SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
                                        GrundExtern       => KartenbasisgrundDatentypen.Grasland_Enum);
@@ -431,7 +433,7 @@ package body KartengeneratorStandardLogik is
          null;
                
       elsif
-        ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte in WahrscheinlichkeitWasser.Anfangswert .. WahrscheinlichkeitWasser.Endwert
+        ZufallsgeneratorenHTSEB.Hunderterbereich in WahrscheinlichkeitWasser.Anfangswert .. WahrscheinlichkeitWasser.Endwert
       then
          SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
                                        GrundExtern       => KartenbasisgrundDatentypen.Meer_Enum);

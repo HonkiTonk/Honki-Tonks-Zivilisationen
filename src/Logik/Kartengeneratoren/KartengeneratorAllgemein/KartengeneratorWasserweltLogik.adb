@@ -6,7 +6,6 @@ with KartenKonstanten;
 with SchreibeWeltkarte;
 with LeseWeltkarte;
 
-with ZufallsgeneratorenKartenLogik;
 with Zusatzgrundplatzierungssystem;
 with KartengeneratorVariablenLogik;
 
@@ -79,7 +78,7 @@ package body KartengeneratorWasserweltLogik is
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in ZusatzWahrscheinlichkeitenArray'Range loop
          
-         GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+         GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
          
          if
            GezogeneZahl > ZusatzWahrscheinlichkeiten (ZufallszahlSchleifenwert)

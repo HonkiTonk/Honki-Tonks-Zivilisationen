@@ -1,12 +1,12 @@
 with ZufallsgeneratorenHTSEB;
 
 with LadezeitenDatentypen;
+
 with KartenKonstanten;
 with SystemDatentypen;
 
 with LeseWeltkarte;
 
-with ZufallsgeneratorenKartenLogik;
 with KartenkoordinatenberechnungssystemLogik;
 with KartengeneratorVariablenLogik;
 with LadezeitenLogik;
@@ -72,7 +72,7 @@ package body KartengeneratorLandschaftLogik is
          ZufallszahlenSchleife:
          for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
          
-            GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+            GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
          
             if
               GezogeneZahl > BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)

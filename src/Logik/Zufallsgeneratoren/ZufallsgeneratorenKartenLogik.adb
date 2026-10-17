@@ -5,18 +5,6 @@ with KartengeneratorVariablenLogik;
 -- Die Zufallgeneratoren und ihre Funktionen/Prozeduren mal besser benennen. äöü
 package body ZufallsgeneratorenKartenLogik is
    
-   -- Das mal in die HTSEB auslagern. äöü
-   function KartengeneratorZufallswerte
-     return SystemDatentypenHTSEB.NullBisHundert
-   is begin
-      
-      ZufälligeZahl.Reset (Gen => ZufälligeZahlGewählt);
-      return ZufälligeZahl.Random (Gen => ZufälligeZahlGewählt);
-      
-   end KartengeneratorZufallswerte;
-   
-   
-   
    function KartengeneratorLandgrößen
      return KartenRecords.KartenfeldumgebungPositivRecord
    is

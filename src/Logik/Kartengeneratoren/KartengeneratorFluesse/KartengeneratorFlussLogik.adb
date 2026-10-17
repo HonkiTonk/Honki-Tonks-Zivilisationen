@@ -1,9 +1,10 @@
+with ZufallsgeneratorenHTSEB;
+
 with KartenbasisgrundDatentypen;
 with LadezeitenDatentypen;
 
 with LeseWeltkarte;
 
-with ZufallsgeneratorenKartenLogik;
 with KartengeneratorVariablenLogik;
 with FlussplatzierungssystemLogik;
 with LadezeitenLogik;
@@ -48,7 +49,7 @@ package body KartengeneratorFlussLogik is
                   
                   when others =>
                      if
-                       ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte <= WahrscheinlichkeitFluss (EbeneSchleifenwert)
+                       ZufallsgeneratorenHTSEB.Hunderterbereich <= WahrscheinlichkeitFluss (EbeneSchleifenwert)
                      then
                         FlussplatzierungssystemLogik.Flussplatzierung (KoordinatenExtern => (EbeneSchleifenwert, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                      

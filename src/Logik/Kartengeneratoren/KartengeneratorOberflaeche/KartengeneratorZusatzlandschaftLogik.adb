@@ -3,7 +3,6 @@ with ZufallsgeneratorenHTSEB;
 with LeseWeltkarte;
 
 with Zusatzgrundplatzierungssystem;
-with ZufallsgeneratorenKartenLogik;
 
 package body KartengeneratorZusatzlandschaftLogik is
    
@@ -19,7 +18,7 @@ package body KartengeneratorZusatzlandschaftLogik is
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in ZusatzWahrscheinlichkeitenArray'Range loop
          
-         GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+         GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
          
          if
            GezogeneZahl > ZusatzWahrscheinlichkeiten (ZufallszahlSchleifenwert)

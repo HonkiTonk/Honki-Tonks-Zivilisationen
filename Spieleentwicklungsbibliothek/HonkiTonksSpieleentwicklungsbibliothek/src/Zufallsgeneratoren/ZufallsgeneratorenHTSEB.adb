@@ -77,5 +77,16 @@ package body ZufallsgeneratorenHTSEB is
       end if;
       
    end ErreichteErfolge;
+   
+   
+   
+   function Hunderterbereich
+     return SystemDatentypenHTSEB.NullBisHundert
+   is begin
+      
+      Hunderter.Reset (Gen => HunderterZahl);
+      return Hunderter.Random (Gen => HunderterZahl);
+      
+   end Hunderterbereich;
 
 end ZufallsgeneratorenHTSEB;

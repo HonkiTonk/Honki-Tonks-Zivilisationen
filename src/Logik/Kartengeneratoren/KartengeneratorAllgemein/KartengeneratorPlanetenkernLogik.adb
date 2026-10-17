@@ -1,11 +1,11 @@
+with ZufallsgeneratorenHTSEB;
+
 with LadezeitenDatentypen;
 with KartenKonstanten;
 
 with SchreibeWeltkarte;
 
-with ZufallsgeneratorenKartenLogik;
 with LadezeitenLogik;
-with ZufallsgeneratorenHTSEB;
 
 -- Sollte ich in dieser Prozedur später weitere Berechnungen durchführen die Zugriff auf die Kartenkoordinatenberechnung vornehmen, äöü
 -- dann muss ich das hier wegverschieben da der Zugriff ebenfall in KartengeneratorStandardLogik.OberflächeGenerieren erfolgt. äöü
@@ -68,7 +68,7 @@ package body KartengeneratorPlanetenkernLogik is
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
          
-         GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+         GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
          
          if
            GezogeneZahl > BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)
