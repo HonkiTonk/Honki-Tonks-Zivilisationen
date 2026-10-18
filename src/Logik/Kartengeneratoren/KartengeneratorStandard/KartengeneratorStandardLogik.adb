@@ -13,6 +13,8 @@ with KartenkoordinatenberechnungssystemLogik;
 with KartengeneratorVariablenLogik;
 with LadezeitenLogik;
 
+with DiagnosesystemHTSEB;
+
 package body KartengeneratorStandardLogik is
    
    procedure OberflächeGenerieren
@@ -78,8 +80,11 @@ package body KartengeneratorStandardLogik is
         LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern))
       is
          when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
-            Landgrund (SenkrechteExtern => SenkrechteExtern,
-                       WaagerechteExtern => WaagerechteExtern);
+            --      Landgrund (SenkrechteExtern => SenkrechteExtern,
+            --                 WaagerechteExtern => WaagerechteExtern);
+            null;
+      
+            DiagnosesystemHTSEB.Zählen;
             
          when others =>
             null;
@@ -123,65 +128,65 @@ package body KartengeneratorStandardLogik is
       end loop LandmassenSchleife;
       
       SenkrechteZwischenwert := StartSenkrechte (SenkrechteExtern => SenkrechteExtern,
-                                                 AnfangExtern => Landmassen (1).Senkrechte,
-                                                 EndeExtern   => Landmassen (2).Senkrechte);
+                                                 AnfangExtern     => Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte,
+                                                 EndeExtern       => Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte);
       
       WaagerechteZwischenwert := StartWaagerechte (WaagerechteExtern => WaagerechteExtern,
-                                                   AnfangExtern => Landmassen (1).Waagerechte,
-                                                   EndeExtern   => Landmassen (2).Waagerechte);
+                                                   AnfangExtern      => Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte,
+                                                   EndeExtern        => Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte);
       
       QuadrantenSchleife:
       for QuadrantenSchleifenwert in QuadrantenArray'Range loop
-      
-         Quadrantenwert := ZufallsgeneratorenHTSEB.Hunderterbereich;
          
          case
            QuadrantenSchleifenwert
          is
             when 1 | 6 | 11 | 16 | 21 =>
-               SenkrechteAnfang := -Landmassen (1).Senkrechte;
-               SenkrechteEnde := -Landmassen (1).Senkrechte * 2 / 3;
+               SenkrechteAnfang := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte;
+               SenkrechteEnde := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte * 2 / 3;
                
             when 2 | 7 | 12 | 17 | 22 =>
-               SenkrechteAnfang := -Landmassen (1).Senkrechte * 2 / 3;
-               SenkrechteEnde := -Landmassen (1).Senkrechte / 3;
+               SenkrechteAnfang := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte * 2 / 3;
+               SenkrechteEnde := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte / 3;
                
             when 3 | 8 | 13 | 18 | 23 =>
-               SenkrechteAnfang := -Landmassen (1).Senkrechte / 3;
-               SenkrechteEnde := Landmassen (2).Senkrechte / 3;
+               SenkrechteAnfang := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte / 3;
+               SenkrechteEnde := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte / 3;
                
             when 4 | 9 | 14 | 19 | 24 =>
-               SenkrechteAnfang := Landmassen (2).Senkrechte / 3;
-               SenkrechteEnde := Landmassen (2).Senkrechte * 2 / 3;
+               SenkrechteAnfang := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte / 3;
+               SenkrechteEnde := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte * 2 / 3;
                
             when 5 | 10 | 15 | 20 | 25 =>
-               SenkrechteAnfang := Landmassen (2).Senkrechte * 2 / 3;
-               SenkrechteEnde := Landmassen (2).Senkrechte;
+               SenkrechteAnfang := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte * 2 / 3;
+               SenkrechteEnde := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte;
          end case;
          
          case
            QuadrantenSchleifenwert
          is
             when 1 .. 5 =>
-               WaagerechteAnfang := -Landmassen (1).Waagerechte;
-               WaagerechteEnde := -Landmassen (1).Waagerechte * 2 / 3;
+               WaagerechteAnfang := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte;
+               WaagerechteEnde := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte * 2 / 3;
                
             when 6 .. 10 =>
-               WaagerechteAnfang := -Landmassen (1).Waagerechte * 2 / 3;
-               WaagerechteEnde := -Landmassen (1).Waagerechte / 3;
+               WaagerechteAnfang := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte * 2 / 3;
+               WaagerechteEnde := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte / 3;
                
             when 11 .. 15 =>
-               WaagerechteAnfang := -Landmassen (1).Waagerechte / 3;
-               WaagerechteEnde := Landmassen (2).Waagerechte / 3;
+               WaagerechteAnfang := -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte / 3;
+               WaagerechteEnde := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte / 3;
                
             when 16 .. 20 =>
-               WaagerechteAnfang := Landmassen (2).Waagerechte / 3;
-               WaagerechteEnde := Landmassen (2).Waagerechte * 2 / 3;
+               WaagerechteAnfang := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte / 3;
+               WaagerechteEnde := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte * 2 / 3;
                
             when 21 .. 25 =>
-               WaagerechteAnfang := Landmassen (2).Waagerechte * 2 / 3;
-               WaagerechteEnde := Landmassen (2).Waagerechte;
+               WaagerechteAnfang := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte * 2 / 3;
+               WaagerechteEnde := Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte;
          end case;
+      
+         Quadrantenwert := ZufallsgeneratorenHTSEB.Hunderterbereich;
          
          SenkrechteSchleife:
          for SenkrechteSchleifenwert in SenkrechteAnfang .. SenkrechteEnde loop
@@ -208,9 +213,9 @@ package body KartengeneratorStandardLogik is
       end loop QuadrantenSchleife;
       
       SenkrechteabstandSchleife:
-      for SenkrechteabstandSchleifenwert in -Landabstand (1).Senkrechte .. Landabstand (2).Senkrechte loop
+      for SenkrechteabstandSchleifenwert in -Landabstand (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte .. Landabstand (SystemDatentypenHTSEB.Ende_Enum).Senkrechte loop
          WaagerechteabstandSchleife:
-         for WaagerechteabstandSchleifenwert in -Landabstand (1).Waagerechte .. Landabstand (2).Waagerechte loop
+         for WaagerechteabstandSchleifenwert in -Landabstand (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte .. Landabstand (SystemDatentypenHTSEB.Ende_Enum).Waagerechte loop
                            
             KartenWert
               := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteZwischenwert, WaagerechteZwischenwert),
@@ -218,9 +223,9 @@ package body KartengeneratorStandardLogik is
                                                                                 TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
-              SenkrechteabstandSchleifenwert in -Landmassen (1).Senkrechte .. Landmassen (2).Senkrechte
+              SenkrechteabstandSchleifenwert in -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte .. Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte
               and
-                WaagerechteabstandSchleifenwert in -Landmassen (1).Waagerechte .. Landmassen (2).Waagerechte
+                WaagerechteabstandSchleifenwert in -Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte .. Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte
             then
                null;
                
@@ -256,12 +261,12 @@ package body KartengeneratorStandardLogik is
           ÜbergangSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          if
-           SenkrechteExtern - AnfangExtern < SchleifenbereichZusatz.MinimaleSenkrechte
+           SenkrechteExtern - AnfangExtern <= SchleifenbereichZusatz.MinimaleSenkrechte
          then
             return AnfangExtern;
          
          elsif
-           SenkrechteExtern + EndeExtern > SchleifenbereichZusatz.MaximaleSenkrechte
+           SenkrechteExtern + EndeExtern >= SchleifenbereichZusatz.MaximaleSenkrechte
          then
             return EndeExtern;
          
@@ -273,7 +278,7 @@ package body KartengeneratorStandardLogik is
         ÜbergangNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          if
-           SenkrechteExtern - AnfangExtern < SchleifenbereichZusatz.MinimaleSenkrechte
+           SenkrechteExtern - AnfangExtern <= SchleifenbereichZusatz.MinimaleSenkrechte
          then
             return AnfangExtern;
             
@@ -285,7 +290,7 @@ package body KartengeneratorStandardLogik is
         ÜbergangSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
       then
          if
-           SenkrechteExtern + EndeExtern > SchleifenbereichZusatz.MaximaleSenkrechte
+           SenkrechteExtern + EndeExtern >= SchleifenbereichZusatz.MaximaleSenkrechte
          then
             return EndeExtern;
          
@@ -322,12 +327,12 @@ package body KartengeneratorStandardLogik is
           ÜbergangOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
       then
          if
-           WaagerechteExtern - AnfangExtern < SchleifenbereichZusatz.MinimaleWaagerechte
+           WaagerechteExtern - AnfangExtern <= SchleifenbereichZusatz.MinimaleWaagerechte
          then
             return AnfangExtern;
          
          elsif
-           WaagerechteExtern + EndeExtern > SchleifenbereichZusatz.MaximaleWaagerechte
+           WaagerechteExtern + EndeExtern >= SchleifenbereichZusatz.MaximaleWaagerechte
          then
             return EndeExtern;
          
@@ -339,7 +344,7 @@ package body KartengeneratorStandardLogik is
         ÜbergangWesten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
       then
          if
-           WaagerechteExtern - AnfangExtern < SchleifenbereichZusatz.MinimaleWaagerechte
+           WaagerechteExtern - AnfangExtern <= SchleifenbereichZusatz.MinimaleWaagerechte
          then
             return AnfangExtern;
             
@@ -351,7 +356,7 @@ package body KartengeneratorStandardLogik is
         ÜbergangOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
       then
          if
-           WaagerechteExtern + EndeExtern > SchleifenbereichZusatz.MaximaleWaagerechte
+           WaagerechteExtern + EndeExtern >= SchleifenbereichZusatz.MaximaleWaagerechte
          then
             return EndeExtern;
          
@@ -378,7 +383,7 @@ package body KartengeneratorStandardLogik is
       
       SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
       
-      -- Wird die erste Abfrag überhaupt benötigt wenn ich darunter prüfe ob es im gültigen Kartenbereich ist? äöü
+      -- Wird die erste Abfrage überhaupt benötigt wenn ich darunter prüfe ob es im gültigen Kartenbereich ist? äöü
       if
         WaagerechteExtern = KartenKonstanten.LeerWaagerechte
       then

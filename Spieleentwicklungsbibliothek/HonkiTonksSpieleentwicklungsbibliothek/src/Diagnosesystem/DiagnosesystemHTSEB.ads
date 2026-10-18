@@ -15,6 +15,8 @@ package DiagnosesystemHTSEB is
    procedure Zahl
      (ZahlExtern : in Integer);
    
+   procedure Zählen;
+   
    procedure Kommazahl
      (ZahlExtern : in Float);
    
@@ -60,6 +62,7 @@ private
    MaximaleNamenlänge : constant Positive := 255;
    
    ZuSpeichern : Natural;
+   Zähler : Natural := 0;
          
    DateiSpeichern : File_Type;
    

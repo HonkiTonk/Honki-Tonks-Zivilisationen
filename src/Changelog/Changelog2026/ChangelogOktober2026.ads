@@ -190,17 +190,22 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (04.10.2026):
+   -- Version 0.06.6325 => 0.06. (04.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6250 => 0.06. (03.10.2026):
+   -- Version 0.06.6250 => 0.06.6325 (03.10.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Benennung überarbeitet.
+   -- Interne Struktur überarbeitet.
+   -- Städte werden nehmen grafisch jetzt wieder das ganze Kartenfeld ein anstelle eines Viertels wie normale Verbesserungen.
+   -- Kartengenerierung beschleunigt indem der basisgrund für Himmel und Orbit jetzt zur Standardeinstellung gehört.
+   -- Code zusammengefasst.
+   -- Kartengenerator überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

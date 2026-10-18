@@ -1,0 +1,11 @@
+with KartenartDatentypen;
+with KartenKonstanten;
+with KartenDatentypen;
+
+with LeseWeltkarteneinstellungen;
+
+with KartengeneratorVariablenLogik;
+
+package body PolbereicheBerechnenLogik is
+
+end PolbereicheBerechnenLogik;

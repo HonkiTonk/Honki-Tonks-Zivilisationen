@@ -44,6 +44,18 @@ package body DiagnosesystemHTSEB is
    end Zahl;
    
    
+   
+   procedure Zählen
+   is begin
+      
+      Zähler := Zähler + 1;
+      
+      Zahl (ZahlExtern => Zähler);
+      
+   end Zählen;
+   
+   
+   
    procedure Kommazahl
      (ZahlExtern : in Float)
    is

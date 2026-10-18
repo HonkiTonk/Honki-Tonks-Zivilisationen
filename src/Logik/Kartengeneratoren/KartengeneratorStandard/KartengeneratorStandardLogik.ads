@@ -40,8 +40,8 @@ private
    
    WaagerechteAnfang : KartenDatentypen.WaagerechteBasis;
    WaagerechteEnde : KartenDatentypen.WaagerechteBasis;
-      
-   type LandmassenArray is array (1 .. 2) of KartenRecords.KartenfeldumgebungPositivRecord;
+   
+   type LandmassenArray is array (SystemDatentypenHTSEB.Anfang_Ende_Enum'Range) of KartenRecords.KartenfeldumgebungPositivRecord;
    Landmassen : LandmassenArray;
    Landabstand : LandmassenArray;
    

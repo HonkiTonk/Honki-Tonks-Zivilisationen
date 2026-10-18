@@ -6,6 +6,7 @@ with KartenkoordinateSenkrechteBerechnenLogik;
 with KartenkoordinateWaagerechteBerechnenLogik;
 with KartenkoordinatenWerteLogik;
 
+-- Erweitern das es auch direkt einen Zweidimensionalen Bereich zurück gibt. äöü
 package body KartenkoordinatenberechnungssystemLogik is
 
    function Koordinatenberechnung

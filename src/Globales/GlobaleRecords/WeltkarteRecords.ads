@@ -46,5 +46,31 @@ package WeltkarteRecords is
                                                 Einheit        => EinheitenKonstanten.LeerEinheit,
                                                 Stadtbelegung  => KartenRecordKonstanten.LeerDurchStadtBelegterGrund
                                                );
+   
+   LeerHimmelkarte : constant WeltkarteRecord := (
+                                                Basisgrund     => KartenbasisgrundDatentypen.Wolken_Enum,
+                                                Zusatzgrund    => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
+                                                Sichtbar       => KartenRecordKonstanten.LeerSichtbarkeit,
+                                                Effekte        => KartenRecordKonstanten.LeerEffekte,
+                                                Fluss          => KartenfluesseDatentypen.Leer_Fluss_Enum,
+                                                Rohstoffe      => (others => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum),
+                                                Weg            => KartenwegeDatentypen.Leer_Weg_Enum,
+                                                Verbesserungen => (others => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum),
+                                                Einheit        => EinheitenKonstanten.LeerEinheit,
+                                                Stadtbelegung  => KartenRecordKonstanten.LeerDurchStadtBelegterGrund
+                                               );
+   
+   LeerOrbitkarte : constant WeltkarteRecord := (
+                                                Basisgrund     => KartenbasisgrundDatentypen.Orbit_Enum,
+                                                Zusatzgrund    => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
+                                                Sichtbar       => KartenRecordKonstanten.LeerSichtbarkeit,
+                                                Effekte        => KartenRecordKonstanten.LeerEffekte,
+                                                Fluss          => KartenfluesseDatentypen.Leer_Fluss_Enum,
+                                                Rohstoffe      => (others => KartenrohstoffeDatentypen.Leer_Rohstoffe_Enum),
+                                                Weg            => KartenwegeDatentypen.Leer_Weg_Enum,
+                                                Verbesserungen => (others => KartenverbesserungDatentypen.Leer_Verbesserungen_Enum),
+                                                Einheit        => EinheitenKonstanten.LeerEinheit,
+                                                Stadtbelegung  => KartenRecordKonstanten.LeerDurchStadtBelegterGrund
+                                               );
 
 end WeltkarteRecords;

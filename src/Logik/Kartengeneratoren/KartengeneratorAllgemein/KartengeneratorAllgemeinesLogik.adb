@@ -1,9 +1,11 @@
-with KartengeneratorHimmelLogik;
-with KartengeneratorOrbitLogik;
+with KartenKonstanten;
+with KartenartDatentypen;
+
+with LeseWeltkarteneinstellungen;
+
 with KartengeneratorPlanetenkernLogik;
 with KartengeneratorPolregionLogik;
 with KartengeneratorStandardLogik;
-with PolbereicheBerechnenLogik;
 with KartengeneratorVariablenLogik;
 with KartentestsLogik;
 
@@ -12,7 +14,7 @@ package body KartengeneratorAllgemeinesLogik is
    procedure GenerierungAllgemeines
    is begin
             
-      PolbereicheBerechnenLogik.PolbereicheBerechnen;
+      PolbereicheBerechnen;
       GenerierungGrundlagen (SenkrechteExtern => KartengeneratorVariablenLogik.PolfreierBereichLesen.MaximaleSenkrechte);
       
    end GenerierungAllgemeines;
@@ -25,53 +27,15 @@ package body KartengeneratorAllgemeinesLogik is
       use type KartenDatentypen.EbeneVorhanden;
       use type KartenDatentypen.SenkrechtePositiv;
    
-      task Orbit;
-      task Himmel;
       task Planeteninneres;
-      
-      task body Orbit
-      is begin
-
-         if
-           KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde = 2
-         then
-            KartengeneratorOrbitLogik.Orbit (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
-                                             * SenkrechteExtern));
-            
-         else
-            null;
-         end if;
-         
-      end Orbit;
-      
-      
-      
-      task body Himmel
-      is begin
-         
-         if
-           KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde >= 1
-         then
-            KartengeneratorHimmelLogik.Himmel (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
-                                               * SenkrechteExtern));
-            
-         else
-            null;
-         end if;
-         
-      end Himmel;
-      
-      
       
       task body Planeteninneres
       is begin
          
-         -- Sollte ich in dieser Prozedur später weitere Berechnungen durchführen die Zugriff auf die Kartenkoordinatenberechnung vornehmen, äöü
-         -- dann muss ich das hier wegverschieben da der Zugriff ebenfalls in KartengeneratorStandardLogik.OberflächeGenerieren erfolgt. äöü
          if
            KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang = -2
          then
-            KartengeneratorPlanetenkernLogik.Planetenkern (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
+            KartengeneratorPlanetenkernLogik.Planetenkern (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.KartengeneratorAllgemeines (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                                            * SenkrechteExtern));
             
          else
@@ -87,7 +51,7 @@ package body KartengeneratorAllgemeinesLogik is
       if
         KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde >= 0
       then
-         KartengeneratorStandardLogik.OberflächeGenerieren (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.VorhandeneEbenen (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
+         KartengeneratorStandardLogik.OberflächeGenerieren (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.KartengeneratorAllgemeines (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
                                                              * SenkrechteExtern));
             
       else
@@ -95,5 +59,29 @@ package body KartengeneratorAllgemeinesLogik is
       end if;
       
    end GenerierungGrundlagen;
+      
+   
+   
+   procedure PolbereicheBerechnen
+   is
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
+   begin
+      
+      Schleifenbereiche.MinimaleSenkrechte := KartenKonstanten.AnfangSenkrechte + KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Norden_Enum);
+      
+      Schleifenbereiche.MaximaleSenkrechte := LeseWeltkarteneinstellungen.Senkrechte - KartengeneratorVariablenLogik.SenkrechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Süden_Enum);
+      
+      
+      
+      Schleifenbereiche.MinimaleWaagerechte := KartenKonstanten.AnfangWaagerechte + KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Westen_Enum);
+      
+      
+      Schleifenbereiche.MaximaleWaagerechte := LeseWeltkarteneinstellungen.Waagerechte - KartengeneratorVariablenLogik.WaagerechterPolLesen (HimmelsrichtungExtern => KartenartDatentypen.Osten_Enum);
+      
+      KartengeneratorVariablenLogik.PolfreierBereichSchreiben (BereichExtern => Schleifenbereiche);
+      
+
+   end PolbereicheBerechnen;
 
 end KartengeneratorAllgemeinesLogik;

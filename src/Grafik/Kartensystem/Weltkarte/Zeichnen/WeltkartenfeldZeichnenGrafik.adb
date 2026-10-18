@@ -1,6 +1,7 @@
 with GrafikKonstanten;
 with KartenrohstoffeDatentypen;
 with KartenverbesserungDatentypen;
+with KarteneffekteDatentypen;
 
 with LeseWeltkarte;
 
@@ -9,7 +10,7 @@ with EingeleseneTexturenGrafik;
 with TexturenfelderVariablenGrafik;
 with SichtweitenGrafik;
 
-package body WeltkarteFeldZeichnenGrafik is
+package body WeltkartenfeldZeichnenGrafik is
 
    procedure BasisgrundZeichnen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
@@ -142,6 +143,14 @@ package body WeltkarteFeldZeichnenGrafik is
          then
             null;
             
+         elsif
+           Verbesserungen (VerbesserungenSchleifenwert) in KartenverbesserungDatentypen.Verbesserungen_Städte_Enum'Range
+         then
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.VerbesserungenAccess,
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.VerbesserungRechteck (VerbesserungExtern => Verbesserungen (VerbesserungenSchleifenwert)),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+            
          else
             case
               VerbesserungenSchleifenwert
@@ -172,5 +181,59 @@ package body WeltkarteFeldZeichnenGrafik is
       end loop VerbesserungenSchleife;
       
    end VerbesserungenZeichnen;
+   
+   
+   
+   procedure WegZeichnen
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Wegfeld := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
+      
+      case
+        Wegfeld
+      is
+         when KartenwegeDatentypen.Leer_Weg_Enum =>
+            null;
+            
+         when others =>
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccess,
+                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.WegeRechteck (WegExtern => Wegfeld),
+                                                            PositionExtern         => PositionExtern,
+                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
+      end case;
+      
+   end WegZeichnen;
+   
+   
+   
+   -- Das später auch noch über die Ebenen hinweg sichtbar machen? äöü
+   -- Ist das nicht schon über Ebenen hinweg sichtbar? äöü
+   procedure AnzeigeFeldeffekt
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      EffekteSchleife:
+      for EffektSchleifenwert in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
+         
+         case
+           LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,
+                                 WelcherEffektExtern => EffektSchleifenwert)
+         is
+            when True =>
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.FeldeffekteAccess,
+                                                               TexturbereichExtern    => TexturenfelderVariablenGrafik.FeldeffekteRechteck (FeldeffektedExtern => EffektSchleifenwert),
+                                                               PositionExtern         => PositionExtern,
+                                                               DurchsichtigkeitExtern => GrafikKonstanten.Feldeffekttransparents);
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop EffekteSchleife;
+      
+   end AnzeigeFeldeffekt;
 
-end WeltkarteFeldZeichnenGrafik;
+end WeltkartenfeldZeichnenGrafik;

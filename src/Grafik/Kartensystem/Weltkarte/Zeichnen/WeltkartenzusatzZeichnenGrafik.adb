@@ -8,7 +8,6 @@ with TextaccessVariablen;
 with GrafikKonstanten;
 with GrafikDatentypen;
 with SystemDatentypen;
-with KarteneffekteDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -18,7 +17,6 @@ with TextberechnungenBreiteGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with TextaccessverwaltungssystemEinfachGrafik;
 with StadtSuchenLogik;
-with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with ObjekteZeichnenGrafik;
 with SichtweitenGrafik;
@@ -26,31 +24,7 @@ with TextskalierungGrafik;
 with HintergrundGrafik;
 with TexturenfelderVariablenGrafik;
 
-package body WeltkarteZusatzZeichnenGrafik is
-
-   procedure WegZeichnen
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-      
-      Wegfeld := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        Wegfeld
-      is
-         when KartenwegeDatentypen.Leer_Weg_Enum =>
-            null;
-            
-         when others =>
-            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.WegeAccess,
-                                                            TexturbereichExtern    => TexturenfelderVariablenGrafik.WegeRechteck (WegExtern => Wegfeld),
-                                                            PositionExtern         => PositionExtern,
-                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
-      end case;
-      
-   end WegZeichnen;
-   
-   
+package body WeltkartenzusatzZeichnenGrafik is
    
    procedure AnzeigeFeldbesitzer
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
@@ -226,35 +200,5 @@ package body WeltkarteZusatzZeichnenGrafik is
                                                                  PositionExtern   => Textposition);
       
    end StadtnameAnzeigen;
-   
-   
-   
-   -- Das später auch noch über die Ebenen hinweg sichtbar machen? äöü
-   -- Ist das nicht schon über Ebenen hinweg sichtbar? äöü
-   procedure AnzeigeFeldeffekt
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-      
-      EffekteSchleife:
-      for EffektSchleifenwert in KarteneffekteDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
-         
-         case
-           LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,
-                                 WelcherEffektExtern => EffektSchleifenwert)
-         is
-            when True =>
-               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.FeldeffekteAccess,
-                                                               TexturbereichExtern    => TexturenfelderVariablenGrafik.FeldeffekteRechteck (FeldeffektedExtern => EffektSchleifenwert),
-                                                               PositionExtern         => PositionExtern,
-                                                               DurchsichtigkeitExtern => GrafikKonstanten.Feldeffekttransparents);
-               
-            when False =>
-               null;
-         end case;
-         
-      end loop EffekteSchleife;
-      
-   end AnzeigeFeldeffekt;
 
-end WeltkarteZusatzZeichnenGrafik;
+end WeltkartenzusatzZeichnenGrafik;

@@ -15,8 +15,8 @@ with LeseGrafiktask;
 with KartenkoordinatenberechnungssystemLogik;
 with ViewsEinstellenGrafik;
 with SichtweitenGrafik;
-with WeltkarteFeldZeichnenGrafik;
-with WeltkarteZusatzZeichnenGrafik;
+with WeltkartenfeldZeichnenGrafik;
+with WeltkartenzusatzZeichnenGrafik;
 with WeltkarteEinheitZeichnenGrafik;
 with FensterGrafik;
 
@@ -116,14 +116,14 @@ package body WeltkarteGrafik is
                if
                  Stadtnamenposition = Integer (Sichtbereich.Senkrechte + Sichtbereich.Senkrechte)
                then
-                  WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
-                                                                   PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
-                                                                   ObenUntenExtern   => True);
+                  WeltkartenzusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
+                                                                    PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
+                                                                    ObenUntenExtern   => True);
                      
                else
-                  WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
-                                                                   PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
-                                                                   ObenUntenExtern   => False);
+                  WeltkartenzusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
+                                                                    PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
+                                                                    ObenUntenExtern   => False);
                end if;
                
             else
@@ -223,9 +223,9 @@ package body WeltkarteGrafik is
         Anzeige (Basisgrund_Enum)
       is
          when True =>
-            WeltkarteFeldZeichnenGrafik.BasisgrundZeichnen (KoordinatenExtern      => KoordinatenExtern,
-                                                            PositionExtern         => PositionExtern,
-                                                            DurchsichtigkeitExtern => TransparentsExtern);
+            WeltkartenfeldZeichnenGrafik.BasisgrundZeichnen (KoordinatenExtern      => KoordinatenExtern,
+                                                             PositionExtern         => PositionExtern,
+                                                             DurchsichtigkeitExtern => TransparentsExtern);
             
          when False =>
             null;
@@ -235,9 +235,9 @@ package body WeltkarteGrafik is
         Anzeige (Zusatzgrund_Enum)
       is
          when True =>
-            WeltkarteFeldZeichnenGrafik.ZusatzgrundZeichnen (KoordinatenExtern      => KoordinatenExtern,
-                                                             PositionExtern         => PositionExtern,
-                                                             DurchsichtigkeitExtern => TransparentsExtern);
+            WeltkartenfeldZeichnenGrafik.ZusatzgrundZeichnen (KoordinatenExtern      => KoordinatenExtern,
+                                                              PositionExtern         => PositionExtern,
+                                                              DurchsichtigkeitExtern => TransparentsExtern);
             
          when False =>
             null;
@@ -247,8 +247,8 @@ package body WeltkarteGrafik is
         Anzeige (Fluss_Enum)
       is
          when True =>
-            WeltkarteFeldZeichnenGrafik.FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                       PositionExtern    => PositionExtern);
+            WeltkartenfeldZeichnenGrafik.FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                        PositionExtern    => PositionExtern);
             
          when False =>
             null;
@@ -258,8 +258,8 @@ package body WeltkarteGrafik is
         Anzeige (Rohstoffe_Enum)
       is
          when True =>
-            WeltkarteFeldZeichnenGrafik.RohstoffeZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                           PositionExtern    => PositionExtern);
+            WeltkartenfeldZeichnenGrafik.RohstoffeZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                            PositionExtern    => PositionExtern);
             
          when False =>
             null;
@@ -271,8 +271,8 @@ package body WeltkarteGrafik is
         Anzeige (Weg_Enum)
       is
          when True =>
-            WeltkarteZusatzZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                       PositionExtern    => PositionExtern);
+            WeltkartenfeldZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                        PositionExtern    => PositionExtern);
             
          when False =>
             null;
@@ -282,8 +282,8 @@ package body WeltkarteGrafik is
         Anzeige (Verbesserungen_Enum)
       is
          when True =>
-            WeltkarteFeldZeichnenGrafik.VerbesserungenZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                                PositionExtern    => PositionExtern);
+            WeltkartenfeldZeichnenGrafik.VerbesserungenZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                                 PositionExtern    => PositionExtern);
             
          when False =>
             null;
@@ -293,8 +293,8 @@ package body WeltkarteGrafik is
         Anzeige (Feldbesitzer_Enum)
       is
          when True =>
-            WeltkarteZusatzZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
-                                                               PositionExtern    => PositionExtern);
+            WeltkartenzusatzZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
+                                                                PositionExtern    => PositionExtern);
             
          when False =>
             null;
@@ -304,8 +304,8 @@ package body WeltkarteGrafik is
         Anzeige (Feldeffekte_Enum)
       is
          when True =>
-            WeltkarteZusatzZeichnenGrafik.AnzeigeFeldeffekt (KoordinatenExtern => KoordinatenExtern,
-                                                             PositionExtern    => PositionExtern);
+            WeltkartenfeldZeichnenGrafik.AnzeigeFeldeffekt (KoordinatenExtern => KoordinatenExtern,
+                                                            PositionExtern    => PositionExtern);
             
          when False =>
             null;

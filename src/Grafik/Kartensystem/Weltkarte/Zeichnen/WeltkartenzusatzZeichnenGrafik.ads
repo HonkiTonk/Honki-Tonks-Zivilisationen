@@ -11,30 +11,15 @@ with KartenartDatentypen;
 private with KartenverbesserungDatentypen;
 private with StadtRecords;
 private with KartenRecordKonstanten;
-private with KartenwegeDatentypen;
 
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
 
-package WeltkarteZusatzZeichnenGrafik is
+package WeltkartenzusatzZeichnenGrafik is
    pragma Elaborate_Body;
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    use type SpeziesDatentypen.Spieler_Enum;
-   
-   procedure WegZeichnen
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
    procedure AnzeigeFeldbesitzer
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
@@ -80,20 +65,6 @@ package WeltkarteZusatzZeichnenGrafik is
                  PositionExtern.y >= 0.00
               );
    
-   procedure AnzeigeFeldeffekt
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
-   
    procedure StadtnameAnzeigen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -114,7 +85,7 @@ private
    AktuelleSpezies : SpeziesDatentypen.Spezies_Enum;
    
    Stadtart : KartenverbesserungDatentypen.Verbesserungen_Stadt_ID_Enum;
-   Wegfeld : KartenwegeDatentypen.Weg_Enum;
+   
    Verbesserungsfeld : KartenverbesserungDatentypen.Verbesserungen_Enum;
    
    DickeRahmen : constant Float := 5.00;
@@ -139,4 +110,4 @@ private
                                          KartenartDatentypen.Süden_Enum  => KartenRecordKonstanten.Südbewegung
                                         );
 
-end WeltkarteZusatzZeichnenGrafik;
+end WeltkartenzusatzZeichnenGrafik;

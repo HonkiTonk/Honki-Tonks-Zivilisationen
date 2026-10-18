@@ -7,8 +7,6 @@ with SchreibeWeltkarte;
 
 with LadezeitenLogik;
 
--- Sollte ich in dieser Prozedur später weitere Berechnungen durchführen die Zugriff auf die Kartenkoordinatenberechnung vornehmen, äöü
--- dann muss ich das hier wegverschieben da der Zugriff ebenfall in KartengeneratorStandardLogik.OberflächeGenerieren erfolgt. äöü
 package body KartengeneratorPlanetenkernLogik is
 
    procedure Planetenkern

@@ -33,7 +33,7 @@ package KartentestsLogik is
       return KartenDatentypen.SenkrechtePositiv
      with
        Pre => (
-                EbenenExtern.EbeneAnfang <= EbenenExtern.EbeneEnde
+                 EbenenExtern.EbeneAnfang <= EbenenExtern.EbeneEnde
               ),
 
        Post => (
@@ -45,14 +45,24 @@ package KartentestsLogik is
       return KartenDatentypen.SenkrechtePositiv
      with
        Pre => (
-                EbenenExtern.EbeneAnfang <= EbenenExtern.EbeneEnde
+                 EbenenExtern.EbeneAnfang <= EbenenExtern.EbeneEnde
               ),
 
        Post => (
                   PlanetenEbenen'Result <= 3
                );
 
+   function KartengeneratorAllgemeines
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+      return KartenDatentypen.SenkrechtePositiv
+     with
+       Pre => (
+                 EbenenExtern.EbeneAnfang <= EbenenExtern.EbeneEnde
+              ),
 
+       Post => (
+                  KartengeneratorAllgemeines'Result <= 2
+               );
 
 private
 

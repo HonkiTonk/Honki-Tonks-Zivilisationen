@@ -163,4 +163,24 @@ package body KartentestsLogik is
       
    end PlanetenEbenen;
    
+   
+   
+   function KartengeneratorAllgemeines
+     (EbenenExtern : in KartenRecords.KartenebenenVorhandenRecord)
+      return KartenDatentypen.SenkrechtePositiv
+   is begin
+      
+      if
+        EbenenExtern.EbeneAnfang = -2
+        and
+          EbenenExtern.EbeneEnde >= 0
+      then
+         return 2;
+         
+      else
+         return 1;
+      end if;
+      
+   end KartengeneratorAllgemeines;
+   
 end KartentestsLogik;

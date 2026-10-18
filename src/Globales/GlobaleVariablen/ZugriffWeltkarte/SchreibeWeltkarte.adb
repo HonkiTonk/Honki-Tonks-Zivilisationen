@@ -383,7 +383,9 @@ package body SchreibeWeltkarte is
    procedure Standardeinstellungen
    is begin
       
-      Weltkarte.Karte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
+      Weltkarte.Karte := (KartenDatentypen.EbeneLuft'Last  => (others => (others => WeltkarteRecords.LeerOrbitkarte)),
+                          KartenDatentypen.EbeneLuft'First => (others => (others => WeltkarteRecords.LeerHimmelkarte)),
+                          others                           => (others => (others => WeltkarteRecords.LeerWeltkarte)));
       
    end Standardeinstellungen;
    
