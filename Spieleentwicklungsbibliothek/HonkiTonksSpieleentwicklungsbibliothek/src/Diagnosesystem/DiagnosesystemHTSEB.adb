@@ -46,11 +46,22 @@ package body DiagnosesystemHTSEB is
    
    
    procedure Zählen
+     (ZahlbestimmungExtern : in Boolean)
    is begin
       
-      Zähler := Zähler + 1;
+      case
+        ZahlbestimmungExtern
+      is
+         when True =>
+            ZählerEins := ZählerEins + 1;
       
-      Zahl (ZahlExtern => Zähler);
+            Zahl (ZahlExtern => ZählerEins);
+            
+         when False =>
+            ZählerZwei := ZählerZwei + 1;
+      
+            Zahl (ZahlExtern => ZählerZwei);
+      end case;
       
    end Zählen;
    

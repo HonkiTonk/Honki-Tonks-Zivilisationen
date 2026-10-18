@@ -7,8 +7,8 @@ with DateisystemtestsHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 with TextKonstantenHTSEB;
+with VerzeichnisKonstantenHTSEB;
 
-with VerzeichnisKonstanten;
 with StandardTastenbelegungDatenbank;
 with TastenbelegungDatentypen;
 with BefehleDatentypen;
@@ -23,15 +23,15 @@ package body EinlesenTastatureinstellungenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Tastatureinstellungen))
+                                                            WindowsTextExtern => VerzeichnisKonstantenHTSEB.Tastatureinstellungen)
       is
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiTastatureinstellungen,
-                                                    NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DateiTastatureinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.Tastatureinstellungen);
       end case;
       
       case
@@ -46,8 +46,8 @@ package body EinlesenTastatureinstellungenLogik is
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiTastatureinstellungen,
-                                                 NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiTastatureinstellungen,
+                                                         NameExtern     => VerzeichnisKonstantenHTSEB.Tastatureinstellungen);
       
    exception
       when StandardAdaFehler : others =>
@@ -55,8 +55,8 @@ package body EinlesenTastatureinstellungenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiTastatureinstellungen,
-                                                    NameExtern     => VerzeichnisKonstanten.Tastatureinstellungen);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiTastatureinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.Tastatureinstellungen);
       
    end Tastatureinstellungen;
    

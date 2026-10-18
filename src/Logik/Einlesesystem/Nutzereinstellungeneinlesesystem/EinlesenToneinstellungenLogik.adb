@@ -5,8 +5,7 @@ with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
 with TextKonstantenHTSEB;
-
-with VerzeichnisKonstanten;
+with VerzeichnisKonstantenHTSEB;
 
 with SchreibeEinstellungenTon;
 
@@ -20,15 +19,15 @@ package body EinlesenToneinstellungenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Toneinstellungen))
+                                                            WindowsTextExtern => VerzeichnisKonstantenHTSEB.Toneinstellungen)
       is
          when False =>
             EinstellungenTon.StandardeinstellungenLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiToneinstellungen,
-                                                    NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DateiToneinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.Toneinstellungen);
       end case;
       
       case
@@ -43,8 +42,8 @@ package body EinlesenToneinstellungenLogik is
             EinstellungenTon.StandardeinstellungenLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiToneinstellungen,
-                                                 NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiToneinstellungen,
+                                                         NameExtern     => VerzeichnisKonstantenHTSEB.Toneinstellungen);
       
    exception
       when StandardAdaFehler : others =>
@@ -52,8 +51,8 @@ package body EinlesenToneinstellungenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          EinstellungenTon.StandardeinstellungenLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiToneinstellungen,
-                                                    NameExtern     => VerzeichnisKonstanten.Toneinstellungen);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiToneinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.Toneinstellungen);
       
    end Toneinstelllungen;
    

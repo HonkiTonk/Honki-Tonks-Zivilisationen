@@ -2,9 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypenHTSEB;
 
-private with UmwandlungssystemHTSEB;
-
-with VerzeichnisKonstanten;
+private with VerzeichnisKonstantenHTSEB;
 
 package UmwandlungenVerzeichnisse is
    pragma Elaborate_Body;
@@ -34,19 +32,19 @@ private
    
    type VerzeichnisseArray is array (SystemDatentypenHTSEB.Spielstand_Enum'Range) of Unbounded_Wide_Wide_String;
    Verzeichnispfade : constant VerzeichnisseArray := (
-                                                      SystemDatentypenHTSEB.Manueller_Spielstand_Enum => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SpielstandStrich)
-                                                      & UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SpielstandSpieler),
+                                                      SystemDatentypenHTSEB.Manueller_Spielstand_Enum =>
+                                                        To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstantenHTSEB.Spielstandordner & VerzeichnisKonstantenHTSEB.SpielstandSpieler),
                                                    
-                                                      SystemDatentypenHTSEB.Automatischer_Spielstand_Enum => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SpielstandStrich)
-                                                      & UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SpielstandAuto)
+                                                      SystemDatentypenHTSEB.Automatischer_Spielstand_Enum =>
+                                                        To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstantenHTSEB.Spielstandordner & VerzeichnisKonstantenHTSEB.SpielstandAuto)
                                                      );
    
    Spielstandpfade : constant VerzeichnisseArray := (
-                                                     SystemDatentypenHTSEB.Manueller_Spielstand_Enum => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SpielstandStrich)
-                                                     & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandSpielerStrich),
+                                                     SystemDatentypenHTSEB.Manueller_Spielstand_Enum =>
+                                                       To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstantenHTSEB.Spielstandordner & VerzeichnisKonstantenHTSEB.SpielstandSpielerordner),
                                                      
-                                                     SystemDatentypenHTSEB.Automatischer_Spielstand_Enum => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SpielstandStrich)
-                                                     & To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.SpielstandAutoStrich)
+                                                     SystemDatentypenHTSEB.Automatischer_Spielstand_Enum =>
+                                                       To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstantenHTSEB.Spielstandordner & VerzeichnisKonstantenHTSEB.SpielstandAutoordner)
                                                     );
 
 end UmwandlungenVerzeichnisse;

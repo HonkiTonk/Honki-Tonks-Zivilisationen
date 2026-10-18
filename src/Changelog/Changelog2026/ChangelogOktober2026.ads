@@ -183,17 +183,19 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (05.10.2026):
+   -- Version 0.06.6370 => 0.06. (05.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6325 => 0.06. (04.10.2026):
+   -- Version 0.06.6325 => 0.06.6370 (04.10.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einige Funktionen in die HTSEB ausgelagert.
+   -- HTSEB von 0.01.2600 auf 0.01.2750 aktualisiert.
+   -- Einige Funktionen durch HTSEB Varianten ersetzt.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

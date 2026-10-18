@@ -5,8 +5,8 @@ with DateisystemtestsHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 with TextKonstantenHTSEB;
+with VerzeichnisKonstantenHTSEB;
 
-with VerzeichnisKonstanten;
 with OptionenVariablen;
 
 with SchreibeOptionen;
@@ -19,15 +19,15 @@ package body EinlesenSpielendeEinstellungenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                                 WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SpielendeEinstellungen))
+                                                            WindowsTextExtern => VerzeichnisKonstantenHTSEB.SpielendeEinstellungen)
       is
          when False =>
             OptionenVariablen.SpielendeStandardeinstellungenLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiSonstigeEinstellungen,
-                                      NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DateiSonstigeEinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.SpielendeEinstellungen);
       end case;
       
       case
@@ -42,8 +42,8 @@ package body EinlesenSpielendeEinstellungenLogik is
             OptionenVariablen.SpielendeStandardeinstellungenLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSonstigeEinstellungen,
-                                                 NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiSonstigeEinstellungen,
+                                                         NameExtern     => VerzeichnisKonstantenHTSEB.SpielendeEinstellungen);
       
    exception
       when StandardAdaFehler : others =>
@@ -51,8 +51,8 @@ package body EinlesenSpielendeEinstellungenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.SpielendeStandardeinstellungenLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSonstigeEinstellungen,
-                                                    NameExtern     => VerzeichnisKonstanten.SpielendeEinstellungen);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiSonstigeEinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.SpielendeEinstellungen);
       
    end SpielendeEinstellungen;
    
@@ -75,7 +75,7 @@ package body EinlesenSpielendeEinstellungenLogik is
             
             when False =>
                SystemDatentypenHTSEB.EigenesPositive'Read (Stream (File => DateiLadenExtern),
-                                                      Autospeichernwert);
+                                                           Autospeichernwert);
          end case;
          
          -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig eingelesen wurde!
@@ -93,7 +93,7 @@ package body EinlesenSpielendeEinstellungenLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSpielendeEinstellungenLogik.SonstigeEinstellungenDurchgehen: Konnte nicht geladen werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end SpielendeEinstellungenDurchgehen;

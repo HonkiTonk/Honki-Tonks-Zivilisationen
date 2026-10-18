@@ -1,7 +1,7 @@
 with Ada.Directories; use Ada.Directories;
 with Ada.Exceptions; use Ada.Exceptions;
 
-with VerzeichnisKonstanten;
+with VerzeichnisKonstantenHTSEB;
 
 with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
@@ -12,59 +12,59 @@ package body SchreibenVerzeichnisseLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Spielstand)
+        Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Spielstand))
       is
          when True =>
             null;
 
          when False =>
-            Create_Directory (New_Directory => VerzeichnisKonstanten.Spielstand);
+            Create_Directory (New_Directory => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Spielstand));
       end case;
       
       case
-        Exists (Name => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandSpieler)
+        Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Spielstandordner & VerzeichnisKonstantenHTSEB.SpielstandSpieler))
       is
          when True =>
             null;
             
          when False =>
-            Create_Directory (New_Directory => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandSpieler);
+            Create_Directory (New_Directory => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Spielstandordner & VerzeichnisKonstantenHTSEB.SpielstandSpieler));
       end case;
       
       case
-        Exists (Name => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandAuto)
+        Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Spielstandordner & VerzeichnisKonstantenHTSEB.SpielstandAuto))
       is
          when True =>
             null;
             
          when False =>
-            Create_Directory (New_Directory => VerzeichnisKonstanten.SpielstandStrich & VerzeichnisKonstanten.SpielstandAuto);
+            Create_Directory (New_Directory => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Spielstandordner & VerzeichnisKonstantenHTSEB.SpielstandAuto));
       end case;
       
       case
-        Exists (Name => VerzeichnisKonstanten.Datenbanken)
+        Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Datenbanken))
       is
          when True =>
             null;
 
          when False =>
-            Create_Directory (New_Directory => VerzeichnisKonstanten.Datenbanken);
+            Create_Directory (New_Directory => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Datenbanken));
       end case;
       
       case
-        Exists (Name => VerzeichnisKonstanten.Einstellungen)
+        Exists (Name => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Einstellungen))
       is
          when True =>
             null;
             
          when False =>
-            Create_Directory (New_Directory => VerzeichnisKonstanten.Einstellungen);
+            Create_Directory (New_Directory => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Einstellungen));
       end case;
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenVerzeichnisseLogik.Verzeichnisse: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
       
    end Verzeichnisse;
 

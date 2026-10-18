@@ -84,7 +84,7 @@ package body KartengeneratorStandardLogik is
             --                 WaagerechteExtern => WaagerechteExtern);
             null;
       
-            DiagnosesystemHTSEB.Zählen;
+            DiagnosesystemHTSEB.Zählen (ZahlbestimmungExtern => True);
             
          when others =>
             null;

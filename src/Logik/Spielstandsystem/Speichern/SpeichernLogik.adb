@@ -4,9 +4,9 @@ with DateizugriffssystemHTSEB;
 with TextKonstantenHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
+with VerzeichnisKonstantenHTSEB;
 
 with GrafikDatentypen;
-with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
 with TextnummernKonstanten;
 
@@ -45,7 +45,7 @@ package body SpeichernLogik is
                   Spielstandname := NameAutoSpeichern;
                   
                else
-                  Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstanten.Notfallspeichern);
+                  Spielstandname := To_Unbounded_Wide_Wide_String (Source => VerzeichnisKonstantenHTSEB.Notfallspeichern);
                end if;
             
             when False =>

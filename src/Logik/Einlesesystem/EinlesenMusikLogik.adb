@@ -6,8 +6,7 @@ with UmwandlungssystemHTSEB;
 with DateisystemtestsHTSEB;
 with TextKonstantenHTSEB;
 with EinlesenAllgemeinesHTSEB;
-
-with VerzeichnisKonstanten;
+with VerzeichnisKonstantenHTSEB;
 
 with LeseOptionen;
 
@@ -22,20 +21,19 @@ package body EinlesenMusikLogik is
       case
         -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht dder ganze Verzeichnisname.
         DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                       WindowsTextExtern => (VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik) & VerzeichnisKonstanten.NullDateiWideWide))
+                                                       WindowsTextExtern => (VerzeichnisKonstantenHTSEB.Musikordner & To_Wide_Wide_String (Source => LeseOptionen.Musik) & VerzeichnisKonstantenHTSEB.Nulldatei))
       is
          when False =>
-            MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Es fehlt: " & VerzeichnisKonstanten.Grafik
-                                       & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstanten.NullDateiWideWide);
+            MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Es fehlt: " & VerzeichnisKonstantenHTSEB.Grafikordner
+                                       & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstantenHTSEB.Nulldatei);
             return;
             
          when True =>
             EinzulesendeZeile := 1;
             AktuelleZeile := 1;
             
-            DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiMusik,
-                                                  NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik)
-                                                                                                   & VerzeichnisKonstanten.NullDateiWideWide));
+            DateizugriffssystemHTSEB.ÖffnenTextWideWide (DateiartExtern => DateiMusik,
+                                                         NameExtern     => VerzeichnisKonstantenHTSEB.Musikordner & To_Wide_Wide_String (Source => LeseOptionen.Musik) & VerzeichnisKonstantenHTSEB.Nulldatei);
       end case;
       
       MusikSchleife:
@@ -54,7 +52,7 @@ package body EinlesenMusikLogik is
                Dateiname := EinlesenAllgemeinesHTSEB.DateinamenEinlesenUngebunden (DateiExtern         => DateiMusik,
                                                                                    AktuelleZeileExtern => EinzulesendeZeile,
                                                                                    DateinameExtern     => "EinlesenMusikLogik.EinlesenMusik");
-               GesamterPfad := VerzeichnisKonstanten.Musik & LeseOptionen.Musik & "/" & Dateiname;
+               GesamterPfad := VerzeichnisKonstantenHTSEB.Musikordner & LeseOptionen.Musik & "/" & Dateiname;
                EinzulesendeZeile := EinzulesendeZeile + 1;
          end case;
          
@@ -106,9 +104,8 @@ package body EinlesenMusikLogik is
          
       end loop MusikSchleife;
             
-      DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiMusik,
-                                               NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Musik & To_Wide_Wide_String (Source => LeseOptionen.Musik)
-                                                                                                & VerzeichnisKonstanten.NullDateiWideWide));
+      DateizugriffssystemHTSEB.SchließenTextWideWide (DateiartExtern => DateiMusik,
+                                               NameExtern     => VerzeichnisKonstantenHTSEB.Musikordner & To_Wide_Wide_String (Source => LeseOptionen.Musik) & VerzeichnisKonstantenHTSEB.Nulldatei);
       
       EinstellungenMusik.Lautstärke;
       

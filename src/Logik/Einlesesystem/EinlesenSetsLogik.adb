@@ -1,8 +1,10 @@
 with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
-with VerzeichnisKonstanten;
 with ArraysHTSEB;
 with TextKonstantenHTSEB;
+with VerzeichnisKonstantenHTSEB;
+
+with VerzeichnisKonstanten;
 
 package body EinlesenSetsLogik is
 
@@ -34,9 +36,10 @@ package body EinlesenSetsLogik is
             
          elsif
            False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstantenHTSEB.LeerUnboundedString,
-                                                                WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => OrdnerExtern & "/"
-                                                                                                                             & Simple_Name (Directory_Entry => Verzeichnis)
-                                                                                                                             & VerzeichnisKonstanten.NullDatei))
+                                                                WindowsTextExtern =>
+                                                                  UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => OrdnerExtern & "/"
+                                                                                                          & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                          & UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Nulldatei)))
          then
             null;
             
@@ -51,7 +54,7 @@ package body EinlesenSetsLogik is
          elsif
            -- Das ausgeklammerte unten drunter funktioniert unter Windwos nicht, wenn man Sonderzeichen verwendet.
            -- EinlesenAllgemeinesHTSEB.LeeresVerzeichnis (VerzeichnisExtern => OrdnerExtern & "/" & Simple_Name (Directory_Entry => Verzeichnis)) = True
-           Exists (Name => OrdnerExtern & "/" & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei) = False
+           Exists (Name => OrdnerExtern & "/" & Simple_Name (Directory_Entry => Verzeichnis) & UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Nulldatei)) = False
          then
             null;
             

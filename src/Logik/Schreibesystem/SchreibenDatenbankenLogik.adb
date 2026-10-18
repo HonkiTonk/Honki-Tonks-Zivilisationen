@@ -36,22 +36,22 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenEinheitenDatenbank
    is begin
       
-      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiEinheitendatenbank,
-                                                NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
+      DateizugriffssystemHTSEB.ErstellenStreamWideWide (DateiartExtern => DateiEinheitendatenbank,
+                                                        NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
       EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DateiEinheitendatenbank),
                                                     EinheitenDatenbank.Einheitenliste);
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiEinheitendatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiEinheitendatenbank,
+                                                         NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiEinheitendatenbank,
-                                                    NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiEinheitendatenbank,
+                                                            NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
    end SchreibenEinheitenDatenbank;
    
@@ -61,8 +61,8 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenForschungenDatenbank
    is begin
       
-      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiForschungendatenbank,
-                                  NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
+      DateizugriffssystemHTSEB.ErstellenStreamWideWide (DateiartExtern => DateiForschungendatenbank,
+                                                        NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       
       ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DateiForschungendatenbank),
                                                        ForschungenDatenbank.Forschungsliste);
@@ -76,16 +76,16 @@ package body SchreibenDatenbankenLogik is
       ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray'Write (Stream (File => DateiForschungendatenbank),
                                                                         ForschungenDatenbank.TechnologieUmgebungsgröße);
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiForschungendatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiForschungendatenbank,
+                                                         NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenForschungenDatenbank: Konnte nicht gespeichert werden: "
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiForschungendatenbank,
-                                                    NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiForschungendatenbank,
+                                                            NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
          
    end SchreibenForschungenDatenbank;
    
@@ -94,22 +94,22 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenGebäudeDatenbank
    is begin
       
-      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiGebäudedatenbank,
-                                  NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
+      DateizugriffssystemHTSEB.ErstellenStreamWideWide (DateiartExtern => DateiGebäudedatenbank,
+                                                        NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
       GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DateiGebäudedatenbank),
                                                   GebaeudeDatenbank.Gebäudeliste);
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGebäudedatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiGebäudedatenbank,
+                                                         NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenGebäudeDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGebäudedatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiGebäudedatenbank,
+                                                            NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
    end SchreibenGebäudeDatenbank;
    
@@ -118,8 +118,8 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenKartenDatenbanken
    is begin
       
-      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiKartendatenbank,
-                                  NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
+      DateizugriffssystemHTSEB.ErstellenStreamWideWide (DateiartExtern => DateiKartendatenbank,
+                                                        NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
             
       KartenDatenbank.BasisgrundlisteArray'Write (Stream (File => DateiKartendatenbank),
                                                   KartenDatenbank.Basisgrundliste);
@@ -131,18 +131,18 @@ package body SchreibenDatenbankenLogik is
                                                    KartenDatenbank.Kartenflussliste);
       
       KartenDatenbank.KartenrohstoffelisteArray'Write (Stream (File => DateiKartendatenbank),
-                                                        KartenDatenbank.Kartenrohstoffeliste);
+                                                       KartenDatenbank.Kartenrohstoffeliste);
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiKartendatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiKartendatenbank,
+                                                         NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenKartenDatenbanken: Konnte nicht gespeichert werden: " &
-                                       UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                      UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiKartendatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiKartendatenbank,
+                                                            NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
       
    end SchreibenKartenDatenbanken;
    
@@ -151,8 +151,8 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenVerbesserungenDatenbank
    is begin
       
-      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiVerbesserungendatenbank,
-                                  NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
+      DateizugriffssystemHTSEB.ErstellenStreamWideWide (DateiartExtern => DateiVerbesserungendatenbank,
+                                                        NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
       VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DateiVerbesserungendatenbank),
                                                               VerbesserungenDatenbank.Verbesserungenliste);
@@ -160,16 +160,16 @@ package body SchreibenDatenbankenLogik is
       VerbesserungenDatenbank.WegelisteArray'Write (Stream (File => DateiVerbesserungendatenbank),
                                                     VerbesserungenDatenbank.Wegeliste);
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiVerbesserungendatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiVerbesserungendatenbank,
+                                                         NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiVerbesserungendatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiVerbesserungendatenbank,
+                                                            NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
    end SchreibenVerbesserungenDatenbank;
       
@@ -178,22 +178,22 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenSpeziesDatenbank
    is begin
       
-      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiSpeziesdatenbank,
-                                  NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
+      DateizugriffssystemHTSEB.ErstellenStreamWideWide (DateiartExtern => DateiSpeziesdatenbank,
+                                                        NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
       SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DateiSpeziesdatenbank),
                                                 SpeziesDatenbank.Speziesliste);
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeziesdatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiSpeziesdatenbank,
+                                                         NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenSpeziesDatenbank: Konnte nicht gespeichert werden: " &
-                                       UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                      UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiSpeziesdatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiSpeziesdatenbank,
+                                                            NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
    end SchreibenSpeziesDatenbank;
    
@@ -202,22 +202,22 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenEffekteDatenbank
    is begin
       
-      DateizugriffssystemHTSEB.ErstellenStream (DateiartExtern => DateiEffektedatenbank,
-                                  NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
+      DateizugriffssystemHTSEB.ErstellenStreamWideWide (DateiartExtern => DateiEffektedatenbank,
+                                                        NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
       EffekteDatenbank.EffektelisteArray'Write (Stream (File => DateiEffektedatenbank),
                                                 EffekteDatenbank.Effekteliste);
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiEffektedatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiEffektedatenbank,
+                                                         NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
    exception
       when StandardAdaFehler : others =>
          MeldungssystemHTSEB.Logik (MeldungExtern => "SchreibenDatenbankenLogik.SchreibenEffekteDatenbank: Konnte nicht gespeichert werden: "
-                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
+                                    & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
       
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiEffektedatenbank,
-                                                 NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiEffektedatenbank,
+                                                            NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
    end SchreibenEffekteDatenbank;
 

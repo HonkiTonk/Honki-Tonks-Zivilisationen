@@ -7,8 +7,8 @@ with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
 with TextKonstantenHTSEB;
+with VerzeichnisKonstantenHTSEB;
 
-with VerzeichnisKonstanten;
 with TextDatentypen;
 
 with SchreibeEinstellungenGrafik;
@@ -23,15 +23,15 @@ package body EinlesenGrafikeinstellungenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Grafikeinstellungen))
+                                                            WindowsTextExtern => VerzeichnisKonstantenHTSEB.Grafikeinstellungen)
       is
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiGrafikeinstellungen,
-                                                    NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DateiGrafikeinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.Grafikeinstellungen);
       end case;
       
       case
@@ -46,8 +46,8 @@ package body EinlesenGrafikeinstellungenLogik is
             EinstellungenGrafik.StandardeinstellungenLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGrafikeinstellungen,
-                                                 NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiGrafikeinstellungen,
+                                                         NameExtern     => VerzeichnisKonstantenHTSEB.Grafikeinstellungen);
       
    exception
       when StandardAdaFehler : others =>
@@ -55,8 +55,8 @@ package body EinlesenGrafikeinstellungenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          EinstellungenGrafik.StandardeinstellungenLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiGrafikeinstellungen,
-                                                    NameExtern     => VerzeichnisKonstanten.Grafikeinstellungen);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiGrafikeinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.Grafikeinstellungen);
       
    end Grafikeinstellungen;
    

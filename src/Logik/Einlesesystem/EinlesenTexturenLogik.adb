@@ -6,8 +6,8 @@ with MeldungssystemHTSEB;
 with DateisystemtestsHTSEB;
 with TextKonstantenHTSEB;
 with EinlesenAllgemeinesHTSEB;
+with VerzeichnisKonstantenHTSEB;
 
-with VerzeichnisKonstanten;
 with EingeleseneTexturenGrafik;
 
 with LeseOptionen;
@@ -23,20 +23,19 @@ package body EinlesenTexturenLogik is
       case
         -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht der ganze Verzeichnisname.
         DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                       WindowsTextExtern => (VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstanten.NullDateiWideWide))
+                                                       WindowsTextExtern => (VerzeichnisKonstantenHTSEB.Grafikordner & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstantenHTSEB.Nulldatei))
       is
          when False =>
-            MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Es fehlt: " & VerzeichnisKonstanten.Grafik
-                                       & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstanten.NullDateiWideWide);
+            MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenTexturenLogik.EinlesenTexturen: Es fehlt: " & VerzeichnisKonstantenHTSEB.Grafikordner
+                                       & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstantenHTSEB.Nulldatei);
             return;
             
          when True =>
             EinzulesendeZeile := 1;
             AktuelleZeile := 1;
             
-            DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiTexturen,
-                                                  NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
-                                                                                                   & VerzeichnisKonstanten.NullDateiWideWide));
+            DateizugriffssystemHTSEB.ÖffnenTextWideWide (DateiartExtern => DateiTexturen,
+                                                          NameExtern     => VerzeichnisKonstantenHTSEB.Grafikordner & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstantenHTSEB.Nulldatei);
       end case;
       
       TexturenSchleife:
@@ -55,7 +54,7 @@ package body EinlesenTexturenLogik is
                Dateiname := EinlesenAllgemeinesHTSEB.DateinamenEinlesenUngebunden (DateiExtern         => DateiTexturen,
                                                                                    AktuelleZeileExtern => EinzulesendeZeile,
                                                                                    DateinameExtern     => "EinlesenTexturenLogik.EinlesenTexturen");
-               GesamterPfad := VerzeichnisKonstanten.Grafik & LeseOptionen.Texturen & "/" & Dateiname;
+               GesamterPfad := VerzeichnisKonstantenHTSEB.Grafikordner & LeseOptionen.Texturen & "/" & Dateiname;
                EinzulesendeZeile := EinzulesendeZeile + 1;
          end case;
          
@@ -94,7 +93,7 @@ package body EinlesenTexturenLogik is
                  AktuelleZeile = Rohstoffe
                then
                   EingeleseneTexturenGrafik.RohstoffeAccess := TexturFestlegen (TexturenAccessExtern => EingeleseneTexturenGrafik.RohstoffeAccess,
-                                                                                 TexturenpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
+                                                                                TexturenpfadExtern   => UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => GesamterPfad));
                   
                elsif
                  AktuelleZeile = Verbesserungen
@@ -196,9 +195,8 @@ package body EinlesenTexturenLogik is
                   
       end loop TexturenSchleife;
             
-      DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiTexturen,
-                                               NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Grafik & To_Wide_Wide_String (Source => LeseOptionen.Texturen)
-                                                                                                & VerzeichnisKonstanten.NullDateiWideWide));
+      DateizugriffssystemHTSEB.SchließenTextWideWide (DateiartExtern => DateiTexturen,
+                                                       NameExtern     => VerzeichnisKonstantenHTSEB.Grafikordner & To_Wide_Wide_String (Source => LeseOptionen.Texturen) & VerzeichnisKonstantenHTSEB.Nulldatei);
       
    end EinlesenTexturen;
    

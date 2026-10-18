@@ -4,6 +4,7 @@ with TextKonstantenHTSEB;
 with MeldungssystemHTSEB;
 with EinlesenAllgemeinesHTSEB;
 with UmwandlungssystemHTSEB;
+with VerzeichnisKonstantenHTSEB;
 
 with VerzeichnisKonstanten;
 with SpeziesKonstanten;
@@ -30,7 +31,7 @@ package body EinlesenTextLogik is
         EinsprachigExtern
       is
          when True =>
-            Einlesen (VerzeichnisExtern => (VerzeichnisKonstanten.Sprachenordner & To_Wide_Wide_String (Source => LeseOptionen.Sprache) & "/"),
+            Einlesen (VerzeichnisExtern => (VerzeichnisKonstantenHTSEB.Sprachenordner & To_Wide_Wide_String (Source => LeseOptionen.Sprache) & "/"),
                       EinsprachigExtern => EinsprachigExtern);
       
             EinlesenTextSonstigesLogik.Debugmenü;
@@ -57,19 +58,20 @@ package body EinlesenTextLogik is
                   
                elsif
                  False = DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => TextKonstantenHTSEB.LeerUnboundedString,
-                                                                      WindowsTextExtern => UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
-                                                                                                                                   & Simple_Name (Directory_Entry => Verzeichnis)
-                                                                                                                                   & VerzeichnisKonstanten.NullDatei))
+                                                                      WindowsTextExtern =>
+                                                                        UmwandlungssystemHTSEB.DecodeUnbounded (TextExtern => VerzeichnisKonstanten.SprachenStrich
+                                                                                                                & Simple_Name (Directory_Entry => Verzeichnis)
+                                                                                                                & UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Nulldatei)))
                then
                   null;
              
                elsif
-                 Exists (Name => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei) = False
+                 Exists (Name => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis) & UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Nulldatei)) = False
                then
                   null;
             
                else
-                  Einlesen (VerzeichnisExtern => (VerzeichnisKonstanten.Sprachenordner & UmwandlungssystemHTSEB.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)) & "/"),
+                  Einlesen (VerzeichnisExtern => (VerzeichnisKonstantenHTSEB.Sprachenordner & UmwandlungssystemHTSEB.Decode (TextExtern => Simple_Name (Directory_Entry => Verzeichnis)) & "/"),
                             EinsprachigExtern => EinsprachigExtern);
                end if;
                

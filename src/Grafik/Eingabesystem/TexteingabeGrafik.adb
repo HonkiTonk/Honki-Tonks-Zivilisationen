@@ -4,12 +4,10 @@ with Sf.Window.Mouse;
 with Sf.Graphics.RenderWindow;
 
 with SystemRecordsKonstantenHTSEB;
-with UmwandlungssystemHTSEB;
 with DateisystemtestsHTSEB;
 with BetriebssystemKonstantenHTSEB;
 with TextKonstantenHTSEB;
-
-with VerzeichnisKonstanten;
+with VerzeichnisKonstantenHTSEB;
 
 with SchreibeLogiktask;
 with LeseLogiktask;
@@ -54,7 +52,7 @@ package body TexteingabeGrafik is
          
                else
                   ZeichenHinzufügen (EingegebenesZeichenExtern => EingegebenesZeichen,
-                                     ZeichenanzahlExtern       => ZeichenanzahlExtern);
+                                      ZeichenanzahlExtern       => ZeichenanzahlExtern);
                end if;
                
             when Sf.Window.Event.sfEvtKeyPressed =>
@@ -175,8 +173,7 @@ package body TexteingabeGrafik is
       
       case
         DateisystemtestsHTSEB.GültigeZeichenlänge (LinuxTextExtern   => LeseLogiktask.Texteingabe & EingegebenesZeichenExtern,
-                                                          WindowsTextExtern =>
-                                                             UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.VerzeichnisSpielstand) & LeseLogiktask.Texteingabe & EingegebenesZeichenExtern)
+                                                     WindowsTextExtern => VerzeichnisKonstantenHTSEB.VerzeichnisSpielstand & LeseLogiktask.Texteingabe & EingegebenesZeichenExtern)
       is
          when False =>
             return False;

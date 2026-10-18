@@ -6,6 +6,7 @@ with UmwandlungssystemHTSEB;
 with TextKonstantenHTSEB;
 with MeldungssystemHTSEB;
 with EinlesenAllgemeinesHTSEB;
+with VerzeichnisKonstantenHTSEB;
 
 with VerzeichnisKonstanten;
 with TonDatentypen;
@@ -24,20 +25,19 @@ package body EinlesenSoundsLogik is
       case
         -- Bie Linux wird hier Leer Übergeben weil ja nur das Nullverzeichnis "/0" geprüft werden muss und nicht der ganze Verzeichnisname.
         DateisystemtestsHTSEB.Standardeinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                       WindowsTextExtern => VerzeichnisKonstanten.Sound & To_Wide_Wide_String (Source => LeseOptionen.Sound) & VerzeichnisKonstanten.NullDateiWideWide)
+                                                       WindowsTextExtern => VerzeichnisKonstantenHTSEB.Soundordner & To_Wide_Wide_String (Source => LeseOptionen.Sound) & VerzeichnisKonstantenHTSEB.Nulldatei)
       is
          when False =>
-            MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: " & VerzeichnisKonstanten.Sound & To_Wide_Wide_String (Source => LeseOptionen.Sound)
-                                       & VerzeichnisKonstanten.NullDateiWideWide);
+            MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: " & VerzeichnisKonstantenHTSEB.Soundordner & To_Wide_Wide_String (Source => LeseOptionen.Sound)
+                                       & VerzeichnisKonstantenHTSEB.Nulldatei);
             return;
             
          when True =>
             EinzulesendeZeile := 1;
             AktuelleZeile := 1;
             
-            DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiSounds,
-                                                  NameExtern     => UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstanten.Sound & To_Wide_Wide_String (Source => LeseOptionen.Sound)
-                                                                                                   & VerzeichnisKonstanten.NullDateiWideWide));
+            DateizugriffssystemHTSEB.ÖffnenTextWideWide (DateiartExtern => DateiSounds,
+                                                  NameExtern     => VerzeichnisKonstantenHTSEB.Soundordner & To_Wide_Wide_String (Source => LeseOptionen.Sound) & VerzeichnisKonstantenHTSEB.Nulldatei);
       end case;
       
       SoundsSchleife:
@@ -49,15 +49,15 @@ package body EinlesenSoundsLogik is
                                                             DateinameExtern     => "EinlesenSoundsLogik.EinlesenSounds")
          is
             when True =>
-               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: " & VerzeichnisKonstanten.Sound & To_Wide_Wide_String (Source => LeseOptionen.Sound)
-                                          & VerzeichnisKonstanten.NullDateiWideWide & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
+               MeldungssystemHTSEB.Logik (MeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: " & VerzeichnisKonstantenHTSEB.Soundordner & To_Wide_Wide_String (Source => LeseOptionen.Sound)
+                                          & VerzeichnisKonstantenHTSEB.Nulldatei & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                exit SoundsSchleife;
                
             when False =>
                Dateiname := EinlesenAllgemeinesHTSEB.DateinamenEinlesenUngebunden (DateiExtern         => DateiSounds,
                                                                                    AktuelleZeileExtern => EinzulesendeZeile,
                                                                                    DateinameExtern     => "EinlesenSoundsLogik.EinlesenSounds");
-               GesamterPfad := VerzeichnisKonstanten.Sound & LeseOptionen.Sound & "/" & Dateiname;
+               GesamterPfad := VerzeichnisKonstantenHTSEB.Soundordner & LeseOptionen.Sound & "/" & Dateiname;
                EinzulesendeZeile := EinzulesendeZeile + 1;
          end case;
                   
@@ -93,7 +93,7 @@ package body EinlesenSoundsLogik is
       end loop SoundsSchleife;
             
       DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiSounds,
-                                               NameExtern     => VerzeichnisKonstanten.SoundEinfach & VerzeichnisKonstanten.NullDatei);
+                                               NameExtern     => VerzeichnisKonstanten.SoundEinfach & UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Nulldatei));
       
       EingeleseneSounds.SoundsFestlegen;
       EinstellungenSound.Lautstärke;

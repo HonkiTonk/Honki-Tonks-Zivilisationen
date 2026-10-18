@@ -1,9 +1,17 @@
 package ChangelogHTSEB is
    pragma Pure;
    
-   -- Version 0.01.2600 => 0.01.2 (..2026):
+   -- Version 0.01.2750 => 0.01.2 (..2026):
    
    -- 
+   
+   
+   
+   -- Version 0.01.2600 => 0.01.2750 (18.10.2026):
+   
+   -- Diagnosesystem erweitert.
+   -- VerzeichnisKonstantenHTSEB überarbeitet und erweitert.
+   -- Englische Übersetzung verbessert.
    
    
    
@@ -12,6 +20,7 @@ package ChangelogHTSEB is
    -- Zufallsgeneratoren erweitert.
    -- README überarbeitet.
    -- Einige "pragma Elaborate_Body" hinzugefügt.
+   
    
    
    -- Version 0.01.2400 => 0.01.2450 (06.09.2026):

@@ -38,15 +38,15 @@ package body EinlesenDatenbankenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.EinheitenDatenbank))
+                                                            WindowsTextExtern => VerzeichnisKonstanten.EinheitenDatenbank)
       is
          when False =>
             StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       end case;
       
       case
@@ -62,8 +62,8 @@ package body EinlesenDatenbankenLogik is
             StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                 NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                         NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -71,8 +71,8 @@ package body EinlesenDatenbankenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.EinheitenDatenbank);
       
    end Einheiten;
    
@@ -113,15 +113,15 @@ package body EinlesenDatenbankenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.ForschungenDatenbank))
+                                                            WindowsTextExtern => VerzeichnisKonstanten.ForschungenDatenbank)
       is
          when False =>
             StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       end case;
       
       case
@@ -137,8 +137,8 @@ package body EinlesenDatenbankenLogik is
             StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                 NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                         NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -146,8 +146,8 @@ package body EinlesenDatenbankenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.ForschungenDatenbank);
       
    end Forschungen;
    
@@ -200,15 +200,15 @@ package body EinlesenDatenbankenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.GebaeudeDatenbank))
+                                                            WindowsTextExtern => VerzeichnisKonstanten.GebaeudeDatenbank)
       is
          when False =>
             StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       end case;
       
       case
@@ -224,8 +224,8 @@ package body EinlesenDatenbankenLogik is
             StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                 NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                         NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -233,8 +233,8 @@ package body EinlesenDatenbankenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.GebaeudeDatenbank);
       
    end Gebäude;
    
@@ -275,7 +275,7 @@ package body EinlesenDatenbankenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.KartenDatenbank))
+                                                            WindowsTextExtern => VerzeichnisKonstanten.KartenDatenbank)
       is
          when False =>
             StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
@@ -285,8 +285,8 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
       end case;
       
       case
@@ -305,8 +305,8 @@ package body EinlesenDatenbankenLogik is
             StandardKartenDatenbank.StandardKartenrohstoffeDatenbankLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                 NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                         NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -317,8 +317,8 @@ package body EinlesenDatenbankenLogik is
          StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
          StandardKartenDatenbank.StandardKartenrohstoffeDatenbankLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.KartenDatenbank);
       
    end Karten;
    
@@ -339,7 +339,7 @@ package body EinlesenDatenbankenLogik is
                                                   Flüsse);
       
       KartenDatenbank.KartenrohstoffelisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                       Rohstoffe);
+                                                      Rohstoffe);
       
       case
         LadenPrüfenExtern
@@ -371,7 +371,7 @@ package body EinlesenDatenbankenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.VerbesserungenDatenbank))
+                                                            WindowsTextExtern => VerzeichnisKonstanten.VerbesserungenDatenbank)
       is
          when False =>
             StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
@@ -379,8 +379,8 @@ package body EinlesenDatenbankenLogik is
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       end case;
       
       case
@@ -397,8 +397,8 @@ package body EinlesenDatenbankenLogik is
             StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                 NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                         NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -407,8 +407,8 @@ package body EinlesenDatenbankenLogik is
          StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
          StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
    end Verbesserungen;
    
@@ -453,15 +453,15 @@ package body EinlesenDatenbankenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.SpeziesDatenbank))
+                                                            WindowsTextExtern => VerzeichnisKonstanten.SpeziesDatenbank)
       is
          when False =>
             StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       end case;
       
       case
@@ -477,8 +477,8 @@ package body EinlesenDatenbankenLogik is
             StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                 NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                         NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -486,8 +486,8 @@ package body EinlesenDatenbankenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.SpeziesDatenbank);
       
    end Spezies;
       
@@ -528,15 +528,15 @@ package body EinlesenDatenbankenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.EffekteDatenbank))
+                                                            WindowsTextExtern => VerzeichnisKonstanten.EffekteDatenbank)
       is
          when False =>
             StandardEffekteDatenbank.StandardEffekteDatenbankLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       end case;
       
       case
@@ -552,8 +552,8 @@ package body EinlesenDatenbankenLogik is
             StandardEffekteDatenbank.StandardEffekteDatenbankLaden;
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                 NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                         NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
    exception
       when StandardAdaFehler : others =>
@@ -561,8 +561,8 @@ package body EinlesenDatenbankenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          StandardEffekteDatenbank.StandardEffekteDatenbankLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DatenbankEinlesen,
-                                                    NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DatenbankEinlesen,
+                                                            NameExtern     => VerzeichnisKonstanten.EffekteDatenbank);
       
    end Effekte;
    

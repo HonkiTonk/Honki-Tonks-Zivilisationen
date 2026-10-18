@@ -5,9 +5,9 @@ with DateisystemtestsHTSEB;
 with UmwandlungssystemHTSEB;
 with MeldungssystemHTSEB;
 with TextKonstantenHTSEB;
+with VerzeichnisKonstantenHTSEB;
 
 with OptionenVariablen;
-with VerzeichnisKonstanten;
 with SystemRecordKonstanten;
 
 with SchreibeOptionen;
@@ -20,15 +20,15 @@ package body EinlesenNutzereinstellungenLogik is
       
       case
         DateisystemtestsHTSEB.StandardwerteEinleseprüfung (LinuxTextExtern   => TextKonstantenHTSEB.LeerString,
-                                                            WindowsTextExtern => UmwandlungssystemHTSEB.Decode (TextExtern => VerzeichnisKonstanten.Spieleinstellungen))
+                                                            WindowsTextExtern => VerzeichnisKonstantenHTSEB.Spieleinstellungen)
       is
          when False =>
             OptionenVariablen.StandardNutzereinstellungenLaden;
             return;
             
          when True =>
-            DateizugriffssystemHTSEB.ÖffnenStream (DateiartExtern => DateiNutzereinstellungen,
-                                                    NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
+            DateizugriffssystemHTSEB.ÖffnenStreamWideWide (DateiartExtern => DateiNutzereinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.Spieleinstellungen);
       end case;
       
       case
@@ -43,8 +43,8 @@ package body EinlesenNutzereinstellungenLogik is
                                                        DateiLadenExtern  => DateiNutzereinstellungen);
       end case;
             
-      DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiNutzereinstellungen,
-                                                 NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
+      DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiNutzereinstellungen,
+                                                         NameExtern     => VerzeichnisKonstantenHTSEB.Spieleinstellungen);
       
    exception
       when StandardAdaFehler : others =>
@@ -52,8 +52,8 @@ package body EinlesenNutzereinstellungenLogik is
                                     & UmwandlungssystemHTSEB.Decode (TextExtern => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.StandardNutzereinstellungenLaden;
             
-         DateizugriffssystemHTSEB.SchließenStream (DateiartExtern => DateiNutzereinstellungen,
-                                                    NameExtern     => VerzeichnisKonstanten.Spieleinstellungen);
+         DateizugriffssystemHTSEB.SchließenStreamWideWide (DateiartExtern => DateiNutzereinstellungen,
+                                                            NameExtern     => VerzeichnisKonstantenHTSEB.Spieleinstellungen);
       
    end Nutzereinstellungen;
    
@@ -87,7 +87,7 @@ package body EinlesenNutzereinstellungenLogik is
             
             when False =>
                SystemDatentypenHTSEB.EigenesNatural'Read (Stream (File => DateiLadenExtern),
-                                                     AnzahlAutospeichern);
+                                                          AnzahlAutospeichern);
          end case;
       
          case
@@ -98,7 +98,7 @@ package body EinlesenNutzereinstellungenLogik is
             
             when False =>
                SystemDatentypenHTSEB.EigenesPositive'Read (Stream (File => DateiLadenExtern),
-                                                      RundenAutospeichern);
+                                                           RundenAutospeichern);
          end case;
          
          case

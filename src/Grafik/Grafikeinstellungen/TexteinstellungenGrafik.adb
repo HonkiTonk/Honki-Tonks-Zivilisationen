@@ -7,6 +7,7 @@ with TextKonstantenHTSEB;
 with MeldungssystemHTSEB;
 with UmwandlungssystemHTSEB;
 with EinlesenAllgemeinesHTSEB;
+with VerzeichnisKonstantenHTSEB;
 
 with VerzeichnisKonstanten;
 with EinstellungenGrafik;
@@ -32,7 +33,8 @@ package body TexteinstellungenGrafik is
                                                         FontpfadExtern         => StandardSchriftartVerwenden);
          
       elsif
-        Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => AktuelleSprache) & VerzeichnisKonstanten.FontDatei) = False
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => AktuelleSprache)
+                & UmwandlungssystemHTSEB.Encode (TextExtern => VerzeichnisKonstantenHTSEB.Fontdatei)) = False
       then
          SchriftartAccess := SchriftartaccessFestlegen (SchriftartAccessExtern => SchriftartAccess,
                                                         FontpfadExtern         => StandardSchriftartVerwenden);
@@ -125,14 +127,14 @@ package body TexteinstellungenGrafik is
    begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei)
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern & VerzeichnisKonstantenHTSEB.Fontdatei))
       is
          when False =>
             return StandardSchriftartVerwenden;
             
          when True =>
             DateizugriffssystemHTSEB.ÖffnenText (DateiartExtern => DateiSchriftart,
-                                                  NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
+                                                  NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern & VerzeichnisKonstantenHTSEB.Fontdatei));
       end case;
       
       case
@@ -155,13 +157,13 @@ package body TexteinstellungenGrafik is
                
             else
                DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiSchriftart,
-                                                        NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
+                                                        NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern & VerzeichnisKonstantenHTSEB.Fontdatei));
                return VerzeichnisKonstanten.FontOrdner & UmwandlungssystemHTSEB.EncodeUnbounded (TextExtern => EigeneSchriftart);
             end if;
       end case;
             
       DateizugriffssystemHTSEB.SchließenText (DateiartExtern => DateiSchriftart,
-                                               NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern) & VerzeichnisKonstanten.FontDatei);
+                                               NameExtern     => VerzeichnisKonstanten.SprachenStrich & UmwandlungssystemHTSEB.Encode (TextExtern => SpracheExtern & VerzeichnisKonstantenHTSEB.Fontdatei));
       
       return StandardSchriftartVerwenden;
       
