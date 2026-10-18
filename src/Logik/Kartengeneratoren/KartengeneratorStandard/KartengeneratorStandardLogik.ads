@@ -2,7 +2,6 @@ private with SystemDatentypenHTSEB;
 
 private with KartenDatentypen;
 private with KartenRecords;
-private with KartenartDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -21,17 +20,8 @@ package KartengeneratorStandardLogik is
 private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
-   
-   LandHöheBreite : Boolean;
-   
-   ÜbergangNorden : KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum;
-   ÜbergangSüden : KartenartDatentypen.Kartenform_Senkrechte_Einstellbar_Enum;
-   
-   ÜbergangWesten : KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum;
-   ÜbergangOsten : KartenartDatentypen.Kartenform_Waagerechte_Einstellbar_Enum;
-   
+      
    SenkrechteZwischenwert : KartenDatentypen.SenkrechtePositiv;
-   Kartenzeitwert : KartenDatentypen.SenkrechtePositiv;
    
    WaagerechteZwischenwert : KartenDatentypen.WaagerechtePositiv;
    
@@ -68,19 +58,19 @@ private
    
    ZentrumWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 100;
    MitteWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 55;
-   RandWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 25;
+   RandWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 30;
    
    type QuadrantenArray is array (KartenDatentypen.KartengeneratorQuadranten'Range) of SystemDatentypenHTSEB.NullBisHundert;
-   Quadranten : constant QuadrantenArray := (13     => ZentrumWahrscheinlichkeit,
-                                             7      => MitteWahrscheinlichkeit,
-                                             8      => MitteWahrscheinlichkeit,
-                                             9      => MitteWahrscheinlichkeit,
-                                             12     => MitteWahrscheinlichkeit,
-                                             14     => MitteWahrscheinlichkeit,
-                                             17     => MitteWahrscheinlichkeit,
-                                             18     => MitteWahrscheinlichkeit,
-                                             19     => MitteWahrscheinlichkeit,
-                                             others => RandWahrscheinlichkeit);
+   Quadranten : constant QuadrantenArray := (13                          => ZentrumWahrscheinlichkeit,
+                                             7 .. 9 | 12 | 14 | 17 .. 19 => MitteWahrscheinlichkeit,
+                                             others                      => RandWahrscheinlichkeit);
+   
+   -- Wo die 25 herkommen:
+   --  1,  2,  3,  4,  5
+   --  6,  7,  8,  9, 10
+   -- 11, 12, 13, 14, 15
+   -- 16, 17, 18, 19, 20
+   -- 21, 22, 23, 24, 25
 
    procedure LandVorhanden
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
@@ -119,28 +109,6 @@ private
        Pre => (
                  SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   
-   
-   function StartSenkrechte
-     (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      AnfangExtern : in KartenDatentypen.SenkrechtePositiv;
-      EndeExtern : in KartenDatentypen.SenkrechtePositiv)
-      return KartenDatentypen.SenkrechtePositiv
-     with
-       Pre => (
-                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
-              );
-     
-   function StartWaagerechte
-     (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      AnfangExtern : in KartenDatentypen.WaagerechtePositiv;
-      EndeExtern : in KartenDatentypen.WaagerechtePositiv)
-      return KartenDatentypen.WaagerechtePositiv
-     with
-       Pre => (
                  WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
               );
 

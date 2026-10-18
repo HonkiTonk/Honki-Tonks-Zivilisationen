@@ -47,19 +47,23 @@ package body DiagnosesystemHTSEB is
    
    procedure Zählen
      (ZahlbestimmungExtern : in Boolean)
-   is begin
+   is
+      use Ada.Wide_Wide_Text_IO;
+   begin
       
       case
         ZahlbestimmungExtern
       is
          when True =>
             ZählerEins := ZählerEins + 1;
-      
+            
+            Put (Item => "1:");
             Zahl (ZahlExtern => ZählerEins);
             
          when False =>
             ZählerZwei := ZählerZwei + 1;
       
+            Put (Item => "2:");
             Zahl (ZahlExtern => ZählerZwei);
       end case;
       

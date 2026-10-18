@@ -12,8 +12,7 @@ with ZufallsgeneratorenKartenLogik;
 with KartenkoordinatenberechnungssystemLogik;
 with KartengeneratorVariablenLogik;
 with LadezeitenLogik;
-
-with DiagnosesystemHTSEB;
+with KartengeneratorBasisberechnungenLogik;
 
 package body KartengeneratorStandardLogik is
    
@@ -76,20 +75,6 @@ package body KartengeneratorStandardLogik is
             return;
       end case;
       
-      case
-        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern))
-      is
-         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
-            --      Landgrund (SenkrechteExtern => SenkrechteExtern,
-            --                 WaagerechteExtern => WaagerechteExtern);
-            null;
-      
-            DiagnosesystemHTSEB.Zählen (ZahlbestimmungExtern => True);
-            
-         when others =>
-            null;
-      end case;
-      
    end LandVorhanden;
    
    
@@ -127,14 +112,15 @@ package body KartengeneratorStandardLogik is
 
       end loop LandmassenSchleife;
       
-      SenkrechteZwischenwert := StartSenkrechte (SenkrechteExtern => SenkrechteExtern,
-                                                 AnfangExtern     => Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte,
-                                                 EndeExtern       => Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte);
+      SenkrechteZwischenwert := KartengeneratorBasisberechnungenLogik.StartSenkrechte (SenkrechteExtern => SenkrechteExtern,
+                                                                                       AnfangExtern     => Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte,
+                                                                                       EndeExtern       => Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte);
       
-      WaagerechteZwischenwert := StartWaagerechte (WaagerechteExtern => WaagerechteExtern,
-                                                   AnfangExtern      => Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte,
-                                                   EndeExtern        => Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte);
+      WaagerechteZwischenwert := KartengeneratorBasisberechnungenLogik.StartWaagerechte (WaagerechteExtern => WaagerechteExtern,
+                                                                                         AnfangExtern      => Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte,
+                                                                                         EndeExtern        => Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte);
       
+      -- Die "/ 3" und "* 2 / 3" geben den Landmassenbereich des jeweiligen Quadranten an.
       QuadrantenSchleife:
       for QuadrantenSchleifenwert in QuadrantenArray'Range loop
          
@@ -241,139 +227,6 @@ package body KartengeneratorStandardLogik is
    
    
    
-   -- Später erweitern und verbessern. äöü
-   function StartSenkrechte
-     (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      AnfangExtern : in KartenDatentypen.SenkrechtePositiv;
-      EndeExtern : in KartenDatentypen.SenkrechtePositiv)
-      return KartenDatentypen.SenkrechtePositiv
-   is
-      use type KartenartDatentypen.Kartenform_Enum;
-   begin
-      
-      ÜbergangNorden := LeseWeltkarteneinstellungen.SenkrechteNorden;
-      ÜbergangSüden := LeseWeltkarteneinstellungen.SenkrechteSüden;
-      SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
-      
-      if
-        ÜbergangNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
-        and
-          ÜbergangSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
-      then
-         if
-           SenkrechteExtern - AnfangExtern <= SchleifenbereichZusatz.MinimaleSenkrechte
-         then
-            return AnfangExtern;
-         
-         elsif
-           SenkrechteExtern + EndeExtern >= SchleifenbereichZusatz.MaximaleSenkrechte
-         then
-            return EndeExtern;
-         
-         else
-            null;
-         end if;
-         
-      elsif
-        ÜbergangNorden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
-      then
-         if
-           SenkrechteExtern - AnfangExtern <= SchleifenbereichZusatz.MinimaleSenkrechte
-         then
-            return AnfangExtern;
-            
-         else
-            null;
-         end if;
-         
-      elsif
-        ÜbergangSüden = KartenartDatentypen.Senkrechte_Übergangslos_Enum
-      then
-         if
-           SenkrechteExtern + EndeExtern >= SchleifenbereichZusatz.MaximaleSenkrechte
-         then
-            return EndeExtern;
-         
-         else
-            null;
-         end if;
-         
-      else
-         null;
-      end if;
-      
-      return SenkrechteExtern;
-      
-   end StartSenkrechte;
-   
-   
-   
-   function StartWaagerechte
-     (WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv;
-      AnfangExtern : in KartenDatentypen.WaagerechtePositiv;
-      EndeExtern : in KartenDatentypen.WaagerechtePositiv)
-      return KartenDatentypen.WaagerechtePositiv
-   is
-      use type KartenartDatentypen.Kartenform_Enum;
-   begin
-      
-      ÜbergangWesten := LeseWeltkarteneinstellungen.WaagerechteWesten;
-      ÜbergangOsten := LeseWeltkarteneinstellungen.WaagerechteOsten;
-      SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
-      
-      if
-        ÜbergangWesten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
-        and
-          ÜbergangOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
-      then
-         if
-           WaagerechteExtern - AnfangExtern <= SchleifenbereichZusatz.MinimaleWaagerechte
-         then
-            return AnfangExtern;
-         
-         elsif
-           WaagerechteExtern + EndeExtern >= SchleifenbereichZusatz.MaximaleWaagerechte
-         then
-            return EndeExtern;
-         
-         else
-            null;
-         end if;
-         
-      elsif
-        ÜbergangWesten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
-      then
-         if
-           WaagerechteExtern - AnfangExtern <= SchleifenbereichZusatz.MinimaleWaagerechte
-         then
-            return AnfangExtern;
-            
-         else
-            null;
-         end if;
-         
-      elsif
-        ÜbergangOsten = KartenartDatentypen.Waagerechte_Übergangslos_Enum
-      then
-         if
-           WaagerechteExtern + EndeExtern >= SchleifenbereichZusatz.MaximaleWaagerechte
-         then
-            return EndeExtern;
-         
-         else
-            null;
-         end if;
-         
-      else
-         null;
-      end if;
-      
-      return WaagerechteExtern;
-      
-   end StartWaagerechte;
-   
-   
-   
    procedure Landgrund
      (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
       WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
@@ -383,13 +236,7 @@ package body KartengeneratorStandardLogik is
       
       SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
       
-      -- Wird die erste Abfrage überhaupt benötigt wenn ich darunter prüfe ob es im gültigen Kartenbereich ist? äöü
       if
-        WaagerechteExtern = KartenKonstanten.LeerWaagerechte
-      then
-         null;
-               
-      elsif
         SenkrechteExtern not in SchleifenbereichZusatz.MinimaleSenkrechte .. SchleifenbereichZusatz.MaximaleSenkrechte
         or
           WaagerechteExtern not in SchleifenbereichZusatz.MinimaleWaagerechte .. SchleifenbereichZusatz.MaximaleWaagerechte
@@ -421,11 +268,6 @@ package body KartengeneratorStandardLogik is
       SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
       
       if
-        WaagerechteExtern = KartenKonstanten.LeerWaagerechte
-      then
-         null;
-               
-      elsif
         SenkrechteExtern not in SchleifenbereichZusatz.MinimaleSenkrechte .. SchleifenbereichZusatz.MaximaleSenkrechte
         or
           WaagerechteExtern not in SchleifenbereichZusatz.MinimaleWaagerechte .. SchleifenbereichZusatz.MaximaleWaagerechte
