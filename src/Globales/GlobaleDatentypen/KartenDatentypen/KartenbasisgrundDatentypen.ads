@@ -36,7 +36,7 @@ package KartenbasisgrundDatentypen is
                             Meeresgrund_Enum, Küstengrund_Enum,
                             Untereis_Enum,
                             Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
-                              
+                            
                             -- Planetenkern
                             Planetenkern_Enum, Lava_Enum,
                             Ringwoodit_Enum, Majorit_Enum, Perowskit_Enum, Magnesiowüstit_Enum,

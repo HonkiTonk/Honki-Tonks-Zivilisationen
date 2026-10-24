@@ -169,17 +169,17 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (07.10.2026):
+   -- Version 0.06.6445 => 0.06. (07.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6415 => 0.06. (06.10.2026):
+   -- Version 0.06.6415 => 0.06.6445 (06.10.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Kartengeneratoren gearbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

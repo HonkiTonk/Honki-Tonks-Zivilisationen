@@ -1,9 +1,12 @@
 with ZufallsgeneratorenHTSEB;
 
+with KartenbasisgrundDatentypen;
+
 with LadezeitenDatentypen;
 with KartenKonstanten;
 
 with SchreibeWeltkarte;
+with LeseWeltkarte;
 
 with LadezeitenLogik;
 
@@ -12,35 +15,38 @@ package body KartengeneratorPlanetenkernLogik is
    procedure Planetenkern
      (LadezeitbasisExtern : in Float)
    is begin
-            
-      YKernanfang := LeseWeltkarteneinstellungen.Senkrechte / 2 - LeseWeltkarteneinstellungen.Senkrechte / 10;
-      XKernanfang := LeseWeltkarteneinstellungen.Waagerechte / 2 - LeseWeltkarteneinstellungen.Waagerechte / 10;
-      YKernende := LeseWeltkarteneinstellungen.Senkrechte / 2 + LeseWeltkarteneinstellungen.Senkrechte / 10;
-      XKernende := LeseWeltkarteneinstellungen.Waagerechte / 2 + LeseWeltkarteneinstellungen.Waagerechte / 10;
+      
+      Karteneinstellung := (LeseWeltkarteneinstellungen.Senkrechte, LeseWeltkarteneinstellungen.Waagerechte);
+      
+      Kernbereich := (Karteneinstellung.Senkrechte / 2 - Karteneinstellung.Senkrechte / 10,
+                      Karteneinstellung.Senkrechte / 2 + Karteneinstellung.Senkrechte / 10,
+                      Karteneinstellung.Waagerechte / 2 - Karteneinstellung.Waagerechte / 10,
+                      Karteneinstellung.Waagerechte / 2 + Karteneinstellung.Waagerechte / 10);
                
       SenkrechteSchleife:
-      for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
+      for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. Karteneinstellung.Senkrechte loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
+         for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. Karteneinstellung.Waagerechte loop
             
             if
-              SenkrechteSchleifenwert in YKernanfang .. YKernende
+              SenkrechteSchleifenwert in Kernbereich.MinimaleSenkrechte .. Kernbereich.MaximaleSenkrechte
               and
-                WaagerechteSchleifenwert in XKernanfang .. XKernende
+                WaagerechteSchleifenwert in Kernbereich.MinimaleWaagerechte .. Kernbereich.MaximaleWaagerechte
             then
                SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                              GrundExtern       => KartenbasisgrundDatentypen.Planetenkern_Enum);
                
             elsif
-              SenkrechteSchleifenwert in YKernanfang - 1 .. YKernende + 1
+              SenkrechteSchleifenwert in Kernbereich.MinimaleSenkrechte - 1 .. Kernbereich.MaximaleSenkrechte + 1
               and
-                WaagerechteSchleifenwert in XKernanfang - 1 .. XKernende + 1
+                WaagerechteSchleifenwert in Kernbereich.MinimaleWaagerechte - 1 .. Kernbereich.MaximaleWaagerechte + 1
             then
                SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                              GrundExtern       => KartenbasisgrundDatentypen.Lava_Enum);
                
             else
-               BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+               LandVorhanden (SenkrechteExtern  => SenkrechteSchleifenwert,
+                              WaagerechteExtern => WaagerechteSchleifenwert);
             end if;
                
          end loop WaagerechteSchleife;
@@ -54,182 +60,41 @@ package body KartengeneratorPlanetenkernLogik is
    
    
    
-   procedure BasisgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
+   procedure LandVorhanden
+     (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
+      WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
    is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
-      WelcherGrund := KartenbasisgrundDatentypen.Leer_Basisgrund_Enum;
-      Zahlenspeicher := 0;
-      
-      ZufallszahlenSchleife:
-      for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
-         
-         GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
-         
-         if
-           GezogeneZahl > BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)
-           or
-             GezogeneZahl = 0
-         then
-            null;
-         
-         elsif
-           (GezogeneZahl = Zahlenspeicher
-            and
-              ZufallsgeneratorenHTSEB.Münzwurf = True)
-           or
-             GezogeneZahl > Zahlenspeicher
-         then
-            Zahlenspeicher := GezogeneZahl;
-            WelcherGrund := ZufallszahlSchleifenwert;
-            
-         else
-            null;
-         end if;
-         
-      end loop ZufallszahlenSchleife;
-      
       case
-        WelcherGrund
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteExtern, WaagerechteExtern))
       is
          when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => KartenbasisgrundDatentypen.Lava_Enum);
-            return;
+            BeliebigerLandwert := ZufallsgeneratorenHTSEB.Hunderterbereich;
+            
+            if
+              BeliebigerLandwert < WahrscheinlichkeitFestmasse.Anfangswert
+            then
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
+                                             GrundExtern       => KartenbasisgrundDatentypen.Lava_Enum);
+         
+            elsif
+              BeliebigerLandwert > WahrscheinlichkeitFestmasse.Endwert
+            then
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
+                                             GrundExtern       => KartenbasisgrundDatentypen.Ringwoodit_Enum);
+               
+            else
+               null;
+               -- LandmasseAbstandGenerieren (SenkrechteExtern => SenkrechteExtern,
+               --                            WaagerechteExtern => WaagerechteExtern);
+            end if;
             
          when others =>
-            WelcherGrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                                    GrundExtern       => WelcherGrund);
+            null;
       end case;
       
-      case
-        WelcherGrund
-      is
-         when KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => WelcherGrund);
-            
-         when others =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                          GrundExtern       => KartenbasisgrundDatentypen.Lava_Enum);
-      end case;
-      
-   end BasisgrundBestimmen;
-   
-   
-   
-   function BasisExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
-   is begin
-      
-      case
-        GrundExtern
-      is
-         when KartenbasisgrundDatentypen.Ringwoodit_Enum =>
-            return ZusatzberechnungRingwoodit (KoordinatenExtern => KoordinatenExtern,
-                                               GrundExtern       => WelcherGrund);
-            
-         when KartenbasisgrundDatentypen.Majorit_Enum =>
-            return ZusatzberechnungMajorit (KoordinatenExtern => KoordinatenExtern,
-                                            GrundExtern       => WelcherGrund);
-            
-         when KartenbasisgrundDatentypen.Perowskit_Enum =>
-            return ZusatzberechnungPerowskit (KoordinatenExtern => KoordinatenExtern,
-                                              GrundExtern       => WelcherGrund);
-            
-         when KartenbasisgrundDatentypen.Magnesiowüstit_Enum =>
-            return ZusatzberechnungMagnesiowüstit (KoordinatenExtern => KoordinatenExtern,
-                                                    GrundExtern       => WelcherGrund);
-      end case;
-      
-   end BasisExtraberechnungen;
-   
-   
-   
-   function ZusatzberechnungRingwoodit
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
-   is begin
-      
-      if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return GrundExtern;
-      
-   end ZusatzberechnungRingwoodit;
-   
-   
-   
-   function ZusatzberechnungMajorit
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
-   is begin
-      
-      if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return GrundExtern;
-      
-   end ZusatzberechnungMajorit;
-   
-   
-   
-   function ZusatzberechnungPerowskit
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
-   is begin
-      
-      if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return GrundExtern;
-      
-   end ZusatzberechnungPerowskit;
-   
-   
-   
-   function ZusatzberechnungMagnesiowüstit
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Kernfläche_Fest_Enum
-   is begin
-      
-      if
-        KoordinatenExtern.Senkrechte = KartenDatentypen.SenkrechteBasis (KoordinatenExtern.Waagerechte)
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return GrundExtern;
-      
-   end ZusatzberechnungMagnesiowüstit;
+   end LandVorhanden;
 
 end KartengeneratorPlanetenkernLogik;

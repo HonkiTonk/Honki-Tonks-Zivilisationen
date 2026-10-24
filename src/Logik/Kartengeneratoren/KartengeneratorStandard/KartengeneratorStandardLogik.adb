@@ -72,7 +72,7 @@ package body KartengeneratorStandardLogik is
             end if;
             
          when others =>
-            return;
+            null;
       end case;
       
    end LandVorhanden;

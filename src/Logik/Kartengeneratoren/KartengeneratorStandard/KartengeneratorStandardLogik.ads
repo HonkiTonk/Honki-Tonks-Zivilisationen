@@ -43,6 +43,7 @@ private
    Schleifenbereich : KartenRecords.LandgrößenNaturalRecord;
    SchleifenbereichZusatz : KartenRecords.LandgrößenNaturalRecord;
    
+   -- Das mal auslagern. äöü
    type WahrscheinlichkeitenRecord is record
       
       Anfangswert : SystemDatentypenHTSEB.NullBisHundert;
