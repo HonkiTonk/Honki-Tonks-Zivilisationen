@@ -32,7 +32,7 @@ package body KartengeneratorUnterflaecheLogik is
             if
               KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
             then
-               null;
+               exit SenkrechteSchleife;
             
             elsif
               KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde < KartenKonstanten.OberflächeKonstante

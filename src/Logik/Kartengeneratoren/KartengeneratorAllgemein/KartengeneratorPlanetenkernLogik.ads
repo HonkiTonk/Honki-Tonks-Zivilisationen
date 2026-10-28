@@ -21,11 +21,30 @@ private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
 
+   SenkrechteZwischenwert : KartenDatentypen.SenkrechtePositiv;
+
+   WaagerechteZwischenwert : KartenDatentypen.WaagerechtePositiv;
+
+   SenkrechteAnfang : KartenDatentypen.SenkrechteBasis;
+   SenkrechteEnde : KartenDatentypen.SenkrechteBasis;
+
+   WaagerechteAnfang : KartenDatentypen.WaagerechteBasis;
+   WaagerechteEnde : KartenDatentypen.WaagerechteBasis;
+
+   type LandmassenArray is array (SystemDatentypenHTSEB.Anfang_Ende_Enum'Range) of KartenRecords.KartenfeldumgebungPositivRecord;
+   Landmassen : LandmassenArray;
+   Landabstand : LandmassenArray;
+
    BeliebigerLandwert : SystemDatentypenHTSEB.NullBisHundert;
+   Quadrantenwert : SystemDatentypenHTSEB.NullBisHundert;
 
    Karteneinstellung : KartenRecords.KartenfeldumgebungRecord;
 
    Kernbereich : KartenRecords.LandgrößenRecord;
+
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+
+   Schleifenbereich : KartenRecords.LandgrößenNaturalRecord;
 
    -- Das mal auslagern. äöü
    type WahrscheinlichkeitenRecord is record
@@ -38,9 +57,58 @@ private
    -- Später Nutzereinstellbar machen. äöü
    WahrscheinlichkeitFestmasse : constant WahrscheinlichkeitenRecord := (20, 80);
 
+   WahrscheinlichkeitLand : constant WahrscheinlichkeitenRecord := (0, 95);
+   WahrscheinlichkeitLava : constant WahrscheinlichkeitenRecord := (0, 95);
+
+   ZentrumWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 100;
+   MitteWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 55;
+   RandWahrscheinlichkeit : constant SystemDatentypenHTSEB.NullBisHundert := 30;
+
+   type QuadrantenArray is array (KartenDatentypen.KartengeneratorQuadranten'Range) of SystemDatentypenHTSEB.NullBisHundert;
+   Quadranten : constant QuadrantenArray := (13                          => ZentrumWahrscheinlichkeit,
+                                             7 .. 9 | 12 | 14 | 17 .. 19 => MitteWahrscheinlichkeit,
+                                             others                      => RandWahrscheinlichkeit);
+
+   -- Wo die 25 herkommen:
+   --  1,  2,  3,  4,  5
+   --  6,  7,  8,  9, 10
+   -- 11, 12, 13, 14, 15
+   -- 16, 17, 18, 19, 20
+   -- 21, 22, 23, 24, 25
+
    procedure LandVorhanden
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
       WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
+     with
+       Pre => (
+                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+
+   procedure LandmasseAbstandGenerieren
+     (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
+      WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
+     with
+       Pre => (
+                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+
+   procedure Lavagrund
+     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
+      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     with
+       Pre => (
+                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+
+   procedure Landgrund
+     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
+      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
      with
        Pre => (
                  SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
