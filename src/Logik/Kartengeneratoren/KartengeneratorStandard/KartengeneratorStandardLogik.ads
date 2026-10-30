@@ -112,5 +112,25 @@ private
                and
                  WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
               );
+   
+   procedure MeerSchreiben
+     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
+      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     with
+       Pre => (
+                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+              );
+   
+   procedure LandSchreiben
+     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
+      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     with
+       Pre => (
+                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+              );
 
 end KartengeneratorStandardLogik;

@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with KartenartDatentypen;
+with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -9,20 +10,9 @@ with KartengeneratorStandardLogik;
 with KartengeneratorVariablenLogik;
 with KartentestsLogik;
 
-package body KartengeneratorAllgemeinesLogik is
-   
-   procedure GenerierungAllgemeines
-   is begin
-            
-      PolbereicheBerechnen;
-      GenerierungGrundlagen (SenkrechteExtern => KartengeneratorVariablenLogik.PolfreierBereichLesen.MaximaleSenkrechte);
-      
-   end GenerierungAllgemeines;
-   
-   
+package body KartengeneratorBasisLogik is
   
-   procedure GenerierungGrundlagen
-     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural)
+   procedure Kartenbasis
    is
       use type KartenDatentypen.EbeneVorhanden;
       use type KartenDatentypen.SenkrechtePositiv;
@@ -33,10 +23,10 @@ package body KartengeneratorAllgemeinesLogik is
       is begin
          
          if
-           KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang = -2
+           KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang = KartenKonstanten.KernKonstante
          then
             KartengeneratorPlanetenkernLogik.Planetenkern (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.KartengeneratorAllgemeines (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
-                                                           * SenkrechteExtern));
+                                                           * KartengeneratorVariablenLogik.KartengrößeLesen.Senkrechte));
             
          else
             null;
@@ -46,19 +36,25 @@ package body KartengeneratorAllgemeinesLogik is
    
    begin
       
+      PolbereicheBerechnen;
       KartengeneratorPolregionLogik.PolregionGenerieren;
       
       if
-        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde >= 0
+        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde >= KartenKonstanten.OberflächeKonstante
       then
          KartengeneratorStandardLogik.OberflächeGenerieren (LadezeitbasisExtern => 100.00 / Float (KartentestsLogik.KartengeneratorAllgemeines (EbenenExtern => KartengeneratorVariablenLogik.KartenebenenLesen)
-                                                             * SenkrechteExtern));
+                                                             * KartengeneratorVariablenLogik.PolfreierBereichLesen.MaximaleSenkrechte));
+         
+      elsif
+        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde = KartenKonstanten.UnterflächeKonstante
+      then
+         null;
             
       else
          null;
       end if;
       
-   end GenerierungGrundlagen;
+   end Kartenbasis;
       
    
    
@@ -84,4 +80,4 @@ package body KartengeneratorAllgemeinesLogik is
 
    end PolbereicheBerechnen;
 
-end KartengeneratorAllgemeinesLogik;
+end KartengeneratorBasisLogik;

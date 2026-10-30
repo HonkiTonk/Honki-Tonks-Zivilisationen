@@ -65,8 +65,7 @@ package body KartengeneratorKuesteLogik is
                  LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert)
                is
                   when KartenbasisgrundDatentypen.Grasland_Enum | KartenbasisgrundDatentypen.Eis_Enum =>
-                     SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                                   GrundExtern       => KartenbasisgrundDatentypen.Küstengewässer_Enum);
+                     KüsteSchreiben (KoordinatenExtern => KoordinatenExtern);
                      return;
                      
                   when others =>
@@ -78,5 +77,16 @@ package body KartengeneratorKuesteLogik is
       end loop SenkrechteSchleife;
       
    end GewässerFestlegen;
+   
+   
+   
+   procedure KüsteSchreiben
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+   is begin
+      
+      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                    GrundExtern       => KartenbasisgrundDatentypen.Küstengewässer_Enum);
+            
+   end KüsteSchreiben;
 
 end KartengeneratorKuesteLogik;

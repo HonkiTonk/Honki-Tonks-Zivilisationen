@@ -5,7 +5,7 @@ with KartengeneratorLandschaftLogik;
 with KartengeneratorFlussLogik;
 with KartengeneratorRohstoffeLogik;
 with KartengeneratorUnterflaecheLogik;
-with KartengeneratorAllgemeinesLogik;
+with KartengeneratorBasisLogik;
 with LadezeitenLogik;
 
 package body KartengeneratorLogik is
@@ -15,7 +15,7 @@ package body KartengeneratorLogik is
       
       PrüfeEinstellungen;
       
-      KartengeneratorAllgemeinesLogik.GenerierungAllgemeines;
+      KartengeneratorBasisLogik.Kartenbasis;
       LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
       
       KartengeneratorKuesteLogik.GenerierungKüstenSeeGewässer;
@@ -38,6 +38,7 @@ package body KartengeneratorLogik is
    
    
    -- Später hier Prüfungen auf korrekte Werte einbauen. äöü
+   -- Oder alle Prüfungen direkt in die Einstellungen werfen? äöü
    procedure PrüfeEinstellungen
    is begin
       

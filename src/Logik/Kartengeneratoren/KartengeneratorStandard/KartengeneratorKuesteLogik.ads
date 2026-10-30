@@ -25,5 +25,14 @@ private
                and
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
+   
+   procedure KüsteSchreiben
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
+     with
+       Pre => (
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
+               and
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
+              );
 
 end KartengeneratorKuesteLogik;

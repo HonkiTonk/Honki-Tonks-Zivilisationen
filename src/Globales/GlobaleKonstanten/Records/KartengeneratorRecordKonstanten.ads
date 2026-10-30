@@ -24,9 +24,9 @@ package KartengeneratorRecordKonstanten is
                                                            KartenartDatentypen.Kartenart_Inseln_Enum =>
                                                              (
                                                               MinimaleSenkrechte => 3,
-                                                              MaximaleSenkrechte => 4,
+                                                              MaximaleSenkrechte => 5,
                                                               MinimaleWaagerechte => 3,
-                                                              MaximaleWaagerechte => 4
+                                                              MaximaleWaagerechte => 5
                                                              ),
                                                            
                                                            KartenartDatentypen.Kartenart_Kontinente_Enum =>
