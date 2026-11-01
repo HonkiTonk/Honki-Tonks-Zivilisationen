@@ -5,7 +5,7 @@ private with KartenRecords;
 
 private with LeseWeltkarteneinstellungen;
 
-package KartengeneratorPlanetenkernLogik is
+package KartengeneratorKernstrukturenLogik is
    pragma Elaborate_Body;
 
    procedure Planetenkern
@@ -116,4 +116,4 @@ private
                  WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-end KartengeneratorPlanetenkernLogik;
+end KartengeneratorKernstrukturenLogik;

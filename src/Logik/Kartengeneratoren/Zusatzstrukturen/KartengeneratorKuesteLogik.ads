@@ -6,16 +6,19 @@ private with LeseWeltkarteneinstellungen;
 package KartengeneratorKuesteLogik is
    pragma Elaborate_Body;
 
-   procedure GenerierungKüstenSeeGewässer;
+   procedure Küste;
 
 private
    use type KartenDatentypen.SenkrechteBasis;
    use type KartenDatentypen.WaagerechteBasis;
    
-   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   AktuelleEbene : KartenDatentypen.EbeneUnterflächeOberfläche;
 
-   LadezeitBasis : Float;
-   Ladezeit : Float;
+   Ladezeitbasis : Float;
+   
+   KartenWert : KartenRecords.KartenfeldNaturalRecord;
+   
+   Schleifenbereich : KartenRecords.LandgrößenNaturalRecord;
    
    procedure GewässerFestlegen
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)

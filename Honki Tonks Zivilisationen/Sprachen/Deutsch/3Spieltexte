@@ -127,10 +127,9 @@ Auflösen
 Verlassen
 ################################# Ladezeiten
 Spielwelt wird generiert
-Generiere Allgemeines:
-Generiere Küstenwasser:
-Generiere Landschaft:
-Generiere Unterfläche:
+Generiere Basisstrukturen:
+Generiere Küstengewässer:
+Generiere Zusatzstrukturen:
 Generiere Flüsse:
 Generiere Rohstoffe:
 Platziere Spezies:

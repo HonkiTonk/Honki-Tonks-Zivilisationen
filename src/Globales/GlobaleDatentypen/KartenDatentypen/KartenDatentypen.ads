@@ -36,6 +36,7 @@ package KartenDatentypen is
    type EbeneBasis is new SenkrechteUmgebungDrei range -3 .. 2;
    subtype EbeneVorhanden is EbeneBasis range -2 .. EbeneBasis'Last;
    subtype EbenePlanet is EbeneVorhanden range EbeneVorhanden'First .. 0;
+   subtype EbeneUntergrund is EbenePlanet range EbenePlanet'First .. -1;
    subtype EbeneUnterflächeOberfläche is EbenePlanet range -1 .. 0;
    subtype EbeneOberfläche is EbeneVorhanden range 0 .. EbeneVorhanden'Last;
    subtype EbeneLuft is EbeneOberfläche range 1 .. EbeneVorhanden'Last;

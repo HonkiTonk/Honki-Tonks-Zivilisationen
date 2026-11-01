@@ -1,11 +1,10 @@
 with LadezeitenDatentypen;
 
 with KartengeneratorKuesteLogik;
-with KartengeneratorLandschaftLogik;
 with KartengeneratorFlussLogik;
 with KartengeneratorRohstoffeLogik;
-with KartengeneratorUnterflaecheLogik;
-with KartengeneratorBasisLogik;
+with KartengeneratorBasisaufteilungLogik;
+with KartengeneratorZusatzaufteilungLogik;
 with LadezeitenLogik;
 
 package body KartengeneratorLogik is
@@ -15,17 +14,16 @@ package body KartengeneratorLogik is
       
       PrüfeEinstellungen;
       
-      KartengeneratorBasisLogik.Kartenbasis;
-      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
+      KartengeneratorBasisaufteilungLogik.Kartenbasis;
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Basisstrukturen_Enum);
       
-      KartengeneratorKuesteLogik.GenerierungKüstenSeeGewässer;
+      -- Küste später mit in die Landschaft schieben? äöü
+      -- Kann ich bei der Basis noch nicht anwenden, da das Feld danach ja noch nicht festgelegt ist. äöü
+      KartengeneratorKuesteLogik.Küste;
       LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum);
       
-      KartengeneratorLandschaftLogik.GenerierungLandschaft;
-      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum);
-      
-      KartengeneratorUnterflaecheLogik.GenerierungLandschaft;
-      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Unterfläche_Enum);
+      KartengeneratorZusatzaufteilungLogik.Kartenzusatz;
+      LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Zusatzstrukturen_Enum);
       
       KartengeneratorFlussLogik.GenerierungFlüsse;
       LadezeitenLogik.KartengeneratorMaximum (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Flüsse_Enum);

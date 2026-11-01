@@ -172,8 +172,6 @@ package body KartentestsLogik is
       
       if
         EbenenExtern.EbeneAnfang = -2
-        and
-          EbenenExtern.EbeneEnde >= 0
       then
          return 2;
          

@@ -231,7 +231,7 @@ package TextaccessVariablen is
    -- Immer an die Textdatei Ladezeiten anpassen. Wieso mache ich das nicht öfters/überhaupt? Sollte eine Menge Arbeit ersparen. äöü
    -- Kann das mit dem neuen Textsystem und den restlichen Änderungen nicht auf 1 .. X gesetzt werden? äöü
    -- Generell die Ladeanzeigen mal überarbeiten und das neue Textanzeigesystem einbauen. äöü
-   LadezeitenAccess : constant TextaccessArray (TextnummernKonstanten.LadezeitAllgemeines .. TextnummernKonstanten.LadezeitSpezies) := (others => Sf.Graphics.Text.create);
+   LadezeitenAccess : constant TextaccessArray (TextnummernKonstanten.LadezeitBasisstrukturen .. TextnummernKonstanten.LadezeitSpezies) := (others => Sf.Graphics.Text.create);
    
    KIZeitenAccess : constant TextaccessArray (TextnummernKonstanten.LadezeitEinheiten .. TextnummernKonstanten.LadezeitDiplomatie) := (others => Sf.Graphics.Text.create);
    

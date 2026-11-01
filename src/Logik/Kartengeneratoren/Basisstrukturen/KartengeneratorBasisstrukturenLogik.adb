@@ -14,10 +14,11 @@ with KartengeneratorVariablenLogik;
 with LadezeitenLogik;
 with KartengeneratorBasisberechnungenLogik;
 
-package body KartengeneratorStandardLogik is
+package body KartengeneratorBasisstrukturenLogik is
    
-   procedure OberflächeGenerieren
-     (LadezeitbasisExtern : in Float)
+   procedure Basisstrukturen
+     (LadezeitbasisExtern : in Float;
+      EbeneExtern : in KartenDatentypen.EbeneUnterflächeOberfläche)
    is begin
       
       Schleifenbereich := KartengeneratorVariablenLogik.PolfreierBereichLesen;
@@ -27,29 +28,27 @@ package body KartengeneratorStandardLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in Schleifenbereich.MinimaleWaagerechte .. Schleifenbereich.MaximaleWaagerechte loop
                
-            LandVorhanden (SenkrechteExtern => SenkrechteSchleifenwert,
-                           WaagerechteExtern => WaagerechteSchleifenwert);
+            LandVorhanden (KoordinatenExtern => (EbeneExtern, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
             
          end loop WaagerechteSchleife;
          
-         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum,
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Basisstrukturen_Enum,
                                                    ZeitExtern            => LadezeitbasisExtern);
          
       end loop SenkrechteSchleife;
       
-   end OberflächeGenerieren;
+   end Basisstrukturen;
    
    
    
    procedure LandVorhanden
-     (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
       
       case
-        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern))
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)
       is
          when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
             BeliebigerLandwert := ZufallsgeneratorenHTSEB.Hunderterbereich;
@@ -57,18 +56,15 @@ package body KartengeneratorStandardLogik is
             if
               BeliebigerLandwert < WahrscheinlichkeitLandmasse.Anfangswert
             then
-               MeerSchreiben (SenkrechteExtern  => SenkrechteExtern,
-                              WaagerechteExtern => WaagerechteExtern);
+               MeerSchreiben (KoordinatenExtern => KoordinatenExtern);
          
             elsif
               BeliebigerLandwert > WahrscheinlichkeitLandmasse.Endwert
             then
-               LandSchreiben (SenkrechteExtern  => SenkrechteExtern,
-                              WaagerechteExtern => WaagerechteExtern);
+               LandSchreiben (KoordinatenExtern => KoordinatenExtern);
                
             else
-               LandmasseAbstandGenerieren (SenkrechteExtern => SenkrechteExtern,
-                                           WaagerechteExtern => WaagerechteExtern);
+               LandmasseAbstandGenerieren (KoordinatenExtern => KoordinatenExtern);
             end if;
             
          when others =>
@@ -81,8 +77,7 @@ package body KartengeneratorStandardLogik is
    
    -- Alle Größen- und Abstandsangaben sind Radien.
    procedure LandmasseAbstandGenerieren
-     (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type SystemDatentypenHTSEB.NullBisHundert;
    begin
@@ -112,11 +107,11 @@ package body KartengeneratorStandardLogik is
 
       end loop LandmassenSchleife;
       
-      SenkrechteZwischenwert := KartengeneratorBasisberechnungenLogik.StartSenkrechte (SenkrechteExtern => SenkrechteExtern,
+      SenkrechteZwischenwert := KartengeneratorBasisberechnungenLogik.StartSenkrechte (SenkrechteExtern => KoordinatenExtern.Senkrechte,
                                                                                        AnfangExtern     => Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Senkrechte,
                                                                                        EndeExtern       => Landmassen (SystemDatentypenHTSEB.Ende_Enum).Senkrechte);
       
-      WaagerechteZwischenwert := KartengeneratorBasisberechnungenLogik.StartWaagerechte (WaagerechteExtern => WaagerechteExtern,
+      WaagerechteZwischenwert := KartengeneratorBasisberechnungenLogik.StartWaagerechte (WaagerechteExtern => KoordinatenExtern.Waagerechte,
                                                                                          AnfangExtern      => Landmassen (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte,
                                                                                          EndeExtern        => Landmassen (SystemDatentypenHTSEB.Ende_Enum).Waagerechte);
       
@@ -179,19 +174,17 @@ package body KartengeneratorStandardLogik is
             WaagerechteSchleife:
             for WaagerechteSchleifenwert in WaagerechteAnfang .. WaagerechteEnde loop
             
-               KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteZwischenwert, WaagerechteZwischenwert),
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KoordinatenExtern.Ebene, SenkrechteZwischenwert, WaagerechteZwischenwert),
                                                                                             ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
                                                                                             TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
                if
                  Quadrantenwert <= Quadranten (QuadrantenSchleifenwert)
                then
-                  Landgrund (SenkrechteExtern => KartenWert.Senkrechte,
-                             WaagerechteExtern => KartenWert.Waagerechte);
+                  Landgrund (KoordinatenExtern => KartenWert);
                   
                else
-                  Wassergrund (SenkrechteExtern => KartenWert.Senkrechte,
-                               WaagerechteExtern => KartenWert.Waagerechte);
+                  Wassergrund (KoordinatenExtern => KartenWert);
                end if;
                   
             end loop WaagerechteSchleife;
@@ -204,7 +197,7 @@ package body KartengeneratorStandardLogik is
          for WaagerechteabstandSchleifenwert in -Landabstand (SystemDatentypenHTSEB.Anfang_Enum).Waagerechte .. Landabstand (SystemDatentypenHTSEB.Ende_Enum).Waagerechte loop
                            
             KartenWert
-              := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteZwischenwert, WaagerechteZwischenwert),
+              := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KoordinatenExtern.Ebene, SenkrechteZwischenwert, WaagerechteZwischenwert),
                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteabstandSchleifenwert, WaagerechteabstandSchleifenwert),
                                                                                 TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
@@ -216,8 +209,7 @@ package body KartengeneratorStandardLogik is
                null;
                
             else
-               Wassergrund (SenkrechteExtern => KartenWert.Senkrechte,
-                            WaagerechteExtern => KartenWert.Waagerechte);
+               Wassergrund (KoordinatenExtern => KartenWert);
             end if;
             
          end loop WaagerechteabstandSchleife;
@@ -228,28 +220,25 @@ package body KartengeneratorStandardLogik is
    
    
    procedure Landgrund
-     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
-      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is begin
       
       SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
       
       if
-        SenkrechteExtern not in SchleifenbereichZusatz.MinimaleSenkrechte .. SchleifenbereichZusatz.MaximaleSenkrechte
+        KoordinatenExtern.Senkrechte not in SchleifenbereichZusatz.MinimaleSenkrechte .. SchleifenbereichZusatz.MaximaleSenkrechte
         or
-          WaagerechteExtern not in SchleifenbereichZusatz.MinimaleWaagerechte .. SchleifenbereichZusatz.MaximaleWaagerechte
+          KoordinatenExtern.Waagerechte not in SchleifenbereichZusatz.MinimaleWaagerechte .. SchleifenbereichZusatz.MaximaleWaagerechte
       then
          null;
       
       elsif
         ZufallsgeneratorenHTSEB.Hunderterbereich in WahrscheinlichkeitLand.Anfangswert .. WahrscheinlichkeitLand.Endwert
       then
-         LandSchreiben (SenkrechteExtern  => SenkrechteExtern,
-                        WaagerechteExtern => WaagerechteExtern);
+         LandSchreiben (KoordinatenExtern => KoordinatenExtern);
                
       else
-         MeerSchreiben (SenkrechteExtern  => SenkrechteExtern,
-                        WaagerechteExtern => WaagerechteExtern);
+         MeerSchreiben (KoordinatenExtern => KoordinatenExtern);
       end if;
       
    end Landgrund;
@@ -257,8 +246,7 @@ package body KartengeneratorStandardLogik is
    
    
    procedure Wassergrund
-     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
-      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
@@ -266,26 +254,24 @@ package body KartengeneratorStandardLogik is
       SchleifenbereichZusatz := KartengeneratorVariablenLogik.PolfreierBereichLesen;
       
       if
-        SenkrechteExtern not in SchleifenbereichZusatz.MinimaleSenkrechte .. SchleifenbereichZusatz.MaximaleSenkrechte
+        KoordinatenExtern.Senkrechte not in SchleifenbereichZusatz.MinimaleSenkrechte .. SchleifenbereichZusatz.MaximaleSenkrechte
         or
-          WaagerechteExtern not in SchleifenbereichZusatz.MinimaleWaagerechte .. SchleifenbereichZusatz.MaximaleWaagerechte
+          KoordinatenExtern.Waagerechte not in SchleifenbereichZusatz.MinimaleWaagerechte .. SchleifenbereichZusatz.MaximaleWaagerechte
       then
          null;
          
       elsif
-        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern)) /= KartenbasisgrundDatentypen.Leer_Basisgrund_Enum
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) /= KartenbasisgrundDatentypen.Leer_Basisgrund_Enum
       then
          null;
                
       elsif
         ZufallsgeneratorenHTSEB.Hunderterbereich in WahrscheinlichkeitWasser.Anfangswert .. WahrscheinlichkeitWasser.Endwert
       then
-         MeerSchreiben (SenkrechteExtern  => SenkrechteExtern,
-                        WaagerechteExtern => WaagerechteExtern);
+         MeerSchreiben (KoordinatenExtern => KoordinatenExtern);
                
       else
-         LandSchreiben (SenkrechteExtern  => SenkrechteExtern,
-                        WaagerechteExtern => WaagerechteExtern);
+         LandSchreiben (KoordinatenExtern => KoordinatenExtern);
       end if;
       
    end Wassergrund;
@@ -293,49 +279,65 @@ package body KartengeneratorStandardLogik is
    
    
    procedure MeerSchreiben
-     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
-      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type KartenDatentypen.EbeneBasis;
    begin
       
-      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                    GrundExtern       => KartenbasisgrundDatentypen.Meer_Enum);
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.OberflächeKonstante =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                          GrundExtern       => KartenbasisgrundDatentypen.Meer_Enum);
       
-      if
-        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= KartenKonstanten.UnterflächeKonstante
-      then
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                       GrundExtern       => KartenbasisgrundDatentypen.Meeresgrund_Enum);
+            if
+              KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= KartenKonstanten.UnterflächeKonstante
+            then
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                             GrundExtern       => KartenbasisgrundDatentypen.Meeresgrund_Enum);
             
-      else
-         null;
-      end if;
+            else
+               null;
+            end if;
+            
+         when others =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                          GrundExtern       => KartenbasisgrundDatentypen.Meeresgrund_Enum);
+      end case;
       
    end MeerSchreiben;
    
    
    
    procedure LandSchreiben
-     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
-      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
    is
       use type KartenDatentypen.EbeneBasis;
    begin
       
-      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                    GrundExtern       => KartenbasisgrundDatentypen.Grasland_Enum);
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.OberflächeKonstante =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                          GrundExtern       => KartenbasisgrundDatentypen.Grasland_Enum);
       
-      if
-        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= KartenKonstanten.UnterflächeKonstante
-      then
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteExtern, WaagerechteExtern),
-                                       GrundExtern       => KartenbasisgrundDatentypen.Erde_Enum);
+            if
+              KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= KartenKonstanten.UnterflächeKonstante
+            then
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                             GrundExtern       => KartenbasisgrundDatentypen.Erde_Enum);
             
-      else
-         null;
-      end if;
+            else
+               null;
+            end if;
+            
+         when others =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                          GrundExtern       => KartenbasisgrundDatentypen.Erde_Enum);
+      end case;
       
    end LandSchreiben;
 
-end KartengeneratorStandardLogik;
+end KartengeneratorBasisstrukturenLogik;

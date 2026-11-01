@@ -13,14 +13,13 @@ with LadezeitenLogik;
 with Basisgrundplatzierungssystem;
 with KartengeneratorZusatzlandschaftLogik;
 
-package body KartengeneratorLandschaftLogik is
+package body KartengeneratorOberlandschaftLogik is
 
-   procedure GenerierungLandschaft
+   procedure Landschaft
+     (LadezeitbasisExtern : in Float)
    is begin
       
       Schleifenbereiche := KartengeneratorVariablenLogik.PolfreierBereichLesen;
-      
-      LadezeitBasis := 100.00 / Float (Schleifenbereiche.MaximaleSenkrechte);
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in Schleifenbereiche.MinimaleSenkrechte .. Schleifenbereiche.MaximaleSenkrechte loop
@@ -49,12 +48,12 @@ package body KartengeneratorLandschaftLogik is
             
          end loop WaagerechteSchleife;
          
-         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Landschaft_Enum,
-                                                   ZeitExtern            => LadezeitBasis);
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Zusatzstrukturen_Enum,
+                                                   ZeitExtern            => LadezeitbasisExtern);
          
       end loop SenkrechteSchleife;
       
-   end GenerierungLandschaft;
+   end Landschaft;
    
    
    
@@ -130,7 +129,7 @@ package body KartengeneratorLandschaftLogik is
       is
          when KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Steppe_Enum'Range =>
             return ZusatzberechnungGrasland (KoordinatenExtern => KoordinatenExtern,
-                                              GrundExtern       => GrundExtern);
+                                             GrundExtern       => GrundExtern);
             
          when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Savanne_Enum'Range =>
             return ZusatzberechnungWüste (KoordinatenExtern => KoordinatenExtern,
@@ -296,4 +295,4 @@ package body KartengeneratorLandschaftLogik is
       
    end ZusatzberechnungGrasland;
 
-end KartengeneratorLandschaftLogik;
+end KartengeneratorOberlandschaftLogik;

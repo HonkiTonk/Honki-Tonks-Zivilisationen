@@ -148,17 +148,19 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (10.10.2026):
+   -- Version 0.06.6545 => 0.06. (10.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6495 => 0.06. (09.10.2026):
+   -- Version 0.06.6495 => 0.06.6545 (09.10.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Kartengeneratoren gearbeitet.
+   -- Interne Struktur überarbeitet.
+   -- Interne Benennung überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

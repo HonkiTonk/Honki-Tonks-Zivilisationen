@@ -127,10 +127,9 @@ Dissolve
 Exit
 ################################# Loading times
 Game world is generated
-Generate General:
+Generate basis structurs:
 Generate coastal water:
-Generate Landscape:
-Generate sub-surface:
+Generate extra structurs:
 Generate Rivers:
 Generate Resources:
 Place species:

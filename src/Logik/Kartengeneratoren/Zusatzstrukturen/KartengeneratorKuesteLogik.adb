@@ -8,24 +8,37 @@ with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
 with LadezeitenLogik;
+with KartengeneratorVariablenLogik;
 
 package body KartengeneratorKuesteLogik is
 
-   procedure GenerierungKüstenSeeGewässer
+   procedure Küste
    is begin
       
-      LadezeitBasis := 100.00 / Float (LeseWeltkarteneinstellungen.Senkrechte);
+      Schleifenbereich := KartengeneratorVariablenLogik.PolfreierBereichLesen;
+      
+      Ladezeitbasis := 100.00 / Float (Schleifenbereich.MaximaleSenkrechte);
+      
+      case
+        KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde
+      is
+         when KartenKonstanten.UnterflächeKonstante =>
+            AktuelleEbene := KartenKonstanten.UnterflächeKonstante;
+            
+         when others =>
+            AktuelleEbene := KartenKonstanten.OberflächeKonstante;
+      end case;
       
       SenkrechteSchleife:
-      for SenkrechteSchleifenwert in KartenKonstanten.AnfangSenkrechte .. LeseWeltkarteneinstellungen.Senkrechte loop
+      for SenkrechteSchleifenwert in Schleifenbereich.MinimaleSenkrechte .. Schleifenbereich.MaximaleSenkrechte loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in KartenKonstanten.AnfangWaagerechte .. LeseWeltkarteneinstellungen.Waagerechte loop
+         for WaagerechteSchleifenwert in Schleifenbereich.MinimaleWaagerechte .. Schleifenbereich.MaximaleWaagerechte loop
                               
             case
-              LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => (AktuelleEbene, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
             is
-               when KartenbasisgrundDatentypen.Meer_Enum =>
-                  GewässerFestlegen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+               when KartenbasisgrundDatentypen.Meer_Enum | KartenbasisgrundDatentypen.Meeresgrund_Enum =>
+                  GewässerFestlegen (KoordinatenExtern => (AktuelleEbene, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                when others =>
                   null;
@@ -34,11 +47,11 @@ package body KartengeneratorKuesteLogik is
          end loop WaagerechteSchleife;
          
          LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Küstenwasser_Enum,
-                                                   ZeitExtern            => LadezeitBasis);
+                                                   ZeitExtern            => Ladezeitbasis);
          
       end loop SenkrechteSchleife;
       
-   end GenerierungKüstenSeeGewässer;
+   end Küste;
    
    
    
@@ -64,7 +77,7 @@ package body KartengeneratorKuesteLogik is
                case
                  LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert)
                is
-                  when KartenbasisgrundDatentypen.Grasland_Enum | KartenbasisgrundDatentypen.Eis_Enum =>
+                  when KartenbasisgrundDatentypen.Grasland_Enum | KartenbasisgrundDatentypen.Eis_Enum | KartenbasisgrundDatentypen.Erde_Enum =>
                      KüsteSchreiben (KoordinatenExtern => KoordinatenExtern);
                      return;
                      
@@ -82,10 +95,31 @@ package body KartengeneratorKuesteLogik is
    
    procedure KüsteSchreiben
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-   is begin
+   is
+      use type KartenDatentypen.EbeneBasis;
+   begin
       
-      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                    GrundExtern       => KartenbasisgrundDatentypen.Küstengewässer_Enum);
+      case
+        KoordinatenExtern.Ebene
+      is
+         when KartenKonstanten.OberflächeKonstante =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                          GrundExtern       => KartenbasisgrundDatentypen.Küstengewässer_Enum);
+      
+            if
+              KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= KartenKonstanten.UnterflächeKonstante
+            then
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                             GrundExtern       => KartenbasisgrundDatentypen.Küstengrund_Enum);
+            
+            else
+               null;
+            end if;
+            
+         when others =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                          GrundExtern       => KartenbasisgrundDatentypen.Küstengrund_Enum);
+      end case;
             
    end KüsteSchreiben;
 

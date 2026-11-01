@@ -13,7 +13,7 @@ with ZufallsgeneratorenKartenLogik;
 with KartengeneratorBasisberechnungenLogik;
 with KartenkoordinatenberechnungssystemLogik;
 
-package body KartengeneratorPlanetenkernLogik is
+package body KartengeneratorKernstrukturenLogik is
 
    procedure Planetenkern
      (LadezeitbasisExtern : in Float)
@@ -54,7 +54,7 @@ package body KartengeneratorPlanetenkernLogik is
                            
          end loop WaagerechteSchleife;
          
-         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum,
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Basisstrukturen_Enum,
                                                    ZeitExtern            => LadezeitbasisExtern);
          
       end loop SenkrechteSchleife;
@@ -316,4 +316,4 @@ package body KartengeneratorPlanetenkernLogik is
       
    end Lavagrund;
 
-end KartengeneratorPlanetenkernLogik;
+end KartengeneratorKernstrukturenLogik;

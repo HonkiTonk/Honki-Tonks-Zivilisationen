@@ -2,8 +2,7 @@ package LadezeitenDatentypen is
    pragma Pure;
 
    type Kartengenerator_Enum is (
-                                 Generiere_Allgemeines_Enum, Generiere_Küstenwasser_Enum, Generiere_Landschaft_Enum, Generiere_Unterfläche_Enum, Generiere_Flüsse_Enum, Generiere_Rohstoffe_Enum,
-                                 Platziere_Spezies_Enum
+                                 Generiere_Basisstrukturen_Enum, Generiere_Küstenwasser_Enum, Generiere_Zusatzstrukturen_Enum, Generiere_Flüsse_Enum, Generiere_Rohstoffe_Enum, Platziere_Spezies_Enum
                                 );
    
    

@@ -6,10 +6,17 @@ private with KartenbasisgrundDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
-package KartengeneratorLandschaftLogik is
+package KartengeneratorOberlandschaftLogik is
    pragma Elaborate_Body;
 
-   procedure GenerierungLandschaft;
+   procedure Landschaft
+     (LadezeitbasisExtern : in Float)
+     with
+       Pre => (
+                 LadezeitbasisExtern > 0.00
+               and
+                 LadezeitbasisExtern <= 100.00
+              );
 
 private
    use type KartenDatentypen.SenkrechteBasis;
@@ -20,8 +27,6 @@ private
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
    Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
    WelcherGrund : SystemDatentypenHTSEB.NullBisHundert;
-
-   LadezeitBasis : Float;
    
    Schleifenbereiche : KartenRecords.LandgrößenNaturalRecord;
          
@@ -130,4 +135,4 @@ private
                  KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-end KartengeneratorLandschaftLogik;
+end KartengeneratorOberlandschaftLogik;

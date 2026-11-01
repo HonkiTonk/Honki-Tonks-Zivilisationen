@@ -1,18 +1,22 @@
 private with KartenDatentypen;
+private with KartenRecords;
 
 package KartengeneratorPolregionLogik is
    pragma Elaborate_Body;
 
-   procedure PolregionGenerieren;
+   procedure Polregion;
 
 private
 
    SüdpolSchleifenkorrektur : KartenDatentypen.SenkrechteNatural;
    OstpolSchleifenkorrektur : KartenDatentypen.SenkrechteNatural;
 
-   procedure PolregionNorden;
-   procedure PolregionSüden;
-   procedure PolregionWesten;
-   procedure PolregionOsten;
+   Schleifenbereiche : KartenRecords.LandgrößenNaturalRecord;
+
+   procedure PolregionGenerieren;
+   procedure Nordpol;
+   procedure Südpol;
+   procedure Westpol;
+   procedure Ostpol;
 
 end KartengeneratorPolregionLogik;

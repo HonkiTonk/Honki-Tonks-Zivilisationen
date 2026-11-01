@@ -140,11 +140,10 @@ package TextnummernKonstanten is
    
    
    LadezeitSpielwelt : constant Positive := 1;
-   LadezeitAllgemeines : constant Positive := LadezeitSpielwelt + 1;
-   LadezeitKüstenwasser : constant Positive := LadezeitAllgemeines + 1;
-   LadezeitLandschaft : constant Positive := LadezeitKüstenwasser + 1;
-   LadezeitUnterfläche : constant Positive := LadezeitLandschaft + 1;
-   LadezeitFlüsse : constant Positive := LadezeitUnterfläche + 1;
+   LadezeitBasisstrukturen : constant Positive := LadezeitSpielwelt + 1;
+   LadezeitKüstenwasser : constant Positive := LadezeitBasisstrukturen + 1;
+   LadezeitZusatzstrukturen : constant Positive := LadezeitKüstenwasser + 1;
+   LadezeitFlüsse : constant Positive := LadezeitZusatzstrukturen + 1;
    LadezeitRohstoffe : constant Positive := LadezeitFlüsse + 1;
    LadezeitSpezies : constant Positive := LadezeitRohstoffe + 1;
    LadezeitRechnet : constant Positive := LadezeitSpezies + 1;

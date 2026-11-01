@@ -13,16 +13,15 @@ with KartengeneratorErdweltLogik;
 with KartengeneratorWasserweltLogik;
 with LadezeitenLogik;
 
-package body KartengeneratorUnterflaecheLogik is
+package body KartengeneratorUnterlandschaftLogik is
 
-   procedure GenerierungLandschaft
+   procedure Landschaft
+     (LadezeitbasisExtern : in Float)
    is
       use type KartenDatentypen.EbeneBasis;
    begin
       
       Schleifenbereiche := KartengeneratorVariablenLogik.PolfreierBereichLesen;
-      
-      LadezeitBasis := 100.00 / Float (Schleifenbereiche.MaximaleSenkrechte);
                
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in Schleifenbereiche.MinimaleSenkrechte .. Schleifenbereiche.MaximaleSenkrechte loop
@@ -58,17 +57,17 @@ package body KartengeneratorUnterflaecheLogik is
                      KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                   
                   when others =>
-                     MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorUnterflaecheLogik.GenerierungLandschaft: Weder Wasser noch Erde");
+                     MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorUnterlandschaftLogik.Landschaft: Weder Wasser noch Erde");
                end case;
             end if;
                               
          end loop WaagerechteSchleife;
          
-         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Unterfläche_Enum,
-                                                   ZeitExtern            => LadezeitBasis);
+         LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Zusatzstrukturen_Enum,
+                                                   ZeitExtern            => LadezeitbasisExtern);
          
       end loop SenkrechteSchleife;
       
-   end GenerierungLandschaft;
+   end Landschaft;
 
-end KartengeneratorUnterflaecheLogik;
+end KartengeneratorUnterlandschaftLogik;

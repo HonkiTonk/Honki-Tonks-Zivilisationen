@@ -1,15 +1,17 @@
 private with SystemDatentypenHTSEB;
 
-private with KartenDatentypen;
+with KartenDatentypen;
+
 private with KartenRecords;
 
 private with LeseWeltkarteneinstellungen;
 
-package KartengeneratorStandardLogik is
+package KartengeneratorBasisstrukturenLogik is
    pragma Elaborate_Body;
 
-   procedure OberflächeGenerieren
-     (LadezeitbasisExtern : in Float)
+   procedure Basisstrukturen
+     (LadezeitbasisExtern : in Float;
+      EbeneExtern : in KartenDatentypen.EbeneUnterflächeOberfläche)
      with
        Pre => (
                  LadezeitbasisExtern > 0.00
@@ -74,63 +76,57 @@ private
    -- 21, 22, 23, 24, 25
 
    procedure LandVorhanden
-     (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    procedure LandmasseAbstandGenerieren
-     (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
-      WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
    procedure Wassergrund
-     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
-      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    procedure Landgrund
-     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
-      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    procedure MeerSchreiben
-     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
-      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
    
    procedure LandSchreiben
-     (SenkrechteExtern : in KartenDatentypen.SenkrechteNatural;
-      WaagerechteExtern : in KartenDatentypen.WaagerechteNatural)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
      with
        Pre => (
-                 SenkrechteExtern <= LeseWeltkarteneinstellungen.Senkrechte
+                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
                and
-                 WaagerechteExtern <= LeseWeltkarteneinstellungen.Waagerechte
+                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
               );
 
-end KartengeneratorStandardLogik;
+end KartengeneratorBasisstrukturenLogik;
