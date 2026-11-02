@@ -85,10 +85,10 @@ package KartenRecordKonstanten is
                                                                                                  Kartenform       => Standardkartenparameter.Kartenform,
 
                                                                                                  -- Inseln, Kontinente, Pangäa
-                                                                                                 Kartenart        => KartenartDatentypen.Kartenart_Kontinente_Enum,
+                                                                                                 Kartenart        => KartenartDatentypen.Kontinente_Enum,
 
                                                                                                  -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
-                                                                                                 Kartentemperatur => KartenartDatentypen.Kartentemperatur_Gemäßigt_Enum,
+                                                                                                 Kartentemperatur => KartenartDatentypen.Gemäßigt_Enum,
 
                                                                                                  -- Arm, Wenig, Mittel, Viel, Überfluss
                                                                                                  Kartenrohstoffe  => KartenrohstoffeDatentypen.Rohstoff_Eins_Enum,

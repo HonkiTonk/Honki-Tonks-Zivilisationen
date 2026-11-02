@@ -3,14 +3,14 @@ package KartenartDatentypen is
 
    type Kartenart_Enum is (
                            -- Normal
-                           Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum,
+                           Inseln_Enum, Kontinente_Enum, Pangäa_Enum,
                            
                            -- Nutzerdefiniert
-                           Kartenart_Nutzerdefiniert_Enum
+                           Nutzerdefiniert_Enum
                           );
    pragma Ordered (Kartenart_Enum);
    
-   subtype Kartenart_Normal_Enum is Kartenart_Enum range Kartenart_Inseln_Enum .. Kartenart_Pangäa_Enum;
+   subtype Kartenart_Normal_Enum is Kartenart_Enum range Inseln_Enum .. Pangäa_Enum;
    
    
    
@@ -27,12 +27,8 @@ package KartenartDatentypen is
    
    
    
-   -- Statt eines Enums einen Zahlenwert von 0 bis 100 einbauen. äöü
-   -- Hier auch Werte unter 0 zulassen um Eiswelten zu generieren? äöü
-   -- Maximalwert unter 100 halten da sonst das Wasser verdampfen würde. äöü
-   -- Mal einen eigenen Temperaturwert dafür einbauen. äöü
    type Kartentemperatur_Enum is (
-                                  Kartentemperatur_Kalt_Enum, Kartentemperatur_Gemäßigt_Enum, Kartentemperatur_Heiß_Enum, Kartentemperatur_Eiszeit_Enum, Kartentemperatur_Wüste_Enum
+                                  Eiszeit_Enum, Kalt_Enum, Gemäßigt_Enum, Heiß_Enum, Warmzeit_Enum
                                  );
    pragma Ordered (Kartentemperatur_Enum);
    

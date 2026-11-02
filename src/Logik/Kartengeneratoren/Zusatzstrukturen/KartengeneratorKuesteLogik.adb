@@ -10,6 +10,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with LadezeitenLogik;
 with KartengeneratorVariablenLogik;
 
+-- Kann nicht mit der Landschaftsgenerierung zusammengeschoben werden, da das eventuell Änderungen bei der Paralellen Abarbeitung der Landschaften erzeugt? äöü
 package body KartengeneratorKuesteLogik is
 
    procedure Küste

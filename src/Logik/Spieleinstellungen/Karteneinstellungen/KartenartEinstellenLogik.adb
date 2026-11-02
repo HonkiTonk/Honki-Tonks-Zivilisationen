@@ -26,23 +26,23 @@ package body KartenartEinstellenLogik is
            KartenartAuswahl
          is
             when Inseln =>
-               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Inseln_Enum);
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Inseln_Enum);
                
             when Kontinente =>
-               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Kontinente_Enum);
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kontinente_Enum);
                
             when Pangäa =>
-               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Pangäa_Enum);
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Pangäa_Enum);
                
             when Nutzerdefiniert =>
-               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum);
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Nutzerdefiniert_Enum);
                KartenartNutzerdefinition;
                
             when ZufallVordefiniert =>
                KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeVordefinierteKartenart);
                
             when Zufall =>
-               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum);
+               KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenartDatentypen.Nutzerdefiniert_Enum);
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenart;
                
             when Standardauswahl =>
@@ -60,7 +60,7 @@ package body KartenartEinstellenLogik is
       case
         KartengeneratorVariablenLogik.KartenartLesen
       is
-         when KartenartDatentypen.Kartenart_Nutzerdefiniert_Enum =>
+         when KartenartDatentypen.Nutzerdefiniert_Enum =>
             null;
             
          when others =>
@@ -146,7 +146,7 @@ package body KartenartEinstellenLogik is
    is begin
 
       KartengeneratorVariablenLogik.KartenartSchreiben (ArtExtern => KartenKonstanten.StandardKartenart);
-      KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum));
+      KartengeneratorVariablenLogik.LandgrößenSchreiben (GrößeExtern => KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kontinente_Enum));
 
    end KartenartStandard;
 

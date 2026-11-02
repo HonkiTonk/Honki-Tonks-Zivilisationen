@@ -119,7 +119,7 @@ private
    Polwaagerechte : KartengeneratorRecordKonstanten.WaagerechtePolregionenArray := KartengeneratorRecordKonstanten.WaagerechterEisrand;
 
    -- Alle Angaben sind Radien.
-   Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum);
+   Landgrößen : KartenRecords.LandgrößenRecord := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kontinente_Enum);
 
    PolfreierBereich : KartenRecords.LandgrößenNaturalRecord;
 

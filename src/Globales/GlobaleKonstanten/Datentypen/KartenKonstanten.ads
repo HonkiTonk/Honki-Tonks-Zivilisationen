@@ -59,6 +59,6 @@ package KartenKonstanten is
                                                                      RueckgabeDatentypen.Auswahl_Zehn_Enum   => (KartenDatentypen.SenkrechtePositiv'Last, KartenDatentypen.WaagerechtePositiv'Last)
                                                                     );
    
-   StandardKartenart : constant KartenartDatentypen.Kartenart_Normal_Enum := KartenartDatentypen.Kartenart_Kontinente_Enum;
+   StandardKartenart : constant KartenartDatentypen.Kartenart_Normal_Enum := KartenartDatentypen.Kontinente_Enum;
    
 end KartenKonstanten;

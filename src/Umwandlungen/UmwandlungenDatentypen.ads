@@ -67,11 +67,11 @@ private
    
    type KartentemperaturrückgabeKartentemperaturArray is array (RueckgabeDatentypen.Kartentemperatur_Enum'Range) of KartenartDatentypen.Kartentemperatur_Enum;
    KartentemperaturrückgabeKartentemperatur : constant KartentemperaturrückgabeKartentemperaturArray := (
-                                                                                                           RueckgabeDatentypen.Auswahl_Eins_Enum => KartenartDatentypen.Kartentemperatur_Kalt_Enum,
-                                                                                                           RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenartDatentypen.Kartentemperatur_Gemäßigt_Enum,
-                                                                                                           RueckgabeDatentypen.Auswahl_Drei_Enum => KartenartDatentypen.Kartentemperatur_Heiß_Enum,
-                                                                                                           RueckgabeDatentypen.Auswahl_Vier_Enum => KartenartDatentypen.Kartentemperatur_Eiszeit_Enum,
-                                                                                                           RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenartDatentypen.Kartentemperatur_Wüste_Enum
+                                                                                                           RueckgabeDatentypen.Auswahl_Eins_Enum => KartenartDatentypen.Eiszeit_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenartDatentypen.Kalt_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Drei_Enum => KartenartDatentypen.Gemäßigt_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Vier_Enum => KartenartDatentypen.Heiß_Enum,
+                                                                                                           RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenartDatentypen.Warmzeit_Enum
                                                                                                           );
    
    type KartenrohstofferückgabeKartenRohstoffArray is array (RueckgabeDatentypen.Kartenrohstoffe_Enum'Range) of KartenrohstoffeDatentypen.Rohstoffanzahl_Enum;

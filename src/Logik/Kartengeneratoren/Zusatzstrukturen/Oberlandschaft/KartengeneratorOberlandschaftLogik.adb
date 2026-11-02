@@ -1,7 +1,6 @@
 with ZufallsgeneratorenHTSEB;
 
 with LadezeitenDatentypen;
-
 with KartenKonstanten;
 with SystemDatentypen;
 
@@ -59,57 +58,29 @@ package body KartengeneratorOberlandschaftLogik is
    
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+   is begin
       
-      Zahlenspeicher := 0;
-      WelcherGrund := 0;
+      Temperatur := KartengeneratorVariablenLogik.KartentemperaturLesen;
+      
+      GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
       
       BasisgrundSchleife:
-      loop
-         ZufallszahlenSchleife:
-         for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
+      for BasisgrundSchleifenwert in Grundwahrscheinlichkeiten'Range (2) loop
          
-            GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
-         
-            if
-              GezogeneZahl > BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)
-              or
-                GezogeneZahl = 0
-            then
-               null;
+         if
+           GezogeneZahl in Grundwahrscheinlichkeiten (Temperatur, BasisgrundSchleifenwert).Anfangswahrscheinlichkeit .. Grundwahrscheinlichkeiten (Temperatur, BasisgrundSchleifenwert).Endwahrscheinlichkeit
+         then
+            WelcherGrund := BasisgrundSchleifenwert;
+            exit BasisgrundSchleife;
             
-            elsif
-              (GezogeneZahl = Zahlenspeicher
-               and
-                 ZufallsgeneratorenHTSEB.Münzwurf = True)
-              or
-                GezogeneZahl > Zahlenspeicher
-            then
-               Zahlenspeicher := GezogeneZahl;
-               WelcherGrund := ZufallszahlSchleifenwert;
-            
-            else
-               null;
-            end if;
-         
-         end loop ZufallszahlenSchleife;
-         
-         case
-           WelcherGrund
-         is
-            when 0 =>
-               null;
-            
-            when others =>
-               exit BasisgrundSchleife;
-         end case;
+         else
+            null;
+         end if;
          
       end loop BasisgrundSchleife;
-      
-      Basisgrund := BasisExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                            GrundExtern       => ZahlenNachBasisgrund (WelcherGrund));
+         
+      Basisgrund := Zusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
+                                        GrundExtern       => ZahlenNachBasisgrund (WelcherGrund));
       
       Basisgrundplatzierungssystem.Basisgrundplatzierung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                                           BasisgrundExtern  => Basisgrund);
@@ -118,7 +89,7 @@ package body KartengeneratorOberlandschaftLogik is
    
    
    
-   function BasisExtraberechnungen
+   function Zusatzberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
       return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
@@ -127,16 +98,28 @@ package body KartengeneratorOberlandschaftLogik is
       case
         GrundExtern
       is
-         when KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Steppe_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Arktisch_Enum'Range =>
+            return Arktisch (KoordinatenExtern => KoordinatenExtern,
+                             GrundExtern       => GrundExtern);
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range =>
+            return ZusatzberechnungTundra (KoordinatenExtern => KoordinatenExtern,
+                                           GrundExtern       => GrundExtern);
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum'Range =>
             return ZusatzberechnungGrasland (KoordinatenExtern => KoordinatenExtern,
                                              GrundExtern       => GrundExtern);
             
-         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Savanne_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Steppe_Enum'Range =>
+            return ZusatzberechnungGrasland (KoordinatenExtern => KoordinatenExtern,
+                                             GrundExtern       => GrundExtern);
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Savanne_Enum'Range =>
             return ZusatzberechnungWüste (KoordinatenExtern => KoordinatenExtern,
                                            GrundExtern       => GrundExtern);
             
-         when KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Arktisch_Enum'Range =>
-            return ZusatzberechnungTundra (KoordinatenExtern => KoordinatenExtern,
+         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range =>
+            return ZusatzberechnungWüste (KoordinatenExtern => KoordinatenExtern,
                                            GrundExtern       => GrundExtern);
                         
          when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
@@ -148,7 +131,47 @@ package body KartengeneratorOberlandschaftLogik is
                                             GrundExtern       => GrundExtern);
       end case;
    
-   end BasisExtraberechnungen;
+   end Zusatzberechnungen;
+   
+   
+   
+   function Arktisch
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
+      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+   is
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
+   begin
+      
+      SenkrechteSchleife:
+      for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
+         WaagerechteSchleife:
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+            
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+            
+            if
+              KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
+            then
+               null;
+               
+            elsif
+              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartenbasisgrundDatentypen.Wüste_Enum
+            then
+               return KartenbasisgrundDatentypen.Tundra_Enum;
+                  
+            else
+               null;
+            end if;
+            
+         end loop WaagerechteSchleife;
+      end loop SenkrechteSchleife;
+      
+      return GrundExtern;
+      
+   end Arktisch;
    
    
    

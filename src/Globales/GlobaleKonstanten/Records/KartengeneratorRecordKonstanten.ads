@@ -21,7 +21,7 @@ package KartengeneratorRecordKonstanten is
    
    type KartenartgrößenArray is array (KartenartDatentypen.Kartenart_Normal_Enum'Range) of KartenRecords.LandgrößenRecord;
    Kartenartgrößen : constant KartenartgrößenArray := (
-                                                           KartenartDatentypen.Kartenart_Inseln_Enum =>
+                                                           KartenartDatentypen.Inseln_Enum =>
                                                              (
                                                               MinimaleSenkrechte => 3,
                                                               MaximaleSenkrechte => 5,
@@ -29,7 +29,7 @@ package KartengeneratorRecordKonstanten is
                                                               MaximaleWaagerechte => 5
                                                              ),
                                                            
-                                                           KartenartDatentypen.Kartenart_Kontinente_Enum =>
+                                                           KartenartDatentypen.Kontinente_Enum =>
                                                              (
                                                               MinimaleSenkrechte => 5,
                                                               MaximaleSenkrechte => 8,
@@ -37,7 +37,7 @@ package KartengeneratorRecordKonstanten is
                                                               MaximaleWaagerechte => 8
                                                              ),
                                                            
-                                                           KartenartDatentypen.Kartenart_Pangäa_Enum =>
+                                                           KartenartDatentypen.Pangäa_Enum =>
                                                              (
                                                               MinimaleSenkrechte => KartenDatentypen.SenkrechtePositiv'Last / 3,
                                                               MaximaleSenkrechte => KartenDatentypen.SenkrechtePositiv'Last / 3,
