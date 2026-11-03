@@ -120,16 +120,18 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (14.10.2026):
+   -- Version 0.06.6695 => 0.06. (14.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6650 => 0.06. (13.10.2026):
+   -- Version 0.06.6650 => 0.06.6695 (13.10.2026):
    
-   -- 
+   -- Einige Funktionen in die HTSEB ausgelagert.
+   -- Die HTSEB auf Version 0.01.2850 aktualisiert.
+   -- Einige Funktionen durch HTSEB Varianten ersetzt.
    -- Kleinigkeiten korrigiert.
    
    
@@ -137,7 +139,7 @@ package ChangelogOktober2026 is
    -- Version 0.06.6620 => 0.06.6650 (12.10.2026):
    
    -- Weiter an den Kartengeneratoren gearbeitet.
-   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

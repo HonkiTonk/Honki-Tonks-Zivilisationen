@@ -1,4 +1,5 @@
 private with SystemDatentypenHTSEB;
+private with ZahlenRecordsHTSEB;
 
 with KartenRecords;
 with KartenDatentypen;
@@ -33,20 +34,12 @@ private
          
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
-   -- Später auslagern oder durch etwas ersetzen das bereits ausgelagert ist. äöü
-   type WahrscheinlichkeitsbereichRecord is record
-      
-      Anfangswahrscheinlichkeit : SystemDatentypenHTSEB.NullBisHundert;
-      Endwahrscheinlichkeit : SystemDatentypenHTSEB.NullBisHundert;
-      
-   end record;
-   
    type Umwandlung_Enum is (Arktisch_Enum, Tundra_Enum, Grasland_Enum, Steppe_Enum, Savanne_Enum, Wüste_Enum,
                             Hügel_Enum, Gebirge_Enum);
    
    WelcherGrund : Umwandlung_Enum;
    
-   type GrundwahrscheinlichkeitenArray is array (KartenartDatentypen.Kartentemperatur_Enum, Umwandlung_Enum'Range) of WahrscheinlichkeitsbereichRecord;
+   type GrundwahrscheinlichkeitenArray is array (KartenartDatentypen.Kartentemperatur_Enum, Umwandlung_Enum'Range) of ZahlenRecordsHTSEB.WahrscheinlichkeitsbereichRecord;
    Grundwahrscheinlichkeiten : GrundwahrscheinlichkeitenArray := (
                                                                   KartenartDatentypen.Eiszeit_Enum =>
                                                                     (
