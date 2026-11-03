@@ -70,7 +70,7 @@ private
                                                                   others => True
                                                                  ),
 
-                                                               KartenbasisgrundDatentypen.Basisgrund_Arktisch_Enum'Range =>
+                                                               KartenbasisgrundDatentypen.Basisgrund_Arktis_Enum'Range =>
                                                                  (
                                                                   others => True
                                                                  ),

@@ -15,7 +15,7 @@ package BasisgrundOberflaeche is
 
    type BasisgrundlisteOberflächeArray is array (KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteOberfläche : constant BasisgrundlisteOberflächeArray := (
-                                                                             KartenbasisgrundDatentypen.Basisgrund_Eis_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Arktisch_Enum'Range =>
+                                                                             KartenbasisgrundDatentypen.Basisgrund_Eis_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Arktis_Enum'Range =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
