@@ -18,9 +18,7 @@ package body KartengeneratorErdweltLogik is
    
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+   is begin
       
       Basisgrund := KartenbasisgrundDatentypen.Leer_Basisgrund_Enum;
       Zahlenspeicher := 0;

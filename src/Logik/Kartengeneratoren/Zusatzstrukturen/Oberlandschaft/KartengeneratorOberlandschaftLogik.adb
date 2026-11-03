@@ -143,31 +143,107 @@ package body KartengeneratorOberlandschaftLogik is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
+      case
+        KartengeneratorVariablenLogik.KartentemperaturLesen
+      is
+         when KartenartDatentypen.Eiszeit_Enum =>
+            return GrundExtern;
+            
+         when others =>
+            GrundÄnderungswert := 0;
+      end case;
+      
+      -- A A A
+      -- A X
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteKartengeneratorumgebung'Range loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+            if
+              SenkrechteSchleifenwert = 0
+              and
+                WaagerechteSchleifenwert = 0
+            then
+               exit SenkrechteSchleife;
+               
+            else
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
+                                                                                            ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                            TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+            end if;
             
             if
               KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
             then
                null;
-               
-            elsif
-              LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert) = KartenbasisgrundDatentypen.Wüste_Enum
-            then
-               return KartenbasisgrundDatentypen.Tundra_Enum;
                   
             else
-               null;
+               case
+                 LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert)
+               is
+                  when KartenbasisgrundDatentypen.Wüste_Enum =>
+                     GrundÄnderungswert := GrundÄnderungswert + 2;
+                     
+                  when KartenbasisgrundDatentypen.Savanne_Enum =>
+                     GrundÄnderungswert := GrundÄnderungswert + 1;
+                     
+                  when KartenbasisgrundDatentypen.Tundra_Enum =>
+                     GrundÄnderungswert := GrundÄnderungswert - 1;
+                     
+                  when KartenbasisgrundDatentypen.Arktisch_Enum =>
+                     GrundÄnderungswert := GrundÄnderungswert - 2;
+                     
+                  when others =>
+                     null;
+               end case;
             end if;
             
          end loop WaagerechteSchleife;
       end loop SenkrechteSchleife;
+      
+      case
+        KartengeneratorVariablenLogik.KartentemperaturLesen
+      is
+         when KartenartDatentypen.Eiszeit_Enum =>
+            null;
+            
+         when KartenartDatentypen.Kalt_Enum =>
+            if
+              GrundÄnderungswert >= 8
+            then
+               return KartenbasisgrundDatentypen.Savanne_Enum;
+               
+            elsif
+              GrundÄnderungswert >= 6
+              and
+                ZufallsgeneratorenHTSEB.Münzwurf
+            then
+               return KartenbasisgrundDatentypen.Grasland_Enum;
+               
+            elsif
+              GrundÄnderungswert >= 6
+            then
+               return KartenbasisgrundDatentypen.Steppe_Enum;
+               
+            elsif
+              GrundÄnderungswert >= 4
+            then
+               return KartenbasisgrundDatentypen.Tundra_Enum;
+               
+            else
+               null;
+            end if;
+            
+         when KartenartDatentypen.Gemäßigt_Enum =>
+            null;
+            
+         when KartenartDatentypen.Heiß_Enum =>
+            null;
+            
+         when KartenartDatentypen.Warmzeit_Enum =>
+            null;
+      end case;
       
       return GrundExtern;
       
@@ -178,15 +254,17 @@ package body KartengeneratorOberlandschaftLogik is
    function ZusatzberechnungTundra
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+   return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
+      -- A A A
+      -- A X
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteKartengeneratorumgebung'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
@@ -218,15 +296,17 @@ package body KartengeneratorOberlandschaftLogik is
    function ZusatzberechnungWüste
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+   return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is
       use type KartenbasisgrundDatentypen.Basisgrund_Enum;
    begin
       
+      -- A A A
+      -- A X
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
          WaagerechteSchleife:
-         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
+         for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteKartengeneratorumgebung'Range loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
@@ -260,7 +340,7 @@ package body KartengeneratorOberlandschaftLogik is
    function ZusatzberechnungHügel
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+   return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -281,7 +361,7 @@ package body KartengeneratorOberlandschaftLogik is
    function ZusatzberechnungGebirge
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+   return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -302,7 +382,7 @@ package body KartengeneratorOberlandschaftLogik is
    function ZusatzberechnungGrasland
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
+   return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
          
       if

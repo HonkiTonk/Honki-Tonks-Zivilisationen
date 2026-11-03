@@ -8,9 +8,7 @@ package body KartengeneratorZusatzlandschaftLogik is
    
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+   is begin
       
       Zahlenspeicher := 0;
       WelcherGrund := 0;

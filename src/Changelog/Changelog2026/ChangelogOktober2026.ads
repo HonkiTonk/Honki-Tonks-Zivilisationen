@@ -134,17 +134,17 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (12.10.2026):
+   -- Version 0.06.6620 => 0.06. (12.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6595 => 0.06. (11.10.2026):
+   -- Version 0.06.6595 => 0.06.6620 (11.10.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Kartengeneratoren gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

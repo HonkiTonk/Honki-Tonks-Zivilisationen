@@ -32,7 +32,7 @@ package SystemDatentypenHTSEB is
    
    
       
-   type NullBisHundert is range 0 .. 100;
+   subtype NullBisHundert is Natural range 0 .. 100;
    subtype EinsBisHundert is NullBisHundert range 1 .. NullBisHundert'Last;
    
    subtype LadezeitBasis is Float range 0.00 .. 100.00;

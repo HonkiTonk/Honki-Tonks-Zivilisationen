@@ -15,6 +15,12 @@ package KartenDatentypen is
    subtype SenkrechteUmgebungZwei is SenkrechteUmgebungDrei range -2 .. 2;
    subtype SenkrechteUmgebungEins is SenkrechteUmgebungZwei range -1 .. 1;
    
+   -- Wird nicht benötigt, da der Kartengenerator ja so durch geht:
+   -- A A A
+   -- A X
+   -- und dadurch nur die gesamte erste Senkrechte gebraucht wird aber nur die ersten beiden Waagerechten.
+   -- subtype SenkrechteKartengeneratorumgebung is SenkrechteUmgebungEins range -1 .. 0;
+   
    
    
    type WaagerechteBasis is new SenkrechteBasis;
@@ -29,6 +35,7 @@ package KartenDatentypen is
    subtype WaagerechteUmgebungDrei is WaagerechteBasis range WaagerechteBasis (SenkrechteUmgebungDrei'First) .. WaagerechtePositiv (SenkrechteUmgebungDrei'Last);
    subtype WaagerechteUmgebungZwei is WaagerechteUmgebungDrei range WaagerechteUmgebungDrei (SenkrechteUmgebungZwei'First) .. WaagerechteUmgebungDrei (SenkrechteUmgebungZwei'Last);
    subtype WaagerechteUmgebungEins is WaagerechteUmgebungZwei range WaagerechteUmgebungZwei (SenkrechteUmgebungEins'First) .. WaagerechteUmgebungZwei (SenkrechteUmgebungEins'Last);
+   subtype WaagerechteKartengeneratorumgebung is WaagerechteUmgebungEins range -1 .. 0;
    
    
    

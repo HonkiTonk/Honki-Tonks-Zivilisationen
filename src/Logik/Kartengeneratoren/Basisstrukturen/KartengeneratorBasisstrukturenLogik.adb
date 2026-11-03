@@ -43,9 +43,7 @@ package body KartengeneratorBasisstrukturenLogik is
    
    procedure LandVorhanden
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+   is begin
       
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)
@@ -78,9 +76,7 @@ package body KartengeneratorBasisstrukturenLogik is
    -- Alle Größen- und Abstandsangaben sind Radien.
    procedure LandmasseAbstandGenerieren
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+   is begin
       
       LandmassenSchleife:
       for LandmassenSchleifenwert in LandmassenArray'Range loop

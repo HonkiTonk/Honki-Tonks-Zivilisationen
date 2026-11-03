@@ -66,9 +66,7 @@ package body KartengeneratorKernstrukturenLogik is
    procedure LandVorhanden
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
       WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
-   is
-      use type SystemDatentypenHTSEB.NullBisHundert;
-   begin
+   is begin
       
       case
         LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.KernKonstante, SenkrechteExtern, WaagerechteExtern))
@@ -106,7 +104,6 @@ package body KartengeneratorKernstrukturenLogik is
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
       WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)
    is
-      use type SystemDatentypenHTSEB.NullBisHundert;
       use type KartenDatentypen.EbeneBasis;
    begin
       
