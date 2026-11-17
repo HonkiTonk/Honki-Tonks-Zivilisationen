@@ -1,6 +1,5 @@
 with KartenRecords;
 with KartenbasisgrundDatentypen;
-with KartenartDatentypen;
 with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
@@ -12,8 +11,7 @@ package KartengeneratorSavannenberechnungenLogik is
    
    function Savanne
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
-      TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum)
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
       return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
      with
        Pre => (
@@ -24,16 +22,8 @@ package KartengeneratorSavannenberechnungenLogik is
    
 private
    
-   GrundÄnderungswert : Integer;
+   NeuerGrund : KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
          
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
-   
-   
-   
-   function Temperaturberechnugnen
-     (TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
-      ÄnderungswertExtern : in Integer)
-      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
 
 end KartengeneratorSavannenberechnungenLogik;

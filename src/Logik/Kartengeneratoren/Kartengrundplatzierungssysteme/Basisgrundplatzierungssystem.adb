@@ -6,6 +6,8 @@ with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
 
+-- Wenn ich Hügel/Gebirg, Flüsse und Straßen einfach auf Basis der ersten Wertereihe berechne und dann entsprechend den Type Anfang/Ende draufrechne? äöü
+-- Ginge dies? äöü
 package body Basisgrundplatzierungssystem is
 
    procedure Basisgrundplatzierung
@@ -32,8 +34,8 @@ package body Basisgrundplatzierungssystem is
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungEins'Range loop
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
               Kartenwert.Waagerechte = KartenKonstanten.LeerWaagerechte

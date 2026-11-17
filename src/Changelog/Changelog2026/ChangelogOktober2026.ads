@@ -106,23 +106,25 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (16.10.2026):
+   -- Version 0.06.6765 => 0.06. (16.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06. => 0.06. (15.10.2026):
+   -- Version 0.06.6720 => 0.06.6765 (15.10.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Kartengeneratoren gearbeitet.
+   -- Angefangen die Grundplatzierungssysteme zu überarbeiten.
+   -- Fehler behoben der bei Pangäa Karten zu Programmstopps führte.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.06.6695 => 0.06. (14.10.2026):
+   -- Version 0.06.6695 => 0.06.6720 (14.10.2026):
    
-   -- 
+   -- Weiter an den Kartengeneratoren gearbeitet.
    -- Kleinigkeiten korrigiert.
    
    

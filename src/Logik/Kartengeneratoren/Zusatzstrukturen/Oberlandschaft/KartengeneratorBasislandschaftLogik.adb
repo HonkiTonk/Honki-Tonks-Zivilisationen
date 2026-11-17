@@ -3,9 +3,7 @@ with ZufallsgeneratorenHTSEB;
 with Basisgrundplatzierungssystem;
 with KartengeneratorArktisberechnungenLogik;
 with KartengeneratorTundraberechnungenLogik;
-with KartengeneratorGebirgeberechnungenLogik;
 with KartengeneratorGraslandberechnungenLogik;
-with KartengeneratorHuegelberechnungenLogik;
 with KartengeneratorSteppenberechnungenLogik;
 with KartengeneratorSavannenberechnungenLogik;
 with KartengeneratorWuestenberechnungenLogik;
@@ -52,50 +50,35 @@ package body KartengeneratorBasislandschaftLogik is
       return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
      
-      -- Bei all den zusatzberechnungen kann ich nicht nach dem ersten Muster vorgehen.   F F F    F F F
-      -- Der Südpol ja schon festgelegt und muss mit berücksichtigt werden.               F X U    F X U
-      -- Deswegen muss ich das zweite Muster nutzen und die gesamte Umgebung durchgehen.  U U U    Y Y Y
-      -- Hügel und Gebirge sind davon ausgenommen und können nach dem ersten Muster behandelt werden.
       case
         GrundExtern
       is
          when KartenbasisgrundDatentypen.Basisgrund_Arktis_Enum'Range =>
             return KartengeneratorArktisberechnungenLogik.Arktis (KoordinatenExtern => KoordinatenExtern,
-                                                                  GrundExtern       => GrundExtern,
-                                                                  TemperaturExtern  => TemperaturExtern);
+                                                                  GrundExtern       => GrundExtern);
             
          when KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range =>
             return KartengeneratorTundraberechnungenLogik.Tundra (KoordinatenExtern => KoordinatenExtern,
-                                                                  GrundExtern       => GrundExtern,
-                                                                  TemperaturExtern  => TemperaturExtern);
+                                                                  GrundExtern       => GrundExtern);
             
          when KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum'Range =>
             return KartengeneratorGraslandberechnungenLogik.Grasland (KoordinatenExtern => KoordinatenExtern,
-                                                                      GrundExtern       => GrundExtern,
-                                                                      TemperaturExtern  => TemperaturExtern);
+                                                                      GrundExtern       => GrundExtern);
             
          when KartenbasisgrundDatentypen.Basisgrund_Steppe_Enum'Range =>
             return KartengeneratorSteppenberechnungenLogik.Steppe (KoordinatenExtern => KoordinatenExtern,
-                                                                   GrundExtern       => GrundExtern,
-                                                                   TemperaturExtern  => TemperaturExtern);
+                                                                   GrundExtern       => GrundExtern);
             
          when KartenbasisgrundDatentypen.Basisgrund_Savanne_Enum'Range =>
             return KartengeneratorSavannenberechnungenLogik.Savanne (KoordinatenExtern => KoordinatenExtern,
-                                                                     GrundExtern       => GrundExtern,
-                                                                     TemperaturExtern  => TemperaturExtern);
+                                                                     GrundExtern       => GrundExtern);
             
          when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range =>
             return KartengeneratorWuestenberechnungenLogik.Wüste (KoordinatenExtern => KoordinatenExtern,
-                                                                   GrundExtern       => GrundExtern,
-                                                                   TemperaturExtern  => TemperaturExtern);
+                                                                   GrundExtern       => GrundExtern);
                         
-         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
-            return KartengeneratorHuegelberechnungenLogik.Hügel (KoordinatenExtern => KoordinatenExtern,
-                                                                  GrundExtern       => GrundExtern);
-            
-         when KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
-            return KartengeneratorGebirgeberechnungenLogik.Gebirge (KoordinatenExtern => KoordinatenExtern,
-                                                                    GrundExtern       => GrundExtern);
+         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+            return GrundExtern;
       end case;
    
    end Zusatzberechnungen;

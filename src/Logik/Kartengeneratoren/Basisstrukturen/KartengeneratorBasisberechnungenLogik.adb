@@ -24,6 +24,13 @@ package body KartengeneratorBasisberechnungenLogik is
       then
          if
            SenkrechteExtern - AnfangExtern < Schleifenbereich.MinimaleSenkrechte
+           and
+             Schleifenbereich.MinimaleSenkrechte + AnfangExtern > Schleifenbereich.MaximaleSenkrechte
+         then
+            return Schleifenbereich.MinimaleSenkrechte;
+            
+         elsif
+           SenkrechteExtern - AnfangExtern < Schleifenbereich.MinimaleSenkrechte
          then
             return Schleifenbereich.MinimaleSenkrechte + AnfangExtern;
          

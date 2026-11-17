@@ -72,8 +72,10 @@ package KartenbasisgrundDatentypen is
    subtype Basisgrund_Steppe_Enum is Basisgrund_Oberfläche_Land_Enum range Steppe_Enum .. Steppe_Enum;
    subtype Basisgrund_Savanne_Enum is Basisgrund_Oberfläche_Land_Enum range Savanne_Enum .. Savanne_Enum;
    subtype Basisgrund_Wüste_Enum is Basisgrund_Oberfläche_Land_Enum range Wüste_Enum .. Wüste_Enum;
-   subtype Basisgrund_Hügel_Enum is Basisgrund_Oberfläche_Land_Enum range Hügelkreuzung_Vier_Enum .. Hügel_Enum;
-   subtype Basisgrund_Gebirge_Enum is Basisgrund_Oberfläche_Land_Enum range Gebirgekreuzung_Vier_Enum .. Gebirge_Enum;
+   
+   subtype Basisgrund_Berge_Enum is Basisgrund_Oberfläche_Land_Enum range Hügelkreuzung_Vier_Enum .. Gebirge_Enum;
+   subtype Basisgrund_Hügel_Enum is Basisgrund_Berge_Enum range Basisgrund_Berge_Enum'First .. Hügel_Enum;
+   subtype Basisgrund_Gebirge_Enum is Basisgrund_Berge_Enum range Basisgrund_Enum'Succ (Basisgrund_Hügel_Enum'Last) .. Basisgrund_Berge_Enum'Last;
    
    -- Unterfläche
    subtype Basisgrund_Unterfläche_Enum is Basisgrund_Vorhanden_Enum range Meeresgrund_Enum .. Gestein_Enum;

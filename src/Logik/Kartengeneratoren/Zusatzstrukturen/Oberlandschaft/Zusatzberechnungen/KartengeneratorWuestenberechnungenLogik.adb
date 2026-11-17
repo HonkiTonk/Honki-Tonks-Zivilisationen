@@ -1,5 +1,3 @@
-with ZufallsgeneratorenHTSEB;
-
 with KartenKonstanten;
 with SystemDatentypen;
 
@@ -11,20 +9,13 @@ package body KartengeneratorWuestenberechnungenLogik is
    
    function Wüste
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
-      TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum)
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
       return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
-   is begin
+   is
+      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
+   begin
       
-      case
-        TemperaturExtern
-      is
-         when KartenartDatentypen.Warmzeit_Enum =>
-            return GrundExtern;
-            
-         when others =>
-            GrundÄnderungswert := 0;
-      end case;
+      NeuerGrund := GrundExtern;
       
       SenkrechteSchleife:
       for SenkrechteSchleifenwert in KartenDatentypen.SenkrechteUmgebungEins'Range loop
@@ -53,20 +44,28 @@ package body KartengeneratorWuestenberechnungenLogik is
                case
                  LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert)
                is
-                  when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range =>
-                     GrundÄnderungswert := GrundÄnderungswert + 2;
-                     
-                  when KartenbasisgrundDatentypen.Basisgrund_Savanne_Enum'Range =>
-                     GrundÄnderungswert := GrundÄnderungswert + 1;
+                  when KartenbasisgrundDatentypen.Basisgrund_Eis_Enum'Range =>
+                     return KartenbasisgrundDatentypen.Arktis_Enum;
+                  
+                  when KartenbasisgrundDatentypen.Basisgrund_Arktis_Enum'Range =>
+                     if
+                       NeuerGrund = GrundExtern
+                     then
+                        NeuerGrund := KartenbasisgrundDatentypen.Tundra_Enum;
+                        
+                     else
+                        null;
+                     end if;
                      
                   when KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range =>
-                     GrundÄnderungswert := GrundÄnderungswert - 1;
-                     
-                  when KartenbasisgrundDatentypen.Basisgrund_Arktis_Enum'Range =>
-                     GrundÄnderungswert := GrundÄnderungswert - 2;
-                     
-                  when KartenbasisgrundDatentypen.Basisgrund_Eis_Enum'Range =>
-                     GrundÄnderungswert := GrundÄnderungswert - 3;
+                     if
+                       NeuerGrund = GrundExtern
+                     then
+                        NeuerGrund := KartenbasisgrundDatentypen.Steppe_Enum;
+                        
+                     else
+                        null;
+                     end if;
                      
                   when others =>
                      null;
@@ -76,138 +75,8 @@ package body KartengeneratorWuestenberechnungenLogik is
          end loop WaagerechteSchleife;
       end loop SenkrechteSchleife;
       
-      return Temperaturberechnugnen (TemperaturExtern    => TemperaturExtern,
-                                     GrundExtern         => GrundExtern,
-                                     ÄnderungswertExtern => GrundÄnderungswert);
+      return NeuerGrund;
       
    end Wüste;
-   
-   
-   
-   function Temperaturberechnugnen
-     (TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
-      ÄnderungswertExtern : in Integer)
-      return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
-   is begin
-      
-      case
-        TemperaturExtern
-      is
-         when KartenartDatentypen.Eiszeit_Enum =>
-            null;
-            
-         when KartenartDatentypen.Kalt_Enum =>
-            if
-              ÄnderungswertExtern >= 8
-            then
-               return KartenbasisgrundDatentypen.Savanne_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 6
-              and
-                ZufallsgeneratorenHTSEB.Münzwurf = False
-            then
-               return KartenbasisgrundDatentypen.Steppe_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 6
-            then
-               return KartenbasisgrundDatentypen.Grasland_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 4
-            then
-               return KartenbasisgrundDatentypen.Tundra_Enum;
-               
-            else
-               null;
-            end if;
-            
-         when KartenartDatentypen.Gemäßigt_Enum =>
-            if
-              ÄnderungswertExtern >= 6
-            then
-               return KartenbasisgrundDatentypen.Savanne_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 4
-              and
-                ZufallsgeneratorenHTSEB.Münzwurf = False
-            then
-               return KartenbasisgrundDatentypen.Steppe_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 4
-            then
-               return KartenbasisgrundDatentypen.Grasland_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 2
-            then
-               return KartenbasisgrundDatentypen.Tundra_Enum;
-               
-            else
-               null;
-            end if;
-            
-         when KartenartDatentypen.Heiß_Enum =>
-            if
-              ÄnderungswertExtern >= 4
-            then
-               return KartenbasisgrundDatentypen.Savanne_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 2
-              and
-                ZufallsgeneratorenHTSEB.Münzwurf = False
-            then
-               return KartenbasisgrundDatentypen.Steppe_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 2
-            then
-               return KartenbasisgrundDatentypen.Grasland_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 0
-            then
-               return KartenbasisgrundDatentypen.Tundra_Enum;
-               
-            else
-               null;
-            end if;
-            
-         when KartenartDatentypen.Warmzeit_Enum =>
-            if
-              ÄnderungswertExtern >= 2
-            then
-               return KartenbasisgrundDatentypen.Savanne_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 0
-              and
-                ZufallsgeneratorenHTSEB.Münzwurf = False
-            then
-               return KartenbasisgrundDatentypen.Steppe_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= 0
-            then
-               return KartenbasisgrundDatentypen.Grasland_Enum;
-               
-            elsif
-              ÄnderungswertExtern >= -2
-            then
-               return KartenbasisgrundDatentypen.Tundra_Enum;
-               
-            else
-               null;
-            end if;
-      end case;
-      
-      return GrundExtern;
-      
-   end Temperaturberechnugnen;
 
 end KartengeneratorWuestenberechnungenLogik;
