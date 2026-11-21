@@ -6,21 +6,18 @@ with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
 
--- Wenn ich Hügel/Gebirg, Flüsse und Straßen einfach auf Basis der ersten Wertereihe berechne und dann entsprechend den Type Anfang/Ende draufrechne? äöü
--- Ginge dies? äöü
 package body Basisgrundplatzierungssystem is
 
    procedure Basisgrundplatzierung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
    is begin
-            
+      
       case
         BasisgrundExtern
       is
-         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+         when KartenbasisgrundDatentypen.Basisgrund_Berge_Enum'Range =>
             Grundumgebung := (others => False);
-            Grundnummer := GrundZuNummer (BasisgrundExtern);
             
          when others =>
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
@@ -47,32 +44,28 @@ package body Basisgrundplatzierungssystem is
               and
                 WaagerechteSchleifenwert = KartenKonstanten.WaagerechteWesten
             then
-               Grundumgebung.Links := BerechnungLinks (KoordinatenExtern => Kartenwert,
-                                                       GrundnummerExtern => Grundnummer);
+               Grundumgebung.Links := BerechnungLinks (KoordinatenExtern => Kartenwert);
                
             elsif
               SenkrechteSchleifenwert = KartenKonstanten.LeerSenkrechteÄnderung
               and
                 WaagerechteSchleifenwert = KartenKonstanten.WaagerechteOsten
             then
-               Grundumgebung.Rechts := BerechnungRechts (KoordinatenExtern => Kartenwert,
-                                                         GrundnummerExtern => Grundnummer);
+               Grundumgebung.Rechts := BerechnungRechts (KoordinatenExtern => Kartenwert);
                
             elsif
               SenkrechteSchleifenwert = KartenKonstanten.SenkrechteNorden
               and
                 WaagerechteSchleifenwert = KartenKonstanten.LeerWaagerechteÄnderung
             then
-               Grundumgebung.Oben := BerechnungOben (KoordinatenExtern => Kartenwert,
-                                                     GrundnummerExtern => Grundnummer);
+               Grundumgebung.Oben := BerechnungOben (KoordinatenExtern => Kartenwert);
                
             elsif
               SenkrechteSchleifenwert = KartenKonstanten.SenkrechteSüden
               and
                 WaagerechteSchleifenwert = KartenKonstanten.LeerWaagerechteÄnderung
             then
-               Grundumgebung.Unten := BerechnungUnten (KoordinatenExtern => Kartenwert,
-                                                       GrundnummerExtern => Grundnummer);
+               Grundumgebung.Unten := BerechnungUnten (KoordinatenExtern => Kartenwert);
                
             else
                null;
@@ -81,17 +74,29 @@ package body Basisgrundplatzierungssystem is
          end loop WaagerechteSchleife;
       end loop SenkrechteSchleife;
       
+      
+      case
+        BasisgrundExtern
+      is
+         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
+            GrundSchreiben := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (Basisgrundwert (Grundumgebung.Links, Grundumgebung.Rechts, Grundumgebung.Oben, Grundumgebung.Unten) + Hügelzusatz);
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+            GrundSchreiben := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (Basisgrundwert (Grundumgebung.Links, Grundumgebung.Rechts, Grundumgebung.Oben, Grundumgebung.Unten) + Gebirgezusatz);
+            
+         when others =>
+            return;
+      end case;
+      
       SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                    GrundExtern       => KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (Basisgrundwert (Grundumgebung.Links, Grundumgebung.Rechts,
-                                      Grundumgebung.Oben, Grundumgebung.Unten) + Basisgrundtyp (Grundnummer)));
+                                    GrundExtern       => GrundSchreiben);
       
    end Basisgrundplatzierung;
    
    
    
    function BerechnungLinks
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundnummerExtern : in Positive)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -100,32 +105,28 @@ package body Basisgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
-            return False;
-         
+         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
+            Umrechnungswert := Hügelzusatz;
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+            Umrechnungswert := Gebirgezusatz;
+            
          when others =>
-            AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
+            return False;
       end case;
+           
+      WelcherGrund := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Umrechnungswert);
+      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                    GrundExtern       => KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundLinks (WelcherGrund) + Umrechnungswert));
       
-      if
-        AndersfeldigeGrundnummer /= GrundnummerExtern
-      then
-         return False;
-            
-      else
-         WelcherGrund := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Basisgrundtyp (AndersfeldigeGrundnummer));
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                       GrundExtern       => KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundLinks (WelcherGrund) + Basisgrundtyp (AndersfeldigeGrundnummer)));
-         return True;
-      end if;
-            
+      return True;
+                  
    end BerechnungLinks;
    
    
    
    function BerechnungRechts
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundnummerExtern : in Positive)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -134,32 +135,28 @@ package body Basisgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
-            return False;
-         
-         when others =>
-            AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
-      end case;
-      
-      if
-        AndersfeldigeGrundnummer /= GrundnummerExtern
-      then
-         return False;
+         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
+            Umrechnungswert := Hügelzusatz;
             
-      else
-         WelcherGrund := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Basisgrundtyp (AndersfeldigeGrundnummer));
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                       GrundExtern       => KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundRechts (WelcherGrund) + Basisgrundtyp (AndersfeldigeGrundnummer)));
-         return True;
-      end if;
+         when KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+            Umrechnungswert := Gebirgezusatz;
+            
+         when others =>
+            return False;
+      end case;
+           
+      WelcherGrund := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Umrechnungswert);
+      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                    GrundExtern       => KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundRechts (WelcherGrund) + Umrechnungswert));
+      
+      return True;
       
    end BerechnungRechts;
    
    
    
    function BerechnungOben
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundnummerExtern : in Positive)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -168,32 +165,28 @@ package body Basisgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
-            return False;
-         
-         when others =>
-            AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
-      end case;
-      
-      if
-        AndersfeldigeGrundnummer /= GrundnummerExtern
-      then
-         return False;
+         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
+            Umrechnungswert := Hügelzusatz;
             
-      else
-         WelcherGrund := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Basisgrundtyp (AndersfeldigeGrundnummer));
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                       GrundExtern       => KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundOben (WelcherGrund) + Basisgrundtyp (AndersfeldigeGrundnummer)));
-         return True;
-      end if;
+         when KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+            Umrechnungswert := Gebirgezusatz;
+            
+         when others =>
+            return False;
+      end case;
+           
+      WelcherGrund := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Umrechnungswert);
+      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                    GrundExtern       => KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundOben (WelcherGrund) + Umrechnungswert));
+   
+      return True;
             
    end BerechnungOben;
    
    
    
    function BerechnungUnten
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundnummerExtern : in Positive)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
    is begin
       
@@ -202,24 +195,21 @@ package body Basisgrundplatzierungssystem is
       case
         WelcherGrund
       is
-         when KartenbasisgrundDatentypen.Leer_Basisgrund_Enum =>
-            return False;
-         
-         when others =>
-            AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
-      end case;
-      
-      if
-        AndersfeldigeGrundnummer /= GrundnummerExtern
-      then
-         return False;
+         when KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range =>
+            Umrechnungswert := Hügelzusatz;
             
-      else
-         WelcherGrund := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Basisgrundtyp (AndersfeldigeGrundnummer));
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                       GrundExtern       => KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundUnten (WelcherGrund) + Basisgrundtyp (AndersfeldigeGrundnummer)));
-         return True;
-      end if;
+         when KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
+            Umrechnungswert := Gebirgezusatz;
+            
+         when others =>
+            return False;
+      end case;
+           
+      WelcherGrund := KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Umrechnungswert);
+      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                    GrundExtern       => KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundUnten (WelcherGrund) + Umrechnungswert));
+   
+      return True;
       
    end BerechnungUnten;
 

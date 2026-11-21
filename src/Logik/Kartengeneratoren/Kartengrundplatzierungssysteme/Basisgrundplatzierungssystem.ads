@@ -22,33 +22,17 @@ package Basisgrundplatzierungssystem is
 private
 
    WelcherGrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
+   GrundSchreiben : KartenbasisgrundDatentypen.Basisgrund_Enum;
 
-   Grundnummer : Positive;
-   AndersfeldigeGrundnummer : Positive;
+   Umrechnungswert : Natural;
 
    Kartenwert : KartenRecords.KartenfeldNaturalRecord;
 
    Grundumgebung : KartenRecords.UmgebungskreuzRecord;
 
-   -- Das hier später anpassen, wenn ich tatsächliche alle Basisgründe so erweitere. äöü
-   type GrundZuNummerArray is array (KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Positive;
-   GrundZuNummer : constant GrundZuNummerArray := (
-                                                   -- KartenbasisgrundDatentypen.Basisgrund_Grasland_Enum'Range => 1,
-                                                   -- KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range     => 2,
-                                                   -- KartenbasisgrundDatentypen.Basisgrund_Tundra_Enum'Range    => 3,
-                                                   KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Range     => 1,
-                                                   KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Range   => 2,
-
-                                                   others => 1_000
-                                                  );
-
-   type BasisgrundtypArray is array (1 .. 2) of Natural;
-   Basisgrundtyp : constant BasisgrundtypArray := (
-                                                   1 => 0,
-                                                   2 =>
-                                                     KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Pos (KartenbasisgrundDatentypen.Gebirgekreuzung_Vier_Enum)
-                                                   - KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum)
-                                                  );
+   Hügelzusatz : constant Natural := 0;
+   Gebirgezusatz : constant Natural := KartenbasisgrundDatentypen.Basisgrund_Gebirge_Enum'Pos (KartenbasisgrundDatentypen.Gebirgekreuzung_Vier_Enum)
+                                                   - KartenbasisgrundDatentypen.Basisgrund_Hügel_Enum'Pos (KartenbasisgrundDatentypen.Hügelkreuzung_Vier_Enum);
 
    type BasisgrundwertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Positive;
    Basisgrundwert : constant BasisgrundwertArray := (
@@ -275,8 +259,7 @@ private
 
 
    function BerechnungLinks
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundnummerExtern : in Positive)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
@@ -286,8 +269,7 @@ private
               );
 
    function BerechnungRechts
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundnummerExtern : in Positive)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
@@ -297,8 +279,7 @@ private
               );
 
    function BerechnungOben
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundnummerExtern : in Positive)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
@@ -308,8 +289,7 @@ private
               );
 
    function BerechnungUnten
-     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
-      GrundnummerExtern : in Positive)
+     (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (

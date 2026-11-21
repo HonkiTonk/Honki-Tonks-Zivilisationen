@@ -92,16 +92,16 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (18.10.2026):
+   -- Version 0.06.6825 => 0.06. (18.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6800 => 0.06. (17.10.2026):
+   -- Version 0.06.6800 => 0.06.6825 (17.10.2026):
    
-   -- 
+   -- Basisgrundplatzierungssystem überarbeitet, so dass Berge und Gebirge jetzt ineinander übergehen können.
    -- Kleinigkeiten korrigiert.
    
    
