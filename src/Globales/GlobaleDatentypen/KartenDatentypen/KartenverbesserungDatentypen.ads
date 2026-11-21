@@ -22,7 +22,7 @@ package KartenverbesserungDatentypen is
                                );
    
    subtype Verbesserungen_Vorhanden_Enum is Verbesserungen_Enum range Verbesserungen_Enum'Succ (Verbesserungen_Enum'First) .. Verbesserungen_Enum'Last;
-
+   
    subtype Verbesserungen_Stadt_ID_Enum is Verbesserungen_Enum range Leer_Verbesserungen_Enum .. Stadt_Enum;
    subtype Verbesserungen_Städte_Enum is Verbesserungen_Stadt_ID_Enum range Hauptstadt_Enum .. Stadt_Enum;
    subtype Verbesserungen_Gebilde_Enum is Verbesserungen_Vorhanden_Enum range Farm_Enum .. Verbesserungen_Vorhanden_Enum'Last;

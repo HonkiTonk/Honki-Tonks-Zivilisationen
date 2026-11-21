@@ -99,16 +99,17 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (17.10.2026):
+   -- Version 0.06.6800 => 0.06. (17.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6765 => 0.06. (16.10.2026):
+   -- Version 0.06.6765 => 0.06.6800 (16.10.2026):
    
-   -- 
+   -- GNAT von Version 16.2.0-4 auf 16.2.0-5 aktualisiert.
+   -- Gesamte, lokale Ada Struktur von Version 2026.0.0-1 auf 2026.0.0-2 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
