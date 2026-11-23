@@ -34,6 +34,7 @@ package KartenbasisgrundDatentypen is
                             
                             -- Unterfläche
                             Meeresgrund_Enum, Küstengrund_Enum,
+                            
                             Untereis_Enum,
                             Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
                             
@@ -63,7 +64,7 @@ package KartenbasisgrundDatentypen is
    subtype Basisgrund_Oberfläche_Wasser_Enum is Basisgrund_Oberfläche_Eiswasser_Enum range Meer_Enum .. Küstengewässer_Enum;
    
    subtype Basisgrund_Gesamtoberfläche_Land_Enum is Basisgrund_Oberfläche_Enum range Eis_Enum .. Gebirge_Enum;
-   subtype Basisgrund_Oberfläche_Land_Enum is Basisgrund_Gesamtoberfläche_Land_Enum range Basisgrund_Enum'Succ (Basisgrund_Gesamtoberfläche_Land_Enum'First) .. Gebirge_Enum;
+   subtype Basisgrund_Oberfläche_Land_Enum is Basisgrund_Gesamtoberfläche_Land_Enum range Basisgrund_Enum'Succ (Basisgrund_Gesamtoberfläche_Land_Enum'First) .. Basisgrund_Gesamtoberfläche_Land_Enum'Last;
    
    subtype Basisgrund_Eis_Enum is Basisgrund_Gesamtoberfläche_Land_Enum range Eis_Enum .. Eis_Enum;
    subtype Basisgrund_Arktis_Enum is Basisgrund_Gesamtoberfläche_Land_Enum range Arktis_Enum .. Arktis_Enum;

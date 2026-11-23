@@ -30,21 +30,14 @@ package body KartengeneratorOberlandschaftLogik is
             is
                when KartenbasisgrundDatentypen.Grasland_Enum =>
                   KartengeneratorBasislandschaftLogik.BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                           TemperaturExtern   => Temperatur);
+                                                                           TemperaturExtern  => Temperatur);
 
                when others =>
                   null;
             end case;
             
-            case
-              AktuellerGrund
-            is
-               when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
-                  KartengeneratorZusatzlandschaftLogik.ZusatzgrundBestimmen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  
-               when others =>
-                  null;
-            end case;
+            KartengeneratorZusatzlandschaftLogik.ZusatzgrundBestimmen (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                       TemperaturExtern  => Temperatur);
             
          end loop WaagerechteSchleife;
          

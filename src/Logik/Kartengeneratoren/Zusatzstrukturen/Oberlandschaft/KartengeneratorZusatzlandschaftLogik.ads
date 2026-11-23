@@ -1,7 +1,9 @@
 private with SystemDatentypenHTSEB;
+private with ZahlenRecordsHTSEB;
 
 with KartenRecords;
 with KartenDatentypen;
+with KartenartDatentypen;
 
 private with KartenzusatzgrundDatentypen;
 private with KartenbasisgrundDatentypen;
@@ -14,7 +16,8 @@ package KartengeneratorZusatzlandschaftLogik is
    use type KartenDatentypen.WaagerechteBasis;
 
    procedure ZusatzgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
+      TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum)
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -24,86 +27,109 @@ package KartengeneratorZusatzlandschaftLogik is
      
 private
       
-   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum;
    
    Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
-   Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
-   WelcherGrund : SystemDatentypenHTSEB.NullBisHundert;
    
-   type ZusatzWahrscheinlichkeitenArray is array (SystemDatentypenHTSEB.EinsBisHundert'First .. 4) of SystemDatentypenHTSEB.NullBisHundert;
-   ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
-                                                                    1 => 40,
-                                                                    2 => 30,
-                                                                    3 => 30,
-                                                                    4 => 15
-                                                                   );
+   -- Brauche ich für denn Fall dass der Zusatzgrund für Wasserfelder erweitert werden soll.
+   type Wasserumwandlung_Enum is (Leer_Enum, Riffe_Enum);
+   Wasserzusatz : Wasserumwandlung_Enum;
    
-   type ZahlenNachZusatzgrundArray is array (0 .. ZusatzWahrscheinlichkeitenArray'Last) of KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
-   ZahlenNachZusatzgrund : constant ZahlenNachZusatzgrundArray := (
-                                                                   0 => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
-                                                                   1 => KartenzusatzgrundDatentypen.Wald_Enum,
-                                                                   2 => KartenzusatzgrundDatentypen.Dschungel_Enum,
-                                                                   3 => KartenzusatzgrundDatentypen.Sumpf_Enum,
-                                                                   4 => KartenzusatzgrundDatentypen.Riffe_Enum
-                                                                  );
+   type WassergrundwahrscheinlichkeitenArray is array (Wasserumwandlung_Enum'Range) of ZahlenRecordsHTSEB.WahrscheinlichkeitsbereichRecord;
+   Wassergrundwahrscheinlichkeiten : WassergrundwahrscheinlichkeitenArray := (
+                                                                              Leer_Enum  => (SystemDatentypenHTSEB.NullBisHundert'First, 84),
+                                                                              Riffe_Enum => (85, SystemDatentypenHTSEB.NullBisHundert'Last)
+                                                                             );
+   
+   type WasserumwandlungArray is array (Riffe_Enum .. WassergrundwahrscheinlichkeitenArray'Last) of KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum;
+   Wasserumwandlung : constant WasserumwandlungArray := (
+                                                         Riffe_Enum => KartenzusatzgrundDatentypen.Riffe_Enum
+                                                        );
+   
+   type Landumwandlung_Enum is (Leer_Enum, Wald_Enum, Dschungel_Enum, Sumpf_Enum);
+   Landzusatz : Landumwandlung_Enum;
+   
+   type LandgrundwahrscheinlichkeitenArray is array (KartenartDatentypen.Kartentemperatur_Enum, Landumwandlung_Enum'Range) of ZahlenRecordsHTSEB.WahrscheinlichkeitsbereichRecord;
+   Landgrundwahrscheinlichkeiten : LandgrundwahrscheinlichkeitenArray := (
+                                                                          KartenartDatentypen.Eiszeit_Enum =>
+                                                                            (
+                                                                             Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 24),
+                                                                     
+                                                                             Wald_Enum      => (25, 50),
+                                                                             Dschungel_Enum => (51, 60),
+                                                                             Sumpf_Enum     => (61, 76)
+                                                                            ),
+                                                                  
+                                                                          KartenartDatentypen.Kalt_Enum =>
+                                                                            (
+                                                                             Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 24),
+                                                                     
+                                                                             Wald_Enum      => (25, 50),
+                                                                             Dschungel_Enum => (51, 60),
+                                                                             Sumpf_Enum     => (61, 76)
+                                                                            ),
+                                                                  
+                                                                          KartenartDatentypen.Gemäßigt_Enum => 
+                                                                            (
+                                                                             Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 24),
+                                                                     
+                                                                             Wald_Enum      => (25, 50),
+                                                                             Dschungel_Enum => (51, 60),
+                                                                             Sumpf_Enum     => (61, 76)
+                                                                            ),
+                                                                  
+                                                                          KartenartDatentypen.Heiß_Enum =>
+                                                                            (
+                                                                             Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 24),
+                                                                     
+                                                                             Wald_Enum      => (25, 50),
+                                                                             Dschungel_Enum => (51, 60),
+                                                                             Sumpf_Enum     => (61, 76)
+                                                                            ),
+                                                                  
+                                                                          KartenartDatentypen.Warmzeit_Enum =>
+                                                                            (
+                                                                             Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 24),
+                                                                     
+                                                                             Wald_Enum      => (25, 50),
+                                                                             Dschungel_Enum => (51, 60),
+                                                                             Sumpf_Enum     => (61, 76)
+                                                                            )
+                                                                         );
+   
+   type LandumwandlungArray is array (Wald_Enum .. LandgrundwahrscheinlichkeitenArray'Last (2)) of KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum;
+   Landumwandlung : constant LandumwandlungArray := (
+                                                     Wald_Enum      => KartenzusatzgrundDatentypen.Wald_Enum,
+                                                     Dschungel_Enum => KartenzusatzgrundDatentypen.Dschungel_Enum,
+                                                     Sumpf_Enum     => KartenzusatzgrundDatentypen.Sumpf_Enum
+                                                    );
    
    
+   
+   function Wasserbestimmung
+     return KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
+   
+   function Landbestimmung
+     (TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum;
+      BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
    function ZusatzExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum)
-      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
    function ZusatzberechnungWald
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum)
-      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
    function ZusatzberechnungDschungel
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum)
-      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
    function ZusatzberechnungSumpf
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum)
-      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   function ZusatzberechnungRiffe
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum)
-      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
 
 end KartengeneratorZusatzlandschaftLogik;

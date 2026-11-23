@@ -26,11 +26,9 @@ package KartengeneratorBasislandschaftLogik is
 
 private
          
-   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum;
    
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
-   
-   GrundÄnderungswert : Integer;
          
    KartenWert : KartenRecords.KartenfeldNaturalRecord;
    

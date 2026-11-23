@@ -63,8 +63,8 @@ package body KIKartenfeldbewertungModifizierenLogik is
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
                               
             KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                      
             if
               KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
@@ -103,8 +103,8 @@ package body KIKartenfeldbewertungModifizierenLogik is
          for WaagerechteSchleifenwert in KartenDatentypen.WaagerechteUmgebungDrei'Range loop
                               
             KartenWert := KartenkoordinatenberechnungssystemLogik.Koordinatenberechnung (KoordinatenExtern => KoordinatenExtern,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
-                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEbeneÄnderung, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                      
             if
               KartenWert.Waagerechte = KartenKonstanten.LeerWaagerechte
@@ -126,14 +126,14 @@ package body KIKartenfeldbewertungModifizierenLogik is
                elsif
                abs (SenkrechteSchleifenwert) = 3
                  or
-               abs (SenkrechteSchleifenwert) = 3
+               abs (WaagerechteSchleifenwert) = 3
                then
                   GuteFelder := GuteFelder + 1.00 / 3.00;
                   
                elsif
                abs (SenkrechteSchleifenwert) = 2
                  or
-               abs (SenkrechteSchleifenwert) = 2
+               abs (WaagerechteSchleifenwert) = 2
                then
                   GuteFelder := GuteFelder + 1.00 / GrafikKonstanten.Halbierung;
                   

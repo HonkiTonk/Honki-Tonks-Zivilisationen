@@ -1,10 +1,5 @@
-with MeldungssystemHTSEB;
-with ZufallsgeneratorenHTSEB;
-
 with LadezeitenDatentypen;
 with KartenKonstanten;
-with KartenbasisgrundDatentypen;
-with KartenDatentypen;
 
 with LeseWeltkarte;
 
@@ -17,9 +12,7 @@ package body KartengeneratorUnterlandschaftLogik is
 
    procedure Landschaft
      (LadezeitbasisExtern : in Float)
-   is
-      use type KartenDatentypen.EbeneBasis;
-   begin
+   is begin
       
       Schleifenbereiche := KartengeneratorVariablenLogik.PolfreierBereichLesen;
                
@@ -28,39 +21,20 @@ package body KartengeneratorUnterlandschaftLogik is
          WaagerechteSchleife:
          for WaagerechteSchleifenwert in Schleifenbereiche.MinimaleWaagerechte .. Schleifenbereiche.MaximaleWaagerechte loop
             
-            if
-              KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang > KartenKonstanten.UnterflächeKonstante
-            then
-               exit SenkrechteSchleife;
-            
-            elsif
-              KartengeneratorVariablenLogik.KartenebenenLesen.EbeneEnde < KartenKonstanten.OberflächeKonstante
-            then
-               case
-                 ZufallsgeneratorenHTSEB.Münzwurf
-               is
-                  when True =>
-                     KartengeneratorWasserweltLogik.KartengeneratorWasserwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                     
-                  when False =>
-                     KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-               end case;
+            AktuellerGrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                
-            else
-               case
-                 LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert))
-               is
-                  when KartenbasisgrundDatentypen.Küstengewässer_Enum | KartenbasisgrundDatentypen.Meer_Enum =>
-                     KartengeneratorWasserweltLogik.KartengeneratorWasserwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  
-                  when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
-                     KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-                  
-                  when others =>
-                     MeldungssystemHTSEB.Logik (MeldungExtern => "KartengeneratorUnterlandschaftLogik.Landschaft: Weder Wasser noch Erde");
-               end case;
-            end if;
-                              
+            case
+              AktuellerGrund
+            is
+               when KartenbasisgrundDatentypen.Erde_Enum =>
+                  KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+                     
+               when others =>
+                  null;
+            end case;
+            
+            KartengeneratorWasserweltLogik.ZusatzgrundBestimmen (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
+            
          end loop WaagerechteSchleife;
          
          LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Zusatzstrukturen_Enum,

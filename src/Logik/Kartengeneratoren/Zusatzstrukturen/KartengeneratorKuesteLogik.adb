@@ -110,7 +110,7 @@ package body KartengeneratorKuesteLogik is
             if
               KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= KartenKonstanten.UnterflächeKonstante
             then
-               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante ,KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                              GrundExtern       => KartenbasisgrundDatentypen.Küstengrund_Enum);
             
             else

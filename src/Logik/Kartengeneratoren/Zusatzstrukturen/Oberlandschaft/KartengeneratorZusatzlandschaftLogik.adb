@@ -7,53 +7,26 @@ with Zusatzgrundplatzierungssystem;
 package body KartengeneratorZusatzlandschaftLogik is
    
    procedure ZusatzgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
+      TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum)
    is begin
-      
-      Zahlenspeicher := 0;
-      WelcherGrund := 0;
-      
-      ZufallszahlenSchleife:
-      for ZufallszahlSchleifenwert in ZusatzWahrscheinlichkeitenArray'Range loop
-         
-         GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
-         
-         if
-           GezogeneZahl > ZusatzWahrscheinlichkeiten (ZufallszahlSchleifenwert)
-           or
-             GezogeneZahl = 0
-         then
-            null;
             
-         elsif
-           (GezogeneZahl = Zahlenspeicher
-            and
-              ZufallsgeneratorenHTSEB.Münzwurf = True)
-           or
-             GezogeneZahl > Zahlenspeicher
-         then
-            Zahlenspeicher := GezogeneZahl;
-            WelcherGrund := ZufallszahlSchleifenwert;
-            
-         else
-            null;
-         end if;
-                  
-      end loop ZufallszahlenSchleife;
-      
-      Zusatzgrund := ZahlenNachZusatzgrund (WelcherGrund);
+      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
       
       case
-        Zusatzgrund
+        Basisgrund
       is
-         when KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum =>
+         when KartenbasisgrundDatentypen.Basisgrund_Eis_Enum'Range =>
             return;
             
-         when others =>
-            Zusatzgrund := ZusatzExtraberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                                    GrundExtern       => Zusatzgrund);
+         when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
+            Zusatzgrund := Wasserbestimmung;
+            
+         when KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
+            Zusatzgrund := Landbestimmung (TemperaturExtern => TemperaturExtern,
+                                           BasisgrundExtern => Basisgrund);
       end case;
-                  
+      
       case
         Zusatzgrund
       is
@@ -69,130 +42,160 @@ package body KartengeneratorZusatzlandschaftLogik is
    
    
    
+   function Wasserbestimmung
+     return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
+   is begin
+      
+      GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
+      
+      ZusatzgrundSchleife:
+      for ZusatzgrundSchleifenwert in WassergrundwahrscheinlichkeitenArray'Range loop
+         
+         if
+           GezogeneZahl in Wassergrundwahrscheinlichkeiten (ZusatzgrundSchleifenwert).Anfangswahrscheinlichkeit .. Wassergrundwahrscheinlichkeiten (ZusatzgrundSchleifenwert).Endwahrscheinlichkeit
+         then
+            Wasserzusatz := ZusatzgrundSchleifenwert;
+            exit ZusatzgrundSchleife;
+            
+         else
+            null;
+         end if;
+         
+      end loop ZusatzgrundSchleife;
+      
+      case
+        Wasserzusatz
+      is
+         when Leer_Enum =>
+            return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
+            
+         when others =>
+            return Wasserumwandlung (Wasserzusatz);
+      end case;
+      
+   end Wasserbestimmung;
+   
+   
+   
+   function Landbestimmung
+     (TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum;
+      BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum)
+      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
+   is begin
+      
+      GezogeneZahl := ZufallsgeneratorenHTSEB.Hunderterbereich;
+   
+      ZusatzgrundSchleife:
+      for ZusatzgrundSchleifenwert in LandgrundwahrscheinlichkeitenArray'Range (2) loop
+         
+         if
+           GezogeneZahl in Landgrundwahrscheinlichkeiten (TemperaturExtern, ZusatzgrundSchleifenwert).Anfangswahrscheinlichkeit
+           .. Landgrundwahrscheinlichkeiten (TemperaturExtern, ZusatzgrundSchleifenwert).Endwahrscheinlichkeit
+         then
+            Landzusatz := ZusatzgrundSchleifenwert;
+            exit ZusatzgrundSchleife;
+            
+         else
+            null;
+         end if;
+                  
+      end loop ZusatzgrundSchleife;
+            
+      case
+        Landzusatz
+      is
+         when Leer_Enum =>
+            return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
+            
+         when others =>
+            return ZusatzExtraberechnungen (GesamtgrundExtern => (BasisgrundExtern, Landumwandlung (Landzusatz)));
+      end case;
+      
+   end Landbestimmung;
+   
+   
+   
    function ZusatzExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
       return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is begin
       
       case
-        GrundExtern
+        GesamtgrundExtern.Zusatzgrund
       is
          when KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum'Range =>
-            return ZusatzberechnungWald (KoordinatenExtern => KoordinatenExtern,
-                                         GrundExtern       => GrundExtern);
+            return ZusatzberechnungWald (GesamtgrundExtern => GesamtgrundExtern);
             
          when KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum'Range =>
-            return ZusatzberechnungDschungel (KoordinatenExtern => KoordinatenExtern,
-                                              GrundExtern       => GrundExtern);
+            return ZusatzberechnungDschungel (GesamtgrundExtern => GesamtgrundExtern);
             
          when KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
-            return ZusatzberechnungSumpf (KoordinatenExtern => KoordinatenExtern,
-                                          GrundExtern       => GrundExtern);
+            return ZusatzberechnungSumpf (GesamtgrundExtern => GesamtgrundExtern);
             
-         when KartenzusatzgrundDatentypen.Riffe_Enum =>
-            return ZusatzberechnungRiffe (KoordinatenExtern => KoordinatenExtern,
-                                          GrundExtern       => GrundExtern);
+         when others =>
+            return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
       end case;
    
    end ZusatzExtraberechnungen;
    
    
    
+   -- Arktis_Enum, Tundra_Enum, Grasland_Enum, Steppe_Enum, Savanne_Enum, Wüste_Enum
    function ZusatzberechnungWald
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Wald_Enum)
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
       return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-   is
-      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
-   begin
+   is begin
       
-      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
-      
-      if
-        Basisgrund = KartenbasisgrundDatentypen.Wüste_Enum
-        or
-          Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
-      then
-         return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
+      case
+        GesamtgrundExtern.Basisgrund
+      is
+         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Arktis_Enum'Range =>
+            return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
          
-      else
-         return GrundExtern;
-      end if;
+         when others =>
+            return GesamtgrundExtern.Zusatzgrund;
+      end case;
       
    end ZusatzberechnungWald;
    
    
    
+   -- Arktis_Enum, Tundra_Enum, Grasland_Enum, Steppe_Enum, Savanne_Enum, Wüste_Enum
    function ZusatzberechnungDschungel
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Dschungel_Enum)
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
       return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-   is
-      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
-   begin
+   is begin
       
-      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
-      
-      if
-        Basisgrund = KartenbasisgrundDatentypen.Wüste_Enum
-        or
-          Basisgrund = KartenbasisgrundDatentypen.Tundra_Enum
-        or
-          Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
-      then
-         return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
+      case
+        GesamtgrundExtern.Basisgrund
+      is
+         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Arktis_Enum'Range =>
+            return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
          
-      else
-         return GrundExtern;
-      end if;
+         when others =>
+            return GesamtgrundExtern.Zusatzgrund;
+      end case;
             
    end ZusatzberechnungDschungel;
    
    
    
+   -- Arktis_Enum, Tundra_Enum, Grasland_Enum, Steppe_Enum, Savanne_Enum, Wüste_Enum
    function ZusatzberechnungSumpf
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Sumpf_Enum)
-      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-   is
-      use type KartenbasisgrundDatentypen.Basisgrund_Enum;
-   begin
-      
-      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
-      
-      if
-        Basisgrund = KartenbasisgrundDatentypen.Wüste_Enum
-        or
-          Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
-      then
-         return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
-         
-      else
-         return GrundExtern;
-      end if;
-      
-   end ZusatzberechnungSumpf;
-   
-   
-   
-   function ZusatzberechnungRiffe
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Oberfläche_Enum)
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
       return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is begin
       
-      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte));
-      
-      if
-        Basisgrund in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
-      then
-         return GrundExtern;
+      case
+        GesamtgrundExtern.Basisgrund
+      is
+         when KartenbasisgrundDatentypen.Basisgrund_Wüste_Enum'Range | KartenbasisgrundDatentypen.Basisgrund_Arktis_Enum'Range =>
+            return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
          
-      else
-         return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
-      end if;
+         when others =>
+            return GesamtgrundExtern.Zusatzgrund;
+      end case;
       
-   end ZusatzberechnungRiffe;
+   end ZusatzberechnungSumpf;
 
 end KartengeneratorZusatzlandschaftLogik;

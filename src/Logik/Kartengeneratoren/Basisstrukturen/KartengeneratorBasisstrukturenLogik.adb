@@ -290,7 +290,7 @@ package body KartengeneratorBasisstrukturenLogik is
             if
               KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= KartenKonstanten.UnterflächeKonstante
             then
-               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                              GrundExtern       => KartenbasisgrundDatentypen.Meeresgrund_Enum);
             
             else
@@ -322,7 +322,7 @@ package body KartengeneratorBasisstrukturenLogik is
             if
               KartengeneratorVariablenLogik.KartenebenenLesen.EbeneAnfang <= KartenKonstanten.UnterflächeKonstante
             then
-               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                              GrundExtern       => KartenbasisgrundDatentypen.Erde_Enum);
             
             else
