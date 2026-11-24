@@ -2,28 +2,21 @@ private with SystemDatentypenHTSEB;
 private with ZahlenRecordsHTSEB;
 
 with KartenRecords;
-with KartenDatentypen;
 with KartenartDatentypen;
 
 private with KartenzusatzgrundDatentypen;
 private with KartenbasisgrundDatentypen;
 
-with LeseWeltkarteneinstellungen;
+with Contracts;
 
 package KartengeneratorZusatzlandschaftLogik is
    pragma Elaborate_Body;
-   use type KartenDatentypen.SenkrechteBasis;
-   use type KartenDatentypen.WaagerechteBasis;
 
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
       TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum)
      with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+       Pre => (Contracts.Koordinatenprüfung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte)) = True);
      
 private
       

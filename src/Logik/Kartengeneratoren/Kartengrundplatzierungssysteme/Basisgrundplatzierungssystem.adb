@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with SystemDatentypen;
+with KartenDatentypen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
@@ -11,7 +12,10 @@ package body Basisgrundplatzierungssystem is
    procedure Basisgrundplatzierung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
-   is begin
+   is
+      use type KartenDatentypen.SenkrechteBasis;
+      use type KartenDatentypen.WaagerechteBasis;
+   begin
       
       case
         BasisgrundExtern

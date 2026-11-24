@@ -78,17 +78,19 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (20.10.2026):
+   -- Version 0.06.6940 => 0.06. (20.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6895 => 0.06. (19.10.2026):
+   -- Version 0.06.6895 => 0.06.6940 (19.10.2026):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Kartengeneratoren gearbeitet.
+   -- Angefangen oft vewrwendete, komplexere und generische Contracts in eigene Funktionen auszulagern.
+   -- Das neue Basisgrundermittlungssystem für die Unterfläche fertiggestellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
@@ -96,8 +98,8 @@ package ChangelogOktober2026 is
    
    -- Fehler behoben der dazu führte dass die KI bei der Ermittlung eines Kartenfeldes für eine neue Stadt nur den senkrechten Abstand von einer bereits vorhandenen Stadt berücksichtigte, aber nicht den Waagerechten.
    -- Weiter an den Kartengeneratoren gearbeitet.
-   -- Das neue Basisgrundermittlungssystem fertiggestellt.
-   -- Das neue Zusatzgrundermittlungssystem fertiggestellt.
+   -- Das neue Basisgrundermittlungssystem für die Oberfläche fertiggestellt.
+   -- Das neue Zusatzgrundermittlungssystem für die Oberfläche fertiggestellt.
    -- Angefangen den Untergrundgenerator neu zu schreiben.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    

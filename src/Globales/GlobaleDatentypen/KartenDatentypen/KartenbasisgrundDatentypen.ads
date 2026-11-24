@@ -36,6 +36,8 @@ package KartenbasisgrundDatentypen is
                             Meeresgrund_Enum, Küstengrund_Enum,
                             
                             Untereis_Enum,
+                            -- Noch sowas wie gefroren einbauen? äöü
+                            -- Generell weiter Geländearten einbauen? äöü
                             Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
                             
                             -- Planetenkern

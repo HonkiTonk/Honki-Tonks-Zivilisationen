@@ -1,4 +1,5 @@
 private with SystemDatentypenHTSEB;
+private with ZahlenRecordsHTSEB;
 
 with KartenDatentypen;
 with KartenRecords;
@@ -23,92 +24,28 @@ package KartengeneratorErdweltLogik is
    
 private
       
-   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Enum;
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum;
    
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
-   Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
       
-   type BasisWahrscheinlichkeitenArray is array (KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range) of SystemDatentypenHTSEB.NullBisHundert;
-   BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
-                                                                  KartenbasisgrundDatentypen.Erde_Enum       => 30,
-                                                                  KartenbasisgrundDatentypen.Erdgestein_Enum => 30,
-                                                                  KartenbasisgrundDatentypen.Sand_Enum       => 30,
-                                                                  KartenbasisgrundDatentypen.Gestein_Enum    => 30
+   type Umwandlung_Enum is (Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum);
+   
+   WelcherGrund : Umwandlung_Enum;
+   
+   type GrundwahrscheinlichkeitenArray is array (Umwandlung_Enum'Range) of ZahlenRecordsHTSEB.WahrscheinlichkeitsbereichRecord;
+   Grundwahrscheinlichkeiten : GrundwahrscheinlichkeitenArray := (
+                                                                  Erde_Enum       => (SystemDatentypenHTSEB.NullBisHundert'First, 24),
+                                                                  Erdgestein_Enum => (25, 29),
+                                                                  Sand_Enum       => (50, 74),
+                                                                  Gestein_Enum    => (75, SystemDatentypenHTSEB.NullBisHundert'Last)
                                                                  );
    
-   procedure BasisgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   procedure ZusatzgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   
-   
-   function BasisExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   function ZusatzberechnungErde
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   function ZusatzberechnungErdgestein
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   function ZusatzberechnungSand
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   function ZusatzberechnungGestein
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+   type BasisgrundumwandlungArray is array (GrundwahrscheinlichkeitenArray'Range) of KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum;
+   Basisgrundumwandlung : constant BasisgrundumwandlungArray := (
+                                                                 Erde_Enum       => KartenbasisgrundDatentypen.Erde_Enum,
+                                                                 Erdgestein_Enum => KartenbasisgrundDatentypen.Erdgestein_Enum,
+                                                                 Sand_Enum       => KartenbasisgrundDatentypen.Sand_Enum,
+                                                                 Gestein_Enum    => KartenbasisgrundDatentypen.Gestein_Enum
+                                                                );
 
 end KartengeneratorErdweltLogik;

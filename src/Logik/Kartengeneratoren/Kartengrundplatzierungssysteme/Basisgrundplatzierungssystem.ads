@@ -1,23 +1,16 @@
 with KartenRecords;
-with KartenDatentypen;
 with KartenbasisgrundDatentypen;
 
-with LeseWeltkarteneinstellungen;
+with Contracts;
 
 package Basisgrundplatzierungssystem is
    pragma Elaborate_Body;
-   use type KartenDatentypen.SenkrechteBasis;
-   use type KartenDatentypen.WaagerechteBasis;
 
    procedure Basisgrundplatzierung
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord;
       BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Vorhanden_Enum)
      with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+       Pre => (Contracts.Koordinatenprüfung (KoordinatenExtern => KoordinatenExtern) = True);
 
 private
 
@@ -262,40 +255,24 @@ private
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+       Pre => (Contracts.Koordinatenprüfung (KoordinatenExtern => KoordinatenExtern) = True);
 
    function BerechnungRechts
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+       Pre => (Contracts.Koordinatenprüfung (KoordinatenExtern => KoordinatenExtern) = True);
 
    function BerechnungOben
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+       Pre => (Contracts.Koordinatenprüfung (KoordinatenExtern => KoordinatenExtern) = True);
 
    function BerechnungUnten
      (KoordinatenExtern : in KartenRecords.KartenfeldNaturalRecord)
       return Boolean
      with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+       Pre => (Contracts.Koordinatenprüfung (KoordinatenExtern => KoordinatenExtern) = True);
 
 end Basisgrundplatzierungssystem;

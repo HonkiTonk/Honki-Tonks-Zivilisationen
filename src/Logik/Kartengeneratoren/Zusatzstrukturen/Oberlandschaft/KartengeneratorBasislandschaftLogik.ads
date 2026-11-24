@@ -29,8 +29,6 @@ private
    Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum;
    
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
-         
-   KartenWert : KartenRecords.KartenfeldNaturalRecord;
    
    type Umwandlung_Enum is (Arktisch_Enum, Tundra_Enum, Grasland_Enum, Steppe_Enum, Savanne_Enum, Wüste_Enum,
                             Hügel_Enum, Gebirge_Enum);
