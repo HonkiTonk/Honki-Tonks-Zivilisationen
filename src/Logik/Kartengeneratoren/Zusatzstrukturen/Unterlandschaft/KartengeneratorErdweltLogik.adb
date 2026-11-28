@@ -28,11 +28,9 @@ package body KartengeneratorErdweltLogik is
          
       end loop BasisgrundSchleife;
       -- Ende
-         
-      Basisgrund := Basisgrundumwandlung (WelcherGrund);
       
       Basisgrundplatzierungssystem.Basisgrundplatzierung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
-                                                          BasisgrundExtern  => Basisgrund);
+                                                          BasisgrundExtern  => Basisgrundumwandlung (WelcherGrund));
       
    end KartengeneratorErdwelt;
 

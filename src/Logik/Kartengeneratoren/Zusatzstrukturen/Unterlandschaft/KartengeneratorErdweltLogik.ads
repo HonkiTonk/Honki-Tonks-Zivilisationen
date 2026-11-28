@@ -23,8 +23,6 @@ package KartengeneratorErdweltLogik is
               );
    
 private
-      
-   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Land_Enum;
    
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
       

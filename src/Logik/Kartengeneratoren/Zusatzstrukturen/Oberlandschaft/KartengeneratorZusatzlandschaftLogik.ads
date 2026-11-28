@@ -109,7 +109,7 @@ private
       BasisgrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Enum)
       return KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
-   function ZusatzExtraberechnungen
+   function Zusatzberechnungen
      (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
       return KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    

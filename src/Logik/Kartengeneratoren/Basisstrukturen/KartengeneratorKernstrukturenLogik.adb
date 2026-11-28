@@ -63,6 +63,7 @@ package body KartengeneratorKernstrukturenLogik is
    
    
    
+   -- Mit den Anderen beiden Generatoren zusammenführen und einem Doppelgrund als Übergabe den Fest- und Flüssigstoff bestimmen. äöü
    procedure LandVorhanden
      (SenkrechteExtern : in KartenDatentypen.SenkrechtePositiv;
       WaagerechteExtern : in KartenDatentypen.WaagerechtePositiv)

@@ -1,7 +1,9 @@
 private with SystemDatentypenHTSEB;
+private with ZahlenRecordsHTSEB;
 
 with KartenDatentypen;
 with KartenRecords;
+with KartenartDatentypen;
 
 private with KartenzusatzgrundDatentypen;
 private with KartenbasisgrundDatentypen;
@@ -14,7 +16,8 @@ package KartengeneratorWasserweltLogik is
    use type KartenDatentypen.WaagerechteBasis;
 
    procedure ZusatzgrundBestimmen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
+      TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum)
      with
        Pre => (
                  KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
@@ -24,80 +27,68 @@ package KartengeneratorWasserweltLogik is
    
 private
          
+   Basisgrund : KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Enum;
+   
    Zusatzgrund : KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
    GezogeneZahl : SystemDatentypenHTSEB.NullBisHundert;
-   Zahlenspeicher : SystemDatentypenHTSEB.NullBisHundert;
-   WelcherGrund : SystemDatentypenHTSEB.NullBisHundert;
    
-   type ZusatzWahrscheinlichkeitenArray is array (SystemDatentypenHTSEB.EinsBisHundert'First .. 2) of SystemDatentypenHTSEB.NullBisHundert;
-   ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
-                                                                    1 => 30,
-                                                                    2 => 30
-                                                                   );
+   type Wasserumwandlung_Enum is (Leer_Enum, Korallen_Enum, Unterwald_Enum);
+   Wasserzusatz : Wasserumwandlung_Enum;
    
-   type ZahlenNachZusatzgrundArray is array (0 .. ZusatzWahrscheinlichkeitenArray'Last) of KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
-   ZahlenNachZusatzgrund : constant ZahlenNachZusatzgrundArray := (
-                                                                   0 => KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum,
-                                                                   1 => KartenzusatzgrundDatentypen.Korallen_Enum,
-                                                                   2 => KartenzusatzgrundDatentypen.Unterwald_Enum
-                                                                  );
+   type WassergrundwahrscheinlichkeitenArray is array (KartenartDatentypen.Kartentemperatur_Enum, Wasserumwandlung_Enum'Range) of ZahlenRecordsHTSEB.WahrscheinlichkeitsbereichRecord;
+   Wassergrundwahrscheinlichkeiten : WassergrundwahrscheinlichkeitenArray := (
+                                                                              KartenartDatentypen.Eiszeit_Enum =>
+                                                                                (
+                                                                                 Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 33),
+                                                                     
+                                                                                 Korallen_Enum  => (34, 66),
+                                                                                 Unterwald_Enum => (67, SystemDatentypenHTSEB.NullBisHundert'Last)
+                                                                                ),
+                                                                  
+                                                                              KartenartDatentypen.Kalt_Enum =>
+                                                                                (
+                                                                                 Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 33),
+                                                                     
+                                                                                 Korallen_Enum  => (34, 66),
+                                                                                 Unterwald_Enum => (67, SystemDatentypenHTSEB.NullBisHundert'Last)
+                                                                                ),
+                                                                  
+                                                                              KartenartDatentypen.Gemäßigt_Enum => 
+                                                                                (
+                                                                                 Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 33),
+                                                                     
+                                                                                 Korallen_Enum  => (34, 66),
+                                                                                 Unterwald_Enum => (67, SystemDatentypenHTSEB.NullBisHundert'Last)
+                                                                                ),
+                                                                  
+                                                                              KartenartDatentypen.Heiß_Enum =>
+                                                                                (
+                                                                                 Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 33),
+                                                                     
+                                                                                 Korallen_Enum  => (34, 66),
+                                                                                 Unterwald_Enum => (67, SystemDatentypenHTSEB.NullBisHundert'Last)
+                                                                                ),
+                                                                  
+                                                                              KartenartDatentypen.Warmzeit_Enum =>
+                                                                                (
+                                                                                 Leer_Enum      => (SystemDatentypenHTSEB.NullBisHundert'First, 33),
+                                                                     
+                                                                                 Korallen_Enum  => (34, 66),
+                                                                                 Unterwald_Enum => (67, SystemDatentypenHTSEB.NullBisHundert'Last)
+                                                                                )
+                                                                             );
+   
+   type WasserumwandlungArray is array (Korallen_Enum .. WassergrundwahrscheinlichkeitenArray'Last (2)) of KartenzusatzgrundDatentypen.Zusatzgrund_Unterfläche_Enum;
+   Wasserumwandlung : constant WasserumwandlungArray := (
+                                                         Korallen_Enum  => KartenzusatzgrundDatentypen.Korallen_Enum,
+                                                         Unterwald_Enum => KartenzusatzgrundDatentypen.Unterwald_Enum
+                                                        );
      
    
         
-   function BasisExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-         
-   function ZusatzExtraberechnungen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Unterfläche_Enum)
-      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
+   function Wasserbestimmung
+     (TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum)
+     return KartenzusatzgrundDatentypen.Zusatzgrund_Enum;
    
-   function ZusatzberechnungMeeresgrund
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum)
-      return KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   function ZusatzberechnungKorallen
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Korallen_Enum)
-      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-   
-   function ZusatzberechnungUnterwald
-     (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenzusatzgrundDatentypen.Zusatzgrund_Unterwald_Enum)
-      return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
-     with
-       Pre => (
-                 KoordinatenExtern.Senkrechte <= LeseWeltkarteneinstellungen.Senkrechte
-               and
-                 KoordinatenExtern.Waagerechte <= LeseWeltkarteneinstellungen.Waagerechte
-              );
-
 end KartengeneratorWasserweltLogik;

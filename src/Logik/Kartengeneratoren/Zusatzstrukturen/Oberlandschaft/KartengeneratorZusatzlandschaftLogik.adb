@@ -108,14 +108,14 @@ package body KartengeneratorZusatzlandschaftLogik is
             return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
             
          when others =>
-            return ZusatzExtraberechnungen (GesamtgrundExtern => (BasisgrundExtern, Landumwandlung (Landzusatz)));
+            return Zusatzberechnungen (GesamtgrundExtern => (BasisgrundExtern, Landumwandlung (Landzusatz)));
       end case;
       
    end Landbestimmung;
    
    
    
-   function ZusatzExtraberechnungen
+   function Zusatzberechnungen
      (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
       return KartenzusatzgrundDatentypen.Zusatzgrund_Enum
    is begin
@@ -136,7 +136,7 @@ package body KartengeneratorZusatzlandschaftLogik is
             return KartenzusatzgrundDatentypen.Leer_Zusatzgrund_Enum;
       end case;
    
-   end ZusatzExtraberechnungen;
+   end Zusatzberechnungen;
    
    
    

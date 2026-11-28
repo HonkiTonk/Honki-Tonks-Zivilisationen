@@ -33,8 +33,7 @@ package body KartengeneratorBasislandschaftLogik is
       end loop BasisgrundSchleife;
          
       Basisgrund := Zusatzberechnungen (KoordinatenExtern => KoordinatenExtern,
-                                        GrundExtern       => Basisgrundumwandlung (WelcherGrund),
-                                        TemperaturExtern  => TemperaturExtern);
+                                        GrundExtern       => Basisgrundumwandlung (WelcherGrund));
       
       Basisgrundplatzierungssystem.Basisgrundplatzierung (KoordinatenExtern => (KoordinatenExtern.Ebene, KoordinatenExtern.Senkrechte, KoordinatenExtern.Waagerechte),
                                                           BasisgrundExtern  => Basisgrund);
@@ -45,8 +44,7 @@ package body KartengeneratorBasislandschaftLogik is
    
    function Zusatzberechnungen
      (KoordinatenExtern : in KartenRecords.KartenfeldVorhandenRecord;
-      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
-      TemperaturExtern : in KartenartDatentypen.Kartentemperatur_Enum)
+      GrundExtern : in KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum)
       return KartenbasisgrundDatentypen.Basisgrund_Oberfläche_Land_Enum
    is begin
      

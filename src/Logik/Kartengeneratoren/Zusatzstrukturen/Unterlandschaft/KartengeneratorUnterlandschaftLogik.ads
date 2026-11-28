@@ -1,5 +1,6 @@
 private with KartenRecords;
 private with KartenbasisgrundDatentypen;
+private with KartenartDatentypen;
 
 package KartengeneratorUnterlandschaftLogik is
    pragma Elaborate_Body;
@@ -16,6 +17,8 @@ package KartengeneratorUnterlandschaftLogik is
 private
 
    AktuellerGrund : KartenbasisgrundDatentypen.Basisgrund_Unterfläche_Enum;
+
+   Temperatur : KartenartDatentypen.Kartentemperatur_Enum;
 
    Schleifenbereiche : KartenRecords.LandgrößenNaturalRecord;
 

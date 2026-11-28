@@ -64,18 +64,21 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (22.10.2026):
+   -- Version 0.06.7035 => 0.06. (22.10.2026):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6965 => 0.06. (21.10.2026):
+   -- Version 0.06.6965 => 0.06.7035 (21.10.2026):
    
    -- Weiter an den Kartengeneratoren gearbeitet.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das neue Basisgrundermittlungssystem für die Unterfläche fertiggestellt.
+   -- Das neue Zusatzgrundermittlungssystem für die Unterfläche fertiggestellt.
+   -- Das neue Basisgrundermittlungssystem für die Kernfläche fertiggestellt.
+   -- Das neue Zusatzgrundermittlungssystem für die Kernfläche fertiggestellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

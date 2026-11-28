@@ -14,6 +14,8 @@ package body KartengeneratorUnterlandschaftLogik is
      (LadezeitbasisExtern : in Float)
    is begin
       
+      Temperatur := KartengeneratorVariablenLogik.KartentemperaturLesen;
+      
       Schleifenbereiche := KartengeneratorVariablenLogik.PolfreierBereichLesen;
                
       SenkrechteSchleife:
@@ -22,7 +24,7 @@ package body KartengeneratorUnterlandschaftLogik is
          for WaagerechteSchleifenwert in Schleifenbereiche.MinimaleWaagerechte .. Schleifenbereiche.MaximaleWaagerechte loop
             
             AktuellerGrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-               
+            
             case
               AktuellerGrund
             is
@@ -30,11 +32,11 @@ package body KartengeneratorUnterlandschaftLogik is
                   KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
                      
                when others =>
-                  null;
+                  -- Wenn ich später noch Zusatzgrund für die feste Unterfläche einbaue das hier entsprechend überall aufrufen und nicht nur wenn Erde da ist.
+                  KartengeneratorWasserweltLogik.ZusatzgrundBestimmen (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert),
+                                                                       TemperaturExtern  => Temperatur);
             end case;
-            
-            KartengeneratorWasserweltLogik.ZusatzgrundBestimmen (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, SenkrechteSchleifenwert, WaagerechteSchleifenwert));
-            
+                        
          end loop WaagerechteSchleife;
          
          LadezeitenLogik.KartengeneratorSchreiben (BerechnungszeitExtern => LadezeitenDatentypen.Generiere_Zusatzstrukturen_Enum,
