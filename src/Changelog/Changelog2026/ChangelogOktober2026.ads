@@ -71,16 +71,17 @@ package ChangelogOktober2026 is
    
    
 
-   -- Version 0.06. => 0.06. (21.10.2026):
+   -- Version 0.06.6965 => 0.06. (21.10.2026):
    
+   -- Weiter an den Kartengeneratoren gearbeitet.
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.06.6940 => 0.06. (20.10.2026):
+   -- Version 0.06.6940 => 0.06.6965 (20.10.2026):
    
-   -- 
+   -- Gesamte, lokale Ada Struktur von Version 2026.0.0-2 auf 2026.0.0-2+b1 aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    
